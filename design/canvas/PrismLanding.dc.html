@@ -1,0 +1,649 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Landing</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-pill { display: inline-block; padding: 0.02em 0.24em 0.1em; border-radius: 0.3em; line-height: 1.08; }
+.pcl-faq summary::-webkit-details-marker { display: none; }
+.pcl-float { animation: pclFloat 7s ease-in-out infinite; }
+.pcl-float2 { animation: pclFloat 9s ease-in-out infinite reverse; }
+@keyframes pclFloat {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+  100% { transform: translateY(0); }
+}
+.pcl-marquee { animation: pclMarquee 40s linear infinite; }
+@keyframes pclMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pcl-float, .pcl-float2, .pcl-marquee { animation: none !important; }
+}
+@container pcl (max-width: 1239px) {
+  .pcl-floaters { display: none !important; }
+  .pcl-mtiles { display: grid !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split, .pcl-g3, .pcl-g2, .pcl-price { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-sec { padding-top: 64px !important; padding-bottom: 64px !important; }
+  .pcl-h1 { font-size: 44px !important; line-height: 54px !important; }
+  .pcl-h2 { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-card { padding: 22px !important; }
+  .pcl-tillu { display: none !important; }
+  .pcl-tcontent { max-width: none !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-ring { width: 240px !important; height: 240px !important; }
+  .pcl-cell { padding: 12px 10px !important; font-size: 13px !important; }
+  .pcl-band { padding: 36px 24px !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; overflow: hidden">
+
+<div style="background: linear-gradient(90deg, #3046E0 0%, #6A45F0 50%, #C42A6C 100%); color: #FFFFFF; text-align: center; font-size: 14px; font-weight: 500; padding: 9px 16px">Try a real lesson right now. No sign-up, no card. <a href="PrismDashboard.dc.html" style="font-weight: 700">Start one →</a></div>
+
+<header style="position: relative; z-index: 2">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 30px; height: 26px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span class="pcl-display" style="font-size: 20px; font-weight: 700; letter-spacing: -0.02em">PractiCode<span style="font-weight: 600; color: #B9A2FF"> Learn</span></span>
+</a>
+<nav class="pcl-navlinks" aria-label="Main" style="display: flex; gap: 30px; font-size: 15px">
+<a href="#tracks" style="text-decoration: none">Tracks</a>
+<a href="#loop" style="text-decoration: none">How It Works</a>
+<a href="#pricing" style="text-decoration: none">Pricing</a>
+<a href="#mentor" style="text-decoration: none">Mentors</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<a href="PrismDashboard.dc.html" class="pcl-hide-xs" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 42px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #332E4D">Log In</a>
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Free</a>
+</div>
+</div>
+</header>
+
+<section class="pcl-sec" style="position: relative; padding: 64px 0 104px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -280px; width: 1500px; height: 900px; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side at 30% 45%, rgba(77,107,255,0.34), rgba(77,107,255,0) 70%), radial-gradient(closest-side at 70% 40%, rgba(240,64,127,0.28), rgba(240,64,127,0) 70%), radial-gradient(closest-side at 50% 75%, rgba(123,92,255,0.32), rgba(123,92,255,0) 70%), radial-gradient(closest-side at 50% 20%, rgba(47,230,176,0.16), rgba(47,230,176,0) 70%)"></div>
+
+<div class="pcl-floaters" aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none">
+<div style="position: absolute; left: 3%; top: 64px; transform: rotate(-8deg)"><div class="pcl-float" style="width: 232px; background: rgba(16,14,30,0.78); border: 1px solid rgba(77,107,255,0.55); border-radius: 22px; padding: 16px 18px; box-shadow: 0 24px 60px rgba(77,107,255,0.28); font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 22px">
+<div style="display: flex; gap: 5px; margin-bottom: 10px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #F0407F; display: block"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #FF8A3D; display: block"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FE6B0; display: block"></span></div>
+<div><span style="color: #8EA2FF">&lt;h1&gt;</span>Hello, world<span style="color: #8EA2FF">&lt;/h1&gt;</span></div>
+<div><span style="color: #8EA2FF">&lt;p&gt;</span>My first website<span style="color: #8EA2FF">&lt;/p&gt;</span></div>
+<div><span style="color: #8EA2FF">&lt;button&gt;</span>Say hi<span style="color: #8EA2FF">&lt;/button&gt;</span></div>
+</div></div>
+<div style="position: absolute; left: 6%; top: 384px; transform: rotate(6deg)"><div class="pcl-float2" style="width: 204px; background: rgba(16,14,30,0.78); border: 1px solid rgba(47,230,176,0.5); border-radius: 22px; padding: 16px 18px; box-shadow: 0 24px 60px rgba(47,230,176,0.2)">
+<p style="margin: 0 0 12px; font-size: 13px; font-weight: 600; color: #4BE3A8">Weekly sales</p>
+<div style="height: 80px; display: flex; align-items: flex-end; gap: 8px"><span style="flex: 1; height: 34%; border-radius: 6px; background: rgba(47,230,176,0.35); display: block"></span><span style="flex: 1; height: 52%; border-radius: 6px; background: rgba(47,230,176,0.5); display: block"></span><span style="flex: 1; height: 44%; border-radius: 6px; background: rgba(47,230,176,0.45); display: block"></span><span style="flex: 1; height: 72%; border-radius: 6px; background: rgba(47,230,176,0.7); display: block"></span><span style="flex: 1; height: 100%; border-radius: 6px; background: #2FE6B0; display: block"></span></div>
+</div></div>
+<div style="position: absolute; right: 3%; top: 60px; transform: rotate(7deg)"><div class="pcl-float2" style="width: 206px; background: rgba(16,14,30,0.78); border: 1px solid rgba(240,64,127,0.55); border-radius: 22px; padding: 16px; box-shadow: 0 24px 60px rgba(240,64,127,0.24); display: flex; gap: 12px; align-items: center">
+<div style="width: 70px; height: 120px; border: 2px solid #FF7DB0; border-radius: 14px; padding: 8px 6px; box-sizing: border-box; display: flex; flex-direction: column; gap: 5px"><span style="height: 26px; border-radius: 5px; background: rgba(255,125,176,0.4); display: block"></span><span style="height: 6px; width: 70%; border-radius: 3px; background: #FF7DB0; display: block"></span><span style="height: 6px; width: 50%; border-radius: 3px; background: rgba(255,125,176,0.5); display: block"></span><span style="margin-top: auto; height: 14px; border-radius: 5px; background: #F0407F; display: block"></span></div>
+<div style="font-size: 12px; line-height: 18px"><p style="margin: 0; font-weight: 600; color: #FF7DB0">Sign-up screen</p><p style="margin: 4px 0 0; color: #A9A6BC">Version 3, after testing with five people</p></div>
+</div></div>
+<div style="position: absolute; right: 6%; top: 384px; transform: rotate(-6deg)"><div class="pcl-float" style="width: 214px; background: rgba(16,14,30,0.78); border: 1px solid rgba(123,92,255,0.55); border-radius: 22px; padding: 16px 18px; box-shadow: 0 24px 60px rgba(123,92,255,0.26)">
+<svg viewBox="0 0 170 90" style="width: 100%; height: 86px"><g style="stroke: rgba(185,162,255,0.45); stroke-width: 1.4"><path d="M20 15 85 25M20 15 85 65M20 45 85 25M20 45 85 65M20 75 85 25M20 75 85 65M85 25 150 45M85 65 150 45" /></g><g style="fill: #B9A2FF"><circle cx="20" cy="15" r="7" /><circle cx="20" cy="45" r="7" /><circle cx="20" cy="75" r="7" /><circle cx="85" cy="25" r="8" /><circle cx="85" cy="65" r="8" /></g><circle cx="150" cy="45" r="10" style="fill: #2FE6B0" /></svg>
+<p style="margin: 8px 0 0; font-size: 12px; font-weight: 500; color: #B9A2FF">Model accuracy: 91%</p>
+</div></div>
+<div style="position: absolute; left: 17%; top: 640px; transform: rotate(-4deg)"><p class="pcl-float2" style="margin: 0; display: flex; align-items: center; gap: 8px; background: #FF8A3D; color: #1F0E00; font-size: 14px; font-weight: 600; padding: 10px 16px; border-radius: 999px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Correct, first try</p></div>
+<div style="position: absolute; right: 17%; top: 650px; transform: rotate(4deg)"><p class="pcl-float" style="margin: 0; display: flex; align-items: center; gap: 8px; background: #2FE6B0; color: #04241A; font-size: 14px; font-weight: 600; padding: 10px 16px; border-radius: 999px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" /></svg>4 weeks in a row</p></div>
+</div>
+
+<div class="pcl-wrap" style="position: relative; max-width: 880px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+<p style="margin: 0; display: inline-flex; align-items: center; gap: 10px; font-size: 13px; padding: 7px 16px 7px 12px; border-radius: 999px; border: 1px solid #2A2540; background: rgba(255,255,255,0.03); color: #DCD9EA"><span style="display: flex; gap: 3px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #4D6BFF; display: block"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FE6B0; display: block"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #F0407F; display: block"></span><span style="width: 8px; height: 8px; border-radius: 999px; background: #7B5CFF; display: block"></span></span>4 tracks · No videos · Works offline</p>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 78px; line-height: 90px; font-weight: 800; letter-spacing: -0.04em">Learn <span class="pcl-pill" style="background: #3D5AF5; color: #FFFFFF; transform: rotate(-2deg); box-shadow: 0 0 44px rgba(77,107,255,0.55)">code</span>, <span class="pcl-pill" style="background: #2FE6B0; color: #04241A; transform: rotate(1.5deg); box-shadow: 0 0 44px rgba(47,230,176,0.45)">data</span>, <span class="pcl-pill" style="background: #D9306F; color: #FFFFFF; transform: rotate(-1.5deg); box-shadow: 0 0 44px rgba(240,64,127,0.5)">design</span> and <span class="pcl-pill" style="background: #6E4CF5; color: #FFFFFF; transform: rotate(2deg); box-shadow: 0 0 44px rgba(123,92,255,0.55)">AI</span> by actually doing it.</h1>
+<p style="margin: 0; max-width: 640px; font-size: 19px; line-height: 31px; color: #A9A6BC">Bite-sized lessons you can poke, break and fix, right in your browser. No lectures, no buffering. It works on a cheap phone and a slow network, and keeps going when your data runs out.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 56px; padding: 0 28px; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Learning Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+<a href="#tracks" style="text-decoration: none; font-size: 16px; font-weight: 500; height: 56px; padding: 0 26px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #332E4D; background: rgba(255,255,255,0.03)">Explore the Tracks</a>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: 13px; color: #A9A6BC">
+<li style="display: flex; align-items: center; gap: 6px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px; color: #8EA2FF" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Module 1 of every track free</li>
+<li style="display: flex; align-items: center; gap: 6px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px; color: #4BE3A8" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>₦0 today</li>
+<li style="display: flex; align-items: center; gap: 6px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px; color: #FF7DB0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Works offline</li>
+</ul>
+<div class="pcl-mtiles" aria-hidden="true" style="display: none; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 420px">
+<span style="height: 64px; border-radius: 18px; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.55); color: #8EA2FF; display: flex; align-items: center; justify-content: center; transform: rotate(-4deg)"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 26px; height: 26px"><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></svg></span>
+<span style="height: 64px; border-radius: 18px; background: rgba(47,230,176,0.14); border: 1px solid rgba(47,230,176,0.5); color: #4BE3A8; display: flex; align-items: center; justify-content: center; transform: rotate(3deg)"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 26px; height: 26px"><path d="M3 3v18h18" /><path d="M8 17v-4" /><path d="M13 17V8" /><path d="M18 17v-7" /></svg></span>
+<span style="height: 64px; border-radius: 18px; background: rgba(240,64,127,0.14); border: 1px solid rgba(240,64,127,0.55); color: #FF7DB0; display: flex; align-items: center; justify-content: center; transform: rotate(-3deg)"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 26px; height: 26px"><path d="m12 19 7-7 3 3-7 7z" /><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18z" /><circle cx="11" cy="11" r="2" /></svg></span>
+<span style="height: 64px; border-radius: 18px; background: rgba(123,92,255,0.16); border: 1px solid rgba(123,92,255,0.55); color: #B9A2FF; display: flex; align-items: center; justify-content: center; transform: rotate(4deg)"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 26px; height: 26px"><rect x="5" y="5" width="14" height="14" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" /></svg></span>
+</div>
+</div>
+</section>
+
+<section aria-label="Tools you'll use" style="border-top: 1px solid #1C1930; border-bottom: 1px solid #1C1930; padding: 22px 0; overflow: hidden; background: rgba(255,255,255,0.015)">
+<div class="pcl-marquee pcl-display" style="display: flex; gap: 46px; width: max-content; font-size: 20px; font-weight: 700; letter-spacing: -0.01em; color: #DCD9EA">
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>HTML</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>CSS</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>JavaScript</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>Excel</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>Power BI</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>DAX</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #F0407F; box-shadow: 0 0 10px #F0407F; display: block"></span>Figma</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #F0407F; box-shadow: 0 0 10px #F0407F; display: block"></span>FigJam</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>Python</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>pandas</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>scikit-learn</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #FF8A3D; box-shadow: 0 0 10px #FF8A3D; display: block"></span>Git</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>HTML</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>CSS</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 10px #4D6BFF; display: block"></span>JavaScript</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>Excel</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>Power BI</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 10px #2FE6B0; display: block"></span>DAX</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #F0407F; box-shadow: 0 0 10px #F0407F; display: block"></span>Figma</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #F0407F; box-shadow: 0 0 10px #F0407F; display: block"></span>FigJam</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>Python</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>pandas</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 10px #7B5CFF; display: block"></span>scikit-learn</span>
+<span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 999px; background: #FF8A3D; box-shadow: 0 0 10px #FF8A3D; display: block"></span>Git</span>
+</div>
+</section>
+
+<section class="pcl-sec" style="padding: 112px 0">
+<div class="pcl-wrap pcl-split" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 64px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 800; letter-spacing: -0.035em">A lesson that talks back</h2>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #A9A6BC">Every step asks you to do something. Pick an answer, nudge a value, fix a bug.</p>
+<p style="margin: 0; font-size: 17px; line-height: 28px">Get it wrong and the diagram shows you why. <span style="color: #8EA2FF">Get it right and the next step builds on it.</span> You find out what you know by using it, not by being told.</p>
+<a href="#loop" style="align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 500; height: 46px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #332E4D">See How It Works</a>
+</div>
+<div style="position: relative">
+<div aria-hidden="true" style="position: absolute; inset: -70px; pointer-events: none; background: radial-gradient(closest-side at 35% 40%, rgba(77,107,255,0.30), rgba(77,107,255,0) 75%), radial-gradient(closest-side at 70% 70%, rgba(240,64,127,0.22), rgba(240,64,127,0) 75%)"></div>
+<div class="pcl-card" style="position: relative; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<p style="margin: 0; font-size: 13px; color: #A9A6BC">Front-End Web Development · Module 6</p>
+<p style="margin: 0; font-size: 12px; font-weight: 600; color: #04241A; background: #2FE6B0; border-radius: 999px; padding: 3px 10px">Predict</p>
+</div>
+<div style="display: flex; gap: 4px" aria-hidden="true">
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #4D6BFF; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #7B5CFF; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+<span style="flex: 1; height: 5px; border-radius: 3px; background: #26213B; display: block"></span>
+</div>
+<h3 class="pcl-display" style="margin: 0; font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -0.01em">Where will the three links end up?</h3>
+<div style="background: #0E0C1A; border: 1px solid #221E36; border-radius: 14px; padding: 16px 20px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 24px; white-space: pre">
+<div><span style="color: #FFFFFF">.nav</span><span style="color: #8B88A0">&#160;{</span></div>
+<div style="padding-left: 2ch"><span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">flex</span><span style="color: #8B88A0">;</span></div>
+<div style="padding-left: 2ch"><span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:&#160;</span><span style="color: #FF7DB0">space-between</span><span style="color: #8B88A0">;</span></div>
+<div><span style="color: #8B88A0">}</span></div>
+</div>
+<div role="group" aria-label="Your prediction" style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{heroOptions}}" as="opt" hint-placeholder-count="3">
+<button type="button" onClick="{{opt.pick}}" aria-pressed="{{opt.pressed}}" style="display: flex; align-items: center; gap: 14px; width: 100%; min-height: 52px; padding: 10px 14px; border-radius: 16px; border: 1.5px solid {{opt.border}}; background: {{opt.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; box-sizing: border-box">
+<span style="width: 26px; height: 26px; border-radius: 8px; background: #221E36; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0">{{opt.letter}}</span>
+<span aria-hidden="true" style="width: 108px; height: 30px; flex-shrink: 0; border: 1px dashed #464060; border-radius: 8px; padding: 0 5px; display: flex; align-items: center; justify-content: {{opt.justify}}; gap: 4px; box-sizing: border-box">
+<span style="width: 18px; height: 18px; border-radius: 5px; background: #4D6BFF; display: block"></span>
+<span style="width: 18px; height: 18px; border-radius: 5px; background: #2FE6B0; display: block"></span>
+<span style="width: 18px; height: 18px; border-radius: 5px; background: #F0407F; display: block"></span>
+</span>
+<span>{{opt.label}}</span>
+</button>
+</sc-for>
+</div>
+<div aria-live="polite" style="min-height: 46px">
+<sc-if value="{{heroCorrect}}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0; display: flex; gap: 10px; font-size: 14px; line-height: 22px; color: #4BE3A8"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg><span>{{heroFeedback}}</span></p>
+</sc-if>
+<sc-if value="{{heroWrong}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; display: flex; gap: 10px; font-size: 14px; line-height: 22px; color: #FF9AA2"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg><span>{{heroFeedback}}</span></p>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 48px">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -0.04em">Small numbers. Big difference.</h2>
+<p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 28px; color: #A9A6BC">Three numbers that shaped how we built this, <span style="color: #4BE3A8">and why it works on any network.</span></p>
+</div>
+<div class="pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<article class="pcl-card" style="border-radius: 30px; padding: 32px 28px; border: 1px solid #2A2540; background: linear-gradient(165deg, #3D5AF5 0%, #1B2580 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The research</p>
+<p class="pcl-display" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 80px; line-height: 86px; font-weight: 800; letter-spacing: -0.045em">6×<svg class="pcl-i" viewBox="0 0 24 24" style="width: 46px; height: 46px; opacity: 0.85" aria-hidden="true"><path d="M7 17 17 7" /><path d="M8 7h9v9" /></svg></p>
+<p style="margin: 0; font-size: 15px; color: #E3E7FF">more learning from doing than watching</p>
+<span style="width: 100%; height: 1px; background: rgba(255,255,255,0.14); display: block"></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #CDD3F5">Carnegie Mellon researchers compared hands-on activities with video in a Coursera course. Doing won, and not by a little.</p>
+<a href="https://doi.org/10.1145/2724660.2724681" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">Read the Study</a>
+</article>
+<article class="pcl-card" style="border-radius: 30px; padding: 32px 28px; border: 1px solid #2A2540; background: linear-gradient(165deg, #0A7D5C 0%, #0B4A3A 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The data</p>
+<p class="pcl-display" style="margin: 0; font-size: 80px; line-height: 86px; font-weight: 800; letter-spacing: -0.045em">150 KB</p>
+<p style="margin: 0; font-size: 15px; color: #DDF7EC">the most a lesson is allowed to weigh</p>
+<span style="width: 100%; height: 1px; background: rgba(255,255,255,0.14); display: block"></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #C6EBDC">That's less than one second of HD video. A whole module fits in about 2 MB, so you can save it for offline in one go.</p>
+<a href="#loop" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">How We Keep It Light</a>
+</article>
+<article class="pcl-card" style="border-radius: 30px; padding: 32px 28px; border: 1px solid #2A2540; background: linear-gradient(165deg, #D9306F 0%, #5E1236 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px">
+<p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The price</p>
+<p class="pcl-display" style="margin: 0; font-size: 80px; line-height: 86px; font-weight: 800; letter-spacing: -0.045em">₦0</p>
+<p style="margin: 0; font-size: 15px; color: #FFE3EE">to start any of the four tracks</p>
+<span style="width: 100%; height: 1px; background: rgba(255,255,255,0.14); display: block"></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #F5CADB">Module 1 of every track is free for good. No card, and no trial clock ticking in the corner.</p>
+<a href="#pricing" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">See the Plans</a>
+</article>
+</div>
+</div>
+</section>
+
+<section id="loop" class="pcl-sec" style="position: relative; padding: 112px 0; border-top: 1px solid #1C1930; border-bottom: 1px solid #1C1930; background: rgba(255,255,255,0.012)">
+<div class="pcl-wrap pcl-split" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center">
+<div style="display: flex; justify-content: center">
+<div class="pcl-ring" style="position: relative; width: 340px; height: 340px">
+<div aria-hidden="true" style="position: absolute; inset: -40px; background: radial-gradient(closest-side, rgba(123,92,255,0.28), rgba(123,92,255,0) 80%)"></div>
+<svg viewBox="0 0 280 280" aria-hidden="true" style="position: relative; width: 100%; height: 100%; transform: rotate(-90deg)">
+<circle cx="140" cy="140" r="110" style="fill: none; stroke: #FF8A3D; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 118 573; stroke-dashoffset: -6" />
+<circle cx="140" cy="140" r="110" style="fill: none; stroke: #4D6BFF; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 118 573; stroke-dashoffset: -144.2" />
+<circle cx="140" cy="140" r="110" style="fill: none; stroke: #2FE6B0; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 118 573; stroke-dashoffset: -282.5" />
+<circle cx="140" cy="140" r="110" style="fill: none; stroke: #F0407F; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 118 573; stroke-dashoffset: -420.7" />
+<circle cx="140" cy="140" r="110" style="fill: none; stroke: #7B5CFF; stroke-width: 34; stroke-linecap: round; stroke-dasharray: 118 573; stroke-dashoffset: -558.9" />
+</svg>
+<p class="pcl-display" style="position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center"><span style="font-size: 44px; line-height: 48px; font-weight: 800; letter-spacing: -0.03em">1 lesson</span><span style="font-size: 16px; font-weight: 600; color: #A9A6BC">5 moves · about 12 min</span></p>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 24px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 800; letter-spacing: -0.035em">Every lesson goes round the same loop</h2>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #A9A6BC">It's called PRIMM, and computing teachers across the UK use it. You read and guess before you write, so you're never stuck staring at a blank screen.</p>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<li style="display: flex; align-items: center; gap: 14px; background: #0F0D1B; border: 1px solid #221E36; border-radius: 18px; padding: 12px 16px"><span style="width: 34px; height: 34px; border-radius: 10px; background: #FF8A3D; color: #1F0E00; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span><span><span style="font-weight: 600">Predict.</span><span style="color: #A9A6BC"> Guess what the code will do.</span></span></li>
+<li style="display: flex; align-items: center; gap: 14px; background: #0F0D1B; border: 1px solid #221E36; border-radius: 18px; padding: 12px 16px"><span style="width: 34px; height: 34px; border-radius: 10px; background: #3D5AF5; color: #FFFFFF; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span><span><span style="font-weight: 600">Run.</span><span style="color: #A9A6BC"> See what really happens.</span></span></li>
+<li style="display: flex; align-items: center; gap: 14px; background: #0F0D1B; border: 1px solid #221E36; border-radius: 18px; padding: 12px 16px"><span style="width: 34px; height: 34px; border-radius: 10px; background: #2FE6B0; color: #04241A; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</span><span><span style="font-weight: 600">Investigate.</span><span style="color: #A9A6BC"> Pull it apart, one tap at a time.</span></span></li>
+<li style="display: flex; align-items: center; gap: 14px; background: #0F0D1B; border: 1px solid #221E36; border-radius: 18px; padding: 12px 16px"><span style="width: 34px; height: 34px; border-radius: 10px; background: #D9306F; color: #FFFFFF; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">4</span><span><span style="font-weight: 600">Modify.</span><span style="color: #A9A6BC"> Change one thing and watch.</span></span></li>
+<li style="display: flex; align-items: center; gap: 14px; background: #0F0D1B; border: 1px solid #221E36; border-radius: 18px; padding: 12px 16px"><span style="width: 34px; height: 34px; border-radius: 10px; background: #6E4CF5; color: #FFFFFF; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">5</span><span><span style="font-weight: 600">Make.</span><span style="color: #A9A6BC"> Build your own from scratch.</span></span></li>
+</ol>
+</div>
+</div>
+</section>
+
+<section id="tracks" class="pcl-sec" style="padding: 112px 0">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 44px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; max-width: 720px; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -0.04em">Four tracks, four colours. Pick one.</h2>
+<p style="margin: 0; max-width: 380px; font-size: 17px; line-height: 28px; color: #A9A6BC">Each one starts free, so trying them all costs you nothing. Switch whenever you like.</p>
+</div>
+<div class="pcl-g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px">
+
+<article class="pcl-card" style="position: relative; overflow: hidden; min-height: 360px; border-radius: 32px; padding: 36px; border: 1px solid #2A2540; background: linear-gradient(155deg, #3D5AF5 0%, #1C2785 38%, #0E0C1A 78%); display: flex; flex-direction: column">
+<svg class="pcl-tillu" viewBox="0 0 240 200" aria-hidden="true" style="position: absolute; right: -24px; bottom: -18px; width: 260px; height: 216px"><rect x="10" y="20" width="220" height="170" rx="20" style="fill: rgba(255,255,255,0.08); stroke: rgba(142,162,255,0.5); stroke-width: 1.5" /><circle cx="34" cy="42" r="5" style="fill: #F0407F" /><circle cx="50" cy="42" r="5" style="fill: #FF8A3D" /><circle cx="66" cy="42" r="5" style="fill: #2FE6B0" /><rect x="30" y="66" width="120" height="10" rx="5" style="fill: #8EA2FF" /><rect x="30" y="88" width="170" height="10" rx="5" style="fill: rgba(255,255,255,0.35)" /><rect x="30" y="110" width="90" height="10" rx="5" style="fill: rgba(255,255,255,0.35)" /><rect x="30" y="138" width="80" height="30" rx="10" style="fill: #FFFFFF" /></svg>
+<div class="pcl-tcontent" style="position: relative; max-width: 58%; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<p style="margin: 0; align-self: flex-start; font-size: 13px; font-weight: 500; background: rgba(255,255,255,0.14); border-radius: 999px; padding: 5px 12px">Beginner · 12 modules</p>
+<h3 class="pcl-display" style="margin: 0; font-size: 34px; line-height: 38px; font-weight: 800; letter-spacing: -0.025em">Front-End Web Development</h3>
+<p style="margin: 0; font-size: 16px; line-height: 25px; color: #E3E7FF">Build websites that look right on every screen, then put them online for real.</p>
+<p style="margin: 0; font-size: 13px; color: #C2CBFF">Aligned to the MDN Curriculum</p>
+<a href="PrismDashboard.dc.html" style="margin-top: auto; align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; color: #2D45D8; background: #FFFFFF; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px">Start Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</article>
+
+<article class="pcl-card" style="position: relative; overflow: hidden; min-height: 360px; border-radius: 32px; padding: 36px; border: 1px solid #2A2540; background: linear-gradient(155deg, #0A7D5C 0%, #0A4E3D 38%, #0E0C1A 78%); display: flex; flex-direction: column">
+<svg class="pcl-tillu" viewBox="0 0 240 200" aria-hidden="true" style="position: absolute; right: -16px; bottom: -10px; width: 260px; height: 216px"><rect x="20" y="110" width="34" height="80" rx="8" style="fill: rgba(255,255,255,0.18)" /><rect x="66" y="80" width="34" height="110" rx="8" style="fill: rgba(255,255,255,0.28)" /><rect x="112" y="96" width="34" height="94" rx="8" style="fill: rgba(255,255,255,0.18)" /><rect x="158" y="44" width="34" height="146" rx="8" style="fill: #2FE6B0" /><path d="M20 80 C60 70 80 40 120 56 S 180 20 220 16" style="fill: none; stroke: #FFFFFF; stroke-width: 5; stroke-linecap: round" /><circle cx="220" cy="16" r="8" style="fill: #FFFFFF" /></svg>
+<div class="pcl-tcontent" style="position: relative; max-width: 58%; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<p style="margin: 0; align-self: flex-start; font-size: 13px; font-weight: 500; background: rgba(255,255,255,0.14); border-radius: 999px; padding: 5px 12px">Beginner · 11 modules</p>
+<h3 class="pcl-display" style="margin: 0; font-size: 34px; line-height: 38px; font-weight: 800; letter-spacing: -0.025em">Data Analysis</h3>
+<p style="margin: 0; font-size: 16px; line-height: 25px; color: #DDF7EC">Tidy messy spreadsheets, find what the numbers are saying, and build dashboards people actually read.</p>
+<p style="margin: 0; font-size: 13px; color: #A9EBD2">Aligned to Microsoft PL-300</p>
+<a href="PrismDashboard.dc.html" style="margin-top: auto; align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; color: #006B47; background: #FFFFFF; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px">Start Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</article>
+
+<article class="pcl-card" style="position: relative; overflow: hidden; min-height: 360px; border-radius: 32px; padding: 36px; border: 1px solid #2A2540; background: linear-gradient(155deg, #D9306F 0%, #6B1540 38%, #0E0C1A 78%); display: flex; flex-direction: column">
+<svg class="pcl-tillu" viewBox="0 0 240 200" aria-hidden="true" style="position: absolute; right: -10px; bottom: -14px; width: 260px; height: 216px"><rect x="40" y="30" width="120" height="150" rx="18" style="fill: rgba(255,255,255,0.1)" /><rect x="90" y="56" width="120" height="130" rx="18" style="fill: rgba(255,255,255,0.2)" /><rect x="108" y="76" width="84" height="40" rx="10" style="fill: #FFFFFF" /><rect x="108" y="126" width="60" height="8" rx="4" style="fill: #FFFFFF" /><rect x="108" y="142" width="44" height="8" rx="4" style="fill: rgba(255,255,255,0.6)" /><path d="M176 132 l0 34 l9 -8 l7 15 l7 -3 l-7 -15 l12 0 z" style="fill: #07060D; stroke: #FFFFFF; stroke-width: 2.5; stroke-linejoin: round" /></svg>
+<div class="pcl-tcontent" style="position: relative; max-width: 58%; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<p style="margin: 0; align-self: flex-start; font-size: 13px; font-weight: 500; background: rgba(255,255,255,0.14); border-radius: 999px; padding: 5px 12px">Beginner · 11 modules</p>
+<h3 class="pcl-display" style="margin: 0; font-size: 34px; line-height: 38px; font-weight: 800; letter-spacing: -0.025em">UI/UX Product Design</h3>
+<p style="margin: 0; font-size: 16px; line-height: 25px; color: #FFE3EE">Talk to real users, sketch ideas, and turn them into designs people can click through.</p>
+<p style="margin: 0; font-size: 13px; color: #FFB8D2">Aligned to ISO 9241-210</p>
+<a href="PrismDashboard.dc.html" style="margin-top: auto; align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; color: #B5225B; background: #FFFFFF; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px">Start Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</article>
+
+<article class="pcl-card" style="position: relative; overflow: hidden; min-height: 360px; border-radius: 32px; padding: 36px; border: 1px solid #2A2540; background: linear-gradient(155deg, #6E4CF5 0%, #33208A 38%, #0E0C1A 78%); display: flex; flex-direction: column">
+<svg class="pcl-tillu" viewBox="0 0 240 200" aria-hidden="true" style="position: absolute; right: -10px; bottom: -6px; width: 260px; height: 216px"><g style="stroke: rgba(255,255,255,0.35); stroke-width: 2"><path d="M40 40 120 70M40 40 120 130M40 100 120 70M40 100 120 130M40 160 120 70M40 160 120 130M120 70 200 100M120 130 200 100" /></g><g style="fill: rgba(255,255,255,0.85)"><circle cx="40" cy="40" r="12" /><circle cx="40" cy="100" r="12" /><circle cx="40" cy="160" r="12" /><circle cx="120" cy="70" r="14" /><circle cx="120" cy="130" r="14" /></g><circle cx="200" cy="100" r="18" style="fill: #2FE6B0" /></svg>
+<div class="pcl-tcontent" style="position: relative; max-width: 58%; display: flex; flex-direction: column; gap: 14px; flex: 1">
+<p style="margin: 0; align-self: flex-start; font-size: 13px; font-weight: 500; background: rgba(255,255,255,0.14); border-radius: 999px; padding: 5px 12px">Intermediate · 12 modules</p>
+<h3 class="pcl-display" style="margin: 0; font-size: 34px; line-height: 38px; font-weight: 800; letter-spacing: -0.025em">AI &amp; Machine Learning</h3>
+<p style="margin: 0; font-size: 16px; line-height: 25px; color: #ECE7FF">Train models in Python, check whether they're any good, and learn where AI goes wrong.</p>
+<p style="margin: 0; font-size: 13px; color: #CFC2FF">Aligned to ACM CS2023</p>
+<a href="PrismDashboard.dc.html" style="margin-top: auto; align-self: flex-start; text-decoration: none; font-size: 15px; font-weight: 600; color: #5A36E6; background: #FFFFFF; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px">Start Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</article>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 40px; justify-content: space-between; border-top: 1px solid #1C1930; padding-top: 28px">
+<p style="margin: 0; font-size: 14px; color: #8B88A0">Our syllabi line up with standards employers already trust</p>
+<ul class="pcl-display" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px 36px; font-size: 18px; font-weight: 700; color: #8B88A0"><li>MDN Curriculum</li><li>SFIA 9</li><li>Microsoft PL-300</li><li>ISO 9241-210</li><li>ACM CS2023</li></ul>
+</div>
+</div>
+</section>
+
+<section class="pcl-sec" style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 44px">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -0.04em">Everything you need to actually finish</h2>
+<p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 28px; color: #A9A6BC">Starting a course is easy. Finishing it is the hard part, <span style="color: #FF7DB0">so that's what we built for.</span></p>
+</div>
+<div class="pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 20px; box-sizing: border-box">
+<div style="width: 100%; height: 72px; border: 1.5px dashed #464060; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; padding: 0 12px; box-sizing: border-box">
+<span style="width: 44px; height: 44px; border-radius: 10px; background: #4D6BFF; display: block"></span>
+<span style="width: 44px; height: 44px; border-radius: 10px; background: #2FE6B0; display: block"></span>
+<span style="width: 44px; height: 44px; border-radius: 10px; background: #F0407F; display: block"></span>
+</div>
+<div style="display: flex; gap: 6px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px">
+<span style="padding: 5px 9px; border-radius: 8px; border: 1px solid #2A2540; color: #A9A6BC">start</span>
+<span style="padding: 5px 9px; border-radius: 8px; border: 1px solid #2A2540; color: #A9A6BC">center</span>
+<span style="padding: 5px 9px; border-radius: 8px; background: rgba(77,107,255,0.18); border: 1px solid #4D6BFF; color: #FFFFFF">space-between</span>
+</div>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">Lessons you can poke at</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Change a value and the diagram moves. You understand flexbox by pushing it around, not by reading about it.</p></div>
+</article>
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; position: relative; overflow: hidden">
+<div style="position: absolute; left: 50%; top: 40px; width: 228px; height: 118px; margin-left: -114px; border-radius: 14px; background: rgba(47,230,176,0.18); transform: rotate(-5deg)"></div>
+<div style="position: absolute; left: 50%; top: 30px; width: 240px; margin-left: -120px; border-radius: 14px; background: #161328; border: 1px solid rgba(47,230,176,0.5); padding: 16px; box-sizing: border-box; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 13px; line-height: 19px">What does <span style="font-family: 'JetBrains Mono', monospace; color: #4BE3A8">gap</span> do in a flex container?</p>
+<div style="display: flex; gap: 6px; font-size: 11px">
+<span style="padding: 4px 10px; border-radius: 999px; border: 1px solid #332E4D; color: #A9A6BC">Again</span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #2FE6B0; color: #04241A; font-weight: 600">Good</span>
+<span style="padding: 4px 10px; border-radius: 999px; border: 1px solid #332E4D; color: #A9A6BC">Easy</span>
+</div>
+</div>
+<p style="position: absolute; left: 0; right: 0; bottom: 14px; margin: 0; text-align: center; font-size: 12px; color: #8B88A0">5 cards due · about 4 min</p>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">A daily review that sticks</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Four minutes a day. It brings back what you're about to forget, right before you forget it.</p></div>
+</article>
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+<div style="width: 190px; height: 176px; border: 1.5px solid #3A3456; border-bottom: none; border-radius: 24px 24px 0 0; padding: 18px 14px 0; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; background: #13101F">
+<span style="width: 40px; height: 4px; border-radius: 2px; background: #2A2540; align-self: center; display: block"></span>
+<div style="display: flex; justify-content: space-between; font-size: 11px"><span>Module 6 · Layout</span><span style="color: #4BE3A8">1.1 MB ✓</span></div>
+<div style="display: flex; justify-content: space-between; font-size: 11px"><span>Module 7 · JavaScript</span><span style="color: #4BE3A8">0.7 MB ✓</span></div>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px"><span style="display: flex; justify-content: space-between"><span>Module 8 · The DOM</span><span style="color: #A9A6BC">60%</span></span><span style="height: 4px; border-radius: 2px; background: #26213B; display: block; overflow: hidden"><span style="width: 60%; height: 4px; background: #7B5CFF; display: block"></span></span></div>
+</div>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">Offline, for real</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Save a module on Wi-Fi and keep going on the bus, at work, or when the network decides to take a break.</p></div>
+</article>
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 0 28px; box-sizing: border-box; font-size: 13px">
+<div style="display: flex; justify-content: space-between; color: #A9A6BC; font-size: 12px"><span>Responsive landing page</span><span>3 of 5</span></div>
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 6px; background: #F0407F; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Semantic page structure</div>
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 6px; background: #F0407F; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Works at 320 px wide</div>
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 6px; background: #F0407F; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Flexbox navigation</div>
+<div style="display: flex; align-items: center; gap: 10px; color: #8B88A0"><span style="width: 18px; height: 18px; border-radius: 6px; border: 1.5px solid #464060; box-sizing: border-box; display: block"></span>Image gallery with Grid</div>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">Projects that check themselves</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Every project comes with automatic checks, so you know what works before anyone else looks.</p></div>
+</article>
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; position: relative; overflow: hidden">
+<span style="position: absolute; left: 50%; top: 50%; width: 176px; height: 176px; margin: -88px 0 0 -88px; border-radius: 999px; border: 1px solid #2A2540; display: block"></span>
+<span style="position: absolute; left: 50%; top: 50%; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 999px; border: 1px solid #2A2540; display: block"></span>
+<span style="position: absolute; left: 50%; top: 50%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 999px; background: #161328; border: 1px solid #3A3456; display: flex; align-items: center; justify-content: center">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 26px; height: 23px"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+</span>
+<span style="position: absolute; left: calc(50% + 52px); top: 34px; width: 12px; height: 12px; border-radius: 999px; background: #4D6BFF; box-shadow: 0 0 14px #4D6BFF; display: block"></span>
+<span style="position: absolute; left: calc(50% - 92px); top: 92px; width: 12px; height: 12px; border-radius: 999px; background: #2FE6B0; box-shadow: 0 0 14px #2FE6B0; display: block"></span>
+<span style="position: absolute; left: calc(50% + 58px); top: 128px; width: 10px; height: 10px; border-radius: 999px; background: #F0407F; box-shadow: 0 0 14px #F0407F; display: block"></span>
+<span style="position: absolute; left: calc(50% - 40px); top: 20px; width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; box-shadow: 0 0 14px #7B5CFF; display: block"></span>
+<span style="position: absolute; left: calc(50% + 72px); top: 64px; font-size: 11px; color: #8EA2FF">CSS layout</span>
+<span style="position: absolute; left: calc(50% - 150px); top: 108px; font-size: 11px; color: #4BE3A8">Semantic HTML</span>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">A skill map you can trust</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Progress is measured against the MDN Curriculum and SFIA, not against how many minutes you sat there.</p></div>
+</article>
+
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 26px; padding: 20px; display: flex; flex-direction: column; gap: 18px">
+<div aria-hidden="true" style="height: 200px; border-radius: 18px; background: #0E0C1A; border: 1px solid #221E36; display: flex; align-items: center; justify-content: center; gap: 18px; padding: 0 20px; box-sizing: border-box">
+<svg viewBox="0 0 100 100" style="width: 92px; height: 92px; flex-shrink: 0"><defs><linearGradient id="prBadge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4D6BFF" /><stop offset="0.5" stop-color="#7B5CFF" /><stop offset="1" stop-color="#F0407F" /></linearGradient></defs><polygon points="50,4 90,27 90,73 50,96 10,73 10,27" style="fill: #161328; stroke: url(#prBadge); stroke-width: 4" /><path d="m34 51 11 11 22-24" style="fill: none; stroke: #FFFFFF; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round" /></svg>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-size: 13px; font-weight: 600">Front-End Web Development</p>
+<p style="margin: 0; font-size: 11px; color: #4BE3A8">Verified · Open Badges 3.0</p>
+<div style="display: flex; flex-wrap: wrap; gap: 4px; font-size: 10px"><span style="padding: 3px 7px; border-radius: 6px; border: 1px solid #2A2540; color: #A9A6BC">SFIA PROG 2</span><span style="padding: 3px 7px; border-radius: 6px; border: 1px solid #2A2540; color: #A9A6BC">MDN: CSS layout</span></div>
+</div>
+</div>
+<div><h3 class="pcl-display" style="margin: 0; font-size: 21px; font-weight: 700">Certificates anyone can check</h3><p style="margin: 6px 0 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Add them to LinkedIn. Anyone can click through and see exactly which skills you showed, and how.</p></div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="pcl-sec" style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 40px">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -0.04em">Not another video course.</h2>
+<p style="margin: 0; max-width: 680px; font-size: 17px; line-height: 28px; color: #A9A6BC">Here's what changes when lessons are built for doing, <span style="color: #B9A2FF">and for the networks most of the world actually has.</span></p>
+</div>
+<div>
+<div style="border: 1px solid #2A2540; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,0.015)">
+<table style="width: 100%; border-collapse: collapse; font-size: 15px; text-align: left">
+<thead><tr>
+<th class="pcl-cell" scope="col" style="padding: 18px 22px; font-weight: 500">What you get</th>
+<th class="pcl-cell" scope="col" style="padding: 18px 22px; font-weight: 500">The usual video course</th>
+<th class="pcl-cell" scope="col" style="padding: 18px 22px; font-weight: 600"><span style="display: inline-flex; align-items: center; gap: 8px"><span aria-hidden="true" style="display: flex; gap: 2px"><span style="width: 6px; height: 14px; border-radius: 3px; background: #4D6BFF; display: block"></span><span style="width: 6px; height: 14px; border-radius: 3px; background: #2FE6B0; display: block"></span><span style="width: 6px; height: 14px; border-radius: 3px; background: #F0407F; display: block"></span><span style="width: 6px; height: 14px; border-radius: 3px; background: #7B5CFF; display: block"></span></span>PractiCode Learn</span></th>
+</tr></thead>
+<tbody>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">How you learn</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">Mostly watching</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Mostly doing</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">Data for an hour of learning</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">About 1–3 GB</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #4BE3A8; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Under 1 MB</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">Offline</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">Sometimes, in an app</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #FF7DB0; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Any module, right in your browser</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">Remembering it next month</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">Up to you</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>A 4-minute daily review</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">What the certificate proves</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">That you finished</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Which skills you mastered</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">Prices</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">Usually in dollars</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #4BE3A8; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Naira, cedis, shillings, pounds or dollars</span></td></tr>
+<tr style="border-top: 1px solid #1C1930"><th class="pcl-cell" scope="row" style="padding: 16px 22px; font-weight: 500">A real person to ask</th><td class="pcl-cell" style="padding: 16px 22px; color: #8B88A0">A forum, if you're lucky</td><td class="pcl-cell" style="padding: 16px 22px"><span style="display: inline-flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #FF7DB0; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Mentor plan with PractiCode Academy</span></td></tr>
+</tbody>
+</table>
+</div>
+<div style="display: flex; justify-content: flex-end; padding-right: 24px">
+<p style="margin: 0; background: #FFFFFF; color: #07060D; font-size: 15px; font-weight: 600; padding: 10px 20px; border-radius: 0 0 16px 16px">Pro from ₦6,500 a month</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="mentor" class="pcl-sec" style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px">
+<div class="pcl-band" style="position: relative; overflow: hidden; border-radius: 36px; padding: 56px; background: linear-gradient(120deg, #4A30D8 0%, #8A2FA8 55%, #C42A6C 100%); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 32px">
+<div aria-hidden="true" class="pcl-hide-xs" style="position: absolute; right: 40px; top: -40px; display: flex"><span style="width: 120px; height: 120px; border-radius: 999px; background: #FF8A3D; display: block; margin-right: -30px"></span><span style="width: 120px; height: 120px; border-radius: 999px; background: #4D6BFF; display: block; margin-right: -30px; margin-top: 40px"></span><span style="width: 120px; height: 120px; border-radius: 999px; background: #2FE6B0; display: block"></span></div>
+<div style="position: relative; max-width: 640px; display: flex; flex-direction: column; gap: 14px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 46px; line-height: 50px; font-weight: 800; letter-spacing: -0.03em">Learning is easier with someone in your corner.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #F6EDFF">Join a 3-month PractiCode Academy cohort, online or in person. Weekly live classes, real feedback on your projects, and people to learn with. ₦80,000 per course.</p>
+</div>
+<a href="#pricing" style="position: relative; text-decoration: none; font-size: 16px; font-weight: 600; color: #07060D; background: #FFFFFF; height: 56px; padding: 0 26px; display: inline-flex; align-items: center; border-radius: 999px">Ask About the Next Cohort</a>
+</div>
+</div>
+</section>
+
+<section id="pricing" class="pcl-sec" style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 36px">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 56px; line-height: 60px; font-weight: 800; letter-spacing: -0.04em">Choose a plan. Change it whenever.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #A9A6BC">Shown in your currency. <span style="color: #4BE3A8">Cancel in one click, no phone calls.</span></p>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<div role="group" aria-label="Currency" style="display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #2A2540; background: rgba(255,255,255,0.02)">
+<sc-for list="{{currencies}}" as="c" hint-placeholder-count="5">
+<button type="button" onClick="{{c.pick}}" aria-pressed="{{c.pressed}}" style="height: 38px; padding: 0 14px; border-radius: 999px; border: none; background: {{c.bg}}; color: {{c.fg}}; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer">{{c.label}}</button>
+</sc-for>
+</div>
+<div role="group" aria-label="Billing period" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #2A2540; background: rgba(255,255,255,0.02)">
+<button type="button" onClick="{{setMonthly}}" aria-pressed="{{monthlyPressed}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: none; background: {{monthlyBg}}; color: {{monthlyFg}}; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer">Monthly</button>
+<button type="button" onClick="{{setYearly}}" aria-pressed="{{yearlyPressed}}" style="height: 38px; padding: 0 16px; border-radius: 999px; border: none; background: {{yearlyBg}}; color: {{yearlyFg}}; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer">Yearly · {{saveShort}}</button>
+</div>
+</div>
+<div class="pcl-price pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch">
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: rgba(77,107,255,0.14); padding: 22px 28px"><h3 class="pcl-display" style="margin: 0; font-size: 24px; font-weight: 800">Free</h3><p style="margin: 4px 0 0; font-size: 14px; color: #8EA2FF">For trying things out</p></div>
+<div class="pcl-card" style="padding: 24px 28px 30px; display: flex; flex-direction: column; gap: 20px; flex: 1">
+<p style="margin: 0; display: flex; align-items: baseline; gap: 8px"><span class="pcl-display" style="font-size: 48px; line-height: 52px; font-weight: 800; letter-spacing: -0.03em">{{freePrice}}</span><span style="font-size: 14px; color: #A9A6BC">forever</span></p>
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #332E4D">Start Free</a>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #DCD9EA"><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Module 1 of every track</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Daily review</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Community forum</li></ul>
+</div>
+</article>
+<div style="border-radius: 29px; padding: 1.5px; background: linear-gradient(160deg, #4D6BFF 0%, #7B5CFF 45%, #F0407F 100%)">
+<article style="height: 100%; box-sizing: border-box; background: linear-gradient(180deg, #17122A 0%, #0B0A14 100%); border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: rgba(123,92,255,0.16); padding: 22px 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px"><div><h3 class="pcl-display" style="margin: 0; font-size: 24px; font-weight: 800">Pro</h3><p style="margin: 4px 0 0; font-size: 14px; color: #B9A2FF">For finishing what you start</p></div><span style="font-size: 12px; font-weight: 700; color: #1F0E00; background: #FF8A3D; border-radius: 999px; padding: 4px 11px">7 days free</span></div>
+<div class="pcl-card" style="padding: 24px 28px 30px; display: flex; flex-direction: column; gap: 20px; flex: 1">
+<div><p style="margin: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap"><span class="pcl-display" style="font-size: 48px; line-height: 52px; font-weight: 800; letter-spacing: -0.03em">{{proPrice}}</span><span style="font-size: 14px; color: #A9A6BC">{{proPeriod}}</span></p><p style="margin: 4px 0 0; font-size: 13px; color: #A9A6BC">{{proNote}}</p></div>
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Free Trial</a>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #DCD9EA"><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Every module in all four tracks</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Projects with automatic checks</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Verified certificates</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Download any module</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>PL-300 exam prep</li></ul>
+</div>
+</article>
+</div>
+<article style="background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); border: 1px solid #2A2540; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: rgba(240,64,127,0.14); padding: 22px 28px"><h3 class="pcl-display" style="margin: 0; font-size: 24px; font-weight: 800">Mentor</h3><p style="margin: 4px 0 0; font-size: 14px; color: #FF7DB0">For learning with people</p></div>
+<div class="pcl-card" style="padding: 24px 28px 30px; display: flex; flex-direction: column; gap: 20px; flex: 1">
+<div><p style="margin: 0; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap"><span class="pcl-display" style="font-size: 48px; line-height: 52px; font-weight: 800; letter-spacing: -0.03em">{{mentorPrice}}</span><span style="font-size: 14px; color: #A9A6BC">{{mentorPeriod}}</span></p><p style="margin: 4px 0 0; font-size: 13px; color: #A9A6BC">{{mentorNote}}</p></div>
+<a href="#mentor" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #332E4D">Ask About Cohorts</a>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: #DCD9EA"><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #FF7DB0; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Everything in Pro</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #FF7DB0; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Weekly live classes</li><li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #FF7DB0; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>An instructor reviews your projects</li></ul>
+</div>
+</article>
+</div>
+<p style="margin: 0; text-align: center; font-size: 15px; color: #A9A6BC">Money tight right now? <a href="#pricing" style="color: #8EA2FF; font-weight: 500">Apply for a scholarship.</a> If you qualify, Pro is free.</p>
+</div>
+</section>
+
+<section class="pcl-sec" style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 860px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 32px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; text-align: center; font-size: 50px; line-height: 56px; font-weight: 800; letter-spacing: -0.04em">Questions people ask us</h2>
+<div class="pcl-faq" style="display: flex; flex-direction: column; gap: 10px">
+<details open="{{ true }}" style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px 22px"><summary style="list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 17px; font-weight: 500"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 999px; background: #4D6BFF; flex-shrink: 0; display: block"></span>Is it really free?</span><span aria-hidden="true" style="color: #8EA2FF; font-size: 20px">+</span></summary><p style="margin: 12px 0 0 22px; font-size: 15px; line-height: 25px; color: #A9A6BC">Yep. Module 1 of every track is free for good, and you don't need a card. If you want the rest, Pro starts with a 7-day free trial.</p></details>
+<details style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px 22px"><summary style="list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 17px; font-weight: 500"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 999px; background: #2FE6B0; flex-shrink: 0; display: block"></span>Why no videos?</span><span aria-hidden="true" style="color: #4BE3A8; font-size: 20px">+</span></summary><p style="margin: 12px 0 0 22px; font-size: 15px; line-height: 25px; color: #A9A6BC">Honestly? People learn more by doing than by watching, and video eats data. Things still move. The diagrams animate one step at a time, whenever you tap.</p></details>
+<details style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px 22px"><summary style="list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 17px; font-weight: 500"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 999px; background: #F0407F; flex-shrink: 0; display: block"></span>Can I really learn on my phone?</span><span aria-hidden="true" style="color: #FF7DB0; font-size: 20px">+</span></summary><p style="margin: 12px 0 0 22px; font-size: 15px; line-height: 25px; color: #A9A6BC">Yes, every lesson works on a phone. For the bigger projects a laptop helps, and each track tells you upfront what you'll need.</p></details>
+<details style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px 22px"><summary style="list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 17px; font-weight: 500"><span style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 999px; background: #7B5CFF; flex-shrink: 0; display: block"></span>Will employers care about the certificate?</span><span aria-hidden="true" style="color: #B9A2FF; font-size: 20px">+</span></summary><p style="margin: 12px 0 0 22px; font-size: 15px; line-height: 25px; color: #A9A6BC">It's a verifiable badge that lists exactly what you can do, mapped to frameworks like SFIA. It isn't a degree, and we won't pretend it is. Your projects will do most of the talking.</p></details>
+</div>
+</div>
+</section>
+
+<section style="padding: 0 0 112px">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px">
+<div style="position: relative; overflow: hidden; border-radius: 40px; border: 1px solid #2A2540; background: #0E0C1A; padding: 104px 32px; text-align: center">
+<div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(closest-side at 12% 20%, rgba(77,107,255,0.45), rgba(77,107,255,0) 70%), radial-gradient(closest-side at 88% 22%, rgba(240,64,127,0.40), rgba(240,64,127,0) 70%), radial-gradient(closest-side at 14% 86%, rgba(47,230,176,0.32), rgba(47,230,176,0) 70%), radial-gradient(closest-side at 86% 84%, rgba(123,92,255,0.45), rgba(123,92,255,0) 70%)"></div>
+<div style="position: relative; max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px">
+<h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 60px; line-height: 64px; font-weight: 800; letter-spacing: -0.04em">Your first lesson takes about ten minutes.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #DCD9EA">No account, no card. It uses less data than sending one photo.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 56px; padding: 0 28px; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Learning Free<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+<a href="#tracks" style="text-decoration: none; font-size: 16px; font-weight: 500; height: 56px; padding: 0 26px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25)">Explore the Tracks</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer style="border-top: 1px solid #1C1930">
+<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 36px; display: flex; flex-direction: column; gap: 44px">
+<div class="pcl-foot" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<span style="display: flex; align-items: center; gap: 10px"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 30px; height: 26px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg><span class="pcl-display" style="font-size: 20px; font-weight: 700; letter-spacing: -0.02em">PractiCode<span style="color: #B9A2FF"> Learn</span></span></span>
+<span aria-hidden="true" style="display: flex; gap: 6px"><span style="width: 14px; height: 14px; border-radius: 5px; background: #4D6BFF; display: block"></span><span style="width: 14px; height: 14px; border-radius: 5px; background: #2FE6B0; display: block"></span><span style="width: 14px; height: 14px; border-radius: 5px; background: #F0407F; display: block"></span><span style="width: 14px; height: 14px; border-radius: 5px; background: #7B5CFF; display: block"></span></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #8B88A0">Hands-on lessons that work on any phone, on any network.</p>
+</div>
+<nav aria-label="Tracks" style="display: flex; flex-direction: column; gap: 10px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Tracks</h3><a href="#tracks" style="color: #8B88A0; text-decoration: none">Front-End Web Development</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">Data Analysis</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">UI/UX Product Design</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">AI &amp; Machine Learning</a></nav>
+<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 10px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Company</h3><a href="https://practicode.tech" style="color: #8B88A0; text-decoration: none">PractiCode Academy</a><a href="#pricing" style="color: #8B88A0; text-decoration: none">Scholarships</a><a href="mailto:practicodeacademy@gmail.com" style="color: #8B88A0; text-decoration: none">Contact</a></nav>
+<nav aria-label="Legal" style="display: flex; flex-direction: column; gap: 10px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Legal</h3><a href="#" style="color: #8B88A0; text-decoration: none">Privacy</a><a href="#" style="color: #8B88A0; text-decoration: none">Terms</a><a href="#" style="color: #8B88A0; text-decoration: none">Accessibility Statement</a></nav>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8B88A0; border-top: 1px solid #1C1930; padding-top: 22px">© 2026 PractiCode. Frameworks are named to show alignment, not endorsement.</p>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"currency":{"editor":"enum","options":["NGN","GHS","KES","GBP","USD"],"default":"NGN","section":"Pricing"},"$preview":{"width":1440,"height":8900}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { currency: null, yearly: false, heroPick: 'b' };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const PRICES = {
+      NGN: { label: '₦ NGN', sym: '₦', monthly: 6500, yearly: 59000, mentor: '₦80,000', mentorPeriod: 'per course', mentorNote: 'Three months, online or in person' },
+      GHS: { label: 'GH₵', sym: 'GH₵ ', monthly: 85, yearly: 790, mentor: 'Ask us', mentorPeriod: '', mentorNote: 'Online cohorts, priced per intake' },
+      KES: { label: 'KSh', sym: 'KSh ', monthly: 950, yearly: 8900, mentor: 'Ask us', mentorPeriod: '', mentorNote: 'Online cohorts, priced per intake' },
+      GBP: { label: '£ GBP', sym: '£', monthly: 9, yearly: 79, mentor: 'Ask us', mentorPeriod: '', mentorNote: 'Online cohorts, priced per intake' },
+      USD: { label: '$ USD', sym: 'US$', monthly: 12, yearly: 99, mentor: 'Ask us', mentorPeriod: '', mentorNote: 'Online cohorts, priced per intake' }
+    };
+    const code = st.currency || this.props.currency || 'NGN';
+    const p = PRICES[code] || PRICES.NGN;
+    const fmt = (n) => n.toLocaleString('en-US');
+    const yearly = !!st.yearly;
+    const save = Math.round((1 - p.yearly / (p.monthly * 12)) * 100);
+    const on = { bg: '#FFFFFF', fg: '#07060D' };
+    const off = { bg: 'transparent', fg: '#DCD9EA' };
+    const currencies = Object.keys(PRICES).map((k) => {
+      const s = k === code ? on : off;
+      return { label: PRICES[k].label, bg: s.bg, fg: s.fg, pressed: k === code ? 'true' : 'false', pick: () => this.setState({ currency: k }) };
+    });
+    const m = yearly ? off : on;
+    const y = yearly ? on : off;
+    const pick = st.heroPick;
+    const OPTS = [
+      { key: 'a', letter: 'A', label: 'Bunched up on the left', justify: 'flex-start', fb: 'Not quite. That is flex-start, the default. Everything starts at the beginning of the line.' },
+      { key: 'b', letter: 'B', label: 'Pushed out to both edges', justify: 'space-between', fb: 'Nice. space-between puts all the spare room between the items, and none at the edges.' },
+      { key: 'c', letter: 'C', label: 'Equal space around each one', justify: 'space-around', fb: 'Close, but that is space-around. Each item gets the same space on both sides.' }
+    ];
+    const heroOptions = OPTS.map((o) => {
+      let border = '#221E36';
+      let bg = '#110F1E';
+      if (o.key === pick) {
+        border = o.key === 'b' ? '#2FE6B0' : '#FF9AA2';
+        bg = '#16132A';
+      }
+      return { letter: o.letter, label: o.label, justify: o.justify, border: border, bg: bg, pressed: o.key === pick ? 'true' : 'false', pick: () => this.setState({ heroPick: o.key }) };
+    });
+    const chosen = OPTS.find((o) => o.key === pick);
+    return {
+      cta: yellow ? '#FED606' : '#FFFFFF',
+      ctaFg: yellow ? '#000000' : '#07060D',
+      currencies: currencies,
+      monthlyBg: m.bg, monthlyFg: m.fg, monthlyPressed: yearly ? 'false' : 'true',
+      yearlyBg: y.bg, yearlyFg: y.fg, yearlyPressed: yearly ? 'true' : 'false',
+      setMonthly: () => this.setState({ yearly: false }),
+      setYearly: () => this.setState({ yearly: true }),
+      saveShort: 'save ' + save + '%',
+      freePrice: p.sym + '0',
+      proPrice: p.sym + fmt(yearly ? p.yearly : p.monthly),
+      proPeriod: yearly ? '/year' : '/month',
+      proNote: yearly ? 'About ' + p.sym + fmt(Math.round(p.yearly / 12)) + ' a month, billed yearly' : 'Billed monthly. Cancel anytime.',
+      mentorPrice: p.mentor,
+      mentorPeriod: p.mentorPeriod,
+      mentorNote: p.mentorNote,
+      heroOptions: heroOptions,
+      heroCorrect: pick === 'b',
+      heroWrong: !!pick && pick !== 'b',
+      heroFeedback: chosen ? chosen.fb : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

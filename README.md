@@ -82,7 +82,8 @@ This repository is in the **design phase**. What exists today:
 - [x] Teaching model and lesson format specification
 - [x] Design system and UX principles
 - [x] Proposed architecture and decision records
-- [x] UI designs: landing page, learner dashboard, lesson player ([design/](design/README.md))
+- [x] UI designs: three shortlisted visual directions for the landing page and learner dashboard ([design/](design/README.md))
+- [ ] Final visual direction chosen; lesson player restyled to match
 - [ ] v1 specification sign-off ([draft](docs/specs/2026-10-02-v1-platform-design.md))
 - [ ] Implementation plan
 - [ ] Application code

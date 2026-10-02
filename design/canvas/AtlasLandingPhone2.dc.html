@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Atlas Night — Landing, phone (part 1)</title>
+<title>Atlas Night — Landing, phone (part 2)</title>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -13,11 +13,13 @@
 body { margin: 0; background: #050507; }
 </style>
 </helmet>
-<div style="width: 390px; height: 8000px; background: #050507; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF">
-<dc-import name="AtlasLanding" hint-size="390px,8000px"></dc-import>
+<div style="width: 390px; height: 4000px; overflow: hidden; background: #050507; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF">
+<div style="margin-top: -8000px">
+<dc-import name="AtlasLanding" hint-size="390px,12000px"></dc-import>
+</div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":8000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":4000}}'>
 class Component extends DCLogic {
   renderVals() {
     return {};

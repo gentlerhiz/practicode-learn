@@ -8,7 +8,8 @@ This roadmap shows what we plan, in order. It is not a promise of dates. We will
 - [x] Competitive and UI research
 - [x] Standards framework, teaching model, lesson format
 - [x] Four track syllabi
-- [x] Design system and core UI designs (landing, dashboard, lesson player)
+- [x] Design system and core UI designs (landing, dashboard), shortlisted to three visual directions
+- [ ] Choose the final visual direction and restyle the lesson player to match
 - [ ] v1 spec approved
 - [ ] Implementation plan approved
 - [ ] Willingness-to-pay survey with 100+ prospective learners (validates regional pricing)

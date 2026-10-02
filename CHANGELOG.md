@@ -17,3 +17,12 @@ All notable changes to this project are documented here. The format follows [Kee
 - Privacy and data protection overview
 - Draft v1 platform specification
 - UI designs for the landing page, learner dashboard and lesson player
+- Four further visual directions (Atlas Night, Adire, Spectrum, Simple), plus more human-sounding copy
+- Prism: a new direction merging Atlas Night and Spectrum
+
+### Changed
+
+- Shortlisted to three directions: Atlas Night, Spectrum and Prism. Current, Adire, Simple and the first lesson player were set aside and remain in git history.
+- Removed shadows and glows from yellow buttons.
+- Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
+- Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.

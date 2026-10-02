@@ -77,7 +77,9 @@ learn.practicode.tech
 ### Screens designed in this phase
 1. **Landing:** the hero with a live lesson preview, the four tracks, PRIMM explained, the evidence, regional pricing, the Mentor plan, and the FAQ.
 2. **Dashboard:** the resume card, daily review, weekly goal, offline status, skill map, current project, Pro trial status, and other tracks.
-3. **Lesson player:** a Predict step with an interactive Flexbox diagram, code panel, live preview, segmented step bar and hints.
+3. **Lesson player:** designed in the first round (a Predict step with an interactive Flexbox diagram, code panel, live preview and hints; see git history). It will be restyled once the visual direction is chosen.
+
+Three visual directions are shortlisted: Atlas Night, Spectrum and Prism. See [design/README.md](../../design/README.md).
 
 Each screen is shown at desktop and phone widths.
 
