@@ -22,6 +22,8 @@ Interactive activities produce about **six times** the learning of watching vide
 
 ## The lesson loop: PRIMM
 
+> **On marketing pages** we describe this loop in plain words as **Guess, Try, Make**, without the PRIMM name. Learners and funders don't need the jargon. The full loop still drives every lesson.
+
 For programming we use **PRIMM** (Sentance, Waite & Kallia, 2019), which is used widely in UK computing education through the Raspberry Pi Foundation and the National Centre for Computing Education.
 
 | Stage | Learner does | Example (Flexbox) |

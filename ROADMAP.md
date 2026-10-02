@@ -9,7 +9,7 @@ This roadmap shows what we plan, in order. It is not a promise of dates. We will
 - [x] Standards framework, teaching model, lesson format
 - [x] Four track syllabi
 - [x] Design system and core UI designs (landing, dashboard), shortlisted to three visual directions
-- [ ] Choose the final visual direction and restyle the lesson player to match
+- [x] Choose the final visual direction (Prism) and design the remaining v1 screens: sign-up, checkout, project workspace, module check, settings, AI tutor and site assistant
 - [ ] v1 spec approved
 - [ ] Implementation plan approved
 - [ ] Willingness-to-pay survey with 100+ prospective learners (validates regional pricing)
@@ -22,6 +22,7 @@ Goal: a learner can sign up, finish Module 1 of any track for free, start a Pro 
 - Landing page, regional pricing, sign-up and onboarding (goal and experience level)
 - Lesson player with the PRIMM step types, in-browser HTML, CSS and JS runner, and reduced-motion support
 - Learner dashboard: resume, daily review, weekly goal, skill map
+- AI tutor in the lesson player (hints first, daily caps) and the site assistant on marketing pages
 - Daily review queue (FSRS)
 - Front-End Web Development: Module 1 free, Modules 2–4 Pro
 - Module 1 for Data Analysis, UI/UX Product Design, and AI & ML

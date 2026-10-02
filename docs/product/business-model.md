@@ -9,6 +9,7 @@
 | Who it's for | Trying a track, casual learners | Serious learners working towards a credential | Learners who want a teacher and a cohort |
 | Lessons | Module 1 of every track | Every module of every track | Everything in Pro |
 | Daily spaced review | ✓ | ✓ | ✓ |
+| AI tutor in lessons and projects | 5 questions a day | 50 questions a day | 50 questions a day |
 | Community forum | ✓ | ✓ | ✓ |
 | Projects with automated feedback | Module 1 project only | All projects | All projects |
 | Verified certificates (Open Badges 3.0) | — | ✓ | ✓ |
@@ -32,6 +33,15 @@ Prices are set by country, adjusted for purchasing power, and shown in local cur
 | Rest of world | US$12 | US$99 | Online cohort, priced separately |
 
 > **These are proposals, not decisions.** Before launch, run a Van Westendorp price-sensitivity survey with at least 100 prospective learners in Nigeria, Ghana and Kenya. Check the results against competitors: AltSchool Africa charges roughly US$20–50 a month, and Coursera, Codecademy and Brilliant offer subscriptions. Yearly plans cost about the same as 9 months of the monthly price.
+
+## AI tutor limits and cost (proposal)
+
+The AI tutor ([ADR 0006](../architecture/adr/0006-ai-tutor-and-site-assistant.md)) is the one feature whose cost grows with every question, so it has daily caps. The caps are 5 questions a day on Free and 50 on Pro, shown in the interface and reset at midnight.
+
+- **Cost per answer:** a grounded answer uses roughly 2,000 input tokens (lesson context and code) and 300 output tokens. On a small model such as Claude Haiku 4.5, that is a fraction of a US cent, and prompt caching of lesson context lowers it further. Check current provider prices before launch.
+- **What to measure in the beta:** median and 90th-percentile questions per active learner per day, and AI cost per learner per month.
+- **Guardrail:** if the AI cost of a typical Pro learner passes 15% of their subscription revenue, lower the cap or send simple questions to a cheaper model.
+- **Site assistant:** answers only from a curated knowledge base, with a per-device daily limit to stop abuse.
 
 ## Scholarships and sponsors
 

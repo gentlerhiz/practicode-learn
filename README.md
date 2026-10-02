@@ -4,10 +4,10 @@
 
 # PractiCode Learn
 
-**Learn by doing. Not by watching.**
+**Learn the skills employers are hiring for, by actually doing them.**
 
-Interactive, video-free lessons in web development, data analysis, UI/UX design and AI.<br>
-Built for any phone and any network, so they work offline too, and mapped to globally recognised standards.
+Hands-on lessons in web development, data analysis, UI/UX design and AI, with an AI tutor built into every lesson.<br>
+Mapped to globally recognised standards, and light enough for any phone and any network.
 
 [![Status: design phase](https://img.shields.io/badge/status-design%20phase-FED606?labelColor=111111)](ROADMAP.md)
 [![Code licence: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-111111)](LICENSE)
@@ -38,6 +38,7 @@ Most online learning still works like television: press play, watch someone else
 | **Data use** | ~1–3 GB per hour of video | Text, code and SVG animation, with a target of ≤150 KB per lesson ([lesson budget](docs/curriculum/lesson-format.md#performance-budget)) |
 | **Offline** | Rare, app-only | Installable web app; download a module once, learn anywhere |
 | **Practice** | Optional | Built in: daily spaced review ([FSRS](docs/curriculum/pedagogy.md#retrieval-and-spacing)) and mastery checks |
+| **Help when stuck** | Forums and video comments | An AI tutor in every lesson that gives hints first and shows its source ([ADR 0006](docs/architecture/adr/0006-ai-tutor-and-site-assistant.md)) |
 | **Credentials** | PDF certificate | Verifiable [Open Badges 3.0](docs/architecture/overview.md#credentials) mapped to SFIA 9 skills |
 | **Curriculum** | Opaque | Syllabus published openly, with every outcome mapped to a [recognised framework](docs/curriculum/standards-framework.md) |
 
@@ -68,8 +69,8 @@ Diagrams animate one step at a time at the learner's pace. Code runs in the brow
 
 Freemium with regional pricing. See [Business model](docs/product/business-model.md).
 
-- **Free**: Module 1 of every track, the daily review and the community.
-- **Pro**: every module, projects with automated feedback, verified certificates and offline downloads. Priced in local currency, with need-based scholarships.
+- **Free**: Module 1 of every track, the daily review, the community and 5 AI tutor questions a day.
+- **Pro**: every module, projects with automated feedback, verified certificates, offline downloads and 50 AI tutor questions a day. Priced in local currency, with need-based scholarships.
 - **Mentor**: Pro plus a 3-month cohort with live classes and human reviews, delivered by PractiCode Academy online or in Ibadan.
 
 ## Project status
@@ -82,8 +83,8 @@ This repository is in the **design phase**. What exists today:
 - [x] Teaching model and lesson format specification
 - [x] Design system and UX principles
 - [x] Proposed architecture and decision records
-- [x] UI designs: Atlas Night and Prism, seven screens each (landing, dashboard, track page, onboarding, lesson player, daily review, certificate) ([design/](design/README.md))
-- [ ] Final visual direction chosen
+- [x] Final visual direction chosen: **Prism** ([design system](docs/design/design-system.md))
+- [x] UI designs for 13 screens at desktop and phone width, including the AI tutor and site assistant ([design/](design/README.md))
 - [ ] v1 specification sign-off ([draft](docs/specs/2026-10-02-v1-platform-design.md))
 - [ ] Implementation plan
 - [ ] Application code

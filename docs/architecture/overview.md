@@ -79,6 +79,15 @@ Track, module, lesson and outcome definitions come from the content pipeline and
 ### Payments
 Learners pay in local currency through local methods: cards, bank transfer, USSD and mobile money in Africa, and cards internationally. Payment providers will be chosen in the implementation plan, with candidates evaluated on coverage, fees, subscription support and payouts. We never store card data, so PCI scope stays with the provider. Webhooks are verified and processed idempotently.
 
+### AI tutor and site assistant
+A server-side `tutor` unit answers learner questions in lessons and projects, and visitor questions on the public site ([ADR 0006](adr/0006-ai-tutor-and-site-assistant.md)).
+
+- **Grounding:** each request carries the current lesson step, matching passages from the lesson pack and the learner's code. The site assistant uses a curated knowledge base only.
+- **Policy:** hints before answers, a source shown under every answer, and switched off during module checks and certificate projects.
+- **Quotas:** enforced server-side, with 5 questions a day on Free and 50 on Pro (a proposal), plus rate limiting.
+- **Provider:** behind one interface. By default it uses a small, fast model with prompt caching, and is evaluated in CI against a per-track answer set before any prompt or model change.
+- **Data:** learner input is never used for model training. Logs are kept for 30 days, then deleted.
+
 ### Credentials
 - Certificates are issued as **Open Badges 3.0** credentials (W3C Verifiable Credentials), cryptographically signed, with the outcomes and SFIA references embedded as alignments.
 - Each badge has a public verification page and an "Add to LinkedIn" action.

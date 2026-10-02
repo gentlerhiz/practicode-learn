@@ -35,7 +35,7 @@ a:hover { color: #FFFFFF; }
 <div class="pcl-wrap" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
 <a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
 <svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
-<span class="pcl-display" style="font-size: 19px; font-weight: 700; letter-spacing: -0.02em">PractiCode<span style="color: #B9A2FF"> Learn</span></span>
+<span style="font-size: 18px; color: #FFFFFF; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
 </a>
 <p style="margin: 0; font-size: 13px; color: #A9A6BC">Credential check</p>
 </div>
@@ -137,9 +137,9 @@ class Component extends DCLogic {
       ['Design for developers', 'MDN: Design for developers · SFIA HCEV 2'],
       ['Testing and deployment', 'MDN: Testing, Performance · SFIA TEST 2']
     ];
-    const TILES = [['#3D5AF5', '#FFFFFF'], ['#2FE6B0', '#04241A'], ['#D9306F', '#FFFFFF'], ['#6E4CF5', '#FFFFFF']];
+    const TILES = [['#3D5AF5', '#FFFFFF']];
     return {
-      skills: S.map((s, k) => ({ name: s[0], map: s[1], tile: TILES[k % 4][0], tileFg: TILES[k % 4][1] })),
+      skills: S.map((s, k) => ({ name: s[0], map: s[1], tile: TILES[0][0], tileFg: TILES[0][1] })),
       copyLabel: st.copied ? 'Link copied' : 'Copy Link',
       copy: () => this.setState({ copied: true }),
       cta: yellow ? '#FED606' : '#FFFFFF',

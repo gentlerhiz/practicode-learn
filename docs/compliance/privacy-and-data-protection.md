@@ -23,6 +23,16 @@
 6. **Retention.** Accounts inactive for 3 years are warned, then deleted. Payment records are kept as tax law requires.
 7. **Learner rights.** Access, correction, export (machine-readable, including xAPI records), deletion and objection, all self-service in settings where possible, and answered within the statutory time limits.
 
+## AI features
+
+The AI tutor and the site assistant ([ADR 0006](../architecture/adr/0006-ai-tutor-and-site-assistant.md)) send the learner's question, the current lesson context and their code to a model provider.
+
+- **Lawful basis:** contract, because the tutor is part of the service. Learners who don't want it can simply not use it.
+- **No training:** provider terms must guarantee that inputs are not used to train models.
+- **Retention:** conversation logs are kept for 30 days for safety review and quality evaluation, then deleted. Learners can clear their history at any time.
+- **Transparency:** every answer is labelled as AI, and the privacy notice names the provider as a subprocessor.
+- **Assessment:** the AI is switched off during module checks and certificate projects.
+
 ## Children
 
 The minimum age is **13**. Learners under 18 may need parental consent depending on their country (GDPR Article 8 lets EU member states set it between 13 and 16). Schools and teams plans for younger learners will need a separate assessment.
@@ -39,7 +49,7 @@ Learner data may be processed outside Nigeria, for example by the hosting and da
 
 - [ ] Privacy notice (plain language) and cookie notice
 - [ ] Record of processing activities
-- [ ] Data Protection Impact Assessment, covering learning analytics and any future AI features
+- [ ] Data Protection Impact Assessment, covering learning analytics, the AI tutor and the site assistant
 - [ ] Register with the NDPC as required, and appoint a Data Protection Officer if required
 - [ ] Processor agreements with every subprocessor
 - [ ] Breach response plan: NDPC notification within 72 hours of becoming aware of a breach that is likely to pose risk

@@ -20,10 +20,24 @@ All notable changes to this project are documented here. The format follows [Kee
 - Four further visual directions (Atlas Night, Adire, Spectrum, Simple), plus more human-sounding copy
 - Prism: a new direction merging Atlas Night and Spectrum
 - Five more screens for each of Atlas Night and Prism: track page, onboarding, lesson player, daily review and certificate, all linked into a clickable flow
+- Six new Prism screens: sign-up, checkout, project workspace, module check, module check results and settings
+- AI tutor panel in the lesson player, "Ask AI why" on failing project checks, and a site assistant on the landing page
+- ADR 0006: an AI tutor in lessons and an AI assistant on the website
+- AI tutor limits and cost guardrails in the business model, plus AI sections in the architecture and privacy docs
+- Founder quote section on the landing page
 
 ### Changed
 
+- Chose **Prism** as the visual direction. The design system and brand config now describe the Prism theme.
+- The landing page now leads with "Learn the skills employers are hiring for". It uses the Atlas Night logo lockup, explains lessons as Guess, Try, Make, uses Data Analysis in the lesson demo, shows Machine Learning and UI/UX in the feature cards, and uses an "Available tracks" heading.
+- Colour now means track everywhere, including certificate skill tiles, track outcome ticks and the dashboard project card.
+- Onboarding now leads to sign-up, and the dashboard links to the project workspace, checkout and settings.
 - Shortlisted to three directions: Atlas Night, Spectrum and Prism. Current, Adire, Simple and the first lesson player were set aside and remain in git history.
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
 - Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.
+
+### Fixed
+
+- Code blocks no longer render blank lines between lines.
+- Phone frames are sized to their measured heights. The track page phone frame was cutting off about 900 px.

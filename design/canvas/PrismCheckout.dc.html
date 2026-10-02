@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Checkout</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #8B88A0; }
+@container pcl (max-width: 959px) {
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-sum { position: relative !important; top: auto !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-split { padding-top: 28px !important; padding-bottom: 48px !important; }
+  .pcl-h1 { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-g2 { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-method { height: 76px !important; flex-direction: column !important; gap: 6px !important; font-size: 13px !important; }
+  .pcl-show-sm { display: flex !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-hide-xs { display: none !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: -260px; top: -300px; width: 1200px; height: 900px; pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(123,92,255,0.28), rgba(123,92,255,0) 72%), radial-gradient(closest-side at 75% 55%, rgba(240,64,127,0.16), rgba(240,64,127,0) 72%)"></div>
+
+<header style="position: relative; border-bottom: 1px solid #1C1930">
+<div class="pcl-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="PrismDashboard.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span class="pcl-hide-xs" style="font-size: 18px; color: #FFFFFF; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #A9A6BC"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #4BE3A8" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>Secure checkout</p>
+</div>
+</header>
+
+<main class="pcl-wrap pcl-split" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 48px 24px 72px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 56px; align-items: start; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 32px; min-width: 0">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<a href="PrismLanding.dc.html#pricing" style="align-self: flex-start; display: flex; align-items: center; gap: 6px; font-size: 14px; color: #A9A6BC; text-decoration: none"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back to plans</a>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 46px; line-height: 50px; font-weight: 800; letter-spacing: -0.035em">Go Pro. Try it free for 7 days.</h1>
+<p style="margin: 0; max-width: 560px; font-size: 17px; line-height: 28px; color: #A9A6BC">Every module in every track, verified certificates and 50 AI tutor questions a day. You won't pay anything today.</p>
+</div>
+
+<div class="pcl-show-sm" style="display: none; justify-content: space-between; align-items: center; gap: 12px; border-radius: 18px; padding: 14px 18px; background: linear-gradient(120deg, #5A3BEA, #C42A6C)"><span style="font-size: 14px; color: #F6EDFF">Due today</span><span style="font-size: 14px"><span class="pcl-display" style="font-size: 22px; font-weight: 800">₦0</span> · then {{sumPrice}}</span></div>
+
+<section aria-labelledby="pcl-bill-t" style="display: flex; flex-direction: column; gap: 14px">
+<h2 id="pcl-bill-t" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">1. How often do you want to pay?</h2>
+<div role="radiogroup" aria-labelledby="pcl-bill-t" class="pcl-g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{periods}}" as="o" hint-placeholder-count="2">
+<button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="position: relative; text-align: left; border-radius: 20px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #FFFFFF; font-family: inherit; padding: 18px 18px 18px 52px; cursor: pointer; display: flex; flex-direction: column; gap: 4px">
+<span style="position: absolute; left: 18px; top: 20px; width: 20px; height: 20px; border-radius: 999px; border: 1.5px solid {{o.ring}}; box-sizing: border-box; display: flex; align-items: center; justify-content: center"><span style="width: 10px; height: 10px; border-radius: 999px; background: {{o.dot}}; display: block"></span></span>
+<span style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap"><span style="font-size: 16px; font-weight: 600">{{o.name}}</span><span style="font-size: 12px; font-weight: 700; color: #1F0E00; background: #FF8A3D; border-radius: 999px; padding: 2px 9px; display: {{o.badge}}">Best value</span></span>
+<span class="pcl-display" style="font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -0.02em">{{o.price}}<span style="font-family: 'Poppins', system-ui, sans-serif; font-size: 14px; font-weight: 400; color: #A9A6BC; letter-spacing: 0">{{o.per}}</span></span>
+<span style="font-size: 13px; color: #A9A6BC">{{o.note}}</span>
+</button>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #8B88A0">Prices in Nigerian naira. <a href="#" style="color: #DCD9EA">Change currency</a></p>
+</section>
+
+<section aria-labelledby="pcl-pay-t" style="display: flex; flex-direction: column; gap: 14px">
+<h2 id="pcl-pay-t" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">2. How would you like to pay?</h2>
+<div role="radiogroup" aria-labelledby="pcl-pay-t" class="pcl-methods" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{methods}}" as="m" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{m.checked}}" onClick="{{m.pick}}" class="pcl-method" style="height: 64px; border-radius: 16px; border: 1.5px solid {{m.border}}; background: {{m.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer">
+<svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; color: {{m.iconC}}" aria-hidden="true"><path d="{{m.icon}}" /></svg>{{m.label}}
+</button>
+</sc-for>
+</div>
+<div class="pcl-card" style="border-radius: 22px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 22px; display: flex; flex-direction: column; gap: 16px">
+<sc-if value="{{isCard}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pcl-cc" style="font-size: 14px; font-weight: 500">Card number</label>
+<div style="position: relative"><input id="pcl-cc" type="text" inputmode="numeric" autocomplete="cc-number" value="5399 8312 0047 2216" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; padding-right: 60px; border-color: #7B5CFF; box-shadow: 0 0 0 3px rgba(123,92,255,0.25)" /><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px; position: absolute; right: 16px; top: 15px; color: #8B88A0" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2" /><path d="M2 10h20" /><path d="M6 15h4" /></svg></div>
+</div>
+<div class="pcl-g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 8px"><label for="pcl-exp" style="font-size: 14px; font-weight: 500">Expiry</label><input id="pcl-exp" type="text" autocomplete="cc-exp" placeholder="MM / YY" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px" /></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><label for="pcl-cvc" style="font-size: 14px; font-weight: 500">Security code</label><input id="pcl-cvc" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="3 digits on the back" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px" /></div>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #8B88A0">Your bank may send a one-time code to confirm. We'll take a tiny verification charge and refund it straight away.</p>
+</sc-if>
+<sc-if value="{{isBank}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; gap: 14px; align-items: flex-start">
+<span style="width: 44px; height: 44px; border-radius: 14px; background: rgba(123,92,255,0.16); color: #B9A2FF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 10 12 4l9 6" /><path d="M5 10v8M9 10v8M15 10v8M19 10v8" /><path d="M3 20h18" /></svg></span>
+<div style="display: flex; flex-direction: column; gap: 6px"><p style="margin: 0; font-size: 16px; font-weight: 600">Pay by bank transfer</p><p style="margin: 0; font-size: 14px; line-height: 22px; color: #A9A6BC">On the next screen you'll get an account number just for this payment. Transfers usually confirm within a few minutes, and we'll email you when it lands.</p></div>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #8B88A0">Bank transfer can't renew by itself, so we'll send you a reminder before each payment is due.</p>
+</sc-if>
+<sc-if value="{{isUssd}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pcl-bank" style="font-size: 14px; font-weight: 500">Your bank</label>
+<div style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; display: flex; align-items: center; justify-content: space-between; color: #8B88A0">Choose your bank<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></div>
+</div>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #A9A6BC">We'll give you a short code to dial. It works on any phone, even without data.</p>
+</sc-if>
+</div>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<a href="PrismDashboard.dc.html" style="text-decoration: none; height: 56px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 10px">{{submitLabel}}</a>
+<p style="margin: 0; font-size: 13px; line-height: 21px; color: #8B88A0; text-align: center">{{finePrint}}</p>
+</div>
+</div>
+
+<aside aria-labelledby="pcl-sum-t" class="pcl-sum" style="position: sticky; top: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="border-radius: 29px; padding: 1.5px; background: linear-gradient(160deg, #4D6BFF 0%, #7B5CFF 45%, #F0407F 100%)">
+<div class="pcl-card" style="border-radius: 28px; background: linear-gradient(180deg, #17122A 0%, #0B0A14 100%); padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<h2 id="pcl-sum-t" class="pcl-display" style="margin: 0; font-size: 22px; font-weight: 700">Your order</h2>
+<div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+<div style="display: flex; justify-content: space-between; gap: 12px"><span>{{sumName}}</span><span>{{sumPrice}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 12px; color: #4BE3A8"><span>7-day free trial</span><span>−{{sumPrice}}</span></div>
+</div>
+<details style="border-top: 1px solid #221E36; padding-top: 14px"><summary style="cursor: pointer; font-size: 14px; color: #DCD9EA">Got a coupon or scholarship code?</summary><div style="display: flex; gap: 8px; margin-top: 12px"><input type="text" aria-label="Code" placeholder="Enter code" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; height: 46px" /><button type="button" style="height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; cursor: pointer">Apply</button></div></details>
+<div style="border-top: 1px solid #221E36; padding-top: 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-size: 16px; font-weight: 600">Due today</span><span class="pcl-display" style="font-size: 36px; line-height: 40px; font-weight: 800">₦0</span></div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #A9A6BC">{{sumNext}}</p>
+</div>
+<ul style="list-style: none; margin: 0; padding: 16px 0 0; border-top: 1px solid #221E36; display: flex; flex-direction: column; gap: 11px; font-size: 14px; color: #DCD9EA">
+<li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Every module in every track</li>
+<li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>AI tutor, 50 questions a day</li>
+<li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Projects with automatic checks</li>
+<li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Verified certificates</li>
+<li style="display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #B9A2FF; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Download any module for offline</li>
+</ul>
+</div>
+</div>
+<div style="border-radius: 22px; border: 1px solid #2A2540; background: #0E0C1A; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; line-height: 20px; color: #A9A6BC">
+<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #DCD9EA; flex-shrink: 0" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg><span>We'll remind you two days before your trial ends, so nothing comes as a surprise.</span></p>
+<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #DCD9EA; flex-shrink: 0" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg><span>Payments are encrypted. We never see or store your full card number.</span></p>
+<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #DCD9EA; flex-shrink: 0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg><span>Cancel in one click from Settings. No phone calls, no forms.</span></p>
+</div>
+<p style="margin: 0; font-size: 14px; color: #A9A6BC; text-align: center">Money tight right now? <a href="#" style="color: #8EA2FF; font-weight: 500">Apply for a scholarship</a></p>
+</aside>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { period: 'yearly', method: 'card' };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#FFFFFF';
+    const ctaFg = yellow ? '#000000' : '#07060D';
+    const yearly = st.period !== 'monthly';
+    const PERIODS = [
+      { id: 'yearly', name: 'Yearly', price: '₦59,000', per: ' /year', note: 'About ₦4,917 a month. Save 24%.', best: true },
+      { id: 'monthly', name: 'Monthly', price: '₦6,500', per: ' /month', note: 'Flexible. Stop whenever you like.', best: false }
+    ];
+    const periods = PERIODS.map((o) => {
+      const on = o.id === (yearly ? 'yearly' : 'monthly');
+      return { name: o.name, price: o.price, per: o.per, note: o.note, badge: o.best ? 'inline-block' : 'none', checked: on ? 'true' : 'false', border: on ? '#FFFFFF' : '#2A2540', bg: on ? 'rgba(255,255,255,0.05)' : 'transparent', ring: on ? '#FFFFFF' : '#464060', dot: on ? '#FFFFFF' : 'transparent', pick: () => this.setState({ period: o.id }) };
+    });
+    const METHODS = [
+      { id: 'card', label: 'Card', icon: 'M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zM2 10h20M6 15h4' },
+      { id: 'bank', label: 'Bank transfer', icon: 'M3 10 12 4l9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 20h18' },
+      { id: 'ussd', label: 'USSD', icon: 'M4 9h16M4 15h16M10 3 8 21M16 3l-2 18' }
+    ];
+    const method = st.method || 'card';
+    const methods = METHODS.map((m) => {
+      const on = m.id === method;
+      return { label: m.label, icon: m.icon, checked: on ? 'true' : 'false', border: on ? '#7B5CFF' : '#2A2540', bg: on ? 'rgba(123,92,255,0.14)' : '#0E0C1A', iconC: on ? '#B9A2FF' : '#A9A6BC', pick: () => this.setState({ method: m.id }) };
+    });
+    const price = yearly ? '₦59,000' : '₦6,500';
+    const every = yearly ? 'each year' : 'each month';
+    return {
+      cta: cta,
+      ctaFg: ctaFg,
+      periods: periods,
+      methods: methods,
+      isCard: method === 'card',
+      isBank: method === 'bank',
+      isUssd: method === 'ussd',
+      sumName: yearly ? 'PractiCode Learn Pro, yearly' : 'PractiCode Learn Pro, monthly',
+      sumPrice: price,
+      sumNext: 'Then ' + price + ' on 10 October 2026, and ' + every + ' after that until you cancel.',
+      submitLabel: method === 'card' ? 'Start My Free Trial' : 'Continue',
+      finePrint: 'Nothing to pay today. After 7 days, ' + price + ' ' + every + '. Cancel any time before 10 October and you will not be charged.'
+    };
+  }
+}
+</script>
+</body>
+</html>

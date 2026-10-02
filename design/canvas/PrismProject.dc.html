@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Project workspace</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #8B88A0; }
+@container pcl (max-width: 1279px) {
+  .pcl-work { grid-template-columns: 320px minmax(0, 1fr) !important; }
+  .pcl-previewcol { grid-column: 1 / -1; border-top: 1px solid #1C1930; }
+}
+@container pcl (max-width: 899px) {
+  .pcl-work { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-panel { border-right: none !important; border-bottom: 1px solid #1C1930; }
+  .pcl-editor { border-right: none !important; }
+}
+@container pcl (max-width: 640px) {
+  .pcl-head { padding: 0 12px !important; gap: 10px !important; }
+  .pcl-hide-sm { display: none !important; }
+  .pcl-panel, .pcl-previewcol { padding: 20px 16px !important; }
+  .pcl-code { font-size: 11.5px !important; line-height: 22px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 20%; top: -360px; width: 1100px; height: 700px; pointer-events: none; background: radial-gradient(closest-side at 40% 50%, rgba(77,107,255,0.22), rgba(77,107,255,0) 75%)"></div>
+
+<header style="position: relative; border-bottom: 1px solid #1C1930; background: rgba(11,10,20,0.85)">
+<div class="pcl-head" style="height: 72px; padding: 0 24px; display: flex; align-items: center; gap: 16px; box-sizing: border-box">
+<a href="PrismDashboard.dc.html" aria-label="Back to dashboard" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2540; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg></a>
+<div style="min-width: 0; flex: 1"><p style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Landing page for a local business</p><p style="margin: 0; font-size: 13px; color: #8B88A0"><span style="color: #8EA2FF">Front-End</span> · Module 6 project<span class="pcl-hide-sm"> · Saved 2 min ago</span></p></div>
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" onClick="{{askSelected}}" class="pcl-hide-sm" style="height: 42px; padding: 0 16px 0 6px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><span style="width: 30px; height: 30px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>Ask AI</button>
+<button type="button" onClick="{{runChecks}}" style="height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #4BE3A8" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Run Checks</button>
+<button type="button" disabled="{{ true }}" aria-describedby="pcl-submit-note" class="pcl-hide-sm" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid #332E4D; background: #161328; color: #8B88A0; font-family: inherit; font-size: 14px; font-weight: 600; cursor: not-allowed">Submit Project</button>
+</div>
+</div>
+</header>
+
+<div class="pcl-work" style="position: relative; display: grid; grid-template-columns: 360px minmax(0, 1fr) 400px; min-height: 860px">
+
+<aside class="pcl-panel" aria-label="Brief and checks" style="border-right: 1px solid #1C1930; padding: 24px 20px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+<section aria-labelledby="pcl-brief-t" style="display: flex; flex-direction: column; gap: 10px">
+<h2 id="pcl-brief-t" class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">The brief</h2>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA">Mama Nkechi runs a small restaurant in Enugu. Most of her customers find her on their phones, so the page has to look right on a small screen first.</p>
+<details style="font-size: 14px"><summary style="cursor: pointer; color: #8EA2FF; font-weight: 500">What she asked for</summary><ul style="margin: 10px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: #A9A6BC; line-height: 21px"><li>Her menu, a short story about the kitchen and an order button</li><li>Easy to read in bright sunlight</li><li>Loads quickly on a slow connection</li></ul></details>
+</section>
+
+<section aria-labelledby="pcl-checks-t" style="display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<h2 id="pcl-checks-t" class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">Checks</h2>
+<p style="margin: 0; font-size: 13px; color: #A9A6BC">{{checksSummary}}</p>
+</div>
+<div aria-hidden="true" style="display: flex; gap: 4px"><sc-for list="{{checks}}" as="k" hint-placeholder-count="5"><span style="flex: 1; height: 5px; border-radius: 3px; background: {{k.bar}}; display: block"></span></sc-for></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{checks}}" as="k" hint-placeholder-count="5">
+<li style="border-radius: 16px; border: 1px solid {{k.border}}; background: {{k.bg}}; overflow: hidden">
+<button type="button" onClick="{{k.pick}}" aria-expanded="{{k.expanded}}" style="width: 100%; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; line-height: 21px; text-align: left; cursor: pointer">
+<span style="width: 22px; height: 22px; border-radius: 7px; background: {{k.tile}}; border: 1.5px solid {{k.tileBorder}}; color: {{k.tileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box; margin-top: 1px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 13px; height: 13px; stroke-width: 2.6" aria-hidden="true"><path d="{{k.icon}}" /></svg></span>
+<span style="flex: 1"><span style="display: block">{{k.name}}</span><span style="display: block; font-size: 12px; color: {{k.statusC}}">{{k.status}}</span></span>
+</button>
+<sc-if value="{{k.open}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 0 14px 14px 48px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #DCD9EA">{{k.detail}}</p>
+<p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #8B88A0">{{k.where}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button type="button" onClick="{{k.ask}}" style="height: 34px; padding: 0 12px 0 4px; border-radius: 999px; border: 1px solid #3A3456; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 6px; cursor: pointer"><span style="width: 26px; height: 26px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>Ask AI why</button>
+</div>
+<sc-if value="{{k.answered}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; gap: 8px; align-items: flex-start">
+<span style="width: 24px; height: 24px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 16px 16px 16px; padding: 9px 12px">{{k.ai}}</p>
+</div>
+</sc-if>
+</div>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+<p id="pcl-submit-note" style="margin: 0; font-size: 12px; line-height: 18px; color: #8B88A0">Pass all five checks to submit. Your instructor sees the same checks when they review your work.</p>
+</section>
+</aside>
+
+<section class="pcl-editor" aria-label="Code editor" style="min-width: 0; border-right: 1px solid #1C1930; display: flex; flex-direction: column">
+<div style="height: 52px; padding: 0 16px; border-bottom: 1px solid #1C1930; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div role="tablist" aria-label="Files" style="display: flex; gap: 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px">
+<button type="button" role="tab" aria-selected="{{htmlSel}}" onClick="{{showHtml}}" style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid {{htmlBorder}}; background: {{htmlBg}}; color: {{htmlFg}}; font-family: inherit; font-size: 12px; cursor: pointer">index.html</button>
+<button type="button" role="tab" aria-selected="{{cssSel}}" onClick="{{showCss}}" style="height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid {{cssBorder}}; background: {{cssBg}}; color: {{cssFg}}; font-family: inherit; font-size: 12px; cursor: pointer">styles.css<span style="color: #FF9AA2"> · 2</span></button>
+</div>
+<p class="pcl-hide-sm" style="margin: 0; font-size: 12px; color: #8B88A0">Autosaves as you type</p>
+</div>
+<div class="pcl-code" style="flex: 1; padding: 18px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 26px; overflow: hidden">
+<sc-if value="{{showingHtml}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">1</span><span><span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">header</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"site-header"</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">2</span><span>  <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">nav</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"menu"</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">3</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">a</span> <span style="color: #FF7DB0">href</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"#food"</span><span style="color: #8B88A0">&gt;</span>Our food<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">a</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">4</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">a</span> <span style="color: #FF7DB0">href</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"#about"</span><span style="color: #8B88A0">&gt;</span>About us<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">a</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">5</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">a</span> <span style="color: #FF7DB0">href</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"#order"</span><span style="color: #8B88A0">&gt;</span>Order<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">a</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">6</span><span>  <span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">nav</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">7</span><span><span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">header</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">8</span><span><span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">main</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">9</span><span>  <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">section</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"hero"</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">10</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">h1</span><span style="color: #8B88A0">&gt;</span>Mama Nkechi's Kitchen<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">h1</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">11</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">p</span><span style="color: #8B88A0">&gt;</span>Jollof, ofe onugbu and cold zobo, cooked fresh every day in Enugu.<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">p</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">12</span><span>    <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">a</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"btn"</span> <span style="color: #FF7DB0">href</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"#order"</span><span style="color: #8B88A0">&gt;</span>Order Now<span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">a</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">13</span><span>  <span style="color: #8B88A0">&lt;/</span><span style="color: #8EA2FF">section</span><span style="color: #8B88A0">&gt;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">14</span><span>  <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">img</span> <span style="color: #FF7DB0">src</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"jollof.jpg"</span> <span style="color: #FF7DB0">alt</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"A plate of smoky party jollof"</span><span style="color: #8B88A0"> /</span><span style="color: #8B88A0">&gt;</span></span></div>
+</sc-if>
+<sc-if value="{{showingCss}}" hint-placeholder-val="{{ true }}">
+<div style="padding: 0 20px 8px 54px; color: #6E6A86">/* Navigation */</div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">10</span><span><span style="color: #FFFFFF">.menu</span> <span style="color: #8B88A0">{</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">11</span><span>  <span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">flex</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">12</span><span>  <span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">space-between</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">13</span><span>  <span style="color: #8EA2FF">gap</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">24px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre; background: {{hl14}}; box-shadow: {{hl14Bar}}"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">14</span><span>  <span style="color: #8EA2FF">width</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">360px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">15</span><span><span style="color: #8B88A0">}</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">16</span><span> </span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">17</span><span><span style="color: #FFFFFF">.hero h1</span> <span style="color: #8B88A0">{</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">18</span><span>  <span style="color: #8EA2FF">font-size</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">clamp(2rem, 8vw, 3.5rem)</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">19</span><span><span style="color: #8B88A0">}</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">20</span><span> </span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">21</span><span><span style="color: #FFFFFF">.btn</span> <span style="color: #8B88A0">{</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre; background: {{hl22}}; box-shadow: {{hl22Bar}}"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">22</span><span>  <span style="color: #8EA2FF">background</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">#FF8A3D</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre; background: {{hl22}}; box-shadow: {{hl22Bar}}"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">23</span><span>  <span style="color: #8EA2FF">color</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">#FFFFFF</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">24</span><span>  <span style="color: #8EA2FF">padding</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">14px 22px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">25</span><span><span style="color: #8B88A0">}</span></span></div>
+</sc-if>
+</div>
+<div style="border-top: 1px solid #1C1930; padding: 12px 20px; display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A9A6BC">
+<span style="width: 8px; height: 8px; border-radius: 999px; background: {{consoleDot}}; display: block"></span>{{consoleText}}
+</div>
+</section>
+
+<section class="pcl-previewcol" aria-label="Live preview" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<h2 class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">Preview</h2>
+<div role="group" aria-label="Screen size" style="display: flex; gap: 4px; padding: 3px; border-radius: 999px; border: 1px solid #2A2540">
+<button type="button" onClick="{{showPhone}}" aria-pressed="{{phonePressed}}" style="height: 30px; padding: 0 12px; border-radius: 999px; border: none; background: {{phoneBg}}; color: {{phoneFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">Phone · 320px</button>
+<button type="button" onClick="{{showDesk}}" aria-pressed="{{deskPressed}}" style="height: 30px; padding: 0 12px; border-radius: 999px; border: none; background: {{deskBg}}; color: {{deskFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">Laptop</button>
+</div>
+</div>
+<div style="flex: 1; border-radius: 22px; background: #0E0C1A; border: 1px solid #221E36; display: flex; align-items: flex-start; justify-content: center; padding: 22px 12px; overflow: hidden; min-height: 560px">
+<div role="img" aria-label="{{previewLabel}}" style="position: relative; width: {{frameW}}; border-radius: {{frameR}}; border: 2px solid #3A3456; background: #FFF8EE; color: #2A1A0E; overflow: visible; box-sizing: border-box">
+<div style="position: relative; height: 46px; display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #F0E2CC; border-radius: {{frameTopR}}; background: #FFF8EE">
+<span style="font-weight: 700; font-size: 12px; white-space: nowrap">Mama Nkechi's</span>
+<span style="position: absolute; left: {{menuLeft}}; right: {{menuRight}}; top: 9px; width: {{menuW}}; height: 28px; display: flex; justify-content: space-between; align-items: center; padding: 0 8px; box-sizing: border-box; font-size: 11px; font-weight: 600; border: {{menuBorder}}; border-radius: 6px; background: #FFF8EE"><span>Our food</span><span>About us</span><span>Order</span></span>
+</div>
+<sc-if value="{{overflowing}}" hint-placeholder-val="{{ true }}">
+<span style="position: absolute; right: -50px; top: 44px; z-index: 1; font-size: 11px; font-weight: 600; color: #FF9AA2; white-space: nowrap; background: #07060D; padding: 3px 8px; border-radius: 999px; border: 1px solid #FF9AA2">40px too wide</span>
+</sc-if>
+<div style="padding: 22px 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; font-size: {{h1Size}}; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em">Mama Nkechi's Kitchen</p>
+<p style="margin: 0; font-size: 12px; line-height: 18px; color: #6B5442">Jollof, ofe onugbu and cold zobo, cooked fresh every day in Enugu.</p>
+<span style="position: relative; align-self: flex-start; margin-top: 4px; background: #FF8A3D; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 9px 16px; border-radius: 999px">Order Now<span style="position: absolute; left: calc(100% + 8px); top: 7px; font-size: 10px; font-weight: 600; color: #B42318; white-space: nowrap; background: #FFE4E1; padding: 2px 7px; border-radius: 999px">2.3 : 1 contrast</span></span>
+</div>
+<div style="margin: 0 16px 16px; height: 120px; border-radius: 14px; background: radial-gradient(circle at 35% 40%, #F2B24C 0%, #D9622B 45%, #8E2F14 100%); display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box"><span style="font-size: 10px; color: #FFF3E2; background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 6px">alt: A plate of smoky party jollof</span></div>
+</div>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 18px; color: #8B88A0">Red outlines show what the checks found. They never appear on your published page.</p>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":940}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { open: 'fit', file: 'css', device: 'phone', asked: [], ran: 1 };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#FFFFFF';
+    const ctaFg = yellow ? '#000000' : '#07060D';
+    const CHECKS = [
+      { id: 'land', name: 'Uses header, nav, main and footer', pass: true },
+      { id: 'flex', name: 'Navigation laid out with Flexbox', pass: true },
+      { id: 'alt', name: 'Every image has alt text', pass: true },
+      { id: 'fit', name: 'Fits a 320px screen without sideways scrolling', pass: false, detail: 'The .menu has a fixed width of 360px, so on the smallest phones the page scrolls sideways.', where: 'styles.css, line 14', ai: 'Phones can be as narrow as 320px, but your menu insists on 360px. What could you use instead of width so the menu is never wider than the screen? Have a look at max-width, or let the links wrap onto two lines.' },
+      { id: 'contrast', name: 'Text contrast meets WCAG AA', pass: false, detail: 'White text on #FF8A3D has a contrast ratio of 2.3 : 1. Normal-size text needs at least 4.5 : 1, which matters in bright sunlight.', where: 'styles.css, lines 22 to 23', ai: 'Light text on a light orange is hard to read outdoors. You can keep the orange and switch the text to a very dark brown, or keep white text and pick a much deeper orange. Try a contrast checker on both.' }
+    ];
+    const asked = st.asked || [];
+    const passed = CHECKS.filter((k) => k.pass).length;
+    const checks = CHECKS.map((k) => {
+      const open = !k.pass && st.open === k.id;
+      return {
+        name: k.name,
+        status: k.pass ? 'Passed' : 'Needs a fix',
+        statusC: k.pass ? '#8B88A0' : '#FF9AA2',
+        tile: k.pass ? '#3D5AF5' : 'transparent',
+        tileBorder: k.pass ? '#3D5AF5' : '#FF9AA2',
+        tileFg: k.pass ? '#FFFFFF' : '#FF9AA2',
+        icon: k.pass ? 'm5 12 5 5L20 7' : 'M18 6 6 18M6 6l12 12',
+        bar: k.pass ? '#3D5AF5' : '#3A2A35',
+        border: open ? 'rgba(255,154,162,0.55)' : '#221E36',
+        bg: open ? 'rgba(255,154,162,0.06)' : '#0F0D1B',
+        open: open,
+        expanded: open ? 'true' : 'false',
+        detail: k.detail || '',
+        where: k.where || '',
+        ai: k.ai || '',
+        answered: asked.indexOf(k.id) >= 0,
+        pick: () => { if (!k.pass) this.setState({ open: open ? null : k.id, file: 'css' }); },
+        ask: () => this.setState({ asked: asked.concat([k.id]) })
+      };
+    });
+    const sel = st.open;
+    const css = st.file !== 'html';
+    const phone = st.device !== 'desk';
+    const tabOn = { bg: 'rgba(77,107,255,0.18)', border: 'rgba(77,107,255,0.5)', fg: '#FFFFFF' };
+    const tabOff = { bg: 'transparent', border: 'transparent', fg: '#8B88A0' };
+    const h = css ? tabOff : tabOn;
+    const s = css ? tabOn : tabOff;
+    const pOn = { bg: '#FFFFFF', fg: '#07060D' };
+    const pOff = { bg: 'transparent', fg: '#DCD9EA' };
+    return {
+      cta: cta,
+      ctaFg: ctaFg,
+      checks: checks,
+      checksSummary: passed + ' of ' + CHECKS.length + ' passing',
+      runChecks: () => this.setState({ ran: (st.ran || 1) + 1 }),
+      askSelected: () => this.setState({ open: 'fit', asked: asked.indexOf('fit') >= 0 ? asked : asked.concat(['fit']) }),
+      showingHtml: !css,
+      showingCss: css,
+      showHtml: () => this.setState({ file: 'html' }),
+      showCss: () => this.setState({ file: 'css' }),
+      htmlSel: css ? 'false' : 'true', htmlBg: h.bg, htmlBorder: h.border, htmlFg: h.fg,
+      cssSel: css ? 'true' : 'false', cssBg: s.bg, cssBorder: s.border, cssFg: s.fg,
+      hl14: sel === 'fit' ? 'rgba(255,154,162,0.12)' : 'transparent',
+      hl14Bar: sel === 'fit' ? 'inset 3px 0 0 #FF9AA2' : 'none',
+      hl22: sel === 'contrast' ? 'rgba(255,154,162,0.12)' : 'transparent',
+      hl22Bar: sel === 'contrast' ? 'inset 3px 0 0 #FF9AA2' : 'none',
+      consoleDot: '#FF9AA2',
+      consoleText: 'Checks ran ' + ((st.ran || 1) > 1 ? 'just now' : '1 min ago') + ' · ' + passed + ' passed · ' + (CHECKS.length - passed) + ' to fix',
+      showPhone: () => this.setState({ device: 'phone' }),
+      showDesk: () => this.setState({ device: 'desk' }),
+      phonePressed: phone ? 'true' : 'false', phoneBg: phone ? pOn.bg : pOff.bg, phoneFg: phone ? pOn.fg : pOff.fg,
+      deskPressed: phone ? 'false' : 'true', deskBg: phone ? pOff.bg : pOn.bg, deskFg: phone ? pOff.fg : pOn.fg,
+      frameW: phone ? '250px' : '100%',
+      frameR: phone ? '26px' : '12px',
+      frameTopR: phone ? '24px 24px 0 0' : '10px 10px 0 0',
+      menuLeft: phone ? '114px' : 'auto',
+      menuRight: phone ? 'auto' : '12px',
+      menuW: phone ? '188px' : '220px',
+      menuBorder: phone ? '1.5px dashed #FF6B6B' : '1.5px solid transparent',
+      overflowing: phone,
+      h1Size: phone ? '28px' : '40px',
+      previewLabel: phone ? 'Phone preview at 320 pixels: the menu sticks out past the right edge, and the orange Order Now button has low-contrast white text.' : 'Laptop preview: the menu fits, but the Order Now button still has low-contrast white text.'
+    };
+  }
+}
+</script>
+</body>
+</html>

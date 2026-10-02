@@ -31,7 +31,7 @@
 
 | Area | Requirement |
 |---|---|
-| Contrast | Text 4.5:1 (3:1 for 24 px and larger); UI components and meaningful graphics 3:1. See the [colour rules](design-system.md#the-yellow-rules). |
+| Contrast | Text 4.5:1 (3:1 for 24 px and larger); UI components and meaningful graphics 3:1. See the [contrast rules](design-system.md#contrast-rules). |
 | Keyboard | Everything operable by keyboard, with visible focus and logical order. Drag-and-drop steps (Parsons, order, match) have keyboard alternatives (WCAG 2.5.7 Dragging Movements). |
 | Target size | At least 24 × 24 px (WCAG 2.5.8). Our standard is 44 × 44 px. |
 | Focus not obscured | Sticky headers and bottom bars never cover the focused element (WCAG 2.4.11) |

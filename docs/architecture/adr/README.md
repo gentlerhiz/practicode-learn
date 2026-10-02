@@ -9,6 +9,7 @@ We record significant decisions as ADRs using [Michael Nygard's format](https://
 | [0003](0003-freemium-business-model.md) | Freemium subscription with regional pricing | Accepted |
 | [0004](0004-open-syllabus-proprietary-lessons.md) | Open syllabus, proprietary lessons | Proposed |
 | [0005](0005-nextjs-supabase-stack.md) | Next.js and Supabase as the core stack | Proposed |
+| [0006](0006-ai-tutor-and-site-assistant.md) | An AI tutor in lessons and an AI assistant on the website | Proposed |
 
 ## Template
 

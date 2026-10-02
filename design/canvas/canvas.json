@@ -2,66 +2,747 @@
   "v": 3,
   "attachments": {},
   "boards": {
-    "AtlasLanding.dc.html": { "expand": "fill", "h": 7700, "is_interactive": true, "page": "o2", "title": "Atlas Night · Landing — Desktop", "w": 1440, "x": 0, "y": 0 },
-    "AtlasLandingPhone.dc.html": { "h": 8000, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Landing — Phone (1 of 2)", "w": 390, "x": 1520, "y": 0 },
-    "AtlasLandingPhone2.dc.html": { "h": 4000, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Landing — Phone (2 of 2)", "w": 390, "x": 1990, "y": 0 },
-    "AtlasDashboard.dc.html": { "expand": "fill", "h": 1240, "is_interactive": true, "page": "o2", "title": "Atlas Night · Dashboard — Desktop", "w": 1440, "x": 2460, "y": 0 },
-    "AtlasDashboardPhone.dc.html": { "h": 2800, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Dashboard — Phone", "w": 390, "x": 3980, "y": 0 },
-    "AtlasTrack.dc.html": { "expand": "fill", "h": 3300, "is_interactive": true, "page": "o2", "title": "Atlas Night · Track Page — Desktop", "w": 1440, "x": 0, "y": 8420 },
-    "AtlasTrackPhone.dc.html": { "h": 5200, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Track Page — Phone", "w": 390, "x": 1520, "y": 8420 },
-    "AtlasOnboarding.dc.html": { "expand": "fill", "h": 980, "is_interactive": true, "page": "o2", "title": "Atlas Night · Onboarding — Desktop", "w": 1440, "x": 1990, "y": 8420 },
-    "AtlasOnboardingPhone.dc.html": { "h": 1500, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Onboarding — Phone", "w": 390, "x": 3510, "y": 8420 },
-    "AtlasLesson.dc.html": { "expand": "fill", "h": 960, "is_interactive": true, "page": "o2", "title": "Atlas Night · Lesson Player — Desktop", "w": 1440, "x": 3980, "y": 8420 },
-    "AtlasLessonPhone.dc.html": { "h": 1800, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Lesson Player — Phone", "w": 390, "x": 5500, "y": 8420 },
-    "AtlasReview.dc.html": { "expand": "fill", "h": 800, "is_interactive": true, "page": "o2", "title": "Atlas Night · Daily Review — Desktop", "w": 1440, "x": 5970, "y": 8420 },
-    "AtlasReviewPhone.dc.html": { "h": 1300, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Daily Review — Phone", "w": 390, "x": 7490, "y": 8420 },
-    "AtlasCertificate.dc.html": { "expand": "fill", "h": 1600, "is_interactive": true, "page": "o2", "title": "Atlas Night · Certificate — Desktop", "w": 1440, "x": 7960, "y": 8420 },
-    "AtlasCertificatePhone.dc.html": { "h": 3000, "is_interactive": true, "page": "o2", "radius": 28, "title": "Atlas Night · Certificate — Phone", "w": 390, "x": 9480, "y": 8420 },
-
-    "PrismLanding.dc.html": { "expand": "fill", "h": 8000, "is_interactive": true, "page": "o6", "title": "Prism · Landing — Desktop", "w": 1440, "x": 0, "y": 0 },
-    "PrismLandingPhone.dc.html": { "h": 8000, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Landing — Phone (1 of 2)", "w": 390, "x": 1520, "y": 0 },
-    "PrismLandingPhone2.dc.html": { "h": 6000, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Landing — Phone (2 of 2)", "w": 390, "x": 1990, "y": 0 },
-    "PrismDashboard.dc.html": { "expand": "fill", "h": 1240, "is_interactive": true, "page": "o6", "title": "Prism · Dashboard — Desktop", "w": 1440, "x": 2460, "y": 0 },
-    "PrismDashboardPhone.dc.html": { "h": 2850, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Dashboard — Phone", "w": 390, "x": 3980, "y": 0 },
-    "PrismTrack.dc.html": { "expand": "fill", "h": 3400, "is_interactive": true, "page": "o6", "title": "Prism · Track Page — Desktop", "w": 1440, "x": 0, "y": 8420 },
-    "PrismTrackPhone.dc.html": { "h": 5400, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Track Page — Phone", "w": 390, "x": 1520, "y": 8420 },
-    "PrismOnboarding.dc.html": { "expand": "fill", "h": 1000, "is_interactive": true, "page": "o6", "title": "Prism · Onboarding — Desktop", "w": 1440, "x": 1990, "y": 8420 },
-    "PrismOnboardingPhone.dc.html": { "h": 1560, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Onboarding — Phone", "w": 390, "x": 3510, "y": 8420 },
-    "PrismLesson.dc.html": { "expand": "fill", "h": 980, "is_interactive": true, "page": "o6", "title": "Prism · Lesson Player — Desktop", "w": 1440, "x": 3980, "y": 8420 },
-    "PrismLessonPhone.dc.html": { "h": 1820, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Lesson Player — Phone", "w": 390, "x": 5500, "y": 8420 },
-    "PrismReview.dc.html": { "expand": "fill", "h": 820, "is_interactive": true, "page": "o6", "title": "Prism · Daily Review — Desktop", "w": 1440, "x": 5970, "y": 8420 },
-    "PrismReviewPhone.dc.html": { "h": 1340, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Daily Review — Phone", "w": 390, "x": 7490, "y": 8420 },
-    "PrismCertificate.dc.html": { "expand": "fill", "h": 1620, "is_interactive": true, "page": "o6", "title": "Prism · Certificate — Desktop", "w": 1440, "x": 7960, "y": 8420 },
-    "PrismCertificatePhone.dc.html": { "h": 3050, "is_interactive": true, "page": "o6", "radius": 28, "title": "Prism · Certificate — Phone", "w": 390, "x": 9480, "y": 8420 },
-
-    "SpectrumLanding.dc.html": { "expand": "fill", "h": 6300, "is_interactive": true, "page": "o4", "title": "Spectrum · Landing — Desktop", "w": 1440, "x": 0, "y": 0 },
-    "SpectrumLandingPhone.dc.html": { "h": 8000, "is_interactive": true, "page": "o4", "radius": 28, "title": "Spectrum · Landing — Phone (1 of 2)", "w": 390, "x": 1520, "y": 0 },
-    "SpectrumLandingPhone2.dc.html": { "h": 2400, "is_interactive": true, "page": "o4", "radius": 28, "title": "Spectrum · Landing — Phone (2 of 2)", "w": 390, "x": 1990, "y": 0 },
-    "SpectrumDashboard.dc.html": { "expand": "fill", "h": 1220, "is_interactive": true, "page": "o4", "title": "Spectrum · Dashboard — Desktop", "w": 1440, "x": 2460, "y": 0 },
-    "SpectrumDashboardPhone.dc.html": { "h": 2500, "is_interactive": true, "page": "o4", "radius": 28, "title": "Spectrum · Dashboard — Phone", "w": 390, "x": 3980, "y": 0 }
+    "AtlasCertificate.dc.html": {
+      "expand": "fill",
+      "h": 1600,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Certificate — Desktop",
+      "w": 1440,
+      "x": 7960,
+      "y": 8420
+    },
+    "AtlasCertificatePhone.dc.html": {
+      "h": 3000,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Certificate — Phone",
+      "w": 390,
+      "x": 9480,
+      "y": 8420
+    },
+    "AtlasDashboard.dc.html": {
+      "expand": "fill",
+      "h": 1240,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Dashboard — Desktop",
+      "w": 1440,
+      "x": 2460,
+      "y": 0
+    },
+    "AtlasDashboardPhone.dc.html": {
+      "h": 2800,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Dashboard — Phone",
+      "w": 390,
+      "x": 3980,
+      "y": 0
+    },
+    "AtlasLanding.dc.html": {
+      "expand": "fill",
+      "h": 7700,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Landing — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "AtlasLandingPhone.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Landing — Phone (1 of 2)",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "AtlasLandingPhone2.dc.html": {
+      "h": 4000,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Landing — Phone (2 of 2)",
+      "w": 390,
+      "x": 1990,
+      "y": 0
+    },
+    "AtlasLesson.dc.html": {
+      "expand": "fill",
+      "h": 960,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Lesson Player — Desktop",
+      "w": 1440,
+      "x": 3980,
+      "y": 8420
+    },
+    "AtlasLessonPhone.dc.html": {
+      "h": 1800,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Lesson Player — Phone",
+      "w": 390,
+      "x": 5500,
+      "y": 8420
+    },
+    "AtlasOnboarding.dc.html": {
+      "expand": "fill",
+      "h": 980,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Onboarding — Desktop",
+      "w": 1440,
+      "x": 1990,
+      "y": 8420
+    },
+    "AtlasOnboardingPhone.dc.html": {
+      "h": 1500,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Onboarding — Phone",
+      "w": 390,
+      "x": 3510,
+      "y": 8420
+    },
+    "AtlasReview.dc.html": {
+      "expand": "fill",
+      "h": 800,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Daily Review — Desktop",
+      "w": 1440,
+      "x": 5970,
+      "y": 8420
+    },
+    "AtlasReviewPhone.dc.html": {
+      "h": 1300,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Daily Review — Phone",
+      "w": 390,
+      "x": 7490,
+      "y": 8420
+    },
+    "AtlasTrack.dc.html": {
+      "expand": "fill",
+      "h": 3300,
+      "is_interactive": true,
+      "page": "o2",
+      "title": "Atlas Night · Track Page — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 8420
+    },
+    "AtlasTrackPhone.dc.html": {
+      "h": 5200,
+      "is_interactive": true,
+      "page": "o2",
+      "radius": 28,
+      "title": "Atlas Night · Track Page — Phone",
+      "w": 390,
+      "x": 1520,
+      "y": 8420
+    },
+    "SpectrumDashboard.dc.html": {
+      "expand": "fill",
+      "h": 1220,
+      "is_interactive": true,
+      "page": "o4",
+      "title": "Spectrum · Dashboard — Desktop",
+      "w": 1440,
+      "x": 2460,
+      "y": 0
+    },
+    "SpectrumDashboardPhone.dc.html": {
+      "h": 2500,
+      "is_interactive": true,
+      "page": "o4",
+      "radius": 28,
+      "title": "Spectrum · Dashboard — Phone",
+      "w": 390,
+      "x": 3980,
+      "y": 0
+    },
+    "SpectrumLanding.dc.html": {
+      "expand": "fill",
+      "h": 6300,
+      "is_interactive": true,
+      "page": "o4",
+      "title": "Spectrum · Landing — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "SpectrumLandingPhone.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "page": "o4",
+      "radius": 28,
+      "title": "Spectrum · Landing — Phone (1 of 2)",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "SpectrumLandingPhone2.dc.html": {
+      "h": 2400,
+      "is_interactive": true,
+      "page": "o4",
+      "radius": 28,
+      "title": "Spectrum · Landing — Phone (2 of 2)",
+      "w": 390,
+      "x": 1990,
+      "y": 0
+    },
+    "PrismLanding.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Landing — Desktop (1 of 2)",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "PrismLandingDesk2.dc.html": {
+      "expand": "fill",
+      "h": 3020,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Landing — Desktop (2 of 2)",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "PrismLandingPhone.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Landing — Phone (1 of 3)",
+      "w": 390,
+      "x": 3040,
+      "y": 0
+    },
+    "PrismLandingPhone2.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Landing — Phone (2 of 3)",
+      "w": 390,
+      "x": 3510,
+      "y": 0
+    },
+    "PrismLandingPhone3.dc.html": {
+      "h": 2060,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Landing — Phone (3 of 3)",
+      "w": 390,
+      "x": 3980,
+      "y": 0
+    },
+    "PrismChatPhone.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Landing chat, open — Phone",
+      "w": 390,
+      "x": 4450,
+      "y": 0
+    },
+    "PrismDashboard.dc.html": {
+      "expand": "fill",
+      "h": 1240,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Dashboard — Desktop",
+      "w": 1440,
+      "x": 4920,
+      "y": 0
+    },
+    "PrismDashboardPhone.dc.html": {
+      "h": 3040,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Dashboard — Phone",
+      "w": 390,
+      "x": 6440,
+      "y": 0
+    },
+    "PrismTrack.dc.html": {
+      "expand": "fill",
+      "h": 3600,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Track Page — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 8420
+    },
+    "PrismTrackPhone.dc.html": {
+      "h": 6320,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Track Page — Phone",
+      "w": 390,
+      "x": 1520,
+      "y": 8420
+    },
+    "PrismOnboarding.dc.html": {
+      "expand": "fill",
+      "h": 1020,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Onboarding — Desktop",
+      "w": 1440,
+      "x": 1990,
+      "y": 8420
+    },
+    "PrismOnboardingPhone.dc.html": {
+      "h": 1560,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Onboarding — Phone",
+      "w": 390,
+      "x": 3510,
+      "y": 8420
+    },
+    "PrismLesson.dc.html": {
+      "expand": "fill",
+      "h": 1090,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Lesson Player with AI tutor — Desktop",
+      "w": 1440,
+      "x": 3980,
+      "y": 8420
+    },
+    "PrismLessonPhone.dc.html": {
+      "h": 2530,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Lesson Player with AI tutor — Phone",
+      "w": 390,
+      "x": 5500,
+      "y": 8420
+    },
+    "PrismReview.dc.html": {
+      "expand": "fill",
+      "h": 820,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Daily Review — Desktop",
+      "w": 1440,
+      "x": 5970,
+      "y": 8420
+    },
+    "PrismReviewPhone.dc.html": {
+      "h": 1340,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Daily Review — Phone",
+      "w": 390,
+      "x": 7490,
+      "y": 8420
+    },
+    "PrismCertificate.dc.html": {
+      "expand": "fill",
+      "h": 1620,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Certificate — Desktop",
+      "w": 1440,
+      "x": 7960,
+      "y": 8420
+    },
+    "PrismCertificatePhone.dc.html": {
+      "h": 3210,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Certificate — Phone",
+      "w": 390,
+      "x": 9480,
+      "y": 8420
+    },
+    "PrismSignup.dc.html": {
+      "expand": "fill",
+      "h": 1130,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Sign-up — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 15400
+    },
+    "PrismSignupPhone.dc.html": {
+      "h": 1800,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Sign-up — Phone",
+      "w": 390,
+      "x": 1520,
+      "y": 15400
+    },
+    "PrismCheckout.dc.html": {
+      "expand": "fill",
+      "h": 1150,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Checkout — Desktop",
+      "w": 1440,
+      "x": 1990,
+      "y": 15400
+    },
+    "PrismCheckoutPhone.dc.html": {
+      "h": 2320,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Checkout — Phone",
+      "w": 390,
+      "x": 3510,
+      "y": 15400
+    },
+    "PrismProject.dc.html": {
+      "expand": "fill",
+      "h": 940,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Project Workspace — Desktop",
+      "w": 1440,
+      "x": 3980,
+      "y": 15400
+    },
+    "PrismProjectPhone.dc.html": {
+      "h": 2170,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Project Workspace — Phone",
+      "w": 390,
+      "x": 5500,
+      "y": 15400
+    },
+    "PrismModuleCheck.dc.html": {
+      "expand": "fill",
+      "h": 920,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Module Check — Desktop",
+      "w": 1440,
+      "x": 5970,
+      "y": 15400
+    },
+    "PrismModuleCheckPhone.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Module Check — Phone",
+      "w": 390,
+      "x": 7490,
+      "y": 15400
+    },
+    "PrismModuleResult.dc.html": {
+      "expand": "fill",
+      "h": 1220,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Module Check Results — Desktop",
+      "w": 1440,
+      "x": 7960,
+      "y": 15400
+    },
+    "PrismModuleResultPhone.dc.html": {
+      "h": 2380,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Module Check Results — Phone",
+      "w": 390,
+      "x": 9480,
+      "y": 15400
+    },
+    "PrismSettings.dc.html": {
+      "expand": "fill",
+      "h": 2910,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · Settings — Desktop",
+      "w": 1440,
+      "x": 9950,
+      "y": 15400
+    },
+    "PrismSettingsPhone.dc.html": {
+      "h": 3550,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Settings — Phone",
+      "w": 390,
+      "x": 11470,
+      "y": 15400
+    }
   },
-  "createdOnFiles": { "at": "2026-10-02T19:30:00Z", "v": 1 },
+  "createdOnFiles": {
+    "at": "2026-10-02T19:30:00Z",
+    "v": 1
+  },
   "designSystems": [],
-  "launch": { "page": "o2", "view": "canvas" },
+  "launch": {
+    "page": "o6",
+    "view": "canvas"
+  },
   "notes": {
-    "a1": { "kind": "title1", "maxW": 2380, "page": "o2", "text": "Atlas Night · Landing", "w": 240, "x": 0, "y": -300 },
-    "a2": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Atlas Night · Dashboard", "w": 240, "x": 2460, "y": -300 },
-    "a3": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Track page", "x": 0, "y": 8120 },
-    "a4": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Onboarding", "x": 1990, "y": 8120 },
-    "a5": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Lesson player", "x": 3980, "y": 8120 },
-    "a6": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Daily review", "x": 5970, "y": 8120 },
-    "a7": { "kind": "title1", "maxW": 1910, "page": "o2", "text": "Certificate", "x": 7960, "y": 8120 },
-    "p1": { "kind": "title1", "maxW": 2380, "page": "o6", "text": "Prism · Landing", "w": 240, "x": 0, "y": -300 },
-    "p2": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Prism · Dashboard", "w": 240, "x": 2460, "y": -300 },
-    "p3": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Track page", "x": 0, "y": 8120 },
-    "p4": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Onboarding", "x": 1990, "y": 8120 },
-    "p5": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Lesson player", "x": 3980, "y": 8120 },
-    "p6": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Daily review", "x": 5970, "y": 8120 },
-    "p7": { "kind": "title1", "maxW": 1910, "page": "o6", "text": "Certificate", "x": 7960, "y": 8120 },
-    "s1": { "kind": "title1", "maxW": 2380, "page": "o4", "text": "Spectrum · Landing", "w": 240, "x": 0, "y": -300 },
-    "s2": { "kind": "title1", "maxW": 1910, "page": "o4", "text": "Spectrum · Dashboard", "w": 240, "x": 2460, "y": -300 }
+    "a1": {
+      "kind": "title1",
+      "maxW": 2380,
+      "page": "o2",
+      "text": "Atlas Night · Landing",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "a2": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Atlas Night · Dashboard",
+      "w": 240,
+      "x": 2460,
+      "y": -300
+    },
+    "a3": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Track page",
+      "w": 240,
+      "x": 0,
+      "y": 8120
+    },
+    "a4": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Onboarding",
+      "w": 240,
+      "x": 1990,
+      "y": 8120
+    },
+    "a5": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Lesson player",
+      "w": 240,
+      "x": 3980,
+      "y": 8120
+    },
+    "a6": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Daily review",
+      "w": 240,
+      "x": 5970,
+      "y": 8120
+    },
+    "a7": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o2",
+      "text": "Certificate",
+      "w": 240,
+      "x": 7960,
+      "y": 8120
+    },
+    "s1": {
+      "kind": "title1",
+      "maxW": 2380,
+      "page": "o4",
+      "text": "Spectrum · Landing",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "s2": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o4",
+      "text": "Spectrum · Dashboard",
+      "w": 240,
+      "x": 2460,
+      "y": -300
+    },
+    "p1": {
+      "kind": "title1",
+      "maxW": 4840,
+      "page": "o6",
+      "text": "Prism · Landing",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "p2": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Prism · Dashboard",
+      "w": 240,
+      "x": 4920,
+      "y": -300
+    },
+    "p3": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Track page",
+      "w": 240,
+      "x": 0,
+      "y": 8120
+    },
+    "p4": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Onboarding",
+      "w": 240,
+      "x": 1990,
+      "y": 8120
+    },
+    "p5": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Lesson player with AI tutor",
+      "w": 240,
+      "x": 3980,
+      "y": 8120
+    },
+    "p6": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Daily review",
+      "w": 240,
+      "x": 5970,
+      "y": 8120
+    },
+    "p7": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Certificate",
+      "w": 240,
+      "x": 7960,
+      "y": 8120
+    },
+    "p8": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Sign-up",
+      "w": 240,
+      "x": 0,
+      "y": 15100
+    },
+    "p9": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Checkout",
+      "w": 240,
+      "x": 1990,
+      "y": 15100
+    },
+    "p10": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Project workspace",
+      "w": 240,
+      "x": 3980,
+      "y": 15100
+    },
+    "p11": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Module check",
+      "w": 240,
+      "x": 5970,
+      "y": 15100
+    },
+    "p12": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Module check results",
+      "w": 240,
+      "x": 7960,
+      "y": 15100
+    },
+    "p13": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "Settings",
+      "w": 240,
+      "x": 9950,
+      "y": 15100
+    }
   },
   "order": [
+    "PrismLanding.dc.html",
+    "PrismLandingDesk2.dc.html",
+    "PrismLandingPhone.dc.html",
+    "PrismLandingPhone2.dc.html",
+    "PrismLandingPhone3.dc.html",
+    "PrismChatPhone.dc.html",
+    "PrismDashboard.dc.html",
+    "PrismDashboardPhone.dc.html",
+    "PrismTrack.dc.html",
+    "PrismTrackPhone.dc.html",
+    "PrismOnboarding.dc.html",
+    "PrismOnboardingPhone.dc.html",
+    "PrismLesson.dc.html",
+    "PrismLessonPhone.dc.html",
+    "PrismReview.dc.html",
+    "PrismReviewPhone.dc.html",
+    "PrismCertificate.dc.html",
+    "PrismCertificatePhone.dc.html",
+    "PrismSignup.dc.html",
+    "PrismSignupPhone.dc.html",
+    "PrismCheckout.dc.html",
+    "PrismCheckoutPhone.dc.html",
+    "PrismProject.dc.html",
+    "PrismProjectPhone.dc.html",
+    "PrismModuleCheck.dc.html",
+    "PrismModuleCheckPhone.dc.html",
+    "PrismModuleResult.dc.html",
+    "PrismModuleResultPhone.dc.html",
+    "PrismSettings.dc.html",
+    "PrismSettingsPhone.dc.html",
     "AtlasLanding.dc.html",
     "AtlasLandingPhone.dc.html",
     "AtlasLandingPhone2.dc.html",
@@ -77,21 +758,6 @@
     "AtlasReviewPhone.dc.html",
     "AtlasCertificate.dc.html",
     "AtlasCertificatePhone.dc.html",
-    "PrismLanding.dc.html",
-    "PrismLandingPhone.dc.html",
-    "PrismLandingPhone2.dc.html",
-    "PrismDashboard.dc.html",
-    "PrismDashboardPhone.dc.html",
-    "PrismTrack.dc.html",
-    "PrismTrackPhone.dc.html",
-    "PrismOnboarding.dc.html",
-    "PrismOnboardingPhone.dc.html",
-    "PrismLesson.dc.html",
-    "PrismLessonPhone.dc.html",
-    "PrismReview.dc.html",
-    "PrismReviewPhone.dc.html",
-    "PrismCertificate.dc.html",
-    "PrismCertificatePhone.dc.html",
     "SpectrumLanding.dc.html",
     "SpectrumLandingPhone.dc.html",
     "SpectrumLandingPhone2.dc.html",
@@ -99,9 +765,18 @@
     "SpectrumDashboardPhone.dc.html"
   ],
   "pages": [
-    { "id": "o2", "name": "1 · Atlas Night" },
-    { "id": "o6", "name": "2 · Prism" },
-    { "id": "o4", "name": "3 · Spectrum" }
+    {
+      "id": "o6",
+      "name": "1 · Prism (chosen)"
+    },
+    {
+      "id": "o2",
+      "name": "2 · Atlas Night"
+    },
+    {
+      "id": "o4",
+      "name": "3 · Spectrum"
+    }
   ],
   "title": "PractiCode Learn UI"
 }

@@ -9,7 +9,8 @@
       { "text": " Learn", "weight": 400 }
     ],
     "tagline": { "line1": "Learn a", "line2": "Digital Skill" },
-    "headline": "Learn by doing. Not by watching.",
+    "headline": "Learn code, data, design and AI by actually doing it.",
+    "promise": "Learn the skills employers are hiring for.",
     "domain": "learn.practicode.tech",
     "supportEmail": "practicodeacademy@gmail.com"
   },
@@ -22,32 +23,66 @@
     "practiYellow": "#FED606",
     "codeBlack": "#000000",
     "ink": "#111111",
-    "inkMuted": "#5C5A54",
     "paper": "#F4F2EC",
-    "white": "#FFFFFF",
-    "line": "#E2DFD6",
-    "lineStrong": "#8A877F",
-    "darkGround": "#0B0B0B",
-    "darkSurface": "#161616",
-    "darkMuted": "#A3A39E",
-    "success": "#1F7A3A",
-    "danger": "#B42318",
-    "info": "#1D4ED8"
+    "white": "#FFFFFF"
   },
   "colorRules": [
-    "Practi Yellow is a fill colour only. Never yellow text, and never thin yellow lines on light backgrounds.",
+    "Practi Yellow is a fill colour only. Never yellow text, thin yellow lines or glows.",
     "Text on yellow is always Code Black or Ink.",
-    "Yellow never carries meaning alone on light backgrounds (fails WCAG 1.4.11 at 1.3:1 against Paper). On light surfaces, progress and state use Ink; on dark surfaces, yellow is fine (13.9:1)."
+    "In the product (Prism theme), yellow lives in the logo. Primary buttons are white unless the yellow option is chosen, and yellow buttons are always flat with no shadow."
   ],
+  "theme": {
+    "$comment": "Prism, the chosen product theme (3 October 2026). See docs/design/design-system.md.",
+    "name": "Prism",
+    "mode": "dark",
+    "ground": {
+      "bg": "#07060D",
+      "surface": "linear-gradient(180deg, #13101F, #0B0A14)",
+      "surfaceSunken": "#0E0C1A",
+      "surfaceRow": "#0F0D1B",
+      "line": "#2A2540",
+      "lineSubtle": "#1C1930",
+      "lineControl": "#332E4D"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "soft": "#DCD9EA",
+      "muted": "#A9A6BC",
+      "subtle": "#8B88A0"
+    },
+    "tracks": {
+      "front-end-web-development": { "label": "Web", "fill": "#3D5AF5", "tint": "#8EA2FF", "base": "#4D6BFF", "onFill": "#FFFFFF" },
+      "data-analysis": { "label": "Data", "fill": "#0A7D5C", "fillBright": "#2FE6B0", "onFillBright": "#04241A", "tint": "#4BE3A8", "base": "#2FE6B0", "onFill": "#FFFFFF" },
+      "ui-ux-product-design": { "label": "Design", "fill": "#D9306F", "tint": "#FF7DB0", "base": "#F0407F", "onFill": "#FFFFFF" },
+      "ai-machine-learning": { "label": "AI", "fill": "#6E4CF5", "tint": "#B9A2FF", "base": "#7B5CFF", "onFill": "#FFFFFF" }
+    },
+    "brandGradient": "linear-gradient(120deg, #3D5AF5, #6E4CF5 50%, #D9306F)",
+    "semantic": {
+      "success": "#4BE3A8",
+      "successFill": "#2FE6B0",
+      "onSuccessFill": "#04241A",
+      "error": "#FF9AA2",
+      "badge": "#FF8A3D",
+      "onBadge": "#1F0E00"
+    },
+    "primaryButton": { "default": { "bg": "#FFFFFF", "fg": "#07060D" }, "yellowOption": { "bg": "#FED606", "fg": "#000000" } },
+    "rules": [
+      "Colour means track. Never cycle track colours for decoration.",
+      "The AI tutor and site assistant use the brand gradient, never a track colour.",
+      "Copy never counts tracks or colours, so a new track is a data change."
+    ]
+  },
   "typography": {
     "ui": { "family": "Poppins", "weights": [400, 500, 600, 700], "source": "Google Fonts (OFL)" },
-    "code": { "family": "JetBrains Mono", "weights": [400, 600], "source": "Google Fonts (OFL)", "note": "Functional exception to Poppins-only: code must be monospaced." },
-    "case": "Title Case for labels and buttons, sentence case for sentences. No all-caps except acronyms."
+    "display": { "family": "Bricolage Grotesque", "weights": [600, 700, 800], "source": "Google Fonts (OFL)", "note": "Product headings in the Prism theme. The logo and wordmark stay in Poppins." },
+    "code": { "family": "JetBrains Mono", "weights": [400, 600], "source": "Google Fonts (OFL)", "note": "Code must be monospaced." },
+    "case": "Title Case for labels and buttons, sentence case for sentences. No all-caps except acronyms and literal code."
   },
   "logo": {
     "iconBlack": "brand/logo/icon-black.svg",
     "iconYellow": "brand/logo/icon-yellow.svg",
     "appIcon": "brand/logo/app-icon.svg",
+    "productLockup": "Yellow icon plus the Poppins wordmark (Practi Regular, Code Bold, Learn Regular) in white, on dark backgrounds.",
     "status": "Interim redraws from the documented geometry. Replace with files from PractiCode_Academy_Official_Logo_Pack.zip."
   }
 }
