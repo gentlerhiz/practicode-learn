@@ -1,0 +1,21 @@
+name: Feature idea
+description: Suggest an improvement to the platform
+labels: ["idea", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the learner's problem before the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+  - type: dropdown
+    id: who
+    attributes:
+      label: Who benefits most?
+      multiple: true
+      options: ["New learners", "Returning learners", "Learners on low data or offline", "Disabled learners", "Mentors", "Funders and partners"]

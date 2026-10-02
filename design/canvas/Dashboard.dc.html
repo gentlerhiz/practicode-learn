@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PractiCode Learn — Dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #F4F2EC; }
+a { color: #111111; }
+a:hover { color: #000000; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@container pcl (max-width: 959px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-tabbar { display: flex !important; }
+  .pcl-mlogo { display: flex !important; }
+  .pcl-show-sm { display: flex !important; }
+  .pcl-row1, .pcl-row3 { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-row2 { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@container pcl (max-width: 640px) {
+  .pcl-main { padding: 20px 16px 32px !important; }
+  .pcl-top { padding: 0 16px !important; }
+  .pcl-search { display: none !important; }
+  .pcl-resume { grid-template-columns: minmax(0, 1fr) !important; padding: 24px !important; }
+  .pcl-skills { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-h1 { font-size: 26px !important; line-height: 34px !important; }
+  .pcl-saver-label { display: none !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #111111; background: #F4F2EC">
+<div class="pcl-shell" style="display: grid; grid-template-columns: 256px minmax(0, 1fr)">
+
+<aside class="pcl-side" style="background: #FFFFFF; border-right: 1px solid #E2DFD6; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px; box-sizing: border-box">
+<a href="Main.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #111111; padding: 0 8px">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 30px; height: 26px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span style="font-size: 18px"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<nav aria-label="Main">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<li><a href="Dashboard.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 600; background: #FED606; color: #000000"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg>Home</a></li>
+<li><a href="Lesson.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg>My Tracks</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg>Review<span style="margin-left: auto; background: #111111; color: #FFFFFF; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 1px 8px">5<span class="pcl-sr"> cards due</span></span></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>Projects</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg>Skill Map</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 21h16" /></svg>Downloads</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><circle cx="9" cy="8" r="4" /><path d="M2 21a7 7 0 0 1 14 0" /><path d="M16 4a4 4 0 0 1 0 8" /><path d="M22 21a7 7 0 0 0-4-6.3" /></svg>Community</a></li>
+</ul>
+</nav>
+
+<sc-if value="{{showTrial}}" hint-placeholder-val="{{ true }}">
+<div style="background: #0B0B0B; color: #FFFFFF; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><p style="margin: 0; font-size: 15px; font-weight: 600">Pro Trial</p><p style="margin: 0; font-size: 13px; color: #A3A39E">5 days left</p></div>
+<div style="height: 6px; border-radius: 3px; background: #2A2A2A; overflow: hidden" aria-hidden="true"><div style="width: 29%; height: 6px; background: #FED606"></div></div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #A3A39E">Keep every module, project and certificate after your trial.</p>
+<a href="Main.dc.html#pricing" style="background: #FED606; color: #000000; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px">Choose a Plan</a>
+</div>
+</sc-if>
+<sc-if value="{{showFree}}" hint-placeholder-val="{{ false }}">
+<div style="background: #F4F2EC; border: 1px solid #E2DFD6; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 15px; font-weight: 600">You're on Free</p>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #5C5A54">Module 1 of every track is yours. Pro unlocks the rest, plus projects and certificates.</p>
+<a href="Main.dc.html#pricing" style="background: #FED606; color: #000000; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px">Try Pro Free for 7 Days</a>
+</div>
+</sc-if>
+<sc-if value="{{showPro}}" hint-placeholder-val="{{ false }}">
+<div style="background: #F4F2EC; border: 1px solid #E2DFD6; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<p style="margin: 0; font-size: 15px; font-weight: 600">Pro</p>
+<p style="margin: 0; font-size: 13px; color: #5C5A54">Renews on 2 November 2026</p>
+<a href="#" style="color: #111111; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1.5px solid #111111; box-sizing: border-box">Manage Plan</a>
+</div>
+</sc-if>
+
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 4px; border-top: 1px solid #E2DFD6; padding-top: 16px">
+<a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M4 6h9M17 6h3M4 12h3M11 12h9M4 18h11M19 18h1" /><circle cx="15" cy="6" r="2" /><circle cx="9" cy="12" r="2" /><circle cx="17" cy="18" r="2" /></svg>Settings</a>
+<div style="display: flex; align-items: center; gap: 12px; padding: 8px 14px">
+<span style="width: 36px; height: 36px; border-radius: 999px; background: #111111; color: #FFFFFF; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center" aria-hidden="true">TA</span>
+<div style="min-width: 0"><p style="margin: 0; font-size: 14px; font-weight: 600">Tolu Adebayo</p><p style="margin: 0; font-size: 12px; color: #5C5A54">Front-End learner</p></div>
+</div>
+</div>
+</aside>
+
+<div style="min-width: 0; display: flex; flex-direction: column">
+<div class="pcl-top" style="height: 72px; border-bottom: 1px solid #E2DFD6; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 32px; box-sizing: border-box">
+<a href="Main.dc.html" class="pcl-mlogo" aria-label="PractiCode Learn home" style="display: none; align-items: center; gap: 8px; text-decoration: none; color: #111111">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 30px; height: 26px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+</a>
+<div class="pcl-search" style="flex: 1; max-width: 460px; position: relative">
+<label for="pcl-q" class="pcl-sr">Search</label>
+<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; position: absolute; left: 14px; top: 13px; color: #5C5A54" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+<input id="pcl-q" type="search" placeholder="Search lessons, skills and projects" style="width: 100%; height: 44px; box-sizing: border-box; border: 1px solid #8A877F; border-radius: 12px; padding: 0 14px 0 42px; font-family: inherit; font-size: 15px; background: #FFFFFF; color: #111111" />
+</div>
+<div style="display: flex; align-items: center; gap: 8px; margin-left: auto">
+<button type="button" onClick="{{toggleSaver}}" aria-pressed="{{saverPressed}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid {{saverBorder}}; background: {{saverBg}}; color: {{saverFg}}; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M3 20h.01" /><path d="M8 20v-4" /><path d="M13 20v-8" /><path d="M18 20V8" /></svg><span>Data Saver<span class="pcl-saver-label">: {{saverLabel}}</span></span></button>
+<button type="button" aria-label="Notifications" style="width: 44px; height: 44px; border-radius: 12px; border: none; background: transparent; color: #111111; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg></button>
+</div>
+</div>
+
+<main class="pcl-main" style="padding: 32px; display: flex; flex-direction: column; gap: 24px; max-width: 1180px; box-sizing: border-box; width: 100%">
+<sc-if value="{{showTrial}}" hint-placeholder-val="{{ true }}">
+<div class="pcl-show-sm" style="display: none; justify-content: space-between; align-items: center; gap: 12px; background: #0B0B0B; color: #FFFFFF; border-radius: 16px; padding: 12px 12px 12px 16px">
+<p style="margin: 0; font-size: 14px"><span style="font-weight: 600">Pro Trial</span><span style="color: #A3A39E"> · 5 days left</span></p>
+<a href="Main.dc.html#pricing" style="background: #FED606; color: #000000; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; padding: 0 14px; display: flex; align-items: center; border-radius: 12px">Choose a Plan</a>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 class="pcl-h1" style="margin: 0; font-size: 32px; line-height: 40px; font-weight: 700">Good evening, Tolu</h1>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: #5C5A54">Your next lesson takes about 8 minutes. You have mastered 5 of 12 modules in Front-End Web Development.</p>
+</div>
+
+<div class="pcl-row1" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px">
+<section aria-labelledby="pcl-resume-title" class="pcl-resume" style="background: #0B0B0B; color: #FFFFFF; border-radius: 24px; padding: 32px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; align-self: flex-start; font-size: 13px; color: #A3A39E; background: #161616; border-radius: 999px; padding: 6px 12px">Front-End Web Development · Module 6</p>
+<h2 id="pcl-resume-title" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 700">Aligning items with Flexbox</h2>
+<p style="margin: 0; font-size: 15px; color: #A3A39E">Lesson 4 of 7 · Step 4 of 9 · About 8 min left</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #A3A39E">Module progress</span><span style="font-weight: 600">57%</span></div>
+<div style="height: 8px; border-radius: 4px; background: #2A2A2A; overflow: hidden" aria-hidden="true"><div style="width: 57%; height: 8px; background: #FED606"></div></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 4px">
+<a href="Lesson.dc.html" style="background: #FED606; color: #000000; font-size: 15px; font-weight: 600; text-decoration: none; height: 50px; padding: 0 22px; display: inline-flex; align-items: center; gap: 10px; border-radius: 14px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Resume Lesson</a>
+<p style="margin: 0; font-size: 13px; color: #A3A39E; display: flex; align-items: center; gap: 6px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Saved offline</p>
+</div>
+</div>
+<div aria-hidden="true" style="display: flex; flex-direction: column; gap: 10px">
+<div style="height: 150px; border: 1.5px dashed #5A5A55; border-radius: 16px; padding: 16px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box">
+<span style="width: 56px; height: 56px; border-radius: 12px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span>
+<span style="width: 56px; height: 56px; border-radius: 12px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span>
+<span style="width: 56px; height: 56px; border-radius: 12px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #A3A39E"><span style="flex: 1; height: 2px; background: #3A3A3A; display: block"></span>Main axis<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></div>
+</div>
+</section>
+
+<section aria-labelledby="pcl-goal-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; justify-content: space-between; align-items: center"><h2 id="pcl-goal-title" style="margin: 0; font-size: 18px; font-weight: 600">Weekly Goal</h2><a href="#" style="font-size: 14px; font-weight: 500; color: #5C5A54">Edit</a></div>
+<p style="margin: 0; display: flex; align-items: baseline; gap: 8px"><span style="font-size: 44px; line-height: 48px; font-weight: 700">3</span><span style="font-size: 16px; color: #5C5A54">of 5 days this week</span></p>
+<ul aria-label="This week" style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: space-between; gap: 6px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<li style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+<sc-if value="{{d.done}}" hint-placeholder-val="{{ true }}">
+<span style="width: 34px; height: 34px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>
+</sc-if>
+<sc-if value="{{d.open}}" hint-placeholder-val="{{ false }}">
+<span style="width: 34px; height: 34px; border-radius: 999px; border: {{d.ringW}} solid {{d.ringC}}; box-sizing: border-box; display: block"></span>
+</sc-if>
+<span style="font-size: 12px; font-weight: {{d.weight}}; color: {{d.labelC}}">{{d.letter}}<span class="pcl-sr">{{d.status}}</span></span>
+</li>
+</sc-for>
+</ul>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #5C5A54">Learn today and tomorrow to reach your goal. Rest days never break your run.</p>
+</section>
+</div>
+
+<div class="pcl-row2" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<section aria-labelledby="pcl-review-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #F4F2EC; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg></span>
+<div><h2 id="pcl-review-title" style="margin: 0; font-size: 18px; font-weight: 600">Daily Review</h2><p style="margin: 4px 0 0; font-size: 14px; color: #5C5A54">5 cards due · about 4 min</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px">
+<li style="font-size: 13px; padding: 4px 10px; border-radius: 8px; background: #F4F2EC">Box model</li>
+<li style="font-size: 13px; padding: 4px 10px; border-radius: 8px; background: #F4F2EC">Specificity</li>
+<li style="font-size: 13px; padding: 4px 10px; border-radius: 8px; background: #F4F2EC">Flex direction</li>
+</ul>
+<a href="#" style="margin-top: auto; color: #111111; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1.5px solid #111111; box-sizing: border-box">Start Review</a>
+</section>
+
+<section aria-labelledby="pcl-offline-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #F4F2EC; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 21h16" /></svg></span>
+<div><h2 id="pcl-offline-title" style="margin: 0; font-size: 18px; font-weight: 600">Ready Offline</h2><p style="margin: 4px 0 0; font-size: 14px; color: #5C5A54">2 modules on this device · 1.8 MB</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+<li style="display: flex; justify-content: space-between; gap: 8px"><span style="display: flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #1F7A3A" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Module 6 · Layout</span><span style="color: #5C5A54">1.1 MB</span></li>
+<li style="display: flex; justify-content: space-between; gap: 8px"><span style="display: flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #1F7A3A" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Module 7 · JavaScript</span><span style="color: #5C5A54">0.7 MB</span></li>
+</ul>
+<a href="#" style="margin-top: auto; color: #111111; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1.5px solid #111111; box-sizing: border-box">Manage Downloads</a>
+</section>
+
+<section aria-labelledby="pcl-project-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<span style="width: 44px; height: 44px; border-radius: 12px; background: #F4F2EC; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></span>
+<div><h2 id="pcl-project-title" style="margin: 0; font-size: 18px; font-weight: 600">Responsive Landing Page</h2><p style="margin: 4px 0 0; font-size: 14px; color: #5C5A54">Module 6 project · 3 of 5 checks passing</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
+<li style="display: flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #1F7A3A" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Semantic page structure</li>
+<li style="display: flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #1F7A3A" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Mobile layout at 320 px</li>
+<li style="display: flex; align-items: center; gap: 8px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #1F7A3A" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg>Flexbox navigation bar</li>
+<li style="display: flex; align-items: center; gap: 8px; color: #5C5A54"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><circle cx="12" cy="12" r="8" /></svg>Image gallery with CSS Grid</li>
+<li style="display: flex; align-items: center; gap: 8px; color: #5C5A54"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><circle cx="12" cy="12" r="8" /></svg>Text contrast meets WCAG AA</li>
+</ul>
+<a href="#" style="margin-top: auto; color: #111111; font-size: 14px; font-weight: 600; text-decoration: none; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1.5px solid #111111; box-sizing: border-box">Open Project</a>
+</section>
+</div>
+
+<div class="pcl-row3" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start">
+<section aria-labelledby="pcl-skills-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div><h2 id="pcl-skills-title" style="margin: 0; font-size: 18px; font-weight: 600">Skill Map</h2><p style="margin: 4px 0 0; font-size: 14px; color: #5C5A54">Front-End Web Development · 5 of 12 modules mastered</p></div>
+<p style="margin: 0; font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid #E2DFD6; display: flex; align-items: center; gap: 6px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg>Aligned to MDN Curriculum</p>
+</div>
+<ul class="pcl-skills" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px">
+<sc-for list="{{skills}}" as="s" hint-placeholder-count="12">
+<li style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; border: 1px solid #E2DFD6; background: {{s.rowBg}}">
+<sc-if value="{{s.mastered}}" hint-placeholder-val="{{ true }}">
+<span style="width: 24px; height: 24px; border-radius: 999px; background: #111111; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 14px; height: 14px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>
+</sc-if>
+<sc-if value="{{s.practising}}" hint-placeholder-val="{{ false }}">
+<span style="width: 24px; height: 24px; border-radius: 999px; border: 2px solid #111111; box-sizing: border-box; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><span style="width: 10px; height: 10px; border-radius: 999px; background: #111111; display: block"></span></span>
+</sc-if>
+<sc-if value="{{s.todo}}" hint-placeholder-val="{{ false }}">
+<span style="width: 24px; height: 24px; border-radius: 999px; border: 1.5px solid #8A877F; box-sizing: border-box; display: block; flex-shrink: 0"></span>
+</sc-if>
+<span style="min-width: 0; flex: 1; display: flex; flex-direction: column">
+<span style="font-size: 14px; font-weight: 500; line-height: 20px">{{s.name}}</span>
+<span style="font-size: 12px; line-height: 18px; color: #5C5A54">{{s.tag}}</span>
+</span>
+<span style="font-size: 12px; font-weight: 600; color: {{s.stateC}}; white-space: nowrap">{{s.stateLabel}}</span>
+</li>
+</sc-for>
+</ul>
+</section>
+
+<section aria-labelledby="pcl-explore-title" style="background: #FFFFFF; border: 1px solid #E2DFD6; border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<div><h2 id="pcl-explore-title" style="margin: 0; font-size: 18px; font-weight: 600">Explore Other Tracks</h2><p style="margin: 4px 0 0; font-size: 14px; color: #5C5A54">Module 1 of every track is free.</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 14px; border: 1px solid #E2DFD6; text-decoration: none; color: #111111"><span style="width: 40px; height: 40px; border-radius: 10px; background: #FED606; color: #000000; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 3v18h18" /><path d="M8 17v-4" /><path d="M13 17V8" /><path d="M18 17v-7" /></svg></span><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 600">Data Analysis</span><span style="display: block; font-size: 13px; color: #5C5A54">11 modules · Beginner</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 14px; border: 1px solid #E2DFD6; text-decoration: none; color: #111111"><span style="width: 40px; height: 40px; border-radius: 10px; background: #FED606; color: #000000; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7z" /><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18z" /><path d="m2 2 7.6 7.6" /><circle cx="11" cy="11" r="2" /></svg></span><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 600">UI/UX Product Design</span><span style="display: block; font-size: 13px; color: #5C5A54">11 modules · Beginner</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 14px; border: 1px solid #E2DFD6; text-decoration: none; color: #111111"><span style="width: 40px; height: 40px; border-radius: 10px; background: #FED606; color: #000000; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" /></svg></span><span style="flex: 1; min-width: 0"><span style="display: block; font-size: 15px; font-weight: 600">AI &amp; Machine Learning</span><span style="display: block; font-size: 13px; color: #5C5A54">12 modules · Intermediate</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+</ul>
+</section>
+</div>
+</main>
+
+<nav class="pcl-tabbar" aria-label="Main" style="display: none; position: sticky; bottom: 0; background: #FFFFFF; border-top: 1px solid #E2DFD6; height: 68px; justify-content: space-around; align-items: center; padding: 0 8px">
+<a href="Dashboard.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 12px; font-weight: 600; color: #000000; min-width: 56px"><span style="background: #FED606; border-radius: 999px; padding: 4px 16px; display: flex"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg></span>Home</a>
+<a href="Lesson.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5C5A54; min-width: 56px"><span style="padding: 4px 16px; display: flex"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg></span>Learn</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5C5A54; min-width: 56px"><span style="padding: 4px 16px; display: flex"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg></span>Review</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5C5A54; min-width: 56px"><span style="padding: 4px 16px; display: flex"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></span>Projects</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 2px; text-decoration: none; font-size: 12px; font-weight: 500; color: #5C5A54; min-width: 56px"><span style="padding: 4px 16px; display: flex"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></span>Profile</a>
+</nav>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"plan":{"editor":"enum","options":["Pro trial","Free","Pro"],"default":"Pro trial","section":"Learner"},"$preview":{"width":1440,"height":1480}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { saver: true };
+  }
+  renderVals() {
+    const plan = this.props.plan || 'Pro trial';
+    const saver = !(this.state && this.state.saver === false);
+    const MODULES = [
+      ['How the web works', 'MDN: Web standards', 'm'],
+      ['Semantic HTML', 'MDN: Semantic HTML', 'm'],
+      ['VS Code, Git and GitHub', 'MDN: Version control', 'm'],
+      ['CSS fundamentals', 'MDN: CSS fundamentals', 'm'],
+      ['Typography and web fonts', 'MDN: CSS text styling', 'm'],
+      ['Layout: Flexbox, Grid, responsive', 'MDN: CSS layout', 'p', 57],
+      ['JavaScript fundamentals', 'MDN: JavaScript fundamentals', 't'],
+      ['The DOM, events and Web APIs', 'MDN: Web APIs', 't'],
+      ['Fetch, JSON and REST APIs', 'MDN: Web APIs', 't'],
+      ['Accessibility', 'MDN: Accessibility', 't'],
+      ['Design for developers', 'MDN: Design for developers', 't'],
+      ['Testing, performance, deploying', 'MDN: Testing, Performance', 't']
+    ];
+    const skills = MODULES.map((row, i) => {
+      const s = row[2];
+      return {
+        name: (i + 1) + '. ' + row[0],
+        tag: row[1],
+        mastered: s === 'm',
+        practising: s === 'p',
+        todo: s === 't',
+        stateLabel: s === 'm' ? 'Mastered' : (s === 'p' ? row[3] + '%' : 'Not started'),
+        stateC: s === 't' ? '#5C5A54' : '#111111',
+        rowBg: s === 'p' ? '#F4F2EC' : '#FFFFFF'
+      };
+    });
+    const DAYS = [['M', 'done'], ['T', 'done'], ['W', 'missed'], ['T', 'done'], ['F', 'today'], ['S', 'later'], ['S', 'later']];
+    const STATUS = { done: ', learned', missed: ', no lesson', today: ', today', later: ', upcoming' };
+    const days = DAYS.map((d) => ({
+      letter: d[0],
+      done: d[1] === 'done',
+      open: d[1] !== 'done',
+      ringW: d[1] === 'today' ? '2px' : '1.5px',
+      ringC: d[1] === 'today' ? '#111111' : '#8A877F',
+      weight: d[1] === 'today' ? '700' : '500',
+      labelC: d[1] === 'today' ? '#111111' : '#5C5A54',
+      status: STATUS[d[1]]
+    }));
+    return {
+      skills: skills,
+      days: days,
+      showTrial: plan === 'Pro trial',
+      showFree: plan === 'Free',
+      showPro: plan === 'Pro',
+      saverLabel: saver ? 'On' : 'Off',
+      saverPressed: saver ? 'true' : 'false',
+      saverBg: saver ? '#111111' : '#FFFFFF',
+      saverFg: saver ? '#FFFFFF' : '#111111',
+      saverBorder: saver ? '#111111' : '#8A877F',
+      toggleSaver: () => this.setState({ saver: !saver })
+    };
+  }
+}
+</script>
+</body>
+</html>

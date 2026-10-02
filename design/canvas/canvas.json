@@ -1,0 +1,29 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-02T19:30:00Z" },
+  "title": "PractiCode Learn UI",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 5700, "title": "Landing — Desktop", "expand": "fill", "is_interactive": true },
+    "Landing-Phone.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 10800, "title": "Landing — Phone", "is_interactive": true, "radius": 28 },
+    "Dashboard.dc.html": { "x": 1990, "y": 0, "w": 1440, "h": 1480, "title": "Dashboard — Desktop", "expand": "fill", "is_interactive": true },
+    "Dashboard-Phone.dc.html": { "x": 3510, "y": 0, "w": 390, "h": 3400, "title": "Dashboard — Phone", "is_interactive": true, "radius": 28 },
+    "Lesson.dc.html": { "x": 3980, "y": 0, "w": 1440, "h": 940, "title": "Lesson Player — Desktop", "expand": "fill", "is_interactive": true },
+    "Lesson-Phone.dc.html": { "x": 5500, "y": 0, "w": 390, "h": 1900, "title": "Lesson Player — Phone", "is_interactive": true, "radius": 28 }
+  },
+  "order": [
+    "Main.dc.html",
+    "Landing-Phone.dc.html",
+    "Dashboard.dc.html",
+    "Dashboard-Phone.dc.html",
+    "Lesson.dc.html",
+    "Lesson-Phone.dc.html"
+  ],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "Landing page", "kind": "title1", "maxW": 1910 },
+    "t2": { "x": 1990, "y": -300, "text": "Learner dashboard", "kind": "title1", "maxW": 1910 },
+    "t3": { "x": 3980, "y": -300, "text": "Lesson player", "kind": "title1", "maxW": 1910 }
+  },
+  "designSystems": []
+}

@@ -1,0 +1,53 @@
+{
+  "$comment": "Single source of truth for product identity. The app, emails, certificates and docs read from here, so a future rename is a one-file change. See docs/architecture/adr/0001-separate-product-under-practicode-brand.md.",
+  "product": {
+    "name": "PractiCode Learn",
+    "shortName": "PractiCode",
+    "wordmark": [
+      { "text": "Practi", "weight": 400 },
+      { "text": "Code", "weight": 700 },
+      { "text": " Learn", "weight": 400 }
+    ],
+    "tagline": { "line1": "Learn a", "line2": "Digital Skill" },
+    "headline": "Learn by doing. Not by watching.",
+    "domain": "learn.practicode.tech",
+    "supportEmail": "practicodeacademy@gmail.com"
+  },
+  "parent": {
+    "name": "PractiCode Academy",
+    "url": "https://practicode.tech",
+    "relationship": "PractiCode Academy is the first delivery partner and runs the Mentor plan (cohorts, online and in Ibadan)."
+  },
+  "colors": {
+    "practiYellow": "#FED606",
+    "codeBlack": "#000000",
+    "ink": "#111111",
+    "inkMuted": "#5C5A54",
+    "paper": "#F4F2EC",
+    "white": "#FFFFFF",
+    "line": "#E2DFD6",
+    "lineStrong": "#8A877F",
+    "darkGround": "#0B0B0B",
+    "darkSurface": "#161616",
+    "darkMuted": "#A3A39E",
+    "success": "#1F7A3A",
+    "danger": "#B42318",
+    "info": "#1D4ED8"
+  },
+  "colorRules": [
+    "Practi Yellow is a fill colour only. Never yellow text, and never thin yellow lines on light backgrounds.",
+    "Text on yellow is always Code Black or Ink.",
+    "Yellow never carries meaning alone on light backgrounds (fails WCAG 1.4.11 at 1.3:1 against Paper). On light surfaces, progress and state use Ink; on dark surfaces, yellow is fine (13.9:1)."
+  ],
+  "typography": {
+    "ui": { "family": "Poppins", "weights": [400, 500, 600, 700], "source": "Google Fonts (OFL)" },
+    "code": { "family": "JetBrains Mono", "weights": [400, 600], "source": "Google Fonts (OFL)", "note": "Functional exception to Poppins-only: code must be monospaced." },
+    "case": "Title Case for labels and buttons, sentence case for sentences. No all-caps except acronyms."
+  },
+  "logo": {
+    "iconBlack": "brand/logo/icon-black.svg",
+    "iconYellow": "brand/logo/icon-yellow.svg",
+    "appIcon": "brand/logo/app-icon.svg",
+    "status": "Interim redraws from the documented geometry. Replace with files from PractiCode_Academy_Official_Logo_Pack.zip."
+  }
+}

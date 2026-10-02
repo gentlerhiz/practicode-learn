@@ -1,0 +1,2 @@
+# Security reports must not be filed as issues. GitHub links SECURITY.md from the "New issue" page automatically.
+blank_issues_enabled: false

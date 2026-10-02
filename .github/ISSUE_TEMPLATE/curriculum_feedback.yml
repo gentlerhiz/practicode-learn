@@ -1,0 +1,28 @@
+name: Curriculum feedback
+description: Review a syllabus, learning outcome or standards mapping
+labels: ["curriculum", "triage"]
+body:
+  - type: dropdown
+    id: track
+    attributes:
+      label: Track
+      options: ["Front-End Web Development", "Data Analysis", "UI/UX Product Design", "AI & Machine Learning", "Standards framework or pedagogy"]
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Module or outcome
+      placeholder: e.g. Module 6, or outcome fe.layout.flex-align
+  - type: textarea
+    id: feedback
+    attributes:
+      label: Your feedback
+      description: What is missing, outdated, wrongly mapped or in the wrong order? Cite sources if you can.
+    validations:
+      required: true
+  - type: input
+    id: background
+    attributes:
+      label: Your background (optional)
+      placeholder: e.g. senior front-end engineer, 8 years; university lecturer

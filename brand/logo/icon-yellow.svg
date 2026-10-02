@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10.4 -9.06 20.8 18.12" role="img" aria-labelledby="t">
+  <title id="t">PractiCode icon, reversed for dark backgrounds</title>
+  <!-- Interim redraw. For use on Code Black (#000000) or dark screens (#0B0B0B) only. -->
+  <g fill="#FED606" stroke="#FED606" stroke-width="0.32" stroke-linejoin="round">
+    <polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196"/>
+    <polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425"/>
+  </g>
+</svg>
