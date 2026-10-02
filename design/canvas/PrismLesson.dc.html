@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Lesson player</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+@container pcl (max-width: 999px) {
+  .pcl-lesson { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+}
+@container pcl (max-width: 640px) {
+  .pcl-hide-sm { display: none !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px !important; gap: 10px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-body { padding: 24px 16px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 34px !important; }
+  .pcl-box { width: 48px !important; height: 48px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -240px; top: 80px; width: 1000px; height: 760px; pointer-events: none; background: radial-gradient(closest-side at 40% 40%, rgba(77,107,255,0.24), rgba(77,107,255,0) 75%), radial-gradient(closest-side at 65% 70%, rgba(240,64,127,0.16), rgba(240,64,127,0) 75%)"></div>
+
+<header style="position: relative; border-bottom: 1px solid #1C1930; background: rgba(11,10,20,0.85)">
+<div class="pcl-head" style="height: 72px; padding: 0 24px; display: flex; align-items: center; gap: 20px; box-sizing: border-box">
+<a href="PrismDashboard.dc.html" aria-label="Exit lesson" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2540; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></a>
+<div style="min-width: 0; flex: 1 1 200px"><p style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Aligning items with Flexbox</p><p style="margin: 0; font-size: 13px; color: #8B88A0"><span style="color: #8EA2FF">Front-End</span> · Module 6 · Lesson 4 of 7</p></div>
+<div class="pcl-steps" style="flex: 2 1 320px; max-width: 520px; display: flex; flex-direction: column; gap: 6px">
+<div aria-hidden="true" style="display: flex; gap: 4px">
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #FF8A3D; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #FF8A3D; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #4D6BFF; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #2FE6B0; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span>
+</div>
+<p style="margin: 0; font-size: 12px; color: #8B88A0">Step 4 of 9 · Investigate</p>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; margin-left: auto">
+<p class="pcl-hide-sm" style="margin: 0; display: flex; align-items: center; gap: 6px; font-size: 12px; color: #A9A6BC; padding: 0 6px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2FE6B0; display: block"></span>Saved offline</p>
+<button type="button" onClick="{{toggleHint}}" aria-expanded="{{hintExpanded}}" style="height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px; color: #FF8A3D" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>Hint</button>
+</div>
+</div>
+</header>
+
+<main class="pcl-body" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 40px 24px; box-sizing: border-box">
+<div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 22px; max-width: 600px">
+<p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 700; color: #04241A; background: #2FE6B0; border-radius: 999px; padding: 4px 12px">3 · Investigate</p>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Try each value of justify-content</h1>
+<p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">justify-content decides where the spare room goes along the main axis. Tap a value and <span style="color: #8EA2FF">watch the boxes move.</span></p>
+<div role="group" aria-label="justify-content value" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{values}}" as="v" hint-placeholder-count="5">
+<button type="button" onClick="{{v.pick}}" aria-pressed="{{v.pressed}}" style="height: 42px; padding: 0 14px; border-radius: 12px; border: 1px solid {{v.border}}; background: {{v.bg}}; color: {{v.fg}}; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; cursor: pointer">{{v.name}}</button>
+</sc-for>
+</div>
+<div aria-live="polite" style="border-radius: 18px; border: 1px solid rgba(77,107,255,0.35); background: linear-gradient(160deg, rgba(77,107,255,0.12), #0B0A14 70%); padding: 18px 20px">
+<p style="margin: 0; font-size: 16px; line-height: 26px"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; color: #8EA2FF">{{justify}}</span><span style="color: #DCD9EA">{{explain}}</span></p>
+</div>
+<sc-if value="{{hintOpen}}" hint-placeholder-val="{{ false }}">
+<div style="border-radius: 18px; border: 1px dashed rgba(255,138,61,0.6); padding: 16px 20px; display: flex; gap: 12px">
+<svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 3px; color: #FF8A3D" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>
+<p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCD9EA">Hint 1 of 3: look at the two outer boxes. For which value do they touch the dashed edges?</p>
+</div>
+</sc-if>
+<section aria-labelledby="pcl-q-t" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="pcl-q-t" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Check yourself: which value puts the first and last boxes right against the edges?</h2>
+<div role="radiogroup" aria-labelledby="pcl-q-t" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{choices}}" as="c" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{c.checked}}" onClick="{{c.pick}}" style="display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid {{c.border}}; background: {{c.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; box-sizing: border-box">
+<span style="width: 26px; height: 26px; border-radius: 8px; background: {{c.keyBg}}; color: {{c.keyFg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0">{{c.letter}}</span>
+<span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px">{{c.label}}</span>
+</button>
+</sc-for>
+</div>
+<div aria-live="polite">
+<sc-if value="{{isCorrect}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 10px; font-size: 14px; line-height: 22px; color: #4BE3A8"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg><span><span style="font-weight: 600">Nice. </span>{{feedback}}</span></p></sc-if>
+<sc-if value="{{isWrong}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 10px; font-size: 14px; line-height: 22px; color: #FF9AA2"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg><span><span style="font-weight: 600">Not quite. </span>{{feedback}}</span></p></sc-if>
+</div>
+<button type="button" onClick="{{check}}" disabled="{{checkDisabled}}" style="align-self: flex-start; height: 46px; padding: 0 24px; border-radius: 999px; border: 1px solid {{checkBorder}}; background: transparent; color: {{checkFg}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Check My Answer</button>
+</section>
+</div>
+
+<section aria-label="Code and live preview" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; height: 52px; border-bottom: 1px solid #221E36">
+<div style="display: flex; gap: 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(77,107,255,0.18); border: 1px solid rgba(77,107,255,0.5)">styles.css</span><span style="padding: 6px 12px; border-radius: 999px; color: #8B88A0">index.html</span></div>
+<p style="margin: 0; font-size: 12px; color: #A9A6BC; display: flex; align-items: center; gap: 8px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2FE6B0; display: block"></span>Live preview</p>
+</div>
+<div style="padding: 20px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 28px; white-space: pre">
+<div style="display: flex; padding: 0 24px"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">1</span><span><span>.nav</span><span style="color: #8B88A0">&#160;{</span></span></div>
+<div style="display: flex; padding: 0 24px"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">2</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">flex</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; background: rgba(77,107,255,0.12)"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">3</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:&#160;</span><span style="color: #FF7DB0">{{justify}}</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">4</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">align-items</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">center</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">5</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">gap</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">12px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">6</span><span style="color: #8B88A0">}</span></div>
+</div>
+<div style="padding: 0 24px 24px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 12px; color: #8B88A0">Preview</p>
+<div style="border-radius: 20px; background: #0E0C1A; border: 1px solid #221E36; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div role="img" aria-label="{{previewLabel}}" style="height: 128px; border: 1.5px dashed #464060; border-radius: 16px; padding: 0 14px; display: flex; justify-content: {{justify}}; align-items: center; gap: 12px; box-sizing: border-box">
+<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 16px; background: #3D5AF5; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span>
+<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 999px; background: #2FE6B0; color: #04241A; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span>
+<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 16px; background: #D9306F; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</span>
+</div>
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #8B88A0"><span style="flex: 1; height: 2px; background: linear-gradient(90deg, #4D6BFF, #7B5CFF, #F0407F); display: block"></span>Main axis<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #FF7DB0" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+
+<footer style="position: sticky; bottom: 0; border-top: 1px solid #1C1930; background: rgba(11,10,20,0.92)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box">
+<a href="#" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
+<p class="pcl-hide-sm" style="margin: 0; font-size: 12px; color: #8B88A0">Press Enter to continue</p>
+<a href="PrismReview.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 46px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":980}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { justify: 'flex-start', picked: null, checked: false, hint: false };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const justify = st.justify || 'flex-start';
+    const EXPLAIN = {
+      'flex-start': ' is the default. The boxes pack at the start of the line, and all the spare room sits at the end.',
+      'center': ' keeps the boxes together in the middle, with equal spare room at both ends.',
+      'space-between': ' puts all the spare room between the boxes. The first and last boxes touch the edges.',
+      'space-around': ' gives every box equal room on both sides, so the gaps at the edges are half the size of the ones in between.',
+      'space-evenly': ' makes every gap the same size, including the ones at the edges.'
+    };
+    const values = Object.keys(EXPLAIN).map((name) => {
+      const on = name === justify;
+      return { name: name, pressed: on ? 'true' : 'false', bg: on ? '#3D5AF5' : 'transparent', fg: on ? '#FFFFFF' : '#DCD9EA', border: on ? '#3D5AF5' : '#332E4D', pick: () => this.setState({ justify: name }) };
+    });
+    const CHOICES = [
+      { key: 'a', letter: 'A', label: 'flex-start', fb: 'flex-start packs the boxes at the start and leaves the room at the end. Try it above.' },
+      { key: 'b', letter: 'B', label: 'space-between', fb: 'space-between gives all the spare room to the gaps between boxes, so the outer boxes sit right on the edges.' },
+      { key: 'c', letter: 'C', label: 'space-evenly', fb: 'space-evenly also puts room at the edges. Compare it with space-between above.' }
+    ];
+    const KEYS = [['rgba(77,107,255,0.18)', '#8EA2FF'], ['rgba(47,230,176,0.16)', '#4BE3A8'], ['rgba(240,64,127,0.16)', '#FF7DB0']];
+    const picked = st.picked;
+    const checked = !!st.checked;
+    const choices = CHOICES.map((c, k) => {
+      const sel = c.key === picked;
+      let border = '#2A2540';
+      let bg = '#110F1E';
+      if (sel) {
+        border = '#8EA2FF';
+        bg = '#16132A';
+        if (checked) border = c.key === 'b' ? '#2FE6B0' : '#FF9AA2';
+      }
+      return { letter: c.letter, label: c.label, checked: sel ? 'true' : 'false', border: border, bg: bg, keyBg: KEYS[k][0], keyFg: KEYS[k][1], pick: () => this.setState({ picked: c.key, checked: false }) };
+    });
+    const chosen = CHOICES.find((c) => c.key === picked);
+    return {
+      justify: justify,
+      explain: EXPLAIN[justify],
+      values: values,
+      previewLabel: 'Three shapes in a row, laid out with justify-content ' + justify,
+      choices: choices,
+      isCorrect: checked && picked === 'b',
+      isWrong: checked && !!picked && picked !== 'b',
+      feedback: chosen ? chosen.fb : '',
+      check: () => this.setState({ checked: true }),
+      checkDisabled: !picked,
+      checkBorder: picked ? '#FFFFFF' : '#332E4D',
+      checkFg: picked ? '#FFFFFF' : '#8B88A0',
+      hintOpen: !!st.hint,
+      hintExpanded: st.hint ? 'true' : 'false',
+      toggleHint: () => this.setState({ hint: !st.hint }),
+      cta: yellow ? '#FED606' : '#FFFFFF',
+      ctaFg: yellow ? '#000000' : '#07060D'
+    };
+  }
+}
+</script>
+</body>
+</html>

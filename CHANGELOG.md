@@ -19,6 +19,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - UI designs for the landing page, learner dashboard and lesson player
 - Four further visual directions (Atlas Night, Adire, Spectrum, Simple), plus more human-sounding copy
 - Prism: a new direction merging Atlas Night and Spectrum
+- Five more screens for each of Atlas Night and Prism: track page, onboarding, lesson player, daily review and certificate, all linked into a clickable flow
 
 ### Changed
 

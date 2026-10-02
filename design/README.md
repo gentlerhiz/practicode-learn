@@ -5,40 +5,55 @@ High-fidelity, interactive designs for PractiCode Learn v1. They follow the [UX 
 **Live canvas:** https://claude.ai/artifact/7JGtvdSBs74EVYrGr1ZijS
 *(Private until it is shared from the canvas's Share menu.)*
 
-## Shortlist: three visual directions
+## Final two: Atlas Night and Prism
 
-The canvas has one page per direction. Each page has:
+Each direction has its own canvas page with **seven screens**, each at desktop (1440 px) and phone (390 px) width.
 
-- a **landing page** at desktop (1440 px) and phone (390 px) width
-- a **learner dashboard** at the same two widths
+| Row | Screen | What it shows |
+|---|---|---|
+| 1 | **Landing page** | The pitch, the playable "a lesson that talks back" prediction, tracks, pricing with a currency switcher |
+| 1 | **Learner dashboard** | Resume card, weekly goal, review, project, path through the track |
+| 2 | **Track page** | Front-End Web Development: outcomes, a syllabus you can expand (12 modules, 77 lessons), standards mapping, projects, certificate preview |
+| 2 | **Onboarding** | "What do you want to learn first?" Pick a track, time and experience level, and the plan updates as you choose |
+| 2 | **Lesson player** | The no-video Investigate step: click a justify-content value and the boxes move, then answer a check question with specific feedback |
+| 2 | **Daily review** | Five flashcards: reveal, rate (Again / Hard / Good / Easy) with the next interval, an explanation of why each card is due, and a "done for today" screen |
+| 2 | **Certificate** | The public credential page: verified badge, skills mapped to MDN and SFIA, projects, and how to check it's real |
 
-Canvas frames max out at 8,000 px, so each phone landing page is shown in two frames, part 1 and part 2. To scroll a whole page in one go, open a desktop frame in full view.
+### The prototype flow
+Landing → *Start Free* → Onboarding → *Continue* → Dashboard → *Pick up where you left off* → Lesson → *Continue* → Daily review → *Back to Home*.
 
-| # | Direction | Look | Type | Strengths | Watch-outs |
-|---|---|---|---|---|---|
-| 1 | **Atlas Night** | Black with violet glows and aqua accents; bento cards with mini UI; comparison table; stat cards (inspired by searchatlas.com) | Poppins, tight tracking | Premium, "serious tech" feel; strong for investors and global audiences | One accent family, so the four tracks don't have their own identity |
-| 2 | **Spectrum** | White with four vivid track colours (blue, green, pink, violet) and floating cards; very little yellow | Bricolage Grotesque + Poppins | Playful and energetic; each track is instantly recognisable | Light and busy; less "premium" than the dark options |
-| 3 | **Prism** | Atlas Night's dark canvas and structure, lit by Spectrum's four track colours: aurora glows, glowing headline pills, glass floating cards, a neon PRIMM ring | Bricolage Grotesque + Poppins | Combines the premium dark look with track colour-coding; the most distinctive of the three | Dark pages use more battery on LCD phones; the colour system needs careful contrast discipline (already applied) |
+From the dashboard you can also reach the track page (*My Tracks*) and the certificate (*Certificates*). The landing page's track cards open the track page.
 
-### What's interactive
-- **Pricing:** currency (₦, GH₵, KSh, £, US$) and monthly or yearly billing, in all three directions
-- **Hero prediction question:** Atlas Night and Prism ("A lesson that talks back")
-- **Tweaks panel:** CTA colour (Atlas Night: yellow or aqua; Prism: white or yellow) and default currency
-- **Links:** landing pages link to their own dashboards
+### How the two differ
 
-### Feedback applied (2 October 2026)
-- No shadows or glows on yellow buttons.
+| | Atlas Night | Prism |
+|---|---|---|
+| Ground | Black with a single violet glow | Near-black with multi-colour aurora glows |
+| Accents | Lilac and aqua | Each track has its own colour: blue (Web), green (Data), pink (Design), violet (AI) |
+| Headings | Poppins, tight tracking | Bricolage Grotesque, extra bold |
+| Main button | Practi Yellow, flat | White by default (switch to yellow in the Tweaks panel), flat |
+| Feel | Calm, premium, serious | Energetic and premium; tracks are recognisable at a glance |
+| Onboarding | Lilac selection state | The selected card takes on its track's colour, and so does the page glow |
+| Review | One accent throughout | Cards are tagged by track colour; rating buttons are colour-coded |
+
+Spectrum is still on the canvas (page 3) for reference.
+
+### Feedback applied
+- No shadows or glows on yellow buttons or yellow elements.
 - No "Made by PractiCode Academy, Ibadan" style badges. Hero pills and footers use neutral, standard copy instead.
 
 ### Contrast rules used in the dark directions
-- Body text `#A9A6BC` or lighter on near-black (at least 8:1).
-- Track colours as **text** use light tints (`#8EA2FF`, `#4BE3A8`, `#FF7DB0`, `#B9A2FF`), all 8:1 or better.
-- Track colours as **fills behind white text** use deeper shades (`#3D5AF5`, `#0A7D5C`, `#D9306F`, `#6E4CF5`), all 4.5:1 or better.
+- Body text `#A6A1B5` / `#A9A6BC` or lighter on near-black (at least 8:1).
+- Accent colours used as **text** are light tints (`#B9A2FF`, `#2FF5C9`, `#8EA2FF`, `#4BE3A8`, `#FF7DB0`), all 8:1 or better.
+- Track colours used as **fills behind white text** are deeper shades (`#3D5AF5`, `#0A7D5C`, `#D9306F`, `#6E4CF5`), all 4.5:1 or better.
 - Aqua and green fills always carry dark text.
 
+### Canvas notes
+- Canvas frames max out at 8,000 px, so long phone landing pages are shown in two frames, part 1 and part 2. Open a desktop frame in full view to scroll a whole page.
+
 ## Next steps after a direction is chosen
-1. Restyle the **lesson player** in that direction. The earlier lesson player design lives in git history at commit `a220965`.
-2. Update the [design system](../docs/design/design-system.md) and [brand config](../brand/brand.config.json) with the chosen tokens, fonts and rules.
+1. Update the [design system](../docs/design/design-system.md) and [brand config](../brand/brand.config.json) with the chosen tokens, fonts and rules.
+2. Design the remaining screens: sign-up, settings, project workspace, module mastery check, pricing and checkout.
 3. Run a usability test with 5 learners on low-end Android phones.
 
 ## Source
@@ -47,4 +62,4 @@ Canvas frames max out at 8,000 px, so each phone landing page is shown in two fr
 
 ## Earlier explorations
 
-Four other directions were explored and set aside on 2 October 2026: Current (Paper & Ink), Adire, Simple and the first lesson player. Their source is preserved in git history at commit `a220965`.
+Set aside on 2 October 2026 and kept in git history at commit `a220965`: Current (Paper & Ink), Adire, Simple and the first lesson player.

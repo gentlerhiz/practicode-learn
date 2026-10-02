@@ -82,8 +82,8 @@ This repository is in the **design phase**. What exists today:
 - [x] Teaching model and lesson format specification
 - [x] Design system and UX principles
 - [x] Proposed architecture and decision records
-- [x] UI designs: three shortlisted visual directions for the landing page and learner dashboard ([design/](design/README.md))
-- [ ] Final visual direction chosen; lesson player restyled to match
+- [x] UI designs: Atlas Night and Prism, seven screens each (landing, dashboard, track page, onboarding, lesson player, daily review, certificate) ([design/](design/README.md))
+- [ ] Final visual direction chosen
 - [ ] v1 specification sign-off ([draft](docs/specs/2026-10-02-v1-platform-design.md))
 - [ ] Implementation plan
 - [ ] Application code
