@@ -1,16 +1,49 @@
 {
   "v": 3,
-  "createdOnFiles": { "v": 1, "at": "2026-10-02T19:30:00Z" },
-  "title": "PractiCode Learn UI",
-  "launch": { "view": "canvas" },
-  "pages": [],
+  "attachments": {},
   "boards": {
-    "Main.dc.html": { "x": 0, "y": 0, "w": 1440, "h": 5700, "title": "Landing — Desktop", "expand": "fill", "is_interactive": true },
-    "Landing-Phone.dc.html": { "x": 1520, "y": 0, "w": 390, "h": 10800, "title": "Landing — Phone", "is_interactive": true, "radius": 28 },
-    "Dashboard.dc.html": { "x": 1990, "y": 0, "w": 1440, "h": 1480, "title": "Dashboard — Desktop", "expand": "fill", "is_interactive": true },
-    "Dashboard-Phone.dc.html": { "x": 3510, "y": 0, "w": 390, "h": 3400, "title": "Dashboard — Phone", "is_interactive": true, "radius": 28 },
-    "Lesson.dc.html": { "x": 3980, "y": 0, "w": 1440, "h": 940, "title": "Lesson Player — Desktop", "expand": "fill", "is_interactive": true },
-    "Lesson-Phone.dc.html": { "x": 5500, "y": 0, "w": 390, "h": 1900, "title": "Lesson Player — Phone", "is_interactive": true, "radius": 28 }
+    "Main.dc.html": { "expand": "fill", "h": 5700, "is_interactive": true, "title": "Landing — Desktop", "w": 1440, "x": 0, "y": 0, "page": "o1" },
+    "Landing-Phone.dc.html": { "h": 8000, "is_interactive": true, "radius": 28, "title": "Landing — Phone", "w": 390, "x": 1520, "y": 0, "page": "o1" },
+    "Dashboard.dc.html": { "expand": "fill", "h": 1480, "is_interactive": true, "title": "Dashboard — Desktop", "w": 1440, "x": 1990, "y": 0, "page": "o1" },
+    "Dashboard-Phone.dc.html": { "h": 3400, "is_interactive": true, "radius": 28, "title": "Dashboard — Phone", "w": 390, "x": 3510, "y": 0, "page": "o1" },
+    "Lesson.dc.html": { "expand": "fill", "h": 940, "is_interactive": true, "title": "Lesson Player — Desktop", "w": 1440, "x": 3980, "y": 0, "page": "o1" },
+    "Lesson-Phone.dc.html": { "h": 1900, "is_interactive": true, "radius": 28, "title": "Lesson Player — Phone", "w": 390, "x": 5500, "y": 0, "page": "o1" },
+
+    "AtlasLanding.dc.html": { "expand": "fill", "h": 7700, "is_interactive": true, "title": "Atlas Night · Landing — Desktop", "w": 1440, "x": 0, "y": 0, "page": "o2" },
+    "AtlasLandingPhone.dc.html": { "h": 11500, "is_interactive": true, "radius": 28, "title": "Atlas Night · Landing — Phone", "w": 390, "x": 1520, "y": 0, "page": "o2" },
+    "AtlasDashboard.dc.html": { "expand": "fill", "h": 1240, "is_interactive": true, "title": "Atlas Night · Dashboard — Desktop", "w": 1440, "x": 1990, "y": 0, "page": "o2" },
+    "AtlasDashboardPhone.dc.html": { "h": 2800, "is_interactive": true, "radius": 28, "title": "Atlas Night · Dashboard — Phone", "w": 390, "x": 3510, "y": 0, "page": "o2" },
+
+    "AdireLanding.dc.html": { "expand": "fill", "h": 6800, "is_interactive": true, "title": "Adire · Landing — Desktop", "w": 1440, "x": 0, "y": 0, "page": "o3" },
+    "AdireLandingPhone.dc.html": { "h": 9300, "is_interactive": true, "radius": 28, "title": "Adire · Landing — Phone", "w": 390, "x": 1520, "y": 0, "page": "o3" },
+    "AdireDashboard.dc.html": { "expand": "fill", "h": 1140, "is_interactive": true, "title": "Adire · Dashboard — Desktop", "w": 1440, "x": 1990, "y": 0, "page": "o3" },
+    "AdireDashboardPhone.dc.html": { "h": 2600, "is_interactive": true, "radius": 28, "title": "Adire · Dashboard — Phone", "w": 390, "x": 3510, "y": 0, "page": "o3" },
+
+    "SpectrumLanding.dc.html": { "expand": "fill", "h": 6300, "is_interactive": true, "title": "Spectrum · Landing — Desktop", "w": 1440, "x": 0, "y": 0, "page": "o4" },
+    "SpectrumLandingPhone.dc.html": { "h": 8800, "is_interactive": true, "radius": 28, "title": "Spectrum · Landing — Phone", "w": 390, "x": 1520, "y": 0, "page": "o4" },
+    "SpectrumDashboard.dc.html": { "expand": "fill", "h": 1220, "is_interactive": true, "title": "Spectrum · Dashboard — Desktop", "w": 1440, "x": 1990, "y": 0, "page": "o4" },
+    "SpectrumDashboardPhone.dc.html": { "h": 2500, "is_interactive": true, "radius": 28, "title": "Spectrum · Dashboard — Phone", "w": 390, "x": 3510, "y": 0, "page": "o4" },
+
+    "SimpleLanding.dc.html": { "expand": "fill", "h": 3720, "is_interactive": true, "title": "Simple · Landing — Desktop", "w": 1440, "x": 0, "y": 0, "page": "o5" },
+    "SimpleLandingPhone.dc.html": { "h": 4100, "is_interactive": true, "radius": 28, "title": "Simple · Landing — Phone", "w": 390, "x": 1520, "y": 0, "page": "o5" },
+    "SimpleDashboard.dc.html": { "expand": "fill", "h": 1340, "is_interactive": true, "title": "Simple · Today — Desktop", "w": 1440, "x": 1990, "y": 0, "page": "o5" },
+    "SimpleDashboardPhone.dc.html": { "h": 1700, "is_interactive": true, "radius": 28, "title": "Simple · Today — Phone", "w": 390, "x": 3510, "y": 0, "page": "o5" }
+  },
+  "createdOnFiles": { "at": "2026-10-02T19:30:00Z", "v": 1 },
+  "designSystems": [],
+  "launch": { "view": "canvas", "page": "o2" },
+  "notes": {
+    "t1": { "kind": "title1", "maxW": 1910, "text": "Landing page", "w": 240, "x": 0, "y": -300, "page": "o1" },
+    "t2": { "kind": "title1", "maxW": 1910, "text": "Learner dashboard", "w": 240, "x": 1990, "y": -300, "page": "o1" },
+    "t3": { "kind": "title1", "maxW": 1910, "text": "Lesson player", "w": 240, "x": 3980, "y": -300, "page": "o1" },
+    "a1": { "kind": "title1", "maxW": 1910, "text": "Atlas Night · Landing", "x": 0, "y": -300, "page": "o2" },
+    "a2": { "kind": "title1", "maxW": 1910, "text": "Atlas Night · Dashboard", "x": 1990, "y": -300, "page": "o2" },
+    "d1": { "kind": "title1", "maxW": 1910, "text": "Adire · Landing", "x": 0, "y": -300, "page": "o3" },
+    "d2": { "kind": "title1", "maxW": 1910, "text": "Adire · Dashboard", "x": 1990, "y": -300, "page": "o3" },
+    "s1": { "kind": "title1", "maxW": 1910, "text": "Spectrum · Landing", "x": 0, "y": -300, "page": "o4" },
+    "s2": { "kind": "title1", "maxW": 1910, "text": "Spectrum · Dashboard", "x": 1990, "y": -300, "page": "o4" },
+    "m1": { "kind": "title1", "maxW": 1910, "text": "Simple · Landing", "x": 0, "y": -300, "page": "o5" },
+    "m2": { "kind": "title1", "maxW": 1910, "text": "Simple · Today", "x": 1990, "y": -300, "page": "o5" }
   },
   "order": [
     "Main.dc.html",
@@ -18,12 +51,30 @@
     "Dashboard.dc.html",
     "Dashboard-Phone.dc.html",
     "Lesson.dc.html",
-    "Lesson-Phone.dc.html"
+    "Lesson-Phone.dc.html",
+    "AtlasLanding.dc.html",
+    "AtlasLandingPhone.dc.html",
+    "AtlasDashboard.dc.html",
+    "AtlasDashboardPhone.dc.html",
+    "AdireLanding.dc.html",
+    "AdireLandingPhone.dc.html",
+    "AdireDashboard.dc.html",
+    "AdireDashboardPhone.dc.html",
+    "SpectrumLanding.dc.html",
+    "SpectrumLandingPhone.dc.html",
+    "SpectrumDashboard.dc.html",
+    "SpectrumDashboardPhone.dc.html",
+    "SimpleLanding.dc.html",
+    "SimpleLandingPhone.dc.html",
+    "SimpleDashboard.dc.html",
+    "SimpleDashboardPhone.dc.html"
   ],
-  "notes": {
-    "t1": { "x": 0, "y": -300, "text": "Landing page", "kind": "title1", "maxW": 1910 },
-    "t2": { "x": 1990, "y": -300, "text": "Learner dashboard", "kind": "title1", "maxW": 1910 },
-    "t3": { "x": 3980, "y": -300, "text": "Lesson player", "kind": "title1", "maxW": 1910 }
-  },
-  "designSystems": []
+  "pages": [
+    { "id": "o1", "name": "1 · Current" },
+    { "id": "o2", "name": "2 · Atlas Night" },
+    { "id": "o3", "name": "3 · Adire" },
+    { "id": "o4", "name": "4 · Spectrum" },
+    { "id": "o5", "name": "5 · Simple" }
+  ],
+  "title": "PractiCode Learn UI"
 }

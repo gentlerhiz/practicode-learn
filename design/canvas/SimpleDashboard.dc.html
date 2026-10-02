@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Simple — Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #FFFFFF; }
+a { color: #111111; }
+a:hover { color: #000000; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@container pcl (max-width: 767px) {
+  .pcl-topnav { display: none !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-h1 { font-size: 28px !important; line-height: 36px !important; }
+  .pcl-task { flex-wrap: wrap !important; }
+  .pcl-taskbtn { width: 100% !important; justify-content: center !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #111111; background: #FFFFFF">
+
+<header style="border-bottom: 1px solid #ECEAE4">
+<div class="pcl-wrap" style="max-width: 960px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="SimpleLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span style="font-size: 17px"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span></span>
+</a>
+<nav class="pcl-topnav" aria-label="Main" style="display: flex; gap: 6px; font-size: 16px; font-weight: 500">
+<a href="SimpleDashboard.dc.html" aria-current="page" style="text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 12px; background: #F7F6F2; font-weight: 600">Today</a>
+<a href="Lesson.dc.html" style="text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 12px; color: #5C5A54">Learn</a>
+<a href="#" style="text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 12px; color: #5C5A54">Review</a>
+<a href="#" style="text-decoration: none; height: 44px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 12px; color: #5C5A54">Projects</a>
+</nav>
+<a href="#" aria-label="Your profile" style="width: 44px; height: 44px; border-radius: 999px; background: #111111; color: #FFFFFF; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center; text-decoration: none">TA</a>
+</div>
+</header>
+
+<main class="pcl-wrap" style="max-width: 680px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-direction: column; gap: 28px; box-sizing: border-box">
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 class="pcl-h1" style="margin: 0; font-size: 34px; line-height: 42px; font-weight: 700">Good evening, Tolu.</h1>
+<p style="margin: 0; font-size: 18px; line-height: 28px; color: #5C5A54">Here's today. About 15 minutes in total.</p>
+</div>
+
+<section aria-labelledby="pcl-today-t" style="border-radius: 26px; border: 1.5px solid #ECEAE4; overflow: hidden">
+<h2 id="pcl-today-t" class="pcl-sr">Today's plan</h2>
+<ol style="list-style: none; margin: 0; padding: 0">
+<li class="pcl-task" style="display: flex; align-items: center; gap: 16px; padding: 22px; background: #FFFBE0">
+<span style="width: 32px; height: 32px; border-radius: 999px; border: 2px solid #111111; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600">1</span>
+<span style="flex: 1; min-width: 180px"><span style="display: block; font-size: 18px; font-weight: 600">Finish "Aligning items with Flexbox"</span><span style="display: block; margin-top: 2px; font-size: 15px; color: #5C5A54">8 minutes · you're halfway through</span></span>
+<a href="Lesson.dc.html" class="pcl-taskbtn" style="text-decoration: none; font-size: 16px; font-weight: 600; color: #000000; background: #FED606; height: 50px; padding: 0 24px; display: inline-flex; align-items: center; border-radius: 14px; box-sizing: border-box">Continue</a>
+</li>
+<li class="pcl-task" style="display: flex; align-items: center; gap: 16px; padding: 22px; border-top: 1.5px solid #ECEAE4">
+<span style="width: 32px; height: 32px; border-radius: 999px; border: 2px solid #8A877F; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #5C5A54">2</span>
+<span style="flex: 1; min-width: 180px"><span style="display: block; font-size: 18px; font-weight: 600">Quick review</span><span style="display: block; margin-top: 2px; font-size: 15px; color: #5C5A54">5 cards · about 4 minutes</span></span>
+<a href="#" class="pcl-taskbtn" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 50px; padding: 0 22px; display: inline-flex; align-items: center; border-radius: 14px; border: 1.5px solid #111111; box-sizing: border-box">Review</a>
+</li>
+<li class="pcl-task" style="display: flex; align-items: center; gap: 16px; padding: 22px; border-top: 1.5px solid #ECEAE4">
+<span style="width: 32px; height: 32px; border-radius: 999px; border: 2px dashed #8A877F; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #5C5A54">3</span>
+<span style="flex: 1; min-width: 180px"><span style="display: block; font-size: 18px; font-weight: 600">If you've got time: the gallery challenge</span><span style="display: block; margin-top: 2px; font-size: 15px; color: #5C5A54">Optional · 5 minutes</span></span>
+</li>
+</ol>
+</section>
+
+<section aria-labelledby="pcl-week-t" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 22px; border-radius: 20px; background: #F7F6F2">
+<h2 id="pcl-week-t" style="margin: 0; font-size: 16px; font-weight: 600">This week: 3 of 5 days</h2>
+<ul aria-label="Days this week" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<li style="display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; color: #5C5A54"><span style="width: 22px; height: 22px; border-radius: 999px; background: {{d.bg}}; border: {{d.border}}; box-sizing: border-box; display: block"></span>{{d.letter}}<span class="pcl-sr">{{d.status}}</span></li>
+</sc-for>
+</ul>
+</section>
+
+<section aria-labelledby="pcl-path-t" style="display: flex; flex-direction: column; gap: 16px">
+<div><h2 id="pcl-path-t" style="margin: 0; font-size: 22px; font-weight: 700">Module 6: Layout</h2><p style="margin: 4px 0 0; font-size: 16px; color: #5C5A54">Front-End Web Development · 3 of 7 lessons done</p></div>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+<sc-for list="{{path}}" as="s" hint-placeholder-count="9">
+<li style="display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px">
+<span style="display: flex; flex-direction: column; align-items: center">
+<span style="width: {{s.size}}; height: {{s.size}}; border-radius: 999px; background: {{s.bg}}; border: {{s.border}}; box-sizing: border-box; color: {{s.fg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<sc-if value="{{s.done}}" hint-placeholder-val="{{ true }}"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></sc-if>
+<sc-if value="{{s.flag}}" hint-placeholder-val="{{ false }}"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M5 21V4" /><path d="M5 4h12l-2 4 2 4H5" /></svg></sc-if>
+</span>
+<span style="width: 2px; flex: 1; min-height: 14px; background: {{s.line}}; display: {{s.lineDisplay}}"></span>
+</span>
+<div style="padding-bottom: 14px; padding-top: {{s.pt}}">
+<sc-if value="{{s.current}}" hint-placeholder-val="{{ false }}">
+<div style="border-radius: 18px; background: #FFFBE0; border: 1.5px solid #F1D84A; padding: 16px 18px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
+<span><span style="display: block; font-size: 13px; font-weight: 600; color: #6B5A00">You are here</span><span style="display: block; font-size: 18px; font-weight: 600">{{s.name}}</span></span>
+<a href="Lesson.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; color: #000000; background: #FED606; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 12px">Continue</a>
+</div>
+</sc-if>
+<sc-if value="{{s.plain}}" hint-placeholder-val="{{ true }}">
+<p style="margin: 0; font-size: 17px; line-height: 26px; color: {{s.text}}; font-weight: {{s.weight}}">{{s.name}}<span class="pcl-sr">{{s.status}}</span></p>
+</sc-if>
+</div>
+</li>
+</sc-for>
+</ol>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 10px; padding-top: 8px; border-top: 1px solid #ECEAE4; font-size: 15px; color: #5C5A54">
+<p style="margin: 16px 0 0">Your Pro trial ends in 5 days. <a href="#" style="font-weight: 600">See plans</a></p>
+<p style="margin: 0">Want to try something different? <a href="SimpleLanding.dc.html" style="font-weight: 600">Browse all four tracks</a></p>
+</div>
+</main>
+
+<nav class="pcl-tabbar" aria-label="Main" style="display: none; position: sticky; bottom: 0; background: #FFFFFF; border-top: 1px solid #ECEAE4; height: 70px; justify-content: space-around; align-items: center">
+<a href="SimpleDashboard.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 13px; font-weight: 600; min-width: 64px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>Today</a>
+<a href="Lesson.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 13px; color: #5C5A54; min-width: 64px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg>Learn</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 13px; color: #5C5A54; min-width: 64px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg>Review</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 13px; color: #5C5A54; min-width: 64px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>Me</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1340}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const DAYS = [['M', 'done'], ['T', 'done'], ['W', 'missed'], ['T', 'done'], ['F', 'today'], ['S', 'later'], ['S', 'later']];
+    const STATUS = { done: ', learned', missed: ', skipped', today: ', today', later: ', coming up' };
+    const days = DAYS.map((d) => ({
+      letter: d[0],
+      bg: d[1] === 'done' ? '#111111' : (d[1] === 'today' ? '#FED606' : '#FFFFFF'),
+      border: d[1] === 'done' ? '0 solid transparent' : (d[1] === 'today' ? '2px solid #111111' : '1.5px solid #C9C6BD'),
+      status: STATUS[d[1]]
+    }));
+    const STEPS = [
+      ['What Flexbox is for', 'done'],
+      ['Main axis and cross axis', 'done'],
+      ['Changing direction', 'done'],
+      ['Aligning items', 'current'],
+      ['Wrapping onto new lines', 'todo'],
+      ['Grid in ten minutes', 'todo'],
+      ['Making it responsive', 'todo'],
+      ['Project: a responsive landing page', 'project'],
+      ['Module check', 'check']
+    ];
+    const path = STEPS.map((s, i) => {
+      const kind = s[1];
+      const last = i === STEPS.length - 1;
+      const done = kind === 'done';
+      return {
+        name: s[0],
+        done: done,
+        flag: kind === 'project',
+        current: kind === 'current',
+        plain: kind !== 'current',
+        size: kind === 'current' ? '32px' : '28px',
+        bg: done ? '#111111' : (kind === 'current' ? '#FED606' : '#FFFFFF'),
+        border: done ? '0 solid transparent' : (kind === 'current' ? '2.5px solid #111111' : '1.5px solid #C9C6BD'),
+        fg: done ? '#FFFFFF' : '#5C5A54',
+        line: done ? '#111111' : '#ECEAE4',
+        lineDisplay: last ? 'none' : 'block',
+        pt: kind === 'current' ? '0px' : '1px',
+        text: done ? '#111111' : '#5C5A54',
+        weight: kind === 'project' || kind === 'check' ? '600' : '400',
+        status: done ? ', done' : ', not started'
+      };
+    });
+    return { days: days, path: path };
+  }
+}
+</script>
+</body>
+</html>

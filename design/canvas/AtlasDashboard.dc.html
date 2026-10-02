@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Atlas Night — Dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #050507; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+#pcl-q::placeholder { color: #8A8598; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-tabbar { display: flex !important; }
+  .pcl-mlogo { display: flex !important; }
+  .pcl-show-sm { display: flex !important; }
+  .pcl-row1, .pcl-row2, .pcl-row3 { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@container pcl (max-width: 640px) {
+  .pcl-main { padding: 20px 16px 32px !important; }
+  .pcl-top { padding: 0 16px !important; }
+  .pcl-search { display: none !important; }
+  .pcl-resume { grid-template-columns: minmax(0, 1fr) !important; padding: 24px !important; }
+  .pcl-nodes { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; row-gap: 20px !important; }
+  .pcl-line { display: none !important; }
+  .pcl-h1 { font-size: 26px !important; line-height: 34px !important; }
+  .pcl-hide-xs { display: none !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #050507; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -200px; top: -320px; width: 900px; height: 700px; background: radial-gradient(closest-side, rgba(124,58,237,0.30), rgba(5,5,7,0) 80%); pointer-events: none"></div>
+<div class="pcl-shell" style="position: relative; display: grid; grid-template-columns: 252px minmax(0, 1fr)">
+
+<aside class="pcl-side" style="background: #0A0612; border-right: 1px solid #1E1630; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px; box-sizing: border-box">
+<a href="AtlasLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; padding: 0 8px">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span style="font-size: 17px"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<nav aria-label="Main">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-size: 15px">
+<li><a href="AtlasDashboard.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; background: #1D1233; border: 1px solid #3B2C5C; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; color: #B9A2FF" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg>Home</a></li>
+<li><a href="Lesson.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; color: #A6A1B5"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg>My Tracks</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; color: #A6A1B5"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg>Review<span style="margin-left: auto; background: #2FF5C9; color: #04130F; font-size: 12px; font-weight: 700; border-radius: 999px; padding: 1px 8px">5<span class="pcl-sr"> cards due</span></span></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; color: #A6A1B5"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>Projects</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; color: #A6A1B5"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg>Certificates</a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 0 14px; height: 44px; border-radius: 12px; text-decoration: none; color: #A6A1B5"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><circle cx="9" cy="8" r="4" /><path d="M2 21a7 7 0 0 1 14 0" /><path d="M16 4a4 4 0 0 1 0 8" /><path d="M22 21a7 7 0 0 0-4-6.3" /></svg>Community</a></li>
+</ul>
+</nav>
+<div style="border-radius: 20px; padding: 20px; background: linear-gradient(160deg, #3B1180 0%, #160D26 70%); border: 1px solid #3B2C5C; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><p style="margin: 0; font-size: 15px; font-weight: 600">Pro trial</p><p style="margin: 0; font-size: 13px; color: #D9D3EA">5 days left</p></div>
+<div aria-hidden="true" style="height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); overflow: hidden"><div style="width: 29%; height: 6px; background: #2FF5C9; box-shadow: 0 0 10px #2FF5C9"></div></div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #D9D3EA">Liking it? Keep your progress and certificates when the trial ends.</p>
+<a href="AtlasLanding.dc.html#pricing" style="text-decoration: none; font-size: 14px; font-weight: 600; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; background: #FED606; color: #000000; box-shadow: 0 0 22px rgba(254,214,6,0.3)">Choose a Plan</a>
+</div>
+<div style="margin-top: auto; display: flex; align-items: center; gap: 12px; padding: 12px 8px 0; border-top: 1px solid #1E1630">
+<span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 999px; background: linear-gradient(135deg, #7C3AED, #2FF5C9); color: #04130F; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">TA</span>
+<div><p style="margin: 0; font-size: 14px; font-weight: 600">Tolu Adebayo</p><p style="margin: 0; font-size: 12px; color: #8A8598">Front-End learner</p></div>
+</div>
+</aside>
+
+<div style="min-width: 0; display: flex; flex-direction: column">
+<div class="pcl-top" style="height: 72px; border-bottom: 1px solid #1E1630; display: flex; align-items: center; gap: 14px; padding: 0 32px; box-sizing: border-box">
+<a href="AtlasLanding.dc.html" class="pcl-mlogo" aria-label="PractiCode Learn home" style="display: none"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg></a>
+<div class="pcl-search" style="flex: 1; max-width: 440px; position: relative">
+<label for="pcl-q" class="pcl-sr">Search</label>
+<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; position: absolute; left: 16px; top: 13px; color: #8A8598" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
+<input id="pcl-q" type="search" placeholder="Search lessons, skills, projects" style="width: 100%; height: 44px; box-sizing: border-box; border: 1px solid #2C2142; border-radius: 999px; padding: 0 16px 0 44px; font-family: inherit; font-size: 14px; background: #0E0818; color: #FFFFFF" />
+</div>
+<div style="margin-left: auto; display: flex; align-items: center; gap: 8px">
+<p class="pcl-hide-xs" style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #D9D3EA; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2C2142"><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FF5C9; box-shadow: 0 0 8px #2FF5C9; display: block"></span>2 modules saved offline</p>
+<button type="button" aria-label="Notifications" style="width: 42px; height: 42px; border-radius: 999px; border: 1px solid #2C2142; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" /><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" /></svg></button>
+</div>
+</div>
+
+<main class="pcl-main" style="padding: 32px; display: flex; flex-direction: column; gap: 22px; max-width: 1180px; width: 100%; box-sizing: border-box">
+<div class="pcl-show-sm" style="display: none; justify-content: space-between; align-items: center; gap: 12px; border-radius: 18px; padding: 12px 12px 12px 18px; background: linear-gradient(120deg, #3B1180, #160D26); border: 1px solid #3B2C5C">
+<p style="margin: 0; font-size: 14px"><span style="font-weight: 600">Pro trial</span><span style="color: #D9D3EA"> · 5 days left</span></p>
+<a href="AtlasLanding.dc.html#pricing" style="text-decoration: none; font-size: 13px; font-weight: 600; height: 44px; padding: 0 16px; display: flex; align-items: center; border-radius: 999px; background: #FED606; color: #000000">See Plans</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<h1 class="pcl-h1" style="margin: 0; font-size: 34px; line-height: 42px; font-weight: 600; letter-spacing: -0.03em">Good evening, Tolu</h1>
+<p style="margin: 0; font-size: 16px; color: #A6A1B5">You stopped halfway through Flexbox. <span style="color: #B9A2FF">About 8 minutes to finish it.</span></p>
+</div>
+
+<div class="pcl-row1" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px">
+<section aria-labelledby="pcl-resume-t" class="pcl-resume" style="position: relative; overflow: hidden; border-radius: 26px; padding: 32px; border: 1px solid #3B2C5C; background: linear-gradient(135deg, #2B0F63 0%, #160D26 55%, #0B0613 100%); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center">
+<div aria-hidden="true" style="position: absolute; right: -80px; top: -80px; width: 360px; height: 360px; background: radial-gradient(closest-side, rgba(185,162,255,0.35), rgba(0,0,0,0) 75%)"></div>
+<div style="position: relative; display: flex; flex-direction: column; gap: 14px">
+<p style="margin: 0; align-self: flex-start; font-size: 12px; color: #D9D3EA; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; padding: 5px 12px">Front-End Web Development · Module 6</p>
+<h2 id="pcl-resume-t" style="margin: 0; font-size: 28px; line-height: 36px; font-weight: 600; letter-spacing: -0.02em">Aligning items with Flexbox</h2>
+<p style="margin: 0; font-size: 14px; color: #D9D3EA">Lesson 4 of 7 · Step 4 of 9 · about 8 min left</p>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span style="color: #D9D3EA">Module progress</span><span style="font-weight: 600">57%</span></div>
+<div aria-hidden="true" style="height: 8px; border-radius: 4px; background: rgba(255,255,255,0.1); overflow: hidden"><div style="width: 57%; height: 8px; border-radius: 4px; background: linear-gradient(90deg, #7C3AED, #2FF5C9)"></div></div>
+</div>
+<a href="Lesson.dc.html" style="align-self: flex-start; margin-top: 6px; text-decoration: none; font-size: 15px; font-weight: 600; height: 50px; padding: 0 24px; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; background: #FED606; color: #000000; box-shadow: 0 0 30px rgba(254,214,6,0.35)"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Pick Up Where You Left Off</a>
+</div>
+<div aria-hidden="true" style="position: relative; display: flex; flex-direction: column; gap: 10px">
+<div style="height: 140px; border: 1.5px dashed rgba(185,162,255,0.45); border-radius: 18px; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; background: rgba(0,0,0,0.25)">
+<span style="width: 54px; height: 54px; border-radius: 14px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(254,214,6,0.35)">1</span>
+<span style="width: 54px; height: 54px; border-radius: 14px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(254,214,6,0.35)">2</span>
+<span style="width: 54px; height: 54px; border-radius: 14px; background: #FED606; color: #000000; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(254,214,6,0.35)">3</span>
+</div>
+<p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #D9D3EA; text-align: center">justify-content: <span style="color: #2FF5C9">space-between</span></p>
+</div>
+</section>
+
+<section aria-labelledby="pcl-goal-t" style="border-radius: 26px; padding: 26px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<h2 id="pcl-goal-t" style="margin: 0; align-self: flex-start; font-size: 16px; font-weight: 500">This Week</h2>
+<div style="position: relative; width: 140px; height: 140px">
+<svg viewBox="0 0 140 140" style="width: 140px; height: 140px; transform: rotate(-90deg)" aria-hidden="true"><defs><linearGradient id="atRing" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2FF5C9" /><stop offset="1" stop-color="#7C3AED" /></linearGradient></defs><circle cx="70" cy="70" r="56" style="fill: none; stroke: #241A38; stroke-width: 12" /><circle cx="70" cy="70" r="56" style="fill: none; stroke: url(#atRing); stroke-width: 12; stroke-linecap: round; stroke-dasharray: 211 352" /></svg>
+<p style="position: absolute; inset: 0; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center"><span style="font-size: 32px; font-weight: 600; letter-spacing: -0.03em">3/5</span><span style="font-size: 12px; color: #A6A1B5">days</span></p>
+</div>
+<ul aria-label="Days this week" style="list-style: none; margin: 0; padding: 0; display: flex; gap: 8px">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<li style="display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #A6A1B5"><span style="width: 10px; height: 10px; border-radius: 999px; background: {{d.fill}}; border: 1.5px solid {{d.ring}}; box-sizing: border-box; box-shadow: {{d.glow}}; display: block"></span>{{d.letter}}<span class="pcl-sr">{{d.status}}</span></li>
+</sc-for>
+</ul>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #A6A1B5">Two more days and you've hit your goal. Missing a day doesn't reset anything.</p>
+</section>
+</div>
+
+<div class="pcl-row2" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
+<section aria-labelledby="pcl-act-t" style="border-radius: 24px; padding: 24px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="pcl-act-t" style="margin: 0; font-size: 16px; font-weight: 500">Time Spent Learning</h2><p style="margin: 0; font-size: 13px; color: #A6A1B5">63 min</p></div>
+<div aria-hidden="true" style="height: 132px; display: flex; align-items: flex-end; justify-content: space-between; gap: 10px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="7">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<span style="width: 100%; max-width: 26px; height: {{b.h}}; border-radius: 8px; background: {{b.bg}}; display: block"></span>
+<span style="font-size: 11px; color: #8A8598">{{b.day}}</span>
+</div>
+</sc-for>
+</div>
+<p class="pcl-sr">Minutes this week: Monday 14, Tuesday 22, Wednesday 0, Thursday 18, Friday 9 so far.</p>
+<p style="margin: 0; font-size: 13px; color: #A6A1B5">Your best day was Tuesday, at 22 minutes.</p>
+</section>
+
+<section aria-labelledby="pcl-rev-t" style="border-radius: 24px; padding: 24px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="pcl-rev-t" style="margin: 0; font-size: 16px; font-weight: 500">Daily Review</h2><p style="margin: 0; font-size: 13px; color: #2FF5C9">5 due</p></div>
+<div aria-hidden="true" style="position: relative; height: 112px">
+<div style="position: absolute; left: 12px; right: 12px; top: 10px; height: 92px; border-radius: 14px; background: #1A1030; border: 1px solid #2C2142; transform: rotate(-3deg)"></div>
+<div style="position: absolute; left: 0; right: 0; top: 0; height: 100px; border-radius: 14px; background: #1D1233; border: 1px solid #3B2C5C; padding: 14px 16px; box-sizing: border-box">
+<p style="margin: 0; font-size: 13px; line-height: 20px">Which property controls spacing along the <span style="color: #B9A2FF">main axis</span>?</p>
+<p style="margin: 10px 0 0; font-size: 12px; color: #8A8598">Tap to see the answer</p>
+</div>
+</div>
+<a href="#" style="margin-top: auto; text-decoration: none; font-size: 14px; font-weight: 500; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3B2C5C">Start Review · 4 min</a>
+</section>
+
+<section aria-labelledby="pcl-proj-t" style="border-radius: 24px; padding: 24px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="pcl-proj-t" style="margin: 0; font-size: 16px; font-weight: 500">Responsive Landing Page</h2><p style="margin: 0; font-size: 13px; color: #A6A1B5">3 of 5</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 9px; font-size: 13px">
+<li style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 999px; background: #2FF5C9; color: #04130F; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Semantic page structure</li>
+<li style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 999px; background: #2FF5C9; color: #04130F; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Works at 320 px wide</li>
+<li style="display: flex; align-items: center; gap: 10px"><span style="width: 18px; height: 18px; border-radius: 999px; background: #2FF5C9; color: #04130F; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 12px; height: 12px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>Flexbox navigation</li>
+<li style="display: flex; align-items: center; gap: 10px; color: #8A8598"><span style="width: 18px; height: 18px; border-radius: 999px; border: 1.5px solid #4A3C68; box-sizing: border-box; flex-shrink: 0; display: block"></span>Image gallery with Grid</li>
+<li style="display: flex; align-items: center; gap: 10px; color: #8A8598"><span style="width: 18px; height: 18px; border-radius: 999px; border: 1.5px solid #4A3C68; box-sizing: border-box; flex-shrink: 0; display: block"></span>Text contrast passes WCAG AA</li>
+</ul>
+<a href="#" style="margin-top: auto; text-decoration: none; font-size: 14px; font-weight: 500; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; border: 1px solid #3B2C5C">Open Project</a>
+</section>
+</div>
+
+<div class="pcl-row3" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 20px; align-items: start">
+<section aria-labelledby="pcl-map-t" style="border-radius: 24px; padding: 26px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div><h2 id="pcl-map-t" style="margin: 0; font-size: 16px; font-weight: 500">Your Path Through Front-End</h2><p style="margin: 4px 0 0; font-size: 13px; color: #A6A1B5">5 of 12 modules mastered</p></div>
+<p style="margin: 0; font-size: 12px; color: #2FF5C9; border: 1px solid rgba(47,245,201,0.4); border-radius: 999px; padding: 5px 12px">Aligned to MDN Curriculum</p>
+</div>
+<div style="position: relative">
+<span class="pcl-line" aria-hidden="true" style="position: absolute; left: 8%; right: 8%; top: 21px; height: 2px; background: linear-gradient(90deg, #7C3AED 0%, #B9A2FF 75%, #2A1F3F 90%); display: block"></span>
+<ol class="pcl-nodes" style="position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{row1}}" as="s" hint-placeholder-count="6">
+<li style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 44px; height: 44px; border-radius: 999px; background: {{s.bg}}; border: {{s.border}}; box-shadow: {{s.glow}}; box-sizing: border-box; color: {{s.fg}}; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{s.mark}}</span>
+<span style="font-size: 12px; line-height: 16px; color: {{s.label}}">{{s.name}}</span>
+<span class="pcl-sr">{{s.status}}</span>
+</li>
+</sc-for>
+</ol>
+</div>
+<div style="position: relative">
+<span class="pcl-line" aria-hidden="true" style="position: absolute; left: 8%; right: 8%; top: 21px; height: 2px; background: #2A1F3F; display: block"></span>
+<ol start="7" class="pcl-nodes" style="position: relative; list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{row2}}" as="s" hint-placeholder-count="6">
+<li style="display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<span style="width: 44px; height: 44px; border-radius: 999px; background: {{s.bg}}; border: {{s.border}}; box-shadow: {{s.glow}}; box-sizing: border-box; color: {{s.fg}}; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{s.mark}}</span>
+<span style="font-size: 12px; line-height: 16px; color: {{s.label}}">{{s.name}}</span>
+<span class="pcl-sr">{{s.status}}</span>
+</li>
+</sc-for>
+</ol>
+</div>
+</section>
+
+<section aria-labelledby="pcl-more-t" style="border-radius: 24px; padding: 24px; border: 1px solid #2C2142; background: linear-gradient(180deg, #120A1F, #0B0613); display: flex; flex-direction: column; gap: 14px">
+<div><h2 id="pcl-more-t" style="margin: 0; font-size: 16px; font-weight: 500">Curious About the Others?</h2><p style="margin: 4px 0 0; font-size: 13px; color: #A6A1B5">Module 1 of each one is free.</p></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid #2C2142; text-decoration: none; background: rgba(255,255,255,0.02)"><span style="width: 38px; height: 38px; border-radius: 999px; background: radial-gradient(circle, #3B2170, #1A0F2E); border: 1px solid #4A3C68; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M3 3v18h18" /><path d="M8 17v-4" /><path d="M13 17V8" /><path d="M18 17v-7" /></svg></span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 500">Data Analysis</span><span style="display: block; font-size: 12px; color: #8A8598">Module 1 done, nice</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8A8598" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid #2C2142; text-decoration: none; background: rgba(255,255,255,0.02)"><span style="width: 38px; height: 38px; border-radius: 999px; background: radial-gradient(circle, #3B2170, #1A0F2E); border: 1px solid #4A3C68; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7z" /><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18z" /><path d="m2 2 7.6 7.6" /><circle cx="11" cy="11" r="2" /></svg></span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 500">UI/UX Product Design</span><span style="display: block; font-size: 12px; color: #8A8598">Not started yet</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8A8598" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+<li><a href="#" style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; border: 1px solid #2C2142; text-decoration: none; background: rgba(255,255,255,0.02)"><span style="width: 38px; height: 38px; border-radius: 999px; background: radial-gradient(circle, #3B2170, #1A0F2E); border: 1px solid #4A3C68; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" /></svg></span><span style="flex: 1"><span style="display: block; font-size: 14px; font-weight: 500">AI &amp; Machine Learning</span><span style="display: block; font-size: 12px; color: #8A8598">Not started yet</span></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8A8598" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a></li>
+</ul>
+</section>
+</div>
+</main>
+
+<nav class="pcl-tabbar" aria-label="Main" style="display: none; position: sticky; bottom: 0; background: #0A0612; border-top: 1px solid #1E1630; height: 68px; justify-content: space-around; align-items: center">
+<a href="AtlasDashboard.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 12px; font-weight: 600; min-width: 56px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px; color: #B9A2FF" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg>Home</a>
+<a href="Lesson.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 12px; color: #A6A1B5; min-width: 56px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg>Learn</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 12px; color: #A6A1B5; min-width: 56px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg>Review</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 12px; color: #A6A1B5; min-width: 56px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>Projects</a>
+<a href="#" style="display: flex; flex-direction: column; align-items: center; gap: 3px; text-decoration: none; font-size: 12px; color: #A6A1B5; min-width: 56px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>Me</a>
+</nav>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const MODS = [
+      ['How the web works', 'm'], ['Semantic HTML', 'm'], ['Git and GitHub', 'm'], ['CSS basics', 'm'], ['Type and fonts', 'm'], ['Layout', 'p'],
+      ['JavaScript', 't'], ['DOM and events', 't'], ['APIs and data', 't'], ['Accessibility', 't'], ['Design for devs', 't'], ['Ship it', 't']
+    ];
+    const nodes = MODS.map((m, i) => {
+      const s = m[1];
+      if (s === 'm') {
+        return { name: m[0], mark: '✓', bg: 'linear-gradient(135deg, #7C3AED, #B9A2FF)', border: '0 solid transparent', glow: '0 0 16px rgba(124,58,237,0.5)', fg: '#FFFFFF', label: '#D9D3EA', status: 'Module ' + (i + 1) + ', mastered' };
+      }
+      if (s === 'p') {
+        return { name: m[0], mark: '57%', bg: '#1A1030', border: '2px solid #FED606', glow: '0 0 20px rgba(254,214,6,0.45)', fg: '#FFFFFF', label: '#FFFFFF', status: 'Module ' + (i + 1) + ', 57 percent, in progress' };
+      }
+      return { name: m[0], mark: String(i + 1), bg: '#0E0818', border: '1.5px dashed #4A3C68', glow: 'none', fg: '#8A8598', label: '#8A8598', status: 'Module ' + (i + 1) + ', not started' };
+    });
+    const DAYS = [['M', 'done'], ['T', 'done'], ['W', 'missed'], ['T', 'done'], ['F', 'today'], ['S', 'later'], ['S', 'later']];
+    const STATUS = { done: ', learned', missed: ', skipped', today: ', today', later: ', coming up' };
+    const days = DAYS.map((d) => ({
+      letter: d[0],
+      fill: d[1] === 'done' ? '#2FF5C9' : 'transparent',
+      ring: d[1] === 'done' ? '#2FF5C9' : (d[1] === 'today' ? '#FED606' : '#4A3C68'),
+      glow: d[1] === 'done' ? '0 0 8px rgba(47,245,201,0.6)' : 'none',
+      status: STATUS[d[1]]
+    }));
+    const MINS = [['Mon', 14], ['Tue', 22], ['Wed', 0], ['Thu', 18], ['Fri', 9], ['Sat', 0], ['Sun', 0]];
+    const bars = MINS.map((b) => ({
+      day: b[0],
+      h: Math.max(6, Math.round((b[1] / 24) * 110)) + 'px',
+      bg: b[1] > 0 ? 'linear-gradient(180deg, #2FF5C9 0%, #7C3AED 100%)' : '#1E1630'
+    }));
+    return { row1: nodes.slice(0, 6), row2: nodes.slice(6), days: days, bars: bars };
+  }
+}
+</script>
+</body>
+</html>

@@ -7,7 +7,21 @@ High-fidelity, interactive designs for PractiCode Learn v1. They follow the [des
 
 Every screen is drawn at **desktop (1440 px)** and **phone (390 px)** width. The layouts are fluid and adapt using container queries.
 
-## Screens
+## Visual directions (pick one)
+
+The canvas has one page per direction. Each page has a landing page and a learner dashboard. The lesson player exists only in option 1 for now, and it will be restyled to match whichever direction is chosen.
+
+| # | Direction | Look | Type | Best at | Trade-off |
+|---|---|---|---|---|---|
+| 1 | **Current** | Paper, ink and Practi Yellow; flat; brand house style | Poppins | Brand consistency with the Academy; calm and credible | The least distinctive of the five |
+| 2 | **Atlas Night** | Black with violet glows and an aqua accent; bento cards with mini UI; comparison table (inspired by searchatlas.com) | Poppins, tight tracking | Feels premium and "tech"; strong for investors and global audiences | Glows and gradients depart from the brand's flat style; dark pages use more battery on LCD phones |
+| 3 | **Adire** | Indigo and white with patterns inspired by Yoruba adire cloth; editorial layout | Fraunces (serif) + Poppins | The most distinctive and meaningful; tells the Ibadan origin story to the world | A serif headline face is new to the brand; the patterns need careful use to stay subtle |
+| 4 | **Spectrum** | White with four vivid track colours (blue, green, pink, violet) and floating cards; very little yellow | Bricolage Grotesque + Poppins | Playful, energetic and youthful; each track becomes instantly recognisable | Busiest to maintain; yellow is reduced to the logo |
+| 5 | **Simple** | White, one column, big tap targets, plain words ("Make websites") | Poppins | The easiest for first-time learners; the fastest on low-end phones | Less wow on a pitch deck |
+
+Interactive in every direction: the hero prediction (options 1–3), the currency and billing switchers in pricing (options 1–4), and links between screens. Option 2 has a **CTA colour** tweak (Practi Yellow or Atlas Aqua) in the canvas's Tweaks panel. Option 1's dashboard has a **plan** tweak (Pro trial, Free or Pro).
+
+## Screens (option 1)
 
 ### 1. Landing page
 | Section | Purpose | Design decision |
