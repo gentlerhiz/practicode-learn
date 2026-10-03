@@ -51,6 +51,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Track cards on the landing page keep their illustrations on phones.
 - On phones, lesson steps keep controls next to what they change: Investigate shows the code and preview under the value buttons, Make puts the editor before the tests, and the Python notebook comes before the question.
 - The canvas now has "Prism (dark)" and "Prism (light)" pages, and the lesson steps sit together in one row in lesson order.
+- Claims tightened across the site and docs. Device claims now say that most lessons work on a phone, while some modules need a computer (Power BI needs a Windows PC, Figma design work needs a laptop). Data claims mention the one-time Python download for AI & ML modules. The video data figure is "hundreds of MB to about 3 GB an hour". The Coursera study is quoted as the paper states it, and the AI tutor copy no longer promises "any exercise" or "the exact line".
 - The sidebar uses neutral icons, with the active item in white. Lesson step bars, demo boxes, certificate projects and track page details use only the track's colour.
 - Shortlisted to three directions: Atlas Night, Spectrum and Prism. Current, Adire, Simple and the first lesson player were set aside and remain in git history.
 - Removed shadows and glows from yellow buttons.

@@ -2,7 +2,7 @@
 
 ## Mission
 
-**Give anyone, anywhere, a practical path into a digital career, on any phone and any network.**
+**Give anyone, anywhere, a practical path into a digital career, designed first for the phones and networks people actually have.**
 
 ## The problem
 

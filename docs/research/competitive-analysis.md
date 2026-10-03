@@ -55,7 +55,7 @@ We studied the three platforms named in our brief (Coursera, Udemy and freeCodeC
 No platform combines all five of these:
 
 1. **Interactive, video-free lessons** for career skills (Brilliant does interactive, but not for careers)
-2. **Low-data, offline-first** delivery on any phone
+2. **Low-data, offline-first** delivery, designed for low-cost phones
 3. **Outcomes mapped to global standards**, published openly
 4. **Practice built on learning science**: spaced review and mastery checks
 5. **A human mentor path** through a physical academy

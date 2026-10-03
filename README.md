@@ -7,7 +7,7 @@
 **Learn the skills employers are hiring for, by actually doing them.**
 
 Hands-on lessons in web development, data analysis, UI/UX design and AI, with an AI tutor built into every lesson.<br>
-Mapped to globally recognised standards, and light enough for any phone and any network.
+Mapped to recognised industry standards, and built to be light on phones and mobile data.
 
 [![Status: design phase](https://img.shields.io/badge/status-design%20phase-FED606?labelColor=111111)](ROADMAP.md)
 [![Code licence: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-111111)](LICENSE)
@@ -24,7 +24,7 @@ Mapped to globally recognised standards, and light enough for any phone and any 
 
 Most online learning still works like television: press play, watch someone else code, forget most of it by Friday. That model has three problems.
 
-1. **Watching isn't learning.** In a study of a Coursera MOOC, interactive "doing" activities had about **six times** the learning impact of watching video or reading ([Koedinger et al., 2015](docs/research/sources.md#koedinger-2015)). Students in lecture-style classes are **1.5 times more likely to fail** than students in active-learning classes ([Freeman et al., 2014](docs/research/sources.md#freeman-2014)).
+1. **Watching isn't learning.** In a study of a Coursera MOOC, the learning benefit of extra "doing" activities was more than **six times** that of extra video watching or reading ([Koedinger et al., 2015](docs/research/sources.md#koedinger-2015)). Students in lecture-style classes are **1.5 times more likely to fail** than students in active-learning classes ([Freeman et al., 2014](docs/research/sources.md#freeman-2014)).
 2. **Video is heavy.** Streaming uses about 1 GB per hour at standard definition and up to 3 GB in HD. A 40-hour video course is a real share of a monthly income in much of the world, and it stalls on a weak signal.
 3. **Certificates rarely mean anything.** Few platforms show employers *what* a learner can do, measured against a standard the employer already recognises.
 
@@ -35,7 +35,7 @@ Most online learning still works like television: press play, watch someone else
 | | Typical platforms | PractiCode Learn |
 |---|---|---|
 | **Lesson format** | Video lectures with a quiz at the end | Interactive steps you predict, run, change and build ([PRIMM](docs/curriculum/pedagogy.md#the-lesson-loop-primm)) |
-| **Data use** | ~1–3 GB per hour of video | Text, code and SVG animation, with a target of ≤150 KB per lesson ([lesson budget](docs/curriculum/lesson-format.md#performance-budget)) |
+| **Data use** | Hundreds of MB to about 3 GB per hour of video, depending on quality | Text, code and SVG animation, with a target of ≤150 KB per lesson ([lesson budget](docs/curriculum/lesson-format.md#performance-budget)). AI & ML modules add a one-time 10–30 MB Python download. |
 | **Offline** | Rare, app-only | Installable web app; download a module once, learn anywhere |
 | **Practice** | Optional | Built in: daily spaced review ([FSRS](docs/curriculum/pedagogy.md#retrieval-and-spacing)) and mastery checks |
 | **Help when stuck** | Forums and video comments | An AI tutor in every lesson that gives hints first and shows its source ([ADR 0006](docs/architecture/adr/0006-ai-tutor-and-site-assistant.md)) |

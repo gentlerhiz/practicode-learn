@@ -16,7 +16,7 @@ This is also what the Quality Matters rubric checks: objectives, assessments and
 
 ## 2. Doing beats watching
 
-Interactive activities produce about **six times** the learning of watching video or reading (Koedinger et al., 2015). Lecture-style teaching makes failure **1.5 times** more likely than active learning (Freeman et al., 2014). The ICAP framework explains why: engagement deepens from **Passive → Active → Constructive → Interactive** (Chi & Wylie, 2014).
+In a MOOC study, the learning benefit of extra interactive activities was more than **six times** that of extra video watching or reading (Koedinger et al., 2015). Lecture-style teaching makes failure **1.5 times** more likely than active learning (Freeman et al., 2014). The ICAP framework explains why: engagement deepens from **Passive → Active → Constructive → Interactive** (Chi & Wylie, 2014).
 
 **Rule:** at least two-thirds of the steps in every lesson require the learner to act, by predicting, choosing, writing, dragging or building.
 
