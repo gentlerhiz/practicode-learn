@@ -24,7 +24,7 @@ Both Prism pages are laid out in labelled rows:
 | **Practice and projects** | Projects list, project workspace, module check, module check results, community |
 | **Plans and payments** | Pricing, checkout, bank transfer and USSD, payment confirmed, payment failed, scholarship application, Mentor cohorts |
 | **Settings, states, legal** | Settings, loading skeleton, offline, page not found (404), privacy, terms and accessibility |
-| **About, and menus on phones** | The About page, then the guest menu and the learner menu open on a phone |
+| **About, and menus on phones** | The About page (its phone version is in two parts, because canvas frames stop at 8,000 px), then the guest menu and the learner menu open on a phone |
 
 ## Clicking through
 
@@ -47,7 +47,7 @@ Three screens are states rather than destinations, so nothing links to them: loa
 ## What changed in this round (3 October 2026)
 
 **About page and navigation**
-- **About page:** a new page linked from every footer (not the navbar). Its sections are the mission, the story from the Ibadan classroom, how we teach, how it's built for real phones and budgets, our commitments, and two ways in: *Learn with us* and *Work with us* for employers, schools and funders. Every claim comes from the curriculum, privacy and pricing docs.
+- **About page:** a new page linked from every footer (not the navbar). Its sections are the mission, the story from the Ibadan classroom, how we teach, how it's built for real phones and budgets, our commitments, leadership (Idris Akande Rasaq, founder), and two ways in: *Learn with us* and *Work with us* for employers, schools and funders. Every claim comes from the curriculum, privacy and pricing docs.
 - **Guest menu on phones:** marketing pages now have a menu button. Its sheet holds Tracks, How It Works, AI Tutor, Pricing, Mentors, the theme switch and Log In.
 - **Learner menu on phones:** app pages now have a menu button in the top bar. Its sheet holds every sidebar item, including My Tracks, Certificates and Community, which phones couldn't reach before. The bottom tab bar stays.
 - **Theme switch:** guests switch from the navbar, learners from the sidebar, and anyone from the phone menus.
@@ -75,7 +75,7 @@ Three screens are states rather than destinations, so nothing links to them: loa
 - On the canvas, the lesson steps now sit together in one row, in lesson order.
 
 ## Checks run before publishing
-- Structure check on all 164 Prism frames (tags balanced, every `{{value}}` provided).
+- Structure check on all 166 Prism frames (tags balanced, every `{{value}}` provided).
 - Link check: every link points to an existing screen and every in-page anchor exists.
 - Spacing check: no padding, margin or gap off the scale.
 - Every frame's height was measured in a browser at 1440 px and 390 px. Light and dark heights match exactly.

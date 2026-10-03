@@ -984,7 +984,7 @@
     },
     "PrismAbout.dc.html": {
       "expand": "fill",
-      "h": 3530,
+      "h": 4250,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · About — Desktop",
@@ -993,13 +993,23 @@
       "y": 33940
     },
     "PrismAboutPhone.dc.html": {
-      "h": 6940,
+      "h": 4080,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
-      "title": "Prism · About — Phone",
+      "title": "Prism · About — Phone (1 of 2)",
       "w": 390,
       "x": 1520,
+      "y": 33940
+    },
+    "PrismAboutPhone2.dc.html": {
+      "h": 4080,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · About — Phone (2 of 2)",
+      "w": 390,
+      "x": 1990,
       "y": 33940
     },
     "PrismMenuPhone.dc.html": {
@@ -1009,7 +1019,7 @@
       "radius": 28,
       "title": "Prism · Guest menu, open — Phone",
       "w": 390,
-      "x": 1990,
+      "x": 2930,
       "y": 33940
     },
     "PrismAppMenuPhone.dc.html": {
@@ -1019,7 +1029,7 @@
       "radius": 28,
       "title": "Prism · Learner menu, open — Phone",
       "w": 390,
-      "x": 2460,
+      "x": 3400,
       "y": 33940
     },
     "PrismLightLanding.dc.html": {
@@ -1804,7 +1814,7 @@
     },
     "PrismLightAbout.dc.html": {
       "expand": "fill",
-      "h": 3530,
+      "h": 4250,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · About — Desktop",
@@ -1813,13 +1823,23 @@
       "y": 33940
     },
     "PrismLightAboutPhone.dc.html": {
-      "h": 6940,
+      "h": 4080,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
-      "title": "Prism light · About — Phone",
+      "title": "Prism light · About — Phone (1 of 2)",
       "w": 390,
       "x": 1520,
+      "y": 33940
+    },
+    "PrismLightAboutPhone2.dc.html": {
+      "h": 4080,
+      "is_interactive": true,
+      "page": "o9",
+      "radius": 28,
+      "title": "Prism light · About — Phone (2 of 2)",
+      "w": 390,
+      "x": 1990,
       "y": 33940
     },
     "PrismLightMenuPhone.dc.html": {
@@ -1829,7 +1849,7 @@
       "radius": 28,
       "title": "Prism light · Guest menu, open — Phone",
       "w": 390,
-      "x": 1990,
+      "x": 2930,
       "y": 33940
     },
     "PrismLightAppMenuPhone.dc.html": {
@@ -1839,7 +1859,7 @@
       "radius": 28,
       "title": "Prism light · Learner menu, open — Phone",
       "w": 390,
-      "x": 2460,
+      "x": 3400,
       "y": 33940
     }
   },
@@ -2345,7 +2365,7 @@
       "page": "o6",
       "text": "Menus on phones (guest, learner)",
       "w": 240,
-      "x": 1990,
+      "x": 2930,
       "y": 33640
     },
     "q1": {
@@ -2759,7 +2779,7 @@
       "page": "o9",
       "text": "Menus on phones (guest, learner)",
       "w": 240,
-      "x": 1990,
+      "x": 2930,
       "y": 33640
     }
   },
@@ -2844,6 +2864,7 @@
     "PrismLegalPhone.dc.html",
     "PrismAbout.dc.html",
     "PrismAboutPhone.dc.html",
+    "PrismAboutPhone2.dc.html",
     "PrismMenuPhone.dc.html",
     "PrismAppMenuPhone.dc.html",
     "PrismLightLanding.dc.html",
@@ -2926,6 +2947,7 @@
     "PrismLightLegalPhone.dc.html",
     "PrismLightAbout.dc.html",
     "PrismLightAboutPhone.dc.html",
+    "PrismLightAboutPhone2.dc.html",
     "PrismLightMenuPhone.dc.html",
     "PrismLightAppMenuPhone.dc.html",
     "AtlasLanding.dc.html",

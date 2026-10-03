@@ -131,4 +131,4 @@ See [LICENSING.md](LICENSING.md) for the details.
 PractiCode Learn is a product of PractiCode, the team behind [PractiCode Academy](https://practicode.tech) in Old Bodija, Ibadan, Nigeria.<br>
 Contact: [practicodeacademy@gmail.com](mailto:practicodeacademy@gmail.com)
 
-<!-- Team: add the founder and technical lead names and roles here. -->
+**Founder:** Idris Akande Rasaq, founder of PractiCode Academy. Idris is a software engineer and educator, and leads PractiCode Learn from curriculum to code. [LinkedIn](https://www.linkedin.com/in/idris-rasaq-5202091a6/) · [GitHub](https://github.com/gentlerhiz)
