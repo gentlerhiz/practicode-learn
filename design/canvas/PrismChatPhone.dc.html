@@ -8,7 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
 <style>
 body { margin: 0; background: #07060D; }
 a { color: #FFFFFF; }
@@ -24,43 +24,43 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <dc-import name="PrismLanding" hint-size="390px,844px"></dc-import>
 <div aria-hidden="true" style="position: absolute; inset: 0; z-index: 60; background: rgba(4,3,10,0.72)"></div>
 <section role="dialog" aria-label="Ask PractiCode" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 61; height: 740px; display: flex; flex-direction: column; border-radius: 28px 28px 0 0; border: 1px solid #2A2540; border-bottom: none; background: #0F0D1B; overflow: hidden">
-<div style="background: linear-gradient(120deg, #2E3BC2 0%, #5A36E6 45%, #A82E86 100%); padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="background: linear-gradient(120deg, #2E3BC2 0%, #5A36E6 45%); padding: 8px 16px 16px; display: flex; flex-direction: column; gap: 12px">
 <span aria-hidden="true" style="align-self: center; width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.5); display: block"></span>
 <div style="display: flex; align-items: center; gap: 12px">
-<span style="width: 40px; height: 40px; border-radius: 999px; background: #0B0A14; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 20px; height: 18px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg></span>
+<span style="width: 40px; height: 40px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-color: #FFFFFF"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 20px; height: 18px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196"></polygon><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425"></polygon></g></svg></span>
 <div style="flex: 1; min-width: 0"><p style="margin: 0; font-size: 16px; font-weight: 600">Ask PractiCode</p><p style="margin: 0; font-size: 12px; color: #E9E4FF">AI assistant · replies in seconds</p></div>
-<a href="PrismLandingPhone.dc.html" aria-label="Close chat" style="width: 36px; height: 36px; border-radius: 999px; background: rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></a>
+<a href="PrismLandingPhone.dc.html" aria-label="Close chat" style="width: 36px; height: 36px; border-radius: 999px; background: rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></a>
 </div>
 </div>
-<div aria-live="polite" style="flex: 1; overflow-y: auto; padding: 18px 16px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; gap: 10px; align-items: flex-start; max-width: 92%">
-<span style="width: 26px; height: 26px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>
-<p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 18px 18px 18px; padding: 10px 14px">Hi! I can help you pick a track, explain the plans, or tell you how lessons work. What would you like to know?</p>
+<div aria-live="polite" style="flex: 1; overflow-y: auto; padding: 16px 16px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; gap: 12px; align-items: flex-start; max-width: 92%">
+<span style="width: 26px; height: 26px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #FFFFFF"><svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z"></path><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"></path></svg></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 18px 18px 18px; padding: 12px 16px">Hi! I can help you pick a track, explain the plans, or tell you how lessons work. What would you like to know?</p>
 </div>
 <sc-for list="{{messages}}" as="m" hint-placeholder-count="2">
 <sc-if value="{{m.user}}" hint-placeholder-val="{{ true }}">
-<p style="margin: 0; align-self: flex-end; max-width: 82%; font-size: 14px; line-height: 22px; background: #FFFFFF; color: #07060D; border-radius: 18px 18px 6px 18px; padding: 10px 14px">{{m.text}}</p>
+<p style="margin: 0; align-self: flex-end; max-width: 82%; font-size: 14px; line-height: 22px; background: #FFFFFF; color: #07060D; border-radius: 18px 18px 6px 18px; padding: 12px 16px">{{m.text}}</p>
 </sc-if>
 <sc-if value="{{m.bot}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; gap: 10px; align-items: flex-start; max-width: 92%">
-<span style="width: 26px; height: 26px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>
-<p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 18px 18px 18px; padding: 10px 14px">{{m.text}}</p>
+<div style="display: flex; gap: 12px; align-items: flex-start; max-width: 92%">
+<span style="width: 26px; height: 26px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 13px; height: 13px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z"></path><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z"></path></svg></span>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 18px 18px 18px; padding: 12px 16px">{{m.text}}</p>
 </div>
 </sc-if>
 </sc-for>
 <sc-if value="{{hasChips}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 8px; padding-top: 4px">
 <sc-for list="{{chips}}" as="c" hint-placeholder-count="3">
-<button type="button" onClick="{{c.ask}}" style="min-height: 38px; padding: 7px 14px; border-radius: 999px; border: 1px solid #3A3456; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; line-height: 20px; text-align: right; cursor: pointer">{{c.q}}</button>
+<button type="button" onClick="{{c.ask}}" style="min-height: 38px; padding: 8px 16px; border-radius: 999px; border: 1px solid #3A3456; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; line-height: 20px; text-align: right; cursor: pointer">{{c.q}}</button>
 </sc-for>
 </div>
 </sc-if>
 </div>
-<div style="padding: 12px 14px 22px; border-top: 1px solid #221E36; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; align-items: center; gap: 10px; border-radius: 999px; border: 1px solid #2A2540; background: #0B0A14; padding: 5px 5px 5px 16px">
+<div style="padding: 12px 16px 24px; border-top: 1px solid #221E36; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 12px; border-radius: 999px; border: 1px solid #2A2540; background: #0B0A14; padding: 4px 4px 4px 16px">
 <label for="pcl-chat-m" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Your question</label>
-<input id="pcl-chat-m" type="text" placeholder="Type your question…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px" />
-<button type="button" aria-label="Send" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #FFFFFF; color: #07060D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M12 19V5" /><path d="m5 12 7-7 7 7" /></svg></button>
+<input id="pcl-chat-m" type="text" placeholder="Type your question…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px">
+<button type="button" aria-label="Send" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #FFFFFF; color: #07060D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg></button>
 </div>
 <p style="margin: 0; font-size: 11px; line-height: 16px; color: #8B88A0; text-align: center">AI answers can be wrong. Prefer a person? <a href="mailto:practicodeacademy@gmail.com" style="color: #DCD9EA">Email us</a>.</p>
 </div>

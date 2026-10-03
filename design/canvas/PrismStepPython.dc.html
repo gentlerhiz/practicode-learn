@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Lesson step: Python notebook</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #8B88A0; }
+.pcl-input { width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; }
+.pcl-input:focus { outline: none; border-color: #8EA2FF; box-shadow: 0 0 0 3px rgba(77,107,255,0.25); }
+.pcl-acc summary::-webkit-details-marker { display: none; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-mtop { display: flex !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-g3, .pcl-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pcl-sticky { position: relative !important; top: auto !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-flow { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-appmain { padding: 24px 16px 40px !important; gap: 16px !important; }
+  .pcl-sec { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .pcl-sec-first { padding-top: 64px !important; }
+  .pcl-sec-last { padding-bottom: 64px !important; }
+  .pcl-herosec { padding-top: 40px !important; padding-bottom: 32px !important; }
+  .pcl-secstack, .pcl-stack-lg { gap: 32px !important; }
+  .pcl-split { gap: 32px !important; }
+  .pcl-g2, .pcl-g3, .pcl-g4 { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-card-lg { padding: 24px !important; }
+  .pcl-display-xl { font-size: 44px !important; line-height: 50px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  .pcl-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .pcl-h2-lg { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-show-xs { display: flex !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-full-xs { width: 100% !important; justify-content: center !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px 16px !important; gap: 12px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-lessonmain { padding: 24px 16px 40px !important; }
+}
+@container pcl (max-width: 999px) {
+  .pcl-lesson { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-code { font-size: 13px !important; line-height: 24px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -240px; top: 80px; width: 1000px; height: 760px; pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(123,92,255,0.26), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 68% 55%, rgba(240,64,127,0.12), rgba(0,0,0,0) 72%)"></div>
+<header style="position: relative; border-bottom: 1px solid #1C1930; background: rgba(11,10,20,0.85)">
+<div class="pcl-head" style="height: 72px; padding: 0 24px; display: flex; align-items: center; gap: 20px; box-sizing: border-box">
+<a href="PrismDashboard.dc.html" aria-label="Exit lesson" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2540; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></a>
+<div style="min-width: 0; flex: 1 1 200px"><p style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Keeping data back for testing</p><p style="margin: 0; font-size: 13px; color: #8B88A0"><span style="color: #B9A2FF">AI & ML</span> · Module 4 · Lesson 2 of 6</p></div>
+<div class="pcl-steps" style="flex: 2 1 320px; max-width: 520px; display: flex; flex-direction: column; gap: 8px">
+<div aria-hidden="true" style="display: flex; gap: 4px"><span style="flex: 1; height: 6px; border-radius: 3px; background: #6E4CF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #6E4CF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #6E4CF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #6E4CF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #6E4CF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #B9A2FF; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span></div>
+<p style="margin: 0; font-size: 12px; color: #8B88A0">Step 6 of 9 · Modify</p>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; margin-left: auto"><a href="PrismLesson.dc.html" style="height: 42px; padding: 0 16px 0 6px; border-radius: 999px; border: 1px solid #332E4D; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px"><span style="width: 30px; height: 30px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>Ask AI</a>
+<button type="button" onClick="{{toggleHint}}" aria-expanded="{{hintExpanded}}" style="height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px; color: #FFAA6E" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>Hint</button></div>
+</div>
+</header>
+<main class="pcl-lessonmain" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 24px 48px; box-sizing: border-box">
+<div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
+<p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #B9A2FF; background: rgba(123,92,255,0.16); border: 1px solid rgba(123,92,255,0.45); border-radius: 999px; padding: 4px 12px">4 · Modify</p>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Keep some data back for testing</h1>
+<p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA"><span style="color: #B9A2FF">loans.csv</span> holds 1,000 past loan applications from a small lender. The data is made up, but it's based on real patterns. Change how much you keep back, then run the cell.</p>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 14px; color: #A9A6BC">Try a test size:</p>
+<div role="group" aria-label="Test size" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{sizes}}" as="s" hint-placeholder-count="3">
+<button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="height: 40px; padding: 0 16px; border-radius: 12px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; cursor: pointer">{{s.label}}</button>
+</sc-for>
+</div>
+</div>
+<section aria-labelledby="pcl-pq" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 id="pcl-pq" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Why not train the model on all 1,000 rows?</h2>
+<div role="radiogroup" aria-label="Your answer" style="display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{choices}}" as="o" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 12px 16px; border-radius: 16px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; text-align: left; cursor: pointer; box-sizing: border-box">
+<span style="width: 28px; height: 28px; border-radius: 8px; background: {{o.keyBg}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0">{{o.letter}}</span>
+<span>{{o.label}}</span>
+</button>
+</sc-for>
+</div>
+<div aria-live="polite">
+<sc-if value="{{isCorrect}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 12px; font-size: 15px; line-height: 24px; color: #4BE3A8"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg><span>{{feedback}}</span></p></sc-if>
+<sc-if value="{{isWrong}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 12px; font-size: 15px; line-height: 24px; color: #FF9AA2"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg><span>{{feedback}}</span></p></sc-if>
+</div>
+</section>
+<sc-if value="{{hintOpen}}" hint-placeholder-val="{{ false }}">
+<div style="border-radius: 18px; border: 1px dashed rgba(255,170,110,0.6); padding: 16px 20px; display: flex; gap: 12px">
+<svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: #FFAA6E" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>
+<p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCD9EA">Hint: think about how you would know the model works on loan applications it has never seen.</p>
+</div>
+</sc-if>
+</div>
+<section aria-label="Python notebook" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; height: 56px; border-bottom: 1px solid #221E36">
+<p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(123,92,255,0.18); border: 1px solid rgba(123,92,255,0.5)">loans.ipynb</span></p>
+<p style="margin: 0; font-size: 12px; color: #A9A6BC; display: flex; align-items: center; gap: 8px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FE6B0; display: block"></span>Python 3.12 · runs in your browser</p>
+</div>
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="border-radius: 16px; border: 1px solid #221E36; background: #0E0C1A; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px 8px 16px; border-bottom: 1px solid #221E36; font-size: 12px; color: #8B88A0"><span>[1]</span><span>Ran 2 min ago</span></div>
+<div class="pcl-code" style="padding: 12px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 24px; overflow-x: auto">
+<div style="padding: 0 16px; white-space: pre"><span style="color: #B9A2FF">import</span> pandas <span style="color: #B9A2FF">as</span> pd</div>
+<div style="padding: 0 16px; white-space: pre">loans <span style="color: #8B88A0">=</span> pd.<span style="color: #8EA2FF">read_csv</span>(<span style="color: #4BE3A8">"loans.csv"</span>)</div>
+<div style="padding: 0 16px; white-space: pre">loans.<span style="color: #8EA2FF">head</span>(<span style="color: #FFAA6E">3</span>)</div>
+</div>
+<div style="border-top: 1px solid #221E36; padding: 12px 16px; overflow-x: auto">
+<table style="border-collapse: collapse; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #DCD9EA; min-width: 100%">
+<thead><tr style="color: #A9A6BC"><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left"></td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">amount</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">months</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">income</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">repaid</td></tr></thead>
+<tbody>
+<tr><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">0</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">150000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">6</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">85000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">yes</td></tr>
+<tr><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">1</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">400000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">12</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">120000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">no</td></tr>
+<tr><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">2</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">75000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">3</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: right">60000</td><td style="padding: 8px 12px; border-top: 1px solid #221E36; text-align: left">yes</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style="border-radius: 16px; border: 1.5px solid rgba(123,92,255,0.6); background: #0E0C1A; overflow: hidden">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 8px 8px 16px; border-bottom: 1px solid #221E36; font-size: 12px; color: #8B88A0"><span>[2] Your turn</span>
+<button type="button" onClick="{{run}}" style="height: 32px; padding: 0 12px; border-radius: 999px; border: none; background: #FFFFFF; color: #07060D; font-family: inherit; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 13px; height: 13px" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Run</button></div>
+<div class="pcl-code" style="padding: 12px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 24px; overflow-x: auto">
+<div style="padding: 0 16px; white-space: pre"><span style="color: #B9A2FF">from</span> sklearn.model_selection <span style="color: #B9A2FF">import</span> train_test_split</div>
+<div style="padding: 0 16px; white-space: pre"> </div>
+<div style="padding: 0 16px; white-space: pre">train, test <span style="color: #8B88A0">=</span> <span style="color: #8EA2FF">train_test_split</span>(</div>
+<div style="padding: 0 16px; white-space: pre">    loans, test_size<span style="color: #8B88A0">=</span><span style="color: #FFAA6E; background: rgba(255,170,110,0.14); border-radius: 4px; padding: 0 2px">{{size}}</span>, random_state<span style="color: #8B88A0">=</span><span style="color: #FFAA6E">42</span>)</div>
+<div style="padding: 0 16px; white-space: pre"><span style="color: #8EA2FF">print</span>(<span style="color: #8EA2FF">len</span>(train), <span style="color: #4BE3A8">"rows to learn from"</span>)</div>
+<div style="padding: 0 16px; white-space: pre"><span style="color: #8EA2FF">print</span>(<span style="color: #8EA2FF">len</span>(test), <span style="color: #4BE3A8">"rows kept back for testing"</span>)</div>
+</div>
+<sc-if value="{{ran}}" hint-placeholder-val="{{ true }}">
+<div style="border-top: 1px solid #221E36; padding: 12px 16px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; line-height: 22px; color: #DCD9EA; white-space: pre">{{out1}}
+{{out2}}</div>
+</sc-if>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 18px; color: #8B88A0">The first time, Python downloads once (about 15 MB). After that it works offline.</p>
+</div>
+</section>
+</div>
+</main>
+<footer style="position: sticky; bottom: 0; border-top: 1px solid #1C1930; background: rgba(11,10,20,0.92)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box">
+<a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 48px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
+<p class="pcl-hide-xs" style="margin: 0; font-size: 12px; color: #8B88A0">Press Enter to continue</p>
+<a href="PrismReview.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 48px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":970}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { size: 0.2, ran: true, pick: null, ran2: false, hint: false };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#FFFFFF';
+    const ctaFg = yellow ? '#000000' : '#07060D';
+    const size = st.size || 0.2;
+    const test = Math.round(1000 * size);
+    const sizes = [0.1, 0.2, 0.5].map((v) => {
+      const on = v === size;
+      return { label: 'test_size=' + v, pressed: on ? 'true' : 'false', border: on ? '#B9A2FF' : '#332E4D', bg: on ? 'rgba(123,92,255,0.18)' : 'transparent', fg: on ? '#FFFFFF' : '#DCD9EA', pick: () => this.setState({ size: v, ran: false }) };
+    });
+    const CHOICES = [
+      { key: 'a', letter: 'A', label: 'It would take too long to train', fb: 'Training on 1,000 rows is quick. The real problem is checking the model: you need rows it has never seen.' },
+      { key: 'b', letter: 'B', label: 'So we can test it on loans it has never seen', fb: 'Exactly. A model can memorise the rows it learned from. Rows it never saw are the honest test of whether it works.' },
+      { key: 'c', letter: 'C', label: 'Some of the rows are probably wrong', fb: 'Messy rows are a real problem, but splitting doesn\'t fix them. We keep rows back so we can test fairly.' }
+    ];
+    const choices = CHOICES.map((o) => {
+      const on = o.key === st.pick;
+      return { letter: o.letter, label: o.label, checked: on ? 'true' : 'false', border: on ? (o.key === 'b' ? '#2FE6B0' : '#FF9AA2') : '#2A2540', bg: on ? '#16132A' : '#110F1E', keyBg: on ? '#6E4CF5' : '#221E36', pick: () => this.setState({ pick: o.key }) };
+    });
+    const chosen = CHOICES.find((o) => o.key === st.pick);
+    return {
+      cta: cta, ctaFg: ctaFg,
+      sizes: sizes,
+      size: String(size),
+      ran: !!st.ran,
+      run: () => this.setState({ ran: true }),
+      out1: (1000 - test) + ' rows to learn from',
+      out2: test + ' rows kept back for testing',
+      choices: choices,
+      isCorrect: st.pick === 'b',
+      isWrong: !!st.pick && st.pick !== 'b',
+      feedback: chosen ? chosen.fb : '',
+      hintOpen: !!st.hint,
+      hintExpanded: st.hint ? 'true' : 'false',
+      toggleHint: () => this.setState({ hint: !st.hint }),
+    };
+  }
+}
+</script>
+</body>
+</html>

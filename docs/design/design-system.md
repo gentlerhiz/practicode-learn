@@ -4,11 +4,14 @@
 
 ## Principles
 
-1. **Colour means track.** Blue is Web, green is Data, pink is Design and violet is AI. Colour is never decorative. A Front-End certificate is blue, not a rainbow.
+1. **Colour means track.** Blue is Web, green is Data, pink is Design and violet is AI.
+   - Inside the product, colour is never decorative. A Front-End certificate, lesson or project is blue, not a rainbow.
+   - Marketing pages may show all four colours together as the brand palette, as in the hero word pills and the stat cards.
+   - A single track colour never appears on something that isn't about that track.
 2. **A calm ground lets colour do the work.** Surfaces are near-black, and colour appears where it carries meaning.
 3. **One white primary action per view.** The main button is white with dark text.
 4. **Yellow belongs to the logo.** Practi Yellow appears in the logo icon. It is used for buttons only through the `ctaColor` option, and then always flat.
-5. **AI wears the brand gradient.** The AI tutor and the site assistant use the blue, violet and pink gradient, so they never read as a fifth track.
+5. **AI has its own look.** The AI tutor uses the brand gradient. The site assistant uses the blue-to-violet version, which the founder chose in the canvas. Neither ever reads as a fifth track.
 
 ## Colour
 
@@ -46,7 +49,7 @@ Each track has three values. The **fill** sits behind white text. The **tint** i
 `linear-gradient(120deg, #3D5AF5, #6E4CF5 50%, #D9306F)`
 
 The gradient appears in a few places:
-- the AI tutor and the site assistant (avatar, panel border, launcher)
+- the AI tutor (avatar, panel border). The site assistant uses the blue-to-violet part only: `linear-gradient(120deg, #3D5AF5, #6E4CF5 50%)`
 - the Pro plan border
 - the announcement bar and the score ring
 
@@ -93,11 +96,44 @@ All three are free on Google Fonts under the OFL. The brand's Poppins-only rule 
 - Lesson text has a maximum line length of 68 characters.
 - Long quotes and headings use `text-wrap: balance`, so a line never ends with one orphaned word.
 
+## Spacing
+
+All spacing comes from one scale on an 8-point grid, with 4 and 12 for tight spots:
+
+**4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 80 · 96 · 112**
+
+Micro values are the only exceptions: 1–2 px for hairlines, and 6 px between pips. A script in the design tooling snaps every padding, margin and gap in the artboards to this scale, so stray values like 14, 18, 22 or 28 px can't creep back in.
+
+| Where | Desktop | Phone (under 600 px) |
+|---|---|---|
+| Page gutters | 24 | 16 |
+| Between marketing sections, content to content | 112 | 64 |
+| Hero padding | 64 top, 96 bottom (56 when a section follows straight after) | 40 top, 64 bottom |
+| Section heading to its content | 48 | 32 |
+| Eyebrow to heading, heading to intro | 12, 16 | 12, 16 |
+| Text and visual side by side | 64 apart | stacked, 32 apart |
+| Card grids | 24 | 16 |
+| Card padding: standard, large | 24, 32 | 20, 24 |
+| Inside a card: tight, default, between groups | 8, 16, 24 | same |
+| App pages with a sidebar: main padding, between cards | 32, 24 | 24 top and 16 sides, 16 |
+| Flow pages (sign-up, checkout, results): top, bottom | 48, 80 | 32, 48 |
+| Forms: label to field, field to field | 8, 20 | same |
+| Button groups, chip groups | 12, 8 | same |
+
+**How section rhythm works**
+- Plain sections carry half the rhythm on each side: 56 px, or 32 px on phones. Two neighbours always add up to 112 px (64 px on phones).
+- The first section after the hero gets the full amount on top. The last section gets it at the bottom.
+- A full-width band with its own background adds 56 px of margin outside and 112 px of padding inside, so its edges keep the same rhythm.
+
 ## Layout
 
-- Maximum widths: 1240 px for marketing pages, 1100–1200 px for app pages, and 1440 px for the lesson player with the tutor open.
+- Maximum widths:
+  - 1240 px for marketing pages
+  - 1100–1200 px for app and flow pages
+  - 488 px for sign-in cards
+  - 1440 px for the lesson player with the tutor open
 - Breakpoints use **container queries**. Marketing pages use 1239, 959 and 599 px. App pages use 1023 and 640 px.
-- On phones, side gutters are 16 px and section padding drops from 112 px to 64 px.
+- App pages share one sidebar (neutral icons, with the active item in white) and, on phones, one bottom tab bar.
 
 ## Shape and depth
 
@@ -124,7 +160,7 @@ All three are free on Google Fonts under the OFL. The brand's Poppins-only rule 
 | **Code block** | JetBrains Mono, line numbers in `#5E5A75`. **Put `white-space: pre` on each line, never on the container.** On the container, the gaps between lines render as blank lines. |
 | **Check row** | Passed: a track-fill tile with a white tick. Failing: an `error` outline with a cross, "Needs a fix", the file and line, and **Ask AI why**. |
 | **AI tutor panel** | Brand-gradient border. It shows the questions left today (pips), the conversation with a "Based on: …" source under each answer, suggested questions, an input, and a line saying it can make mistakes. It docks as a third column on wide screens and drops below the lesson on narrower ones. |
-| **Site assistant** | A gradient "Ask us anything" pill, bottom right. It becomes a round icon under 600 px. It opens a 384 px panel on desktop and a bottom sheet on phones, with suggested questions and an email hand-off. |
+| **Site assistant** | A blue-to-violet "Ask us anything" pill, bottom right. It becomes a round icon under 600 px. It opens a 384 px panel on desktop and a bottom sheet on phones, with a white logo circle in the header and suggested questions and an email hand-off. |
 | **Toggle** | On: white track, dark knob. Off: `#26213B` track, grey knob. `role="switch"`. |
 | **Radio card** | Ring and dot plus a border change. Used for billing period, payment method and tutor mode. |
 | **Score ring** | Brand gradient arc on a `line-subtle` track, with the percentage in Bricolage Grotesque. |

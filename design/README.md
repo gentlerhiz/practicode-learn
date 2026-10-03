@@ -1,72 +1,73 @@
 # UI designs
 
-High-fidelity, interactive designs for PractiCode Learn v1, in the **Prism** direction (chosen 3 October 2026). They follow the [UX principles](../docs/design/ux-principles.md) and the [design system](../docs/design/design-system.md).
+High-fidelity, interactive designs for PractiCode Learn v1, in the **Prism** direction (chosen 3 October 2026). They follow the [UX principles](../docs/design/ux-principles.md) and the [design system](../docs/design/design-system.md), including its spacing standard.
 
 **Live canvas:** https://claude.ai/artifact/7JGtvdSBs74EVYrGr1ZijS
 *(Private until it is shared from the canvas's Share menu.)*
 
-## Prism: 13 screens
+## Prism: 37 screens, each at desktop (1440 px) and phone (390 px) width
 
-Page 1 of the canvas. Every screen is shown at desktop (1440 px) and phone (390 px) width.
+Page 1 of the canvas is laid out in labelled rows.
 
-| Row | Screen | What it shows |
-|---|---|---|
-| 1 | **Landing page** | The hero with the AI tutor pill, the Data Analysis "lesson that talks back", the evidence, the founder quote, how a lesson works, the AI tutor, available tracks, the features, the comparison table, the Mentor plan, pricing and the FAQ |
-| 1 | **Site assistant** | The floating "Ask us anything" button on the landing page. Click it to open the chat on desktop. A separate phone frame shows the open chat sheet |
-| 1 | **Learner dashboard** | Resume card, weekly goal, review, the current project (3 of 5 checks), the path through the track, and "Ask AI" |
-| 2 | **Track page** | Front-End Web Development: outcomes, the syllabus, standards, projects and a certificate preview |
-| 2 | **Onboarding** | "What do you want to learn first?" The selected track's colour carries through the page |
-| 2 | **Lesson player with AI tutor** | The Investigate step, with the AI tutor docked beside it: questions left today, answers with sources, suggested questions |
-| 2 | **Daily review** | Five flashcards with FSRS ratings, tagged by track |
-| 2 | **Certificate** | The public credential page, all in the track's colour |
-| 3 | **Sign-up** | Email or phone number, a password strength meter, an opt-in progress email, and the plan carried over from onboarding |
-| 3 | **Checkout** | Pro with a 7-day free trial: yearly or monthly, card, bank transfer or USSD, nothing due today, and a reminder promise |
-| 3 | **Project workspace** | Brief, automatic checks (3 of 5 passing), "Ask AI why" on a failing check, the editor with the problem line highlighted, and a live preview that marks the overflow |
-| 3 | **Module check** | A code-reading question with a "How sure are you?" rating. The AI tutor is off during checks |
-| 3 | **Module check results** | 83%, passed, a skill-by-skill breakdown, the two questions worth another look (added to tomorrow's review), and calibration |
-| 3 | **Settings** | Profile, learning, AI tutor mode, data saver and offline downloads, plan and billing, privacy and data rights |
+| Row | Screens |
+|---|---|
+| **Landing, dashboards** | Landing page (two desktop parts, three phone parts), the open site assistant on a phone, the learner dashboard, the dashboard for a brand-new learner |
+| **Core learning** | Track page, onboarding, lesson player (Investigate step with the AI tutor), daily review, certificate |
+| **Account** | Sign-up, log in, 6-digit code, check your email, reset password, new password |
+| **Lesson steps** | Guest "try a lesson", guest lesson complete with sign-up nudge, Predict, Modify, Make, Python notebook (AI & ML) |
+| **Practice and projects** | Projects list, project workspace, module check, module check results, community |
+| **Plans and payments** | Pricing, checkout, bank transfer and USSD, payment confirmed, payment failed, scholarship application, Mentor cohorts |
+| **Settings, states, legal** | Settings, loading skeleton, offline, page not found (404), privacy, terms and accessibility |
 
-### The prototype flow
-Landing → *Start Free* → Onboarding → *Continue* → Sign-up → *Create My Account* → Dashboard → *Jump Back In* → Lesson (with AI tutor) → *Continue* → Daily review.
+Atlas Night (page 2) and Spectrum (page 3) are kept for reference.
 
-From the dashboard:
-- *Open Project* leads to the project workspace.
-- *Choose a Plan* leads to checkout.
-- The avatar or *Me* leads to Settings.
-- *Certificates* leads to the certificate.
+## Clicking through
 
-From the module check, *Finish Check* leads to the results, and from there to the project and Module 7.
+Every link and button goes to a real screen. There are no placeholder links.
 
-### What changed in this round (3 October 2026)
-1. The navbar and footer use the Atlas Night lockup: the yellow icon plus the Poppins wordmark.
-2. The hero copy now leads with "Learn the skills employers are hiring for" instead of no-video and low-data claims.
-3. The lesson player has an AI tutor panel with a daily limit (5 on Free, 50 on Pro).
-4. The hero pill now reads "A personal AI tutor, built into every lesson".
-5. The landing page has a site assistant: a floating button that opens a chat with suggested questions.
-6. "A lesson that talks back" now uses Data Analysis. It's an Excel `AVERAGE` vs `MEDIAN` question with a chart that shows why.
-7. In "Everything you need to actually finish", the projects card now shows Machine Learning (a spam filter) and the skill map shows UI/UX.
-8. The founder quote section is added: "In our classroom in Ibadan…"
-9. The PRIMM section is now "Every lesson works the same simple way": Guess, Try, Make.
-10. The tracks heading is now "Available tracks · Pick a track. Switch anytime.", so adding a track needs no copy change.
-11. Colour now means track everywhere. The certificate skill tiles, track page outcome ticks and dashboard project card use the track's colour.
-12. Six new screens: sign-up, checkout, project workspace, module check, module check results and settings.
-13. Fixes:
-    - Code blocks no longer show blank lines between lines.
-    - Phone frames were resized to their measured heights. The track page phone frame had been cutting off about 900 px.
+| Journey | Path |
+|---|---|
+| New learner | Landing → *Start Free* → Onboarding → Sign-up → Check your email (or the 6-digit code for phone) → New learner dashboard → first lesson |
+| Guest | Landing → *Start one* → Try a lesson → Lesson complete → Sign-up |
+| A lesson | Predict → Investigate (with AI tutor) → Modify → Make → Daily review |
+| Returning learner | Log in → Dashboard → *Jump Back In*, *Open Project*, *Take the Check*, *Choose a Plan*, Settings |
+| Projects and checks | Projects → Project workspace (*Ask AI why* on a failing check) · Module check → Results |
+| Paying | Pricing → Checkout → card → Payment confirmed, or bank transfer / USSD → "checking" → Payment received |
+| Help | Site assistant on the landing page · Community · Scholarship · Mentor enquiry · Legal pages |
 
-Free short courses were deferred at the founder's request.
+Three screens are states rather than destinations, so nothing links to them: loading, payment failed and 404. Payment failed does link onward, to another card, bank transfer or USSD.
 
-## Canvas layout
-- **Page 1, Prism (chosen):**
-  - Row 1: landing (two desktop frames, three phone frames and the open chat) and the dashboard.
-  - Row 2: track page, onboarding, lesson, review and certificate.
-  - Row 3: sign-up, checkout, project, module check, results and settings.
-- **Page 2, Atlas Night** and **page 3, Spectrum** are kept for reference.
-- Canvas frames max out at 8,000 px, so the long landing page is split into parts. Open a desktop frame in full view to scroll the whole page.
-- The **Tweaks** panel has a `ctaColor` option (White or Practi Yellow) on most screens, plus `assistant` (Closed or Open) and `currency` on the landing page.
+## What changed in this round (3 October 2026)
+
+**Spacing, made standard everywhere**
+- One spacing scale on an 8-point grid (4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 112). Every padding, margin and gap in every Prism artboard was snapped to it.
+- One section rhythm: 112 px between marketing sections on desktop, 64 px on phones. The landing page had places where two sections added up to 224 px. Those are fixed.
+- Standard card padding (24, or 32 for large cards; 20 and 24 on phones), 24 px card grids (16 on phones), 48 px from a section heading to its content (32 on phones), and 20 px between form fields.
+- The full table is in the [design system](../docs/design/design-system.md#spacing).
+
+**New screens:** log in, 6-digit code, check your email, reset and new password; pricing page, bank transfer and USSD, payment confirmed, payment failed; guest lesson and guest lesson complete; Predict, Modify, Make and Python notebook steps; new learner dashboard, loading, offline and 404; projects list; legal pages, scholarship application, Mentor cohorts and community.
+
+**Your canvas edits, kept**
+- Landing order: hero, tools, tracks, stats, "Everything you need", "A lesson that talks back", AI tutor, quote, comparison, mentor, pricing, FAQ.
+- Removed: the hero's floating pills, the AI pill, the hero checklist, and the "Every lesson works the same simple way" section.
+- Track page: removed the "Beginner" pill and the two badges on the hero mock-up.
+- Site assistant: no pink in the button or chat header, a white logo circle, and plain sparkle icons.
+- The canvas editor had pinned fixed heights on some landing sections and nested them inside each other, which breaks the phone layout. The order and removals were re-applied to clean markup instead.
+
+**Also fixed**
+- Colour now means track in the product: lesson step bars, demo boxes, certificate projects, track page chips and project cards are Front-End blue. Sidebar icons are neutral, with the active item in white. Review rating buttons use meaning colours (red Again, orange Hard, white Good, green Easy).
+- The trial story is consistent: the trial ends on 8 October, checkout says "Keep Pro after your trial", and nothing is due today.
+- Code blocks scroll sideways on phones instead of being cut off.
+
+## Checks run before publishing
+- Structure check on all 78 frames (tags balanced, every `{{value}}` provided).
+- Link check: every link points to an existing screen and every in-page anchor exists.
+- Spacing check: no padding, margin or gap off the scale.
+- Every frame's height was measured in a browser at 1440 px and 390 px, so nothing is cut off.
+- Visual review of every screen at both widths.
 
 ## Next steps
-1. Usability test with 5 learners on low-end Android phones (the lesson player, AI tutor and checkout).
+1. Usability test with 5 learners on low-end Android phones (lesson steps, AI tutor, checkout).
 2. Founder review of the [v1 spec](../docs/specs/2026-10-02-v1-platform-design.md), then the implementation plan.
 3. Replace the interim logo with the official logo pack.
 

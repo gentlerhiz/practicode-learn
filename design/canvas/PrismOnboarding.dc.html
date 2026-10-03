@@ -19,7 +19,8 @@ a:hover { color: #FFFFFF; }
 @container pcl (max-width: 699px) {
   .pcl-tracks { grid-template-columns: minmax(0, 1fr) !important; }
   .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
-  .pcl-h1 { font-size: 34px !important; line-height: 38px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  main.pcl-wrap { padding-top: 32px !important; padding-bottom: 48px !important; }
   .pcl-hide-xs { display: none !important; }
 }
 </style>
@@ -29,7 +30,7 @@ a:hover { color: #FFFFFF; }
 
 <header style="position: relative">
 <div class="pcl-wrap" style="max-width: 1000px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
-<a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 10px; text-decoration: none">
+<a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
 <svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
 <span class="pcl-hide-xs" style="font-size: 18px; color: #FFFFFF; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
 </a>
@@ -41,15 +42,15 @@ a:hover { color: #FFFFFF; }
 </div>
 </header>
 
-<main class="pcl-wrap" style="position: relative; max-width: 840px; margin: 0 auto; padding: 32px 24px 48px; display: flex; flex-direction: column; gap: 34px; box-sizing: border-box">
-<div style="text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center">
+<main class="pcl-wrap" style="position: relative; max-width: 840px; margin: 0 auto; padding: 48px 24px 80px; display: flex; flex-direction: column; gap: 32px; box-sizing: border-box">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center">
 <h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 48px; line-height: 52px; font-weight: 800; letter-spacing: -0.04em">What do you want to learn first?</h1>
 <p style="margin: 0; font-size: 16px; line-height: 26px; color: #A9A6BC">No pressure. You can switch any time, and every track starts free.</p>
 </div>
 
 <section aria-labelledby="pcl-q1">
 <h2 id="pcl-q1" class="pcl-sr">Choose a track</h2>
-<div class="pcl-tracks" role="group" aria-labelledby="pcl-q1" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div class="pcl-tracks" role="group" aria-labelledby="pcl-q1" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
 <sc-for list="{{tracks}}" as="t" hint-placeholder-count="4">
 <button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 22px; border: 1.5px solid {{t.border}}; background: {{t.bg}}; color: #FFFFFF; font-family: inherit; cursor: pointer; box-sizing: border-box">
 <span style="width: 50px; height: 50px; border-radius: 15px; background: {{t.tile}}; color: {{t.tileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><path d="{{t.icon}}" /></svg></span>
@@ -64,7 +65,7 @@ a:hover { color: #FFFFFF; }
 <h2 id="pcl-q2" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">How much time can you give it?</h2>
 <div role="group" aria-labelledby="pcl-q2" style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{times}}" as="o" hint-placeholder-count="4">
-<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
 </sc-for>
 </div>
 </section>
@@ -73,27 +74,27 @@ a:hover { color: #FFFFFF; }
 <h2 id="pcl-q3" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">Have you done any of this before?</h2>
 <div role="group" aria-labelledby="pcl-q3" style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{levels}}" as="o" hint-placeholder-count="3">
-<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
 </sc-for>
 </div>
 </section>
 
 <div aria-live="polite" style="border-radius: 22px; padding: 1.5px; background: {{planBorder}}">
-<div style="border-radius: 21px; background: #0E0C1A; padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start">
+<div style="border-radius: 21px; background: #0E0C1A; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start">
 <span style="width: 30px; height: 30px; border-radius: 10px; background: {{planTile}}; color: {{planTileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" /></svg></span>
 <p style="margin: 0; font-size: 15px; line-height: 24px"><span style="font-weight: 600">Your plan: </span><span style="color: #DCD9EA">{{plan}}</span></p>
 </div>
 </div>
 
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
-<a href="#" style="font-size: 15px; font-weight: 500; color: #A9A6BC; height: 48px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
-<a href="PrismSignup.dc.html" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 52px; padding: 0 28px; display: inline-flex; align-items: center; gap: 10px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+<a href="PrismLanding.dc.html" style="font-size: 15px; font-weight: 500; color: #A9A6BC; height: 48px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
+<a href="PrismSignup.dc.html" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 52px; padding: 0 32px; display: inline-flex; align-items: center; gap: 12px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
 </div>
 </main>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1000}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1060}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);

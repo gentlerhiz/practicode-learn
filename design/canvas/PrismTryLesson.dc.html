@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Try a lesson (guest)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #8B88A0; }
+.pcl-input { width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; }
+.pcl-input:focus { outline: none; border-color: #8EA2FF; box-shadow: 0 0 0 3px rgba(77,107,255,0.25); }
+.pcl-acc summary::-webkit-details-marker { display: none; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-mtop { display: flex !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-g3, .pcl-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pcl-sticky { position: relative !important; top: auto !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-flow { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-appmain { padding: 24px 16px 40px !important; gap: 16px !important; }
+  .pcl-sec { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .pcl-sec-first { padding-top: 64px !important; }
+  .pcl-sec-last { padding-bottom: 64px !important; }
+  .pcl-herosec { padding-top: 40px !important; padding-bottom: 32px !important; }
+  .pcl-secstack, .pcl-stack-lg { gap: 32px !important; }
+  .pcl-split { gap: 32px !important; }
+  .pcl-g2, .pcl-g3, .pcl-g4 { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-card-lg { padding: 24px !important; }
+  .pcl-display-xl { font-size: 44px !important; line-height: 50px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  .pcl-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .pcl-h2-lg { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-show-xs { display: flex !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-full-xs { width: 100% !important; justify-content: center !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px 16px !important; gap: 12px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-lessonmain { padding: 24px 16px 40px !important; }
+}
+@container pcl (max-width: 999px) {
+  .pcl-lesson { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-code { font-size: 13px !important; line-height: 24px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -240px; top: 80px; width: 1000px; height: 760px; pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(77,107,255,0.24), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 68% 55%, rgba(123,92,255,0.16), rgba(0,0,0,0) 72%)"></div>
+<header style="position: relative; border-bottom: 1px solid #1C1930; background: rgba(11,10,20,0.85)">
+<div class="pcl-head" style="height: 72px; padding: 0 24px; display: flex; align-items: center; gap: 20px; box-sizing: border-box">
+<a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; flex-shrink: 0"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg></a>
+<div style="min-width: 0; flex: 1 1 200px"><p style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">How the web works</p><p style="margin: 0; font-size: 13px; color: #8B88A0"><span style="color: #8EA2FF">Front-End</span> · Free lesson · No account needed</p></div>
+<div class="pcl-steps" style="flex: 2 1 320px; max-width: 520px; display: flex; flex-direction: column; gap: 8px">
+<div aria-hidden="true" style="display: flex; gap: 4px"><span style="flex: 1; height: 6px; border-radius: 3px; background: #3D5AF5; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #8EA2FF; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #221E36; display: block"></span></div>
+<p style="margin: 0; font-size: 12px; color: #8B88A0">Step 2 of 6 · Predict</p>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; margin-left: auto">
+<a href="PrismSignup.dc.html" class="pcl-hide-xs" style="height: 42px; padding: 0 16px 0 12px; border-radius: 999px; border: 1px solid #332E4D; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; color: #A9A6BC"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>Ask AI</a>
+<a href="PrismSignup.dc.html" style="height: 42px; padding: 0 16px; border-radius: 999px; background: #FFFFFF; color: #07060D; text-decoration: none; font-size: 14px; font-weight: 600; display: flex; align-items: center">Save Progress</a>
+</div>
+</div>
+</header>
+<main class="pcl-lessonmain" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 24px 48px; box-sizing: border-box">
+<div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
+<p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #8EA2FF; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.45); border-radius: 999px; padding: 4px 12px">1 · Predict</p>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">You type practicode.tech and press Enter. What happens first?</h1>
+<p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">No wrong answers yet. Make your best guess and we'll show you.</p>
+<div role="radiogroup" aria-label="Your prediction" style="display: flex; flex-direction: column; gap: 12px">
+<sc-for list="{{choices}}" as="o" hint-placeholder-count="3">
+<button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 12px 16px; border-radius: 16px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; text-align: left; cursor: pointer; box-sizing: border-box">
+<span style="width: 28px; height: 28px; border-radius: 8px; background: {{o.keyBg}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0">{{o.letter}}</span>
+<span>{{o.label}}</span>
+</button>
+</sc-for>
+</div>
+<div aria-live="polite">
+<sc-if value="{{isCorrect}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 12px; font-size: 15px; line-height: 24px; color: #4BE3A8"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg><span>{{feedback}}</span></p></sc-if>
+<sc-if value="{{isWrong}}" hint-placeholder-val="{{ false }}"><p style="margin: 0; display: flex; gap: 12px; font-size: 15px; line-height: 24px; color: #FF9AA2"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg><span>{{feedback}}</span></p></sc-if>
+</div>
+</div>
+<section aria-label="Diagram" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 32px 24px; display: flex; flex-direction: column; gap: 24px">
+<svg viewBox="0 0 520 220" role="img" aria-label="A phone sends a request across the internet to a server, and the server sends a page back." style="width: 100%; height: auto; display: block">
+<defs><marker id="prArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#8EA2FF" /></marker><marker id="prArr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#4BE3A8" /></marker></defs>
+<rect x="24" y="48" width="84" height="140" rx="16" fill="#161328" stroke="#8EA2FF" stroke-width="2" /><rect x="38" y="66" width="56" height="10" rx="5" fill="#8EA2FF" opacity="0.5" /><rect x="38" y="84" width="40" height="8" rx="4" fill="#464060" /><text x="66" y="212" text-anchor="middle" fill="#A9A6BC" font-size="13" font-family="Poppins, sans-serif">Your phone</text>
+<path d="M210 96c-6-26 26-40 44-26 8-22 48-22 56 2 26-4 38 26 22 40H214c-14 0-20-8-4-16z" fill="#161328" stroke="#464060" stroke-width="2" /><text x="262" y="150" text-anchor="middle" fill="#A9A6BC" font-size="13" font-family="Poppins, sans-serif">The internet</text>
+<rect x="412" y="56" width="84" height="124" rx="12" fill="#161328" stroke="#464060" stroke-width="2" /><rect x="426" y="74" width="56" height="12" rx="4" fill="#26213B" /><rect x="426" y="96" width="56" height="12" rx="4" fill="#26213B" /><rect x="426" y="118" width="56" height="12" rx="4" fill="#26213B" /><circle cx="472" cy="160" r="5" fill="#2FE6B0" /><text x="454" y="212" text-anchor="middle" fill="#A9A6BC" font-size="13" font-family="Poppins, sans-serif">A server</text>
+<path d="M118 92H400" stroke="#8EA2FF" stroke-width="2.5" stroke-dasharray="6 6" marker-end="url(#prArr)" /><text x="258" y="64" text-anchor="middle" fill="#8EA2FF" font-size="13" font-family="Poppins, sans-serif">?</text>
+</svg>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #A9A6BC">{{diagramNote}}</p>
+</section>
+<p style="margin: 0; grid-column: 1 / -1; font-size: 13px; line-height: 20px; color: #8B88A0">You're trying a free lesson. Your progress saves on this device. <a href="PrismSignup.dc.html" style="color: #DCD9EA">Create a free account</a> to keep it everywhere and ask the AI tutor.</p>
+</div>
+</main>
+<footer style="position: sticky; bottom: 0; border-top: 1px solid #1C1930; background: rgba(11,10,20,0.92)">
+<div style="max-width: 1280px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box">
+<span></span>
+<p class="pcl-hide-xs" style="margin: 0; font-size: 12px; color: #8B88A0">Press Enter to continue</p>
+<a href="PrismTryDone.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 48px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":800}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { pick: 'a' };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#FFFFFF';
+    const ctaFg = yellow ? '#000000' : '#07060D';
+    const CHOICES = [
+      { key: 'a', letter: 'A', label: 'Your phone asks a server for the page', fb: 'Yes. Your browser sends a request across the internet to the server that holds the website. The server sends the page back.' },
+      { key: 'b', letter: 'B', label: 'The page downloads from Google', fb: 'Google helps you find sites, but it doesn\'t hold them. Your browser goes straight to the website\'s own server.' },
+      { key: 'c', letter: 'C', label: 'Your phone already has the page saved', fb: 'Not the first time. Your phone has to ask for the page. It may keep a copy afterwards to load faster next time.' }
+    ];
+    const choices = CHOICES.map((o) => {
+      const on = o.key === st.pick;
+      return { letter: o.letter, label: o.label, checked: on ? 'true' : 'false', border: on ? (o.key === 'a' ? '#2FE6B0' : '#FF9AA2') : '#2A2540', bg: on ? '#16132A' : '#110F1E', keyBg: on ? '#3D5AF5' : '#221E36', pick: () => this.setState({ pick: o.key }) };
+    });
+    const chosen = CHOICES.find((o) => o.key === st.pick);
+    return {
+      cta: cta, ctaFg: ctaFg,
+      choices: choices,
+      isCorrect: st.pick === 'a',
+      isWrong: !!st.pick && st.pick !== 'a',
+      feedback: chosen ? chosen.fb : '',
+      diagramNote: st.pick === 'a' ? 'Next, you will watch the request travel and the page come back, one step at a time.' : 'Pick an answer to see what really happens.'
+    };
+  }
+}
+</script>
+</body>
+</html>

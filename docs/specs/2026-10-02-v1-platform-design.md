@@ -72,34 +72,37 @@ learn.practicode.tech
 ├── /                     Landing
 ├── /tracks/[track]       Track page (outcomes, syllabus, alignment, device notes)
 ├── /pricing
+├── /mentor              Mentor cohorts (enquiry form)
+├── /scholarships        Scholarship application
 ├── /try/[lesson]         Free lesson without an account
-├── /signup  /signin
+├── /signup  /login
+├── /verify-code  /check-email  /reset  /reset/new
 ├── /home                 Learner dashboard
 ├── /learn/[track]/[module]/[lesson]   Lesson player
 ├── /review               Daily review session
 ├── /projects  /projects/[id]
+├── /checks/[module]      Module check and results
+├── /community
+├── /checkout  /checkout/transfer  /checkout/done
 ├── /skills               Skill map
 ├── /downloads            Offline packs
 ├── /settings             Account, plan, data, accessibility, privacy
+├── /legal                Privacy, terms, accessibility statement
 └── /verify/[credential]  Public credential verification (Phase 2)
 ```
 
 ### Screens designed in this phase
-All in the Prism direction, each at desktop and phone width:
+All 37 screens are in the Prism direction, each at desktop and phone width, and every link leads to a real screen. See [design/README.md](../../design/README.md).
 
-1. **Landing:** the hero, the Data Analysis "lesson that talks back", the evidence, the founder quote, how a lesson works, the AI tutor, available tracks, features, comparison, the Mentor plan, pricing, FAQ, and the site assistant (closed, and open on a phone).
-2. **Learner dashboard:** resume, weekly goal, review, project, path through the track, "Ask AI".
-3. **Track page:** outcomes, syllabus, standards, projects, certificate preview.
-4. **Onboarding:** pick a track, time and experience level.
-5. **Sign-up:** email or phone number, carrying the plan made in onboarding.
-6. **Lesson player:** the Investigate step with the AI tutor panel.
-7. **Daily review:** five cards with FSRS ratings.
-8. **Project workspace:** brief, automatic checks, editor, live preview, "Ask AI why".
-9. **Module check** and **results:** a code-reading question with confidence rating, then the score, skill breakdown and calibration.
-10. **Certificate:** the public credential page.
-11. **Checkout:** Pro trial with card, bank transfer or USSD.
-12. **Settings:** profile, learning, AI tutor, data and offline, plan, privacy.
-
+| Area | Screens |
+|---|---|
+| Marketing | Landing (with site assistant), track page, pricing, Mentor cohorts, scholarship application, legal pages, page not found |
+| Account | Sign-up, log in, 6-digit code, check your email, reset password, new password |
+| Getting started | Onboarding, guest lesson, guest lesson complete, new learner dashboard |
+| Learning | Dashboard, lesson steps (Predict, Investigate with AI tutor, Modify, Make, Python notebook), daily review |
+| Practice | Projects list, project workspace, module check, module check results, certificate, community |
+| Paying | Checkout, bank transfer and USSD, payment confirmed, payment failed |
+| Settings and states | Settings, loading, offline |
 
 ## 5. Architecture
 

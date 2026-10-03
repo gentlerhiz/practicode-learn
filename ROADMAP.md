@@ -9,7 +9,7 @@ This roadmap shows what we plan, in order. It is not a promise of dates. We will
 - [x] Standards framework, teaching model, lesson format
 - [x] Four track syllabi
 - [x] Design system and core UI designs (landing, dashboard), shortlisted to three visual directions
-- [x] Choose the final visual direction (Prism) and design the remaining v1 screens: sign-up, checkout, project workspace, module check, settings, AI tutor and site assistant
+- [x] Choose the final visual direction (Prism) and design every v1 screen: 37 screens covering account, lessons, projects, payments, states and legal pages, at desktop and phone width
 - [ ] v1 spec approved
 - [ ] Implementation plan approved
 - [ ] Willingness-to-pay survey with 100+ prospective learners (validates regional pricing)

@@ -18,12 +18,12 @@ a:hover { color: #FFFFFF; }
 .pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 input::placeholder, textarea::placeholder { color: #8B88A0; }
 @container pcl (max-width: 959px) {
-  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 28px !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 32px !important; }
 }
 @container pcl (max-width: 640px) {
-  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px !important; gap: 10px !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px !important; gap: 12px !important; }
   .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
-  .pcl-wrap { padding: 28px 16px 32px !important; }
+  .pcl-wrap { padding: 32px 16px 48px !important; }
   .pcl-h1 { font-size: 26px !important; line-height: 32px !important; }
   .pcl-g2 { grid-template-columns: minmax(0, 1fr) !important; }
   .pcl-card { padding: 20px !important; }
@@ -47,25 +47,25 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </header>
 
 <main class="pcl-wrap pcl-split" style="position: relative; max-width: 1180px; margin: 0 auto; padding: 48px 24px 40px; display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start; box-sizing: border-box">
-<section aria-labelledby="pcl-q" style="display: flex; flex-direction: column; gap: 22px; min-width: 0">
+<section aria-labelledby="pcl-q" style="display: flex; flex-direction: column; gap: 24px; min-width: 0">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #FFFFFF; background: #3D5AF5; border-radius: 999px; padding: 4px 12px">Read the code</p>
 <h1 id="pcl-q" class="pcl-h1 pcl-display" style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em">The gallery below is 900px wide. How wide is each column?</h1>
-<div class="pcl-code" style="background: #0E0C1A; border: 1px solid #221E36; border-radius: 18px; padding: 18px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 28px; overflow: hidden">
-<div style="display: flex; padding: 0 22px; white-space: pre"><span style="width: 30px; color: #5E5A75">1</span><span><span style="color: #FFFFFF">.gallery</span> <span style="color: #8B88A0">{</span></span></div>
-<div style="display: flex; padding: 0 22px; white-space: pre"><span style="width: 30px; color: #5E5A75">2</span><span>  <span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">grid</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 22px; white-space: pre"><span style="width: 30px; color: #5E5A75">3</span><span>  <span style="color: #8EA2FF">grid-template-columns</span><span style="color: #8B88A0">:</span> <span style="color: #FF7DB0">1fr 2fr 1fr</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 22px; white-space: pre"><span style="width: 30px; color: #5E5A75">4</span><span>  <span style="color: #8EA2FF">gap</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">20px</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 22px; white-space: pre"><span style="width: 30px; color: #5E5A75">5</span><span><span style="color: #8B88A0">}</span></span></div>
+<div class="pcl-code" style="background: #0E0C1A; border: 1px solid #221E36; border-radius: 18px; padding: 16px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 28px; overflow: hidden">
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 30px; color: #5E5A75">1</span><span><span style="color: #FFFFFF">.gallery</span> <span style="color: #8B88A0">{</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 30px; color: #5E5A75">2</span><span>  <span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">grid</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 30px; color: #5E5A75">3</span><span>  <span style="color: #8EA2FF">grid-template-columns</span><span style="color: #8B88A0">:</span> <span style="color: #FF7DB0">1fr 2fr 1fr</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 30px; color: #5E5A75">4</span><span>  <span style="color: #8EA2FF">gap</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">20px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 30px; color: #5E5A75">5</span><span><span style="color: #8B88A0">}</span></span></div>
 </div>
-<div role="radiogroup" aria-labelledby="pcl-q" class="pcl-g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div role="radiogroup" aria-labelledby="pcl-q" class="pcl-g2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
 <sc-for list="{{options}}" as="o" hint-placeholder-count="4">
-<button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 10px 16px; border-radius: 16px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; box-sizing: border-box">
+<button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 16px; min-height: 60px; padding: 12px 16px; border-radius: 16px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; box-sizing: border-box">
 <span style="width: 28px; height: 28px; border-radius: 9px; background: {{o.keyBg}}; color: {{o.keyFg}}; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0">{{o.letter}}</span>
 <span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px">{{o.label}}</span>
 </button>
 </sc-for>
 </div>
-<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-size: 14px; font-weight: 500">How sure are you?</p>
 <div role="group" aria-label="How sure are you?" style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{sure}}" as="s" hint-placeholder-count="3">
@@ -79,21 +79,21 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <aside class="pcl-card" aria-labelledby="pcl-cov" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
 <h2 id="pcl-cov" class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">What this check covers</h2>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
-<li style="display: flex; justify-content: space-between; gap: 10px"><span>Flexbox</span><span style="color: #8B88A0">4 questions</span></li>
-<li style="display: flex; justify-content: space-between; gap: 10px"><span>CSS Grid</span><span style="color: #8B88A0">4 questions</span></li>
-<li style="display: flex; justify-content: space-between; gap: 10px"><span>Responsive layout</span><span style="color: #8B88A0">4 questions</span></li>
+<li style="display: flex; justify-content: space-between; gap: 12px"><span>Flexbox</span><span style="color: #8B88A0">4 questions</span></li>
+<li style="display: flex; justify-content: space-between; gap: 12px"><span>CSS Grid</span><span style="color: #8B88A0">4 questions</span></li>
+<li style="display: flex; justify-content: space-between; gap: 12px"><span>Responsive layout</span><span style="color: #8B88A0">4 questions</span></li>
 </ul>
-<div style="border-top: 1px solid #221E36; padding-top: 16px; display: flex; flex-direction: column; gap: 10px; font-size: 13px; line-height: 20px; color: #A9A6BC">
-<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></svg><span>You need 80% to pass. That's 10 out of 12.</span></p>
-<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg><span>Retake it as often as you like. You'll get fresh questions each time.</span></p>
-<p style="margin: 0; display: flex; gap: 10px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg><span>The AI tutor is switched off during checks, so your result is all yours.</span></p>
+<div style="border-top: 1px solid #221E36; padding-top: 16px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; line-height: 20px; color: #A9A6BC">
+<p style="margin: 0; display: flex; gap: 12px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></svg><span>You need 80% to pass. That's 10 out of 12.</span></p>
+<p style="margin: 0; display: flex; gap: 12px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg><span>Retake it as often as you like. You'll get fresh questions each time.</span></p>
+<p style="margin: 0; display: flex; gap: 12px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px; color: #8EA2FF; flex-shrink: 0" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg><span>The AI tutor is switched off during checks, so your result is all yours.</span></p>
 </div>
 </aside>
 </main>
 
 <footer style="position: relative; border-top: 1px solid #1C1930; background: rgba(11,10,20,0.92)">
-<div style="max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box">
-<a href="#" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 46px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
+<div style="max-width: 1180px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; box-sizing: border-box">
+<button type="button" style="font-family: inherit; font-size: 15px; font-weight: 500; height: 48px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Previous Question</button>
 <button type="button" onClick="{{toggleFlag}}" aria-pressed="{{flagged}}" class="pcl-hide-sm" style="height: 46px; padding: 0 16px; border-radius: 999px; border: none; background: transparent; color: {{flagFg}}; font-family: inherit; font-size: 14px; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M4 21V4" /><path d="M4 4h13l-2 4 2 4H4" /></svg>{{flagLabel}}</button>
 <a href="PrismModuleResult.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 46px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Finish Check<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
 </div>

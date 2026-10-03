@@ -25,6 +25,13 @@ All notable changes to this project are documented here. The format follows [Kee
 - ADR 0006: an AI tutor in lessons and an AI assistant on the website
 - AI tutor limits and cost guardrails in the business model, plus AI sections in the architecture and privacy docs
 - Founder quote section on the landing page
+- 24 more Prism screens, for 37 in total:
+  - account: log in, 6-digit code, check your email, reset password, new password
+  - lesson steps: guest lesson, guest lesson complete, Predict, Modify, Make, Python notebook
+  - payments: pricing page, bank transfer and USSD, payment confirmed, payment failed
+  - states: new learner dashboard, loading, offline, page not found
+  - other pages: projects list, legal pages, scholarship application, Mentor cohorts, community
+- A spacing standard (8-point scale, one section rhythm, standard card, grid and form spacing), documented in the design system and applied to every artboard
 
 ### Changed
 
@@ -32,6 +39,10 @@ All notable changes to this project are documented here. The format follows [Kee
 - The landing page now leads with "Learn the skills employers are hiring for". It uses the Atlas Night logo lockup, explains lessons as Guess, Try, Make, uses Data Analysis in the lesson demo, shows Machine Learning and UI/UX in the feature cards, and uses an "Available tracks" heading.
 - Colour now means track everywhere, including certificate skill tiles, track outcome ticks and the dashboard project card.
 - Onboarding now leads to sign-up, and the dashboard links to the project workspace, checkout and settings.
+- Every link in the prototype now leads to a real screen. There are no placeholder links left.
+- The landing page follows the founder's canvas edits: tracks come straight after the hero, and the lesson-loop section, hero pills, AI pill and hero checklist are removed. The site assistant has no pink and a white logo circle.
+- Checkout now reads "Keep Pro after your trial", in line with the no-card trial. The trial end date is 8 October everywhere.
+- The sidebar uses neutral icons, with the active item in white. Lesson step bars, demo boxes, certificate projects and track page details use only the track's colour.
 - Shortlisted to three directions: Atlas Night, Spectrum and Prism. Current, Adire, Simple and the first lesson player were set aside and remain in git history.
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.

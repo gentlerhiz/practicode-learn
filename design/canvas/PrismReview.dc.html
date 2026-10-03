@@ -22,7 +22,8 @@ a:hover { color: #FFFFFF; }
   .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
   .pcl-q { font-size: 26px !important; line-height: 32px !important; }
   .pcl-rate { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .pcl-card { padding: 24px !important; }
+  .pcl-card { padding: 20px !important; }
+  main.pcl-wrap { padding-top: 32px !important; padding-bottom: 48px !important; }
 }
 </style>
 </helmet>
@@ -33,13 +34,13 @@ a:hover { color: #FFFFFF; }
 <div class="pcl-wrap" style="max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; gap: 16px">
 <a href="PrismDashboard.dc.html" aria-label="Exit review" style="width: 44px; height: 44px; border-radius: 999px; border: 1px solid #2A2540; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></a>
 <div style="flex: 1; min-width: 0"><p class="pcl-display" style="margin: 0; font-size: 17px; font-weight: 700">Daily review</p><p style="margin: 0; font-size: 13px; color: #8B88A0">{{headerNote}}</p></div>
-<div aria-hidden="true" style="display: flex; gap: 5px">
+<div aria-hidden="true" style="display: flex; gap: 4px">
 <sc-for list="{{pips}}" as="p" hint-placeholder-count="5"><span style="width: 26px; height: 6px; border-radius: 3px; background: {{p.bg}}; display: block"></span></sc-for>
 </div>
 </div>
 </header>
 
-<main class="pcl-wrap" style="position: relative; max-width: 1100px; margin: 0 auto; padding: 40px 24px 56px; box-sizing: border-box">
+<main class="pcl-wrap" style="position: relative; max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; box-sizing: border-box">
 <div class="pcl-layout" style="display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; align-items: start">
 
 <div style="display: flex; flex-direction: column; gap: 20px">
@@ -47,9 +48,9 @@ a:hover { color: #FFFFFF; }
 <div style="position: relative; padding-top: 16px">
 <div aria-hidden="true" style="position: absolute; left: 30px; right: 30px; top: 0; height: 40px; border-radius: 28px 28px 0 0; background: {{card.tint2}}"></div>
 <div aria-hidden="true" style="position: absolute; left: 15px; right: 15px; top: 8px; height: 40px; border-radius: 28px 28px 0 0; background: {{card.tint1}}"></div>
-<section class="pcl-card" aria-live="polite" style="position: relative; min-height: 340px; border-radius: 28px; border: 1.5px solid {{card.border}}; background: linear-gradient(170deg, {{card.wash}} 0%, #0B0A14 55%); padding: 36px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+<section class="pcl-card" aria-live="polite" style="position: relative; min-height: 340px; border-radius: 28px; border: 1.5px solid {{card.border}}; background: linear-gradient(170deg, {{card.wash}} 0%, #0B0A14 55%); padding: 32px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
-<p style="margin: 0; font-size: 12px; font-weight: 700; color: {{card.chipFg}}; background: {{card.chip}}; border-radius: 999px; padding: 5px 12px">{{card.topic}}</p>
+<p style="margin: 0; font-size: 12px; font-weight: 700; color: {{card.chipFg}}; background: {{card.chip}}; border-radius: 999px; padding: 4px 12px">{{card.topic}}</p>
 <p style="margin: 0; font-size: 12px; color: #8B88A0">Card {{position}} of 5</p>
 </div>
 <h1 class="pcl-q pcl-display" style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em">{{card.q}}</h1>
@@ -57,7 +58,7 @@ a:hover { color: #FFFFFF; }
 <div style="border-top: 1px solid #2A2540; padding-top: 20px; display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-size: 12px; font-weight: 700; color: {{card.text}}">Answer</p>
 <p style="margin: 0; font-size: 18px; line-height: 29px">{{card.a}}</p>
-<p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: {{card.text}}; background: #0E0C1A; border: 1px solid #221E36; border-radius: 12px; padding: 12px 14px">{{card.code}}</p>
+<p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: {{card.text}}; background: #0E0C1A; border: 1px solid #221E36; border-radius: 12px; padding: 12px 16px">{{card.code}}</p>
 </div>
 </sc-if>
 <sc-if value="{{hidden}}" hint-placeholder-val="{{ true }}">
@@ -70,9 +71,9 @@ a:hover { color: #FFFFFF; }
 <button type="button" onClick="{{reveal}}" style="height: 56px; border-radius: 999px; border: none; background: {{cta}}; color: {{ctaFg}}; font-family: inherit; font-size: 16px; font-weight: 600; cursor: pointer">Show the Answer</button>
 </sc-if>
 <sc-if value="{{revealed}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-size: 14px; color: #A9A6BC; text-align: center">How well did you remember it?</p>
-<div class="pcl-rate" role="group" aria-label="Rate your answer" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px">
+<div class="pcl-rate" role="group" aria-label="Rate your answer" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
 <sc-for list="{{ratings}}" as="r" hint-placeholder-count="4">
 <button type="button" onClick="{{r.pick}}" style="height: 68px; border-radius: 20px; border: 1.5px solid {{r.border}}; background: {{r.bg}}; color: #FFFFFF; font-family: inherit; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px"><span class="pcl-display" style="font-size: 17px; font-weight: 700">{{r.label}}</span><span style="font-size: 12px; color: {{r.noteC}}">{{r.when}}</span></button>
 </sc-for>
@@ -82,29 +83,29 @@ a:hover { color: #FFFFFF; }
 </sc-if>
 
 <sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
-<section class="pcl-card" style="position: relative; overflow: hidden; border-radius: 28px; border: 1px solid #2A2540; background: #0E0C1A; padding: 48px 36px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
+<section class="pcl-card" style="position: relative; overflow: hidden; border-radius: 28px; border: 1px solid #2A2540; background: #0E0C1A; padding: 48px 32px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center">
 <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; background: radial-gradient(closest-side at 20% 20%, rgba(77,107,255,0.30), rgba(77,107,255,0) 70%), radial-gradient(closest-side at 80% 25%, rgba(240,64,127,0.24), rgba(240,64,127,0) 70%), radial-gradient(closest-side at 50% 90%, rgba(47,230,176,0.22), rgba(47,230,176,0) 70%)"></div>
 <span style="position: relative; display: flex; gap: 6px" aria-hidden="true"><span style="width: 18px; height: 54px; border-radius: 9px; background: #4D6BFF; display: block; transform: rotate(-8deg)"></span><span style="width: 18px; height: 54px; border-radius: 9px; background: #2FE6B0; display: block"></span><span style="width: 18px; height: 54px; border-radius: 9px; background: #F0407F; display: block; transform: rotate(8deg)"></span></span>
 <h1 class="pcl-display" style="position: relative; margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Done for today</h1>
 <p style="position: relative; margin: 0; max-width: 440px; font-size: 16px; line-height: 26px; color: #A9A6BC">Five cards in about three minutes. You'll see the tricky ones again tomorrow, and the easy ones not for a while.</p>
-<div style="position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 6px">
+<div style="position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 6px">
 <a href="PrismDashboard.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 48px; padding: 0 24px; display: inline-flex; align-items: center; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Back to Home</a>
-<button type="button" onClick="{{restart}}" style="height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Review Again</button>
+<button type="button" onClick="{{restart}}" style="height: 48px; padding: 0 24px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Review Again</button>
 </div>
 </section>
 </sc-if>
 </div>
 
-<aside style="display: flex; flex-direction: column; gap: 14px">
-<section style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<aside style="display: flex; flex-direction: column; gap: 16px">
+<section style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 12px">
 <h2 class="pcl-display" style="margin: 0; font-size: 17px; font-weight: 700">Why am I seeing this card?</h2>
 <p style="margin: 0; font-size: 14px; line-height: 22px; color: #A9A6BC">{{card.why}}</p>
 </section>
-<section style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 22px; display: flex; flex-direction: column; gap: 12px">
+<section style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 12px">
 <h2 class="pcl-display" style="margin: 0; font-size: 17px; font-weight: 700">Today's mix</h2>
-<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
-<li style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #4D6BFF; display: block"></span>Front-End</span><span style="color: #8B88A0">4 cards</span></li>
-<li style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><span style="display: flex; align-items: center; gap: 10px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #2FE6B0; display: block"></span>Data Analysis</span><span style="color: #8B88A0">1 card</span></li>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 14px">
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 12px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #4D6BFF; display: block"></span>Front-End</span><span style="color: #8B88A0">4 cards</span></li>
+<li style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span style="display: flex; align-items: center; gap: 12px"><span style="width: 10px; height: 10px; border-radius: 3px; background: #2FE6B0; display: block"></span>Data Analysis</span><span style="color: #8B88A0">1 card</span></li>
 </ul>
 <p style="margin: 0; font-size: 13px; line-height: 20px; color: #8B88A0">Each card comes back just before you'd forget it. Get it right and the gap grows: a day, then four, then weeks. Scheduling by FSRS, the open-source method Anki uses.</p>
 </section>
@@ -115,7 +116,7 @@ a:hover { color: #FFFFFF; }
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":820}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":800}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
@@ -142,9 +143,9 @@ class Component extends DCLogic {
       else this.setState({ i: i + 1, revealed: false });
     };
     const R = [
-      { label: 'Again', when: 'in 1 min', border: 'rgba(240,64,127,0.55)', bg: 'rgba(240,64,127,0.10)', noteC: '#FF7DB0' },
+      { label: 'Again', when: 'in 1 min', border: 'rgba(255,154,162,0.55)', bg: 'rgba(255,154,162,0.08)', noteC: '#FF9AA2' },
       { label: 'Hard', when: 'in 10 min', border: 'rgba(255,138,61,0.55)', bg: 'rgba(255,138,61,0.10)', noteC: '#FFAA6E' },
-      { label: 'Good', when: 'in 2 days', border: 'rgba(77,107,255,0.6)', bg: 'rgba(77,107,255,0.14)', noteC: '#8EA2FF' },
+      { label: 'Good', when: 'in 2 days', border: 'rgba(255,255,255,0.35)', bg: 'rgba(255,255,255,0.05)', noteC: '#DCD9EA' },
       { label: 'Easy', when: 'in 6 days', border: 'rgba(47,230,176,0.55)', bg: 'rgba(47,230,176,0.10)', noteC: '#4BE3A8' }
     ];
     const ratings = R.map((r) => ({ label: r.label, when: r.when, border: r.border, bg: r.bg, noteC: r.noteC, pick: next }));

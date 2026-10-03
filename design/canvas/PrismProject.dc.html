@@ -27,7 +27,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
   .pcl-editor { border-right: none !important; }
 }
 @container pcl (max-width: 640px) {
-  .pcl-head { padding: 0 12px !important; gap: 10px !important; }
+  .pcl-head { padding: 0 12px !important; gap: 12px !important; }
   .pcl-hide-sm { display: none !important; }
   .pcl-panel, .pcl-previewcol { padding: 20px 16px !important; }
   .pcl-code { font-size: 11.5px !important; line-height: 22px !important; }
@@ -44,22 +44,22 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <div style="display: flex; align-items: center; gap: 8px">
 <button type="button" onClick="{{askSelected}}" class="pcl-hide-sm" style="height: 42px; padding: 0 16px 0 6px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><span style="width: 30px; height: 30px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>Ask AI</button>
 <button type="button" onClick="{{runChecks}}" style="height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #4BE3A8" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Run Checks</button>
-<button type="button" disabled="{{ true }}" aria-describedby="pcl-submit-note" class="pcl-hide-sm" style="height: 42px; padding: 0 18px; border-radius: 999px; border: 1px solid #332E4D; background: #161328; color: #8B88A0; font-family: inherit; font-size: 14px; font-weight: 600; cursor: not-allowed">Submit Project</button>
+<button type="button" disabled="{{ true }}" aria-describedby="pcl-submit-note" class="pcl-hide-sm" style="height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: #161328; color: #8B88A0; font-family: inherit; font-size: 14px; font-weight: 600; cursor: not-allowed">Submit Project</button>
 </div>
 </div>
 </header>
 
 <div class="pcl-work" style="position: relative; display: grid; grid-template-columns: 360px minmax(0, 1fr) 400px; min-height: 860px">
 
-<aside class="pcl-panel" aria-label="Brief and checks" style="border-right: 1px solid #1C1930; padding: 24px 20px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
-<section aria-labelledby="pcl-brief-t" style="display: flex; flex-direction: column; gap: 10px">
+<aside class="pcl-panel" aria-label="Brief and checks" style="border-right: 1px solid #1C1930; padding: 24px 20px; display: flex; flex-direction: column; gap: 24px; box-sizing: border-box">
+<section aria-labelledby="pcl-brief-t" style="display: flex; flex-direction: column; gap: 12px">
 <h2 id="pcl-brief-t" class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">The brief</h2>
 <p style="margin: 0; font-size: 14px; line-height: 22px; color: #DCD9EA">Mama Nkechi runs a small restaurant in Enugu. Most of her customers find her on their phones, so the page has to look right on a small screen first.</p>
-<details style="font-size: 14px"><summary style="cursor: pointer; color: #8EA2FF; font-weight: 500">What she asked for</summary><ul style="margin: 10px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; color: #A9A6BC; line-height: 21px"><li>Her menu, a short story about the kitchen and an order button</li><li>Easy to read in bright sunlight</li><li>Loads quickly on a slow connection</li></ul></details>
+<details style="font-size: 14px"><summary style="cursor: pointer; color: #8EA2FF; font-weight: 500">What she asked for</summary><ul style="margin: 12px 0 0; padding-left: 16px; display: flex; flex-direction: column; gap: 6px; color: #A9A6BC; line-height: 21px"><li>Her menu, a short story about the kitchen and an order button</li><li>Easy to read in bright sunlight</li><li>Loads quickly on a slow connection</li></ul></details>
 </section>
 
 <section aria-labelledby="pcl-checks-t" style="display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <h2 id="pcl-checks-t" class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">Checks</h2>
 <p style="margin: 0; font-size: 13px; color: #A9A6BC">{{checksSummary}}</p>
 </div>
@@ -67,12 +67,12 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{checks}}" as="k" hint-placeholder-count="5">
 <li style="border-radius: 16px; border: 1px solid {{k.border}}; background: {{k.bg}}; overflow: hidden">
-<button type="button" onClick="{{k.pick}}" aria-expanded="{{k.expanded}}" style="width: 100%; display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; line-height: 21px; text-align: left; cursor: pointer">
+<button type="button" onClick="{{k.pick}}" aria-expanded="{{k.expanded}}" style="width: 100%; display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; border: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; line-height: 21px; text-align: left; cursor: pointer">
 <span style="width: 22px; height: 22px; border-radius: 7px; background: {{k.tile}}; border: 1.5px solid {{k.tileBorder}}; color: {{k.tileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box; margin-top: 1px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 13px; height: 13px; stroke-width: 2.6" aria-hidden="true"><path d="{{k.icon}}" /></svg></span>
 <span style="flex: 1"><span style="display: block">{{k.name}}</span><span style="display: block; font-size: 12px; color: {{k.statusC}}">{{k.status}}</span></span>
 </button>
 <sc-if value="{{k.open}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 0 14px 14px 48px; display: flex; flex-direction: column; gap: 10px">
+<div style="padding: 0 16px 16px 48px; display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-size: 13px; line-height: 20px; color: #DCD9EA">{{k.detail}}</p>
 <p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #8B88A0">{{k.where}}</p>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
@@ -81,7 +81,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <sc-if value="{{k.answered}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; gap: 8px; align-items: flex-start">
 <span style="width: 24px; height: 24px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg viewBox="0 0 24 24" style="width: 12px; height: 12px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>
-<p style="margin: 0; font-size: 13px; line-height: 20px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 16px 16px 16px; padding: 9px 12px">{{k.ai}}</p>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #DCD9EA; background: #161328; border: 1px solid #2A2540; border-radius: 6px 16px 16px 16px; padding: 8px 12px">{{k.ai}}</p>
 </div>
 </sc-if>
 </div>
@@ -101,7 +101,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </div>
 <p class="pcl-hide-sm" style="margin: 0; font-size: 12px; color: #8B88A0">Autosaves as you type</p>
 </div>
-<div class="pcl-code" style="flex: 1; padding: 18px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 26px; overflow: hidden">
+<div class="pcl-code" style="flex: 1; padding: 16px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 14px; line-height: 26px; overflow: hidden">
 <sc-if value="{{showingHtml}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">1</span><span><span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">header</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"site-header"</span><span style="color: #8B88A0">&gt;</span></span></div>
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">2</span><span>  <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">nav</span> <span style="color: #FF7DB0">class</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"menu"</span><span style="color: #8B88A0">&gt;</span></span></div>
@@ -119,7 +119,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">14</span><span>  <span style="color: #8B88A0">&lt;</span><span style="color: #8EA2FF">img</span> <span style="color: #FF7DB0">src</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"jollof.jpg"</span> <span style="color: #FF7DB0">alt</span><span style="color: #8B88A0">=</span><span style="color: #4BE3A8">"A plate of smoky party jollof"</span><span style="color: #8B88A0"> /</span><span style="color: #8B88A0">&gt;</span></span></div>
 </sc-if>
 <sc-if value="{{showingCss}}" hint-placeholder-val="{{ true }}">
-<div style="padding: 0 20px 8px 54px; color: #6E6A86">/* Navigation */</div>
+<div style="padding: 0 20px 8px 56px; color: #6E6A86">/* Navigation */</div>
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">10</span><span><span style="color: #FFFFFF">.menu</span> <span style="color: #8B88A0">{</span></span></div>
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">11</span><span>  <span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">flex</span><span style="color: #8B88A0">;</span></span></div>
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">12</span><span>  <span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:</span> <span style="color: #4BE3A8">space-between</span><span style="color: #8B88A0">;</span></span></div>
@@ -138,32 +138,32 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <div style="display: flex; padding: 0 20px; white-space: pre;"><span style="width: 34px; color: #5E5A75; flex-shrink: 0">25</span><span><span style="color: #8B88A0">}</span></span></div>
 </sc-if>
 </div>
-<div style="border-top: 1px solid #1C1930; padding: 12px 20px; display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A9A6BC">
+<div style="border-top: 1px solid #1C1930; padding: 12px 20px; display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; color: #A9A6BC">
 <span style="width: 8px; height: 8px; border-radius: 999px; background: {{consoleDot}}; display: block"></span>{{consoleText}}
 </div>
 </section>
 
-<section class="pcl-previewcol" aria-label="Live preview" style="padding: 20px; display: flex; flex-direction: column; gap: 14px; box-sizing: border-box">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<section class="pcl-previewcol" aria-label="Live preview" style="padding: 20px; display: flex; flex-direction: column; gap: 16px; box-sizing: border-box">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <h2 class="pcl-display" style="margin: 0; font-size: 18px; font-weight: 700">Preview</h2>
-<div role="group" aria-label="Screen size" style="display: flex; gap: 4px; padding: 3px; border-radius: 999px; border: 1px solid #2A2540">
+<div role="group" aria-label="Screen size" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #2A2540">
 <button type="button" onClick="{{showPhone}}" aria-pressed="{{phonePressed}}" style="height: 30px; padding: 0 12px; border-radius: 999px; border: none; background: {{phoneBg}}; color: {{phoneFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">Phone · 320px</button>
 <button type="button" onClick="{{showDesk}}" aria-pressed="{{deskPressed}}" style="height: 30px; padding: 0 12px; border-radius: 999px; border: none; background: {{deskBg}}; color: {{deskFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">Laptop</button>
 </div>
 </div>
-<div style="flex: 1; border-radius: 22px; background: #0E0C1A; border: 1px solid #221E36; display: flex; align-items: flex-start; justify-content: center; padding: 22px 12px; overflow: hidden; min-height: 560px">
+<div style="flex: 1; border-radius: 22px; background: #0E0C1A; border: 1px solid #221E36; display: flex; align-items: flex-start; justify-content: center; padding: 24px 12px; overflow: hidden; min-height: 560px">
 <div role="img" aria-label="{{previewLabel}}" style="position: relative; width: {{frameW}}; border-radius: {{frameR}}; border: 2px solid #3A3456; background: #FFF8EE; color: #2A1A0E; overflow: visible; box-sizing: border-box">
 <div style="position: relative; height: 46px; display: flex; align-items: center; padding: 0 12px; border-bottom: 1px solid #F0E2CC; border-radius: {{frameTopR}}; background: #FFF8EE">
 <span style="font-weight: 700; font-size: 12px; white-space: nowrap">Mama Nkechi's</span>
 <span style="position: absolute; left: {{menuLeft}}; right: {{menuRight}}; top: 9px; width: {{menuW}}; height: 28px; display: flex; justify-content: space-between; align-items: center; padding: 0 8px; box-sizing: border-box; font-size: 11px; font-weight: 600; border: {{menuBorder}}; border-radius: 6px; background: #FFF8EE"><span>Our food</span><span>About us</span><span>Order</span></span>
 </div>
 <sc-if value="{{overflowing}}" hint-placeholder-val="{{ true }}">
-<span style="position: absolute; right: -50px; top: 44px; z-index: 1; font-size: 11px; font-weight: 600; color: #FF9AA2; white-space: nowrap; background: #07060D; padding: 3px 8px; border-radius: 999px; border: 1px solid #FF9AA2">40px too wide</span>
+<span style="position: absolute; right: -50px; top: 44px; z-index: 1; font-size: 11px; font-weight: 600; color: #FF9AA2; white-space: nowrap; background: #07060D; padding: 4px 8px; border-radius: 999px; border: 1px solid #FF9AA2">40px too wide</span>
 </sc-if>
-<div style="padding: 22px 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="padding: 24px 16px 16px; display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; font-size: {{h1Size}}; line-height: 1.05; font-weight: 800; letter-spacing: -0.02em">Mama Nkechi's Kitchen</p>
 <p style="margin: 0; font-size: 12px; line-height: 18px; color: #6B5442">Jollof, ofe onugbu and cold zobo, cooked fresh every day in Enugu.</p>
-<span style="position: relative; align-self: flex-start; margin-top: 4px; background: #FF8A3D; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 9px 16px; border-radius: 999px">Order Now<span style="position: absolute; left: calc(100% + 8px); top: 7px; font-size: 10px; font-weight: 600; color: #B42318; white-space: nowrap; background: #FFE4E1; padding: 2px 7px; border-radius: 999px">2.3 : 1 contrast</span></span>
+<span style="position: relative; align-self: flex-start; margin-top: 4px; background: #FF8A3D; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 8px 16px; border-radius: 999px">Order Now<span style="position: absolute; left: calc(100% + 8px); top: 7px; font-size: 10px; font-weight: 600; color: #B42318; white-space: nowrap; background: #FFE4E1; padding: 2px 8px; border-radius: 999px">2.3 : 1 contrast</span></span>
 </div>
 <div style="margin: 0 16px 16px; height: 120px; border-radius: 14px; background: radial-gradient(circle at 35% 40%, #F2B24C 0%, #D9622B 45%, #8E2F14 100%); display: flex; align-items: flex-end; padding: 8px; box-sizing: border-box"><span style="font-size: 10px; color: #FFF3E2; background: rgba(0,0,0,0.35); padding: 2px 6px; border-radius: 6px">alt: A plate of smoky party jollof</span></div>
 </div>
@@ -173,7 +173,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":940}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":950}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);

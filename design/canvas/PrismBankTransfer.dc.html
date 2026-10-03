@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism — Bank transfer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #07060D; }
+a { color: #FFFFFF; }
+a:hover { color: #FFFFFF; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #8B88A0; }
+.pcl-input { width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; }
+.pcl-input:focus { outline: none; border-color: #8EA2FF; box-shadow: 0 0 0 3px rgba(77,107,255,0.25); }
+.pcl-acc summary::-webkit-details-marker { display: none; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-mtop { display: flex !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-g3, .pcl-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pcl-sticky { position: relative !important; top: auto !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-flow { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-appmain { padding: 24px 16px 40px !important; gap: 16px !important; }
+  .pcl-sec { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .pcl-sec-first { padding-top: 64px !important; }
+  .pcl-sec-last { padding-bottom: 64px !important; }
+  .pcl-herosec { padding-top: 40px !important; padding-bottom: 32px !important; }
+  .pcl-secstack, .pcl-stack-lg { gap: 32px !important; }
+  .pcl-split { gap: 32px !important; }
+  .pcl-g2, .pcl-g3, .pcl-g4 { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-card-lg { padding: 24px !important; }
+  .pcl-display-xl { font-size: 44px !important; line-height: 50px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  .pcl-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .pcl-h2-lg { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-show-xs { display: flex !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-full-xs { width: 100% !important; justify-content: center !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px 16px !important; gap: 12px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-lessonmain { padding: 24px 16px 40px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -360px; width: 1400px; height: 860px; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(123,92,255,0.24), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 68% 55%, rgba(77,107,255,0.18), rgba(0,0,0,0) 72%)"></div>
+<header style="position: relative; border-bottom: 1px solid #1C1930">
+<div class="pcl-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="PrismDashboard.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span class="pcl-hide-xs" style="font-size: 18px; color: #FFFFFF; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #A9A6BC"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #4BE3A8" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></svg>Secure payment</p>
+</div>
+</header>
+<main class="pcl-wrap pcl-flow" style="position: relative; max-width: 640px; margin: 0 auto; padding: 48px 24px 80px; display: flex; flex-direction: column; gap: 32px; box-sizing: border-box">
+<a href="PrismCheckout.dc.html" style="align-self: flex-start; display: flex; align-items: center; gap: 8px; font-size: 14px; color: #A9A6BC; text-decoration: none"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Choose another way to pay</a>
+
+<sc-if value="{{waiting}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Pay ₦59,000 to keep Pro</h1>
+<p style="margin: 0; font-size: 17px; line-height: 28px; color: #A9A6BC">Your year starts when your free trial ends on 8 October, so paying early doesn't cost you any days.</p>
+</div>
+<div role="group" aria-label="Payment method" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #2A2540; background: rgba(255,255,255,0.02)">
+<button type="button" onClick="{{setBank}}" aria-pressed="{{bankPressed}}" style="flex: 1; height: 40px; border-radius: 999px; border: none; background: {{bankBg}}; color: {{bankFg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">Bank transfer</button>
+<button type="button" onClick="{{setUssd}}" aria-pressed="{{ussdPressed}}" style="flex: 1; height: 40px; border-radius: 999px; border: none; background: {{ussdBg}}; color: {{ussdFg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">USSD</button>
+</div>
+<sc-if value="{{isBank}}" hint-placeholder-val="{{ true }}">
+<div class="pcl-card" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 8px 24px 8px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 12px; padding: 16px 0"><p style="margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap">Send exactly this</p><p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; color: #FFAA6E; white-space: nowrap"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>Account expires in 29:41</p></div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid #1C1930">
+<div style="min-width: 0"><p style="margin: 0; font-size: 13px; color: #A9A6BC">Amount</p><p style="margin: 4px 0 0; font-size: 24px; font-weight: 700; overflow-wrap: anywhere">₦59,000</p></div>
+<button type="button" aria-label="Copy amount" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>Copy</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid #1C1930">
+<div style="min-width: 0"><p style="margin: 0; font-size: 13px; color: #A9A6BC">Account number</p><p style="margin: 4px 0 0; font-size: 24px; font-weight: 700; font-family: 'JetBrains Mono', ui-monospace, monospace; letter-spacing: 0.04em; overflow-wrap: anywhere">9921 4408 17</p></div>
+<button type="button" aria-label="Copy account number" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>Copy</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid #1C1930">
+<div style="min-width: 0"><p style="margin: 0; font-size: 13px; color: #A9A6BC">Bank</p><p style="margin: 4px 0 0; font-size: 16px; font-weight: 500; overflow-wrap: anywhere">Wema Bank</p></div>
+<button type="button" aria-label="Copy bank" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>Copy</button>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-top: 1px solid #1C1930">
+<div style="min-width: 0"><p style="margin: 0; font-size: 13px; color: #A9A6BC">Account name</p><p style="margin: 4px 0 0; font-size: 16px; font-weight: 500; overflow-wrap: anywhere">PractiCode Learn / Tolu Adebayo</p></div>
+<button type="button" aria-label="Copy account name" style="height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; display: flex; align-items: center; gap: 8px; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 15px; height: 15px" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>Copy</button>
+</div>
+</div>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px">
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; border-radius: 10px; background: #FFFFFF; color: #07060D; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span><span style="font-size: 15px; line-height: 24px; color: #DCD9EA; padding-top: 4px">Open your bank app, or dial your bank's USSD code.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; border-radius: 10px; background: #FFFFFF; color: #07060D; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span><span style="font-size: 15px; line-height: 24px; color: #DCD9EA; padding-top: 4px">Send exactly ₦59,000 to the account above. This account is only for this payment.</span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; border-radius: 10px; background: #FFFFFF; color: #07060D; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</span><span style="font-size: 15px; line-height: 24px; color: #DCD9EA; padding-top: 4px">Come back here. We confirm it for you, usually within a few minutes.</span></li>
+</ol>
+</sc-if>
+<sc-if value="{{isUssd}}" hint-placeholder-val="{{ false }}">
+<div class="pcl-card" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 15px; font-weight: 600">Dial this code from the phone linked to your bank account</p>
+<p class="pcl-display" style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 30px; line-height: 40px; font-weight: 600; letter-spacing: 0.04em">*000*59000*4417#</p>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #A9A6BC">Your bank asks you to confirm ₦59,000 to PractiCode Learn with your PIN. It works on any phone, even without data. The code expires in 29:41.</p>
+</div>
+</sc-if>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<button type="button" onClick="{{sent}}" style="height: 56px; border-radius: 999px; border: none; background: {{cta}}; color: {{ctaFg}}; font-family: inherit; font-size: 16px; font-weight: 600; cursor: pointer">I've Sent the Money</button>
+<p style="margin: 0; text-align: center; font-size: 13px; line-height: 20px; color: #8B88A0">Sent a different amount by mistake? We refund it within 2 working days.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{checking}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: 32px 0">
+<span aria-hidden="true" style="width: 72px; height: 72px; border-radius: 999px; border: 4px solid #26213B; border-top-color: #B9A2FF; box-sizing: border-box; display: block"></span>
+<div style="display: flex; flex-direction: column; gap: 12px"><h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 36px; line-height: 42px; font-weight: 800; letter-spacing: -0.03em">Checking for your payment</h1><p style="margin: 0; max-width: 460px; font-size: 16px; line-height: 26px; color: #A9A6BC">This usually takes a few minutes. You can close this page. We'll email you the moment it lands.</p></div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px">
+<button type="button" onClick="{{received}}" style="height: 48px; padding: 0 24px; border-radius: 999px; border: none; background: {{cta}}; color: {{ctaFg}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Check Again</button>
+<a href="PrismDashboard.dc.html" style="text-decoration: none; height: 48px; padding: 0 20px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; font-size: 15px; box-sizing: border-box; font-weight: 500; border: 1px solid #332E4D; background: rgba(255,255,255,0.03)">Back to My Dashboard</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{done}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: 32px 0">
+<span style="width: 72px; height: 72px; border-radius: 16px; background: rgba(47,230,176,0.16); color: #4BE3A8; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 33px; height: 33px" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>
+<div style="display: flex; flex-direction: column; gap: 12px"><h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 36px; line-height: 42px; font-weight: 800; letter-spacing: -0.03em">Payment received</h1><p style="margin: 0; max-width: 460px; font-size: 16px; line-height: 26px; color: #A9A6BC">₦59,000 arrived. Pro is yours until 8 October 2027, and the receipt is in your email.</p></div>
+<a href="PrismLesson.dc.html" style="text-decoration: none; height: 52px; padding: 0 32px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; font-size: 16px; box-sizing: border-box; font-weight: 600; background: {{cta}}; color: {{ctaFg}}">Continue Learning</a>
+</div>
+</sc-if>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { step: 'details', how: 'bank' };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#FFFFFF';
+    const ctaFg = yellow ? '#000000' : '#07060D';
+    const bank = st.how !== 'ussd';
+    const on = { bg: '#FFFFFF', fg: '#07060D' };
+    const off = { bg: 'transparent', fg: '#DCD9EA' };
+    return {
+      cta: cta, ctaFg: ctaFg,
+      waiting: st.step === 'details',
+      checking: st.step === 'checking',
+      done: st.step === 'done',
+      isBank: bank, isUssd: !bank,
+      bankBg: bank ? on.bg : off.bg, bankFg: bank ? on.fg : off.fg, bankPressed: bank ? 'true' : 'false',
+      ussdBg: bank ? off.bg : on.bg, ussdFg: bank ? off.fg : on.fg, ussdPressed: bank ? 'false' : 'true',
+      setBank: () => this.setState({ how: 'bank' }),
+      setUssd: () => this.setState({ how: 'ussd' }),
+      sent: () => this.setState({ step: 'checking' }),
+      received: () => this.setState({ step: 'done' })
+    };
+  }
+}
+</script>
+</body>
+</html>
