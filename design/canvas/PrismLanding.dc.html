@@ -720,8 +720,8 @@ The PractiCode team
 <div style="padding: 12px 16px 16px; border-top: 1px solid #221E36; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; align-items: center; gap: 12px; border-radius: 999px; border: 1px solid #2A2540; background: #0B0A14; padding: 4px 4px 4px 16px">
 <label for="pcl-chat-q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Your question</label>
-<input id="pcl-chat-q" type="text" placeholder="Type your question…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px" />
-<button type="button" aria-label="Send" style="width: 36px; height: 36px; border-radius: 999px; border: none; background: #FFFFFF; color: #07060D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M12 19V5" /><path d="m5 12 7-7 7 7" /></svg></button>
+<input id="pcl-chat-q" type="text" value="{{draft}}" onInput="{{typeDraft}}" placeholder="Type your question…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px" />
+<button type="button" aria-label="Send" onClick="{{send}}" disabled="{{sendDisabled}}" style="opacity: {{sendOpacity}}; width: 36px; height: 36px; border-radius: 999px; border: none; background: #FFFFFF; color: #07060D; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M12 19V5" /><path d="m5 12 7-7 7 7" /></svg></button>
 </div>
 <p style="margin: 0; font-size: 11px; line-height: 16px; color: #8B88A0; text-align: center">AI answers can be wrong. Prefer a person? <a href="mailto:practicodeacademy@gmail.com" style="color: #DCD9EA">Email us</a>.</p>
 </div>
@@ -793,11 +793,13 @@ class Component extends DCLogic {
     const asked = st.asked || [];
     const chatMessages = [];
     asked.forEach((k) => {
+      if (String(k).indexOf('typed:') === 0) { chatMessages.push({ user: true, bot: false, text: String(k).slice(6) }); chatMessages.push({ user: false, bot: true, text: "Good question. I can help with tracks, prices, payments and how lessons work. For anything else, email practicodeacademy@gmail.com and a person will reply." }); return; }
       const c = CHAT.find((x) => x.key === k);
       if (c) { chatMessages.push({ user: true, bot: false, text: c.q }); chatMessages.push({ user: false, bot: true, text: c.a }); }
     });
     const chatChips = CHAT.filter((c) => asked.indexOf(c.key) < 0).map((c) => ({ q: c.q, ask: () => this.setState({ asked: asked.concat([c.key]) }) }));
     return {
+      draft: (this.state || {}).draft || '', typeDraft: (e) => this.setState({ draft: e && e.target ? e.target.value : '' }), sendDisabled: !((this.state || {}).draft || '').trim(), sendOpacity: !((this.state || {}).draft || '').trim() ? 0.5 : 1, send: () => { const d = ((this.state || {}).draft || '').trim(); if (!d) return; this.setState({ asked: asked.concat(['typed:' + d]), draft: '' }); },
       navOpen: !!(this.state && this.state.navOpen), navClosed: !(this.state && this.state.navOpen), navExpanded: this.state && this.state.navOpen ? 'true' : 'false', toggleNav: () => this.setState({ navOpen: !(this.state && this.state.navOpen) }),
       cta: yellow ? '#FED606' : '#FFFFFF',
       ctaFg: yellow ? '#000000' : '#07060D',

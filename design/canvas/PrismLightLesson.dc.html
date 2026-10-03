@@ -175,8 +175,8 @@ a:hover { color: #15122A; }
 <div style="padding: 12px 16px 16px; border-top: 1px solid #E4E1ED; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; align-items: center; gap: 12px; border-radius: 999px; border: 1px solid #DFDCE9; background: #FAF9FD; padding: 4px 4px 4px 16px">
 <label for="pcl-ai-q" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Ask the AI tutor</label>
-<input id="pcl-ai-q" type="text" placeholder="Ask about this exercise…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #15122A; font-family: inherit; font-size: 14px" />
-<button type="button" aria-label="Send" style="width: 34px; height: 34px; border-radius: 999px; border: none; background: #15122A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 19V5" /><path d="m5 12 7-7 7 7" /></svg></button>
+<input id="pcl-ai-q" type="text" value="{{draft}}" onInput="{{typeDraft}}" placeholder="Ask about this exercise…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #15122A; font-family: inherit; font-size: 14px" />
+<button type="button" aria-label="Send" onClick="{{send}}" disabled="{{sendDisabled}}" style="opacity: {{sendOpacity}}; width: 34px; height: 34px; border-radius: 999px; border: none; background: #15122A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 19V5" /><path d="m5 12 7-7 7 7" /></svg></button>
 </div>
 <p style="margin: 0; font-size: 11px; line-height: 16px; color: #66627A">It sees this lesson and your code, nothing else. It gives hints before answers, and it can make mistakes.</p>
 </div>
@@ -249,6 +249,7 @@ class Component extends DCLogic {
     const used = asked.length;
     const aiMessages = [];
     asked.forEach((k) => {
+      if (String(k).indexOf('typed:') === 0) { aiMessages.push({ user: true, bot: false, text: String(k).slice(6), source: '' }); aiMessages.push({ user: false, bot: true, text: "Let's work it out together. Which part is unclear: what justify-content does, or which way the main axis runs? Tap a value above and watch the boxes while you think.", source: 'Step 4, Try each value' }); return; }
       const x = QA.find((y) => y.key === k);
       if (x) { aiMessages.push({ user: true, bot: false, text: x.q, source: '' }); aiMessages.push({ user: false, bot: true, text: x.a, source: x.source }); }
     });
@@ -257,6 +258,7 @@ class Component extends DCLogic {
     const aiPips = [];
     for (let i = 0; i < LIMIT; i++) aiPips.push({ bg: i < LIMIT - used ? '#B9A2FF' : '#E2DFEC' });
     return {
+      draft: (this.state || {}).draft || '', typeDraft: (e) => this.setState({ draft: e && e.target ? e.target.value : '' }), sendDisabled: !((this.state || {}).draft || '').trim() || aiOut, sendOpacity: !((this.state || {}).draft || '').trim() || aiOut ? 0.5 : 1, send: () => { const d = ((this.state || {}).draft || '').trim(); if (!d || aiOut) return; this.setState({ asked: asked.concat(['typed:' + d]), draft: '', ai: true }); },
       justify: justify,
       explain: EXPLAIN[justify],
       values: values,

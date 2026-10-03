@@ -80,7 +80,9 @@ Three screens are states rather than destinations, so nothing links to them: loa
 - Spacing check: no padding, margin or gap off the scale.
 - Every frame's height was measured in a browser at 1440 px and 390 px. Light and dark heights match exactly.
 - Contrast check on every light screen at both widths. No text falls below 3:1 except gradient headline text, which the checker can't measure, and mock-ups of a learner's own website.
-- Visual review of every screen in both modes.
+- Interaction test: every handler in every frame is clicked twice and the screen re-rendered, and every click binding resolves to a real function. No button is left without an action. The one exception is "Submit Project", which stays disabled, with a note, while project checks are failing.
+- Layout sweep at 1440 px and 390 px: no text runs off the screen or is clipped. The only exception is the tools strip under the hero, which scrolls by design and stops for reduced motion.
+- Visual review of every screen in both modes, including the interactive states.
 
 ## Next steps
 1. Usability test with 5 learners on low-end Android phones (lesson steps, AI tutor, checkout), in both modes, including outdoors in daylight.

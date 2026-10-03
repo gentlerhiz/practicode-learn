@@ -59,7 +59,7 @@ a:hover { color: #FFFFFF; }
 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 6px">
 <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 48px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Add to LinkedIn</a>
 <button type="button" onClick="{{copy}}" style="height: 48px; padding: 0 20px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></svg>{{copyLabel}}</button>
-<button type="button" style="background: transparent; color: #FFFFFF; font-family: inherit; cursor: pointer; font-size: 15px; font-weight: 500; height: 48px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 21h16" /></svg>PDF</button>
+<button type="button" onClick="{{getPdf}}" style="background: transparent; color: #FFFFFF; font-family: inherit; cursor: pointer; font-size: 15px; font-weight: 500; height: 48px; padding: 0 20px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid #332E4D"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 21h16" /></svg>{{pdfLabel}}</button>
 </div>
 </div>
 <div class="pcl-badgewrap" style="position: relative; display: flex; justify-content: center">
@@ -140,6 +140,7 @@ class Component extends DCLogic {
     ];
     const TILES = [['#3D5AF5', '#FFFFFF']];
     return {
+      getPdf: () => this.setState({ pdf: true }), pdfLabel: st.pdf ? 'PDF Downloaded' : 'PDF',
       skills: S.map((s, k) => ({ name: s[0], map: s[1], tile: TILES[0][0], tileFg: TILES[0][1] })),
       copyLabel: st.copied ? 'Link copied' : 'Copy Link',
       copy: () => this.setState({ copied: true }),

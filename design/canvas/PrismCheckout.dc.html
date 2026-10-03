@@ -123,7 +123,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 <div style="display: flex; justify-content: space-between; gap: 12px"><span>{{sumName}}</span><span>{{sumPrice}}</span></div>
 <div style="display: flex; justify-content: space-between; gap: 12px; color: #4BE3A8"><span>Free until 8 October</span><span>5 days left</span></div>
 </div>
-<details style="border-top: 1px solid #221E36; padding-top: 16px"><summary style="cursor: pointer; font-size: 14px; color: #DCD9EA">Got a coupon or scholarship code?</summary><div style="display: flex; gap: 8px; margin-top: 12px"><input type="text" aria-label="Code" placeholder="Enter code" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; height: 46px" /><button type="button" style="height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; cursor: pointer">Apply</button></div></details>
+<details style="border-top: 1px solid #221E36; padding-top: 16px"><summary style="cursor: pointer; font-size: 14px; color: #DCD9EA">Got a coupon or scholarship code?</summary><div style="display: flex; gap: 8px; margin-top: 12px"><input type="text" aria-label="Code" value="{{code}}" onInput="{{typeCode}}" placeholder="Enter code" style="width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #2A2540; border-radius: 14px; padding: 0 16px; background: #0E0C1A; color: #FFFFFF; font-family: inherit; font-size: 15px; height: 46px" /><button type="button" onClick="{{applyCode}}" style="height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 14px; cursor: pointer">Apply</button></div><sc-if value="{{codeMsgOn}}" hint-placeholder-val="{{ false }}"><p role="status" style="margin: 8px 0 0; font-size: 13px; line-height: 20px; color: {{codeMsgColor}}">{{codeMsg}}</p></sc-if></details>
 <div style="border-top: 1px solid #221E36; padding-top: 16px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><span style="font-size: 16px; font-weight: 600">Due today</span><span class="pcl-display" style="font-size: 36px; line-height: 40px; font-weight: 800">₦0</span></div>
 <p style="margin: 0; font-size: 13px; line-height: 20px; color: #A9A6BC">{{sumNext}}</p>
@@ -180,6 +180,7 @@ class Component extends DCLogic {
     const price = yearly ? '₦59,000' : '₦6,500';
     const every = yearly ? 'each year' : 'each month';
     return {
+      code: st.code || '', typeCode: (e) => this.setState({ code: e && e.target ? e.target.value : '', codeTried: false }), applyCode: () => this.setState({ codeTried: true }), codeMsgOn: !!st.codeTried, codeMsgColor: '#FF9AA2', codeMsg: (st.code || '').trim() ? "We couldn't find that code. Check it and try again." : 'Type your code first.',
       cta: cta,
       ctaFg: ctaFg,
       periods: periods,

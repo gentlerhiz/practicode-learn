@@ -60,5 +60,13 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Fixed
 
+- Every control in the prototype now does something:
+  - Copy buttons confirm, and coupon codes get an answer.
+  - Typed questions work in both chats, and count towards the tutor's daily limit.
+  - The bell opens notifications, and "Continue with Google" signs you in.
+  - The module check has a Question 11 to go back to.
+  - Settings rows edit in place, and Match device can be chosen.
+  - Cancelling the trial and deleting the account each ask you to confirm first.
+
 - Code blocks no longer render blank lines between lines.
 - Phone frames are sized to their measured heights. The track page phone frame was cutting off about 900 px.
