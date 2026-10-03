@@ -84,7 +84,7 @@ This repository is in the **design phase**. What exists today:
 - [x] Design system and UX principles
 - [x] Proposed architecture and decision records
 - [x] Final visual direction chosen: **Prism** ([design system](docs/design/design-system.md))
-- [x] UI designs for all 37 v1 screens in dark and light mode, at desktop and phone width, fully clickable, on one spacing standard ([design/](design/README.md))
+- [x] UI designs for all 38 v1 screens in dark and light mode, at desktop and phone width, fully clickable, on one spacing standard ([design/](design/README.md))
 - [ ] v1 specification sign-off ([draft](docs/specs/2026-10-02-v1-platform-design.md))
 - [ ] Implementation plan
 - [ ] Application code

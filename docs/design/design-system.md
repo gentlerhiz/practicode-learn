@@ -73,7 +73,7 @@ Every state pairs colour with an icon and a word (✓ Passed, ✕ Needs a fix). 
 
 ## Light mode
 
-Light mode uses the same layouts, type, spacing and components as dark mode. Only the tokens change. Learners choose it in **Settings → Learning → Appearance**: Dark, Light or Match device. Match device is the default. Light is easier to read in bright sunlight, which matters for learners using phones outdoors.
+Light mode uses the same layouts, type, spacing and components as dark mode. Only the tokens change. Anyone can switch from the theme button in the navbar (guests), the **Light mode / Dark mode** item under Settings in the sidebar (learners), or the same item in either phone menu. Learners can also set it in **Settings → Learning → Appearance**: Dark, Light or Match device. Match device is the default. Light is easier to read in bright sunlight, which matters for learners using phones outdoors.
 
 ### Tokens
 
@@ -210,6 +210,9 @@ Micro values are the only exceptions: 1–2 px for hairlines, and 6 px between p
 | **Radio card** | Ring and dot plus a border change. Used for billing period, payment method and tutor mode. |
 | **Score ring** | Brand gradient arc on a `line-subtle` track, with the percentage in Bricolage Grotesque. |
 | **Step bar** | Segmented, one segment per step, with the current step named in text ("Step 4 of 9 · Investigate"). |
+| **Theme switch** | Guests: a round sun or moon button before Log In, desktop only. Learners: a "Light mode" or "Dark mode" item under Settings in the sidebar. Both phone menus have it as a full-width row. It switches to the same page in the other mode. |
+| **Guest menu (phones)** | Under 960 px the navbar keeps the logo, Start Free and a menu button. The menu opens as a sheet under the header: Tracks, How It Works, AI Tutor, Pricing, Mentors, the theme switch and Log In. The current page is in bold. |
+| **Learner menu (phones)** | Under 1024 px the top bar keeps the logo, Ask AI and a menu button. The menu opens as a sheet with every sidebar item (Home, My Tracks, Review, Projects, Certificates, Community, Settings), the theme switch and the learner's account. The bottom tab bar stays for the five most-used places. |
 
 ## The AI tutor: UX rules
 

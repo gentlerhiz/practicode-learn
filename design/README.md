@@ -5,7 +5,7 @@ High-fidelity, interactive designs for PractiCode Learn v1, in the **Prism** dir
 **Live canvas:** https://claude.ai/artifact/7JGtvdSBs74EVYrGr1ZijS
 *(Private until it is shared from the canvas's Share menu.)*
 
-## Prism: 37 screens, in dark and light, each at desktop (1440 px) and phone (390 px) width
+## Prism: 38 screens, in dark and light, each at desktop (1440 px) and phone (390 px) width
 
 | Canvas page | What's on it |
 |---|---|
@@ -24,10 +24,11 @@ Both Prism pages are laid out in labelled rows:
 | **Practice and projects** | Projects list, project workspace, module check, module check results, community |
 | **Plans and payments** | Pricing, checkout, bank transfer and USSD, payment confirmed, payment failed, scholarship application, Mentor cohorts |
 | **Settings, states, legal** | Settings, loading skeleton, offline, page not found (404), privacy, terms and accessibility |
+| **About, and menus on phones** | The About page, then the guest menu and the learner menu open on a phone |
 
 ## Clicking through
 
-Every link and button goes to a real screen. Light screens link to light screens, and dark to dark. The Appearance setting in Settings switches between the two.
+Every link and button goes to a real screen. Light screens link to light screens, and dark to dark. The theme switch (navbar for guests, sidebar for learners, and both phone menus) jumps to the same page in the other mode.
 
 | Journey | Path |
 |---|---|
@@ -37,12 +38,20 @@ Every link and button goes to a real screen. Light screens link to light screens
 | Returning learner | Log in → Dashboard → *Jump Back In*, *Open Project*, *Take the Check*, *Choose a Plan*, Settings |
 | Projects and checks | Projects → Project workspace (*Ask AI why* on a failing check) · Module check → Results |
 | Paying | Pricing → Checkout → card → Payment confirmed, or bank transfer / USSD → "checking" → Payment received |
-| Switching theme | Settings → Learning → Appearance → Dark or Light |
+| Switching theme | The sun or moon button in the navbar · *Light mode* or *Dark mode* under Settings in the sidebar · the same row in either phone menu · Settings → Learning → Appearance |
+| Finding out who we are | Any footer → *About* |
 | Help | Site assistant on the landing page · Community · Scholarship · Mentor enquiry · Legal pages |
 
 Three screens are states rather than destinations, so nothing links to them: loading, payment failed and 404. Payment failed does link onward, to another card, bank transfer or USSD.
 
 ## What changed in this round (3 October 2026)
+
+**About page and navigation**
+- **About page:** a new page linked from every footer (not the navbar). Its sections are the mission, the story from the Ibadan classroom, how we teach, how it's built for real phones and budgets, our commitments, and two ways in: *Learn with us* and *Work with us* for employers, schools and funders. Every claim comes from the curriculum, privacy and pricing docs.
+- **Guest menu on phones:** marketing pages now have a menu button. Its sheet holds Tracks, How It Works, AI Tutor, Pricing, Mentors, the theme switch and Log In.
+- **Learner menu on phones:** app pages now have a menu button in the top bar. Its sheet holds every sidebar item, including My Tracks, Certificates and Community, which phones couldn't reach before. The bottom tab bar stays.
+- **Theme switch:** guests switch from the navbar, learners from the sidebar, and anyone from the phone menus.
+
 
 **Light mode**
 - Every screen now has a light version, on its own canvas page.
@@ -66,7 +75,7 @@ Three screens are states rather than destinations, so nothing links to them: loa
 - On the canvas, the lesson steps now sit together in one row, in lesson order.
 
 ## Checks run before publishing
-- Structure check on all 156 Prism frames (tags balanced, every `{{value}}` provided).
+- Structure check on all 164 Prism frames (tags balanced, every `{{value}}` provided).
 - Link check: every link points to an existing screen and every in-page anchor exists.
 - Spacing check: no padding, margin or gap off the scale.
 - Every frame's height was measured in a browser at 1440 px and 390 px. Light and dark heights match exactly.

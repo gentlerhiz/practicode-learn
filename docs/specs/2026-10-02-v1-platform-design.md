@@ -74,6 +74,7 @@ learn.practicode.tech
 ├── /pricing
 ├── /mentor              Mentor cohorts (enquiry form)
 ├── /scholarships        Scholarship application
+├── /about               About PractiCode Learn (linked from the footer, not the navbar)
 ├── /try/[lesson]         Free lesson without an account
 ├── /signup  /login
 ├── /verify-code  /check-email  /reset  /reset/new
@@ -92,11 +93,11 @@ learn.practicode.tech
 ```
 
 ### Screens designed in this phase
-All 37 screens are in the Prism direction, in dark and light mode, each at desktop and phone width, and every link leads to a real screen. Learners choose the mode in Settings (Dark, Light or Match device). See [design/README.md](../../design/README.md).
+All 38 screens are in the Prism direction, in dark and light mode, each at desktop and phone width, and every link leads to a real screen. Learners choose the mode in Settings (Dark, Light or Match device). See [design/README.md](../../design/README.md).
 
 | Area | Screens |
 |---|---|
-| Marketing | Landing (with site assistant), track page, pricing, Mentor cohorts, scholarship application, legal pages, page not found |
+| Marketing | Landing (with site assistant), track page, pricing, Mentor cohorts, scholarship application, about, legal pages, page not found |
 | Account | Sign-up, log in, 6-digit code, check your email, reset password, new password |
 | Getting started | Onboarding, guest lesson, guest lesson complete, new learner dashboard |
 | Learning | Dashboard, lesson steps (Predict, Investigate with AI tutor, Modify, Make, Python notebook), daily review |

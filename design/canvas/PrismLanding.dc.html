@@ -73,6 +73,25 @@ a:hover { color: #FFFFFF; }
   .pcl-code { font-size: 11.5px !important; line-height: 22px !important; }
   .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
 }
+
+@container pcl (max-width: 959px) {
+  .pcl-burger-g { display: inline-flex !important; }
+  .pcl-tt-desk { display: none !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-hdr-w { gap: 12px !important; }
+  .pcl-hdr-r { gap: 8px !important; }
+  .pcl-hdr-cta { padding: 0 14px !important; font-size: 14px !important; }
+}
+@container pcl (max-width: 1023px) {
+  .pcl-burger-a { display: inline-flex !important; }
+}
+@container pcl (min-width: 960px) {
+  .pcl-sheet-g { display: none !important; }
+}
+@container pcl (min-width: 1024px) {
+  .pcl-sheet-a { display: none !important; }
+}
 </style>
 </helmet>
 <div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; overflow: hidden">
@@ -80,7 +99,7 @@ a:hover { color: #FFFFFF; }
 <div style="background: linear-gradient(90deg, #3046E0 0%, #6A45F0 50%, #C42A6C 100%); color: #FFFFFF; text-align: center; font-size: 14px; font-weight: 500; padding: 8px 16px">Try a real lesson right now. No sign-up, no card. <a href="PrismTryLesson.dc.html" style="font-weight: 700">Start one →</a></div>
 
 <header style="position: relative; z-index: 2">
-<div class="pcl-wrap" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<div class="pcl-wrap pcl-hdr-w" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <a href="PrismLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
 <svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 30px; height: 26px" aria-hidden="true"><g style="fill: #FED606; stroke: #FED606; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
 <span style="font-size: 18px; color: #FFFFFF; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
@@ -92,11 +111,28 @@ a:hover { color: #FFFFFF; }
 <a href="PrismPricing.dc.html" style="text-decoration: none">Pricing</a>
 <a href="PrismMentor.dc.html" style="text-decoration: none">Mentors</a>
 </nav>
-<div style="display: flex; align-items: center; gap: 12px">
+<div class="pcl-hdr-r" style="display: flex; align-items: center; gap: 12px">
+<a data-theme-toggle="icon" href="PrismLightLanding.dc.html" class="pcl-tt-desk" aria-label="Switch to light mode" title="Switch to light mode" style="width: 42px; height: 42px; border-radius: 999px; border: 1px solid #332E4D; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg></a>
 <a href="PrismLogin.dc.html" class="pcl-hide-xs" style="text-decoration: none; font-size: 15px; font-weight: 500; height: 42px; padding: 0 16px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #332E4D">Log In</a>
-<a href="PrismOnboarding.dc.html" style="text-decoration: none; font-size: 15px; font-weight: 600; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Free</a>
+<a href="PrismOnboarding.dc.html" class="pcl-hdr-cta" style="white-space: nowrap; text-decoration: none; font-size: 15px; font-weight: 600; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Start Free</a>
+<button type="button" class="pcl-burger-g" onClick="{{toggleNav}}" aria-expanded="{{navExpanded}}" aria-controls="pcl-navsheet" aria-label="Menu" style="width: 42px; height: 42px; border-radius: 999px; border: 1px solid #332E4D; background: transparent; color: #FFFFFF; display: none; align-items: center; justify-content: center; cursor: pointer; padding: 0; flex-shrink: 0"><sc-if value="{{navClosed}}" hint-placeholder-val="{{ true }}"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" /></svg></sc-if><sc-if value="{{navOpen}}" hint-placeholder-val="{{ false }}"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg></sc-if></button>
 </div>
 </div>
+<sc-if value="{{navOpen}}" hint-placeholder-val="{{ false }}">
+<div id="pcl-navsheet" class="pcl-sheet-g" style="position: absolute; left: 0; right: 0; top: 100%; z-index: 30; background: #0B0A14; border-top: 1px solid #1C1930; border-bottom: 1px solid #1C1930; box-shadow: 0 32px 48px rgba(0,0,0,0.55)">
+<nav aria-label="Main menu" style="padding: 8px 16px 24px; display: flex; flex-direction: column">
+<a href="PrismLanding.dc.html#tracks" style="display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid #1C1930; text-decoration: none; font-size: 17px; font-weight: 500; color: #DCD9EA">Tracks<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<a href="PrismLanding.dc.html#how" style="display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid #1C1930; text-decoration: none; font-size: 17px; font-weight: 500; color: #DCD9EA">How It Works<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<a href="PrismLanding.dc.html#tutor" style="display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid #1C1930; text-decoration: none; font-size: 17px; font-weight: 500; color: #DCD9EA">AI Tutor<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<a href="PrismPricing.dc.html" style="display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid #1C1930; text-decoration: none; font-size: 17px; font-weight: 500; color: #DCD9EA">Pricing<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<a href="PrismMentor.dc.html" style="display: flex; align-items: center; justify-content: space-between; height: 56px; border-bottom: 1px solid #1C1930; text-decoration: none; font-size: 17px; font-weight: 500; color: #DCD9EA">Mentors<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px">
+<a data-theme-toggle="row" href="PrismLightLanding.dc.html" style="height: 52px; border-radius: 16px; border: 1px solid #2A2540; background: rgba(255,255,255,0.03); display: flex; align-items: center; gap: 12px; padding: 0 16px; text-decoration: none; font-size: 15px; font-weight: 500"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg><span>Light mode</span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; margin-left: auto; color: #8B88A0" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg></a>
+<a href="PrismLogin.dc.html" style="height: 52px; border-radius: 999px; border: 1px solid #332E4D; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 16px; font-weight: 500">Log In</a>
+</div>
+</nav>
+</div>
+</sc-if>
 </header>
 
 <section class="pcl-herosec" style="position: relative; padding: 64px 0 96px">
@@ -641,7 +677,7 @@ The PractiCode team
 <p style="margin: 0; font-size: 14px; line-height: 22px; color: #8B88A0">Learn the skills employers are hiring for, by actually doing them.</p>
 </div>
 <nav aria-label="Tracks" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Tracks</h3><a href="#tracks" style="color: #8B88A0; text-decoration: none">Front-End Web Development</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">Data Analysis</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">UI/UX Product Design</a><a href="#tracks" style="color: #8B88A0; text-decoration: none">AI &amp; Machine Learning</a></nav>
-<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Company</h3><a href="https://practicode.tech" style="color: #8B88A0; text-decoration: none">PractiCode Academy</a><a href="PrismMentor.dc.html" style="color: #8B88A0; text-decoration: none">Mentor cohorts</a><a href="PrismScholarship.dc.html" style="color: #8B88A0; text-decoration: none">Scholarships</a><a href="PrismCommunity.dc.html" style="color: #8B88A0; text-decoration: none">Community</a><a href="mailto:practicodeacademy@gmail.com" style="color: #8B88A0; text-decoration: none">Contact</a></nav>
+<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Company</h3><a href="PrismAbout.dc.html" style="color: #8B88A0; text-decoration: none">About</a><a href="https://practicode.tech" style="color: #8B88A0; text-decoration: none">PractiCode Academy</a><a href="PrismMentor.dc.html" style="color: #8B88A0; text-decoration: none">Mentor cohorts</a><a href="PrismScholarship.dc.html" style="color: #8B88A0; text-decoration: none">Scholarships</a><a href="PrismCommunity.dc.html" style="color: #8B88A0; text-decoration: none">Community</a><a href="mailto:practicodeacademy@gmail.com" style="color: #8B88A0; text-decoration: none">Contact</a></nav>
 <nav aria-label="Legal" style="display: flex; flex-direction: column; gap: 12px; font-size: 14px"><h3 style="margin: 0 0 4px; font-size: 14px; font-weight: 600">Legal</h3><a href="PrismLegal.dc.html" style="color: #8B88A0; text-decoration: none">Privacy</a><a href="PrismLegal.dc.html" style="color: #8B88A0; text-decoration: none">Terms</a><a href="PrismLegal.dc.html" style="color: #8B88A0; text-decoration: none">Accessibility Statement</a></nav>
 </div>
 <p style="margin: 0; font-size: 13px; color: #8B88A0; border-top: 1px solid #1C1930; padding-top: 24px">© 2026 PractiCode. Frameworks are named to show alignment, not endorsement.</p>
@@ -702,7 +738,7 @@ The PractiCode team
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"currency":{"editor":"enum","options":["NGN","GHS","KES","GBP","USD"],"default":"NGN","section":"Pricing"},"assistant":{"editor":"enum","options":["Closed","Open"],"default":"Closed","section":"Chat"},"$preview":{"width":1440,"height":10140}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"currency":{"editor":"enum","options":["NGN","GHS","KES","GBP","USD"],"default":"NGN","section":"Pricing"},"assistant":{"editor":"enum","options":["Closed","Open"],"default":"Closed","section":"Chat"},"$preview":{"width":1440,"height":10170}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
@@ -762,6 +798,7 @@ class Component extends DCLogic {
     });
     const chatChips = CHAT.filter((c) => asked.indexOf(c.key) < 0).map((c) => ({ q: c.q, ask: () => this.setState({ asked: asked.concat([c.key]) }) }));
     return {
+      navOpen: !!(this.state && this.state.navOpen), navClosed: !(this.state && this.state.navOpen), navExpanded: this.state && this.state.navOpen ? 'true' : 'false', toggleNav: () => this.setState({ navOpen: !(this.state && this.state.navOpen) }),
       cta: yellow ? '#FED606' : '#FFFFFF',
       ctaFg: yellow ? '#000000' : '#07060D',
       currencies: currencies,

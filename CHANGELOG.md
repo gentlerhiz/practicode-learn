@@ -34,6 +34,9 @@ All notable changes to this project are documented here. The format follows [Kee
 - A spacing standard (8-point scale, one section rhythm, standard card, grid and form spacing), documented in the design system and applied to every artboard
 - Prism light mode for all 37 screens, at desktop and phone width, on its own canvas page. Its tokens and rules are in the design system and brand config.
 - An Appearance setting (Dark, Light or Match device) in Settings
+- An About page (mission, story, how we teach, access, commitments, and ways to learn or work with us), linked from every footer
+- Menus on phones: a guest menu on marketing pages and a learner menu on app pages
+- A light/dark switch in the navbar for guests, under Settings in the sidebar for learners, and in both phone menus
 
 ### Changed
 

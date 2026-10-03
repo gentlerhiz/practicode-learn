@@ -204,7 +204,7 @@
     },
     "PrismLanding.dc.html": {
       "expand": "fill",
-      "h": 5070,
+      "h": 5090,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Landing — Desktop (1 of 2)",
@@ -214,7 +214,7 @@
     },
     "PrismLandingDesk2.dc.html": {
       "expand": "fill",
-      "h": 5070,
+      "h": 5080,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Landing — Desktop (2 of 2)",
@@ -223,7 +223,7 @@
       "y": 0
     },
     "PrismLandingPhone.dc.html": {
-      "h": 5500,
+      "h": 5510,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
@@ -233,7 +233,7 @@
       "y": 0
     },
     "PrismLandingPhone2.dc.html": {
-      "h": 5500,
+      "h": 5510,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
@@ -243,7 +243,7 @@
       "y": 0
     },
     "PrismLandingPhone3.dc.html": {
-      "h": 5480,
+      "h": 5490,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
@@ -310,7 +310,7 @@
       "title": "Prism · Track page — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 6320
+      "y": 6330
     },
     "PrismTrackPhone.dc.html": {
       "h": 6180,
@@ -320,7 +320,7 @@
       "title": "Prism · Track page — Phone",
       "w": 390,
       "x": 1520,
-      "y": 6320
+      "y": 6330
     },
     "PrismOnboarding.dc.html": {
       "expand": "fill",
@@ -330,7 +330,7 @@
       "title": "Prism · Onboarding — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 6320
+      "y": 6330
     },
     "PrismOnboardingPhone.dc.html": {
       "h": 1490,
@@ -340,7 +340,7 @@
       "title": "Prism · Onboarding — Phone",
       "w": 390,
       "x": 3510,
-      "y": 6320
+      "y": 6330
     },
     "PrismReview.dc.html": {
       "expand": "fill",
@@ -350,7 +350,7 @@
       "title": "Prism · Daily review — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 6320
+      "y": 6330
     },
     "PrismReviewPhone.dc.html": {
       "h": 1020,
@@ -360,7 +360,7 @@
       "title": "Prism · Daily review — Phone",
       "w": 390,
       "x": 5500,
-      "y": 6320
+      "y": 6330
     },
     "PrismCertificate.dc.html": {
       "expand": "fill",
@@ -370,7 +370,7 @@
       "title": "Prism · Certificate — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 6320
+      "y": 6330
     },
     "PrismCertificatePhone.dc.html": {
       "h": 3190,
@@ -380,7 +380,7 @@
       "title": "Prism · Certificate — Phone",
       "w": 390,
       "x": 7490,
-      "y": 6320
+      "y": 6330
     },
     "PrismStepPredict.dc.html": {
       "expand": "fill",
@@ -390,7 +390,7 @@
       "title": "Prism · Lesson step: Predict — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepPredictPhone.dc.html": {
       "h": 1510,
@@ -400,7 +400,7 @@
       "title": "Prism · Lesson step: Predict — Phone",
       "w": 390,
       "x": 1520,
-      "y": 13320
+      "y": 13330
     },
     "PrismLesson.dc.html": {
       "expand": "fill",
@@ -410,7 +410,7 @@
       "title": "Prism · Lesson step: Investigate, AI tutor open — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 13320
+      "y": 13330
     },
     "PrismLessonPhone.dc.html": {
       "h": 2570,
@@ -420,7 +420,7 @@
       "title": "Prism · Lesson step: Investigate, AI tutor open — Phone",
       "w": 390,
       "x": 3510,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepModify.dc.html": {
       "expand": "fill",
@@ -430,7 +430,7 @@
       "title": "Prism · Lesson step: Modify — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepModifyPhone.dc.html": {
       "h": 1520,
@@ -440,7 +440,7 @@
       "title": "Prism · Lesson step: Modify — Phone",
       "w": 390,
       "x": 5500,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepMake.dc.html": {
       "expand": "fill",
@@ -450,7 +450,7 @@
       "title": "Prism · Lesson step: Make — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepMakePhone.dc.html": {
       "h": 1640,
@@ -460,7 +460,7 @@
       "title": "Prism · Lesson step: Make — Phone",
       "w": 390,
       "x": 7490,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepPython.dc.html": {
       "expand": "fill",
@@ -470,7 +470,7 @@
       "title": "Prism · Lesson step: Modify, Python notebook (AI & ML) — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 13320
+      "y": 13330
     },
     "PrismStepPythonPhone.dc.html": {
       "h": 1920,
@@ -480,7 +480,7 @@
       "title": "Prism · Lesson step: Modify, Python notebook (AI & ML) — Phone",
       "w": 390,
       "x": 9480,
-      "y": 13320
+      "y": 13330
     },
     "PrismTryLesson.dc.html": {
       "expand": "fill",
@@ -490,7 +490,7 @@
       "title": "Prism · Guest lesson — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 13320
+      "y": 13330
     },
     "PrismTryLessonPhone.dc.html": {
       "h": 1270,
@@ -500,7 +500,7 @@
       "title": "Prism · Guest lesson — Phone",
       "w": 390,
       "x": 11470,
-      "y": 13320
+      "y": 13330
     },
     "PrismTryDone.dc.html": {
       "expand": "fill",
@@ -510,7 +510,7 @@
       "title": "Prism · Guest lesson complete — Desktop",
       "w": 1440,
       "x": 11940,
-      "y": 13320
+      "y": 13330
     },
     "PrismTryDonePhone.dc.html": {
       "h": 1370,
@@ -520,7 +520,7 @@
       "title": "Prism · Guest lesson complete — Phone",
       "w": 390,
       "x": 13460,
-      "y": 13320
+      "y": 13330
     },
     "PrismSignup.dc.html": {
       "expand": "fill",
@@ -530,7 +530,7 @@
       "title": "Prism · Sign-up — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 16710
+      "y": 16720
     },
     "PrismSignupPhone.dc.html": {
       "h": 1820,
@@ -540,7 +540,7 @@
       "title": "Prism · Sign-up — Phone",
       "w": 390,
       "x": 1520,
-      "y": 16710
+      "y": 16720
     },
     "PrismLogin.dc.html": {
       "expand": "fill",
@@ -550,7 +550,7 @@
       "title": "Prism · Log in — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 16710
+      "y": 16720
     },
     "PrismLoginPhone.dc.html": {
       "h": 910,
@@ -560,7 +560,7 @@
       "title": "Prism · Log in — Phone",
       "w": 390,
       "x": 3510,
-      "y": 16710
+      "y": 16720
     },
     "PrismCode.dc.html": {
       "expand": "fill",
@@ -570,7 +570,7 @@
       "title": "Prism · Enter code — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 16710
+      "y": 16720
     },
     "PrismCodePhone.dc.html": {
       "h": 900,
@@ -580,7 +580,7 @@
       "title": "Prism · Enter code — Phone",
       "w": 390,
       "x": 5500,
-      "y": 16710
+      "y": 16720
     },
     "PrismCheckEmail.dc.html": {
       "expand": "fill",
@@ -590,7 +590,7 @@
       "title": "Prism · Check your email — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 16710
+      "y": 16720
     },
     "PrismCheckEmailPhone.dc.html": {
       "h": 900,
@@ -600,7 +600,7 @@
       "title": "Prism · Check your email — Phone",
       "w": 390,
       "x": 7490,
-      "y": 16710
+      "y": 16720
     },
     "PrismReset.dc.html": {
       "expand": "fill",
@@ -610,7 +610,7 @@
       "title": "Prism · Reset password — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 16710
+      "y": 16720
     },
     "PrismResetPhone.dc.html": {
       "h": 900,
@@ -620,7 +620,7 @@
       "title": "Prism · Reset password — Phone",
       "w": 390,
       "x": 9480,
-      "y": 16710
+      "y": 16720
     },
     "PrismNewPassword.dc.html": {
       "expand": "fill",
@@ -630,7 +630,7 @@
       "title": "Prism · New password — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 16710
+      "y": 16720
     },
     "PrismNewPasswordPhone.dc.html": {
       "h": 900,
@@ -640,7 +640,7 @@
       "title": "Prism · New password — Phone",
       "w": 390,
       "x": 11470,
-      "y": 16710
+      "y": 16720
     },
     "PrismProjects.dc.html": {
       "expand": "fill",
@@ -650,7 +650,7 @@
       "title": "Prism · Projects — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 19350
+      "y": 19360
     },
     "PrismProjectsPhone.dc.html": {
       "h": 2080,
@@ -660,7 +660,7 @@
       "title": "Prism · Projects — Phone",
       "w": 390,
       "x": 1520,
-      "y": 19350
+      "y": 19360
     },
     "PrismProject.dc.html": {
       "expand": "fill",
@@ -670,7 +670,7 @@
       "title": "Prism · Project workspace — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 19350
+      "y": 19360
     },
     "PrismProjectPhone.dc.html": {
       "h": 2180,
@@ -680,7 +680,7 @@
       "title": "Prism · Project workspace — Phone",
       "w": 390,
       "x": 3510,
-      "y": 19350
+      "y": 19360
     },
     "PrismModuleCheck.dc.html": {
       "expand": "fill",
@@ -690,7 +690,7 @@
       "title": "Prism · Module check — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 19350
+      "y": 19360
     },
     "PrismModuleCheckPhone.dc.html": {
       "h": 1430,
@@ -700,7 +700,7 @@
       "title": "Prism · Module check — Phone",
       "w": 390,
       "x": 5500,
-      "y": 19350
+      "y": 19360
     },
     "PrismModuleResult.dc.html": {
       "expand": "fill",
@@ -710,7 +710,7 @@
       "title": "Prism · Module check results — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 19350
+      "y": 19360
     },
     "PrismModuleResultPhone.dc.html": {
       "h": 2410,
@@ -720,7 +720,7 @@
       "title": "Prism · Module check results — Phone",
       "w": 390,
       "x": 7490,
-      "y": 19350
+      "y": 19360
     },
     "PrismCommunity.dc.html": {
       "expand": "fill",
@@ -730,7 +730,7 @@
       "title": "Prism · Community — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 19350
+      "y": 19360
     },
     "PrismCommunityPhone.dc.html": {
       "h": 1860,
@@ -740,27 +740,27 @@
       "title": "Prism · Community — Phone",
       "w": 390,
       "x": 9480,
-      "y": 19350
+      "y": 19360
     },
     "PrismPricing.dc.html": {
       "expand": "fill",
-      "h": 3690,
+      "h": 3720,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Pricing — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 22580
+      "y": 22590
     },
     "PrismPricingPhone.dc.html": {
-      "h": 5830,
+      "h": 5870,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
       "title": "Prism · Pricing — Phone",
       "w": 390,
       "x": 1520,
-      "y": 22580
+      "y": 22590
     },
     "PrismCheckout.dc.html": {
       "expand": "fill",
@@ -770,7 +770,7 @@
       "title": "Prism · Checkout — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 22580
+      "y": 22590
     },
     "PrismCheckoutPhone.dc.html": {
       "h": 2390,
@@ -780,7 +780,7 @@
       "title": "Prism · Checkout — Phone",
       "w": 390,
       "x": 3510,
-      "y": 22580
+      "y": 22590
     },
     "PrismBankTransfer.dc.html": {
       "expand": "fill",
@@ -790,7 +790,7 @@
       "title": "Prism · Bank transfer and USSD — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 22580
+      "y": 22590
     },
     "PrismBankTransferPhone.dc.html": {
       "h": 1330,
@@ -800,7 +800,7 @@
       "title": "Prism · Bank transfer and USSD — Phone",
       "w": 390,
       "x": 5500,
-      "y": 22580
+      "y": 22590
     },
     "PrismPaid.dc.html": {
       "expand": "fill",
@@ -810,7 +810,7 @@
       "title": "Prism · Payment confirmed — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 22580
+      "y": 22590
     },
     "PrismPaidPhone.dc.html": {
       "h": 1400,
@@ -820,7 +820,7 @@
       "title": "Prism · Payment confirmed — Phone",
       "w": 390,
       "x": 7490,
-      "y": 22580
+      "y": 22590
     },
     "PrismPayFailed.dc.html": {
       "expand": "fill",
@@ -830,7 +830,7 @@
       "title": "Prism · Payment failed — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 22580
+      "y": 22590
     },
     "PrismPayFailedPhone.dc.html": {
       "h": 1220,
@@ -840,7 +840,7 @@
       "title": "Prism · Payment failed — Phone",
       "w": 390,
       "x": 9480,
-      "y": 22580
+      "y": 22590
     },
     "PrismScholarship.dc.html": {
       "expand": "fill",
@@ -850,7 +850,7 @@
       "title": "Prism · Scholarship application — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 22580
+      "y": 22590
     },
     "PrismScholarshipPhone.dc.html": {
       "h": 1880,
@@ -860,27 +860,27 @@
       "title": "Prism · Scholarship application — Phone",
       "w": 390,
       "x": 11470,
-      "y": 22580
+      "y": 22590
     },
     "PrismMentor.dc.html": {
       "expand": "fill",
-      "h": 2160,
+      "h": 2200,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Mentor cohorts — Desktop",
       "w": 1440,
       "x": 11940,
-      "y": 22580
+      "y": 22590
     },
     "PrismMentorPhone.dc.html": {
-      "h": 3600,
+      "h": 3640,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
       "title": "Prism · Mentor cohorts — Phone",
       "w": 390,
       "x": 13460,
-      "y": 22580
+      "y": 22590
     },
     "PrismSettings.dc.html": {
       "expand": "fill",
@@ -890,7 +890,7 @@
       "title": "Prism · Settings — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 29230
+      "y": 29280
     },
     "PrismSettingsPhone.dc.html": {
       "h": 3840,
@@ -900,7 +900,7 @@
       "title": "Prism · Settings — Phone",
       "w": 390,
       "x": 1520,
-      "y": 29230
+      "y": 29280
     },
     "PrismLoading.dc.html": {
       "expand": "fill",
@@ -910,7 +910,7 @@
       "title": "Prism · Loading — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 29230
+      "y": 29280
     },
     "PrismLoadingPhone.dc.html": {
       "h": 1490,
@@ -920,7 +920,7 @@
       "title": "Prism · Loading — Phone",
       "w": 390,
       "x": 3510,
-      "y": 29230
+      "y": 29280
     },
     "PrismOffline.dc.html": {
       "expand": "fill",
@@ -930,7 +930,7 @@
       "title": "Prism · Offline — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 29230
+      "y": 29280
     },
     "PrismOfflinePhone.dc.html": {
       "h": 1280,
@@ -940,51 +940,91 @@
       "title": "Prism · Offline — Phone",
       "w": 390,
       "x": 5500,
-      "y": 29230
+      "y": 29280
     },
     "PrismError.dc.html": {
       "expand": "fill",
-      "h": 1320,
+      "h": 1360,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Page not found — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 29230
+      "y": 29280
     },
     "PrismErrorPhone.dc.html": {
-      "h": 1860,
+      "h": 1890,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
       "title": "Prism · Page not found — Phone",
       "w": 390,
       "x": 7490,
-      "y": 29230
+      "y": 29280
     },
     "PrismLegal.dc.html": {
       "expand": "fill",
-      "h": 1810,
+      "h": 1840,
       "is_interactive": true,
       "page": "o6",
       "title": "Prism · Privacy, terms and accessibility — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 29230
+      "y": 29280
     },
     "PrismLegalPhone.dc.html": {
-      "h": 2760,
+      "h": 2790,
       "is_interactive": true,
       "page": "o6",
       "radius": 28,
       "title": "Prism · Privacy, terms and accessibility — Phone",
       "w": 390,
       "x": 9480,
-      "y": 29230
+      "y": 29280
+    },
+    "PrismAbout.dc.html": {
+      "expand": "fill",
+      "h": 3530,
+      "is_interactive": true,
+      "page": "o6",
+      "title": "Prism · About — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 33940
+    },
+    "PrismAboutPhone.dc.html": {
+      "h": 6940,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · About — Phone",
+      "w": 390,
+      "x": 1520,
+      "y": 33940
+    },
+    "PrismMenuPhone.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Guest menu, open — Phone",
+      "w": 390,
+      "x": 1990,
+      "y": 33940
+    },
+    "PrismAppMenuPhone.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "o6",
+      "radius": 28,
+      "title": "Prism · Learner menu, open — Phone",
+      "w": 390,
+      "x": 2460,
+      "y": 33940
     },
     "PrismLightLanding.dc.html": {
       "expand": "fill",
-      "h": 5070,
+      "h": 5090,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Landing — Desktop (1 of 2)",
@@ -994,7 +1034,7 @@
     },
     "PrismLightLandingDesk2.dc.html": {
       "expand": "fill",
-      "h": 5070,
+      "h": 5080,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Landing — Desktop (2 of 2)",
@@ -1003,7 +1043,7 @@
       "y": 0
     },
     "PrismLightLandingPhone.dc.html": {
-      "h": 5500,
+      "h": 5510,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
@@ -1013,7 +1053,7 @@
       "y": 0
     },
     "PrismLightLandingPhone2.dc.html": {
-      "h": 5500,
+      "h": 5510,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
@@ -1023,7 +1063,7 @@
       "y": 0
     },
     "PrismLightLandingPhone3.dc.html": {
-      "h": 5480,
+      "h": 5490,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
@@ -1090,7 +1130,7 @@
       "title": "Prism light · Track page — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightTrackPhone.dc.html": {
       "h": 6180,
@@ -1100,7 +1140,7 @@
       "title": "Prism light · Track page — Phone",
       "w": 390,
       "x": 1520,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightOnboarding.dc.html": {
       "expand": "fill",
@@ -1110,7 +1150,7 @@
       "title": "Prism light · Onboarding — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightOnboardingPhone.dc.html": {
       "h": 1490,
@@ -1120,7 +1160,7 @@
       "title": "Prism light · Onboarding — Phone",
       "w": 390,
       "x": 3510,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightReview.dc.html": {
       "expand": "fill",
@@ -1130,7 +1170,7 @@
       "title": "Prism light · Daily review — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightReviewPhone.dc.html": {
       "h": 1020,
@@ -1140,7 +1180,7 @@
       "title": "Prism light · Daily review — Phone",
       "w": 390,
       "x": 5500,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightCertificate.dc.html": {
       "expand": "fill",
@@ -1150,7 +1190,7 @@
       "title": "Prism light · Certificate — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightCertificatePhone.dc.html": {
       "h": 3190,
@@ -1160,7 +1200,7 @@
       "title": "Prism light · Certificate — Phone",
       "w": 390,
       "x": 7490,
-      "y": 6320
+      "y": 6330
     },
     "PrismLightStepPredict.dc.html": {
       "expand": "fill",
@@ -1170,7 +1210,7 @@
       "title": "Prism light · Lesson step: Predict — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepPredictPhone.dc.html": {
       "h": 1510,
@@ -1180,7 +1220,7 @@
       "title": "Prism light · Lesson step: Predict — Phone",
       "w": 390,
       "x": 1520,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightLesson.dc.html": {
       "expand": "fill",
@@ -1190,7 +1230,7 @@
       "title": "Prism light · Lesson step: Investigate, AI tutor open — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightLessonPhone.dc.html": {
       "h": 2570,
@@ -1200,7 +1240,7 @@
       "title": "Prism light · Lesson step: Investigate, AI tutor open — Phone",
       "w": 390,
       "x": 3510,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepModify.dc.html": {
       "expand": "fill",
@@ -1210,7 +1250,7 @@
       "title": "Prism light · Lesson step: Modify — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepModifyPhone.dc.html": {
       "h": 1520,
@@ -1220,7 +1260,7 @@
       "title": "Prism light · Lesson step: Modify — Phone",
       "w": 390,
       "x": 5500,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepMake.dc.html": {
       "expand": "fill",
@@ -1230,7 +1270,7 @@
       "title": "Prism light · Lesson step: Make — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepMakePhone.dc.html": {
       "h": 1640,
@@ -1240,7 +1280,7 @@
       "title": "Prism light · Lesson step: Make — Phone",
       "w": 390,
       "x": 7490,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepPython.dc.html": {
       "expand": "fill",
@@ -1250,7 +1290,7 @@
       "title": "Prism light · Lesson step: Modify, Python notebook (AI & ML) — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightStepPythonPhone.dc.html": {
       "h": 1920,
@@ -1260,7 +1300,7 @@
       "title": "Prism light · Lesson step: Modify, Python notebook (AI & ML) — Phone",
       "w": 390,
       "x": 9480,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightTryLesson.dc.html": {
       "expand": "fill",
@@ -1270,7 +1310,7 @@
       "title": "Prism light · Guest lesson — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightTryLessonPhone.dc.html": {
       "h": 1270,
@@ -1280,7 +1320,7 @@
       "title": "Prism light · Guest lesson — Phone",
       "w": 390,
       "x": 11470,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightTryDone.dc.html": {
       "expand": "fill",
@@ -1290,7 +1330,7 @@
       "title": "Prism light · Guest lesson complete — Desktop",
       "w": 1440,
       "x": 11940,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightTryDonePhone.dc.html": {
       "h": 1370,
@@ -1300,7 +1340,7 @@
       "title": "Prism light · Guest lesson complete — Phone",
       "w": 390,
       "x": 13460,
-      "y": 13320
+      "y": 13330
     },
     "PrismLightSignup.dc.html": {
       "expand": "fill",
@@ -1310,7 +1350,7 @@
       "title": "Prism light · Sign-up — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightSignupPhone.dc.html": {
       "h": 1820,
@@ -1320,7 +1360,7 @@
       "title": "Prism light · Sign-up — Phone",
       "w": 390,
       "x": 1520,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightLogin.dc.html": {
       "expand": "fill",
@@ -1330,7 +1370,7 @@
       "title": "Prism light · Log in — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightLoginPhone.dc.html": {
       "h": 910,
@@ -1340,7 +1380,7 @@
       "title": "Prism light · Log in — Phone",
       "w": 390,
       "x": 3510,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightCode.dc.html": {
       "expand": "fill",
@@ -1350,7 +1390,7 @@
       "title": "Prism light · Enter code — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightCodePhone.dc.html": {
       "h": 900,
@@ -1360,7 +1400,7 @@
       "title": "Prism light · Enter code — Phone",
       "w": 390,
       "x": 5500,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightCheckEmail.dc.html": {
       "expand": "fill",
@@ -1370,7 +1410,7 @@
       "title": "Prism light · Check your email — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightCheckEmailPhone.dc.html": {
       "h": 900,
@@ -1380,7 +1420,7 @@
       "title": "Prism light · Check your email — Phone",
       "w": 390,
       "x": 7490,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightReset.dc.html": {
       "expand": "fill",
@@ -1390,7 +1430,7 @@
       "title": "Prism light · Reset password — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightResetPhone.dc.html": {
       "h": 900,
@@ -1400,7 +1440,7 @@
       "title": "Prism light · Reset password — Phone",
       "w": 390,
       "x": 9480,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightNewPassword.dc.html": {
       "expand": "fill",
@@ -1410,7 +1450,7 @@
       "title": "Prism light · New password — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightNewPasswordPhone.dc.html": {
       "h": 900,
@@ -1420,7 +1460,7 @@
       "title": "Prism light · New password — Phone",
       "w": 390,
       "x": 11470,
-      "y": 16710
+      "y": 16720
     },
     "PrismLightProjects.dc.html": {
       "expand": "fill",
@@ -1430,7 +1470,7 @@
       "title": "Prism light · Projects — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightProjectsPhone.dc.html": {
       "h": 2080,
@@ -1440,7 +1480,7 @@
       "title": "Prism light · Projects — Phone",
       "w": 390,
       "x": 1520,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightProject.dc.html": {
       "expand": "fill",
@@ -1450,7 +1490,7 @@
       "title": "Prism light · Project workspace — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightProjectPhone.dc.html": {
       "h": 2180,
@@ -1460,7 +1500,7 @@
       "title": "Prism light · Project workspace — Phone",
       "w": 390,
       "x": 3510,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightModuleCheck.dc.html": {
       "expand": "fill",
@@ -1470,7 +1510,7 @@
       "title": "Prism light · Module check — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightModuleCheckPhone.dc.html": {
       "h": 1430,
@@ -1480,7 +1520,7 @@
       "title": "Prism light · Module check — Phone",
       "w": 390,
       "x": 5500,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightModuleResult.dc.html": {
       "expand": "fill",
@@ -1490,7 +1530,7 @@
       "title": "Prism light · Module check results — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightModuleResultPhone.dc.html": {
       "h": 2410,
@@ -1500,7 +1540,7 @@
       "title": "Prism light · Module check results — Phone",
       "w": 390,
       "x": 7490,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightCommunity.dc.html": {
       "expand": "fill",
@@ -1510,7 +1550,7 @@
       "title": "Prism light · Community — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightCommunityPhone.dc.html": {
       "h": 1860,
@@ -1520,27 +1560,27 @@
       "title": "Prism light · Community — Phone",
       "w": 390,
       "x": 9480,
-      "y": 19350
+      "y": 19360
     },
     "PrismLightPricing.dc.html": {
       "expand": "fill",
-      "h": 3690,
+      "h": 3720,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Pricing — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightPricingPhone.dc.html": {
-      "h": 5830,
+      "h": 5870,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
       "title": "Prism light · Pricing — Phone",
       "w": 390,
       "x": 1520,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightCheckout.dc.html": {
       "expand": "fill",
@@ -1550,7 +1590,7 @@
       "title": "Prism light · Checkout — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightCheckoutPhone.dc.html": {
       "h": 2390,
@@ -1560,7 +1600,7 @@
       "title": "Prism light · Checkout — Phone",
       "w": 390,
       "x": 3510,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightBankTransfer.dc.html": {
       "expand": "fill",
@@ -1570,7 +1610,7 @@
       "title": "Prism light · Bank transfer and USSD — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightBankTransferPhone.dc.html": {
       "h": 1330,
@@ -1580,7 +1620,7 @@
       "title": "Prism light · Bank transfer and USSD — Phone",
       "w": 390,
       "x": 5500,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightPaid.dc.html": {
       "expand": "fill",
@@ -1590,7 +1630,7 @@
       "title": "Prism light · Payment confirmed — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightPaidPhone.dc.html": {
       "h": 1400,
@@ -1600,7 +1640,7 @@
       "title": "Prism light · Payment confirmed — Phone",
       "w": 390,
       "x": 7490,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightPayFailed.dc.html": {
       "expand": "fill",
@@ -1610,7 +1650,7 @@
       "title": "Prism light · Payment failed — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightPayFailedPhone.dc.html": {
       "h": 1220,
@@ -1620,7 +1660,7 @@
       "title": "Prism light · Payment failed — Phone",
       "w": 390,
       "x": 9480,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightScholarship.dc.html": {
       "expand": "fill",
@@ -1630,7 +1670,7 @@
       "title": "Prism light · Scholarship application — Desktop",
       "w": 1440,
       "x": 9950,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightScholarshipPhone.dc.html": {
       "h": 1880,
@@ -1640,27 +1680,27 @@
       "title": "Prism light · Scholarship application — Phone",
       "w": 390,
       "x": 11470,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightMentor.dc.html": {
       "expand": "fill",
-      "h": 2160,
+      "h": 2200,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Mentor cohorts — Desktop",
       "w": 1440,
       "x": 11940,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightMentorPhone.dc.html": {
-      "h": 3600,
+      "h": 3640,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
       "title": "Prism light · Mentor cohorts — Phone",
       "w": 390,
       "x": 13460,
-      "y": 22580
+      "y": 22590
     },
     "PrismLightSettings.dc.html": {
       "expand": "fill",
@@ -1670,7 +1710,7 @@
       "title": "Prism light · Settings — Desktop",
       "w": 1440,
       "x": 0,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightSettingsPhone.dc.html": {
       "h": 3840,
@@ -1680,7 +1720,7 @@
       "title": "Prism light · Settings — Phone",
       "w": 390,
       "x": 1520,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightLoading.dc.html": {
       "expand": "fill",
@@ -1690,7 +1730,7 @@
       "title": "Prism light · Loading — Desktop",
       "w": 1440,
       "x": 1990,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightLoadingPhone.dc.html": {
       "h": 1490,
@@ -1700,7 +1740,7 @@
       "title": "Prism light · Loading — Phone",
       "w": 390,
       "x": 3510,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightOffline.dc.html": {
       "expand": "fill",
@@ -1710,7 +1750,7 @@
       "title": "Prism light · Offline — Desktop",
       "w": 1440,
       "x": 3980,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightOfflinePhone.dc.html": {
       "h": 1280,
@@ -1720,47 +1760,87 @@
       "title": "Prism light · Offline — Phone",
       "w": 390,
       "x": 5500,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightError.dc.html": {
       "expand": "fill",
-      "h": 1320,
+      "h": 1360,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Page not found — Desktop",
       "w": 1440,
       "x": 5970,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightErrorPhone.dc.html": {
-      "h": 1860,
+      "h": 1890,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
       "title": "Prism light · Page not found — Phone",
       "w": 390,
       "x": 7490,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightLegal.dc.html": {
       "expand": "fill",
-      "h": 1810,
+      "h": 1840,
       "is_interactive": true,
       "page": "o9",
       "title": "Prism light · Privacy, terms and accessibility — Desktop",
       "w": 1440,
       "x": 7960,
-      "y": 29230
+      "y": 29280
     },
     "PrismLightLegalPhone.dc.html": {
-      "h": 2760,
+      "h": 2790,
       "is_interactive": true,
       "page": "o9",
       "radius": 28,
       "title": "Prism light · Privacy, terms and accessibility — Phone",
       "w": 390,
       "x": 9480,
-      "y": 29230
+      "y": 29280
+    },
+    "PrismLightAbout.dc.html": {
+      "expand": "fill",
+      "h": 3530,
+      "is_interactive": true,
+      "page": "o9",
+      "title": "Prism light · About — Desktop",
+      "w": 1440,
+      "x": 0,
+      "y": 33940
+    },
+    "PrismLightAboutPhone.dc.html": {
+      "h": 6940,
+      "is_interactive": true,
+      "page": "o9",
+      "radius": 28,
+      "title": "Prism light · About — Phone",
+      "w": 390,
+      "x": 1520,
+      "y": 33940
+    },
+    "PrismLightMenuPhone.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "o9",
+      "radius": 28,
+      "title": "Prism light · Guest menu, open — Phone",
+      "w": 390,
+      "x": 1990,
+      "y": 33940
+    },
+    "PrismLightAppMenuPhone.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "page": "o9",
+      "radius": 28,
+      "title": "Prism light · Learner menu, open — Phone",
+      "w": 390,
+      "x": 2460,
+      "y": 33940
     }
   },
   "createdOnFiles": {
@@ -1888,7 +1968,7 @@
       "text": "Core learning",
       "w": 240,
       "x": 0,
-      "y": 5800
+      "y": 5810
     },
     "p5": {
       "kind": "title1",
@@ -1897,7 +1977,7 @@
       "text": "Track page",
       "w": 240,
       "x": 0,
-      "y": 6020
+      "y": 6030
     },
     "p6": {
       "kind": "title1",
@@ -1906,7 +1986,7 @@
       "text": "Onboarding",
       "w": 240,
       "x": 1990,
-      "y": 6020
+      "y": 6030
     },
     "p7": {
       "kind": "title1",
@@ -1915,7 +1995,7 @@
       "text": "Daily review",
       "w": 240,
       "x": 3980,
-      "y": 6020
+      "y": 6030
     },
     "p8": {
       "kind": "title1",
@@ -1924,7 +2004,7 @@
       "text": "Certificate",
       "w": 240,
       "x": 5970,
-      "y": 6020
+      "y": 6030
     },
     "p9": {
       "kind": "title1",
@@ -1933,7 +2013,7 @@
       "text": "A lesson, in order: Predict, Investigate, Modify, Make. Then the guest lesson.",
       "w": 240,
       "x": 0,
-      "y": 12800
+      "y": 12810
     },
     "p10": {
       "kind": "title1",
@@ -1942,7 +2022,7 @@
       "text": "Lesson step: Predict",
       "w": 240,
       "x": 0,
-      "y": 13020
+      "y": 13030
     },
     "p11": {
       "kind": "title1",
@@ -1951,7 +2031,7 @@
       "text": "Lesson step: Investigate, AI tutor open",
       "w": 240,
       "x": 1990,
-      "y": 13020
+      "y": 13030
     },
     "p12": {
       "kind": "title1",
@@ -1960,7 +2040,7 @@
       "text": "Lesson step: Modify",
       "w": 240,
       "x": 3980,
-      "y": 13020
+      "y": 13030
     },
     "p13": {
       "kind": "title1",
@@ -1969,7 +2049,7 @@
       "text": "Lesson step: Make",
       "w": 240,
       "x": 5970,
-      "y": 13020
+      "y": 13030
     },
     "p14": {
       "kind": "title1",
@@ -1978,7 +2058,7 @@
       "text": "Lesson step: Modify, Python notebook (AI & ML)",
       "w": 240,
       "x": 7960,
-      "y": 13020
+      "y": 13030
     },
     "p15": {
       "kind": "title1",
@@ -1987,7 +2067,7 @@
       "text": "Guest lesson",
       "w": 240,
       "x": 9950,
-      "y": 13020
+      "y": 13030
     },
     "p16": {
       "kind": "title1",
@@ -1996,7 +2076,7 @@
       "text": "Guest lesson complete",
       "w": 240,
       "x": 11940,
-      "y": 13020
+      "y": 13030
     },
     "p17": {
       "kind": "title1",
@@ -2005,7 +2085,7 @@
       "text": "Account",
       "w": 240,
       "x": 0,
-      "y": 16190
+      "y": 16200
     },
     "p18": {
       "kind": "title1",
@@ -2014,7 +2094,7 @@
       "text": "Sign-up",
       "w": 240,
       "x": 0,
-      "y": 16410
+      "y": 16420
     },
     "p19": {
       "kind": "title1",
@@ -2023,7 +2103,7 @@
       "text": "Log in",
       "w": 240,
       "x": 1990,
-      "y": 16410
+      "y": 16420
     },
     "p20": {
       "kind": "title1",
@@ -2032,7 +2112,7 @@
       "text": "Enter code",
       "w": 240,
       "x": 3980,
-      "y": 16410
+      "y": 16420
     },
     "p21": {
       "kind": "title1",
@@ -2041,7 +2121,7 @@
       "text": "Check your email",
       "w": 240,
       "x": 5970,
-      "y": 16410
+      "y": 16420
     },
     "p22": {
       "kind": "title1",
@@ -2050,7 +2130,7 @@
       "text": "Reset password",
       "w": 240,
       "x": 7960,
-      "y": 16410
+      "y": 16420
     },
     "p23": {
       "kind": "title1",
@@ -2059,7 +2139,7 @@
       "text": "New password",
       "w": 240,
       "x": 9950,
-      "y": 16410
+      "y": 16420
     },
     "p24": {
       "kind": "title1",
@@ -2068,7 +2148,7 @@
       "text": "Practice, projects and community",
       "w": 240,
       "x": 0,
-      "y": 18830
+      "y": 18840
     },
     "p25": {
       "kind": "title1",
@@ -2077,7 +2157,7 @@
       "text": "Projects",
       "w": 240,
       "x": 0,
-      "y": 19050
+      "y": 19060
     },
     "p26": {
       "kind": "title1",
@@ -2086,7 +2166,7 @@
       "text": "Project workspace",
       "w": 240,
       "x": 1990,
-      "y": 19050
+      "y": 19060
     },
     "p27": {
       "kind": "title1",
@@ -2095,7 +2175,7 @@
       "text": "Module check",
       "w": 240,
       "x": 3980,
-      "y": 19050
+      "y": 19060
     },
     "p28": {
       "kind": "title1",
@@ -2104,7 +2184,7 @@
       "text": "Module check results",
       "w": 240,
       "x": 5970,
-      "y": 19050
+      "y": 19060
     },
     "p29": {
       "kind": "title1",
@@ -2113,7 +2193,7 @@
       "text": "Community",
       "w": 240,
       "x": 7960,
-      "y": 19050
+      "y": 19060
     },
     "p30": {
       "kind": "title1",
@@ -2122,7 +2202,7 @@
       "text": "Plans and payments",
       "w": 240,
       "x": 0,
-      "y": 22060
+      "y": 22070
     },
     "p31": {
       "kind": "title1",
@@ -2131,7 +2211,7 @@
       "text": "Pricing",
       "w": 240,
       "x": 0,
-      "y": 22280
+      "y": 22290
     },
     "p32": {
       "kind": "title1",
@@ -2140,7 +2220,7 @@
       "text": "Checkout",
       "w": 240,
       "x": 1990,
-      "y": 22280
+      "y": 22290
     },
     "p33": {
       "kind": "title1",
@@ -2149,7 +2229,7 @@
       "text": "Bank transfer and USSD",
       "w": 240,
       "x": 3980,
-      "y": 22280
+      "y": 22290
     },
     "p34": {
       "kind": "title1",
@@ -2158,7 +2238,7 @@
       "text": "Payment confirmed",
       "w": 240,
       "x": 5970,
-      "y": 22280
+      "y": 22290
     },
     "p35": {
       "kind": "title1",
@@ -2167,7 +2247,7 @@
       "text": "Payment failed",
       "w": 240,
       "x": 7960,
-      "y": 22280
+      "y": 22290
     },
     "p36": {
       "kind": "title1",
@@ -2176,7 +2256,7 @@
       "text": "Scholarship application",
       "w": 240,
       "x": 9950,
-      "y": 22280
+      "y": 22290
     },
     "p37": {
       "kind": "title1",
@@ -2185,7 +2265,7 @@
       "text": "Mentor cohorts",
       "w": 240,
       "x": 11940,
-      "y": 22280
+      "y": 22290
     },
     "p38": {
       "kind": "title1",
@@ -2194,7 +2274,7 @@
       "text": "Settings, states and legal",
       "w": 240,
       "x": 0,
-      "y": 28710
+      "y": 28760
     },
     "p39": {
       "kind": "title1",
@@ -2203,7 +2283,7 @@
       "text": "Settings",
       "w": 240,
       "x": 0,
-      "y": 28930
+      "y": 28980
     },
     "p40": {
       "kind": "title1",
@@ -2212,7 +2292,7 @@
       "text": "Loading",
       "w": 240,
       "x": 1990,
-      "y": 28930
+      "y": 28980
     },
     "p41": {
       "kind": "title1",
@@ -2221,7 +2301,7 @@
       "text": "Offline",
       "w": 240,
       "x": 3980,
-      "y": 28930
+      "y": 28980
     },
     "p42": {
       "kind": "title1",
@@ -2230,7 +2310,7 @@
       "text": "Page not found",
       "w": 240,
       "x": 5970,
-      "y": 28930
+      "y": 28980
     },
     "p43": {
       "kind": "title1",
@@ -2239,7 +2319,34 @@
       "text": "Privacy, terms and accessibility",
       "w": 240,
       "x": 7960,
-      "y": 28930
+      "y": 28980
+    },
+    "p44": {
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "o6",
+      "text": "About, and navigation on phones",
+      "w": 240,
+      "x": 0,
+      "y": 33420
+    },
+    "p45": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o6",
+      "text": "About",
+      "w": 240,
+      "x": 0,
+      "y": 33640
+    },
+    "p46": {
+      "kind": "title1",
+      "maxW": 900,
+      "page": "o6",
+      "text": "Menus on phones (guest, learner)",
+      "w": 240,
+      "x": 1990,
+      "y": 33640
     },
     "q1": {
       "kind": "title1",
@@ -2275,7 +2382,7 @@
       "text": "Core learning",
       "w": 240,
       "x": 0,
-      "y": 5800
+      "y": 5810
     },
     "q5": {
       "kind": "title1",
@@ -2284,7 +2391,7 @@
       "text": "Track page",
       "w": 240,
       "x": 0,
-      "y": 6020
+      "y": 6030
     },
     "q6": {
       "kind": "title1",
@@ -2293,7 +2400,7 @@
       "text": "Onboarding",
       "w": 240,
       "x": 1990,
-      "y": 6020
+      "y": 6030
     },
     "q7": {
       "kind": "title1",
@@ -2302,7 +2409,7 @@
       "text": "Daily review",
       "w": 240,
       "x": 3980,
-      "y": 6020
+      "y": 6030
     },
     "q8": {
       "kind": "title1",
@@ -2311,7 +2418,7 @@
       "text": "Certificate",
       "w": 240,
       "x": 5970,
-      "y": 6020
+      "y": 6030
     },
     "q9": {
       "kind": "title1",
@@ -2320,7 +2427,7 @@
       "text": "A lesson, in order: Predict, Investigate, Modify, Make. Then the guest lesson.",
       "w": 240,
       "x": 0,
-      "y": 12800
+      "y": 12810
     },
     "q10": {
       "kind": "title1",
@@ -2329,7 +2436,7 @@
       "text": "Lesson step: Predict",
       "w": 240,
       "x": 0,
-      "y": 13020
+      "y": 13030
     },
     "q11": {
       "kind": "title1",
@@ -2338,7 +2445,7 @@
       "text": "Lesson step: Investigate, AI tutor open",
       "w": 240,
       "x": 1990,
-      "y": 13020
+      "y": 13030
     },
     "q12": {
       "kind": "title1",
@@ -2347,7 +2454,7 @@
       "text": "Lesson step: Modify",
       "w": 240,
       "x": 3980,
-      "y": 13020
+      "y": 13030
     },
     "q13": {
       "kind": "title1",
@@ -2356,7 +2463,7 @@
       "text": "Lesson step: Make",
       "w": 240,
       "x": 5970,
-      "y": 13020
+      "y": 13030
     },
     "q14": {
       "kind": "title1",
@@ -2365,7 +2472,7 @@
       "text": "Lesson step: Modify, Python notebook (AI & ML)",
       "w": 240,
       "x": 7960,
-      "y": 13020
+      "y": 13030
     },
     "q15": {
       "kind": "title1",
@@ -2374,7 +2481,7 @@
       "text": "Guest lesson",
       "w": 240,
       "x": 9950,
-      "y": 13020
+      "y": 13030
     },
     "q16": {
       "kind": "title1",
@@ -2383,7 +2490,7 @@
       "text": "Guest lesson complete",
       "w": 240,
       "x": 11940,
-      "y": 13020
+      "y": 13030
     },
     "q17": {
       "kind": "title1",
@@ -2392,7 +2499,7 @@
       "text": "Account",
       "w": 240,
       "x": 0,
-      "y": 16190
+      "y": 16200
     },
     "q18": {
       "kind": "title1",
@@ -2401,7 +2508,7 @@
       "text": "Sign-up",
       "w": 240,
       "x": 0,
-      "y": 16410
+      "y": 16420
     },
     "q19": {
       "kind": "title1",
@@ -2410,7 +2517,7 @@
       "text": "Log in",
       "w": 240,
       "x": 1990,
-      "y": 16410
+      "y": 16420
     },
     "q20": {
       "kind": "title1",
@@ -2419,7 +2526,7 @@
       "text": "Enter code",
       "w": 240,
       "x": 3980,
-      "y": 16410
+      "y": 16420
     },
     "q21": {
       "kind": "title1",
@@ -2428,7 +2535,7 @@
       "text": "Check your email",
       "w": 240,
       "x": 5970,
-      "y": 16410
+      "y": 16420
     },
     "q22": {
       "kind": "title1",
@@ -2437,7 +2544,7 @@
       "text": "Reset password",
       "w": 240,
       "x": 7960,
-      "y": 16410
+      "y": 16420
     },
     "q23": {
       "kind": "title1",
@@ -2446,7 +2553,7 @@
       "text": "New password",
       "w": 240,
       "x": 9950,
-      "y": 16410
+      "y": 16420
     },
     "q24": {
       "kind": "title1",
@@ -2455,7 +2562,7 @@
       "text": "Practice, projects and community",
       "w": 240,
       "x": 0,
-      "y": 18830
+      "y": 18840
     },
     "q25": {
       "kind": "title1",
@@ -2464,7 +2571,7 @@
       "text": "Projects",
       "w": 240,
       "x": 0,
-      "y": 19050
+      "y": 19060
     },
     "q26": {
       "kind": "title1",
@@ -2473,7 +2580,7 @@
       "text": "Project workspace",
       "w": 240,
       "x": 1990,
-      "y": 19050
+      "y": 19060
     },
     "q27": {
       "kind": "title1",
@@ -2482,7 +2589,7 @@
       "text": "Module check",
       "w": 240,
       "x": 3980,
-      "y": 19050
+      "y": 19060
     },
     "q28": {
       "kind": "title1",
@@ -2491,7 +2598,7 @@
       "text": "Module check results",
       "w": 240,
       "x": 5970,
-      "y": 19050
+      "y": 19060
     },
     "q29": {
       "kind": "title1",
@@ -2500,7 +2607,7 @@
       "text": "Community",
       "w": 240,
       "x": 7960,
-      "y": 19050
+      "y": 19060
     },
     "q30": {
       "kind": "title1",
@@ -2509,7 +2616,7 @@
       "text": "Plans and payments",
       "w": 240,
       "x": 0,
-      "y": 22060
+      "y": 22070
     },
     "q31": {
       "kind": "title1",
@@ -2518,7 +2625,7 @@
       "text": "Pricing",
       "w": 240,
       "x": 0,
-      "y": 22280
+      "y": 22290
     },
     "q32": {
       "kind": "title1",
@@ -2527,7 +2634,7 @@
       "text": "Checkout",
       "w": 240,
       "x": 1990,
-      "y": 22280
+      "y": 22290
     },
     "q33": {
       "kind": "title1",
@@ -2536,7 +2643,7 @@
       "text": "Bank transfer and USSD",
       "w": 240,
       "x": 3980,
-      "y": 22280
+      "y": 22290
     },
     "q34": {
       "kind": "title1",
@@ -2545,7 +2652,7 @@
       "text": "Payment confirmed",
       "w": 240,
       "x": 5970,
-      "y": 22280
+      "y": 22290
     },
     "q35": {
       "kind": "title1",
@@ -2554,7 +2661,7 @@
       "text": "Payment failed",
       "w": 240,
       "x": 7960,
-      "y": 22280
+      "y": 22290
     },
     "q36": {
       "kind": "title1",
@@ -2563,7 +2670,7 @@
       "text": "Scholarship application",
       "w": 240,
       "x": 9950,
-      "y": 22280
+      "y": 22290
     },
     "q37": {
       "kind": "title1",
@@ -2572,7 +2679,7 @@
       "text": "Mentor cohorts",
       "w": 240,
       "x": 11940,
-      "y": 22280
+      "y": 22290
     },
     "q38": {
       "kind": "title1",
@@ -2581,7 +2688,7 @@
       "text": "Settings, states and legal",
       "w": 240,
       "x": 0,
-      "y": 28710
+      "y": 28760
     },
     "q39": {
       "kind": "title1",
@@ -2590,7 +2697,7 @@
       "text": "Settings",
       "w": 240,
       "x": 0,
-      "y": 28930
+      "y": 28980
     },
     "q40": {
       "kind": "title1",
@@ -2599,7 +2706,7 @@
       "text": "Loading",
       "w": 240,
       "x": 1990,
-      "y": 28930
+      "y": 28980
     },
     "q41": {
       "kind": "title1",
@@ -2608,7 +2715,7 @@
       "text": "Offline",
       "w": 240,
       "x": 3980,
-      "y": 28930
+      "y": 28980
     },
     "q42": {
       "kind": "title1",
@@ -2617,7 +2724,7 @@
       "text": "Page not found",
       "w": 240,
       "x": 5970,
-      "y": 28930
+      "y": 28980
     },
     "q43": {
       "kind": "title1",
@@ -2626,7 +2733,34 @@
       "text": "Privacy, terms and accessibility",
       "w": 240,
       "x": 7960,
-      "y": 28930
+      "y": 28980
+    },
+    "q44": {
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "o9",
+      "text": "About, and navigation on phones",
+      "w": 240,
+      "x": 0,
+      "y": 33420
+    },
+    "q45": {
+      "kind": "title1",
+      "maxW": 1910,
+      "page": "o9",
+      "text": "About",
+      "w": 240,
+      "x": 0,
+      "y": 33640
+    },
+    "q46": {
+      "kind": "title1",
+      "maxW": 900,
+      "page": "o9",
+      "text": "Menus on phones (guest, learner)",
+      "w": 240,
+      "x": 1990,
+      "y": 33640
     }
   },
   "order": [
@@ -2708,6 +2842,10 @@
     "PrismErrorPhone.dc.html",
     "PrismLegal.dc.html",
     "PrismLegalPhone.dc.html",
+    "PrismAbout.dc.html",
+    "PrismAboutPhone.dc.html",
+    "PrismMenuPhone.dc.html",
+    "PrismAppMenuPhone.dc.html",
     "PrismLightLanding.dc.html",
     "PrismLightLandingDesk2.dc.html",
     "PrismLightLandingPhone.dc.html",
@@ -2786,6 +2924,10 @@
     "PrismLightErrorPhone.dc.html",
     "PrismLightLegal.dc.html",
     "PrismLightLegalPhone.dc.html",
+    "PrismLightAbout.dc.html",
+    "PrismLightAboutPhone.dc.html",
+    "PrismLightMenuPhone.dc.html",
+    "PrismLightAppMenuPhone.dc.html",
     "AtlasLanding.dc.html",
     "AtlasLandingPhone.dc.html",
     "AtlasLandingPhone2.dc.html",
