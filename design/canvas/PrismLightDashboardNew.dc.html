@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism light — Dashboard, new learner</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #F5F4FA; }
+a { color: #15122A; }
+a:hover { color: #15122A; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #66627A; }
+.pcl-input { width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #DFDCE9; border-radius: 14px; padding: 0 16px; background: #F2F0F8; color: #15122A; font-family: inherit; font-size: 15px; }
+.pcl-input:focus { outline: none; border-color: #3550E6; box-shadow: 0 0 0 3px rgba(77,107,255,0.25); }
+.pcl-acc summary::-webkit-details-marker { display: none; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-mtop { display: flex !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-g3, .pcl-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pcl-sticky { position: relative !important; top: auto !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-flow { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-appmain { padding: 24px 16px 40px !important; gap: 16px !important; }
+  .pcl-sec { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .pcl-sec-first { padding-top: 64px !important; }
+  .pcl-sec-last { padding-bottom: 64px !important; }
+  .pcl-herosec { padding-top: 40px !important; padding-bottom: 32px !important; }
+  .pcl-secstack, .pcl-stack-lg { gap: 32px !important; }
+  .pcl-split { gap: 32px !important; }
+  .pcl-g2, .pcl-g3, .pcl-g4 { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-card-lg { padding: 24px !important; }
+  .pcl-display-xl { font-size: 44px !important; line-height: 50px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  .pcl-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .pcl-h2-lg { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-show-xs { display: flex !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-full-xs { width: 100% !important; justify-content: center !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px 16px !important; gap: 12px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-lessonmain { padding: 24px 16px 40px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #15122A; background: #F5F4FA; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; right: -240px; top: -360px; width: 1000px; height: 760px; pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(77,107,255,0.1), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 68% 55%, rgba(240,64,127,0.06), rgba(0,0,0,0) 72%)"></div>
+<div class="pcl-shell" style="position: relative; display: grid; grid-template-columns: 252px minmax(0, 1fr)">
+<aside class="pcl-side" style="background: #FAF9FD; border-right: 1px solid #E9E7F1; padding: 24px 16px; display: flex; flex-direction: column; gap: 32px; box-sizing: border-box">
+<div style="padding: 0 8px"><a href="PrismLightDashboard.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span style="font-size: 18px; color: #111111; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a></div>
+<nav aria-label="Main">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<li><a href="PrismLightDashboard.dc.html" aria-current="page" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; background: rgba(21,18,42,0.036); box-shadow: inset 0 0 0 1px #DFDCE9; font-weight: 600; color: #15122A"><span style="width: 32px; height: 32px; border-radius: 10px; background: #15122A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg></span>Home</a></li>
+<li><a href="PrismLightTrack.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg></span>My Tracks</a></li>
+<li><a href="PrismLightReview.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg></span>Review</a></li>
+<li><a href="PrismLightProjects.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></span>Projects</a></li>
+<li><a href="PrismLightCertificate.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z" /><path d="m9 12 2 2 4-4" /></svg></span>Certificates</a></li>
+<li><a href="PrismLightCommunity.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><circle cx="9" cy="8" r="4" /><path d="M2 21a7 7 0 0 1 14 0" /><path d="M16 4a4 4 0 0 1 0 8" /><path d="M22 21a7 7 0 0 0-4-6.3" /></svg></span>Community</a></li>
+</ul>
+</nav>
+
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid #E9E7F1">
+<ul style="list-style: none; margin: 0; padding: 0"><li><a href="PrismLightSettings.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 0 12px; height: 48px; border-radius: 14px; text-decoration: none; font-size: 15px; color: #3B3752"><span style="width: 32px; height: 32px; border-radius: 10px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 17px; height: 17px" aria-hidden="true"><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z" /></svg></span>Settings</a></li></ul>
+<a href="PrismLightSettings.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 8px 0; text-decoration: none">
+<span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 12px; background: #FF8A3D; color: #1F0E00; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center">TA</span>
+<span><span style="display: block; font-size: 14px; font-weight: 600">Tolu Adebayo</span><span style="display: block; font-size: 12px; color: #66627A">Free · joined today</span></span>
+</a>
+</div>
+</aside>
+<div style="min-width: 0; display: flex; flex-direction: column">
+<div class="pcl-mtop" style="display: none; height: 64px; border-bottom: 1px solid #E9E7F1; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px">
+<a href="PrismLightDashboard.dc.html" aria-label="PractiCode Learn home" style="display: flex"><svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg></a>
+<div style="display: flex; align-items: center; gap: 8px"><a href="PrismLightLesson.dc.html" style="height: 42px; padding: 0 16px 0 6px; border-radius: 999px; border: 1px solid #DFDCE9; text-decoration: none; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 8px"><span style="width: 30px; height: 30px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #FFFFFF"><svg viewBox="0 0 24 24" style="width: 15px; height: 15px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span>Ask AI</a></div>
+</div>
+
+<main class="pcl-appmain" style="padding: 32px; max-width: 1180px; width: 100%; box-sizing: border-box; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Welcome, Tolu. Let's start.</h1>
+<p style="margin: 0; font-size: 16px; line-height: 24px; color: #5D5972">Your plan: Front-End Web Development, 20 minutes a day.</p>
+</div>
+
+</div>
+<div style="border-radius: 20px; padding: 16px 20px; background: linear-gradient(120deg, #4A30D8 0%, #8A2FA8 55%, #C42A6C 100%); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; color: #FFFFFF">
+<p style="margin: 0; display: flex; align-items: center; gap: 12px; font-size: 15px; line-height: 22px"><span style="font-weight: 600">Finish Lesson 1 to unlock 7 days of Pro.</span><span style="color: #F6EDFF">No card needed.</span></p>
+<a href="PrismLightPricing.dc.html" style="font-size: 14px; font-weight: 500; color: #FFFFFF">What's in Pro?</a>
+</div>
+<div class="pcl-split" style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px">
+<section aria-labelledby="pcl-first-t" class="pcl-card-lg" style="border-radius: 28px; padding: 32px; border: 1px solid #DFDCE9; background: linear-gradient(150deg, #3D5AF5 0%, #1F33A8 100%); display: flex; flex-direction: column; gap: 16px; color: #FFFFFF">
+<p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 500; background: rgba(255,255,255,0.14); border-radius: 999px; padding: 4px 12px">Front-End · Module 1 · Lesson 1</p>
+<h2 id="pcl-first-t" class="pcl-display" style="margin: 0; font-size: 34px; line-height: 38px; font-weight: 800; letter-spacing: -0.025em">How the web works</h2>
+<p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 24px; color: #EEF0FF">Find out what really happens when you open a website. It takes about 10 minutes, and you'll guess before you're told.</p>
+<a href="PrismLightStepPredict.dc.html" style="align-self: flex-start; margin-top: 8px; text-decoration: none; font-size: 15px; font-weight: 600; color: #2D45D8; background: #FFFFFF; height: 52px; padding: 0 24px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="m7 4 13 8-13 8z" /></svg>Start Your First Lesson</a>
+</section>
+<section class="pcl-card" aria-labelledby="pcl-gs-t" style="border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FD 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><h2 id="pcl-gs-t" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Getting started</h2><span style="font-size: 13px; color: #5D5972">1 of 4</span></div>
+<div aria-hidden="true" style="display: flex; gap: 4px"><span style="flex: 1; height: 6px; border-radius: 3px; background: #3D5AF5; display: block; color: #FFFFFF"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #E2DFEC; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #E2DFEC; display: block"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #E2DFEC; display: block"></span></div>
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+<li style="display: flex; gap: 12px; align-items: center; font-size: 14px; line-height: 22px"><span style="width: 22px; height: 22px; border-radius: 8px; border: 1.5px solid #3D5AF5; background: #3D5AF5; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box; color: #FFFFFF"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 13px; height: 13px; stroke-width: 2.6" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span><span style="color: #5D5972; text-decoration: line-through">Create your account</span></li>
+<li style="display: flex; gap: 12px; align-items: center; font-size: 14px; line-height: 22px"><span style="width: 22px; height: 22px; border-radius: 8px; border: 1.5px solid #B9B4C9; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box"></span><span style="color: #15122A">Finish your first lesson</span></li>
+<li style="display: flex; gap: 12px; align-items: center; font-size: 14px; line-height: 22px"><span style="width: 22px; height: 22px; border-radius: 8px; border: 1.5px solid #B9B4C9; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box"></span><span style="color: #15122A">Do your first daily review</span></li>
+<li style="display: flex; gap: 12px; align-items: center; font-size: 14px; line-height: 22px"><span style="width: 22px; height: 22px; border-radius: 8px; border: 1.5px solid #B9B4C9; background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box"></span><span style="color: #15122A">Save a module for offline</span></li>
+</ul>
+</section>
+</div>
+<div class="pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<section class="pcl-card" style="border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FD 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<span style="width: 44px; height: 44px; border-radius: 16px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg></span><h2 class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Nothing to review yet</h2><p style="margin: 0; font-size: 14px; line-height: 22px; color: #5D5972">Your first cards show up after Lesson 1. Reviewing takes about 4 minutes a day and stops you forgetting.</p>
+</section>
+<section class="pcl-card" style="border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FD 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<span style="width: 44px; height: 44px; border-radius: 16px; background: #EFEDF6; color: #3B3752; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></svg></span><h2 class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">This week: 0 of 5 days</h2>
+<div aria-hidden="true" style="display: flex; gap: 6px"><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>M</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>T</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>W</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>T</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>F</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px solid #3550E6; box-sizing: border-box; display: block"></span>S</span><span style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 11px; color: #66627A"><span style="width: 100%; height: 28px; border-radius: 8px; border: 1.5px dashed #CBC6DA; box-sizing: border-box; display: block"></span>S</span></div>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #5D5972">A day counts once you finish one lesson. Missing one doesn't reset anything.</p>
+</section>
+<section class="pcl-card" style="border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FD 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<span style="width: 44px; height: 44px; border-radius: 999px; background: linear-gradient(135deg, #3D5AF5, #6E4CF5 55%, #D9306F); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #FFFFFF"><svg viewBox="0 0 24 24" style="width: 22px; height: 22px; fill: #FFFFFF" aria-hidden="true"><path d="M11 2.5l2.1 5.9 5.9 2.1-5.9 2.1L11 18.5l-2.1-5.9L3 10.5l5.9-2.1z" /><path d="M19 14.5l.9 2.6 2.6.9-2.6.9-.9 2.6-.9-2.6-2.6-.9 2.6-.9z" /></svg></span><h2 class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Your AI tutor is ready</h2><p style="margin: 0; font-size: 14px; line-height: 22px; color: #5D5972">Stuck on an exercise? Ask it to explain. You get 5 questions a day on Free.</p><a href="PrismLightLesson.dc.html" style="margin-top: auto; font-size: 14px; font-weight: 500; color: #6342EE">See how it helps →</a>
+</section>
+</div>
+<section aria-labelledby="pcl-other-t" style="display: flex; flex-direction: column; gap: 16px">
+<h2 id="pcl-other-t" class="pcl-display" style="margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -0.02em">Curious about another track?</h2>
+<div class="pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<a href="PrismLightTrack.dc.html" class="pcl-card" style="text-decoration: none; border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(160deg, rgba(47,230,176,0.14), #FAF9FD 70%); padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 14px; background: #0A7D5C; display: flex; align-items: center; justify-content: center; color: #FFFFFF"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="M3 3v18h18" /><path d="M8 17v-4" /><path d="M13 17V8" /><path d="M18 17v-7" /></svg></span>
+<span class="pcl-display" style="font-size: 18px; line-height: 24px; font-weight: 700">Data Analysis</span>
+<span style="font-size: 14px; line-height: 22px; color: #5D5972">Tidy messy spreadsheets and build dashboards people read.</span>
+<span style="margin-top: auto; font-size: 14px; font-weight: 500; color: #08704F">Module 1 is free →</span>
+</a>
+<a href="PrismLightTrack.dc.html" class="pcl-card" style="text-decoration: none; border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(160deg, rgba(240,64,127,0.14), #FAF9FD 70%); padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 14px; background: #D9306F; display: flex; align-items: center; justify-content: center; color: #FFFFFF"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><path d="m12 19 7-7 3 3-7 7z" /><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18z" /><circle cx="11" cy="11" r="2" /></svg></span>
+<span class="pcl-display" style="font-size: 18px; line-height: 24px; font-weight: 700">UI/UX Product Design</span>
+<span style="font-size: 14px; line-height: 22px; color: #5D5972">Talk to users and design screens people can click through.</span>
+<span style="margin-top: auto; font-size: 14px; font-weight: 500; color: #B81F57">Module 1 is free →</span>
+</a>
+<a href="PrismLightTrack.dc.html" class="pcl-card" style="text-decoration: none; border-radius: 24px; border: 1px solid #DFDCE9; background: linear-gradient(160deg, rgba(123,92,255,0.16), #FAF9FD 70%); padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<span style="width: 44px; height: 44px; border-radius: 14px; background: #6E4CF5; display: flex; align-items: center; justify-content: center; color: #FFFFFF"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 22px; height: 22px" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3" /></svg></span>
+<span class="pcl-display" style="font-size: 18px; line-height: 24px; font-weight: 700">AI & Machine Learning</span>
+<span style="font-size: 14px; line-height: 22px; color: #5D5972">Train models in Python and learn where AI goes wrong.</span>
+<span style="margin-top: auto; font-size: 14px; font-weight: 500; color: #6342EE">Module 1 is free →</span>
+</a>
+</div>
+</section>
+</main>
+<nav class="pcl-tabbar" aria-label="Main" style="display: none; position: sticky; bottom: 0; z-index: 5; background: #FAF9FD; border-top: 1px solid #E9E7F1; height: 72px; justify-content: space-around; align-items: center">
+<a href="PrismLightDashboard.dc.html" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font-size: 12px; min-width: 56px; font-weight: 600; color: #15122A"><span style="width: 48px; height: 32px; border-radius: 10px; background: #15122A; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5" /><path d="M5 9.5V21h14V9.5" /></svg></span>Home</a>
+<a href="PrismLightLesson.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font-size: 12px; min-width: 56px; color: #5D5972"><span style="width: 48px; height: 32px; border-radius: 10px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2z" /><path d="M22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z" /></svg></span>Learn</a>
+<a href="PrismLightReview.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font-size: 12px; min-width: 56px; color: #5D5972"><span style="width: 48px; height: 32px; border-radius: 10px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.3L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-15.5 6.3L3 16" /><path d="M3 21v-5h5" /></svg></span>Review</a>
+<a href="PrismLightProjects.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font-size: 12px; min-width: 56px; color: #5D5972"><span style="width: 48px; height: 32px; border-radius: 10px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg></span>Projects</a>
+<a href="PrismLightSettings.dc.html" style="display: flex; flex-direction: column; align-items: center; gap: 4px; text-decoration: none; font-size: 12px; min-width: 56px; color: #5D5972"><span style="width: 48px; height: 32px; border-radius: 10px; background: transparent; color: inherit; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg></span>Me</a>
+</nav>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1110}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#15122A';
+    const ctaFg = yellow ? '#15122A' : '#FFFFFF';
+    return { cta: cta, ctaFg: ctaFg };
+  }
+}
+</script>
+</body>
+</html>

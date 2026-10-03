@@ -32,6 +32,8 @@ All notable changes to this project are documented here. The format follows [Kee
   - states: new learner dashboard, loading, offline, page not found
   - other pages: projects list, legal pages, scholarship application, Mentor cohorts, community
 - A spacing standard (8-point scale, one section rhythm, standard card, grid and form spacing), documented in the design system and applied to every artboard
+- Prism light mode for all 37 screens, at desktop and phone width, on its own canvas page. Its tokens and rules are in the design system and brand config.
+- An Appearance setting (Dark, Light or Match device) in Settings
 
 ### Changed
 
@@ -42,6 +44,10 @@ All notable changes to this project are documented here. The format follows [Kee
 - Every link in the prototype now leads to a real screen. There are no placeholder links left.
 - The landing page follows the founder's canvas edits: tracks come straight after the hero, and the lesson-loop section, hero pills, AI pill and hero checklist are removed. The site assistant has no pink and a white logo circle.
 - Checkout now reads "Keep Pro after your trial", in line with the no-card trial. The trial end date is 8 October everywhere.
+- The landing page's 150 KB stat card is now "80% to pass every module", about module checks, real-job project briefs and a certificate that means something.
+- Track cards on the landing page keep their illustrations on phones.
+- On phones, lesson steps keep controls next to what they change: Investigate shows the code and preview under the value buttons, Make puts the editor before the tests, and the Python notebook comes before the question.
+- The canvas now has "Prism (dark)" and "Prism (light)" pages, and the lesson steps sit together in one row in lesson order.
 - The sidebar uses neutral icons, with the active item in white. Lesson step bars, demo boxes, certificate projects and track page details use only the track's colour.
 - Shortlisted to three directions: Atlas Night, Spectrum and Prism. Current, Adire, Simple and the first lesson player were set aside and remain in git history.
 - Removed shadows and glows from yellow buttons.

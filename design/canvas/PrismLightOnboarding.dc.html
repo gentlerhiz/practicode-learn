@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism light — Onboarding</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #F5F4FA; }
+a { color: #15122A; }
+a:hover { color: #15122A; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@container pcl (max-width: 699px) {
+  .pcl-tracks { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  main.pcl-wrap { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-hide-xs { display: none !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #15122A; background: #F5F4FA; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -380px; width: 1400px; height: 820px; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side at 30% 50%, {{glowA}}, rgba(0,0,0,0) 72%), radial-gradient(closest-side at 72% 55%, rgba(123,92,255,0.11), rgba(123,92,255,0) 72%)"></div>
+
+<header style="position: relative">
+<div class="pcl-wrap" style="max-width: 1000px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="PrismLightLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span class="pcl-hide-xs" style="font-size: 18px; color: #111111; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<div style="flex: 1; max-width: 280px; display: flex; flex-direction: column; gap: 6px">
+<div aria-hidden="true" style="display: flex; gap: 6px"><span style="flex: 1; height: 6px; border-radius: 3px; background: #4D6BFF; display: block; color: #FFFFFF"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #7B5CFF; display: block; color: #FFFFFF"></span><span style="flex: 1; height: 6px; border-radius: 3px; background: #E2DFEC; display: block"></span></div>
+<p style="margin: 0; font-size: 12px; color: #5D5972; text-align: center">Step 2 of 3</p>
+</div>
+<a href="PrismLightDashboard.dc.html" style="font-size: 14px; color: #5D5972">Skip for now</a>
+</div>
+</header>
+
+<main class="pcl-wrap" style="position: relative; max-width: 840px; margin: 0 auto; padding: 48px 24px 80px; display: flex; flex-direction: column; gap: 32px; box-sizing: border-box">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center">
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 48px; line-height: 52px; font-weight: 800; letter-spacing: -0.04em">What do you want to learn first?</h1>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: #5D5972">No pressure. You can switch any time, and every track starts free.</p>
+</div>
+
+<section aria-labelledby="pcl-q1">
+<h2 id="pcl-q1" class="pcl-sr">Choose a track</h2>
+<div class="pcl-tracks" role="group" aria-labelledby="pcl-q1" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{tracks}}" as="t" hint-placeholder-count="4">
+<button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="text-align: left; display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 22px; border: 1.5px solid {{t.border}}; background: {{t.bg}}; color: #15122A; font-family: inherit; cursor: pointer; box-sizing: border-box">
+<span style="width: 50px; height: 50px; border-radius: 15px; background: {{t.tile}}; color: {{t.tileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 24px; height: 24px" aria-hidden="true"><path d="{{t.icon}}" /></svg></span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 4px"><span class="pcl-display" style="font-size: 19px; font-weight: 700; letter-spacing: -0.01em">{{t.name}}</span><span style="font-size: 14px; line-height: 21px; color: #5D5972">{{t.line}}</span><span style="font-size: 12px; color: {{t.metaC}}; margin-top: 4px">{{t.meta}}</span></span>
+<span style="width: 24px; height: 24px; border-radius: 999px; border: 1.5px solid {{t.ring}}; background: {{t.dot}}; color: {{t.tickC}}; box-sizing: border-box; flex-shrink: 0; display: flex; align-items: center; justify-content: center"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 14px; height: 14px; opacity: {{t.tick}}" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="pcl-q2" style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="pcl-q2" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">How much time can you give it?</h2>
+<div role="group" aria-labelledby="pcl-q2" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{times}}" as="o" hint-placeholder-count="4">
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<section aria-labelledby="pcl-q3" style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="pcl-q3" class="pcl-display" style="margin: 0; font-size: 20px; font-weight: 700">Have you done any of this before?</h2>
+<div role="group" aria-labelledby="pcl-q3" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{levels}}" as="o" hint-placeholder-count="3">
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.fg}}; font-family: inherit; font-size: 14px; font-weight: 500; cursor: pointer">{{o.label}}</button>
+</sc-for>
+</div>
+</section>
+
+<div aria-live="polite" style="border-radius: 22px; padding: 1.5px; background: {{planBorder}}">
+<div style="border-radius: 21px; background: #F2F0F8; padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start">
+<span style="width: 30px; height: 30px; border-radius: 10px; background: {{planTile}}; color: {{planTileFg}}; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" /></svg></span>
+<p style="margin: 0; font-size: 15px; line-height: 24px"><span style="font-weight: 600">Your plan: </span><span style="color: #3B3752">{{plan}}</span></p>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px">
+<a href="PrismLightLanding.dc.html" style="font-size: 15px; font-weight: 500; color: #5D5972; height: 48px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M19 12H5" /><path d="m11 18-6-6 6-6" /></svg>Back</a>
+<a href="PrismLightSignup.dc.html" style="text-decoration: none; font-size: 16px; font-weight: 600; height: 52px; padding: 0 32px; display: inline-flex; align-items: center; gap: 12px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}">Continue<svg class="pcl-i" viewBox="0 0 24 24" style="width: 18px; height: 18px" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></a>
+</div>
+</main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { track: 'fe', time: 't20', level: 'l0' };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const TRACKS = [
+      { id: 'fe', name: 'Front-End Web Development', line: 'Build websites that look right on every screen.', meta: '12 modules · Beginner', icon: 'm16 18 6-6-6-6M8 6l-6 6 6 6', fill: '#3D5AF5', fillFg: '#15122A', tint: 'rgba(77,107,255,0.16)', text: '#3550E6', glow: 'rgba(77,107,255,0.36)', grad: 'linear-gradient(120deg, #4D6BFF, #7B5CFF)' },
+      { id: 'da', name: 'Data Analysis', line: 'Turn messy spreadsheets into clear answers.', meta: '11 modules · Beginner', icon: 'M3 3v18h18M8 17v-4M13 17V8M18 17v-7', fill: '#2FE6B0', fillFg: '#04241A', tint: 'rgba(47,230,176,0.14)', text: '#08704F', glow: 'rgba(47,230,176,0.26)', grad: 'linear-gradient(120deg, #2FE6B0, #4D6BFF)' },
+      { id: 'ux', name: 'UI/UX Product Design', line: 'Design apps people actually enjoy using.', meta: '11 modules · Beginner', icon: 'm12 19 7-7 3 3-7 7zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18zM2 2l7.6 7.6', fill: '#D9306F', fillFg: '#15122A', tint: 'rgba(240,64,127,0.14)', text: '#B81F57', glow: 'rgba(240,64,127,0.30)', grad: 'linear-gradient(120deg, #F0407F, #7B5CFF)' },
+      { id: 'ai', name: 'AI & Machine Learning', line: 'Train models in Python and learn where AI goes wrong.', meta: '12 modules · Intermediate', icon: 'M5 7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zM9 9h6v6H9zM9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3', fill: '#6E4CF5', fillFg: '#15122A', tint: 'rgba(123,92,255,0.16)', text: '#6342EE', glow: 'rgba(123,92,255,0.34)', grad: 'linear-gradient(120deg, #7B5CFF, #F0407F)' }
+    ];
+    const track = TRACKS.find((t) => t.id === st.track) || TRACKS[0];
+    const tracks = TRACKS.map((t) => {
+      const on = t.id === st.track;
+      return {
+        name: t.name, line: t.line, meta: t.meta, icon: t.icon,
+        pressed: on ? 'true' : 'false',
+        border: on ? t.fill : '#DFDCE9',
+        bg: on ? 'linear-gradient(160deg, ' + t.tint + ', #F2F0F8 75%)' : 'linear-gradient(180deg, #FFFFFF, #FAF9FD)',
+        tile: on ? t.fill : t.tint,
+        tileFg: on ? t.fillFg : t.text,
+        metaC: on ? t.text : '#66627A',
+        ring: on ? t.fill : '#B9B4C9',
+        dot: on ? t.fill : 'transparent',
+        tickC: t.fillFg,
+        tick: on ? '1' : '0',
+        pick: () => this.setState({ track: t.id })
+      };
+    });
+    const pill = (list, key) => list.map((o) => {
+      const on = o.id === st[key];
+      return {
+        label: o.label,
+        pressed: on ? 'true' : 'false',
+        border: on ? track.fill : '#D2CEDF',
+        bg: on ? track.tint : 'transparent',
+        fg: on ? '#15122A' : '#3B3752',
+        pick: () => this.setState({ [key]: o.id })
+      };
+    });
+    const TIMES = [
+      { id: 't10', label: '10 min a day', week: 'about 70 minutes a week', pace: 'Module 1 done in about a week' },
+      { id: 't20', label: '20 min a day', week: 'about 2 hours a week', pace: 'Module 1 done in four or five days' },
+      { id: 't30', label: '30 min a day', week: 'about 3 hours a week', pace: 'Module 1 done in three days' },
+      { id: 'tw', label: 'Weekends only', week: 'a couple of hours each weekend', pace: 'Module 1 done in one or two weekends' }
+    ];
+    const LEVELS = [
+      { id: 'l0', label: 'Never', note: 'We will start right at the beginning.' },
+      { id: 'l1', label: 'A little', note: 'You can test out of anything you already know.' },
+      { id: 'l2', label: 'Quite a bit', note: 'Take a quick check and skip ahead.' }
+    ];
+    const time = TIMES.find((t) => t.id === st.time) || TIMES[1];
+    const level = LEVELS.find((t) => t.id === st.level) || LEVELS[0];
+    return {
+      tracks: tracks,
+      times: pill(TIMES, 'time'),
+      levels: pill(LEVELS, 'level'),
+      glowA: track.glow,
+      planBorder: track.grad,
+      planTile: track.fill,
+      planTileFg: track.fillFg,
+      plan: track.name + ', ' + time.week + '. That gets ' + time.pace + '. ' + level.note,
+      cta: yellow ? '#FED606' : '#15122A',
+      ctaFg: yellow ? '#15122A' : '#FFFFFF'
+    };
+  }
+}
+</script>
+</body>
+</html>

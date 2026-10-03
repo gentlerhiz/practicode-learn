@@ -60,7 +60,8 @@ a:hover { color: #FFFFFF; }
   .pcl-h1 { font-size: 44px !important; line-height: 54px !important; }
   .pcl-h2 { font-size: 34px !important; line-height: 40px !important; }
   .pcl-card { padding: 20px !important; }
-  .pcl-tillu { display: none !important; }
+  .pcl-tillu { width: 160px !important; height: 133px !important; right: -12px !important; bottom: -12px !important; }
+  .pcl-tcontent > p:last-of-type { margin-bottom: 96px !important; }
   .pcl-tcontent { max-width: none !important; }
   .pcl-hide-xs { display: none !important; }
   .pcl-ring { width: 240px !important; height: 240px !important; }
@@ -231,7 +232,7 @@ a:hover { color: #FFFFFF; }
 <div class="pcl-wrap pcl-secstack" style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-direction: column; gap: 48px">
 <div style="text-align: center; display: flex; flex-direction: column; gap: 16px; align-items: center">
 <h2 class="pcl-h2 pcl-display" style="margin: 0; font-size: 52px; line-height: 56px; font-weight: 800; letter-spacing: -0.035em">Small numbers. Big difference.</h2>
-<p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 28px; color: #A9A6BC">Three numbers that shaped how we built this, <span style="color: #4BE3A8">and why it works on any network.</span></p>
+<p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 28px; color: #A9A6BC">Three numbers that shaped how we built this, <span style="color: #4BE3A8">and what they mean for you.</span></p>
 </div>
 <div class="pcl-g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
 <article class="pcl-card" style="border-radius: 30px; padding: 32px 32px; border: 1px solid #2A2540; background: linear-gradient(165deg, #3D5AF5 0%, #1B2580 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px">
@@ -243,12 +244,12 @@ a:hover { color: #FFFFFF; }
 <a href="https://doi.org/10.1145/2724660.2724681" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">Read the Study</a>
 </article>
 <article class="pcl-card" style="border-radius: 30px; padding: 32px 32px; border: 1px solid #2A2540; background: linear-gradient(165deg, #0A7D5C 0%, #0B4A3A 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px">
-<p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The data</p>
-<p class="pcl-display" style="margin: 0; font-size: 80px; line-height: 86px; font-weight: 800; letter-spacing: -0.045em">150 KB</p>
-<p style="margin: 0; font-size: 15px; color: #DDF7EC">the most a lesson is allowed to weigh</p>
+<p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The bar</p>
+<p class="pcl-display" style="margin: 0; font-size: 80px; line-height: 86px; font-weight: 800; letter-spacing: -0.045em">80%</p>
+<p style="margin: 0; font-size: 15px; color: #DDF7EC">to pass every module</p>
 <span style="width: 100%; height: 1px; background: rgba(255,255,255,0.14); display: block"></span>
-<p style="margin: 0; font-size: 14px; line-height: 22px; color: #C6EBDC">That's less than one second of HD video. A whole module fits in about 2 MB, so you can save it for offline in one go.</p>
-<a href="#how" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">How We Keep It Light</a>
+<p style="margin: 0; font-size: 14px; line-height: 22px; color: #C6EBDC">Each module ends with a check and a project briefed like a real job. You move on once you've got it, so your certificate means something.</p>
+<a href="PrismTrack.dc.html#syllabus" style="text-decoration: none; font-size: 14px; font-weight: 500; height: 42px; padding: 0 20px; display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid rgba(255,255,255,0.3)">See What You'll Build</a>
 </article>
 <article class="pcl-card" style="border-radius: 30px; padding: 32px 32px; border: 1px solid #2A2540; background: linear-gradient(165deg, #D9306F 0%, #5E1236 40%, #0B0A14 80%); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px">
 <p style="margin: 0; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 999px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2)">The price</p>
@@ -701,7 +702,7 @@ The PractiCode team
 </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"currency":{"editor":"enum","options":["NGN","GHS","KES","GBP","USD"],"default":"NGN","section":"Pricing"},"assistant":{"editor":"enum","options":["Closed","Open"],"default":"Closed","section":"Chat"},"$preview":{"width":1440,"height":10160}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"currency":{"editor":"enum","options":["NGN","GHS","KES","GBP","USD"],"default":"NGN","section":"Pricing"},"assistant":{"editor":"enum","options":["Closed","Open"],"default":"Closed","section":"Chat"},"$preview":{"width":1440,"height":10140}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);

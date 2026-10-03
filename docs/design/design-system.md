@@ -1,6 +1,6 @@
 # Design system: Prism
 
-**Prism** is the chosen visual direction for PractiCode Learn (decided 3 October 2026). It is dark-first and colour-coded by track. It keeps the PractiCode logo and Practi Yellow, and it was picked over Atlas Night because it looks like nobody else and feels inviting to beginners. The tokens are in [brand.config.json](../../brand/brand.config.json) under `theme`. They will be exported to CSS custom properties and Tailwind theme values. You can see every screen on the [design canvas](../../design/README.md).
+**Prism** is the chosen visual direction for PractiCode Learn (decided 3 October 2026). It is dark-first, has a matching [light mode](#light-mode), and is colour-coded by track. It keeps the PractiCode logo and Practi Yellow, and it was picked over Atlas Night because it looks like nobody else and feels inviting to beginners. The tokens are in [brand.config.json](../../brand/brand.config.json) under `theme`. They will be exported to CSS custom properties and Tailwind theme values. You can see every screen on the [design canvas](../../design/README.md).
 
 ## Principles
 
@@ -8,8 +8,8 @@
    - Inside the product, colour is never decorative. A Front-End certificate, lesson or project is blue, not a rainbow.
    - Marketing pages may show all four colours together as the brand palette, as in the hero word pills and the stat cards.
    - A single track colour never appears on something that isn't about that track.
-2. **A calm ground lets colour do the work.** Surfaces are near-black, and colour appears where it carries meaning.
-3. **One white primary action per view.** The main button is white with dark text.
+2. **A calm ground lets colour do the work.** Surfaces are near-black in dark mode and soft white in light mode, and colour appears where it carries meaning.
+3. **One primary action per view.** The main button is white with dark text in dark mode, and near-black with white text in light mode.
 4. **Yellow belongs to the logo.** Practi Yellow appears in the logo icon. It is used for buttons only through the `ctaColor` option, and then always flat.
 5. **AI has its own look.** The AI tutor uses the brand gradient. The site assistant uses the blue-to-violet version, which the founder chose in the canvas. Neither ever reads as a fifth track.
 
@@ -70,6 +70,51 @@ Every state pairs colour with an icon and a word (✓ Passed, ✕ Needs a fix). 
 - It appears in the logo icon on every screen.
 - It is not used for text, thin lines or glows.
 - With `ctaColor` set to "Practi Yellow", primary buttons become `#FED606` with black text. They stay flat, with no shadow and no glow.
+
+## Light mode
+
+Light mode uses the same layouts, type, spacing and components as dark mode. Only the tokens change. Learners choose it in **Settings → Learning → Appearance**: Dark, Light or Match device. Match device is the default. Light is easier to read in bright sunlight, which matters for learners using phones outdoors.
+
+### Tokens
+
+| Token | Dark | Light |
+|---|---|---|
+| `bg` | `#07060D` | `#F5F4FA` |
+| `surface` | `linear-gradient(180deg, #13101F, #0B0A14)` | `linear-gradient(180deg, #FFFFFF, #FAF9FD)` |
+| `surface-sunken` | `#0E0C1A` | `#F2F0F8` |
+| `surface-row` | `#0F0D1B` | `#FFFFFF` |
+| `line` | `#2A2540` | `#DFDCE9` |
+| `line-subtle` | `#1C1930` / `#221E36` | `#E9E7F1` / `#E4E1ED` |
+| `line-control` | `#332E4D` | `#D2CEDF` |
+| `text` | `#FFFFFF` | `#15122A` |
+| `text-soft` | `#DCD9EA` | `#3B3752` |
+| `text-muted` | `#A9A6BC` | `#5D5972` |
+| `text-subtle` | `#8B88A0` | `#66627A` |
+| Primary button | `#FFFFFF` with `#07060D` text | `#15122A` with white text |
+
+| Track | Fill (both modes) | Text and icons on light | Card gradient on light |
+|---|---|---|---|
+| Front-End Web Development | `#3D5AF5` | `#3550E6` | `#3D5AF5` → `#1F33A8` |
+| Data Analysis | `#0A7D5C` | `#08704F` | `#0A7D5C` → `#05503B` |
+| UI/UX Product Design | `#D9306F` | `#B81F57` | `#D9306F` → `#8F1745` |
+| AI & Machine Learning | `#6E4CF5` | `#6342EE` | `#6E4CF5` → `#3A20B0` |
+
+On light, success text is `#08704F`, error text is `#B42834` and badge text is `#B23A0A`. The badge and success fills don't change.
+
+### Rules
+
+- **Track cards, stat cards and bands stay saturated**, with white text. On light, their gradients deepen into the track's own dark shade rather than into near-black.
+- **Track colours used as text go one step deeper**, so they pass 4.5:1 on white and on tinted surfaces.
+- **Selected chips and options** use the track colour at 14% opacity, a track-coloured border and dark text, instead of a solid fill with white text. Switch knobs stay white.
+- **Aurora glows** drop to half their dark-mode opacity.
+- **Code editors are light too.** Syntax colours use the deeper track colours.
+- **The logo** uses the black icon (`brand/logo/icon-black.svg`) and a black wordmark. The yellow icon is for dark backgrounds only.
+- **Unchanged in light mode:**
+  - the brand gradient and the site assistant's gradient
+  - the Practi Yellow option
+  - mock-ups of a learner's own website inside lessons and projects, which are content
+
+Every light screen was checked in a browser at 1440 px and 390 px. No text falls below 3:1. The exceptions are gradient-filled headline text, which the checker can't measure, and the mock-up content above.
 
 ## Typography
 
@@ -201,3 +246,4 @@ See [ADR 0006](../architecture/adr/0006-ai-tutor-and-site-assistant.md).
 - Track tints used as text reach 7:1 or better on `bg`.
 - Track fills behind white text reach 4.5:1 or better.
 - Aqua and green fills always carry dark text (`#04241A`).
+- In light mode, body text uses `#5D5972` or darker (6:1 on `bg`) and small print uses `#66627A` (5.3:1). Track text colours reach 4.5:1 on white and on 14% track tints.

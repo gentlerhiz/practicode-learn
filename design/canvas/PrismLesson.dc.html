@@ -30,6 +30,15 @@ a:hover { color: #FFFFFF; }
   .pcl-h1 { font-size: 30px !important; line-height: 34px !important; }
   .pcl-box { width: 48px !important; height: 48px !important; }
 }
+
+@container pcl (max-width: 999px) {
+  .pcl-lcol { display: contents !important; }
+  .pcl-lcol > [style*="align-self: flex-start"] { justify-self: start; }
+  .pcl-lesson > *, .pcl-lcol > * { order: 1; }
+  .pcl-lesson > .pcl-o2, .pcl-lcol > .pcl-o2 { order: 2; }
+  .pcl-lesson > .pcl-o3, .pcl-lcol > .pcl-o3 { order: 3; }
+  .pcl-lesson > .pcl-aipanel, .pcl-lesson > sc-if { order: 4; }
+}
 </style>
 </helmet>
 <div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
@@ -63,7 +72,7 @@ a:hover { color: #FFFFFF; }
 
 <main class="pcl-body" style="position: relative; max-width: {{mainMax}}; margin: 0 auto; padding: 32px 24px 48px; box-sizing: border-box">
 <div class="pcl-lesson" style="display: grid; grid-template-columns: {{gridCols}}; gap: {{gridGap}}; align-items: start">
-<div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
+<div class="pcl-lcol" style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #8EA2FF; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.45); border-radius: 999px; padding: 4px 12px">3 · Investigate</p>
 <h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Try each value of justify-content</h1>
 <p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">justify-content decides where the spare room goes along the main axis. Tap a value and <span style="color: #8EA2FF">watch the boxes move.</span></p>
@@ -81,7 +90,7 @@ a:hover { color: #FFFFFF; }
 <p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCD9EA">Hint 1 of 3: look at the two outer boxes. For which value do they touch the dashed edges?</p>
 </div>
 </sc-if>
-<section aria-labelledby="pcl-q-t" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<section class="pcl-o3" aria-labelledby="pcl-q-t" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 16px">
 <h2 id="pcl-q-t" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Check yourself: which value puts the first and last boxes right against the edges?</h2>
 <div role="radiogroup" aria-labelledby="pcl-q-t" style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{choices}}" as="c" hint-placeholder-count="3">
@@ -99,7 +108,7 @@ a:hover { color: #FFFFFF; }
 </section>
 </div>
 
-<section aria-label="Code and live preview" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); overflow: hidden">
+<section class="pcl-o2" aria-label="Code and live preview" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); overflow: hidden">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; height: 52px; border-bottom: 1px solid #221E36">
 <div style="display: flex; gap: 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(77,107,255,0.18); border: 1px solid rgba(77,107,255,0.5)">styles.css</span><span style="padding: 6px 12px; border-radius: 999px; color: #8B88A0">index.html</span></div>
 <p style="margin: 0; font-size: 12px; color: #A9A6BC; display: flex; align-items: center; gap: 8px"><span style="width: 7px; height: 7px; border-radius: 999px; background: #2FE6B0; display: block"></span>Live preview</p>

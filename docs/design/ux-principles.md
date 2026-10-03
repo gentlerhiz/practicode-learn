@@ -38,6 +38,7 @@
 | Screen readers | Semantic HTML first, ARIA only when needed. Lesson feedback is announced via `aria-live`. Diagrams have text descriptions for every state. |
 | Code editor | Screen-reader-compatible editor (CodeMirror 6, which has an accessibility mode); test results announced as text |
 | Motion | `prefers-reduced-motion` honoured; no flashing content |
+| Light and dark | Both modes meet the same contrast rules. The default follows `prefers-color-scheme`, and learners can override it in Settings. Light mode helps on phones in bright sunlight. |
 | Zoom and reflow | Works at 320 px width and 400% zoom without horizontal scrolling (WCAG 1.4.10) |
 | Language | Plain English, reading age about 12–14 for interface copy; a glossary for technical terms |
 | Authentication | No cognitive tests at login: passkeys, magic links or password managers supported (WCAG 3.3.8) |

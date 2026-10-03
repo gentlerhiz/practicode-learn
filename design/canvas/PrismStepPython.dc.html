@@ -64,6 +64,15 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 @container pcl (max-width: 599px) {
   .pcl-code { font-size: 13px !important; line-height: 24px !important; }
 }
+
+@container pcl (max-width: 999px) {
+  .pcl-lcol { display: contents !important; }
+  .pcl-lcol > [style*="align-self: flex-start"] { justify-self: start; }
+  .pcl-lesson > *, .pcl-lcol > * { order: 1; }
+  .pcl-lesson > .pcl-o2, .pcl-lcol > .pcl-o2 { order: 2; }
+  .pcl-lesson > .pcl-o3, .pcl-lcol > .pcl-o3 { order: 3; }
+  .pcl-lesson > .pcl-aipanel, .pcl-lesson > sc-if { order: 4; }
+}
 </style>
 </helmet>
 <div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
@@ -82,7 +91,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </header>
 <main class="pcl-lessonmain" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 24px 48px; box-sizing: border-box">
 <div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
-<div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
+<div class="pcl-lcol" style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #B9A2FF; background: rgba(123,92,255,0.16); border: 1px solid rgba(123,92,255,0.45); border-radius: 999px; padding: 4px 12px">4 · Modify</p>
 <h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Keep some data back for testing</h1>
 <p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA"><span style="color: #B9A2FF">loans.csv</span> holds 1,000 past loan applications from a small lender. The data is made up, but it's based on real patterns. Change how much you keep back, then run the cell.</p>
@@ -94,7 +103,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </sc-for>
 </div>
 </div>
-<section aria-labelledby="pcl-pq" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<section class="pcl-o3" aria-labelledby="pcl-pq" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); padding: 24px; display: flex; flex-direction: column; gap: 16px">
 <h2 id="pcl-pq" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Why not train the model on all 1,000 rows?</h2>
 <div role="radiogroup" aria-label="Your answer" style="display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{choices}}" as="o" hint-placeholder-count="3">
@@ -116,7 +125,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </div>
 </sc-if>
 </div>
-<section aria-label="Python notebook" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); overflow: hidden">
+<section class="pcl-o2" aria-label="Python notebook" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); overflow: hidden">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; height: 56px; border-bottom: 1px solid #221E36">
 <p style="margin: 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(123,92,255,0.18); border: 1px solid rgba(123,92,255,0.5)">loans.ipynb</span></p>
 <p style="margin: 0; font-size: 12px; color: #A9A6BC; display: flex; align-items: center; gap: 8px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FE6B0; display: block"></span>Python 3.12 · runs in your browser</p>

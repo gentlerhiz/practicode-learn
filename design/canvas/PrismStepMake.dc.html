@@ -64,6 +64,15 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 @container pcl (max-width: 599px) {
   .pcl-code { font-size: 13px !important; line-height: 24px !important; }
 }
+
+@container pcl (max-width: 999px) {
+  .pcl-lcol { display: contents !important; }
+  .pcl-lcol > [style*="align-self: flex-start"] { justify-self: start; }
+  .pcl-lesson > *, .pcl-lcol > * { order: 1; }
+  .pcl-lesson > .pcl-o2, .pcl-lcol > .pcl-o2 { order: 2; }
+  .pcl-lesson > .pcl-o3, .pcl-lcol > .pcl-o3 { order: 3; }
+  .pcl-lesson > .pcl-aipanel, .pcl-lesson > sc-if { order: 4; }
+}
 </style>
 </helmet>
 <div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #FFFFFF; background: #07060D; position: relative; overflow: hidden">
@@ -82,11 +91,11 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </header>
 <main class="pcl-lessonmain" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 32px 24px 48px; box-sizing: border-box">
 <div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
-<div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
+<div class="pcl-lcol" style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #8EA2FF; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.45); border-radius: 999px; padding: 4px 12px">5 · Make</p>
 <h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Now build one yourself: a footer</h1>
 <p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">Mama Nkechi's footer needs three links: Menu, Find us and Order. Spread them out on wide screens and stack them on phones.</p>
-<div style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div class="pcl-o3" style="border-radius: 20px; border: 1px solid #2A2540; background: #0F0D1B; padding: 20px; display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><p style="margin: 0; font-size: 15px; font-weight: 600">Tests</p><p style="margin: 0; font-size: 13px; color: #A9A6BC">{{testSummary}}</p></div>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{tests}}" as="k" hint-placeholder-count="4">
@@ -105,7 +114,7 @@ input::placeholder, textarea::placeholder { color: #8B88A0; }
 </div>
 </sc-if>
 </div>
-<section aria-label="Code editor and live preview" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); overflow: hidden">
+<section class="pcl-o2" aria-label="Code editor and live preview" style="border-radius: 28px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F 0%, #0B0A14 100%); overflow: hidden">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 16px; height: 56px; border-bottom: 1px solid #221E36">
 <div style="display: flex; gap: 4px; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(77,107,255,0.18); border: 1px solid rgba(77,107,255,0.5)">styles.css</span><span style="padding: 6px 12px; border-radius: 999px; color: #8B88A0">index.html</span></div>
 <p style="margin: 0; font-size: 12px; color: #A9A6BC">Saved</p>

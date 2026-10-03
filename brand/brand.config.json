@@ -35,6 +35,7 @@
     "$comment": "Prism, the chosen product theme (3 October 2026). See docs/design/design-system.md.",
     "name": "Prism",
     "mode": "dark",
+    "modes": ["dark", "light"],
     "ground": {
       "bg": "#07060D",
       "surface": "linear-gradient(180deg, #13101F, #0B0A14)",
@@ -66,10 +67,39 @@
       "onBadge": "#1F0E00"
     },
     "primaryButton": { "default": { "bg": "#FFFFFF", "fg": "#07060D" }, "yellowOption": { "bg": "#FED606", "fg": "#000000" } },
+    "light": {
+      "$comment": "Prism light mode. Same layout and components, different tokens. Chosen in Settings, Appearance: Dark, Light or Match device (default).",
+      "ground": {
+        "bg": "#F5F4FA",
+        "surface": "linear-gradient(180deg, #FFFFFF, #FAF9FD)",
+        "surfaceSunken": "#F2F0F8",
+        "surfaceRow": "#FFFFFF",
+        "line": "#DFDCE9",
+        "lineSubtle": "#E9E7F1",
+        "lineControl": "#D2CEDF"
+      },
+      "text": {
+        "primary": "#15122A",
+        "soft": "#3B3752",
+        "muted": "#5D5972",
+        "subtle": "#66627A"
+      },
+      "tracks": {
+        "front-end-web-development": { "text": "#3550E6", "cardGradient": "linear-gradient(155deg, #3D5AF5 0%, #1F33A8 100%)" },
+        "data-analysis": { "text": "#08704F", "cardGradient": "linear-gradient(155deg, #0A7D5C 0%, #05503B 100%)" },
+        "ui-ux-product-design": { "text": "#B81F57", "cardGradient": "linear-gradient(155deg, #D9306F 0%, #8F1745 100%)" },
+        "ai-machine-learning": { "text": "#6342EE", "cardGradient": "linear-gradient(155deg, #6E4CF5 0%, #3A20B0 100%)" }
+      },
+      "semantic": { "success": "#08704F", "error": "#B42834", "badgeText": "#B23A0A" },
+      "primaryButton": { "bg": "#15122A", "fg": "#FFFFFF" },
+      "selectedState": "Track tint at 14% opacity, a track-coloured border and dark text",
+      "logo": "brand/logo/icon-black.svg with a black wordmark (#111111)"
+    },
     "rules": [
       "Colour means track. Never cycle track colours for decoration.",
       "The AI tutor and site assistant use the brand gradient, never a track colour.",
-      "Copy never counts tracks or colours, so a new track is a data change."
+      "Copy never counts tracks or colours, so a new track is a data change.",
+      "Light and dark share every layout. Only tokens change."
     ]
   },
   "typography": {
@@ -82,7 +112,7 @@
     "iconBlack": "brand/logo/icon-black.svg",
     "iconYellow": "brand/logo/icon-yellow.svg",
     "appIcon": "brand/logo/app-icon.svg",
-    "productLockup": "Yellow icon plus the Poppins wordmark (Practi Regular, Code Bold, Learn Regular) in white, on dark backgrounds.",
+    "productLockup": "Yellow icon plus the Poppins wordmark (Practi Regular, Code Bold, Learn Regular) in white, on dark backgrounds. On light backgrounds: the black icon and a black wordmark.",
     "status": "Interim redraws from the documented geometry. Replace with files from PractiCode_Academy_Official_Logo_Pack.zip."
   }
 }

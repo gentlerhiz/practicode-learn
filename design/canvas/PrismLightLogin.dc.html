@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prism light — Log in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&amp;family=Poppins:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet" />
+<style>
+body { margin: 0; background: #F5F4FA; }
+a { color: #15122A; }
+a:hover { color: #15122A; }
+.pcl-i { fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+.pcl-display { font-family: 'Bricolage Grotesque', 'Poppins', sans-serif; }
+.pcl-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+input::placeholder, textarea::placeholder { color: #66627A; }
+.pcl-input { width: 100%; height: 52px; box-sizing: border-box; border: 1px solid #DFDCE9; border-radius: 14px; padding: 0 16px; background: #F2F0F8; color: #15122A; font-family: inherit; font-size: 15px; }
+.pcl-input:focus { outline: none; border-color: #3550E6; box-shadow: 0 0 0 3px rgba(77,107,255,0.25); }
+.pcl-acc summary::-webkit-details-marker { display: none; }
+@container pcl (max-width: 1023px) {
+  .pcl-shell { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-side { display: none !important; }
+  .pcl-mtop { display: flex !important; }
+  .pcl-tabbar { display: flex !important; }
+}
+@container pcl (max-width: 959px) {
+  .pcl-navlinks { display: none !important; }
+  .pcl-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+  .pcl-g3, .pcl-g4 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .pcl-sticky { position: relative !important; top: auto !important; }
+  .pcl-foot { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@container pcl (max-width: 599px) {
+  .pcl-wrap { padding-left: 16px !important; padding-right: 16px !important; }
+  .pcl-flow { padding-top: 32px !important; padding-bottom: 48px !important; }
+  .pcl-appmain { padding: 24px 16px 40px !important; gap: 16px !important; }
+  .pcl-sec { padding-top: 32px !important; padding-bottom: 32px !important; }
+  .pcl-sec-first { padding-top: 64px !important; }
+  .pcl-sec-last { padding-bottom: 64px !important; }
+  .pcl-herosec { padding-top: 40px !important; padding-bottom: 32px !important; }
+  .pcl-secstack, .pcl-stack-lg { gap: 32px !important; }
+  .pcl-split { gap: 32px !important; }
+  .pcl-g2, .pcl-g3, .pcl-g4 { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .pcl-card { padding: 20px !important; }
+  .pcl-card-lg { padding: 24px !important; }
+  .pcl-display-xl { font-size: 44px !important; line-height: 50px !important; }
+  .pcl-h1 { font-size: 30px !important; line-height: 36px !important; }
+  .pcl-h2 { font-size: 26px !important; line-height: 32px !important; }
+  .pcl-h2-lg { font-size: 34px !important; line-height: 40px !important; }
+  .pcl-hide-xs { display: none !important; }
+  .pcl-show-xs { display: flex !important; }
+  .pcl-foot { grid-template-columns: minmax(0, 1fr) !important; }
+  .pcl-full-xs { width: 100% !important; justify-content: center !important; }
+  .pcl-head { height: auto !important; flex-wrap: wrap !important; padding: 12px 16px !important; gap: 12px !important; }
+  .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
+  .pcl-lessonmain { padding: 24px 16px 40px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #15122A; background: #F5F4FA; position: relative; overflow: hidden; min-height: 900px">
+<div aria-hidden="true" style="position: absolute; left: 50%; top: -360px; width: 1400px; height: 860px; transform: translateX(-50%); pointer-events: none; background: radial-gradient(closest-side at 35% 45%, rgba(77,107,255,0.15), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 68% 55%, rgba(123,92,255,0.12), rgba(0,0,0,0) 72%)"></div>
+<header style="position: relative; border-bottom: 1px solid #E9E7F1">
+<div class="pcl-wrap" style="max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px">
+<a href="PrismLightLanding.dc.html" aria-label="PractiCode Learn home" style="display: flex; align-items: center; gap: 12px; text-decoration: none">
+<svg viewBox="-10.4 -9.06 20.8 18.12" style="width: 28px; height: 24px" aria-hidden="true"><g style="fill: #000000; stroke: #000000; stroke-width: 0.32; stroke-linejoin: round"><polygon points="1.6,8.66 5,8.66 10,0 5,-8.66 -5,-8.66 -10,0 -5,8.66 -1,8.66 -3,5.196 -6,0 -3,-5.196 3,-5.196 6,0 3,5.196 -0.4,5.196" /><polygon points="-2.8,0 -1.4,2.425 1.4,2.425 2.8,0 1.4,-2.425 -1.4,-2.425" /></g></svg>
+<span class="pcl-hide-xs" style="font-size: 18px; color: #111111; white-space: nowrap"><span style="font-weight: 400">Practi</span><span style="font-weight: 700">Code</span><span style="font-weight: 400"> Learn</span></span>
+</a>
+<p style="margin: 0; font-size: 14px; color: #5D5972">New here? <a href="PrismLightSignup.dc.html" style="font-weight: 600">Create an account</a></p>
+</div>
+</header>
+<main class="pcl-wrap pcl-flow" style="position: relative; max-width: 488px; margin: 0 auto; padding: 64px 24px 80px; box-sizing: border-box">
+<div class="pcl-card-lg" style="border-radius: 28px; border: 1px solid #DFDCE9; background: linear-gradient(180deg, #FFFFFF 0%, #FAF9FD 100%); padding: 40px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em">Welcome back</h1>
+<p style="margin: 0; font-size: 16px; line-height: 26px; color: #5D5972">Pick up right where you left off.</p>
+</div>
+<button type="button" style="height: 52px; border-radius: 999px; border: 1px solid #D2CEDF; background: rgba(21,18,42,0.025); color: #15122A; font-family: inherit; font-size: 15px; font-weight: 500; cursor: pointer">Continue with Google</button>
+<div aria-hidden="true" style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: #66627A"><span style="flex: 1; height: 1px; background: #E4E1ED; display: block"></span>or log in with<span style="flex: 1; height: 1px; background: #E4E1ED; display: block"></span></div>
+<div role="group" aria-label="Log in with" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #DFDCE9; background: rgba(21,18,42,0.025)">
+<button type="button" onClick="{{setEmail}}" aria-pressed="{{emailPressed}}" style="flex: 1; height: 40px; border-radius: 999px; border: none; background: {{emailBg}}; color: {{emailFg}}; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>Email</button>
+<button type="button" onClick="{{setPhone}}" aria-pressed="{{phonePressed}}" style="flex: 1; height: 40px; border-radius: 999px; border: none; background: {{phoneBg}}; color: {{phoneFg}}; font-family: inherit; font-size: 14px; font-weight: 500; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2" /><path d="M11 18h2" /></svg>Phone number</button>
+</div>
+<form style="display: flex; flex-direction: column; gap: 20px">
+<sc-if value="{{isEmail}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pcl-li-email" style="font-size: 14px; font-weight: 500">Email</label>
+<input id="pcl-li-email" class="pcl-input" type="email" autocomplete="email" value="tolu.adebayo@gmail.com" />
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px"><label for="pcl-li-pw" style="font-size: 14px; font-weight: 500">Password</label><a href="PrismLightReset.dc.html" style="font-size: 13px; color: #3550E6">Forgot password?</a></div>
+<div style="position: relative">
+<input id="pcl-li-pw" class="pcl-input" type="{{pwType}}" autocomplete="current-password" value="flexbox-is-fun" style="padding-right: 96px" />
+<button type="button" onClick="{{togglePw}}" aria-pressed="{{pwShown}}" style="position: absolute; right: 8px; top: 8px; height: 36px; padding: 0 12px; border-radius: 999px; border: none; background: #EFEDF6; color: #3B3752; font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer">{{pwToggle}}</button>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{isPhone}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="pcl-li-tel" style="font-size: 14px; font-weight: 500">Phone number</label>
+<div style="display: flex; gap: 8px"><span style="height: 52px; padding: 0 16px; border-radius: 14px; border: 1px solid #DFDCE9; background: #F2F0F8; display: flex; align-items: center; gap: 8px; font-size: 15px; flex-shrink: 0">NG +234</span><input id="pcl-li-tel" class="pcl-input" type="tel" autocomplete="tel-national" value="803 555 0142" /></div>
+<p style="margin: 0; font-size: 13px; line-height: 20px; color: #66627A">We will text you a 6-digit code.</p>
+</div>
+</sc-if>
+<button type="button" role="checkbox" aria-checked="{{keep}}" onClick="{{toggle_keep}}" style="display: flex; align-items: flex-start; gap: 12px; padding: 0; border: none; background: transparent; color: #3B3752; font-family: inherit; font-size: 14px; line-height: 22px; text-align: left; cursor: pointer">
+<span style="width: 22px; height: 22px; border-radius: 8px; border: 1.5px solid {{keepBorder}}; background: {{keepBg}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box"><svg class="pcl-i" viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke-width: 2.6" aria-hidden="true"><path d="m5 12 5 5L20 7" /></svg></span>
+<span>Keep me logged in on this device</span>
+</button>
+<a href="{{submitHref}}" style="text-decoration: none; height: 52px; border-radius: 999px; background: {{cta}}; color: {{ctaFg}}; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center">{{submitLabel}}</a>
+</form>
+<p style="margin: 0; text-align: center; font-size: 14px; line-height: 22px; color: #5D5972">Trouble logging in? <a href="mailto:practicodeacademy@gmail.com" style="color: #3B3752">Email us</a> and a person will help.</p>
+</div>
+<p style="margin: 24px 0 0; text-align: center; font-size: 13px; color: #66627A"><a href="PrismLightLegal.dc.html" style="color: #5D5972">Privacy</a> · <a href="PrismLightLegal.dc.html" style="color: #5D5972">Terms</a> · <a href="mailto:practicodeacademy@gmail.com" style="color: #5D5972">Help</a></p>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":990}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { method: 'email', show: false, keep: true };
+  }
+  renderVals() {
+    const st = this.state || {};
+    const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
+    const cta = yellow ? '#FED606' : '#15122A';
+    const ctaFg = yellow ? '#15122A' : '#FFFFFF';
+    const email = st.method !== 'phone';
+    const on = { bg: '#15122A', fg: '#FFFFFF' };
+    const off = { bg: 'transparent', fg: '#3B3752' };
+    const e = email ? on : off;
+    const p = email ? off : on;
+    return {
+      cta: cta, ctaFg: ctaFg,
+      isEmail: email,
+      isPhone: !email,
+      emailBg: e.bg, emailFg: e.fg, emailPressed: email ? 'true' : 'false',
+      phoneBg: p.bg, phoneFg: p.fg, phonePressed: email ? 'false' : 'true',
+      setEmail: () => this.setState({ method: 'email' }),
+      setPhone: () => this.setState({ method: 'phone' }),
+      pwType: st.show ? 'text' : 'password',
+      pwShown: st.show ? 'true' : 'false',
+      pwToggle: st.show ? 'Hide' : 'Show',
+      togglePw: () => this.setState({ show: !st.show }),
+      keep: st.keep ? 'true' : 'false',
+      keepBg: st.keep ? '#15122A' : 'transparent',
+      keepBorder: st.keep ? '#15122A' : '#B9B4C9',
+      toggle_keep: () => this.setState({ keep: !st.keep }),
+      submitLabel: email ? 'Log In' : 'Send My Code',
+      submitHref: email ? 'PrismLightDashboard.dc.html' : 'PrismLightCode.dc.html'
+    };
+  }
+}
+</script>
+</body>
+</html>

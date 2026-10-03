@@ -31,7 +31,7 @@
 
 ### Assumptions (please correct)
 - The product name is **PractiCode Learn** and the domain is **learn.practicode.tech** ([ADR 0001](../architecture/adr/0001-separate-product-under-practicode-brand.md)).
-- The visual identity is the Prism theme: dark, colour-coded by track, with the September 2026 PractiCode logo and Practi Yellow in the logo.
+- The visual identity is the Prism theme: dark-first with a matching light mode, colour-coded by track, with the September 2026 PractiCode logo and Practi Yellow in the logo. The light mode follows the device setting unless the learner picks one in Settings.
 - PractiCode Academy delivers the **Mentor** plan at the current fee (₦80,000 per 3-month course).
 - **Career support is not offered** and must not be implied anywhere.
 - The AI & ML tool list (Python, Jupyter, pandas, scikit-learn, TensorFlow) still needs confirmation.
@@ -86,13 +86,13 @@ learn.practicode.tech
 ├── /checkout  /checkout/transfer  /checkout/done
 ├── /skills               Skill map
 ├── /downloads            Offline packs
-├── /settings             Account, plan, data, accessibility, privacy
+├── /settings             Account, plan, appearance (dark, light, match device), data, accessibility, privacy
 ├── /legal                Privacy, terms, accessibility statement
 └── /verify/[credential]  Public credential verification (Phase 2)
 ```
 
 ### Screens designed in this phase
-All 37 screens are in the Prism direction, each at desktop and phone width, and every link leads to a real screen. See [design/README.md](../../design/README.md).
+All 37 screens are in the Prism direction, in dark and light mode, each at desktop and phone width, and every link leads to a real screen. Learners choose the mode in Settings (Dark, Light or Match device). See [design/README.md](../../design/README.md).
 
 | Area | Screens |
 |---|---|
