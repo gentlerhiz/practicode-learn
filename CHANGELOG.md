@@ -57,6 +57,7 @@ All notable changes to this project are documented here. The format follows [Kee
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
 - Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.
+- Front-End Web Development syllabus v0.2: 15 modules and about 120 lessons, with lesson titles and the in-browser labs. Git basics move to Module 3 so learners publish a live site early, and branches and pull requests come in Module 12. Layout and JavaScript each get two modules. New coverage: the terminal, DevTools, using AI assistants critically, npm, Vite, Prettier, ESLint, API key safety, SEO, custom domains and client projects.
 
 ### Fixed
 

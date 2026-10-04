@@ -8,7 +8,7 @@ This document specifies what a lesson *is*: its structure, its step types, how i
 
 ```
 Track            Front-End Web Development
-└── Module       6. Layout: Flexbox, Grid and responsive design   (ends with a mastery check and a project)
+└── Module       6. Flexbox                                        (ends with a mastery check and a project)
     └── Lesson   4. Aligning items with Flexbox                   (10–15 minutes)
         └── Step 1 of 9: Predict                                  (one screen, one idea)
 ```

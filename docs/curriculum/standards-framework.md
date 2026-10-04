@@ -37,7 +37,7 @@ Every learning outcome in a syllabus has a stable ID and one or more framework r
     - mdn: core/css-layout
     - sfia: PROG@2
     - wcag: "1.4.10"   # Reflow
-  assessed_by: [lesson:fe-06-04, check:fe-06, project:fe-06-landing]
+  assessed_by: [lesson:fe-06-04, check:fe-06, project:fe-06-navbar]
 ```
 
 Rules:
