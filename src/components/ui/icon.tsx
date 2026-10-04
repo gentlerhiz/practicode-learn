@@ -16,6 +16,7 @@ export {
   Monitor,
   Moon,
   Play,
+  Plus,
   Share2,
   Smartphone,
   Sparkles,

@@ -175,3 +175,108 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/*
+ * Track cards and stat cards. On dark they fade into the page; on light they deepen into the track's
+ * own dark shade and stay saturated, with white text in both modes (design system, light mode rules).
+ */
+:root,
+[data-theme='dark'] {
+  --pc-card-fe: linear-gradient(155deg, #3d5af5 0%, #1c2785 38%, #0e0c1a 78%);
+  --pc-card-da: linear-gradient(155deg, #0a7d5c 0%, #0a4e3d 38%, #0e0c1a 78%);
+  --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #6b1540 38%, #0e0c1a 78%);
+  --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #33208a 38%, #0e0c1a 78%);
+  --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1c2785 40%, #0b0a14 80%);
+  --pc-stat-da: linear-gradient(165deg, #0a7d5c 0%, #0b4a3a 40%, #0b0a14 80%);
+  --pc-stat-ux: linear-gradient(165deg, #d9306f 0%, #6b1540 40%, #0b0a14 80%);
+}
+
+[data-theme='light'] {
+  --pc-card-fe: linear-gradient(155deg, #3d5af5 0%, #1f33a8 100%);
+  --pc-card-da: linear-gradient(155deg, #0a7d5c 0%, #05503b 100%);
+  --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #8f1745 100%);
+  --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #3a20b0 100%);
+  --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1f33a8 100%);
+  --pc-stat-da: linear-gradient(165deg, #0a7d5c 0%, #05503b 100%);
+  --pc-stat-ux: linear-gradient(165deg, #d9306f 0%, #8f1745 100%);
+}
+
+@utility brand-gradient-text {
+  background: linear-gradient(100deg, #8ea2ff, #b9a2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme='light'] .brand-gradient-text {
+  background-image: linear-gradient(100deg, #3550e6, #6342ee);
+}
+
+@layer components {
+  /* Floating hero cards and the tools strip. Both stop under prefers-reduced-motion (base rule above). */
+  .float-slow {
+    animation: pc-float 7s ease-in-out infinite;
+  }
+  .float-slower {
+    animation: pc-float 9s ease-in-out infinite reverse;
+  }
+  .marquee-track {
+    animation: pc-marquee 40s linear infinite;
+  }
+}
+
+/*
+ * The landing page lesson demo works with no JavaScript: the radio buttons drive the preview and the
+ * feedback through :has(), so the page ships no script for it. These rules stay outside @layer on purpose:
+ * unlayered CSS outranks Tailwind utilities, which would otherwise win over component rules.
+ */
+.lesson-demo .demo-row {
+  align-items: flex-start;
+}
+.lesson-demo .demo-feedback {
+  display: none;
+}
+.lesson-demo:has(input[value='flex-start']:checked) .demo-row {
+  align-items: flex-start;
+}
+.lesson-demo:has(input[value='center']:checked) .demo-row {
+  align-items: center;
+}
+.lesson-demo:has(input[value='flex-end']:checked) .demo-row {
+  align-items: flex-end;
+}
+.lesson-demo:has(input:checked) .demo-prompt {
+  display: none;
+}
+.lesson-demo:has(input[value='flex-start']:checked) .demo-feedback[data-for='flex-start'],
+.lesson-demo:has(input[value='center']:checked) .demo-feedback[data-for='center'],
+.lesson-demo:has(input[value='flex-end']:checked) .demo-feedback[data-for='flex-end'] {
+  display: flex;
+}
+.lesson-demo .demo-option:has(input:checked) {
+  border-color: var(--pc-fe-text);
+  background: color-mix(in srgb, #3d5af5 14%, transparent);
+}
+.lesson-demo .demo-option:has(input:focus-visible) {
+  outline: 2px solid var(--pc-focus);
+  outline-offset: 3px;
+}
+
+@keyframes pc-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes pc-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
