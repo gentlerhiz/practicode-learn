@@ -203,6 +203,16 @@ export const landing = {
       title: 'Your first lesson takes about ten minutes.',
       body: 'No account, no card. Just open a lesson and start.',
     },
+    track: {
+      open: {
+        title: 'Module 1 takes about an hour. It’s free.',
+        body: 'No account, no card. Open the first lesson and start.',
+      },
+      soon: {
+        title: 'Module 1 opens soon. It’s free.',
+        body: 'Want a nudge when it opens? Email us and we’ll tell you.',
+      },
+    },
     soon: {
       title: 'Module 1 opens soon, free.',
       body: 'See exactly what you’ll learn, lesson by lesson. Want a nudge when it opens? Email us and we’ll tell you.',

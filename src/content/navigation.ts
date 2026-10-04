@@ -25,13 +25,7 @@ export const primaryCta: NavItem = LESSONS_OPEN
  * Pages linked from the navigation that a later task creates. Typed routes can't see them yet, so they
  * are cast here and nowhere else; tests skip them. Task 8 empties this list and removes the casts.
  */
-export const PENDING: string[] = [
-  '/about',
-  '/legal/privacy',
-  '/legal/terms',
-  '/legal/accessibility',
-  TRACK_PAGE,
-]
+export const PENDING: string[] = ['/about', '/legal/privacy', '/legal/terms', '/legal/accessibility']
 
 export const guest: NavItem[] = [
   { href: TRACK_PAGE, label: 'Tracks' },

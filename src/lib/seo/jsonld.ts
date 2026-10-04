@@ -1,4 +1,12 @@
-import type { BreadcrumbList, EducationalOrganization, FAQPage, WebSite, WithContext } from 'schema-dts'
+import type {
+  BreadcrumbList,
+  Course,
+  EducationalOrganization,
+  FAQPage,
+  WebSite,
+  WithContext,
+} from 'schema-dts'
+import type { TrackContent } from '@/content/tracks/types'
 import { absoluteUrl, site } from '@/lib/site'
 
 /** JSON for a <script> element. Escaping "<" stops any value from closing the element early. */
@@ -47,5 +55,40 @@ export const faqLd = (items: { q: string; a: string }[]): WithContext<FAQPage> =
     '@type': 'Question',
     name: item.q,
     acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+})
+
+type CourseLd = WithContext<Course> & {
+  url: string
+  syllabusSections: { '@type': 'Syllabus'; name: string; description: string }[]
+}
+
+/** A track as a schema.org Course. Only Module 1 is free, which the offer says in its description. */
+export const courseLd = (track: TrackContent): CourseLd => ({
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: track.title,
+  description: track.summary,
+  url: absoluteUrl(`/tracks/${track.slug}`),
+  inLanguage: 'en-GB',
+  educationalLevel: track.level,
+  teaches: track.outcomes,
+  provider: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
+  hasCourseInstance: {
+    '@type': 'CourseInstance',
+    courseMode: 'Online',
+    courseWorkload: `PT${track.hours}H`,
+  },
+  offers: {
+    '@type': 'Offer',
+    price: 0,
+    priceCurrency: 'NGN',
+    category: 'Free',
+    description: 'Module 1 is free, with no card needed.',
+  },
+  syllabusSections: track.modules.map((m) => ({
+    '@type': 'Syllabus' as const,
+    name: `Module ${m.number}: ${m.title}`,
+    description: m.summary,
   })),
 })

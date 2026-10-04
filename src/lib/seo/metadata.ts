@@ -9,8 +9,11 @@ export type PageMeta = {
   type?: 'website' | 'article'
   /** Use the title as written, without the " · PractiCode Learn" suffix (the home page). */
   absoluteTitle?: boolean
-  /** Share image. Defaults to the site-wide card; a route with its own opengraph-image passes that path. */
-  image?: { url: string; alt: string }
+  /**
+   * Share image. Defaults to the site-wide card. A route with its own opengraph-image file passes
+   * 'route', so Next.js fills in that file (its URL carries a build hash, so it can't be written here).
+   */
+  image?: { url: string; alt: string } | 'route'
 }
 
 export const DEFAULT_SHARE_IMAGE = {
@@ -41,13 +44,15 @@ export function pageMetadata({
       description,
       siteName: site.name,
       locale: site.locale,
-      images: [{ url: image.url, width: 1200, height: 630, alt: image.alt }],
+      ...(image === 'route'
+        ? {}
+        : { images: [{ url: image.url, width: 1200, height: 630, alt: image.alt }] }),
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: [{ url: image.url, alt: image.alt }],
+      ...(image === 'route' ? {} : { images: [{ url: image.url, alt: image.alt }] }),
     },
     robots: noindex
       ? { index: false, follow: false }

@@ -28,3 +28,20 @@ it('turns FAQ items into questions with accepted answers', () => {
     ],
   })
 })
+
+it('describes a track as a Course with a free online instance and its modules', async () => {
+  const { courseLd } = await import('./jsonld')
+  const { frontEnd } = await import('@/content/tracks/front-end-web-development')
+  const ld = courseLd(frontEnd)
+  expect(ld).toMatchObject({
+    '@type': 'Course',
+    name: 'Front-End Web Development',
+    inLanguage: 'en-GB',
+    educationalLevel: 'Beginner',
+    provider: { '@type': 'EducationalOrganization', name: 'PractiCode Learn' },
+    hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Online', courseWorkload: 'PT140H' },
+    offers: { '@type': 'Offer', price: 0, category: 'Free' },
+  })
+  expect(ld.syllabusSections).toHaveLength(15)
+  expect(String(ld.url)).toMatch(/\/tracks\/front-end-web-development$/)
+})

@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import { ArrowRight, Icon, Mail } from '@/components/ui/icon'
 import { buttonClasses } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
@@ -5,7 +6,7 @@ import { Heading } from '@/components/ui/heading'
 import { LinkButton } from '@/components/ui/link-button'
 import { Section } from '@/components/ui/section'
 import { landing } from '@/content/landing'
-import { LESSONS_OPEN, primaryCta } from '@/content/navigation'
+import { FIRST_LESSON, LESSONS_OPEN, primaryCta } from '@/content/navigation'
 
 const glows = [
   'left-[8%] top-8 bg-[radial-gradient(closest-side,rgba(77,107,255,0.45),transparent)]',
@@ -14,9 +15,18 @@ const glows = [
   'right-[10%] bottom-4 bg-[radial-gradient(closest-side,rgba(123,92,255,0.4),transparent)]',
 ]
 
-/** The closing call to action. Before lessons open it offers the syllabus and an email nudge. */
-export function CtaBand() {
-  const copy = LESSONS_OPEN ? landing.closing.open : landing.closing.soon
+const { open, soon, track } = landing.closing
+
+/**
+ * The closing call to action. On the landing page it points to the syllabus until lessons open; on the
+ * track page (which is the syllabus) it offers Module 1, or an email nudge until Module 1 opens.
+ */
+export function CtaBand({ context = 'landing' }: { context?: 'landing' | 'track' }) {
+  const copy = context === 'track' ? (LESSONS_OPEN ? track.open : track.soon) : LESSONS_OPEN ? open : soon
+  const showPrimary = context === 'landing' || LESSONS_OPEN
+  const primary =
+    context === 'track' ? { href: FIRST_LESSON as Route, label: 'Start Module 1 Free' } : primaryCta
+
   return (
     <Section labelledBy="cta-title" className="pb-16 ph:pb-28">
       <Container>
@@ -34,17 +44,22 @@ export function CtaBand() {
             </Heading>
             <p className="text-[17px] leading-7 text-ink-soft">{copy.body}</p>
             <div className="flex flex-wrap justify-center gap-3">
-              <LinkButton href={primaryCta.href} size="lg" className="px-8">
-                {primaryCta.label}
-                <Icon as={ArrowRight} size={18} />
-              </LinkButton>
-              {'notify' in copy && (
+              {showPrimary && (
+                <LinkButton href={primary.href} size="lg" className="px-8">
+                  {primary.label}
+                  <Icon as={ArrowRight} size={18} />
+                </LinkButton>
+              )}
+              {!LESSONS_OPEN && (
                 <a
-                  href={copy.notify.href}
-                  className={buttonClasses({ variant: 'secondary', size: 'lg' }, 'font-medium')}
+                  href={soon.notify.href}
+                  className={buttonClasses(
+                    { variant: showPrimary ? 'secondary' : 'primary', size: 'lg' },
+                    'font-medium',
+                  )}
                 >
                   <Icon as={Mail} size={18} />
-                  {copy.notify.label}
+                  {soon.notify.label}
                 </a>
               )}
             </div>
