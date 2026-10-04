@@ -34,6 +34,13 @@ We will not take legal action against good-faith research that follows this poli
 
 ## Our security baseline
 
-The planned application targets [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) Level 2. Learner code runs only inside sandboxed browser contexts (see [Architecture](docs/architecture/overview.md#code-execution)). Data protection obligations are described in [Privacy and data protection](docs/compliance/privacy-and-data-protection.md).
+The application targets [OWASP ASVS](https://owasp.org/www-project-application-security-verification-standard/) Level 2. In short:
+
+- a strict Content Security Policy, with a fresh nonce on every signed-in page, plus HSTS and the other standard security headers
+- learner code runs only in a sandboxed runner page with an opaque origin (see [Architecture](docs/architecture/overview.md#code-execution))
+- row-level security on every table, with progress written only through validated database functions
+- secrets only in environment variables, never in this repository
+
+The full reasoning is in [ADR 0008](docs/architecture/adr/0008-security-model.md), and the threats we plan for, with their mitigations, are in the [threat model](docs/security/threat-model.md). Data protection obligations are described in [Privacy and data protection](docs/compliance/privacy-and-data-protection.md).
 
 > A dedicated `security@practicode.tech` address will replace the email above before launch.

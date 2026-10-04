@@ -11,6 +11,7 @@ We record significant decisions as ADRs using [Michael Nygard's format](https://
 | [0005](0005-nextjs-supabase-stack.md) | Next.js and Supabase as the core stack | Proposed |
 | [0006](0006-ai-tutor-and-site-assistant.md) | An AI tutor in lessons and an AI assistant on the website | Proposed |
 | [0007](0007-lessons-in-a-private-repo-as-lesson-packs.md) | Lessons live in a private repository and ship as validated lesson packs | Proposed |
+| [0008](0008-security-model.md) | Security model: two-mode Content Security Policy, sandboxed learner code, validated writes | Proposed |
 
 ## Template
 
