@@ -12,7 +12,7 @@ We need fast, accessible, server-rendered pages with little client JavaScript; a
 - **Next.js (App Router) with TypeScript**, deployed on Vercel.
 - **Supabase** for Postgres, Auth, Storage and Row Level Security.
 - **Tailwind CSS** with tokens generated from the brand config.
-- **MDX** lesson content compiled to static lesson packs on a CDN.
+- **MDX** lessons in a private repository, compiled to validated lesson packs and stored in Supabase Storage ([ADR 0007](0007-lessons-in-a-private-repo-as-lesson-packs.md)).
 - **In-browser code execution:** sandboxed iframes for the web, Pyodide for Python.
 
 ## Consequences

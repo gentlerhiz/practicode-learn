@@ -16,14 +16,14 @@ The architecture serves five requirements, in priority order:
 
 ```mermaid
 flowchart LR
-  L[Learner<br/>phone or laptop] -->|HTTPS| CDN[Edge CDN<br/>static lesson packs]
+  L[Learner<br/>phone or laptop] -->|HTTPS| CDN[Supabase Storage<br/>lesson packs]
   L -->|HTTPS| APP[Web app<br/>Next.js on Vercel]
   APP --> DB[(Supabase<br/>Postgres + Auth + Storage)]
   APP --> PAY[Payment providers<br/>local + international]
   APP --> MAIL[Transactional email]
   APP --> VER[Verification workers<br/>re-run graded code]
   APP --> OB[Credential issuer<br/>Open Badges 3.0]
-  CMS[Private content repo<br/>MDX lessons] -->|CI build| CDN
+  CMS[Private content repo<br/>MDX lessons] -->|build and publish on merge| CDN
   ACA[PractiCode Academy<br/>Mentor cohorts] <-->|roster + reviews| APP
 ```
 
@@ -36,9 +36,11 @@ flowchart LR
 - **i18n:** message catalogues from day one (English first), with right-to-left support.
 
 ### Content pipeline
+See [ADR 0007](adr/0007-lessons-in-a-private-repo-as-lesson-packs.md).
 - Lessons are authored in **MDX** in a *private* content repository (see [ADR 0004](adr/0004-open-syllabus-proprietary-lessons.md)).
-- CI compiles each lesson into a **versioned lesson pack** (JSON plus inline SVG), validates it against the [lesson schema](../curriculum/lesson-format.md), checks the 150 KB budget, runs axe on the rendered steps, and publishes to the CDN.
-- Hidden test suites for graded exercises are split out and **never shipped to the client** for certificate-bearing assessments.
+- On every merge, a build compiles each lesson into a **versioned lesson pack** (JSON), validates it against the [lesson format](../curriculum/lesson-format.md), checks the 150 KB budget, and runs every coding task's solution and starter in a real browser.
+- Packs go to Supabase Storage: free packs to a public bucket, Pro packs to a private bucket behind short-lived signed links. The catalogue goes to Postgres. The app never bundles lessons, so a fix reaches learners without a redeploy.
+- Tests for certificate-bearing assessments are kept in a server-only bucket and **never shipped to the client**.
 
 ### Code execution
 | Language | Where it runs | How |

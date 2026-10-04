@@ -57,6 +57,13 @@ All notable changes to this project are documented here. The format follows [Kee
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
 - Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.
+- The v1 spec now records the 4 October decisions:
+  - where lessons live, and who writes and reviews them
+  - the "show, don't just ask" rule for lessons
+  - free plans for the closed beta, then paid plans from the first payment
+  - the AI provider for the beta
+  - delivery in four slices, from Module 1 end to end to launch
+- ADR 0007: lessons live in a private repository and ship as validated lesson packs. ADR 0005 and the architecture overview point to it, and lesson packs are now stored in Supabase Storage instead of a separate CDN.
 - The design canvas follows Front-End syllabus v0.2 and the real Lesson 6.4:
   - The track page lists all 15 modules, Module 1's six lessons and the new projects.
   - The dashboard path shows 15 modules.

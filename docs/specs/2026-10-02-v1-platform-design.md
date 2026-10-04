@@ -1,7 +1,7 @@
 # PractiCode Learn v1: platform design
 
 - **Status:** Draft, awaiting founder review
-- **Date:** 2026-10-02 (updated 2026-10-03 with the visual direction and AI decisions)
+- **Date:** 2026-10-02 (updated 2026-10-03 with the visual direction and AI decisions, and 2026-10-04 with the content pipeline, hosting, the beta AI provider and the build order)
 - **Next step after approval:** a written implementation plan
 
 ## 1. Intent
@@ -28,6 +28,18 @@
 | AI | **An AI tutor** in lessons and projects (hints first, daily caps) and **a site assistant** on the website ([ADR 0006](../architecture/adr/0006-ai-tutor-and-site-assistant.md)) |
 | Landing page | PRIMM is explained in plain words (Guess, Try, Make); the "lesson that talks back" demo uses Data Analysis; feature cards show Machine Learning and UI/UX; the founder quote is added; the tracks heading doesn't count tracks |
 | Free short courses | **Deferred.** Not designed for now |
+
+### Decisions made (4 October 2026)
+| Question | Decision |
+|---|---|
+| Where lessons live | **A private content repository**, one MDX file per lesson. Every merge builds and checks the lessons and publishes the packs to Supabase Storage. Free packs are public; Pro packs sit behind short-lived signed links. The app holds no lessons ([ADR 0007](../architecture/adr/0007-lessons-in-a-private-repo-as-lesson-packs.md)) |
+| Lesson format | **Exact and checked automatically** ([lesson format](../curriculum/lesson-format.md)). Tested with two lessons, Front-End 1.1 and 6.4, which the founder reviewed and approved |
+| Interactivity | **If an answer can be shown, the learner sees it**: Predict steps they run, live questions where every option can be tried, Explore steps and labs. Plain multiple choice is only for questions with nothing to run |
+| Who writes lessons | Claude drafts from the syllabus and the Academy's material. An instructor reviews every lesson in the review preview, and a second reviewer approves the merge. Authors and reviewers sign a rights agreement assigning their work to Practicode Consult Limited. Lessons say "designed and reviewed by PractiCode instructors, drafted with AI assistance" |
+| Front-End syllabus | **v0.2**: 15 modules, about 120 lessons and in-browser labs ([syllabus](../curriculum/tracks/front-end-web-development.md)). React stays a future track |
+| Hosting | **Free plans for the closed beta, with no payments taken.** That means Vercel Hobby, Supabase Free and Resend's free tier for email. **Move to Vercel Pro and Supabase Pro (about US$45 a month) on the day the first payment is taken**, because Vercel Hobby is for non-commercial use only and Supabase Free has no backups. Supabase's built-in email is a test service (2 messages an hour), so sign-in email goes through Resend from the start |
+| AI provider for the beta | **Groq's free tier**, which doesn't keep or train on prompts by default, behind the `tutor` interface. Move to a paid small model at launch. Avoid free tiers that may use learners' messages for training |
+| Build order | **Thin slices**, starting with Module 1 playable end to end on the free plans, then a pilot with about 20 Academy students. After that, content and app features are built in parallel, with payments last (§3) |
 
 ### Assumptions (please correct)
 - The product name is **PractiCode Learn** and the domain is **learn.practicode.tech** ([ADR 0001](../architecture/adr/0001-separate-product-under-practicode-brand.md)).
@@ -61,6 +73,18 @@
 
 ### Not in v1
 Python execution (Phase 2) · server-verified certificates and Open Badges (Phase 2) · scholarships portal (Phase 2) · translations (Phase 3) · free short courses (deferred) · schools and teams plans · cybersecurity track · native apps.
+
+### Delivery in slices
+v1 is built in slices. Each slice ends with something learners can use.
+
+| Slice | What ships | Hosting | Exit test |
+|---|---|---|---|
+| 1. Module 1, end to end | Sign-in (Google and email); the Front-End track page; the lesson player with every step type built so far; the code playground and the labs Module 1 needs; progress saved to Supabase; the content pipeline from the private repository; offline caching of opened lessons | Free plans | A learner on a low-end Android phone finishes Module 1 without help |
+| 2. Pilot | Modules 1 and 2 with about 20 Academy students; measure where they get stuck, completion, and tutor questions per learner | Free plans | Pilot findings written up, and the top problems fixed |
+| 3. Learning loop | Dashboard, daily review (FSRS), module checks, projects with automatic checks, downloads for offline | Free plans | The five key flows pass end-to-end tests on a throttled phone profile |
+| 4. Launch | Payments and Pro access, the AI tutor, the site assistant, regional pricing, legal pages, analytics with consent | Vercel Pro, Supabase Pro | The first paying learner, and the success criteria in §2 |
+
+Content runs alongside, one module at a time, with instructor review.
 
 ## 4. Design
 
@@ -112,12 +136,14 @@ As proposed in [Architecture overview](../architecture/overview.md). Summary:
 - **Units, each with one job:**
   - `web`: the Next.js app (pages and server actions)
   - `lesson-player`: renders lesson packs and has no network dependencies
-  - `runner`: sandboxed code execution plus test harness
+  - `runner`: sandboxed code execution plus test harness, the same module the content checks use ([ADR 0007](../architecture/adr/0007-lessons-in-a-private-repo-as-lesson-packs.md))
+  - `labs`: the interactive drawings lessons refer to by name, such as `request-journey`, `page-load` and `flex-axes`
   - `review-scheduler`: an FSRS wrapper, written as pure functions
   - `progress-sync`: IndexedDB queue plus idempotent replay
   - `billing`: payment provider adapters behind one interface
   - `content-build`: MDX to validated lesson packs
   - `tutor`: the AI tutor and site assistant, with grounding, the hints-first policy and quotas ([ADR 0006](../architecture/adr/0006-ai-tutor-and-site-assistant.md))
+- **Data flow, lesson pack:** the app looks the lesson up in the catalogue, downloads its pack from Supabase Storage (a Pro pack through a short-lived signed link), and the service worker keeps it for offline use.
 - **Data flow, lesson step:** the player renders a step from the pack; the learner acts; the player evaluates it locally (or `runner` does, for code); an xAPI event goes onto the `progress-sync` queue; the queue syncs to Postgres when online; mastery and review cards update server-side.
 - **Error handling:**
   - Lesson packs are cached, so a network failure never interrupts a lesson.
@@ -132,14 +158,16 @@ As proposed in [Architecture overview](../architecture/overview.md). Summary:
 
 ## 6. Open questions
 
-1. **What does "live" mean for each track at launch?** Writing all 46 modules to world-class quality before launch is a large content effort. *Proposal:* "live" means Module 1 (free) plus Modules 2–4 (Pro) are complete, with the remaining modules released on a published monthly schedule shown on each track page.
+1. **What does "live" mean for each track at launch?** Writing all 49 modules to world-class quality before launch is a large content effort. *Recommendation:* launch with Front-End complete, or at least Modules 1–6. Other tracks open as each track's Module 1 is written and reviewed, with the remaining modules released on a published schedule shown on each track page. This changes the 2 October decision that all four tracks are shown as live at launch, so it needs the founder's decision.
 2. **Pricing.** The proposed regional prices need a willingness-to-pay survey ([business model](../product/business-model.md)).
 3. **Licensing.** Confirm AGPL-3.0 for code and CC BY-SA 4.0 for syllabi *before the first public push* ([ADR 0004](../architecture/adr/0004-open-syllabus-proprietary-lessons.md)).
-4. **Content authors.** Who writes lessons for each track, and under what rights agreement?
-5. **GitHub location.** Personal account or a `practicode` organisation? An organisation is better for a product with a team.
+4. **Rights agreement.** Authors are decided (see 4 October decisions). The agreement that instructors and reviewers sign, assigning their contributions to Practicode Consult Limited, still needs writing, ideally with a lawyer's review.
+5. **GitHub location.** Personal account or a `practicode` organisation? An organisation is better for a product with a team. **This blocks slice 1**, because it decides where the app and content repositories are created.
 6. **Founder credit.** The names and roles to show in the README and on the About page.
 7. **AI tutor caps.** Are 5 a day on Free and 50 on Pro right? Confirm after measuring beta usage ([business model](../product/business-model.md)).
 8. **SQL in Data Analysis.** SQL is one of the skills most often asked for in data analyst job adverts, but the current syllabus follows the Academy's Excel and Power BI course. Should we add a SQL module?
+9. **Accounts.** The founder creates the Vercel, Supabase, Resend and Groq accounts under the company's details before slice 1 deploys. Only the founder can do this.
+10. **Pilot cohort.** Which group of about 20 Academy students takes the slice 2 pilot, and when?
 
 ## 7. Risks
 
@@ -151,4 +179,7 @@ As proposed in [Architecture overview](../architecture/overview.md). Summary:
 | "PractiCode" trademark conflict abroad | Run the WIPO, UKIPO and USPTO searches before going global; brand config makes a rename cheap |
 | The AI tutor gives wrong or too-complete answers | Ground it in lesson content, show a source under every answer, hints first, a per-track evaluation set in CI, and switch it off during assessments |
 | AI costs grow faster than revenue | Daily caps, a small default model with prompt caching, and a cost-per-learner guardrail |
+| Lessons drafted with AI contain mistakes | Automated checks run every example and task; an instructor reviews every lesson; a second reviewer approves each merge; the pilot shows where learners still struggle |
+| The beta outgrows the free plans | The free plans carry a closed beta of a few hundred learners. Vercel Hobby stops when its limits are hit and can't take payments, so the move to paid plans is planned for the first payment, not left for an outage |
+| Instructor review becomes the bottleneck | About 30–60 minutes per lesson. Agree a weekly review rhythm with the Academy, and add reviewers before content speeds up |
 | Credibility damaged by the existing site | Remove placeholder partner logos and any unverifiable testimonials from practicode.tech before pitching |

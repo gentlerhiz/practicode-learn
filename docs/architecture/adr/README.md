@@ -10,6 +10,7 @@ We record significant decisions as ADRs using [Michael Nygard's format](https://
 | [0004](0004-open-syllabus-proprietary-lessons.md) | Open syllabus, proprietary lessons | Proposed |
 | [0005](0005-nextjs-supabase-stack.md) | Next.js and Supabase as the core stack | Proposed |
 | [0006](0006-ai-tutor-and-site-assistant.md) | An AI tutor in lessons and an AI assistant on the website | Proposed |
+| [0007](0007-lessons-in-a-private-repo-as-lesson-packs.md) | Lessons live in a private repository and ship as validated lesson packs | Proposed |
 
 ## Template
 
