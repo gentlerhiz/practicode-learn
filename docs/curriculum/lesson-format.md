@@ -32,7 +32,7 @@ Track            Front-End Web Development
 | `explain` | `<Explain>` | Short text, at most 80 words, with optional code | Read, then Continue |
 | `diagram` | `<Diagram>` | A lab drawing that advances one state at a time, with a title and text for every state | Next and Previous, or the arrow keys |
 | `predict` | `<Predict>` | A scenario or code, plus a multiple-choice prediction. With `run`, the learner then runs the code and compares | Choose, Check, then Run It. Being wrong is fine: the answer is revealed |
-| `question` | `<Question>` | Single choice with feedback for every option | Choose, then Check, until correct |
+| `question` | `<Question>` | Single choice with feedback for every option. With `live`, every option is a piece of code the learner can try in a live preview before choosing | Choose (and see it live), then Check, until correct |
 | `explore` | `<Explore>` | A control with a set of values, driving live code or a lab, then a question | Try the values, then answer |
 | `order` | `<Order>` | Put items in sequence | Move buttons (keyboard and touch), then Check |
 | `code` | `<Code>` | An editor with starter files and tests, for the Modify and Make stages | Edit, Run, Run Tests |
@@ -88,16 +88,17 @@ Surprised? Most people are.
 | Component | Attributes | Children |
 |---|---|---|
 | `<Explain>` | `stage` | Markdown, optional code blocks |
-| `<Predict>`, `<Question>` | `stage`, `assesses`, `run` (Predict only) | Prompt, optional code blocks, `<Option>`s, three `<Hint>`s, optional `<Reveal>` |
+| `<Predict>`, `<Question>` | `stage`, `assesses`, `run` (Predict) or `live` | Prompt, optional code blocks (with `{{value}}` for `live`), `<Option>`s, three `<Hint>`s, optional `<Reveal>` |
 | `<Explore>` | `stage`, `assesses`, `control`, `values` (comma-separated), optional `lab` | Prompt, code blocks containing `{{value}}` (or a `lab`), `<Ask>`, `<Option>`s, three `<Hint>`s, optional `<Reveal>` |
 | `<Diagram>` | `stage`, `lab` | Prompt, two or more `<State title="…">` |
 | `<Order>` | `stage`, `assesses`, `wrong` (feedback) | Prompt, three or more `<Item>`s in the correct order (the player shuffles them), three `<Hint>`s |
 | `<Code>` | `stage` (`modify` or `make`), `assesses` | Prompt, starter code blocks, one or more `<Test name="…">` with a JavaScript block, three `<Hint>`s, a `<Solution>` |
 | `<Recap>` | — | A bullet list of 2–4 key points, one or more `<Card front="…" back="…" />` |
-| `<Option>` | `id`, `feedback`, `correct` | The option text |
+| `<Option>` | `id`, `feedback`, `correct`, `value` (the code tried in a `live` step) | The option text |
 
 - **Code blocks** need a file name, as in ` ```css title="styles.css" `. Add `readonly` for files the learner can't edit.
 - **Tests** run inside the learner's sandboxed preview. They can use `$`, `$$`, `css(selector, property)`, `box(selector)`, `textBox(selector)` (the box around the text itself), `near(a, b, tolerance)` and `assert(condition, message)`. The message is what the learner sees, so it says what to fix. Prefer tests that check the result on the page over tests that look for one particular line of code, so any correct solution passes.
+- **Prefer doing to choosing.** Where an answer can be shown, let the learner see it: `run` a prediction, `live` a question, or use `<Explore>`. Plain multiple choice is for questions with nothing to run.
 - **Solutions** never ship to learners. They are kept for the automated checks and for reviewers.
 - **Labs** are interactive drawings built into the player. So far: `request-journey`, `page-load` and `flex-axes`.
 - **MDX rules for authors:** put tags such as `<h1>`, and anything with curly braces, inside backticks. A bare `<` or `{` in prose is read as a component or an expression. Attributes are plain quoted strings; expressions and imports are rejected.
@@ -129,7 +130,7 @@ type LessonPack = {
 };
 type Step = { type: string; stage: string; assesses?: string[]; body?: string } & (
   | { type: 'explain' }
-  | { type: 'predict' | 'question'; files?: File[]; run?: true; options: Option[]; hints: string[]; reveal?: string }
+  | { type: 'predict' | 'question'; files?: File[]; run?: true; live?: true; options: Option[]; hints: string[]; reveal?: string }
   | { type: 'explore'; control: string; values: string[]; lab?: string; files?: File[]; ask: string; options: Option[]; hints: string[]; reveal?: string }
   | { type: 'diagram'; lab: string; states: { title: string; html: string }[] }
   | { type: 'order'; items: string[]; wrong: string; hints: string[] }
@@ -137,7 +138,7 @@ type Step = { type: string; stage: string; assesses?: string[]; body?: string } 
   | { type: 'recap'; points: string[]; cards: { front: string; back: string }[] }
 );
 type File = { name: string; lang: string; code: string; readonly?: true };
-type Option = { id: string; html: string; correct: boolean; feedback: string };
+type Option = { id: string; html: string; correct: boolean; feedback: string; value?: string };
 ```
 
 Practice tests ship inside the pack, so a curious learner can read them. That's acceptable for practice. Tests for certificate-bearing assessments never ship, and run on the server.
