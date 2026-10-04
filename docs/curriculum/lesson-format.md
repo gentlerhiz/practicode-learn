@@ -27,52 +27,120 @@ Track            Front-End Web Development
 
 ## Step types
 
-| Type | Description | Interaction |
-|---|---|---|
-| `explain` | Short text, at most 80 words, with an optional static diagram | Read, then Continue |
-| `diagram` | An SVG diagram that advances step by step (segmented animation) | Tap or Space to advance; scrub back |
-| `predict` | Code or a scenario, plus a multiple-choice or free-text prediction | Choose, then Check |
-| `run` | Runnable code with a live preview | Run; the result is compared with the prediction |
-| `explore` | Interactive simulation driven by controls such as toggles or sliders | Manipulate the controls, then answer a question |
-| `parsons` | Rearrange code lines into a working order | Drag, or use keyboard reordering |
-| `code` | An editor with starter code and hidden tests | Edit, Run tests, Submit |
-| `choice` | Single or multiple choice with elaborative feedback per option | Choose, then Check |
-| `order` / `match` | Sequence or pair items | Drag, or use the keyboard |
-| `reflect` | A short free-text reflection, not graded | Type, then Continue |
-| `recap` | Key points; each one is flagged as a review card | Continue |
+| Type | Component | Description | Interaction |
+|---|---|---|---|
+| `explain` | `<Explain>` | Short text, at most 80 words, with optional code | Read, then Continue |
+| `diagram` | `<Diagram>` | A lab drawing that advances one state at a time, with a title and text for every state | Next and Previous, or the arrow keys |
+| `predict` | `<Predict>` | A scenario or code, plus a multiple-choice prediction. With `run`, the learner then runs the code and compares | Choose, Check, then Run It. Being wrong is fine: the answer is revealed |
+| `question` | `<Question>` | Single choice with feedback for every option | Choose, then Check, until correct |
+| `explore` | `<Explore>` | A control with a set of values, driving live code or a lab, then a question | Try the values, then answer |
+| `order` | `<Order>` | Put items in sequence | Move buttons (keyboard and touch), then Check |
+| `code` | `<Code>` | An editor with starter files and tests, for the Modify and Make stages | Edit, Run, Run Tests |
+| `recap` | `<Recap>` | Two to four key points, plus review cards for daily review | Continue |
+| `parsons`, `match`, `reflect` | Planned | Rearrange code lines, pair items, free-text reflection | Not built yet |
 
-Every interactive step has: a **keyboard path**, a **screen-reader label**, **feedback for each wrong answer**, and **three escalating hints**.
+Every interactive step has a **keyboard path**, a **screen-reader label**, **feedback for every option**, and **three escalating hints**: a nudge, then the concept, then a worked example that isn't the answer.
+
+Each step names its stage with `stage`: `hook`, `predict`, `run`, `investigate`, `modify`, `make`, or `apply` (for lessons without code). The player shows it as "Step 4 of 9 · Investigate".
 
 ## Authoring format
 
-Lessons are authored in **MDX** (Markdown with components) in a private content repository, then compiled into versioned lesson packs.
+Lessons are authored in **MDX** (Markdown with components) in a private content repository, one file per lesson at `tracks/<track>/<NN-module>/<NN-lesson>.mdx`. A build step validates each file and compiles it into a versioned **lesson pack** (JSON) that the app downloads.
 
-```mdx
+````mdx
 ---
 id: fe-06-04
 title: Aligning items with Flexbox
 track: front-end-web-development
 module: 6
+lesson: 4
 minutes: 12
-outcomes: [fe.layout.flex-align, fe.layout.flex-axis]
+free: false
+version: 1
+outcomes: [fe.layout.flex-axis, fe.layout.flex-align]
 prerequisites: [fe-06-03]
 ---
 
-<Step type="explain">
-A navigation bar has a logo on the left and links on the right. How do you push them apart?
-</Step>
+<Predict stage="predict" run assesses="fe.layout.flex-align">
 
-<Step type="predict" answer="b">
-  <Code lang="css">{`.nav { display: flex; justify-content: space-between; }`}</Code>
-  <Choice id="a">All items bunch up on the left</Choice>
-  <Choice id="b" feedback="Yes: space goes *between* items, none at the edges.">First and last items touch the edges, with equal gaps between</Choice>
-  <Choice id="c" feedback="That's space-around: equal space around each item.">Equal space around every item</Choice>
-</Step>
+These four boxes sit in a flex row that is 96px tall. None of them has a height set. What will they look like?
 
-<Step type="explore" diagram="flex-justify" controls={["justify-content"]}>
-Try each value. Which one leaves no space at the edges?
-</Step>
+```css title="styles.css"
+.nav { display: flex; height: 96px; }
 ```
+
+<Option id="a" feedback="That's what `align-items: flex-start` does.">Each box is only as tall as its text</Option>
+<Option id="b" correct feedback="Right. The default value of `align-items` is `stretch`.">Every box stretches to the full height</Option>
+
+<Hint>None of the boxes has a height. So what decides how tall they are?</Hint>
+<Hint>Flex items fill the space across the row unless you tell them otherwise.</Hint>
+<Hint>Example: in a flex row 100px tall, a box with no height set becomes 100px tall.</Hint>
+
+<Reveal>
+Surprised? Most people are.
+</Reveal>
+
+</Predict>
+````
+
+### Components
+
+| Component | Attributes | Children |
+|---|---|---|
+| `<Explain>` | `stage` | Markdown, optional code blocks |
+| `<Predict>`, `<Question>` | `stage`, `assesses`, `run` (Predict only) | Prompt, optional code blocks, `<Option>`s, three `<Hint>`s, optional `<Reveal>` |
+| `<Explore>` | `stage`, `assesses`, `control`, `values` (comma-separated), optional `lab` | Prompt, code blocks containing `{{value}}` (or a `lab`), `<Ask>`, `<Option>`s, three `<Hint>`s, optional `<Reveal>` |
+| `<Diagram>` | `stage`, `lab` | Prompt, two or more `<State title="…">` |
+| `<Order>` | `stage`, `assesses`, `wrong` (feedback) | Prompt, three or more `<Item>`s in the correct order (the player shuffles them), three `<Hint>`s |
+| `<Code>` | `stage` (`modify` or `make`), `assesses` | Prompt, starter code blocks, one or more `<Test name="…">` with a JavaScript block, three `<Hint>`s, a `<Solution>` |
+| `<Recap>` | — | A bullet list of 2–4 key points, one or more `<Card front="…" back="…" />` |
+| `<Option>` | `id`, `feedback`, `correct` | The option text |
+
+- **Code blocks** need a file name, as in ` ```css title="styles.css" `. Add `readonly` for files the learner can't edit.
+- **Tests** run inside the learner's sandboxed preview. They can use `$`, `$$`, `css(selector, property)`, `box(selector)`, `textBox(selector)` (the box around the text itself), `near(a, b, tolerance)` and `assert(condition, message)`. The message is what the learner sees, so it says what to fix. Prefer tests that check the result on the page over tests that look for one particular line of code, so any correct solution passes.
+- **Solutions** never ship to learners. They are kept for the automated checks and for reviewers.
+- **Labs** are interactive drawings built into the player. So far: `request-journey`, `page-load` and `flex-axes`.
+- **MDX rules for authors:** put tags such as `<h1>`, and anything with curly braces, inside backticks. A bare `<` or `{` in prose is read as a component or an expression. Attributes are plain quoted strings; expressions and imports are rejected.
+
+### Automated checks
+
+The build fails, and the lesson can't be published, unless:
+
+- the frontmatter is complete, and the id matches the module, lesson and file location
+- Explain steps are 80 words or fewer
+- at least two-thirds of the steps are interactive
+- every interactive step has exactly three hints, and every option has feedback
+- every choice step has a correct option, and option ids are unique
+- every outcome in the frontmatter is assessed by at least one step
+- in a real browser at phone and laptop widths, every model solution passes its tests and the starter code fails at least one
+- every runnable example renders without errors
+- the pack is within the 150 KB budget
+
+### Lesson pack
+
+The app receives one JSON file per lesson version:
+
+```ts
+type LessonPack = {
+  schema: 1; id: string; version: number; title: string; track: string;
+  module: number; lesson: number; minutes: number; free: boolean;
+  outcomes: string[]; prerequisites: string[];
+  steps: Step[];             // HTML already rendered from Markdown at build time
+};
+type Step = { type: string; stage: string; assesses?: string[]; body?: string } & (
+  | { type: 'explain' }
+  | { type: 'predict' | 'question'; files?: File[]; run?: true; options: Option[]; hints: string[]; reveal?: string }
+  | { type: 'explore'; control: string; values: string[]; lab?: string; files?: File[]; ask: string; options: Option[]; hints: string[]; reveal?: string }
+  | { type: 'diagram'; lab: string; states: { title: string; html: string }[] }
+  | { type: 'order'; items: string[]; wrong: string; hints: string[] }
+  | { type: 'code'; files: File[]; tests: { name: string; code: string }[]; hints: string[] }
+  | { type: 'recap'; points: string[]; cards: { front: string; back: string }[] }
+);
+type File = { name: string; lang: string; code: string; readonly?: true };
+type Option = { id: string; html: string; correct: boolean; feedback: string };
+```
+
+Practice tests ship inside the pack, so a curious learner can read them. That's acceptable for practice. Tests for certificate-bearing assessments never ship, and run on the server.
 
 ## Performance budget
 
@@ -103,10 +171,12 @@ For comparison, one minute of standard-definition streaming video is roughly 15�
 
 ## Quality checklist (per lesson)
 
-- [ ] At least two-thirds of steps are interactive
-- [ ] Every outcome in the frontmatter is assessed
-- [ ] Every wrong answer has specific feedback
+The build checks the structural rules (see [Automated checks](#automated-checks)). A reviewer checks the rest in the review preview, which plays the lesson the way learners will see it and collects notes per step:
+
+- [ ] The content is accurate, including tool screens and version-specific details
+- [ ] Each wrong-answer feedback names the real misconception behind that answer
+- [ ] Examples and projects make sense to our learners
+- [ ] Hints escalate from a nudge to the concept to a worked example, without giving the answer away
 - [ ] Every diagram has a text alternative and works with reduced motion
-- [ ] Works at 320 px width and at 200% zoom
-- [ ] The pack is within 150 KB
-- [ ] Reviewed by a second author
+- [ ] It works at 320 px width and at 200% zoom
+- [ ] A second author (an instructor) has reviewed it
