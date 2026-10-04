@@ -27,7 +27,7 @@
 - The Supabase secret key is used only in server code that imports `server-only`. Secrets live only in environment variables, never in the repository.
 - Every input that crosses a trust boundary (forms, route params, query strings, fetched lesson packs, webhook bodies) is validated with Zod.
 - Every published impact number comes from real data. Estimates are labelled as estimates.
-- Commits use the repository's local identity (Rasaq Idris Akande, idrisaloma120@gmail.com) and end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
+- Commits use the repository's local identity (Rasaq Idris Akande, idrisaloma120@gmail.com) and carry only the founder's name: no co-author trailer (founder's instruction, 4 October 2026).
 
 ## Review Focus
 
@@ -43,9 +43,9 @@ Only the founder can do these. Each is listed with the task that needs it.
 
 | # | Action | Needed by |
 |---|---|---|
-| F1 | Confirm the licences (AGPL-3.0 code, CC BY-SA 4.0 docs and syllabi), which is open question 3 | Task 8, before the first public push |
-| F2 | Create two empty GitHub repositories on your account: `practicode-learn` (public) and `practicode-learn-content` (private). No README, licence or .gitignore | Task 8 |
-| F3 | Create two Supabase projects in the London region (`eu-west-2`): `practicode-learn-dev` and `practicode-learn`. Send the project URLs and publishable keys; keep secret keys and database passwords private and paste them into `.env.local` yourself | Task 9 |
+| F1 | Done 4 October 2026: licences confirmed (AGPL-3.0 code, CC BY-SA 4.0 docs and syllabi) | Task 8, before the first public push |
+| F2 | Done 4 October 2026 (account gentlerhiz): `practicode-learn` (public) and `practicode-learn-content` (private). No README, licence or .gitignore | Task 8 |
+| F3 | Done 4 October 2026: `practicode-learn-dev` (London, `eu-west-2`) and `practicode-learn` (Frankfurt, `eu-central-1`, so production functions run in Vercel's `fra1`). Send the project URLs and publishable keys; keep secret keys and database passwords private and paste them into `.env.local` yourself | Task 9 |
 | F4 | Run `npx supabase login` once on this computer (it opens your browser) | Task 9 |
 | F5 | Resend: add and verify the sending domain `practicode.tech` (DNS records), then create an SMTP API key | Task 10 |
 | F6 | Google Cloud: create an OAuth client (web) with the redirect URI Supabase shows; paste the client ID and secret into Supabase Auth → Google | Task 10 |
