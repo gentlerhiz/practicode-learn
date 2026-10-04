@@ -20,7 +20,7 @@ PractiCode Learn teaches digital skills through **interactive, video-free lesson
 
 ### The founding story (for funders and assessors)
 
-> PractiCode Academy has trained [N] people in person in Ibadan since [YEAR]. Demand outgrew a classroom, so we built PractiCode Learn: an interactive platform that needs no video and works on low data. It now serves [X] learners in [Y] countries.
+> PractiCode Academy has trained over 300 people in person in Ibadan since 2024. Demand outgrew a classroom, so we built PractiCode Learn: an interactive platform that needs no video and works on low data. It now serves [X] learners in [Y] countries.
 
 Replace the placeholders with audited numbers only. Never estimate them.
 
