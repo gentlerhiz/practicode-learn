@@ -1,1 +1,181 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+/*
+ * Prism design tokens. Source of truth: docs/design/design-system.md and brand/brand.config.json.
+ * Dark is the default; [data-theme="light"] swaps the values. Components use the Tailwind names
+ * mapped in @theme below (bg-bg, text-ink-muted, border-line, ...), never raw hex values.
+ */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --pc-bg: #07060d;
+  --pc-surface: linear-gradient(180deg, #13101f, #0b0a14);
+  --pc-surface-sunken: #0e0c1a;
+  --pc-surface-row: #0f0d1b;
+  --pc-line: #2a2540;
+  --pc-line-subtle: #1c1930;
+  --pc-line-control: #332e4d;
+  --pc-text: #ffffff;
+  --pc-text-soft: #dcd9ea;
+  --pc-text-muted: #a9a6bc;
+  --pc-text-subtle: #8b88a0;
+  --pc-primary: #ffffff;
+  --pc-on-primary: #07060d;
+  --pc-success: #4be3a8;
+  --pc-error: #ff9aa2;
+  --pc-badge-text: #ff8a3d;
+  --pc-code-gutter: #5e5a75;
+  /* Track text and icon colours ("tint" on dark) */
+  --pc-fe-text: #8ea2ff;
+  --pc-da-text: #4be3a8;
+  --pc-ux-text: #ff7db0;
+  --pc-ai-text: #b9a2ff;
+  /* Track card gradients end in the page colour on dark */
+  --pc-fe-deep: #07060d;
+  --pc-da-deep: #07060d;
+  --pc-ux-deep: #07060d;
+  --pc-ai-deep: #07060d;
+  --pc-focus: #8ea2ff;
+  --pc-glow-opacity: 1;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --pc-bg: #f5f4fa;
+  --pc-surface: linear-gradient(180deg, #ffffff, #faf9fd);
+  --pc-surface-sunken: #f2f0f8;
+  --pc-surface-row: #ffffff;
+  --pc-line: #dfdce9;
+  --pc-line-subtle: #e9e7f1;
+  --pc-line-control: #d2cedf;
+  --pc-text: #15122a;
+  --pc-text-soft: #3b3752;
+  --pc-text-muted: #5d5972;
+  --pc-text-subtle: #66627a;
+  --pc-primary: #15122a;
+  --pc-on-primary: #ffffff;
+  --pc-success: #08704f;
+  --pc-error: #b42834;
+  --pc-badge-text: #b23a0a;
+  --pc-code-gutter: #8a86a0;
+  --pc-fe-text: #3550e6;
+  --pc-da-text: #08704f;
+  --pc-ux-text: #b81f57;
+  --pc-ai-text: #6342ee;
+  /* On light, track gradients deepen into the track's own dark shade */
+  --pc-fe-deep: #1f33a8;
+  --pc-da-deep: #05503b;
+  --pc-ux-deep: #8f1745;
+  --pc-ai-deep: #3a20b0;
+  --pc-focus: #3550e6;
+  --pc-glow-opacity: 0.5;
+}
+
+@theme inline {
+  --color-bg: var(--pc-bg);
+  --color-sunken: var(--pc-surface-sunken);
+  --color-row: var(--pc-surface-row);
+  --color-line: var(--pc-line);
+  --color-line-subtle: var(--pc-line-subtle);
+  --color-line-control: var(--pc-line-control);
+  --color-ink: var(--pc-text);
+  --color-ink-soft: var(--pc-text-soft);
+  --color-ink-muted: var(--pc-text-muted);
+  --color-ink-subtle: var(--pc-text-subtle);
+  --color-primary: var(--pc-primary);
+  --color-on-primary: var(--pc-on-primary);
+  --color-success: var(--pc-success);
+  --color-success-fill: #2fe6b0;
+  --color-on-success: #04241a;
+  --color-error: var(--pc-error);
+  --color-badge: #ff8a3d;
+  --color-badge-text: var(--pc-badge-text);
+  --color-on-badge: #1f0e00;
+  --color-code-gutter: var(--pc-code-gutter);
+  --color-yellow: #fed606;
+
+  /* Track fills (same in both modes) and text colours (deeper on light) */
+  --color-fe: #3d5af5;
+  --color-fe-text: var(--pc-fe-text);
+  --color-fe-deep: var(--pc-fe-deep);
+  --color-da: #0a7d5c;
+  --color-da-text: var(--pc-da-text);
+  --color-da-deep: var(--pc-da-deep);
+  --color-ux: #d9306f;
+  --color-ux-text: var(--pc-ux-text);
+  --color-ux-deep: var(--pc-ux-deep);
+  --color-ai: #6e4cf5;
+  --color-ai-text: var(--pc-ai-text);
+  --color-ai-deep: var(--pc-ai-deep);
+
+  --font-display: var(--font-bricolage), 'Poppins', system-ui, sans-serif;
+  --font-sans: var(--font-poppins), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /*
+   * Marketing breakpoints from the design system (phone under 600, tablet under 960, wide from 1240).
+   * Tailwind's sm (640) and lg (1024) stay for app pages, which use 640 and 1024.
+   */
+  --breakpoint-ph: 37.5rem;
+  --breakpoint-tab: 60rem;
+  --breakpoint-wide: 77.5rem;
+}
+
+/* Cards and panels use the surface gradient. */
+@utility surface {
+  background: var(--pc-surface);
+}
+
+/* Blue to violet only: the founder's brand gradient, never with a pink end. */
+@utility brand-gradient {
+  background: linear-gradient(120deg, #3d5af5, #6e4cf5);
+}
+
+@utility text-balance-safe {
+  text-wrap: balance;
+}
+
+@layer base {
+  html {
+    background: var(--pc-bg);
+    color: var(--pc-text);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--pc-focus);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, #3d5af5 35%, transparent);
+  }
+
+  /* The logo has a yellow icon for dark backgrounds and a black one for light. */
+  [data-theme='light'] .logo-on-dark,
+  [data-theme='dark'] .logo-on-light,
+  :root:not([data-theme]) .logo-on-light {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
