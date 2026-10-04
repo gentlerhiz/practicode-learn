@@ -11,7 +11,15 @@ import { ThemeToggle } from './theme-toggle'
  * The phone menu: a button that opens a sheet under the header. Escape or a link closes it, and focus
  * returns to the button. It doesn't trap focus, because the sheet is part of the page, not a dialog.
  */
-export function MobileMenu({ items, cta, className }: { items: NavItem[]; cta?: NavItem; className?: string }) {
+export function MobileMenu({
+  items,
+  cta,
+  className,
+}: {
+  items: NavItem[]
+  cta?: NavItem
+  className?: string
+}) {
   const [open, setOpen] = useState(false)
   const button = useRef<HTMLButtonElement>(null)
   const sheetId = useId()
@@ -60,7 +68,11 @@ export function MobileMenu({ items, cta, className }: { items: NavItem[]; cta?: 
           <div className="flex flex-col gap-3 pt-6">
             <ThemeToggle variant="row" />
             {cta && (
-              <Link href={cta.href} onClick={() => setOpen(false)} className={buttonClasses({ size: 'lg' }, 'w-full')}>
+              <Link
+                href={cta.href}
+                onClick={() => setOpen(false)}
+                className={buttonClasses({ size: 'lg' }, 'w-full')}
+              >
                 {cta.label}
               </Link>
             )}

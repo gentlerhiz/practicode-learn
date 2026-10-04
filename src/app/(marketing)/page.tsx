@@ -1,5 +1,8 @@
 import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
+import { metaFor } from '@/lib/seo/pages'
+
+export const metadata = metaFor('/')
 
 // Replaced by the full landing page in Task 6.
 export default function Home() {

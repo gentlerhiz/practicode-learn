@@ -6,7 +6,9 @@ test('phone menu opens, traps nothing, and closes with Escape', async ({ page, i
   await page.goto('/')
   const button = page.getByRole('button', { name: 'Open menu' })
   await button.click()
-  await expect(page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'About' })).toBeVisible()
+  await expect(
+    page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'About' }),
+  ).toBeVisible()
   await page.keyboard.press('Escape')
   await expect(button).toHaveAttribute('aria-expanded', 'false')
   await expect(button).toBeFocused()

@@ -17,7 +17,7 @@ export type ButtonStyle = { variant?: keyof typeof variants; size?: keyof typeof
 
 export const buttonClasses = ({ variant = 'primary', size = 'md' }: ButtonStyle, extra?: string) =>
   cn(
-    'inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-opacity disabled:cursor-not-allowed disabled:opacity-45',
+    'inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap transition-opacity disabled:cursor-not-allowed disabled:opacity-45',
     variants[variant],
     sizes[size],
     extra,

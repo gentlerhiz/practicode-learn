@@ -19,6 +19,9 @@ export function Heading({
 }: { level: 1 | 2 | 3 | 4; size?: keyof typeof sizes } & React.HTMLAttributes<HTMLHeadingElement>) {
   const Tag = `h${level}` as const
   return (
-    <Tag className={cn('font-display font-bold text-ink', sizes[size ?? defaults[level]], className)} {...props} />
+    <Tag
+      className={cn('font-display font-bold text-ink', sizes[size ?? defaults[level]], className)}
+      {...props}
+    />
   )
 }

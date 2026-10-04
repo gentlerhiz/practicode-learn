@@ -4,7 +4,13 @@ import { useEffect, useState } from 'react'
 import { Icon, Monitor, Moon, Sun } from '@/components/ui/icon'
 import { SegmentedControl } from '@/components/ui/segmented-control'
 import { cn } from '@/lib/cn'
-import { THEME_STORAGE_KEY, parsePreference, resolveTheme, type Theme, type ThemePreference } from '@/lib/theme'
+import {
+  THEME_STORAGE_KEY,
+  parsePreference,
+  resolveTheme,
+  type Theme,
+  type ThemePreference,
+} from '@/lib/theme'
 
 const LIGHT_QUERY = '(prefers-color-scheme: light)'
 

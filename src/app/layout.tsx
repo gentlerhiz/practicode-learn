@@ -1,4 +1,9 @@
+import type { Metadata, Viewport } from 'next'
 import { Bricolage_Grotesque, JetBrains_Mono, Poppins } from 'next/font/google'
+import { JsonLd } from '@/components/seo/json-ld'
+import { publicEnv } from '@/lib/env'
+import { organizationLd, websiteLd } from '@/lib/seo/jsonld'
+import { site } from '@/lib/site'
 import { ThemeScript } from '@/components/layout/theme-script'
 import './globals.css'
 
@@ -21,6 +26,32 @@ const mono = JetBrains_Mono({
   display: 'swap',
 })
 
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: 'PractiCode Learn: learn the skills employers are hiring for',
+    template: '%s · PractiCode Learn',
+  },
+  description: site.description,
+  applicationName: site.name,
+  publisher: site.publisher,
+  formatDetection: { telephone: false, email: false, address: false },
+  verification: {
+    google: publicEnv.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: publicEnv.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { 'msvalidate.01': publicEnv.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#07060D' },
+    { media: '(prefers-color-scheme: light)', color: '#F5F4FA' },
+  ],
+  colorScheme: 'dark light',
+}
+
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     // The boot script changes data-theme before React hydrates, hence suppressHydrationWarning.
@@ -33,7 +64,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <head>
         <ThemeScript />
       </head>
-      <body className="bg-bg font-sans text-ink antialiased">{children}</body>
+      <body className="bg-bg font-sans text-ink antialiased">
+        {children}
+        <JsonLd data={[organizationLd(), websiteLd()]} />
+      </body>
     </html>
   )
 }
