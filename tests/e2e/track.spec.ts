@@ -40,7 +40,9 @@ test('track page has no accessibility violations in either theme', async ({ page
   for (const scheme of ['dark', 'light'] as const) {
     await page.emulateMedia({ colorScheme: scheme })
     await page.goto('/tracks/front-end-web-development')
-    const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze()
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+      .analyze()
     expect(results.violations, scheme).toEqual([])
   }
 })

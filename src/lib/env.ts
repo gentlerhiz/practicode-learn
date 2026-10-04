@@ -23,8 +23,13 @@ const PublicEnv = z
   })
 
 export type PublicEnv = z.infer<typeof PublicEnv>
+
+// An empty value (VAR= in a copied .env.example, or a blank field in Vercel) means "not set".
+const withoutBlanks = (source: Record<string, string | undefined>) =>
+  Object.fromEntries(Object.entries(source).map(([key, value]) => [key, value?.trim() ? value : undefined]))
+
 export const parsePublicEnv = (source: Record<string, string | undefined>): PublicEnv =>
-  PublicEnv.parse(source)
+  PublicEnv.parse(withoutBlanks(source))
 
 // Each variable is named literally so Next.js can inline it into client bundles.
 export const publicEnv = parsePublicEnv({

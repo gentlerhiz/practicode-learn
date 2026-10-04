@@ -15,22 +15,21 @@ export type FooterGroup = { heading: string; links: (NavItem | ExternalNavItem)[
 export const LESSONS_OPEN = false
 
 export const FIRST_LESSON = '/learn/front-end-web-development/what-happens-when-you-open-a-website'
+// Paths into dynamic routes (/tracks/[track], /legal/[doc]) are cast: typed routes check the route,
+// not each slug (Next.js docs, typedRoutes). Static pages such as /about need no cast.
 export const TRACK_PAGE = '/tracks/front-end-web-development' as Route
 
 export const primaryCta: NavItem = LESSONS_OPEN
   ? { href: FIRST_LESSON as Route, label: 'Start Free' }
   : { href: TRACK_PAGE, label: 'See the Syllabus' }
 
-/**
- * Pages linked from the navigation that a later task creates. Typed routes can't see them yet, so they
- * are cast here and nowhere else; tests skip them. Task 8 empties this list and removes the casts.
- */
-export const PENDING: string[] = ['/about', '/legal/privacy', '/legal/terms', '/legal/accessibility']
+/** Pages linked from the navigation that don't exist yet. Tests skip them. Empty since Task 8. */
+export const PENDING: string[] = []
 
 export const guest: NavItem[] = [
   { href: TRACK_PAGE, label: 'Tracks' },
   { href: '/#how-it-works', label: 'How It Works' },
-  { href: '/about' as Route, label: 'About' },
+  { href: '/about', label: 'About' },
 ]
 
 export const footer: FooterGroup[] = [
@@ -44,7 +43,7 @@ export const footer: FooterGroup[] = [
   {
     heading: 'Company',
     links: [
-      { href: '/about' as Route, label: 'About' },
+      { href: '/about', label: 'About' },
       { href: 'https://practicode.tech', label: 'PractiCode Academy', external: true },
       { href: 'mailto:practicodeacademy@gmail.com', label: 'Contact', external: true },
     ],
@@ -60,6 +59,7 @@ export const footer: FooterGroup[] = [
 ]
 
 export const app: NavItem[] = [
+  // Signed-in pages arrive in Milestone 2 (Task 17); typed routes can't see them until then.
   { href: '/home' as Route, label: 'Home' },
   { href: TRACK_PAGE, label: 'My Track' },
   { href: '/settings' as Route, label: 'Settings' },

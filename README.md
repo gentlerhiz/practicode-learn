@@ -6,10 +6,10 @@
 
 **Learn the skills employers are hiring for, by actually doing them.**
 
-Hands-on lessons in web development, data analysis, UI/UX design and AI, with an AI tutor built into every lesson.<br>
+Hands-on lessons that ask you to predict, run and build real code, starting with Front-End Web Development.<br>
 Mapped to recognised industry standards, and built to be light on phones and mobile data.
 
-[![Status: design phase](https://img.shields.io/badge/status-design%20phase-FED606?labelColor=111111)](ROADMAP.md)
+[![Status: beta in development](https://img.shields.io/badge/status-beta%20in%20development-FED606?labelColor=111111)](ROADMAP.md)
 [![Code licence: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-111111)](LICENSE)
 [![Syllabus licence: CC BY-SA 4.0](https://img.shields.io/badge/syllabus-CC%20BY--SA%204.0-111111)](LICENSING.md)
 [![Accessibility: WCAG 2.2 AA](https://img.shields.io/badge/target-WCAG%202.2%20AA-111111)](docs/design/ux-principles.md#accessibility)
@@ -44,7 +44,7 @@ Most online learning still works like television: press play, watch someone else
 
 ## Tracks
 
-All four tracks launch together. Each one maps to a recognised standard so learners, employers and funders can check what was learned.
+Front-End Web Development opens first. The other syllabi are published, and their lessons follow. Each track maps to a recognised standard so learners, employers and funders can check what was learned.
 
 | Track | Core tools | Aligned to |
 |---|---|---|
@@ -75,24 +75,43 @@ Freemium with regional pricing. See [Business model](docs/product/business-model
 
 ## Project status
 
-This repository is in the **design phase**. What exists today:
+PractiCode Learn is being built in slices ([slice 1 plan](docs/plans/2026-10-04-slice-1-module-1-end-to-end.md)).
 
-- [x] Product vision, personas and positioning
-- [x] Competitive research (Coursera, Udemy, freeCodeCamp and seven others)
-- [x] Curriculum standards framework and four track syllabi
-- [x] Teaching model and lesson format specification
-- [x] Design system and UX principles
-- [x] Proposed architecture and decision records
-- [x] Final visual direction chosen: **Prism** ([design system](docs/design/design-system.md))
-- [x] UI designs for all 38 v1 screens in dark and light mode, at desktop and phone width, fully clickable, on one spacing standard ([design/](design/README.md))
-- [ ] v1 specification sign-off ([draft](docs/specs/2026-10-02-v1-platform-design.md))
-- [ ] Implementation plan
-- [ ] Application code
+- [x] Product vision, research, curriculum framework and four published syllabi
+- [x] Teaching model, the exact lesson format, and the first two lessons tested end to end
+- [x] Prism design system and all v1 screens in dark and light mode ([design/](design/README.md))
+- [x] v1 specification approved ([spec](docs/specs/2026-10-02-v1-platform-design.md)), and the slice 1 implementation plan
+- [x] **Milestone 1, the public site:**
+  - landing page, Front-End track page with the full syllabus, and About, legal and error pages
+  - complete search and share metadata, structured data, sitemap, icons and share images
+  - security headers and a two-mode Content Security Policy ([ADR 0008](docs/architecture/adr/0008-security-model.md))
+- [ ] Milestone 2, the learning loop: accounts, Module 1 lessons in the browser, progress, offline lessons and impact measurement
+- [ ] A pilot with PractiCode Academy learners, then launch
+
+## Running it locally
+
+You need Node.js 22.12 or later.
+
+```bash
+npm install
+cp .env.example .env.local   # every variable is optional for the public site
+npm run dev                  # http://localhost:3000
+```
+
+| Command | What it does |
+|---|---|
+| `npm test` | Unit tests (Vitest) |
+| `npm run test:e2e` | End-to-end tests in Chromium at phone and desktop sizes, including accessibility checks (Playwright and axe) |
+| `npm run lint`, `npm run typecheck` | ESLint, and TypeScript 7 type checking |
+| `npm run build` | Production build |
 
 ## Repository structure
 
 ```
 .
+├── src/                     The Next.js app: routes, components, content and libraries
+├── tests/e2e/               Playwright end-to-end tests
+├── scripts/                 Icon and share-image font generators
 ├── brand/                   Brand config (single source for name, colours, fonts) and logo files
 ├── design/                  UI designs and links to the design canvas
 ├── docs/
@@ -102,17 +121,24 @@ This repository is in the **design phase**. What exists today:
 │   ├── design/              Design system, UX principles, accessibility
 │   ├── architecture/        Proposed architecture and decision records (ADRs)
 │   ├── compliance/          Privacy and data protection
+│   ├── security/            Threat model
+│   ├── plans/               Implementation plans
 │   └── specs/               Specifications awaiting or past review
 ├── .github/                 Issue and pull request templates
 ├── ROADMAP.md
 └── CHANGELOG.md
 ```
 
-## Proposed stack
+## Stack
 
-Next.js (App Router, TypeScript) · Tailwind CSS · Supabase (Postgres, Auth, Row Level Security) · MDX lesson content · in-browser code execution (sandboxed iframes; Pyodide for Python) · PWA with offline lesson packs · Open Badges 3.0 · xAPI learning records · Vercel.
+- Next.js 16 (App Router, React Server Components), TypeScript 7 and Tailwind CSS 4
+- Supabase: Postgres with Row Level Security, Auth and Storage
+- Lessons as validated packs from a private MDX repository
+- In-browser code execution in a sandboxed runner
+- Vitest, Playwright and axe for testing
+- Hosted on Vercel
 
-The rationale and alternatives are in [Architecture](docs/architecture/overview.md) and the [ADRs](docs/architecture/adr/). The stack is a proposal until the v1 spec is approved.
+The rationale and alternatives are in [Architecture](docs/architecture/overview.md) and the [ADRs](docs/architecture/adr/).
 
 ## Contributing
 

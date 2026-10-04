@@ -41,3 +41,6 @@ test-results/
 
 # Local agent workspace (plans ledger, scratch scripts)
 .superpowers/
+
+# Lighthouse CI
+.lighthouseci/

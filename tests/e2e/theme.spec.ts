@@ -16,8 +16,7 @@ test('first paint follows a light device, with no dark flash', async ({ page }) 
   expect(themes.filter((t) => t === 'dark')).toHaveLength(0)
 })
 
-// Passes once /about exists (Task 8).
-test.fixme('an explicit choice survives navigation between static pages', async ({ page }) => {
+test('an explicit choice survives navigation between static pages', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' })
   await page.goto('/')
   await page.evaluate(() => localStorage.setItem('pc-theme', 'light'))

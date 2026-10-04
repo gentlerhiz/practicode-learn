@@ -15,7 +15,6 @@ export type PublicPage = {
 /**
  * Every public, indexable page, in one place. The sitemap, the SEO tests and each page's metadata
  * all read from this list, so a page can't ship without a title, description and sitemap entry.
- * (Pages a later task creates are cast to Route until they exist; see PENDING in content/navigation.)
  */
 export const publicPages: PublicPage[] = [
   {
@@ -38,7 +37,7 @@ export const publicPages: PublicPage[] = [
     updated: '2026-10-04',
   },
   {
-    path: '/about' as Route,
+    path: '/about',
     title: 'About PractiCode Learn',
     description:
       'Why we built PractiCode Learn, how we teach through doing rather than watching, and the PractiCode Academy team behind it.',
