@@ -64,6 +64,10 @@ input::placeholder, textarea::placeholder { color: #66627A; }
 @container pcl (max-width: 599px) {
   .pcl-code { font-size: 13px !important; line-height: 24px !important; }
 }
+@container pcl (max-width: 640px) {
+  .pcl-nb { font-size: 18px !important; padding: 4px 8px !important; }
+  .pcl-nb2 { font-size: 11px !important; padding: 4px 6px !important; }
+}
 </style>
 </helmet>
 <div style="container-type: inline-size; container-name: pcl; font-family: 'Poppins', system-ui, sans-serif; color: #15122A; background: #F5F4FA; position: relative; overflow: hidden">
@@ -84,8 +88,8 @@ input::placeholder, textarea::placeholder { color: #66627A; }
 <div class="pcl-lesson" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; align-items: start">
 <div style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #3550E6; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.45); border-radius: 999px; padding: 4px 12px">1 · Predict</p>
-<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">What happens when the row gets too narrow?</h1>
-<p style="margin: 0; font-size: 18px; line-height: 30px; color: #3B3752">These three boxes are 120px wide and sit in a flex row. Picture the screen shrinking to 280px. <span style="color: #3550E6">Guess first, then run it.</span></p>
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">What will boxes with no height do?</h1>
+<p style="margin: 0; font-size: 18px; line-height: 30px; color: #3B3752">These four boxes sit in a flex row that is 96px tall. None of them has a height set. <span style="color: #3550E6">Guess first, then run it.</span></p>
 <div role="radiogroup" aria-label="Your prediction" style="display: flex; flex-direction: column; gap: 12px">
 <sc-for list="{{choices}}" as="o" hint-placeholder-count="3">
 <button type="button" role="radio" aria-checked="{{o.checked}}" onClick="{{o.pick}}" style="display: flex; align-items: center; gap: 16px; min-height: 56px; padding: 12px 16px; border-radius: 16px; border: 1.5px solid {{o.border}}; background: {{o.bg}}; color: #15122A; font-family: inherit; font-size: 15px; line-height: 22px; text-align: left; cursor: pointer; box-sizing: border-box">
@@ -102,7 +106,7 @@ input::placeholder, textarea::placeholder { color: #66627A; }
 <sc-if value="{{hintOpen}}" hint-placeholder-val="{{ false }}">
 <div style="border-radius: 18px; border: 1px dashed rgba(255,170,110,0.6); padding: 16px 20px; display: flex; gap: 12px">
 <svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; color: #A14C0B" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>
-<p style="margin: 0; font-size: 15px; line-height: 24px; color: #3B3752">Hint: think about what flex items are allowed to do by default when there isn't enough room.</p>
+<p style="margin: 0; font-size: 15px; line-height: 24px; color: #3B3752">Hint: none of the boxes has a height. So what decides how tall they are?</p>
 </div>
 </sc-if>
 </div>
@@ -112,25 +116,25 @@ input::placeholder, textarea::placeholder { color: #66627A; }
 <p style="margin: 0; font-size: 12px; color: #5D5972; display: flex; align-items: center; gap: 8px"><span style="width: 8px; height: 8px; border-radius: 999px; background: #2FE6B0; display: block"></span>Live preview</p>
 </div>
 <div class="pcl-code" style="padding: 20px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 28px; overflow-x: auto">
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">1</span><span><span style="color: #15122A">.row</span> <span style="color: #66627A">{</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">1</span><span><span style="color: #15122A">.nav</span> <span style="color: #66627A">{</span></span></div>
 <div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">2</span><span>  <span style="color: #3550E6">display</span><span style="color: #66627A">:</span> <span style="color: #08704F">flex</span><span style="color: #66627A">;</span></span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">3</span><span>  <span style="color: #3550E6">gap</span><span style="color: #66627A">:</span> <span style="color: #08704F">12px</span><span style="color: #66627A">;</span></span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">4</span><span><span style="color: #66627A">}</span></span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">5</span><span> </span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">6</span><span><span style="color: #15122A">.box</span> <span style="color: #66627A">{</span></span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">7</span><span>  <span style="color: #3550E6">width</span><span style="color: #66627A">:</span> <span style="color: #08704F">120px</span><span style="color: #66627A">;</span></span></div>
-<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">8</span><span><span style="color: #66627A">}</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">3</span><span>  <span style="color: #3550E6">justify-content</span><span style="color: #66627A">:</span> <span style="color: #08704F">space-between</span><span style="color: #66627A">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">4</span><span>  <span style="color: #3550E6">height</span><span style="color: #66627A">:</span> <span style="color: #08704F">96px</span><span style="color: #66627A">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">5</span><span><span style="color: #66627A">}</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">6</span><span> </span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">7</span><span><span style="color: #15122A">.nav &gt; *</span> <span style="color: #66627A">{</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">8</span><span>  <span style="color: #3550E6">padding</span><span style="color: #66627A">:</span> <span style="color: #08704F">8px</span><span style="color: #66627A">;</span></span></div>
+<div style="display: flex; padding: 0 20px; white-space: pre"><span style="width: 32px; color: #6E6A84; flex-shrink: 0">9</span><span><span style="color: #66627A">}</span></span></div>
 </div>
 <div style="padding: 0 24px 24px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px"><p style="margin: 0; font-size: 12px; color: #66627A">Preview</p><div role="group" aria-label="Screen width" style="display: flex; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid #DFDCE9">
-<button type="button" onClick="{{wide}}" aria-pressed="{{widePressed}}" style="height: 32px; padding: 0 12px; border-radius: 999px; border: none; background: {{wideBg}}; color: {{wideFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">Wide</button>
-<button type="button" onClick="{{narrow}}" aria-pressed="{{narrowPressed}}" disabled="{{narrowDisabled}}" style="height: 32px; padding: 0 12px; border-radius: 999px; border: none; background: {{narrowBg}}; color: {{narrowFg}}; font-family: inherit; font-size: 12px; font-weight: 500; cursor: pointer">280px</button>
-</div></div>
-<div style="border-radius: 20px; background: #F2F0F8; border: 1px solid #E4E1ED; padding: 24px 16px; display: flex; justify-content: center">
-<div role="img" aria-label="{{previewLabel}}" style="width: {{rowW}}; max-width: 100%; border: 1.5px dashed #B9B4C9; border-radius: 16px; padding: 16px; display: flex; gap: 12px; box-sizing: border-box; overflow: visible">
-<span style="width: 120px; min-width: 0; flex-shrink: 1; height: 64px; border-radius: 16px; background: #3D5AF5; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; box-sizing: border-box">1</span>
-<span style="width: 120px; min-width: 0; flex-shrink: 1; height: 64px; border-radius: 16px; background: #6F86FF; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; box-sizing: border-box">2</span>
-<span style="width: 120px; min-width: 0; flex-shrink: 1; height: 64px; border-radius: 16px; background: #A9B7FF; color: #0B1240; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; box-sizing: border-box">3</span>
+<p style="margin: 0; font-size: 12px; color: #66627A">Preview · the row is 96px tall</p>
+<div style="border-radius: 20px; background: #F2F0F8; border: 1px solid #E4E1ED; padding: 24px 16px">
+<div role="img" aria-label="{{previewLabel}}" style="position: relative; height: 96px; border: 1.5px dashed #B9B4C9; border-radius: 16px; padding: 0 12px; display: flex; justify-content: space-between; align-items: stretch; gap: 8px; box-sizing: border-box">
+<span class="pcl-nb" style="visibility: {{boxVis}}; padding: 4px 12px; border-radius: 12px; background: #3D5AF5; color: #FFFFFF; font-weight: 800; font-size: 30px; line-height: 1.15; flex-shrink: 0">MN</span>
+<span class="pcl-nb2" style="visibility: {{boxVis}}; padding: 6px 12px; border-radius: 10px; background: #3D5AF5; color: #FFFFFF; font-weight: 600; font-size: 14px; flex-shrink: 0">Menu</span>
+<span class="pcl-nb2" style="visibility: {{boxVis}}; padding: 6px 12px; border-radius: 10px; background: #3D5AF5; color: #FFFFFF; font-weight: 600; font-size: 14px; flex-shrink: 0">Find us</span>
+<span class="pcl-nb2" style="visibility: {{boxVis}}; padding: 6px 12px; border-radius: 10px; background: #A9B7FF; color: #0B1240; font-weight: 600; font-size: 14px; flex-shrink: 0">Order</span>
+<span style="display: {{waitDisplay}}; position: absolute; left: 0; right: 0; top: 0; bottom: 0; align-items: center; justify-content: center; font-size: 13px; color: #66627A">Run it to see</span>
 </div>
 </div>
 </div>
@@ -147,11 +151,11 @@ input::placeholder, textarea::placeholder { color: #66627A; }
 </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":830}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":840}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
-    this.state = { pick: 'b', ran: false, width: 'wide', hint: false };
+    this.state = { pick: 'b', ran: false, hint: false };
   }
   renderVals() {
     const st = this.state || {};
@@ -159,9 +163,9 @@ class Component extends DCLogic {
     const cta = yellow ? '#FED606' : '#15122A';
     const ctaFg = yellow ? '#15122A' : '#FFFFFF';
     const CHOICES = [
-      { key: 'a', letter: 'A', label: 'They wrap onto a second line', fb: 'A lot of people expect that. But wrapping is off by default, so the boxes squeeze instead. You\'ll switch wrapping on in a couple of steps.' },
-      { key: 'b', letter: 'B', label: 'They shrink to fit the row', fb: 'Spot on. Flex items are allowed to shrink by default, so all three get narrower until they fit. Try the 280px button to see it.' },
-      { key: 'c', letter: 'C', label: 'They keep their width and spill out', fb: 'Not by default. Flex items can shrink, so they squeeze to fit first. They only spill out once they can\'t get any smaller.' }
+      { key: 'a', letter: 'A', label: 'Each box is only as tall as its text, lined up along the top', fb: 'That\'s what align-items: flex-start does. By default, flex items do something else: they stretch to fill the row.' },
+      { key: 'b', letter: 'B', label: 'Every box stretches to the full 96px height of the row', fb: 'Right. The default value of align-items is stretch, so items with no height fill the row from top to bottom.' },
+      { key: 'c', letter: 'C', label: 'Each box is as tall as its text, centred from top to bottom', fb: 'Centring is what most people want, but it isn\'t the default. You\'ll switch it on in a moment.' }
     ];
     const choices = CHOICES.map((o) => {
       const on = o.key === st.pick;
@@ -170,14 +174,11 @@ class Component extends DCLogic {
       return { letter: o.letter, label: o.label, checked: on ? 'true' : 'false', border: border, bg: on ? '#EEEBFA' : '#FFFFFF', keyBg: on ? 'rgba(61,90,245,0.14)' : '#E4E1ED', pick: () => this.setState({ pick: o.key, ran: false }) };
     });
     const chosen = CHOICES.find((o) => o.key === st.pick);
-    const narrow = st.width === 'narrow';
-    const onT = { bg: '#15122A', fg: '#FFFFFF' };
-    const offT = { bg: 'transparent', fg: '#3B3752' };
     const ran = !!st.ran;
     return {
       cta: cta, ctaFg: ctaFg,
       choices: choices,
-      run: () => this.setState({ ran: true, width: 'narrow' }),
+      run: () => this.setState({ ran: true }),
       runDisabled: !st.pick,
       runBg: st.pick ? '#15122A' : '#EFEDF6',
       runFg: st.pick ? '#FFFFFF' : '#66627A',
@@ -185,14 +186,10 @@ class Component extends DCLogic {
       isCorrect: ran && st.pick === 'b',
       isWrong: ran && !!st.pick && st.pick !== 'b',
       feedback: chosen ? chosen.fb : '',
-      widePressed: narrow ? 'false' : 'true', wideBg: narrow ? offT.bg : onT.bg, wideFg: narrow ? offT.fg : onT.fg,
-      narrowPressed: narrow ? 'true' : 'false', narrowBg: narrow ? onT.bg : offT.bg, narrowFg: narrow ? onT.fg : (ran ? offT.fg : '#75718C'),
-      narrowDisabled: !(ran),
-      wide: () => this.setState({ width: 'wide' }),
-      narrow: () => this.setState({ width: 'narrow' }),
-      rowW: narrow ? '280px' : '100%',
-      previewLabel: narrow ? 'At 280px the three boxes have shrunk to fit on one line.' : 'Three 120px boxes in a row with room to spare.',
-      previewNote: ran ? 'Each box shrank from 120px to about 77px. Nothing wrapped.' : 'Make your guess, then press Run It to try the narrow screen.',
+      boxVis: ran ? 'visible' : 'hidden',
+      waitDisplay: ran ? 'none' : 'flex',
+      previewLabel: ran ? 'The four boxes stretch to fill the 96px row, with their text at the top.' : 'An empty 96px row, waiting for you to run the code.',
+      previewNote: ran ? 'Every box filled the row. The text sits at the top of each one, which is why the links look as if they are hanging.' : 'Make your guess, then press Run It.',
       hintOpen: !!st.hint,
       hintExpanded: st.hint ? 'true' : 'false',
       toggleHint: () => this.setState({ hint: !st.hint }),

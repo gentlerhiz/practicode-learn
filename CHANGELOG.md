@@ -57,6 +57,14 @@ All notable changes to this project are documented here. The format follows [Kee
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
 - Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.
+- The design canvas follows Front-End syllabus v0.2 and the real Lesson 6.4:
+  - The track page lists all 15 modules, Module 1's six lessons and the new projects.
+  - The dashboard path shows 15 modules.
+  - Module names, counts and hours are updated on the landing, onboarding, sign-up, offline, settings, results and certificate screens.
+  - The four Flexbox lesson screens now teach `align-items` and `align-self`, as the lesson does.
+  - The guest lesson asks Lesson 1's real opening question.
+  - The Module 6 project is now "Navigation bar and menu cards".
+  - The light track page's first module number is white again, so it passes contrast.
 - The lesson format is now exact, tested against the first two lessons: the components and their attributes, the test helpers, the automated checks a lesson must pass before it can be published, and the shape of the lesson pack the app downloads. Predict steps can run their code, so "run" is no longer a separate step type, and "choice" is now `question`.
 - Front-End Web Development syllabus v0.2: 15 modules and about 120 lessons, with lesson titles and the in-browser labs. Git basics move to Module 3 so learners publish a live site early, and branches and pull requests come in Module 12. Layout and JavaScript each get two modules. New coverage: the terminal, DevTools, using AI assistants critically, npm, Vite, Prettier, ESLint, API key safety, SEO, custom domains and client projects.
 

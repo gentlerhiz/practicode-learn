@@ -28,7 +28,8 @@ a:hover { color: #FFFFFF; }
   .pcl-steps { order: 3; flex-basis: 100% !important; max-width: none !important; }
   .pcl-body { padding: 24px 16px !important; }
   .pcl-h1 { font-size: 30px !important; line-height: 34px !important; }
-  .pcl-box { width: 48px !important; height: 48px !important; }
+  .pcl-nb { font-size: 18px !important; padding: 4px 8px !important; }
+  .pcl-nb2 { font-size: 11px !important; padding: 4px 6px !important; }
 }
 
 @container pcl (max-width: 999px) {
@@ -74,24 +75,24 @@ a:hover { color: #FFFFFF; }
 <div class="pcl-lesson" style="display: grid; grid-template-columns: {{gridCols}}; gap: {{gridGap}}; align-items: start">
 <div class="pcl-lcol" style="display: flex; flex-direction: column; gap: 24px; max-width: 600px">
 <p style="margin: 0; align-self: flex-start; font-size: 12px; font-weight: 600; color: #8EA2FF; background: rgba(77,107,255,0.16); border: 1px solid rgba(77,107,255,0.45); border-radius: 999px; padding: 4px 12px">3 · Investigate</p>
-<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Try each value of justify-content</h1>
-<p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">justify-content decides where the spare room goes along the main axis. Tap a value and <span style="color: #8EA2FF">watch the boxes move.</span></p>
-<div role="group" aria-label="justify-content value" style="display: flex; flex-wrap: wrap; gap: 8px">
+<h1 class="pcl-h1 pcl-display" style="margin: 0; font-size: 40px; line-height: 44px; font-weight: 800; letter-spacing: -0.035em">Try each value of <span style="white-space: nowrap">align-items</span></h1>
+<p style="margin: 0; font-size: 18px; line-height: 30px; color: #DCD9EA">align-items decides where the boxes sit across the row, from top to bottom. Tap a value and <span style="color: #8EA2FF">watch the boxes move.</span></p>
+<div role="group" aria-label="align-items value" style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{values}}" as="v" hint-placeholder-count="5">
 <button type="button" onClick="{{v.pick}}" aria-pressed="{{v.pressed}}" style="height: 42px; padding: 0 16px; border-radius: 12px; border: 1px solid {{v.border}}; background: {{v.bg}}; color: {{v.fg}}; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; cursor: pointer">{{v.name}}</button>
 </sc-for>
 </div>
 <div aria-live="polite" style="border-radius: 18px; border: 1px solid rgba(77,107,255,0.35); background: linear-gradient(160deg, rgba(77,107,255,0.12), #0B0A14 70%); padding: 16px 20px">
-<p style="margin: 0; font-size: 16px; line-height: 26px"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; color: #8EA2FF">{{justify}}</span><span style="color: #DCD9EA">{{explain}}</span></p>
+<p style="margin: 0; font-size: 16px; line-height: 26px"><span style="font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; color: #8EA2FF">{{align}}</span><span style="color: #DCD9EA">{{explain}}</span></p>
 </div>
 <sc-if value="{{hintOpen}}" hint-placeholder-val="{{ false }}">
 <div style="border-radius: 18px; border: 1px dashed rgba(255,138,61,0.6); padding: 16px 20px; display: flex; gap: 12px">
 <svg class="pcl-i" viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0; margin-top: 4px; color: #FF8A3D" aria-hidden="true"><path d="M9 18h6" /><path d="M10 22h4" /><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z" /></svg>
-<p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCD9EA">Hint 1 of 3: look at the two outer boxes. For which value do they touch the dashed edges?</p>
+<p style="margin: 0; font-size: 15px; line-height: 24px; color: #DCD9EA">Hint 1 of 3: try center and flex-start one after the other. What changes?</p>
 </div>
 </sc-if>
 <section class="pcl-o3" aria-labelledby="pcl-q-t" style="border-radius: 24px; border: 1px solid #2A2540; background: linear-gradient(180deg, #13101F, #0B0A14); padding: 24px; display: flex; flex-direction: column; gap: 16px">
-<h2 id="pcl-q-t" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Check yourself: which value puts the first and last boxes right against the edges?</h2>
+<h2 id="pcl-q-t" class="pcl-display" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 700">Check yourself: which value makes each box only as tall as its content and puts it in the middle?</h2>
 <div role="radiogroup" aria-labelledby="pcl-q-t" style="display: flex; flex-direction: column; gap: 8px">
 <sc-for list="{{choices}}" as="c" hint-placeholder-count="3">
 <button type="button" role="radio" aria-checked="{{c.checked}}" onClick="{{c.pick}}" style="display: flex; align-items: center; gap: 12px; min-height: 50px; padding: 0 16px; border-radius: 14px; border: 1.5px solid {{c.border}}; background: {{c.bg}}; color: #FFFFFF; font-family: inherit; font-size: 15px; text-align: left; cursor: pointer; box-sizing: border-box">
@@ -116,20 +117,23 @@ a:hover { color: #FFFFFF; }
 <div style="padding: 20px 0; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 15px; line-height: 28px">
 <div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">1</span><span><span>.nav</span><span style="color: #8B88A0">&#160;{</span></span></div>
 <div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">2</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">display</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">flex</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 24px; white-space: pre; background: rgba(77,107,255,0.12)"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">3</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:&#160;</span><span style="color: #FF7DB0">{{justify}}</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">4</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">align-items</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">center</span><span style="color: #8B88A0">;</span></span></div>
-<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">5</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">gap</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">12px</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">3</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">justify-content</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">space-between</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre; background: rgba(77,107,255,0.12)"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">4</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">align-items</span><span style="color: #8B88A0">:&#160;</span><span style="color: #FF7DB0">{{align}}</span><span style="color: #8B88A0">;</span></span></div>
+<div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">5</span><span style="padding-left: 2ch"><span style="color: #8EA2FF">height</span><span style="color: #8B88A0">:&#160;</span><span style="color: #4BE3A8">96px</span><span style="color: #8B88A0">;</span></span></div>
 <div style="display: flex; padding: 0 24px; white-space: pre"><span style="width: 32px; color: #8B88A0; flex-shrink: 0">6</span><span style="color: #8B88A0">}</span></div>
 </div>
 <div style="padding: 0 24px 24px; display: flex; flex-direction: column; gap: 12px">
 <p style="margin: 0; font-size: 12px; color: #8B88A0">Preview</p>
 <div style="border-radius: 20px; background: #0E0C1A; border: 1px solid #221E36; padding: 20px; display: flex; flex-direction: column; gap: 12px">
-<div role="img" aria-label="{{previewLabel}}" style="height: 128px; border: 1.5px dashed #464060; border-radius: 16px; padding: 0 16px; display: flex; justify-content: {{justify}}; align-items: center; gap: 12px; box-sizing: border-box">
-<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 16px; background: #3D5AF5; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">1</span>
-<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 999px; background: #6F86FF; color: #FFFFFF; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">2</span>
-<span class="pcl-box" style="width: 64px; height: 64px; border-radius: 16px; background: #A9B7FF; color: #0B1240; font-weight: 800; font-size: 18px; display: flex; align-items: center; justify-content: center; flex-shrink: 0">3</span>
+<div style="display: flex; gap: 12px; align-items: stretch">
+<div aria-hidden="true" style="display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 12px; color: #8B88A0; flex-shrink: 0"><span style="writing-mode: vertical-rl; transform: rotate(180deg)">Cross axis</span><span style="flex: 1; width: 2px; background: linear-gradient(180deg, #3D5AF5, #8EA2FF); display: block"></span><svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8EA2FF" aria-hidden="true"><path d="M12 5v14" /><path d="m6 13 6 6 6-6" /></svg></div>
+<div role="img" aria-label="{{previewLabel}}" style="flex: 1; min-width: 0; height: 128px; border: 1.5px dashed #464060; border-radius: 16px; padding: 0 12px; display: flex; justify-content: space-between; align-items: {{align}}; gap: 8px; box-sizing: border-box">
+<span class="pcl-nb" style="padding: 4px 12px; border-radius: 12px; background: #3D5AF5; color: #FFFFFF; font-weight: 800; font-size: 30px; line-height: 1.15; flex-shrink: 0">MN</span>
+<span class="pcl-nb2" style="padding: 6px 12px; border-radius: 10px; background: #3D5AF5; color: #FFFFFF; font-weight: 600; font-size: 14px; flex-shrink: 0">Menu</span>
+<span class="pcl-nb2" style="padding: 6px 12px; border-radius: 10px; background: #3D5AF5; color: #FFFFFF; font-weight: 600; font-size: 14px; flex-shrink: 0">Find us</span>
+<span class="pcl-nb2" style="padding: 6px 12px; border-radius: 10px; background: #A9B7FF; color: #0B1240; font-weight: 600; font-size: 14px; flex-shrink: 0">Order</span>
 </div>
-<div aria-hidden="true" style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #8B88A0"><span style="flex: 1; height: 2px; background: linear-gradient(90deg, #3D5AF5, #8EA2FF); display: block"></span>Main axis<svg class="pcl-i" viewBox="0 0 24 24" style="width: 16px; height: 16px; color: #8EA2FF" aria-hidden="true"><path d="M5 12h14" /><path d="m13 6 6 6-6 6" /></svg></div>
+</div>
 </div>
 </div>
 </section>
@@ -196,31 +200,31 @@ a:hover { color: #FFFFFF; }
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1100}}'>
+<script type="text/x-dc" data-dc-script data-props='{"ctaColor":{"editor":"enum","options":["White","Practi Yellow"],"default":"White","section":"Look"},"$preview":{"width":1440,"height":1130}}'>
 class Component extends DCLogic {
   constructor(...args) {
     super(...args);
-    this.state = { justify: 'flex-start', picked: null, checked: false, hint: false, ai: true, asked: ['explain'] };
+    this.state = { align: 'stretch', picked: null, checked: false, hint: false, ai: true, asked: ['explain'] };
   }
   renderVals() {
     const st = this.state || {};
     const yellow = (this.props.ctaColor || 'White') === 'Practi Yellow';
-    const justify = st.justify || 'flex-start';
+    const align = st.align || 'stretch';
     const EXPLAIN = {
-      'flex-start': ' is the default. The boxes pack at the start of the line, and all the spare room sits at the end.',
-      'center': ' keeps the boxes together in the middle, with equal spare room at both ends.',
-      'space-between': ' puts all the spare room between the boxes. The first and last boxes touch the edges.',
-      'space-around': ' gives every box equal room on both sides, so the gaps at the edges are half the size of the ones in between.',
-      'space-evenly': ' makes every gap the same size, including the ones at the edges.'
+      'stretch': ' is the default. Boxes with no height stretch to fill the row from top to bottom.',
+      'flex-start': ' shrinks each box to its content and lines them up along the top.',
+      'center': ' shrinks each box to its content and puts it in the middle, from top to bottom.',
+      'flex-end': ' shrinks each box to its content and lines them up along the bottom.',
+      'baseline': ' lines up the text itself, so words of different sizes sit on the same line.'
     };
     const values = Object.keys(EXPLAIN).map((name) => {
-      const on = name === justify;
-      return { name: name, pressed: on ? 'true' : 'false', bg: on ? '#3D5AF5' : 'transparent', fg: on ? '#FFFFFF' : '#DCD9EA', border: on ? '#3D5AF5' : '#332E4D', pick: () => this.setState({ justify: name }) };
+      const on = name === align;
+      return { name: name, pressed: on ? 'true' : 'false', bg: on ? '#3D5AF5' : 'transparent', fg: on ? '#FFFFFF' : '#DCD9EA', border: on ? '#3D5AF5' : '#332E4D', pick: () => this.setState({ align: name }) };
     });
     const CHOICES = [
-      { key: 'a', letter: 'A', label: 'flex-start', fb: 'flex-start packs the boxes at the start and leaves the room at the end. Try it above.' },
-      { key: 'b', letter: 'B', label: 'space-between', fb: 'space-between gives all the spare room to the gaps between boxes, so the outer boxes sit right on the edges.' },
-      { key: 'c', letter: 'C', label: 'space-evenly', fb: 'space-evenly also puts room at the edges. Compare it with space-between above.' }
+      { key: 'a', letter: 'A', label: 'stretch', fb: 'stretch makes every box fill the whole height, so there is no middle for it to sit in. Try it above.' },
+      { key: 'b', letter: 'B', label: 'center', fb: 'center shrinks each box to its content and places it halfway across the row, from top to bottom.' },
+      { key: 'c', letter: 'C', label: 'flex-start', fb: 'flex-start shrinks the boxes to their content but lines them up along the top. Compare it with center above.' }
     ];
     const KEYS = [['#221E36', '#FFFFFF'], ['#221E36', '#FFFFFF'], ['#221E36', '#FFFFFF']];
     const picked = st.picked;
@@ -240,16 +244,16 @@ class Component extends DCLogic {
     const aiOpen = st.ai !== false;
     const LIMIT = 5;
     const QA = [
-      { key: 'explain', q: 'Explain this exercise', a: "Sure. Inside .nav there's a row of three boxes and some empty space left over. justify-content decides where that spare space goes, and each button above tries a different rule. The question asks which rule leaves no space at the two ends, so try each value and watch the first and last boxes. Which one makes them touch the dashed edge?", source: 'Step 4, Try each value' },
-      { key: 'axis', q: 'What does "main axis" mean?', a: "It's the direction your items line up in. With display: flex the default is a row, so the main axis runs left to right, like the arrow under the preview. justify-content works along that line. align-items works across it, top to bottom.", source: 'Lesson 1, Your first flex container' },
-      { key: 'answer', q: 'Just tell me the answer', a: "I could, but you're one tap away from seeing it yourself. Try space-between, then space-evenly, and look only at the edges. If you're still unsure after that, ask again and I'll walk you through it.", source: 'Step 4, Try each value' },
-      { key: 'real', q: 'Where would I use this on a real site?', a: 'All the time. A typical navigation bar has the logo on the left and the menu on the right, and one line of justify-content: space-between on the container does exactly that. You will build one in the Module 6 project.', source: 'Module 6 project brief' }
+      { key: 'explain', q: 'Explain this exercise', a: "Sure. Inside .nav there's a logo and three links in a row that's 96px tall. align-items decides where they sit from top to bottom, and each button above tries a different value. The question asks which value shrinks each box to its content and puts it in the middle, so try each one and watch the space above and below the boxes.", source: 'Step 4, Try each value' },
+      { key: 'axis', q: 'What does "cross axis" mean?', a: "It runs across the main axis. In a row the main axis goes left to right, so the cross axis goes top to bottom, like the arrow beside the preview. justify-content works along the main axis. align-items works along the cross axis.", source: 'Lesson 2, Flex containers, main and cross axis' },
+      { key: 'answer', q: 'Just tell me the answer', a: "I could, but you're one tap away from seeing it yourself. Try center, then flex-start, and look at the space above and below each box. If you're still unsure after that, ask again and I'll walk you through it.", source: 'Step 4, Try each value' },
+      { key: 'real', q: 'Where would I use this on a real site?', a: 'All the time. A navigation bar often has a tall logo next to small links. One line of align-items: center on the container lines them all up in the middle. You will build one in the Module 6 project.', source: 'Module 6 project brief' }
     ];
     const asked = st.asked || [];
     const used = asked.length;
     const aiMessages = [];
     asked.forEach((k) => {
-      if (String(k).indexOf('typed:') === 0) { aiMessages.push({ user: true, bot: false, text: String(k).slice(6), source: '' }); aiMessages.push({ user: false, bot: true, text: "Let's work it out together. Which part is unclear: what justify-content does, or which way the main axis runs? Tap a value above and watch the boxes while you think.", source: 'Step 4, Try each value' }); return; }
+      if (String(k).indexOf('typed:') === 0) { aiMessages.push({ user: true, bot: false, text: String(k).slice(6), source: '' }); aiMessages.push({ user: false, bot: true, text: "Let's work it out together. Which part is unclear: what align-items does, or which way the cross axis runs? Tap a value above and watch the boxes while you think.", source: 'Step 4, Try each value' }); return; }
       const x = QA.find((y) => y.key === k);
       if (x) { aiMessages.push({ user: true, bot: false, text: x.q, source: '' }); aiMessages.push({ user: false, bot: true, text: x.a, source: x.source }); }
     });
@@ -259,10 +263,10 @@ class Component extends DCLogic {
     for (let i = 0; i < LIMIT; i++) aiPips.push({ bg: i < LIMIT - used ? '#B9A2FF' : '#26213B' });
     return {
       draft: (this.state || {}).draft || '', typeDraft: (e) => this.setState({ draft: e && e.target ? e.target.value : '' }), sendDisabled: !((this.state || {}).draft || '').trim() || aiOut, sendOpacity: !((this.state || {}).draft || '').trim() || aiOut ? 0.5 : 1, send: () => { const d = ((this.state || {}).draft || '').trim(); if (!d || aiOut) return; this.setState({ asked: asked.concat(['typed:' + d]), draft: '', ai: true }); },
-      justify: justify,
-      explain: EXPLAIN[justify],
+      align: align,
+      explain: EXPLAIN[align],
       values: values,
-      previewLabel: 'Three shapes in a row, laid out with justify-content ' + justify,
+      previewLabel: 'A logo and three links in a 96px row, with align-items ' + align,
       choices: choices,
       isCorrect: checked && picked === 'b',
       isWrong: checked && !!picked && picked !== 'b',
