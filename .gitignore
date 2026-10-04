@@ -38,3 +38,6 @@ Thumbs.db
 # Testing
 playwright-report/
 test-results/
+
+# Local agent workspace (plans ledger, scratch scripts)
+.superpowers/

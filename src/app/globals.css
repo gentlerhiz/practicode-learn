@@ -37,6 +37,8 @@
   --pc-ai-deep: #07060d;
   --pc-focus: #8ea2ff;
   --pc-glow-opacity: 1;
+  /* The logo icon is yellow on dark and black on light (design system, light mode rules). */
+  --pc-logo: #fed606;
 }
 
 [data-theme='light'] {
@@ -69,6 +71,7 @@
   --pc-ai-deep: #3a20b0;
   --pc-focus: #3550e6;
   --pc-glow-opacity: 0.5;
+  --pc-logo: #000000;
 }
 
 @theme inline {
@@ -159,13 +162,6 @@
 
   ::selection {
     background: color-mix(in srgb, #3d5af5 35%, transparent);
-  }
-
-  /* The logo has a yellow icon for dark backgrounds and a black one for light. */
-  [data-theme='light'] .logo-on-dark,
-  [data-theme='dark'] .logo-on-light,
-  :root:not([data-theme]) .logo-on-light {
-    display: none;
   }
 }
 
