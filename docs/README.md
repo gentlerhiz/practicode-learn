@@ -31,4 +31,7 @@ Start with **Vision**, then read whichever section matches your role.
 - [Privacy and data protection](compliance/privacy-and-data-protection.md): Nigeria's NDPA 2023, GDPR and other regimes
 
 ## Specifications
-- [v1 platform design (draft)](specs/2026-10-02-v1-platform-design.md)
+- [v1 platform design (approved)](specs/2026-10-02-v1-platform-design.md)
+
+## Implementation plans
+- [Slice 1: Module 1 end to end](plans/2026-10-04-slice-1-module-1-end-to-end.md)

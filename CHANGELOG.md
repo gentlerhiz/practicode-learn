@@ -57,6 +57,8 @@ All notable changes to this project are documented here. The format follows [Kee
 - Removed shadows and glows from yellow buttons.
 - Replaced "Made by PractiCode Academy, Ibadan" style badges with neutral copy.
 - Long phone landing pages now show in two canvas frames, because canvas frames max out at 8,000 px.
+- The v1 spec is approved, with the founder's answers: Front-End complete first, GitHub on the founder's account, SEO, sharing, security, documentation and impact measurement as requirements.
+- Implementation plan for slice 1: 21 tasks in two milestones (the public site, then the learning loop).
 - The v1 spec now records the 4 October decisions:
   - where lessons live, and who writes and reviews them
   - the "show, don't just ask" rule for lessons

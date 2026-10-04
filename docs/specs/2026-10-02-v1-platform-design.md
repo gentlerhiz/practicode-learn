@@ -1,8 +1,8 @@
 # PractiCode Learn v1: platform design
 
-- **Status:** Draft, awaiting founder review
-- **Date:** 2026-10-02 (updated 2026-10-03 with the visual direction and AI decisions, and 2026-10-04 with the content pipeline, hosting, the beta AI provider and the build order)
-- **Next step after approval:** a written implementation plan
+- **Status:** Approved by the founder on 2026-10-04
+- **Date:** 2026-10-02 (updated 2026-10-03 with the visual direction and AI decisions, and 2026-10-04 with the content pipeline, hosting, the beta AI provider, the build order and the founder's answers)
+- **Implementation plan:** [Slice 1](../plans/2026-10-04-slice-1-module-1-end-to-end.md)
 
 ## 1. Intent
 
@@ -40,6 +40,19 @@
 | Hosting | **Free plans for the closed beta, with no payments taken.** That means Vercel Hobby, Supabase Free and Resend's free tier for email. **Move to Vercel Pro and Supabase Pro (about US$45 a month) on the day the first payment is taken**, because Vercel Hobby is for non-commercial use only and Supabase Free has no backups. Supabase's built-in email is a test service (2 messages an hour), so sign-in email goes through Resend from the start |
 | AI provider for the beta | **Groq's free tier**, which doesn't keep or train on prompts by default, behind the `tutor` interface. Move to a paid small model at launch. Avoid free tiers that may use learners' messages for training |
 | Build order | **Thin slices**, starting with Module 1 playable end to end on the free plans, then a pilot with about 20 Academy students. After that, content and app features are built in parallel, with payments last (§3) |
+
+### Founder's answers on approval (4 October 2026)
+| Question | Decision |
+|---|---|
+| What "live" means at launch | **Front-End complete first.** Other tracks show as "coming soon" until each one's Module 1 is written and reviewed |
+| GitHub location | **The founder's personal GitHub account** |
+| Accounts | Vercel, Supabase, Resend and Groq accounts are created |
+| Stack | Next.js 16 (App Router, `src/app`), TypeScript, Tailwind CSS 4, Supabase. Versions are pinned in the plan from the current documentation |
+| SEO | **A first-class requirement.** Every public page scores 100 for SEO in Lighthouse, has complete metadata, a canonical URL, structured data and a share image, and is in the sitemap |
+| Sharing | Favicon set, app icons, web manifest, Open Graph and X (Twitter) cards, and share buttons that work in WhatsApp |
+| Security | A documented security model: security headers and a Content Security Policy, row-level security on every table, isolated learner code, validated inputs, and dependency and secret scanning |
+| Documentation | Setup, conventions, operations and security docs alongside the code |
+| Impact and evidence | The product measures its real impact from day one, including learners, countries, lessons completed, active learners, retention, completion and hours of learning. A public evidence index in `docs/evidence/` records innovation, impact and recognition as they happen. Every published number comes from real data |
 
 ### Assumptions (please correct)
 - The product name is **PractiCode Learn** and the domain is **learn.practicode.tech** ([ADR 0001](../architecture/adr/0001-separate-product-under-practicode-brand.md)).
@@ -79,7 +92,7 @@ v1 is built in slices. Each slice ends with something learners can use.
 
 | Slice | What ships | Hosting | Exit test |
 |---|---|---|---|
-| 1. Module 1, end to end | Sign-in (Google and email); the Front-End track page; the lesson player with every step type built so far; the code playground and the labs Module 1 needs; progress saved to Supabase; the content pipeline from the private repository; offline caching of opened lessons | Free plans | A learner on a low-end Android phone finishes Module 1 without help |
+| 1. Module 1, end to end | The public site for search and sharing: landing page, the Front-End track page, about, legal pages. Sign-in (Google and email). The lesson player with every step type built so far, plus the code playground and the labs Module 1 needs. Progress saved to Supabase. Impact measurement and an admin impact page. Settings with data export and account deletion. The content pipeline from the private repository. Offline caching of opened lessons | Free plans | A learner on a low-end Android phone finishes Module 1 without help |
 | 2. Pilot | Modules 1 and 2 with about 20 Academy students; measure where they get stuck, completion, and tutor questions per learner | Free plans | Pilot findings written up, and the top problems fixed |
 | 3. Learning loop | Dashboard, daily review (FSRS), module checks, projects with automatic checks, downloads for offline | Free plans | The five key flows pass end-to-end tests on a throttled phone profile |
 | 4. Launch | Payments and Pro access, the AI tutor, the site assistant, regional pricing, legal pages, analytics with consent | Vercel Pro, Supabase Pro | The first paying learner, and the success criteria in §2 |
@@ -99,11 +112,10 @@ learn.practicode.tech
 ├── /mentor              Mentor cohorts (enquiry form)
 ├── /scholarships        Scholarship application
 ├── /about               About PractiCode Learn (linked from the footer, not the navbar)
-├── /try/[lesson]         Free lesson without an account
+├── /learn/[track]/[lesson]   Lesson player. Free lessons work without an account, so one URL serves guests and learners
 ├── /signup  /login
 ├── /verify-code  /check-email  /reset  /reset/new
 ├── /home                 Learner dashboard
-├── /learn/[track]/[module]/[lesson]   Lesson player
 ├── /review               Daily review session
 ├── /projects  /projects/[id]
 ├── /checks/[module]      Module check and results
@@ -158,15 +170,15 @@ As proposed in [Architecture overview](../architecture/overview.md). Summary:
 
 ## 6. Open questions
 
-1. **What does "live" mean for each track at launch?** Writing all 49 modules to world-class quality before launch is a large content effort. *Recommendation:* launch with Front-End complete, or at least Modules 1–6. Other tracks open as each track's Module 1 is written and reviewed, with the remaining modules released on a published schedule shown on each track page. This changes the 2 October decision that all four tracks are shown as live at launch, so it needs the founder's decision.
+1. ~~What does "live" mean for each track at launch?~~ **Decided 4 October:** Front-End complete first. Other tracks show as "coming soon".
 2. **Pricing.** The proposed regional prices need a willingness-to-pay survey ([business model](../product/business-model.md)).
 3. **Licensing.** Confirm AGPL-3.0 for code and CC BY-SA 4.0 for syllabi *before the first public push* ([ADR 0004](../architecture/adr/0004-open-syllabus-proprietary-lessons.md)).
 4. **Rights agreement.** Authors are decided (see 4 October decisions). The agreement that instructors and reviewers sign, assigning their contributions to Practicode Consult Limited, still needs writing, ideally with a lawyer's review.
-5. **GitHub location.** Personal account or a `practicode` organisation? An organisation is better for a product with a team. **This blocks slice 1**, because it decides where the app and content repositories are created.
+5. ~~GitHub location.~~ **Decided 4 October:** the founder's personal account.
 6. **Founder credit.** The names and roles to show in the README and on the About page.
 7. **AI tutor caps.** Are 5 a day on Free and 50 on Pro right? Confirm after measuring beta usage ([business model](../product/business-model.md)).
 8. **SQL in Data Analysis.** SQL is one of the skills most often asked for in data analyst job adverts, but the current syllabus follows the Academy's Excel and Power BI course. Should we add a SQL module?
-9. **Accounts.** The founder creates the Vercel, Supabase, Resend and Groq accounts under the company's details before slice 1 deploys. Only the founder can do this.
+9. ~~Accounts.~~ **Done 4 October.** The projects, keys, sending domain and Google sign-in are set up during slice 1 (plan, Task 1 and the founder checklist).
 10. **Pilot cohort.** Which group of about 20 Academy students takes the slice 2 pilot, and when?
 
 ## 7. Risks
