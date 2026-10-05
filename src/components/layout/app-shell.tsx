@@ -1,3 +1,4 @@
+import type { Route } from 'next'
 import Link from 'next/link'
 import { app } from '@/content/navigation'
 import { SkipLink } from '@/components/ui/skip-link'
@@ -25,6 +26,7 @@ function SignOut() {
  * It only links to pages a learner can use today.
  */
 export function AppShell({ user, children }: { user: ShellUser; children: React.ReactNode }) {
+  const items = user.isAdmin ? [...app, { href: '/admin/impact' as Route, label: 'Impact' }] : app
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[252px_minmax(0,1fr)]">
       <SkipLink />
@@ -32,7 +34,7 @@ export function AppShell({ user, children }: { user: ShellUser; children: React.
         <Logo href={app[0]!.href} className="px-2" />
         <nav aria-label="Main">
           <ul className="flex flex-col gap-1">
-            {app.map((item) => (
+            {items.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
@@ -53,7 +55,7 @@ export function AppShell({ user, children }: { user: ShellUser; children: React.
       <div className="flex min-w-0 flex-col">
         <header className="relative flex h-16 items-center justify-between border-b border-line-subtle px-4 lg:hidden">
           <Logo href={app[0]!.href} />
-          <MobileMenu items={app} />
+          <MobileMenu items={items} />
         </header>
         <main id="main" className="flex-1 px-4 pt-6 pb-12 sm:px-8 sm:pt-8">
           {children}

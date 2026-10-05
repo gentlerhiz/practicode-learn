@@ -62,6 +62,9 @@ export async function signedInAs(name: string) {
   return { id: data.user.id, email, client }
 }
 
+/** Registers a user created some other way, so deleteTestUsers removes it too. */
+export const deleteAfterRun = (id: string) => createdUsers.push(id)
+
 /** Deletes this run's users; their profiles, progress and events go with them (on delete cascade). */
 export async function deleteTestUsers() {
   const db = admin()

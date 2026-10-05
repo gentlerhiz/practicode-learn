@@ -45,8 +45,30 @@ Visitor → sign-up conversion · trial → paid conversion · monthly recurring
 ## How we measure
 
 - Learning events are recorded as **xAPI statements** (IEEE 9274.1.1-2023), for example "learner *completed* lesson", stored in our database and exportable to any learning record store.
-- Product analytics run only with consent, and are privacy-preserving and hosted in the EU or locally (see [Privacy](../compliance/privacy-and-data-protection.md)).
+- Product analytics are cookieless and aggregate (Vercel Web Analytics and Speed Insights): they store nothing on the device and identify no one, so they run without a consent banner. Anything that used cookies or identified people would need consent first (see [Privacy](../compliance/privacy-and-data-protection.md)).
 - We report **only measured numbers**. Estimates are labelled as estimates. Testimonials are published only with written consent and attribution.
+
+## Definitions in code
+
+These are the figures on the admin impact page (`/admin/impact`) and in its CSV export, exactly as `impact_summary()` and `impact_countries()` compute them in [`supabase/migrations/20261004120200_impact_functions.sql`](../../supabase/migrations/20261004120200_impact_functions.sql). Progress reaches the database only through `record_progress()`, which validates every event, so learners can't inflate these numbers.
+
+| Figure | Exactly what is counted |
+|---|---|
+| Registered learners | Rows in `profiles`. A profile is created only once the email address is confirmed (or the learner signs in with Google), so people who ask for a code and never confirm aren't counted ([`20261005130000_profiles_on_confirmation.sql`](../../supabase/migrations/20261005130000_profiles_on_confirmation.sql)). |
+| Learners who started a lesson | Learners with at least one row in `lesson_progress`. |
+| Lessons completed | Rows in `lesson_progress` with status `completed`: once per learner per lesson. |
+| Active learners (28 days) | Learners with a `lesson_completed` event in the last 28 days. |
+| Hours of active learning | Sum of `active_seconds` ÷ 3600. Time counts only while the lesson page is visible; a gap between interactions counts at most 2 minutes; one event adds at most three times the lesson's length, and a lesson's total is capped at ten times its length. |
+| Countries reached | Distinct `country_code` values. The country is read once, on the server, from Vercel's `x-vercel-ip-country` header at first sign-in; it never comes from the browser. This is broader than the "Countries" reach metric above (10 or more active learners), which the countries table supports. |
+| Activation within 24 hours | % of learners whose account is more than a day old who completed a lesson within 24 hours of their profile being created. |
+| Week-4 retention | % of learners whose account is more than 28 days old with any learning event between day 21 and day 28. |
+| Module 1 completion | % of learners who started a Front-End Module 1 lesson and completed every Module 1 lesson. Until mastery checks exist, completing every lesson stands in for "passes its mastery check". |
+| Offline completions | `lesson_completed` events recorded while the device was offline and saved later. |
+| Countries table | Per country: learners, and learners with a `lesson_completed` event in the last 28 days. |
+
+A scheduled job (`vercel.json`, 06:00 UTC on the 1st of each month) saves the figures to `impact_snapshots`. Snapshots hold no personal data, so they stay accurate after learners delete their accounts.
+
+**Not measured yet.** Learning gain, review adherence, track completion, assessments, certificates, scholarships, revenue, testimonials, partnerships and institutions arrive with the features that create them. Until then they are not reported, not even as estimates.
 
 ## Reporting
 
