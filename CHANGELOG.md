@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
+- **Milestone 2, the learning loop** (built and tested, not yet live):
+  - the database: tables with row-level security and explicit grants, a single validated route for progress, admin-only impact functions and lesson storage
+  - accounts: 6-digit email codes, Google sign-in, safe redirects, sessions verified on the server, and sign-in settings kept in code
+  - progress that survives being offline and signed out, active-time measurement, and an admin impact page with a CSV export and monthly snapshots
+  - lesson packs checked against a strict schema; the build, code checks, preview and publishing tools in this repository; a made-up sample lesson using every step type
+  - an isolated code runner with an opaque origin, shared by the code checks and the player
+  - the lesson player, with every step type, hints and feedback, a code editor and five interactive labs
+  - static, indexable lesson pages with guest play, a completion screen and share images
+  - offline lessons with a service worker and an offline page
+  - learner home and settings, data export and account deletion
+  - publishing lessons from the private content repository, with page refresh
+  - developer, operations and evidence documentation
 - **Milestone 1, the public site** (Next.js 16, TypeScript 7, Tailwind CSS 4):
   - landing page, built from the Prism canvas, with a lesson demo that works without JavaScript
   - Front-End Web Development track page: all 15 modules and 119 lessons, kept identical to the published syllabus by tests

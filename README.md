@@ -14,7 +14,11 @@ Mapped to recognised industry standards, and built to be light on phones and mob
 [![Syllabus licence: CC BY-SA 4.0](https://img.shields.io/badge/syllabus-CC%20BY--SA%204.0-111111)](LICENSING.md)
 [![Accessibility: WCAG 2.2 AA](https://img.shields.io/badge/target-WCAG%202.2%20AA-111111)](docs/design/ux-principles.md#accessibility)
 
-[Vision](docs/product/vision.md) · [Curriculum](docs/curriculum/standards-framework.md) · [Teaching model](docs/curriculum/pedagogy.md) · [Design](docs/design/design-system.md) · [Architecture](docs/architecture/overview.md) · [Roadmap](ROADMAP.md)
+**Live:** [learn.practicode.tech](https://learn.practicode.tech)
+
+[Vision](docs/product/vision.md) · [Curriculum](docs/curriculum/standards-framework.md) · [Teaching model](docs/curriculum/pedagogy.md) · [Design](docs/design/design-system.md) · [Architecture](docs/architecture/overview.md) · [Docs](docs/README.md) · [Roadmap](ROADMAP.md)
+
+<img src="docs/assets/landing.png" width="720" alt="The PractiCode Learn landing page: Learn the skills employers are hiring for">
 
 </div>
 
@@ -36,10 +40,10 @@ Most online learning still works like television: press play, watch someone else
 |---|---|---|
 | **Lesson format** | Video lectures with a quiz at the end | Interactive steps you predict, run, change and build ([PRIMM](docs/curriculum/pedagogy.md#the-lesson-loop-primm)) |
 | **Data use** | Hundreds of MB to about 3 GB per hour of video, depending on quality | Text, code and SVG animation, with a target of ≤150 KB per lesson ([lesson budget](docs/curriculum/lesson-format.md#performance-budget)). AI & ML modules add a one-time 10–30 MB Python download. |
-| **Offline** | Rare, app-only | Installable web app; download a module once, learn anywhere |
-| **Practice** | Optional | Built in: daily spaced review ([FSRS](docs/curriculum/pedagogy.md#retrieval-and-spacing)) and mastery checks |
-| **Help when stuck** | Forums and video comments | An AI tutor in every lesson that gives hints first and shows its source ([ADR 0006](docs/architecture/adr/0006-ai-tutor-and-site-assistant.md)) |
-| **Credentials** | PDF certificate | Verifiable [Open Badges 3.0](docs/architecture/overview.md#credentials) mapped to SFIA 9 skills |
+| **Offline** | Rare, app-only | Any lesson you've opened works without a connection, and progress syncs when you're back. Downloading a whole module is planned |
+| **Practice** | Optional | Three escalating hints and feedback on every answer today. Planned: daily spaced review ([FSRS](docs/curriculum/pedagogy.md#retrieval-and-spacing)) and mastery checks |
+| **Help when stuck** | Forums and video comments | Planned: an AI tutor in every lesson that gives hints first and shows its source ([ADR 0006](docs/architecture/adr/0006-ai-tutor-and-site-assistant.md)) |
+| **Credentials** | PDF certificate | Planned: verifiable [Open Badges 3.0](docs/architecture/overview.md#credentials) mapped to SFIA 9 skills |
 | **Curriculum** | Opaque | Syllabus published openly, with every outcome mapped to a [recognised framework](docs/curriculum/standards-framework.md) |
 
 ## Tracks
@@ -67,7 +71,7 @@ Diagrams animate one step at a time at the learner's pace. Code runs in the brow
 
 ## Business model
 
-Freemium with regional pricing. See [Business model](docs/product/business-model.md).
+Freemium with regional pricing. These are the planned tiers; payments aren't live yet. See [Business model](docs/product/business-model.md).
 
 - **Free**: Module 1 of every track, the daily review, the community and 5 AI tutor questions a day.
 - **Pro**: every module, projects with automated feedback, verified certificates, offline downloads and 50 AI tutor questions a day. Priced in local currency, with need-based scholarships.
@@ -85,7 +89,13 @@ PractiCode Learn is being built in slices ([slice 1 plan](docs/plans/2026-10-04-
   - landing page, Front-End track page with the full syllabus, and About, legal and error pages
   - complete search and share metadata, structured data, sitemap, icons and share images
   - security headers and a two-mode Content Security Policy ([ADR 0008](docs/architecture/adr/0008-security-model.md))
-- [ ] Milestone 2, the learning loop: accounts, Module 1 lessons in the browser, progress, offline lessons and impact measurement
+- [ ] **Milestone 2, the learning loop** (built and tested; going live after the launch checklist):
+  - [x] accounts: email codes, Google sign-in, safe redirects
+  - [x] the lesson player with every step type, interactive labs and an isolated code runner
+  - [x] lesson pages, offline lessons, progress that syncs, learner home and settings, data export and account deletion
+  - [x] the database with row-level security, validated progress writes and the admin impact page
+  - [x] publishing lessons from the private content repository
+  - [ ] continuous integration, production configuration and Module 1's remaining lessons
 - [ ] A pilot with PractiCode Academy learners, then launch
 
 ## Running it locally
@@ -95,23 +105,28 @@ You need Node.js 22.12 or later.
 ```bash
 npm install
 cp .env.example .env.local   # every variable is optional for the public site
-npm run dev                  # http://localhost:3000
+npm run dev                  # http://localhost:3000, sample lesson at /learn/samples/every-step
 ```
 
 | Command | What it does |
 |---|---|
-| `npm test` | Unit tests (Vitest) |
+| `npm test` | Unit, component, content-tool and database tests (Vitest) |
 | `npm run test:e2e` | End-to-end tests in Chromium at phone and desktop sizes, including accessibility checks (Playwright and axe) |
 | `npm run lint`, `npm run typecheck` | ESLint, and TypeScript 7 type checking |
 | `npm run build` | Production build |
+
+The full guide, including connecting the dev database, is [Getting started](docs/development/getting-started.md). Then read [Conventions](docs/development/conventions.md) and [Testing](docs/development/testing.md).
 
 ## Repository structure
 
 ```
 .
 ├── src/                     The Next.js app: routes, components, content and libraries
-├── tests/e2e/               Playwright end-to-end tests
-├── scripts/                 Icon and share-image font generators
+├── supabase/                Database migrations, sign-in settings and email templates
+├── tools/content-build/     Lesson build, code checks, review preview and publishing
+├── content/samples/         Made-up sample lessons (CC BY-SA) for tests and local work
+├── tests/                   Playwright end-to-end tests (e2e/) and database tests (db/)
+├── scripts/                 Icon, share-image and sign-in settings scripts
 ├── brand/                   Brand config (single source for name, colours, fonts) and logo files
 ├── design/                  UI designs and links to the design canvas
 ├── docs/
@@ -122,6 +137,9 @@ npm run dev                  # http://localhost:3000
 │   ├── architecture/        Proposed architecture and decision records (ADRs)
 │   ├── compliance/          Privacy and data protection
 │   ├── security/            Threat model
+│   ├── development/         Getting started, conventions, testing
+│   ├── operations/          Deployment, accounts and keys, content publishing, launch checklist
+│   ├── evidence/            Innovation log, impact reports, open source, partnerships, feedback
 │   ├── plans/               Implementation plans
 │   └── specs/               Specifications awaiting or past review
 ├── .github/                 Issue and pull request templates
@@ -132,9 +150,9 @@ npm run dev                  # http://localhost:3000
 ## Stack
 
 - Next.js 16 (App Router, React Server Components), TypeScript 7 and Tailwind CSS 4
-- Supabase: Postgres with Row Level Security, Auth and Storage
-- Lessons as validated packs from a private MDX repository
-- In-browser code execution in a sandboxed runner
+- Supabase: Postgres with Row Level Security, Auth and Storage; Resend for sign-in email
+- Lessons as validated packs from a private MDX repository, published by a GitHub Action
+- In-browser code execution in a sandboxed runner, and a service worker for offline lessons
 - Vitest, Playwright and axe for testing
 - Hosted on Vercel
 
@@ -142,7 +160,7 @@ The rationale and alternatives are in [Architecture](docs/architecture/overview.
 
 ## Contributing
 
-We welcome curriculum feedback, accessibility reviews, translations and, once the app exists, code. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md) first. To report a security issue, follow [SECURITY.md](SECURITY.md).
+We welcome curriculum feedback, accessibility reviews, translations and code. Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md) first. To report a security issue, follow [SECURITY.md](SECURITY.md).
 
 ## Licensing
 

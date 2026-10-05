@@ -10,9 +10,9 @@ Thank you for helping. This project aims to give anyone, anywhere, a world-class
 | An accessibility specialist or assistive-tech user | Auditing designs against WCAG 2.2 AA | [UX principles](docs/design/ux-principles.md#accessibility) |
 | A translator | Translating the interface (once i18n lands) | Open an issue to coordinate |
 | A designer | Critiquing UI designs, proposing patterns | [design/](design/README.md) |
-| A developer | Code, once implementation starts | [Architecture](docs/architecture/overview.md) |
+| A developer | Code, tests and fixes | [Getting started](docs/development/getting-started.md), then [Conventions](docs/development/conventions.md) |
 
-The project is in the **design phase**. The most valuable contributions right now are reviews of the docs in `docs/`.
+The public site is live and the learning loop is being prepared for a pilot. Reviews of the syllabi, accessibility checks and focused code changes are all welcome.
 
 ## Ground rules
 
@@ -24,7 +24,7 @@ The project is in the **design phase**. The most valuable contributions right no
 ## Workflow
 
 1. Fork the repository and create a branch from `main`: `feat/short-description`, `fix/…`, `docs/…` or `curriculum/…`.
-2. Make your change. Update docs in the same pull request when behaviour changes.
+2. Make your change, with tests (see [Testing](docs/development/testing.md)). Update docs in the same pull request when behaviour changes.
 3. Write commits in the [Conventional Commits](https://www.conventionalcommits.org/) style, for example `docs(curriculum): add PL-300 mapping for module 7`.
 4. Open a pull request using the template, and link the issue.
 5. A maintainer reviews it. Curriculum changes need one subject-matter reviewer, and UI changes need an accessibility check.

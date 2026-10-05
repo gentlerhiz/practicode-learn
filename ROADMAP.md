@@ -2,7 +2,11 @@
 
 This roadmap shows what we plan, in order. It is not a promise of dates. We will update it as we learn from learners.
 
-## Phase 0: Design (now)
+## Where we are
+
+Slice 1 takes Module 1 of Front-End Web Development from end to end ([plan](docs/plans/2026-10-04-slice-1-module-1-end-to-end.md)). The public site is live at [learn.practicode.tech](https://learn.practicode.tech). The learning loop (accounts, the lesson player, offline lessons, progress, impact measurement and publishing) is built and tested, and goes live once the [launch checklist](docs/operations/launch-checklist.md) is complete. Then comes a pilot with PractiCode Academy learners.
+
+## Phase 0: Design
 
 - [x] Positioning, personas, business model
 - [x] Competitive and UI research
@@ -10,8 +14,8 @@ This roadmap shows what we plan, in order. It is not a promise of dates. We will
 - [x] Four track syllabi
 - [x] Design system and core UI designs (landing, dashboard), shortlisted to three visual directions
 - [x] Choose the final visual direction (Prism) and design every v1 screen: 38 screens covering about, account, lessons, projects, payments, states and legal pages, in dark and light mode, at desktop and phone width
-- [ ] v1 spec approved
-- [ ] Implementation plan approved
+- [x] v1 spec approved
+- [x] Implementation plan approved
 - [ ] Willingness-to-pay survey with 100+ prospective learners (validates regional pricing)
 - [ ] Usability test of the lesson player prototype with 5 learners, on low-end Android phones
 
