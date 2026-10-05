@@ -1,0 +1,17 @@
+[
+  {
+    "id": "zz-01-01",
+    "version": 1,
+    "title": "Every step, once",
+    "slug": "every-step",
+    "description": "A made-up sample lesson that uses every step type and every lab once, so the lesson player and the content checks can be tested end to end.",
+    "track": "samples",
+    "module": 1,
+    "lesson": 1,
+    "minutes": 15,
+    "free": true,
+    "steps": 15,
+    "bytes": 3487,
+    "hash": "0e5c7c255560"
+  }
+]

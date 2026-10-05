@@ -45,12 +45,15 @@ Each step names its stage with `stage`: `hook`, `predict`, `run`, `investigate`,
 
 ## Authoring format
 
-Lessons are authored in **MDX** (Markdown with components) in a private content repository, one file per lesson at `tracks/<track>/<NN-module>/<NN-lesson>.mdx`. A build step validates each file and compiles it into a versioned **lesson pack** (JSON) that the app downloads.
+Lessons are authored in **MDX** (Markdown with components) in a private content repository, one file per lesson at `tracks/<track>/<NN-module>/<NN-lesson>.mdx`. A build step validates each file and compiles it into a versioned **lesson pack** (JSON) that the app downloads. The build, the code checks and the review preview live in this repository, in `tools/content-build`, and the content repository runs them from here, so the checks, the app and the format can never drift apart.
+
+**Frontmatter.** `id`, `title`, `track`, `module`, `lesson`, `minutes` (5 to 20), `free`, `version` and `outcomes` are required. `description` is required too: 120 to 160 characters, used for search results and share cards. Put it in quotes if it contains a colon. A lesson's **slug**, used in its web address, is its file name without the number prefix: `01-what-happens-when-you-open-a-website.mdx` becomes `what-happens-when-you-open-a-website`.
 
 ````mdx
 ---
 id: fe-06-04
 title: Aligning items with Flexbox
+description: "Line up the items in a flex row with align-items and align-self, trying stretch, start, centre and end live on a real navigation bar."
 track: front-end-web-development
 module: 6
 lesson: 4
@@ -100,14 +103,14 @@ Surprised? Most people are.
 - **Tests** run inside the learner's sandboxed preview. They can use `$`, `$$`, `css(selector, property)`, `box(selector)`, `textBox(selector)` (the box around the text itself), `near(a, b, tolerance)` and `assert(condition, message)`. The message is what the learner sees, so it says what to fix. Prefer tests that check the result on the page over tests that look for one particular line of code, so any correct solution passes.
 - **Prefer doing to choosing.** Where an answer can be shown, let the learner see it: `run` a prediction, `live` a question, or use `<Explore>`. Plain multiple choice is for questions with nothing to run.
 - **Solutions** never ship to learners. They are kept for the automated checks and for reviewers.
-- **Labs** are interactive drawings built into the player. So far: `request-journey`, `page-load` and `flex-axes`.
+- **Labs** are interactive drawings built into the player: `request-journey`, `flex-axes` and `url-anatomy` (diagrams), and `page-load` and `http-exchange` (explorations). The list lives in `src/lib/lessons/labs.ts`; a lesson that names any other lab fails the build.
 - **MDX rules for authors:** put tags such as `<h1>`, and anything with curly braces, inside backticks. A bare `<` or `{` in prose is read as a component or an expression. Attributes are plain quoted strings; expressions and imports are rejected.
 
 ### Automated checks
 
 The build fails, and the lesson can't be published, unless:
 
-- the frontmatter is complete, and the id matches the module, lesson and file location
+- the frontmatter is valid and complete, the id matches the module, lesson and file location, and the description is 120 to 160 characters
 - Explain steps are 80 words or fewer
 - at least two-thirds of the steps are interactive
 - every interactive step has exactly three hints, and every option has feedback
@@ -116,6 +119,7 @@ The build fails, and the lesson can't be published, unless:
 - in a real browser at phone and laptop widths, every model solution passes its tests and the starter code fails at least one
 - every runnable example renders without errors
 - the pack is within the 150 KB budget
+- the pack matches the app's own schema (`src/lib/lessons/schema.ts`), which rejects any field the format doesn't define
 
 ### Lesson pack
 
@@ -123,7 +127,7 @@ The app receives one JSON file per lesson version:
 
 ```ts
 type LessonPack = {
-  schema: 1; id: string; version: number; title: string; track: string;
+  schema: 1; id: string; slug: string; description: string; version: number; title: string; track: string;
   module: number; lesson: number; minutes: number; free: boolean;
   outcomes: string[]; prerequisites: string[];
   steps: Step[];             // HTML already rendered from Markdown at build time

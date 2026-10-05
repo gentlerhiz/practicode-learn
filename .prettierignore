@@ -11,3 +11,6 @@ src/types/database.ts
 
 # Email templates are hand-tuned HTML for email clients
 supabase/templates/
+
+# Lesson sources follow the lesson format, and packs are generated
+content/

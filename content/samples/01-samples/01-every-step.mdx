@@ -1,0 +1,317 @@
+---
+id: zz-01-01
+title: Every step, once
+description: A made-up sample lesson that uses every step type and every lab once, so the lesson player and the content checks can be tested end to end.
+track: samples
+module: 1
+lesson: 1
+minutes: 15
+free: true
+version: 1
+outcomes: [zz.sample.read, zz.sample.try, zz.sample.build]
+prerequisites: []
+---
+
+<Explain stage="hook">
+
+Ada sells paper lanterns, and her shop needs a small website. This sample lesson follows her site from a tap on a phone to a finished page.
+
+It is made up, and it exists to test the lesson player: every kind of step appears once, and every lab is drawn once.
+
+</Explain>
+
+<Diagram stage="investigate" lab="request-journey">
+
+Tap through the trip and watch what moves between the phone and the server.
+
+<State title="You type an address">
+You type the shop's address and tap Go.
+</State>
+
+<State title="Find the server">
+The browser looks up where the shop's server is.
+</State>
+
+<State title="Send a request">
+The browser asks the server for the page. That message is a **request**.
+</State>
+
+<State title="The server responds">
+The server sends back a **response**, starting with the page's HTML.
+</State>
+
+<State title="Fetch the extras">
+The HTML links to more files: CSS, images and JavaScript. The browser asks for each one.
+</State>
+
+<State title="Draw the page">
+With the files in hand, the browser draws the lantern shop on the screen.
+</State>
+
+</Diagram>
+
+<Predict stage="predict" run assesses="zz.sample.read">
+
+Ada's shop sign uses this CSS. What will the word look like when the page runs?
+
+```html title="index.html" readonly
+<p class="sign">Open today</p>
+```
+
+```css title="styles.css" readonly
+.sign { font-weight: 700; }
+```
+
+<Option id="a" correct feedback="Right. A weight of 700 is bold.">Bold</Option>
+<Option id="b" feedback="Italic comes from font-style, not font-weight.">Italic</Option>
+<Option id="c" feedback="Nothing here changes the size.">Twice as big</Option>
+
+<Hint>Look at the property name: what does weight describe in a font?</Hint>
+<Hint>font-weight sets how thick the letters are. 400 is normal.</Hint>
+<Hint>Example: a heading with font-weight: 800 looks extra thick.</Hint>
+
+</Predict>
+
+<Question stage="run" live assesses="zz.sample.try">
+
+Try each value in the preview. Which one puts the word in the middle of the line?
+
+```html title="index.html" readonly
+<p class="lantern">Lantern</p>
+```
+
+```css title="styles.css" readonly
+.lantern { text-align: {{value}}; }
+```
+
+<Option id="a" value="left" feedback="That keeps it at the start of the line.">left</Option>
+<Option id="b" value="center" correct feedback="Yes. center puts the text in the middle.">center</Option>
+<Option id="c" value="right" feedback="That moves it to the end of the line.">right</Option>
+
+<Hint>Watch where the word moves as you try each one.</Hint>
+<Hint>text-align lines text up inside its box.</Hint>
+<Hint>Example: a centred title sits in the middle of the page width.</Hint>
+
+</Question>
+
+<Explore stage="investigate" control="gap" values="0,12px,32px" assesses="zz.sample.try">
+
+Change the gap between Ada's three lanterns.
+
+```html title="index.html" readonly
+<div class="row"><span>Red</span><span>Gold</span><span>Blue</span></div>
+```
+
+```css title="styles.css" readonly
+.row { display: flex; gap: {{value}}; }
+```
+
+<Ask>Which value leaves the most space between the lanterns?</Ask>
+
+<Option id="a" feedback="0 puts them right next to each other.">0</Option>
+<Option id="b" feedback="Some space, but not the most.">12px</Option>
+<Option id="c" correct feedback="Right. The bigger the gap, the more space.">32px</Option>
+
+<Hint>Try each value and compare the spaces.</Hint>
+<Hint>gap sets the space between flex items.</Hint>
+<Hint>Example: gap: 8px leaves 8 pixels between each pair of items.</Hint>
+
+</Explore>
+
+<Diagram stage="investigate" lab="flex-axes">
+
+Step through the two axes of Ada's menu bar.
+
+<State title="The main axis">
+In a flex row, the main axis runs left to right.
+</State>
+
+<State title="The cross axis">
+The cross axis runs top to bottom.
+</State>
+
+<State title="Centre on the cross axis">
+align-items: center lines the items up along the middle of the cross axis.
+</State>
+
+<State title="Turn it into a column">
+In a column the main axis runs top to bottom instead.
+</State>
+
+<State title="Centre a column">
+Now align-items: center works left to right.
+</State>
+
+</Diagram>
+
+<Explore stage="investigate" lab="page-load" control="Connection" values="Fast,Slow" assesses="zz.sample.read">
+
+Load the page on a fast connection, then on a slow one, and watch the files arrive.
+
+<Ask>On a slow connection, which file arrives last?</Ask>
+
+<Option id="a" feedback="The HTML is always the first file.">index.html</Option>
+<Option id="b" correct feedback="Yes. The photo is by far the biggest file.">The photo</Option>
+<Option id="c" feedback="The styling arrives early so the page can be drawn.">styles.css</Option>
+
+<Hint>Watch the list of files as the page loads.</Hint>
+<Hint>Bigger files take longer on a slow connection.</Hint>
+<Hint>Example: a news site often shows its headline before its photos.</Hint>
+
+</Explore>
+
+<Diagram stage="investigate" lab="url-anatomy">
+
+Step through the parts of an address for Ada's shop.
+
+<State title="The scheme">
+https says how the browser and the server will talk.
+</State>
+
+<State title="The domain">
+The domain names the shop's server.
+</State>
+
+<State title="The path">
+The path names the page on that server.
+</State>
+
+<State title="The query">
+The query adds details, such as a search for gold lanterns.
+</State>
+
+</Diagram>
+
+<Explore stage="investigate" lab="http-exchange" control="Request" values="The home page,A photo,A missing page,A form" assesses="zz.sample.read">
+
+Send each request to Ada's server and read the status code that comes back.
+
+<Ask>Which request gets 404 Not Found?</Ask>
+
+<Option id="a" feedback="The home page exists, so the server answers 200 OK.">The home page</Option>
+<Option id="b" correct feedback="Right. 404 means the server has no page at that address.">A missing page</Option>
+<Option id="c" feedback="A sent form usually gets a success code or a redirect.">A form</Option>
+
+<Hint>Try each request and read the number in the response.</Hint>
+<Hint>Codes starting with 4 mean the request asked for something the server can't give.</Hint>
+<Hint>Example: a link with a typo in it often leads to a 404 page.</Hint>
+
+</Explore>
+
+<Predict stage="predict" assesses="zz.sample.read">
+
+Ada's friend opens the shop on a weak network. The text has loaded, but the photo hasn't. What will the page show in the meantime?
+
+<Option id="a" feedback="The browser doesn't wait for every file before drawing.">A blank screen</Option>
+<Option id="b" correct feedback="Right. The browser leaves space for the photo and fills it in when it arrives.">The text, with a space where the photo will go</Option>
+<Option id="c" feedback="Nothing has failed. One file just hasn't arrived yet.">An error message</Option>
+
+<Hint>Think about the order the files arrive in.</Hint>
+<Hint>The browser draws with the files it already has.</Hint>
+<Hint>Example: video sites show the page before the video starts.</Hint>
+
+</Predict>
+
+<Order stage="apply" assesses="zz.sample.read" wrong="Not quite. The browser has to find the server before it can ask it for anything.">
+
+Put the trip to Ada's shop in order.
+
+<Item>You tap Go</Item>
+<Item>The browser finds the server</Item>
+<Item>The browser sends a request</Item>
+<Item>The server sends a response</Item>
+<Item>The browser draws the page</Item>
+
+<Hint>Start with what you do.</Hint>
+<Hint>The browser can't ask a server it hasn't found yet.</Hint>
+<Hint>Example: you look up a number before you call it.</Hint>
+
+</Order>
+
+<Question stage="apply" assesses="zz.sample.read">
+
+Ada wants her lantern photos to load faster on slow phones. What helps most?
+
+<Option id="a" correct feedback="Yes. Smaller files arrive sooner.">Make the photo files smaller</Option>
+<Option id="b" feedback="More text doesn't speed up photos.">Add more text to the page</Option>
+<Option id="c" feedback="A brighter colour doesn't change how fast files arrive.">Use a brighter background colour</Option>
+
+<Hint>Which file was slowest in the lab?</Hint>
+<Hint>Download time grows with file size.</Hint>
+<Hint>Example: a 500 KB photo can often be saved at 80 KB and look the same on a phone.</Hint>
+
+</Question>
+
+<Code stage="modify" assesses="zz.sample.build">
+
+Make the lantern text orange: `#E8792F`.
+
+```html title="index.html" readonly
+<p class="lantern">Paper lanterns</p>
+```
+
+```css title="styles.css"
+.lantern { color: black; }
+```
+
+<Test name="The lantern text is orange">
+
+```js
+assert(css('.lantern', 'color') === 'rgb(232, 121, 47)', 'Set the color of .lantern to #E8792F.')
+```
+
+</Test>
+
+<Hint>Find the color property in styles.css.</Hint>
+<Hint>Replace its value with the hex code.</Hint>
+<Hint>Example: `.title { color: #1E66F5; }` makes a title blue.</Hint>
+
+<Solution>
+
+```css title="styles.css"
+.lantern { color: #E8792F; }
+```
+
+</Solution>
+
+</Code>
+
+<Code stage="make" assesses="zz.sample.build">
+
+Add three lanterns to the list: red, gold and blue, one `li` each.
+
+```html title="index.html"
+<ul class="shop"></ul>
+```
+
+<Test name="The list has three lanterns">
+
+```js
+assert($$('.shop li').length === 3, 'Add three li items inside the list.')
+```
+
+</Test>
+
+<Hint>Items go between the opening and closing ul tags.</Hint>
+<Hint>Each item is its own li element.</Hint>
+<Hint>Example: a list of two drinks has two li elements, each with a drink inside.</Hint>
+
+<Solution>
+
+```html title="index.html"
+<ul class="shop"><li>Red</li><li>Gold</li><li>Blue</li></ul>
+```
+
+</Solution>
+
+</Code>
+
+<Recap>
+
+- A page arrives as a request and a response, then more files.
+- CSS changes how the page looks, and you can try values live.
+- You can change starter code until every test passes.
+
+<Card front="What does the browser send to a server?" back="A request" />
+
+</Recap>

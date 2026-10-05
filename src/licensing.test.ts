@@ -10,6 +10,7 @@ it('LICENSING.md names every folder that is not under the code licence', () => {
     'public/brand/',
     'public/icons/',
     'src/content/tracks/',
+    'content/samples/',
   ]) {
     expect(doc, path).toContain(`\`${path}\``)
   }
