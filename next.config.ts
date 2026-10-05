@@ -26,6 +26,8 @@ const nextConfig: NextConfig = {
         headers: [{ key: 'Content-Security-Policy', value: staticCsp }],
       },
       { source: '/runner.html', headers: runnerHeaders },
+      // Browsers check for a new service worker on every visit, so updates reach learners straight away.
+      { source: '/sw.js', headers: [{ key: 'Cache-Control', value: 'no-cache' }] },
     ]
   },
 }

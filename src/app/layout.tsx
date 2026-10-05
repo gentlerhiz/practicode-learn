@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Bricolage_Grotesque, JetBrains_Mono, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { RegisterServiceWorker } from '@/components/pwa/register-sw'
 import { JsonLd } from '@/components/seo/json-ld'
 import { publicEnv } from '@/lib/env'
 import { organizationLd, websiteLd } from '@/lib/seo/jsonld'
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       </head>
       <body className="bg-bg font-sans text-ink antialiased">
         {children}
+        <RegisterServiceWorker />
         <JsonLd data={[organizationLd(), websiteLd()]} />
         {/*
           Cookieless: counts visits and page speed without identifying anyone (named in the privacy notice).

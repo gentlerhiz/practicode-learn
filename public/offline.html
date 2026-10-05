@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>You’re offline · PractiCode Learn</title>
+    <!--
+      Shown by the service worker (public/sw.js) for any page that isn't saved on this device. It is plain
+      HTML on purpose: with no connection, nothing else (React, the site's CSS, fonts) can be relied on.
+      Colours are the site's tokens from src/app/globals.css; the theme follows the learner's choice.
+    -->
+    <script>
+      ;(function () {
+        try {
+          var p = localStorage.getItem('pc-theme')
+          p = p === 'dark' || p === 'light' ? p : 'system'
+          var t =
+            p === 'system' ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') : p
+          document.documentElement.dataset.theme = t
+        } catch (e) {}
+      })()
+    </script>
+    <style>
+      :root {
+        --bg: #07060d;
+        --row: #0f0d1b;
+        --line: #2a2540;
+        --text: #ffffff;
+        --soft: #dcd9ea;
+        --muted: #a9a6bc;
+        --primary: #ffffff;
+        --on-primary: #07060d;
+        color-scheme: dark;
+      }
+      :root[data-theme='light'] {
+        --bg: #f5f4fa;
+        --row: #ffffff;
+        --line: #dfdce9;
+        --text: #15122a;
+        --soft: #3b3752;
+        --muted: #5d5972;
+        --primary: #15122a;
+        --on-primary: #ffffff;
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          16px/26px Poppins,
+          system-ui,
+          -apple-system,
+          'Segoe UI',
+          sans-serif;
+      }
+      .wrap {
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 40px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+      }
+      .brand {
+        font-size: 18px;
+        color: var(--text);
+        text-decoration: none;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: 34px;
+        line-height: 40px;
+        letter-spacing: -0.03em;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+      p {
+        margin: 0 0 16px;
+        color: var(--soft);
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        height: 42px;
+        padding: 0 20px;
+        border-radius: 999px;
+        background: var(--primary);
+        color: var(--on-primary);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--row);
+        padding: 24px;
+      }
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      li a {
+        display: block;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 12px 16px;
+        color: var(--text);
+        font-weight: 600;
+        text-underline-offset: 2px;
+      }
+      .none {
+        margin: 0;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <a class="brand" href="/">Practi<strong>Code</strong> Learn</a>
+      <main id="main">
+        <h1>You’re offline</h1>
+        <p>
+          This page isn’t saved on this device yet, so it needs a connection the first time you open it.
+          Lessons you’ve opened before still work, and your progress is saved here until you’re back online.
+        </p>
+        <a class="button" href="">Try Again</a>
+        <section class="card" aria-labelledby="saved-heading" style="margin-top: 32px">
+          <h2 id="saved-heading">Lessons you can open now</h2>
+          <ul id="saved-lessons"></ul>
+          <p class="none" id="no-saved-lessons">
+            None yet. Any lesson you open while connected is saved on this device for next time.
+          </p>
+        </section>
+      </main>
+    </div>
+    <script>
+      ;(function () {
+        if (!('caches' in window)) return
+        var list = document.getElementById('saved-lessons')
+        var none = document.getElementById('no-saved-lessons')
+        var decode = function (s) {
+          var t = document.createElement('textarea')
+          t.innerHTML = s
+          return t.value
+        }
+        caches
+          .open('pc-pages-v1')
+          .then(function (cache) {
+            return cache.keys().then(function (requests) {
+              var lessons = requests.filter(function (r) {
+                return new URL(r.url).pathname.indexOf('/learn/') === 0
+              })
+              return Promise.all(
+                lessons.map(function (r) {
+                  return cache
+                    .match(r)
+                    .then(function (res) {
+                      return res.text()
+                    })
+                    .then(function (html) {
+                      var m = html.match(/<title>([^<]*)<\/title>/)
+                      var path = new URL(r.url).pathname
+                      return {
+                        href: path,
+                        title: m ? decode(m[1]).replace(/ · PractiCode Learn$/, '') : path,
+                      }
+                    })
+                }),
+              )
+            })
+          })
+          .then(function (lessons) {
+            if (!lessons.length) return
+            none.hidden = true
+            lessons.forEach(function (lesson) {
+              var item = document.createElement('li')
+              var link = document.createElement('a')
+              link.href = lesson.href
+              link.textContent = lesson.title
+              item.appendChild(link)
+              list.appendChild(item)
+            })
+          })
+          .catch(function () {})
+      })()
+    </script>
+  </body>
+</html>
