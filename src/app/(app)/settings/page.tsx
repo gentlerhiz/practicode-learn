@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
-import { Card, Heading } from '@/components/ui'
+import { DangerZone } from '@/components/app/danger-zone'
+import { ThemeToggle } from '@/components/layout/theme-toggle'
+import { buttonClasses, Card, Heading } from '@/components/ui'
 import { requireUser } from '@/lib/auth/require-user'
 import { pageMetadata } from '@/lib/seo/metadata'
+import { NameForm } from './name-form'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Settings',
@@ -10,7 +13,9 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-// A placeholder so sign-in has somewhere to land; Task 17 builds settings.
+const sectionTitle = 'font-display text-lg font-bold text-ink'
+
+/** Ported from PrismSettings, keeping what works today: name, appearance, your data and deletion. */
 export default async function SettingsPage() {
   const user = await requireUser()
   return (
@@ -18,13 +23,40 @@ export default async function SettingsPage() {
       <Heading level={1} size="lg">
         Settings
       </Heading>
-      <Card className="flex flex-col gap-2">
-        <p className="text-sm text-ink-muted">Signed in as</p>
-        <p className="text-base font-semibold text-ink">{user.email ?? user.name ?? 'your account'}</p>
+      <Card as="section" aria-labelledby="profile" className="flex flex-col gap-5">
+        <h2 id="profile" className={sectionTitle}>
+          Profile
+        </h2>
+        <NameForm name={user.name} />
+        <div className="flex flex-col gap-1">
+          <p className="text-sm font-medium text-ink-soft">Email</p>
+          <p className="text-[15px] text-ink">{user.email ?? 'Not set'}</p>
+        </div>
       </Card>
-      <p className="text-base leading-[26px] text-ink-muted">
-        More settings, including exporting and deleting your data, open with Module 1.
-      </p>
+      <Card as="section" aria-labelledby="appearance" className="flex flex-col gap-3">
+        <h2 id="appearance" className={sectionTitle}>
+          Appearance
+        </h2>
+        <p className="text-[15px] leading-6 text-ink-soft">
+          Light is easier to read in bright sunlight. Dark is easier on your eyes at night.
+        </p>
+        <ThemeToggle variant="segmented" />
+      </Card>
+      <Card as="section" aria-labelledby="your-data" className="flex flex-col gap-3">
+        <h2 id="your-data" className={sectionTitle}>
+          Your data
+        </h2>
+        <p className="text-[15px] leading-6 text-ink-soft">
+          Download everything we hold about your learning: your profile, your progress and your learning
+          history, as a file you can keep.
+        </p>
+        <div>
+          <a href="/settings/export" download className={buttonClasses({ variant: 'secondary' })}>
+            Download My Data
+          </a>
+        </div>
+      </Card>
+      <DangerZone />
     </div>
   )
 }

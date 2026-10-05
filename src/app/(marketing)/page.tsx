@@ -1,3 +1,5 @@
+import { Suspense } from 'react'
+import { AccountDeletedNotice } from '@/components/marketing/account-deleted-notice'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Comparison } from '@/components/marketing/comparison'
 import { CtaBand } from '@/components/marketing/cta-band'
@@ -19,6 +21,9 @@ export const metadata = metaFor('/')
 export default function Home() {
   return (
     <>
+      <Suspense fallback={null}>
+        <AccountDeletedNotice />
+      </Suspense>
       <Hero />
       <ToolsStrip />
       <TrackCards />
