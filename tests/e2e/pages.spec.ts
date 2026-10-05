@@ -24,11 +24,11 @@ test('the About page shows the founder with a described photo and profile links'
   )
 })
 
-test('public pages load every resource they ask for, with no script errors', async ({ page }) => {
+test('public pages load every resource they ask for, with no script errors', async ({ page, baseURL }) => {
   const problems: string[] = []
   // Failed loads don't surface as console events in Playwright, so watch the responses themselves.
   page.on('response', (r) => {
-    if (r.status() >= 400 && new URL(r.url()).host === 'localhost:3000') {
+    if (r.status() >= 400 && new URL(r.url()).host === new URL(baseURL!).host) {
       problems.push(`${r.status()} ${new URL(r.url()).pathname}`)
     }
   })

@@ -165,24 +165,36 @@ Load the page on a fast connection, then on a slow one, and watch the files arri
 Step through the parts of an address for Ada's shop.
 
 <State title="The scheme">
-https says how the browser and the server will talk.
+https says how the browser and the server talk.
+</State>
+
+<State title="The subdomain">
+learn names one part of the website.
 </State>
 
 <State title="The domain">
-The domain names the shop's server.
+The domain is the name the site's owner registered.
+</State>
+
+<State title="The top-level domain">
+The ending of the name, such as tech or com.
 </State>
 
 <State title="The path">
-The path names the page on that server.
+The path names the page on the server.
 </State>
 
 <State title="The query">
-The query adds details, such as a search for gold lanterns.
+The query adds details, such as where the visitor came from.
+</State>
+
+<State title="The fragment">
+The fragment is a place on the page to jump to.
 </State>
 
 </Diagram>
 
-<Explore stage="investigate" lab="http-exchange" control="Request" values="The home page,A photo,A missing page,A form" assesses="zz.sample.read">
+<Explore stage="investigate" lab="http-exchange" control="Request" values="The home page,A missing page,A page that moved,The server is down" assesses="zz.sample.read">
 
 Send each request to Ada's server and read the status code that comes back.
 
@@ -190,7 +202,7 @@ Send each request to Ada's server and read the status code that comes back.
 
 <Option id="a" feedback="The home page exists, so the server answers 200 OK.">The home page</Option>
 <Option id="b" correct feedback="Right. 404 means the server has no page at that address.">A missing page</Option>
-<Option id="c" feedback="A sent form usually gets a success code or a redirect.">A form</Option>
+<Option id="c" feedback="A page that moved gets 301 Moved Permanently, with its new address.">A page that moved</Option>
 
 <Hint>Try each request and read the number in the response.</Hint>
 <Hint>Codes starting with 4 mean the request asked for something the server can't give.</Hint>
