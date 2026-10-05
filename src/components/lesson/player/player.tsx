@@ -72,12 +72,18 @@ export function LessonPlayer({
   onFinish,
   startAt,
   next,
+  hideTitle = false,
+  complete,
 }: {
   pack: LessonPack
   onEvent: (event: LessonEvent) => void
   onFinish: () => void
   startAt?: number
   next?: { href: Route; title: string }
+  /** The page already shows the lesson's title as its h1 (with id "lesson-title"). */
+  hideTitle?: boolean
+  /** A finish screen to show instead of the default one. */
+  complete?: (actions: { restart: () => void }) => React.ReactNode
 }) {
   const api = useLessonPlayer(pack, { startAt })
   const article = useRef<HTMLElement>(null)
@@ -128,6 +134,14 @@ export function LessonPlayer({
     </p>
   )
 
+  if (api.finished && complete) {
+    return (
+      <article ref={article} tabIndex={-1} className="mx-auto max-w-3xl outline-none">
+        {complete({ restart: api.restart })}
+      </article>
+    )
+  }
+
   if (api.finished) {
     return (
       <section aria-labelledby="lesson-title" className="mx-auto flex max-w-3xl flex-col gap-5">
@@ -153,13 +167,17 @@ export function LessonPlayer({
   return (
     <section aria-labelledby="lesson-title" className="mx-auto flex max-w-3xl flex-col gap-5">
       <div className="flex flex-col gap-3">
-        {crumbs}
-        <h1
-          id="lesson-title"
-          className="font-display text-[28px] leading-9 font-bold tracking-[-0.02em] text-ink ph:text-[34px] ph:leading-10"
-        >
-          {pack.title}
-        </h1>
+        {!hideTitle && (
+          <>
+            {crumbs}
+            <h1
+              id="lesson-title"
+              className="font-display text-[28px] leading-9 font-bold tracking-[-0.02em] text-ink ph:text-[34px] ph:leading-10"
+            >
+              {pack.title}
+            </h1>
+          </>
+        )}
         <ProgressBar index={api.index} total={api.total} />
         <p className="text-sm text-ink-muted">
           <span className="font-semibold text-ink">

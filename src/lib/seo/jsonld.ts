@@ -3,10 +3,12 @@ import type {
   Course,
   EducationalOrganization,
   FAQPage,
+  LearningResource,
   WebSite,
   WithContext,
 } from 'schema-dts'
 import type { TrackContent } from '@/content/tracks/types'
+import type { LessonMeta } from '@/lib/lessons/types'
 import { absoluteUrl, site } from '@/lib/site'
 
 /** JSON for a <script> element. Escaping "<" stops any value from closing the element early. */
@@ -92,4 +94,27 @@ export const courseLd = (track: TrackContent): CourseLd => ({
     name: `Module ${m.number}: ${m.title}`,
     description: m.summary,
   })),
+})
+
+/** A lesson as a schema.org LearningResource: interactive, timed, and part of its track's Course. */
+export const learningResourceLd = (
+  lesson: LessonMeta,
+  { trackTitle, teaches }: { trackTitle?: string; teaches: string[] },
+): WithContext<LearningResource> => ({
+  '@context': 'https://schema.org',
+  '@type': 'LearningResource',
+  name: lesson.title,
+  description: lesson.description,
+  url: absoluteUrl(`/learn/${lesson.track}/${lesson.slug}`),
+  inLanguage: 'en-GB',
+  learningResourceType: 'Interactive lesson',
+  interactivityType: 'active',
+  educationalLevel: 'Beginner',
+  timeRequired: `PT${lesson.minutes}M`,
+  isAccessibleForFree: lesson.free,
+  teaches,
+  provider: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
+  ...(trackTitle
+    ? { isPartOf: { '@type': 'Course', name: trackTitle, url: absoluteUrl(`/tracks/${lesson.track}`) } }
+    : {}),
 })

@@ -15,7 +15,7 @@
 - Node.js 22.12 or later locally; Vercel uses Node.js 24. Next.js minimum is 20.9.
 - Next.js 16.3.x: `proxy.ts` (not `middleware.ts`), async `params`/`searchParams`/`cookies()`/`headers()`, ESLint CLI (no `next lint`), Turbopack.
 - TypeScript: `tsc` is TypeScript 7 (`@typescript/native` alias); the `typescript` package is the TypeScript 6 API (`@typescript/typescript6`) for typescript-eslint. `strict: true`, `noUncheckedIndexedAccess: true`.
-- "Lesson packs stay within 150 KB; lesson pages within 170 KB of JavaScript." (spec §2.4)
+- "Lesson packs stay within 150 KB; lesson pages within 170 KB of JavaScript." (spec §2.4) Amended 5 October 2026 by the founder: not a hard target; a loose 350 KB check catches big regressions (about 200 KB measured with gzip in Task 15).
 - "WCAG 2.2 AA passes automated checks plus a manual audit on all v1 screens." (spec §2.3)
 - Every public page: Lighthouse SEO score 100, complete metadata, canonical URL, structured data, share image, in the sitemap. Preview deployments are never indexed.
 - No claim on a public page that the product can't back today. Features not shipped (AI tutor, certificates, Pro, community, mentors, other tracks) carry a "Coming soon" label or are hidden.

@@ -22,7 +22,10 @@ export async function loadPack(meta: LessonMeta): Promise<LessonPack> {
   if (meta.packUrl.startsWith('https://')) {
     json = await download(meta.packUrl)
   } else if (SAMPLE_PACK.test(meta.packUrl)) {
-    json = JSON.parse(await readFile(path.join(process.cwd(), meta.packUrl), 'utf8'))
+    // A path fixed to the samples folder (the id is checked by SAMPLE_PACK), so the build traces only
+    // that folder into the server bundle, not the whole project.
+    const file = path.join(process.cwd(), 'content', 'samples', 'packs', path.basename(meta.packUrl))
+    json = JSON.parse(await readFile(file, 'utf8'))
   } else {
     throw new PackError(
       meta.packUrl ? 'This lesson pack is in an unknown place.' : 'This lesson isn’t available yet.',

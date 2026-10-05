@@ -39,9 +39,22 @@ export function Wordmark({ className }: { className?: string }) {
   )
 }
 
-export function Logo({ href = '/', className }: { href?: Route; className?: string }) {
+export function Logo({
+  href = '/',
+  className,
+  prefetch,
+}: {
+  href?: Route
+  className?: string
+  prefetch?: boolean
+}) {
   return (
-    <Link href={href} aria-label="PractiCode Learn home" className={cn('flex items-center gap-3', className)}>
+    <Link
+      href={href}
+      prefetch={prefetch}
+      aria-label="PractiCode Learn home"
+      className={cn('flex items-center gap-3', className)}
+    >
       <LogoIcon />
       <Wordmark />
     </Link>

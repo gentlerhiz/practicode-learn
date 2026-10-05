@@ -1,4 +1,4 @@
-import { createClient } from '@/lib/supabase/client'
+import { supabaseConfigured } from '@/lib/public-config'
 import { outcome } from './outcome'
 import { createQueue } from './queue'
 import type { ProgressEvent } from './types'
@@ -26,10 +26,16 @@ export function recordProgress(event: ProgressEvent): void {
   void syncProgress()
 }
 
-/** Sends waiting events in order. One run at a time; signed-out learners keep their events for later. */
+/**
+ * Sends waiting events in order. One run at a time; signed-out learners keep their events for later.
+ * The Supabase client (about 70 KB) is loaded only when there is something to send, so lesson pages
+ * stay light. Without Supabase settings, events simply stay queued.
+ */
 export function syncProgress(): Promise<void> {
+  if (!supabaseConfigured || getQueue().pending().length === 0) return Promise.resolve()
   running ??= (async () => {
     try {
+      const { createClient } = await import('@/lib/supabase/client')
       const supabase = createClient()
       await getQueue().flush(async (e) => {
         let response: { status: number; error: { code?: string } | null }
@@ -46,6 +52,8 @@ export function syncProgress(): Promise<void> {
         }
         return 'ok'
       })
+    } catch {
+      // Never throw from a background sync: the events stay queued for the next try.
     } finally {
       running = null
     }
@@ -53,19 +61,17 @@ export function syncProgress(): Promise<void> {
   return running
 }
 
-/** Keeps progress flowing while a lesson is open: on reconnect, on sign-in and every 30 seconds. */
+/**
+ * Keeps progress flowing while a lesson is open: when the connection comes back, every 30 seconds, and
+ * once at the start (events from an earlier visit go out after the learner has signed in).
+ */
 export function startProgressSync(): () => void {
-  const supabase = createClient()
   const sync = () => void syncProgress()
   window.addEventListener('online', sync)
-  const { data } = supabase.auth.onAuthStateChange((event) => {
-    if (event === 'SIGNED_IN') sync()
-  })
   const timer = setInterval(sync, 30_000)
   sync()
   return () => {
     window.removeEventListener('online', sync)
-    data.subscription.unsubscribe()
     clearInterval(timer)
   }
 }

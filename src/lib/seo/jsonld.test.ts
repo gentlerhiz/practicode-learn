@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest'
-import { breadcrumbLd, faqLd, organizationLd, serializeJsonLd } from './jsonld'
+import { breadcrumbLd, faqLd, learningResourceLd, organizationLd, serializeJsonLd } from './jsonld'
 
 it('escapes characters that could close the script element', () => {
   expect(serializeJsonLd({ name: '</script><script>alert(1)</script>' })).not.toContain('</script>')
@@ -44,4 +44,33 @@ it('describes a track as a Course with a free online instance and its modules', 
   })
   expect(ld.syllabusSections).toHaveLength(15)
   expect(String(ld.url)).toMatch(/\/tracks\/front-end-web-development$/)
+})
+
+it('describes a lesson as a free, timed learning resource that is part of its track', () => {
+  const ld = learningResourceLd(
+    {
+      id: 'fe-01-01',
+      track: 'front-end-web-development',
+      module: 1,
+      lesson: 1,
+      slug: 'what-happens-when-you-open-a-website',
+      title: 'What happens when you open a website',
+      description: 'Follow one tap from your phone to a finished page.',
+      minutes: 10,
+      free: true,
+      version: 1,
+      packUrl: '',
+    },
+    { trackTitle: 'Front-End Web Development', teaches: ['How a browser asks a server for a page'] },
+  )
+  expect(ld).toMatchObject({
+    '@type': 'LearningResource',
+    name: 'What happens when you open a website',
+    url: expect.stringMatching(/\/learn\/front-end-web-development\/what-happens-when-you-open-a-website$/),
+    timeRequired: 'PT10M',
+    isAccessibleForFree: true,
+    inLanguage: 'en-GB',
+    teaches: ['How a browser asks a server for a page'],
+    isPartOf: { '@type': 'Course', name: 'Front-End Web Development' },
+  })
 })
