@@ -17,6 +17,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "format": "prettier --write .",
+    "auth:push": "node scripts/auth-push.mjs",
     "content:samples": "node tools/content-build/build.ts --in content/samples --out content/samples/packs --catalogue content/samples/catalogue.json"
   },
   "dependencies": {

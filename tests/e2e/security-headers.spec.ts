@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { waitForHydration } from './hydration'
 
 test('public pages send the security headers', async ({ request }) => {
   const h = (await request.get('/')).headers()
@@ -37,13 +38,14 @@ test('no CSP violations on the landing page, and it hydrates', async ({ page }) 
   // Hydration proof: the theme switch only works once React has hydrated, so every script has run.
   // (Not 'networkidle': Next.js link prefetches never report as finished, so it never arrives.)
   const toggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ })
+  await waitForHydration(toggle)
   const before = await page.locator('html').getAttribute('data-theme')
   await toggle.click()
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', before ?? '')
   expect(violations).toEqual([])
 })
 
-test('pages under the nonce policy still run their scripts (here, the 404 for /login)', async ({ page }) => {
+test('pages under the nonce policy still run their scripts (here, a 404 under /auth)', async ({ page }) => {
   const violations: string[] = []
   await page.exposeFunction('cspViolation', (v: string) => violations.push(v))
   await page.addInitScript(() =>
@@ -54,11 +56,27 @@ test('pages under the nonce policy still run their scripts (here, the 404 for /l
     ),
   )
   await page.setViewportSize({ width: 1440, height: 900 })
-  await page.goto('/login')
+  await page.goto('/auth/nowhere')
   const toggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ })
+  await waitForHydration(toggle)
   const before = await page.locator('html').getAttribute('data-theme')
   await toggle.click()
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', before ?? '')
+  expect(violations).toEqual([])
+})
+
+test('the sign-in page hydrates under the nonce policy with no blocked scripts', async ({ page }) => {
+  const violations: string[] = []
+  await page.exposeFunction('cspViolation', (v: string) => violations.push(v))
+  await page.addInitScript(() =>
+    document.addEventListener('securitypolicyviolation', (e) =>
+      (window as unknown as { cspViolation: (v: string) => void }).cspViolation(
+        `${e.violatedDirective} ${e.blockedURI}`,
+      ),
+    ),
+  )
+  await page.goto('/login')
+  await waitForHydration(page.getByRole('button', { name: 'Send Me a Code' }))
   expect(violations).toEqual([])
 })
 

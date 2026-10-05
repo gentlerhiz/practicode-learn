@@ -1,10 +1,12 @@
 import { expect, test } from '@playwright/test'
 import { PENDING } from '../../src/content/navigation'
+import { waitForHydration } from './hydration'
 
 test('phone menu opens, traps nothing, and closes with Escape', async ({ page, isMobile }) => {
   test.skip(!isMobile, 'phone only')
   await page.goto('/')
   const button = page.getByRole('button', { name: 'Open menu' })
+  await waitForHydration(button)
   await button.click()
   await expect(
     page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'About' }),

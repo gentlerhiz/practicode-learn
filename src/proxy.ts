@@ -1,9 +1,13 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { buildCsp, themeScriptHash } from '@/lib/security/csp'
+import { updateSession } from '@/lib/supabase/proxy'
+
+const SIGNED_IN_ONLY = /^\/(home|settings|admin)(\/|$)/
 
 /**
  * Runs for dynamic routes only (see config.matcher). Gives each response a fresh CSP nonce, which
- * Next.js reads from the request header and adds to its own scripts. Session refresh joins in Task 10.
+ * Next.js reads from the request header and adds to its own scripts, refreshes the Supabase session,
+ * and sends signed-out visitors from private pages to log in.
  */
 export async function proxy(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64')
@@ -14,10 +18,18 @@ export async function proxy(request: NextRequest) {
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
     themeScriptHash: themeScriptHash(),
   })
-  const headers = new Headers(request.headers)
-  headers.set('x-nonce', nonce)
-  headers.set('Content-Security-Policy', csp)
-  const response = NextResponse.next({ request: { headers } })
+  const { response, userId } = await updateSession(request, {
+    'x-nonce': nonce,
+    'Content-Security-Policy': csp,
+  })
+
+  const { pathname, search } = request.nextUrl
+  if (!userId && SIGNED_IN_ONLY.test(pathname)) {
+    const login = new URL('/login', request.url)
+    login.searchParams.set('next', `${pathname}${search}`)
+    return NextResponse.redirect(login)
+  }
+
   response.headers.set('Content-Security-Policy', csp)
   return response
 }

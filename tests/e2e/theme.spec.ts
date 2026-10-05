@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { waitForHydration } from './hydration'
 
 test('first paint follows a light device, with no dark flash', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' })
@@ -21,7 +22,9 @@ test('a theme chosen with the switch survives navigation between static pages', 
   await page.emulateMedia({ colorScheme: 'dark' })
   await page.setViewportSize({ width: 1440, height: 900 })
   await page.goto('/')
-  await page.getByRole('button', { name: 'Switch to light mode' }).click()
+  const toggle = page.getByRole('button', { name: 'Switch to light mode' })
+  await waitForHydration(toggle)
+  await toggle.click()
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
   await page.goto('/about')
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')

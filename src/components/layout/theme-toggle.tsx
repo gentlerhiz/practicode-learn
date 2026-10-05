@@ -39,9 +39,16 @@ function useTheme() {
   const [state, setState] = useState<{ pref: ThemePreference; theme: Theme } | null>(null)
 
   useEffect(() => {
-    // Syncs React with the theme the boot script already applied to <html> before first paint.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setState(readState())
+    // <html> is the source of truth: the boot script set it before first paint, and any switch on the
+    // page (header, phone menu, Settings) changes it. Every switch follows it, so labels never go stale.
+    const sync = () => setState(readState())
+    sync()
+    const observer = new MutationObserver(sync)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'data-theme-pref'],
+    })
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -53,7 +60,9 @@ function useTheme() {
   }, [state?.pref])
 
   const choose = (pref: ThemePreference) => setState({ pref, theme: apply(pref) })
-  return { state, choose }
+  // Decided from <html> at click time, so a click before the first sync still flips what is on screen.
+  const flip = () => choose(readState().theme === 'light' ? 'dark' : 'light')
+  return { state, choose, flip }
 }
 
 /**
@@ -67,7 +76,7 @@ export function ThemeToggle({
   variant?: 'icon' | 'row' | 'segmented'
   className?: string
 }) {
-  const { state, choose } = useTheme()
+  const { state, choose, flip } = useTheme()
   const isLight = state?.theme === 'light'
 
   if (variant === 'segmented') {
@@ -92,7 +101,7 @@ export function ThemeToggle({
     return (
       <button
         type="button"
-        onClick={() => choose(isLight ? 'dark' : 'light')}
+        onClick={flip}
         className={cn(
           'flex h-[52px] w-full items-center gap-3 rounded-2xl border border-line bg-row px-4 text-[15px] font-medium text-ink',
           className,
@@ -107,7 +116,7 @@ export function ThemeToggle({
   return (
     <button
       type="button"
-      onClick={() => choose(isLight ? 'dark' : 'light')}
+      onClick={flip}
       aria-label={label}
       title={label}
       className={cn(

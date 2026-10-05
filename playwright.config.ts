@@ -3,6 +3,9 @@ import { defineConfig, devices } from '@playwright/test'
 export default defineConfig({
   testDir: 'tests/e2e',
   fullyParallel: true,
+  // About 100 browser tests share one production server; on a 4-core machine the longer ones need more
+  // than the default 30 seconds.
+  timeout: 60_000,
   retries: process.env.CI ? 2 : 0,
   use: { baseURL: 'http://localhost:3000', trace: 'retain-on-failure' },
   projects: [
