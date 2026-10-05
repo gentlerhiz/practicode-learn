@@ -13,7 +13,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./vitest.setup.ts'],
-    include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.ts'],
+    include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.ts', 'tests/db/**/*.test.ts'],
     css: false,
   },
 })

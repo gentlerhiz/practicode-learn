@@ -44,3 +44,6 @@ test-results/
 
 # Lighthouse CI
 .lighthouseci/
+
+# Claude Code MCP servers (point at the founder's own Supabase project)
+.mcp.json
