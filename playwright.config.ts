@@ -17,5 +17,7 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 300_000,
+    // Test-only pages (src/app/(dev)/fixtures) exist only in builds made with this flag, never on Vercel.
+    env: { ...(process.env as Record<string, string>), PCL_FIXTURES: '1' },
   },
 })
