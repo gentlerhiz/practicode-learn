@@ -2,7 +2,7 @@
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Is it really free?',
-    a: "Yes. Module 1 of Front-End Web Development is free for good, and you won't need a card. Pro, with the rest of the track, launches with the full track.",
+    a: "Yes. When it opens, Module 1 of Front-End Web Development is free for good, and you won't need a card. Pro, with the rest of the track, launches with the full track.",
   },
   {
     q: 'Why no videos?',
@@ -10,7 +10,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: 'Can I really learn on my phone?',
-    a: "Modules 1 and 2 work fully in your phone's browser. Module 3 sets up a code editor and Git on a computer, with phone-friendly simulators and free cloud editors if you don't have one yet. From Module 4, a laptop makes writing longer code much easier, and we recommend one.",
+    a: "Modules 1 and 2 are built to work fully in your phone's browser. Module 3 sets up a code editor and Git on a computer, with phone-friendly simulators and free cloud editors if you don't have one yet. From Module 4, a laptop makes writing longer code much easier, and we recommend one.",
   },
   {
     q: 'Who writes the lessons?',

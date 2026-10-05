@@ -42,3 +42,30 @@ test('no CSP violations on the landing page, and it hydrates', async ({ page }) 
   await expect(page.locator('html')).not.toHaveAttribute('data-theme', before ?? '')
   expect(violations).toEqual([])
 })
+
+test('pages under the nonce policy still run their scripts (here, the 404 for /login)', async ({ page }) => {
+  const violations: string[] = []
+  await page.exposeFunction('cspViolation', (v: string) => violations.push(v))
+  await page.addInitScript(() =>
+    document.addEventListener('securitypolicyviolation', (e) =>
+      (window as unknown as { cspViolation: (v: string) => void }).cspViolation(
+        `${e.violatedDirective} ${e.blockedURI}`,
+      ),
+    ),
+  )
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('/login')
+  const toggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ })
+  const before = await page.locator('html').getAttribute('data-theme')
+  await toggle.click()
+  await expect(page.locator('html')).not.toHaveAttribute('data-theme', before ?? '')
+  expect(violations).toEqual([])
+})
+
+test('paths that only start like a signed-in route still get the static policy', async ({ request }) => {
+  for (const path of ['/homework', '/authors', '/settingsx']) {
+    expect((await request.get(path)).headers()['content-security-policy'], path).toContain(
+      "frame-ancestors 'none'",
+    )
+  }
+})

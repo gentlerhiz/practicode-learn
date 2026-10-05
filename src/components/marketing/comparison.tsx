@@ -2,6 +2,7 @@ import { Check, Icon } from '@/components/ui/icon'
 import { Container } from '@/components/ui/container'
 import { Section } from '@/components/ui/section'
 import { landing } from '@/content/landing'
+import { LESSONS_OPEN } from '@/content/navigation'
 import { SectionHeading } from './section-heading'
 
 /** A real table, so screen readers announce the row and column for every cell. */
@@ -58,6 +59,11 @@ export function Comparison() {
             </tbody>
           </table>
         </div>
+        {!LESSONS_OPEN && (
+          <p className="text-center text-sm text-ink-subtle">
+            PractiCode Learn is in beta: this column describes Module 1, which opens soon.
+          </p>
+        )}
       </Container>
     </Section>
   )

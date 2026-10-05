@@ -26,7 +26,10 @@ export const config = {
   matcher: [
     {
       source: '/(home|settings|admin|login|signup|verify|auth)/:path*',
-      missing: [{ type: 'header', key: 'next-router-prefetch' }],
+      missing: [
+        { type: 'header', key: 'next-router-prefetch' },
+        { type: 'header', key: 'purpose', value: 'prefetch' },
+      ],
     },
     '/(home|settings|admin|login|signup|verify)',
   ],

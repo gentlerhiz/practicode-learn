@@ -1,8 +1,12 @@
+import { connection } from 'next/server'
 import { Logo } from '@/components/layout/logo'
 import { SkipLink } from '@/components/ui/skip-link'
 
 /** Sign-in pages: a calm, centred card with only the logo above it. */
-export default function AuthLayout({ children }: { children: React.ReactNode }) {
+export default async function AuthLayout({ children }: { children: React.ReactNode }) {
+  // These routes carry the proxy's per-request nonce CSP. Next.js only adds nonces while rendering
+  // per request, so a prerendered page here would have every script blocked (ADR 0008).
+  await connection()
   return (
     <>
       <SkipLink />

@@ -77,7 +77,7 @@ Freemium with regional pricing. See [Business model](docs/product/business-model
 
 PractiCode Learn is being built in slices ([slice 1 plan](docs/plans/2026-10-04-slice-1-module-1-end-to-end.md)).
 
-- [x] Product vision, research, curriculum framework and four published syllabi
+- [x] Product vision, research, curriculum framework and the published syllabi
 - [x] Teaching model, the exact lesson format, and the first two lessons tested end to end
 - [x] Prism design system and all v1 screens in dark and light mode ([design/](design/README.md))
 - [x] v1 specification approved ([spec](docs/specs/2026-10-02-v1-platform-design.md)), and the slice 1 implementation plan

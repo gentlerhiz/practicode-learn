@@ -4,6 +4,7 @@ import { Container } from '@/components/ui/container'
 import { Pill } from '@/components/ui/pill'
 import { Section } from '@/components/ui/section'
 import { landing } from '@/content/landing'
+import { LESSONS_OPEN } from '@/content/navigation'
 import { SectionHeading } from './section-heading'
 
 function Frame({ children }: { children: React.ReactNode }) {
@@ -175,38 +176,43 @@ function CertificateVisual() {
   )
 }
 
-const features: { title: string; body: string; visual: React.ReactNode; soon?: boolean }[] = [
+// 'module-1' features arrive with the lessons; 'later' ones after that.
+const features: { title: string; body: string; visual: React.ReactNode; opens: 'module-1' | 'later' }[] = [
   {
     title: 'Lessons you can poke at',
     body: 'Change a value and the page changes. You understand flexbox by pushing it around, not by reading about it.',
     visual: <LabVisual />,
+    opens: 'module-1',
   },
   {
     title: 'Code that’s checked as you write',
     body: 'Write the code and the checks tell you straight away what works and what to fix, right in your browser.',
     visual: <ChecksVisual />,
+    opens: 'module-1',
   },
   {
     title: 'Start on your phone',
     body: 'Modules 1 and 2 work fully in your phone’s browser, with a symbol bar for typing code. A laptop helps from Module 4.',
     visual: <PhoneVisual />,
+    opens: 'module-1',
   },
   {
     title: 'Offline, for real',
     body: 'Open a lesson on Wi-Fi and it stays on your device, so you can keep going on the bus, at work, or when the network takes a break.',
     visual: <OfflineVisual />,
+    opens: 'module-1',
   },
   {
     title: 'A tutor in the lesson',
     body: 'Stuck? Ask about the step you’re on. It gives hints first, so you still do the thinking.',
     visual: <TutorVisual />,
-    soon: true,
+    opens: 'later',
   },
   {
     title: 'Certificates anyone can check',
     body: 'Each one will list exactly which skills you showed, so anyone can click through and see how.',
     visual: <CertificateVisual />,
-    soon: true,
+    opens: 'later',
   },
 ]
 
@@ -226,7 +232,8 @@ export function Features() {
               <div className="flex flex-col gap-1.5">
                 <div className="flex flex-wrap items-center gap-2">
                   <h3 className="font-display text-[21px] leading-7 font-bold text-ink">{f.title}</h3>
-                  {f.soon && <Pill tone="soon">Coming soon</Pill>}
+                  {f.opens === 'later' && <Pill tone="soon">Coming soon</Pill>}
+                  {f.opens === 'module-1' && !LESSONS_OPEN && <Pill tone="soon">Opens with Module 1</Pill>}
                 </div>
                 <p className="text-sm leading-[22px] text-ink-muted">{f.body}</p>
               </div>

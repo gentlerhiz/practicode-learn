@@ -22,7 +22,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
     summary: [
       'We collect only what we need to teach you and run your account.',
       'We never sell your data or use it for advertising.',
-      'You can download or delete your data at any time from Settings.',
+      'When accounts open, you can download or delete your data at any time from Settings.',
       'Our analytics don’t use cookies and can’t identify you.',
     ],
     sections: [
@@ -77,7 +77,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
       {
         heading: 'Your rights',
         body: [
-          'You can see, correct, download or delete your data, and object to how we use it. Download and deletion are self-service in Settings. For anything else, email us and we will reply within the time the law requires (usually one month).',
+          'You can see, correct, download or delete your data, and object to how we use it. When accounts open, download and deletion will be self-service in Settings. Until then, and for anything else, email us and we will reply within the time the law requires (usually one month).',
           'We follow the Nigeria Data Protection Act 2023, and the GDPR and UK GDPR for learners in Europe and the UK. You can complain to the Nigeria Data Protection Commission, or to your local data protection authority.',
         ],
       },

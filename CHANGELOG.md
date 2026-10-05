@@ -6,6 +6,17 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
+- **Milestone 1, the public site** (Next.js 16, TypeScript 7, Tailwind CSS 4):
+  - landing page, built from the Prism canvas, with a lesson demo that works without JavaScript
+  - Front-End Web Development track page: all 15 modules and 119 lessons, kept identical to the published syllabus by tests
+  - About page with the founder's leadership section, plus privacy, terms and accessibility pages (a working draft for legal review) and 404 and error pages
+  - search and sharing: titles, descriptions, canonical URLs, structured data (organisation, website, course, breadcrumbs, FAQ), sitemap, robots, llms.txt, web app manifest, favicon and app icons, share images, and share buttons
+  - security: HSTS and the standard headers, a Content Security Policy with per-request nonces on signed-in routes, ADR 0008 and a threat model
+  - light, dark and Match device themes with no flash on first load
+  - reusable UI components on the Prism design tokens
+  - unit tests (Vitest) and end-to-end tests at phone and desktop sizes, with automated accessibility checks in both themes (Playwright and axe)
+  - cookieless visit and speed analytics on Vercel
+- A "Beta · Module 1 opens soon" notice, while lessons are not yet open
 - Repository foundation: README, licensing (AGPL-3.0 code, CC BY-SA 4.0 syllabi), contributing guide, Code of Conduct and security policy
 - Brand configuration and interim logo files
 - Product vision, personas, business model and impact metrics

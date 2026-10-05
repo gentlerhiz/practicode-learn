@@ -19,6 +19,7 @@ import { Section } from '@/components/ui/section'
 import { JsonLd } from '@/components/seo/json-ld'
 import { about } from '@/content/about'
 import { primaryCta } from '@/content/navigation'
+import { BetaNotice } from '@/components/marketing/beta-notice'
 import { breadcrumbLd } from '@/lib/seo/jsonld'
 import { metaFor } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/site'
@@ -70,6 +71,7 @@ export default function AboutPage() {
         />
         <Container className="relative grid gap-10 tab:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] tab:items-end">
           <div className="flex flex-col gap-6">
+            <BetaNotice className="self-start" />
             <Eyebrow>{hero.eyebrow}</Eyebrow>
             <Heading level={1} size="xl" id="about-title">
               {hero.title}
@@ -171,9 +173,9 @@ export default function AboutPage() {
                 <Icon as={Check} size={20} strokeWidth={3} />
               </span>
               <div>
-                <p className="text-[15px] font-semibold text-ink">Module 1 saved for offline</p>
+                <p className="text-[15px] font-semibold text-ink">Built to work offline</p>
                 <p className="text-[13px] text-ink-muted">
-                  Keeps working on the bus, at work, or when the network drops
+                  Lessons you open will keep working on the bus, at work, or when the network drops
                 </p>
               </div>
             </div>

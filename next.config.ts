@@ -19,9 +19,10 @@ const nextConfig: NextConfig = {
     const dynamic = DYNAMIC_PATHS.map((p) => p.slice(1)).join('|')
     return [
       { source: '/:path*', headers: securityHeaders },
-      // Dynamic routes get a per-request nonce CSP from src/proxy.ts instead.
+      // Dynamic routes get a per-request nonce CSP from src/proxy.ts instead. The exclusion matches whole
+      // path segments, so /homework or /authors still get this policy; String.raw keeps the \. escape.
       {
-        source: `/((?!${dynamic}|runner\.html).*)`,
+        source: String.raw`/((?!(?:${dynamic})(?:/|$)|runner\.html$).*)`,
         headers: [{ key: 'Content-Security-Policy', value: staticCsp }],
       },
       { source: '/runner.html', headers: runnerHeaders },

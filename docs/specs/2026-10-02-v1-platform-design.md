@@ -82,7 +82,7 @@
 | Projects | Project workspace with brief, editor, live preview, automatic checks and "Ask AI why" on failing checks |
 | Practice | Daily review with FSRS scheduling; module mastery checks |
 | Plans | Free, Pro (with a 7-day trial) and Mentor (an enquiry form handed to the Academy); regional pricing; cancel in one click |
-| Platform | PWA install; offline for downloaded modules; progress sync; xAPI event log; analytics with consent |
+| Platform | PWA install; offline for downloaded modules; progress sync; xAPI event log; cookieless aggregate analytics (anything that identifies people needs consent) |
 
 ### Not in v1
 Python execution (Phase 2) · server-verified certificates and Open Badges (Phase 2) · scholarships portal (Phase 2) · translations (Phase 3) · free short courses (deferred) · schools and teams plans · cybersecurity track · native apps.
@@ -95,7 +95,7 @@ v1 is built in slices. Each slice ends with something learners can use.
 | 1. Module 1, end to end | The public site for search and sharing: landing page, the Front-End track page, about, legal pages. Sign-in (Google and email). The lesson player with every step type built so far, plus the code playground and the labs Module 1 needs. Progress saved to Supabase. Impact measurement and an admin impact page. Settings with data export and account deletion. The content pipeline from the private repository. Offline caching of opened lessons | Free plans | A learner on a low-end Android phone finishes Module 1 without help |
 | 2. Pilot | Modules 1 and 2 with about 20 Academy students; measure where they get stuck, completion, and tutor questions per learner | Free plans | Pilot findings written up, and the top problems fixed |
 | 3. Learning loop | Dashboard, daily review (FSRS), module checks, projects with automatic checks, downloads for offline | Free plans | The five key flows pass end-to-end tests on a throttled phone profile |
-| 4. Launch | Payments and Pro access, the AI tutor, the site assistant, regional pricing, legal pages, analytics with consent | Vercel Pro, Supabase Pro | The first paying learner, and the success criteria in §2 |
+| 4. Launch | Payments and Pro access, the AI tutor, the site assistant, regional pricing, legal pages, consent for any analytics that identifies people | Vercel Pro, Supabase Pro | The first paying learner, and the success criteria in §2 |
 
 Content runs alongside, one module at a time, with instructor review.
 

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { connection } from 'next/server'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { ArrowRight, Icon } from '@/components/ui/icon'
@@ -11,7 +12,10 @@ import { TRACK_PAGE } from '@/content/navigation'
 // Next.js adds <meta name="robots" content="noindex"> to 404 responses itself.
 export const metadata: Metadata = { title: 'Page not found' }
 
-export default function NotFound() {
+export default async function NotFound() {
+  // Rendered per request: a 404 under a signed-in path (say /login/x) carries the nonce CSP, and only
+  // per-request rendering adds the nonce to its scripts. 404s are rare, so the cost is small.
+  await connection()
   return (
     <>
       <SkipLink />

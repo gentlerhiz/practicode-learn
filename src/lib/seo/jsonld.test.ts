@@ -40,7 +40,7 @@ it('describes a track as a Course with a free online instance and its modules', 
     educationalLevel: 'Beginner',
     provider: { '@type': 'EducationalOrganization', name: 'PractiCode Learn' },
     hasCourseInstance: { '@type': 'CourseInstance', courseMode: 'Online', courseWorkload: 'PT140H' },
-    offers: { '@type': 'Offer', price: 0, category: 'Free' },
+    offers: { '@type': 'Offer', price: 0, category: 'Partially Free' },
   })
   expect(ld.syllabusSections).toHaveLength(15)
   expect(String(ld.url)).toMatch(/\/tracks\/front-end-web-development$/)

@@ -7,7 +7,7 @@ export const about = {
     eyebrow: 'About PractiCode Learn',
     title: 'Job-ready skills, learned by doing.',
     intro:
-      'PractiCode Learn is an interactive learning platform from PractiCode Academy in Nigeria. Learners build real skills by doing the work, starting with Front-End Web Development, with data analysis, product design and AI to follow.',
+      'PractiCode Learn is an interactive learning platform from PractiCode Academy in Nigeria. Learners will build real skills by doing the work, starting with Front-End Web Development, with data analysis, product design and AI to follow.',
     mission: {
       label: 'Our mission',
       text: 'Make job-ready digital skills practical and affordable for anyone willing to put in the practice.',
@@ -53,8 +53,8 @@ export const about = {
     eyebrow: 'Africa first, open to everyone',
     title: 'Designed for real phones, real networks and real budgets.',
     items: [
-      'Lessons run in the browser, even on low-cost Android phones. Some modules need a computer, and each track says which.',
-      'Open a lesson on Wi-Fi and keep learning offline.',
+      'Lessons are built to run in the browser, even on low-cost Android phones. Some modules need a computer, and each track says which.',
+      'Lessons you open on Wi-Fi will keep working offline.',
       'Every lesson has a size budget of 150 KB, so it loads on a weak connection.',
       'Module 1 is free, with no card needed.',
     ],
@@ -65,7 +65,7 @@ export const about = {
     items: [
       {
         title: 'Your data is yours.',
-        body: 'We never sell personal data or use it for advertising. Download or delete your data any time.',
+        body: 'We never sell personal data or use it for advertising. When accounts open, you can download or delete your data any time.',
       },
       {
         title: 'No pressure tactics.',
@@ -100,7 +100,7 @@ export const about = {
   work: {
     learn: {
       title: 'Learn with us',
-      body: 'Front-End Web Development is open first, and Module 1 is free for good. Prefer a teacher and a class? Join a PractiCode Academy cohort.',
+      body: 'Front-End Web Development opens first, and Module 1 will be free for good. Prefer a teacher and a class? Join a PractiCode Academy cohort.',
       academy: { label: 'PractiCode Academy Cohorts', href: 'https://practicode.tech' },
     },
     partner: {

@@ -22,7 +22,7 @@ export const publicPages: PublicPage[] = [
     title: 'PractiCode Learn: learn the skills employers are hiring for',
     absoluteTitle: true,
     description:
-      'Learn web development by doing, not watching. Interactive lessons, in-browser labs and real projects that work on your phone.',
+      'Learn web development by doing, not watching: interactive lessons, in-browser labs and real projects, built for your phone. Module 1 opens soon.',
     changeFrequency: 'weekly',
     priority: 1,
     updated: '2026-10-04',
@@ -31,7 +31,7 @@ export const publicPages: PublicPage[] = [
     path: '/tracks/front-end-web-development' as Route,
     title: 'Front-End Web Development course',
     description:
-      'Learn HTML, CSS, JavaScript and Git by building real websites, with interactive lessons and in-browser labs. Module 1 is free.',
+      'Learn HTML, CSS, JavaScript and Git by building real websites, with interactive lessons and in-browser labs. Module 1 opens soon, free.',
     changeFrequency: 'weekly',
     priority: 0.9,
     updated: '2026-10-04',

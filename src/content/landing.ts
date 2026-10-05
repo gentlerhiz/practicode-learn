@@ -45,7 +45,7 @@ export const landing = {
     eyebrow: 'Available tracks',
     title: 'Start with the web. More is on the way.',
     intro:
-      'Front-End Web Development is open first. The other tracks are being built now, and each one will start free.',
+      'Front-End Web Development opens first. The other tracks are being built now, and each one will start free.',
     standardsLabel: 'Our syllabi line up with standards employers already trust',
     standards: ['MDN Curriculum', 'SFIA 9', 'Microsoft PL-300', 'ISO 9241-210', 'ACM CS2023'],
     cards: [

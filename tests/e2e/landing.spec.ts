@@ -62,3 +62,37 @@ test('landing has no accessibility violations in either theme', async ({ page })
     expect(results.violations, scheme).toEqual([])
   }
 })
+
+test('nothing on the landing page moves forever (WCAG 2.2.2)', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 })
+  await page.goto('/')
+  const endless = await page.evaluate(() =>
+    [...document.querySelectorAll('*')]
+      .filter((el) => {
+        const s = getComputedStyle(el)
+        return s.animationName !== 'none' && s.animationIterationCount === 'infinite'
+      })
+      .map((el) => el.className.toString().slice(0, 60)),
+  )
+  expect(endless).toEqual([])
+})
+
+test('while lessons are closed, public pages say so and claim nothing that opens later', async ({ page }) => {
+  test.skip(LESSONS_OPEN, 'only while lessons are closed')
+  for (const path of ['/', '/tracks/front-end-web-development', '/about']) {
+    await page.goto(path)
+    await expect(page.getByRole('main').getByText('Module 1 opens soon').first(), path).toBeVisible()
+    const text = (await page.getByRole('main').innerText()).toLowerCase()
+    for (const claim of [
+      'is open first',
+      'lessons save for offline',
+      'saved for offline',
+      'self-service in settings',
+    ])
+      expect(text, `${path}: ${claim}`).not.toContain(claim)
+  }
+  await page.goto('/legal/privacy')
+  expect((await page.getByRole('main').innerText()).toLowerCase()).not.toContain(
+    'are self-service in settings',
+  )
+})

@@ -4,11 +4,13 @@ PractiCode Learn uses different licences for different kinds of material. The go
 
 | Material | Where | Licence |
 |---|---|---|
-| Application source code | Everything outside `docs/curriculum/` and `brand/` | [GNU Affero General Public License v3.0](LICENSE) |
-| Syllabi, learning outcomes and standards mappings | `docs/curriculum/` | [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Application source code | Everything not listed in another row | [GNU Affero General Public License v3.0](LICENSE) |
+| Syllabi, learning outcomes and standards mappings | `docs/curriculum/`, and the syllabus data the app is built from in `src/content/tracks/` | [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) |
 | Other documentation | `docs/` (excluding `docs/curriculum/`) | [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) |
 | Full lesson content (lesson text, exercises, tests, animations, exams) | Separate private repository | All rights reserved |
-| PractiCode names, logos and brand assets | `brand/` | All rights reserved; see below |
+| PractiCode names, logos and brand assets | `brand/`, `public/brand/`, `public/icons/`, and the app icons and logo drawings generated from them (`src/app/icon.svg`, `src/app/favicon.ico`, `src/app/apple-icon.png`) | All rights reserved; see below |
+| Photographs of people | `src/assets/images/` | All rights reserved. Not covered by the code licence |
+| Fonts (Poppins, Bricolage Grotesque) | `src/assets/fonts/` | [SIL Open Font License 1.1](https://openfontlicense.org), as stated in the licence files beside them |
 
 ## What this means in practice
 

@@ -212,19 +212,6 @@
   background-image: linear-gradient(100deg, #3550e6, #6342ee);
 }
 
-@layer components {
-  /* Floating hero cards and the tools strip. Both stop under prefers-reduced-motion (base rule above). */
-  .float-slow {
-    animation: pc-float 7s ease-in-out infinite;
-  }
-  .float-slower {
-    animation: pc-float 9s ease-in-out infinite reverse;
-  }
-  .marquee-track {
-    animation: pc-marquee 40s linear infinite;
-  }
-}
-
 /*
  * The landing page lesson demo works with no JavaScript: the radio buttons drive the preview and the
  * feedback through :has(), so the page ships no script for it. These rules stay outside @layer on purpose:
@@ -260,23 +247,4 @@
 .lesson-demo .demo-option:has(input:focus-visible) {
   outline: 2px solid var(--pc-focus);
   outline-offset: 3px;
-}
-
-@keyframes pc-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-
-@keyframes pc-marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }

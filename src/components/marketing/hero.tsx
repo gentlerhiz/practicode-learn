@@ -4,6 +4,7 @@ import { LinkButton } from '@/components/ui/link-button'
 import { landing } from '@/content/landing'
 import { primaryCta } from '@/content/navigation'
 import { BrainCircuit, ChartColumn, CodeXml, PenTool } from 'lucide-react'
+import { BetaNotice } from './beta-notice'
 
 const { hero } = landing
 
@@ -12,7 +13,7 @@ function Floaters() {
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden wide:block">
       <div className="absolute top-16 left-[3%] -rotate-[8deg]">
-        <div className="float-slow w-[232px] rounded-[22px] border border-[#4d6bff]/55 bg-[#100e1e]/80 p-4 font-mono text-xs leading-[22px] text-white">
+        <div className="w-[232px] rounded-[22px] border border-[#4d6bff]/55 bg-[#100e1e]/80 p-4 font-mono text-xs leading-[22px] text-white">
           <div className="mb-3 flex gap-1">
             <span className="size-2 rounded-full bg-[#f0407f]" />
             <span className="size-2 rounded-full bg-[#ff8a3d]" />
@@ -33,7 +34,7 @@ function Floaters() {
         </div>
       </div>
       <div className="absolute top-[384px] left-[6%] rotate-6">
-        <div className="float-slower w-[204px] rounded-[22px] border border-[#2fe6b0]/50 bg-[#100e1e]/80 p-4">
+        <div className="w-[204px] rounded-[22px] border border-[#2fe6b0]/50 bg-[#100e1e]/80 p-4">
           <p className="mb-3 text-[13px] font-semibold text-[#4be3a8]">Weekly sales</p>
           <div className="flex h-20 items-end gap-2">
             {[34, 52, 44, 72].map((h) => (
@@ -44,7 +45,7 @@ function Floaters() {
         </div>
       </div>
       <div className="absolute top-[60px] right-[3%] rotate-[7deg]">
-        <div className="float-slower flex w-[206px] items-center gap-3 rounded-[22px] border border-[#f0407f]/55 bg-[#100e1e]/80 p-4">
+        <div className="flex w-[206px] items-center gap-3 rounded-[22px] border border-[#f0407f]/55 bg-[#100e1e]/80 p-4">
           <div className="flex h-[120px] w-[70px] flex-col gap-1 rounded-[14px] border-2 border-[#ff7db0] px-1.5 py-2">
             <span className="h-[26px] rounded-[5px] bg-[#ff7db0]/40" />
             <span className="h-1.5 w-[70%] rounded-[3px] bg-[#ff7db0]" />
@@ -58,7 +59,7 @@ function Floaters() {
         </div>
       </div>
       <div className="absolute top-[384px] right-[6%] -rotate-6">
-        <div className="float-slow w-[214px] rounded-[22px] border border-[#7b5cff]/55 bg-[#100e1e]/80 p-4">
+        <div className="w-[214px] rounded-[22px] border border-[#7b5cff]/55 bg-[#100e1e]/80 p-4">
           <svg viewBox="0 0 180 90" className="h-[90px] w-full">
             <g stroke="rgba(185,162,255,0.45)" strokeWidth="1.5">
               <path d="M20 15 90 30M20 15 90 65M20 45 90 30M20 45 90 65M20 75 90 30M20 75 90 65M90 30 160 45M90 65 160 45" />
@@ -100,6 +101,7 @@ export function Hero() {
       />
       <Floaters />
       <div className="relative mx-auto flex max-w-[880px] flex-col items-center gap-8 px-4 text-center ph:px-6">
+        <BetaNotice />
         <h1
           id="hero-title"
           className="font-display text-[44px] leading-[54px] font-extrabold tracking-[-0.04em] text-ink ph:text-[64px] ph:leading-[76px] wide:text-[78px] wide:leading-[90px]"

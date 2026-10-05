@@ -17,8 +17,8 @@
 
 1. **Data minimisation.** At sign-up we collect only name, email and country. Gender, age range and employment status are optional, used only for aggregate impact reporting, and can be withdrawn at any time.
 2. **Purpose limitation.** Learning data is used to teach (progress, review scheduling) and for aggregate impact reports. It is never sold, and never used for third-party advertising.
-3. **Lawful basis.** Contract for providing the service. Consent for analytics, marketing email and optional demographics. Legitimate interest for security and fraud prevention.
-4. **Consent that is real.** Analytics are off until the learner opts in, and declining is as easy as accepting.
+3. **Lawful basis.** Contract for providing the service. Legitimate interest for security, fraud prevention, and cookieless, aggregate analytics that can't identify anyone. Consent for any analytics that uses cookies or identifies people, for marketing email, and for optional demographics.
+4. **Consent that is real.** We use only cookieless, aggregate analytics (Vercel Web Analytics and Speed Insights), which store nothing on the device and identify no one, so they need no consent banner. Any analytics that uses cookies or identifies people stays off until the learner opts in, and declining is as easy as accepting.
 5. **Security.** Row Level Security, encryption in transit (TLS 1.2 or later) and at rest, least-privilege access, audit logs for administrative access.
 6. **Retention.** Accounts inactive for 3 years are warned, then deleted. Payment records are kept as tax law requires.
 7. **Learner rights.** Access, correction, export (machine-readable, including xAPI records), deletion and objection, all self-service in settings where possible, and answered within the statutory time limits.

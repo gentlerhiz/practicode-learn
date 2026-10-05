@@ -10,6 +10,7 @@ import { landing } from '@/content/landing'
 import { absoluteUrl } from '@/lib/site'
 import { FolderOpen, Gift } from 'lucide-react'
 import type { Route } from 'next'
+import { BetaNotice } from './beta-notice'
 
 /** The browser window on the right: what the learner ends up with. Decorative. */
 function PortfolioPreview() {
@@ -81,6 +82,7 @@ export function TrackHero({ track }: { track: TrackContent }) {
       />
       <Container className="relative grid items-center gap-12 tab:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
         <div className="flex flex-col gap-6">
+          <BetaNotice className="self-start" />
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 text-[13px] text-ink-subtle">
               <li>
@@ -137,7 +139,7 @@ export function TrackHero({ track }: { track: TrackContent }) {
             </a>
           </div>
           <p className="text-[13px] text-ink-subtle">
-            Aligned to the MDN Curriculum and SFIA 9 · Lessons save for offline
+            Aligned to the MDN Curriculum and SFIA 9{LESSONS_OPEN ? ' · Lessons save for offline' : ''}
           </p>
           <div className="flex flex-col gap-2">
             <p className="text-[13px] font-medium text-ink-muted">Share this track</p>
