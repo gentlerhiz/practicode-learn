@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { ChevronRight, Icon, Monitor, Moon, Sun } from '@/components/ui/icon'
+import { ChevronRight, Icon, Monitor, Moon, Smartphone, Sun } from '@/components/ui/icon'
 import { SegmentedControl } from '@/components/ui/segmented-control'
 import { cn } from '@/lib/cn'
 import {
@@ -73,11 +73,46 @@ export function ThemeToggle({
   variant = 'icon',
   className,
 }: {
-  variant?: 'icon' | 'row' | 'segmented'
+  variant?: 'icon' | 'row' | 'item' | 'segmented' | 'pills'
   className?: string
 }) {
   const { state, choose, flip } = useTheme()
   const isLight = state?.theme === 'light'
+
+  if (variant === 'pills') {
+    // Settings, Learning, Appearance (PrismSettings): three pills, the chosen one filled.
+    const options = [
+      { value: 'dark' as const, label: 'Dark', icon: Moon },
+      { value: 'light' as const, label: 'Light', icon: Sun },
+      { value: 'system' as const, label: 'Match device', icon: Smartphone },
+    ]
+    return (
+      <div className={cn('flex flex-col gap-2', className)}>
+        <div role="radiogroup" aria-label="Appearance" className="flex flex-wrap gap-2">
+          {options.map((o) => {
+            const on = (state?.pref ?? 'system') === o.value
+            return (
+              <button
+                key={o.value}
+                type="button"
+                role="radio"
+                aria-checked={on}
+                onClick={() => choose(o.value)}
+                className={cn(
+                  'press inline-flex h-10 cursor-pointer items-center gap-2 rounded-full border px-4 text-sm font-medium',
+                  on ? 'border-primary bg-primary text-on-primary' : 'border-line-control text-ink-soft hover:border-line-strong hover:bg-hover',
+                )}
+              >
+                <Icon as={o.icon} size={16} />
+                {o.label}
+              </button>
+            )
+          })}
+        </div>
+        {state?.pref === 'system' && <p className="text-[13px] text-ink-muted">Following your device’s setting.</p>}
+      </div>
+    )
+  }
 
   if (variant === 'segmented') {
     return (
@@ -96,6 +131,25 @@ export function ThemeToggle({
   }
 
   const label = isLight ? 'Switch to dark mode' : 'Switch to light mode'
+
+  if (variant === 'item') {
+    // A sidebar row, like the links above it (PrismDashboard).
+    return (
+      <button
+        type="button"
+        onClick={flip}
+        className={cn(
+          'press flex h-12 w-full cursor-pointer items-center gap-3 rounded-[14px] px-3 text-left text-[15px] text-ink-soft hover:bg-hover hover:text-ink',
+          className,
+        )}
+      >
+        <span className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-control">
+          <Icon as={isLight ? Moon : Sun} size={17} />
+        </span>
+        {isLight ? 'Dark mode' : 'Light mode'}
+      </button>
+    )
+  }
 
   if (variant === 'row') {
     return (
