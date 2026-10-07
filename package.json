@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:lessons": "node scripts/dev-lessons.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
