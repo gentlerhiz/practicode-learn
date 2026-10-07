@@ -53,6 +53,15 @@ export function SettingsView({ data }: { data: SettingsData }) {
               </span>
             </Row>
             <CountryRow country={data.country} currency={data.currency} />
+            <Row>
+              <Titled title="Log out" note="Sign out of PractiCode Learn on this device." />
+              <form method="post" action="/auth/signout">
+                <button type="submit" className={smallButton}>
+                  <Glyph name="logout" size={15} />
+                  Log Out
+                </button>
+              </form>
+            </Row>
           </SettingsCard>
 
           <SettingsCard id="set-learning" icon="target" title="Learning" intro="Small and steady wins. Pick what fits your week.">
