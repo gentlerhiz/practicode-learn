@@ -5,14 +5,9 @@ import { SectionHeading } from '@/components/marketing/section-heading'
 import { Container } from '@/components/ui/container'
 import { Glyph, type GlyphName } from '@/components/ui/glyph'
 import { Section } from '@/components/ui/section'
-import { pageMetadata } from '@/lib/seo/metadata'
+import { metaFor } from '@/lib/seo/pages'
 
-export const metadata: Metadata = pageMetadata({
-  title: 'Pricing',
-  description:
-    'Module 1 of every track is free for good. Pro unlocks every module, with prices set for your country. Payments open with the full track.',
-  path: '/pricing',
-})
+export const metadata: Metadata = metaFor('/pricing' as Route)
 
 type Cell = string | boolean
 const ROWS: [string, Cell, Cell, Cell][] = [

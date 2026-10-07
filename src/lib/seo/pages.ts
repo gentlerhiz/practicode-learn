@@ -22,7 +22,7 @@ export const publicPages: PublicPage[] = [
     title: 'PractiCode Learn: learn the skills employers are hiring for',
     absoluteTitle: true,
     description:
-      'Learn web development by doing, not watching: interactive lessons, in-browser labs and real projects, built for your phone. Module 1 opens soon.',
+      'Learn code, data, design and AI by actually doing it: interactive lessons, in-browser labs and real projects, built for your phone. Module 1 is free.',
     changeFrequency: 'weekly',
     priority: 1,
     updated: '2026-10-04',
@@ -31,7 +31,7 @@ export const publicPages: PublicPage[] = [
     path: '/tracks/front-end-web-development' as Route,
     title: 'Front-End Web Development course',
     description:
-      'Learn HTML, CSS, JavaScript and Git by building real websites, with interactive lessons and in-browser labs. Module 1 opens soon, free.',
+      'Learn HTML, CSS, JavaScript and Git by building real websites, with interactive lessons and in-browser labs. Module 1 is free.',
     changeFrequency: 'weekly',
     priority: 0.9,
     updated: '2026-10-04',
@@ -44,6 +44,33 @@ export const publicPages: PublicPage[] = [
     changeFrequency: 'monthly',
     priority: 0.6,
     updated: '2026-10-04',
+  },
+  {
+    path: '/pricing' as Route,
+    title: 'Pricing',
+    description:
+      'Module 1 of every track is free for good. Pro unlocks every module, priced for your country, and payments open with the full track.',
+    changeFrequency: 'monthly',
+    priority: 0.7,
+    updated: '2026-10-07',
+  },
+  {
+    path: '/mentors' as Route,
+    title: 'Mentor cohorts',
+    description:
+      'Learn with a teacher and a class: a 3-month PractiCode Academy cohort with weekly live classes and project reviews, online or in Ibadan.',
+    changeFrequency: 'monthly',
+    priority: 0.6,
+    updated: '2026-10-07',
+  },
+  {
+    path: '/scholarship' as Route,
+    title: 'Scholarships',
+    description:
+      'If paying for Pro is hard right now, apply for a scholarship. A person reads every application, and if you qualify, Pro is free for 12 months.',
+    changeFrequency: 'monthly',
+    priority: 0.5,
+    updated: '2026-10-07',
   },
   {
     path: '/legal/privacy' as Route,
