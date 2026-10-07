@@ -53,6 +53,7 @@
   /* Menu sheets and the darker end of the surface gradient */
   --pc-sheet: #0b0a14;
   --pc-pro-top: #17122a;
+  --pc-cert-top: #1a1a4a;
 }
 
 [data-theme='light'] {
@@ -96,6 +97,7 @@
   --pc-glass: rgba(255, 255, 255, 0.78);
   --pc-sheet: #faf9fd;
   --pc-pro-top: #f0edf8;
+  --pc-cert-top: #e8e9fb;
 }
 
 @theme inline {
