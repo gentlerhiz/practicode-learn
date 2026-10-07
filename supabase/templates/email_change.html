@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="supported-color-schemes" content="dark">
-<title>Confirm your email</title>
+<title>Confirm your new email</title>
 <!-- Made by scripts/email-templates.mjs. Edit that file, not this one. -->
 </head>
 <body style="margin: 0; padding: 0; background: #07060D; -webkit-text-size-adjust: 100%">
-<div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: #07060D">One tap and your first lesson is ready.</div>
+<div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: #07060D">Confirm the new email address for your PractiCode Learn account.</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07060D" style="background: #07060D">
   <tr>
     <td align="center" style="padding: 40px 16px 48px">
@@ -34,34 +34,25 @@
                 <td style="padding: 36px 32px 32px">
                   <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 20px">
                     <tr>
-                      <td bgcolor="#1A1D45" style="background: #1A1D45; border: 1px solid #2F3A8F; border-radius: 999px; padding: 4px 12px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; line-height: 18px; color: #8EA2FF">Welcome</td>
+                      <td bgcolor="#1A1D45" style="background: #1A1D45; border: 1px solid #2F3A8F; border-radius: 999px; padding: 4px 12px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; line-height: 18px; color: #8EA2FF">Email change</td>
                     </tr>
                   </table>
-                  <h1 style="margin: 0 0 16px; font-family: 'Bricolage Grotesque', Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF">Confirm your email</h1>
-                  <p style="margin: 0 0 16px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 26px; color: #DCD9EA">Thanks for joining PractiCode Learn. Tap the button to confirm it’s really you, and your first lesson is ready when you are.</p>
+                  <h1 style="margin: 0 0 16px; font-family: 'Bricolage Grotesque', Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF">Confirm your new email</h1>
+                  <p style="margin: 0 0 16px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 26px; color: #DCD9EA">You asked to change the email on your PractiCode Learn account from <strong style="color: #FFFFFF; font-weight: 600">{{ .Email }}</strong> to <strong style="color: #FFFFFF; font-weight: 600">{{ .NewEmail }}</strong>. Confirm it, and we’ll use the new one from now on.</p>
                   
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px">
   <tr>
     <td bgcolor="#FFFFFF" style="border-radius: 999px; background: #FFFFFF">
-      <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=signup" target="_blank" style="display: inline-block; padding: 15px 30px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 20px; color: #07060D; text-decoration: none; border-radius: 999px">Confirm My Email</a>
+      <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email_change&amp;next=/settings" target="_blank" style="display: inline-block; padding: 15px 30px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 20px; color: #07060D; text-decoration: none; border-radius: 999px">Confirm New Email</a>
     </td>
   </tr>
 </table>
-                  
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px">
-  <tr>
-    <td bgcolor="#141130" style="background: #141130; border: 1px solid #2A2540; border-radius: 16px; padding: 16px 18px">
-      <p style="margin: 0 0 4px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #8EA2FF">Front-End · Module 1 · Lesson 1 · Free</p>
-      <p style="margin: 0; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; line-height: 22px; font-weight: 600; color: #FFFFFF">What happens when you open a website</p>
-      <p style="margin: 2px 0 0; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; color: #A9A6BC">About 10 minutes. You’ll guess before you’re told.</p>
-    </td>
-  </tr>
-</table><p style="margin: 0 0 24px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #A9A6BC">The link works for 30 minutes. If you didn’t sign up, ignore this email and no account is made.</p>
+                  <p style="margin: 0 0 24px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #A9A6BC">The link works for 30 minutes. If you didn’t ask for this, ignore this email and your email stays the same.</p>
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr><td height="1" bgcolor="#221E36" style="height: 1px; line-height: 1px; font-size: 0; background: #221E36">&nbsp;</td></tr>
                   </table>
                   <p style="margin: 20px 0 6px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; color: #A9A6BC">Button not working? Copy this link into your browser:</p>
-                  <p style="margin: 0; font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 12px; line-height: 18px; word-break: break-all"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=signup" target="_blank" style="color: #8EA2FF; text-decoration: underline">{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=signup</a></p>
+                  <p style="margin: 0; font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 12px; line-height: 18px; word-break: break-all"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email_change&amp;next=/settings" target="_blank" style="color: #8EA2FF; text-decoration: underline">{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=email_change&amp;next=/settings</a></p>
                 </td>
               </tr>
             </table>

@@ -1,24 +1,74 @@
 <!doctype html>
-<html lang="en-GB">
-  <body style="margin: 0; padding: 0; background: #f4f2ec; font-family: Poppins, Arial, sans-serif; color: #111111">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #f4f2ec; padding: 32px 16px">
-      <tr>
-        <td align="center">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 480px; background: #ffffff; border-radius: 24px">
-            <tr>
-              <td style="padding: 32px">
-                <p style="margin: 0 0 24px; font-size: 18px">Practi<strong>Code</strong> Learn</p>
-                <h1 style="margin: 0 0 12px; font-size: 24px; line-height: 32px">Choose a new password</h1>
-                <p style="margin: 0 0 24px; font-size: 16px; line-height: 26px">Someone asked to reset the password for your PractiCode Learn account. Tap the button to choose a new one.</p>
-                <p style="margin: 0 0 32px">
-                  <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery&amp;next=/new-password" style="display: inline-block; background: #fed606; color: #000000; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 999px">Choose a New Password</a>
-                </p>
-                <p style="margin: 0; font-size: 14px; line-height: 22px; color: #555555">The link works for 30 minutes. If you didn’t ask for this, you can ignore this email. Your password stays the same.</p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>
-  </body>
+<html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<title>Reset your password</title>
+<!-- Made by scripts/email-templates.mjs. Edit that file, not this one. -->
+</head>
+<body style="margin: 0; padding: 0; background: #07060D; -webkit-text-size-adjust: 100%">
+<div style="display: none; max-height: 0; overflow: hidden; opacity: 0; color: #07060D">Choose a new password. The link works for 30 minutes.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#07060D" style="background: #07060D">
+  <tr>
+    <td align="center" style="padding: 40px 16px 48px">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width: 520px">
+
+        <tr>
+          <td style="padding: 0 4px 24px">
+            <a href="https://learn.practicode.tech" target="_blank" style="text-decoration: none">
+              <img src="https://learn.practicode.tech/icons/icon-192.png" width="36" height="36" alt="" style="display: inline-block; width: 36px; height: 36px; border: 0; border-radius: 9px; vertical-align: middle">
+              <span style="display: inline-block; margin-left: 10px; vertical-align: middle; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 18px; line-height: 36px; color: #FFFFFF">Practi<strong>Code</strong> Learn</span>
+            </a>
+          </td>
+        </tr>
+
+        <tr>
+          <td bgcolor="#0F0D1B" style="background: #0F0D1B; border: 1px solid #2A2540; border-radius: 24px; overflow: hidden">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td height="4" bgcolor="#5B63FF" style="height: 4px; line-height: 4px; font-size: 0; background: #5B63FF; background-image: linear-gradient(90deg, #4D6BFF, #7B5CFF)">&nbsp;</td>
+              </tr>
+              <tr>
+                <td style="padding: 36px 32px 32px">
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 20px">
+                    <tr>
+                      <td bgcolor="#1A1D45" style="background: #1A1D45; border: 1px solid #2F3A8F; border-radius: 999px; padding: 4px 12px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 600; line-height: 18px; color: #8EA2FF">Password reset</td>
+                    </tr>
+                  </table>
+                  <h1 style="margin: 0 0 16px; font-family: 'Bricolage Grotesque', Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.02em; color: #FFFFFF">Reset your password</h1>
+                  <p style="margin: 0 0 16px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 26px; color: #DCD9EA">Someone asked to reset the password for <strong style="color: #FFFFFF; font-weight: 600">{{ .Email }}</strong>. Tap the button to choose a new one.</p>
+                  
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px">
+  <tr>
+    <td bgcolor="#FFFFFF" style="border-radius: 999px; background: #FFFFFF">
+      <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery&amp;next=/new-password" target="_blank" style="display: inline-block; padding: 15px 30px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; line-height: 20px; color: #07060D; text-decoration: none; border-radius: 999px">Choose a New Password</a>
+    </td>
+  </tr>
+</table>
+                  <p style="margin: 0 0 24px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 22px; color: #A9A6BC">The link works for 30 minutes. If you didn’t ask for this, ignore this email: your password stays the same.</p>
+                  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr><td height="1" bgcolor="#221E36" style="height: 1px; line-height: 1px; font-size: 0; background: #221E36">&nbsp;</td></tr>
+                  </table>
+                  <p style="margin: 20px 0 6px; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; color: #A9A6BC">Button not working? Copy this link into your browser:</p>
+                  <p style="margin: 0; font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 12px; line-height: 18px; word-break: break-all"><a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery&amp;next=/new-password" target="_blank" style="color: #8EA2FF; text-decoration: underline">{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery&amp;next=/new-password</a></p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center" style="padding: 28px 16px 0; font-family: Poppins, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 13px; line-height: 20px; color: #8B88A0">
+            <p style="margin: 0 0 10px">Questions? Reply to this email or write to <a href="mailto:practicodeacademy@gmail.com" style="color: #DCD9EA; text-decoration: underline">practicodeacademy@gmail.com</a>.</p>
+            <p style="margin: 0">PractiCode Learn · Practicode Consult Limited<br>7B Oba Olagbegi, Old Bodija, Ibadan, Nigeria</p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
 </html>

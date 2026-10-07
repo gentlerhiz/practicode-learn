@@ -31,6 +31,10 @@ content_path = "./supabase/templates/confirmation.html"
 subject = "Reset your PractiCode Learn password"
 content_path = "./supabase/templates/recovery.html"
 
+[auth.email.template.email_change]
+subject = "Confirm your new email for PractiCode Learn"
+content_path = "./supabase/templates/email_change.html"
+
 # Resend sends the emails (Supabase's own mail service sends 2 an hour). The key stays in .env.local.
 [auth.email.smtp]
 enabled = true
