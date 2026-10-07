@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test, type Page } from '@playwright/test'
-import { admin, deleteAfterRun, deleteTestUsers, generateOtp, seedLesson, testEnvReady } from '../db/helpers'
-import { waitForHydration } from './hydration'
+import { admin, deleteTestUsers, seedLesson, testEnvReady } from '../db/helpers'
+import { logIn, newLearner } from './helpers/auth'
 
 test.afterAll(deleteTestUsers)
 
@@ -13,28 +13,10 @@ async function expectNoViolations(page: Page, where: string) {
   expect(results.violations, where).toEqual([])
 }
 
-// A confirmed test account and a generated code: nothing is emailed.
-async function signIn(page: Page, email: string, next: string) {
-  await page.goto(`/verify?email=${encodeURIComponent(email)}&next=${encodeURIComponent(next)}`)
-  await page.getByLabel('6-digit code').fill(await generateOtp(email))
-  const verify = page.getByRole('button', { name: 'Continue' })
-  await waitForHydration(verify)
-  await verify.click()
-  await expect(page).toHaveURL(new RegExp(`${next}$`), { timeout: 15_000 })
-}
-
-async function newLearner(label: string) {
-  const email = `${label}-${Date.now()}@test.practicode.tech`
-  const { data, error } = await admin().auth.admin.createUser({ email, email_confirm: true })
-  if (error) throw error
-  deleteAfterRun(data.user.id)
-  return { email, id: data.user.id }
-}
-
 test('home greets the learner and shows Module 1, with Module 2 on its way', async ({ page }, testInfo) => {
   test.skip(!testEnvReady, 'needs the dev Supabase project')
   const { email } = await newLearner(`home-${testInfo.project.name}`)
-  await signIn(page, email, '/home')
+  await logIn(page, email, '/home')
   await expect(page.getByRole('heading', { level: 1, name: /Welcome/ })).toBeVisible()
   await expect(page.getByRole('heading', { name: /Module 1/ })).toBeVisible()
   await expect(page.getByText('Module 2 is on its way')).toBeVisible()
@@ -52,7 +34,7 @@ test('a learner can rename themselves, download their data and delete their acco
   await admin()
     .from('lesson_progress')
     .insert({ learner_id: id, lesson_id: 'zz-01-01', lesson_version: 1, status: 'started', steps_done: 2 })
-  await signIn(page, email, '/settings')
+  await logIn(page, email, '/settings')
 
   const name = page.getByRole('textbox', { name: 'Name' })
   await name.fill('Ada Lantern')

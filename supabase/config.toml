@@ -12,19 +12,24 @@ additional_redirect_urls = [
   "https://practicode-learn-*-idrisaloma120-3188s-projects.vercel.app/**",
 ]
 
+# Email and password, as designed. Supabase is set to the same minimum as the forms (src/lib/auth/password.ts).
+minimum_password_length = 8
+
 [auth.email]
 enable_signup = true
-# Passwordless: a 6-digit code (and a link) that works for 15 minutes.
+# No session until the confirmation link is opened.
+enable_confirmations = true
+# Confirmation and reset links work for 30 minutes (the reset page says so).
 otp_length = 6
-otp_expiry = 900
+otp_expiry = 1800
 
 [auth.email.template.confirmation]
-subject = "Your code to finish signing up for PractiCode Learn"
+subject = "Confirm your email for PractiCode Learn"
 content_path = "./supabase/templates/confirmation.html"
 
-[auth.email.template.magic_link]
-subject = "Your PractiCode Learn sign-in code"
-content_path = "./supabase/templates/magic_link.html"
+[auth.email.template.recovery]
+subject = "Reset your PractiCode Learn password"
+content_path = "./supabase/templates/recovery.html"
 
 # Resend sends the emails (Supabase's own mail service sends 2 an hour). The key stays in .env.local.
 [auth.email.smtp]

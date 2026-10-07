@@ -20,7 +20,7 @@ export function Faq() {
               open={i === 0}
               className="group rounded-[20px] border border-line bg-row px-5 py-1 open:pb-5 ph:px-6"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[17px] font-medium text-ink transition-colors hover:text-ink-soft [&::-webkit-details-marker]:hidden">
                 {item.q}
                 <Icon
                   as={Plus}
@@ -28,7 +28,7 @@ export function Faq() {
                   className="shrink-0 text-ink-muted transition-transform group-open:rotate-45"
                 />
               </summary>
-              <p className="text-[15px] leading-6 text-ink-muted">{item.a}</p>
+              <p className="text-[15px] leading-[25px] text-ink-muted">{item.a}</p>
             </details>
           ))}
         </div>

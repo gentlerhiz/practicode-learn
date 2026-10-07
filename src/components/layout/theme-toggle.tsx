@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Icon, Monitor, Moon, Sun } from '@/components/ui/icon'
+import { ChevronRight, Icon, Monitor, Moon, Sun } from '@/components/ui/icon'
 import { SegmentedControl } from '@/components/ui/segmented-control'
 import { cn } from '@/lib/cn'
 import {
@@ -103,12 +103,13 @@ export function ThemeToggle({
         type="button"
         onClick={flip}
         className={cn(
-          'flex h-[52px] w-full items-center gap-3 rounded-2xl border border-line bg-row px-4 text-[15px] font-medium text-ink',
+          'press flex h-[52px] w-full cursor-pointer items-center gap-3 rounded-2xl border border-line bg-wash px-4 text-[15px] font-medium text-ink hover:border-line-control hover:bg-hover',
           className,
         )}
       >
         <Icon as={isLight ? Moon : Sun} />
         <span>{isLight ? 'Dark mode' : 'Light mode'}</span>
+        <Icon as={ChevronRight} size={16} className="ml-auto text-ink-subtle" />
       </button>
     )
   }
@@ -120,7 +121,7 @@ export function ThemeToggle({
       aria-label={label}
       title={label}
       className={cn(
-        'inline-flex size-[42px] shrink-0 items-center justify-center rounded-full border border-line-control text-ink hover:bg-row',
+        'press inline-flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-line-control text-ink hover:border-line-strong hover:bg-hover',
         className,
       )}
     >

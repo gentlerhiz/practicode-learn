@@ -1,27 +1,26 @@
-/** Landing page questions. Also published as FAQPage structured data, so answers must stay true. */
+/**
+ * Landing page questions, as the canvas words them. Also published as FAQPage structured data, so
+ * keep them true as the product changes (business-model.md has the planned Pro trial and prices).
+ */
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Is it really free?',
-    a: "Yes. When it opens, Module 1 of Front-End Web Development is free for good, and you won't need a card. Pro, with the rest of the track, launches with the full track.",
+    a: "Yep. Module 1 of every track is free for good, and you don't need a card. If you want the rest, Pro starts with a 7-day free trial.",
   },
   {
     q: 'Why no videos?',
-    a: 'Honestly? People learn more by doing than by watching, and video eats data. Things still move: diagrams animate one step at a time, whenever you tap, and your own code runs as you type.',
+    a: 'Honestly? People learn more by doing than by watching, and video eats data. Things still move. The diagrams animate one step at a time, whenever you tap.',
   },
   {
     q: 'Can I really learn on my phone?',
-    a: "Modules 1 and 2 are built to work fully in your phone's browser. Module 3 sets up a code editor and Git on a computer, with phone-friendly simulators and free cloud editors if you don't have one yet. From Module 4, a laptop makes writing longer code much easier, and we recommend one.",
+    a: "Most of it, yes. Lessons, reviews and the AI tutor work in your phone's browser. Some modules need a computer: Power BI work needs a Windows PC, and Figma design work needs a laptop. Each track page lists what you'll need.",
   },
   {
-    q: 'Who writes the lessons?',
-    a: 'Lessons are designed and reviewed by PractiCode Academy instructors, who have taught these skills in person in Ibadan, and drafted with AI assistance. Every coding task is tested automatically before it is published.',
+    q: 'Will employers care about the certificate?',
+    a: "It's a verifiable badge that lists exactly what you can do, mapped to frameworks like SFIA. It isn't a degree, and we won't pretend it is. Your projects will do most of the talking.",
   },
   {
-    q: 'When do the other tracks open?',
-    a: "We're building Data Analysis, UI/UX Product Design, and AI & Machine Learning now. Their syllabi are already public, and each one will start free.",
-  },
-  {
-    q: 'Do I get a certificate?',
-    a: "Verified certificates come with the full track. Each one will list exactly which skills you showed, mapped to frameworks like SFIA. It isn't a degree, and we won't pretend it is. Your projects will do most of the talking.",
+    q: 'Does the AI tutor just give me the answers?',
+    a: "No, and that's on purpose. It explains the idea, points you to the line or step that matters, and gives hints first. If you've had a proper go and you're still stuck, it will walk you through the answer. Free accounts get 5 questions a day and Pro gets 50.",
   },
 ]

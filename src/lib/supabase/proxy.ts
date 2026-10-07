@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 import type { Database } from '@/types/database'
+import { SESSION_ONLY_COOKIE, applyPersistence } from './persistence'
 
 /**
  * Refreshes the session cookie and verifies it with getClaims (never trust getSession on the server).
@@ -18,13 +19,16 @@ export async function updateSession(request: NextRequest, extra: Record<string, 
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
   if (!url || !key) return { response, userId: null }
 
+  const sessionOnly = request.cookies.get(SESSION_ONLY_COOKIE)?.value === '1'
   const supabase = createServerClient<Database>(url, key, {
     cookies: {
       getAll: () => request.cookies.getAll(),
       setAll: (list) => {
         list.forEach(({ name, value }) => request.cookies.set(name, value))
         response = build()
-        list.forEach(({ name, value, options }) => response.cookies.set(name, value, options))
+        list.forEach(({ name, value, options }) =>
+          response.cookies.set(name, value, applyPersistence(options, sessionOnly)),
+        )
       },
     },
   })

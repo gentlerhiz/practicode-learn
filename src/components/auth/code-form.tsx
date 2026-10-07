@@ -1,63 +1,101 @@
 'use client'
-import { useActionState } from 'react'
-import { Button, Field, Input } from '@/components/ui'
-import { sendSignInCode, verifySignInCode, type AuthFormState } from '@/lib/auth/actions'
 
-/** The 6-digit code. Phones offer it from the email or SMS bar thanks to one-time-code. */
-export function CodeForm({ email, next }: { email: string; next: string }) {
-  const [state, action, pending] = useActionState(verifySignInCode, {} as AuthFormState)
-  const error = state.fieldErrors?.code
+import { useActionState, useEffect, useState } from 'react'
+import { Button } from '@/components/ui'
+import { sendPhoneCode, verifyPhoneCode, type AuthFormState } from '@/lib/auth/actions'
+import { cn } from '@/lib/cn'
+import { FormMessage } from './form-parts'
+
+const LENGTH = 6
+const WAIT = 60
+
+/**
+ * PrismCode's six boxes. One real input sits over them (so typing, pasting and the phone's
+ * one-time-code suggestion all work); the boxes only show what it holds.
+ */
+export function CodeForm({ phone, next }: { phone: string; next?: string }) {
+  const [state, action, pending] = useActionState(verifyPhoneCode, {} as AuthFormState)
+  const [code, setCode] = useState('')
+  const [focused, setFocused] = useState(false)
+  const error = state.fieldErrors?.code ?? state.error
 
   return (
-    <form action={action} noValidate className="flex flex-col gap-5">
-      <input type="hidden" name="email" value={email} />
-      <input type="hidden" name="next" value={next} />
-      <Field
-        id="code"
-        label="6-digit code"
-        hint="The code works for 15 minutes. We’ll never ask you for it."
-        error={error}
-      >
-        <Input
+    <form action={action} className="flex flex-col gap-6">
+      <input type="hidden" name="phone" value={phone} />
+      {next && <input type="hidden" name="next" value={next} />}
+      <div className="relative">
+        <div aria-hidden="true" className="flex justify-between gap-2">
+          {Array.from({ length: LENGTH }, (_, i) => {
+            const current = focused && i === Math.min(code.length, LENGTH - 1)
+            return (
+              <span
+                key={i}
+                className={cn(
+                  'flex h-16 max-w-14 flex-1 items-center justify-center rounded-2xl border-[1.5px] bg-sunken text-[26px] font-semibold text-ink transition-[border-color,box-shadow] duration-150',
+                  current
+                    ? 'border-focus shadow-[0_0_0_3px_rgba(77,107,255,0.25)]'
+                    : code[i]
+                      ? 'border-line-strong'
+                      : 'border-line',
+                  error && 'border-error',
+                )}
+              >
+                {code[i] ?? ''}
+              </span>
+            )
+          })}
+        </div>
+        <label htmlFor="code" className="sr-only">
+          6-digit code
+        </label>
+        <input
           id="code"
           name="code"
           inputMode="numeric"
           autoComplete="one-time-code"
-          maxLength={10}
-          className="h-14 text-center font-mono text-2xl tracking-[0.4em]"
+          maxLength={LENGTH}
+          value={code}
+          onChange={(event) => setCode(event.target.value.replace(/\D/g, '').slice(0, LENGTH))}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
           aria-invalid={Boolean(error)}
-          aria-describedby={error ? 'code-error' : 'code-hint'}
+          aria-describedby={error ? 'code-error' : undefined}
+          className="absolute inset-0 h-full w-full cursor-text opacity-0"
         />
-      </Field>
-      {state.error && (
-        <p role="alert" className="text-sm text-error">
-          {state.error}
+      </div>
+      {error && (
+        <p id="code-error" role="alert" className="-mt-2 text-[13px] text-error">
+          {error}
         </p>
       )}
-      <Button type="submit" size="lg" disabled={pending} className="w-full">
+      <Button type="submit" size="form" disabled={pending} className="w-full">
         {pending ? 'Checking…' : 'Verify and Continue'}
       </Button>
     </form>
   )
 }
 
-/** Asks for a fresh code for the same address. */
-export function ResendForm({ email, next }: { email: string; next: string }) {
-  const [state, action, pending] = useActionState(sendSignInCode, {} as AuthFormState)
+/** "Didn't get it? Resend in 0:42", counting down, then a button that sends a new code. */
+export function ResendCode({ phone }: { phone: string }) {
+  const [left, setLeft] = useState(WAIT)
+  const [state, action, pending] = useActionState(sendPhoneCode, {} as AuthFormState)
+  useEffect(() => {
+    if (left <= 0) return
+    const timer = setTimeout(() => setLeft((s) => s - 1), 1000)
+    return () => clearTimeout(timer)
+  }, [left])
+  const waiting = left > 0
   return (
-    <form action={action} className="flex flex-col items-center gap-2">
-      <input type="hidden" name="mode" value="login" />
-      <input type="hidden" name="email" value={email} />
-      <input type="hidden" name="next" value={next} />
-      <input type="hidden" name="resend" value="1" />
-      <Button type="submit" variant="ghost" disabled={pending}>
-        {pending ? 'Sending…' : 'Send a New Code'}
-      </Button>
-      {state.error && (
-        <p role="alert" className="text-center text-sm text-error">
-          {state.error}
-        </p>
-      )}
+    <form action={action} className="flex flex-col items-center gap-2" onSubmit={() => setLeft(WAIT)}>
+      <input type="hidden" name="phone" value={phone.replace(/^\+234/, '')} />
+      <button
+        type="submit"
+        disabled={waiting || pending}
+        className="press h-10 cursor-pointer rounded-full px-4 text-sm text-ink-muted enabled:hover:bg-hover enabled:hover:text-ink disabled:cursor-default"
+      >
+        {waiting ? `Didn’t get it? Resend in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Didn’t get it? Send a new code'}
+      </button>
+      <FormMessage error={state.error} />
     </form>
   )
 }

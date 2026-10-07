@@ -1,69 +1,57 @@
 import type { Metadata, Route } from 'next'
-import Link from 'next/link'
-import { z } from 'zod'
-import { CodeForm, ResendForm } from '@/components/auth/code-form'
-import { Card, Heading } from '@/components/ui'
+import { Smartphone } from 'lucide-react'
+import { AuthCard, AuthFrame, AuthHeading, AuthMain, HeaderPrompt } from '@/components/auth/auth-frame'
+import { CodeForm, ResendCode } from '@/components/auth/code-form'
+import { LinkButton } from '@/components/ui'
 import { safeRedirect } from '@/lib/auth/redirect'
 import { pageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = pageMetadata({
   title: 'Enter Your Code',
-  description: 'Enter the 6-digit code we emailed you.',
+  description: 'Enter the 6-digit code we texted you.',
   path: '/verify',
   noindex: true,
 })
 
-const linkClass = 'font-semibold text-ink underline underline-offset-2'
+const PHONE = /^\+\d{8,15}$/
 
+/** "+2348035550142" → "+234 803 555 0142", as the canvas shows it. */
+const pretty = (phone: string) => phone.replace(/^(\+234)(\d{3})(\d{3})(\d+)$/, '$1 $2 $3 $4')
+
+/** PrismCode: the 6-digit code texted for phone sign-in. */
 export default async function VerifyPage({ searchParams }: PageProps<'/verify'>) {
   const params = await searchParams
-  const email = z.email().safeParse(params.email)
-  const next = safeRedirect(typeof params.next === 'string' ? params.next : null)
-  const backHref = `/login?next=${encodeURIComponent(next)}` as Route
-
-  if (!email.success) {
-    return (
-      <Card padding="lg" className="flex flex-col gap-4">
-        <Heading level={1} size="lg">
-          Let’s start again
-        </Heading>
-        <p className="text-base leading-[26px] text-ink-muted">
-          This page doesn’t know which address to check.{' '}
-          <Link href={backHref} className={linkClass}>
-            Ask for a new code
-          </Link>
-          .
-        </p>
-      </Card>
-    )
-  }
+  const phone = typeof params.phone === 'string' && PHONE.test(params.phone) ? params.phone : null
+  const next = typeof params.next === 'string' ? safeRedirect(params.next) : undefined
+  const back = '/login?method=phone' as Route
 
   return (
-    <div className="flex flex-col gap-6">
-      <Card padding="lg" className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <Heading level={1} size="lg">
-            Enter the code we sent
-          </Heading>
-          <p className="text-base leading-[26px] text-ink-muted">
-            We emailed a 6-digit code to <strong className="font-semibold text-ink">{email.data}</strong>. It
-            can take a minute to arrive, so check your spam folder too.
-          </p>
-        </div>
-        {params.resent === '1' && (
-          <p role="status" className="rounded-2xl border border-line bg-sunken p-4 text-sm text-ink-soft">
-            We’ve sent a new code. Use the newest one.
-          </p>
-        )}
-        <CodeForm email={email.data} next={next} />
-        <ResendForm email={email.data} next={next} />
-      </Card>
-      <p className="text-center text-sm text-ink-muted">
-        Wrong address?{' '}
-        <Link href={backHref} className={linkClass}>
-          Go back
-        </Link>
-      </p>
-    </div>
+    <AuthFrame aside={<HeaderPrompt text="Wrong number?" href={back} label="Go back" />}>
+      <AuthMain>
+        <AuthCard>
+          {phone ? (
+            <>
+              <AuthHeading icon={<Smartphone aria-hidden="true" size={24} strokeWidth={1.85} />} title="Enter the code we sent">
+                We texted a 6-digit code to <span className="whitespace-nowrap text-ink">{pretty(phone)}</span>.
+              </AuthHeading>
+              <CodeForm phone={phone} next={next} />
+              <div className="flex flex-col items-center gap-3">
+                <ResendCode phone={phone} />
+                <p className="text-center text-sm leading-[22px] text-ink-muted">
+                  The code works for 10 minutes. We will never call you to ask for it.
+                </p>
+              </div>
+            </>
+          ) : (
+            <>
+              <AuthHeading title="Let’s start again">This page has lost your phone number. Go back and enter it again.</AuthHeading>
+              <LinkButton href={back} size="form" className="w-full">
+                Back to Log In
+              </LinkButton>
+            </>
+          )}
+        </AuthCard>
+      </AuthMain>
+    </AuthFrame>
   )
 }

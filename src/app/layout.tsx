@@ -10,9 +10,11 @@ import { site } from '@/lib/site'
 import { ThemeScript } from '@/components/layout/theme-script'
 import './globals.css'
 
+// The variable font with its optical-size axis, as the canvas loads it: large headings get the
+// tighter display cut, so they set exactly as designed.
 const display = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: ['700', '800'],
+  axes: ['opsz'],
   variable: '--font-bricolage',
   display: 'swap',
 })

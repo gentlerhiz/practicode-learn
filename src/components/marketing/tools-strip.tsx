@@ -1,19 +1,30 @@
 import { landing } from '@/content/landing'
 
+const dot = {
+  fe: 'bg-[#4d6bff] shadow-[0_0_10px_#4d6bff]',
+  da: 'bg-[#2fe6b0] shadow-[0_0_10px_#2fe6b0]',
+  ux: 'bg-[#f0407f] shadow-[0_0_10px_#f0407f]',
+  ai: 'bg-[#7b5cff] shadow-[0_0_10px_#7b5cff]',
+  git: 'bg-[#ff8a3d] shadow-[0_0_10px_#ff8a3d]',
+} as const
+
 /**
- * The tools the Front-End track teaches. A still, wrapping list: an endlessly scrolling strip would
- * need a pause control to meet WCAG 2.2.2 (Pause, Stop, Hide).
+ * The tools strip under the hero, scrolling as on the canvas. It pauses under the pointer and stands
+ * still for anyone who asks for less motion. The list is read once; the repeat is hidden.
  */
 export function ToolsStrip() {
+  const items = (hidden: boolean) =>
+    landing.tools.map((tool) => (
+      <li key={`${tool.name}-${hidden}`} aria-hidden={hidden || undefined} className="flex items-center gap-3 whitespace-nowrap">
+        <span aria-hidden="true" className={`block size-2.5 rounded-full ${dot[tool.tone]}`} />
+        {tool.name}
+      </li>
+    ))
   return (
-    <section aria-label="Tools you will use" className="border-y border-line-subtle py-6">
-      <ul className="mx-auto flex max-w-[1240px] flex-wrap justify-center gap-x-10 gap-y-4 px-4 font-display text-lg font-bold text-ink ph:text-xl">
-        {landing.tools.map((tool) => (
-          <li key={tool} className="flex items-center gap-3 whitespace-nowrap">
-            <span aria-hidden="true" className="size-2 rounded-full bg-fe" />
-            {tool}
-          </li>
-        ))}
+    <section aria-label="Tools you’ll use" className="overflow-hidden border-y border-line-subtle bg-wash py-6">
+      <ul className="marquee flex w-max gap-12 font-display text-xl font-bold tracking-[-0.01em] text-ink-soft">
+        {items(false)}
+        {items(true)}
       </ul>
     </section>
   )

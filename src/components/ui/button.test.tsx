@@ -10,3 +10,13 @@ it('primary buttons never get a shadow class', () => {
   render(<Button variant="primary">Go</Button>)
   expect(screen.getByRole('button').className).not.toMatch(/shadow/)
 })
+it.each(['primary', 'secondary', 'ghost', 'quiet'] as const)('%s buttons react to hover and press', (variant) => {
+  render(<Button variant={variant}>Go</Button>)
+  const { className } = screen.getByRole('button')
+  expect(className).toMatch(/\bhover:/)
+  expect(className).toMatch(/\bpress\b/)
+})
+it('the form size matches the canvas field height', () => {
+  render(<Button size="form">Log In</Button>)
+  expect(screen.getByRole('button').className).toMatch(/h-\[52px\]/)
+})

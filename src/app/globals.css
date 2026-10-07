@@ -39,6 +39,20 @@
   --pc-glow-opacity: 1;
   /* The logo icon is yellow on dark and black on light (design system, light mode rules). */
   --pc-logo: #fed606;
+  /* Canvas neutrals used by controls: small buttons, strong borders, dividers and empty meters. */
+  --pc-control: #1b1830;
+  --pc-line-strong: #464060;
+  --pc-divider: #221e36;
+  --pc-meter: #26213b;
+  /* A faint wash on outline buttons and segmented groups, and the hover tint for every control. */
+  --pc-wash: rgba(255, 255, 255, 0.03);
+  --pc-hover: rgba(255, 255, 255, 0.07);
+  --pc-press: rgba(255, 255, 255, 0.11);
+  /* Floating glass cards (hero, chat) */
+  --pc-glass: rgba(16, 14, 30, 0.78);
+  /* Menu sheets and the darker end of the surface gradient */
+  --pc-sheet: #0b0a14;
+  --pc-pro-top: #17122a;
 }
 
 [data-theme='light'] {
@@ -72,6 +86,16 @@
   --pc-focus: #3550e6;
   --pc-glow-opacity: 0.5;
   --pc-logo: #000000;
+  --pc-control: #efedf6;
+  --pc-line-strong: #b9b4c9;
+  --pc-divider: #e4e1ed;
+  --pc-meter: #e2dfec;
+  --pc-wash: rgba(21, 18, 42, 0.025);
+  --pc-hover: rgba(21, 18, 42, 0.05);
+  --pc-press: rgba(21, 18, 42, 0.09);
+  --pc-glass: rgba(255, 255, 255, 0.78);
+  --pc-sheet: #faf9fd;
+  --pc-pro-top: #f0edf8;
 }
 
 @theme inline {
@@ -81,6 +105,16 @@
   --color-line: var(--pc-line);
   --color-line-subtle: var(--pc-line-subtle);
   --color-line-control: var(--pc-line-control);
+  --color-line-strong: var(--pc-line-strong);
+  --color-divider: var(--pc-divider);
+  --color-control: var(--pc-control);
+  --color-meter: var(--pc-meter);
+  --color-wash: var(--pc-wash);
+  --color-hover: var(--pc-hover);
+  --color-press: var(--pc-press);
+  --color-focus: var(--pc-focus);
+  --color-glass: var(--pc-glass);
+  --color-sheet: var(--pc-sheet);
   --color-ink: var(--pc-text);
   --color-ink-soft: var(--pc-text-soft);
   --color-ink-muted: var(--pc-text-muted);
@@ -132,6 +166,52 @@
 /* Blue to violet only: the founder's brand gradient, never with a pink end. */
 @utility brand-gradient {
   background: linear-gradient(120deg, #3d5af5, #6e4cf5);
+}
+
+/*
+ * The soft blue and violet light behind sign-in, onboarding and other focused pages. Half strength on
+ * light, as the canvas's light frames are.
+ */
+@utility glow {
+  pointer-events: none;
+  position: absolute;
+  opacity: var(--pc-glow-opacity);
+  background:
+    radial-gradient(closest-side at 35% 45%, rgba(77, 107, 255, 0.3), rgba(0, 0, 0, 0) 72%),
+    radial-gradient(closest-side at 68% 55%, rgba(123, 92, 255, 0.24), rgba(0, 0, 0, 0) 72%);
+}
+
+/* Every pressable thing sinks a little when pressed, unless the learner asked for less motion. */
+@utility press {
+  transition-property: background-color, border-color, color, opacity, transform, box-shadow;
+  transition-duration: 150ms;
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+}
+
+/* The canvas's floating cards and its tools marquee. Both stop for reduced motion (global rule). */
+@keyframes pc-float {
+  50% {
+    transform: translateY(-14px);
+  }
+}
+@keyframes pc-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@utility float-slow {
+  animation: pc-float 7s ease-in-out infinite;
+}
+@utility float-slower {
+  animation: pc-float 9s ease-in-out infinite reverse;
+}
+@utility marquee {
+  animation: pc-marquee 40s linear infinite;
+  &:hover {
+    animation-play-state: paused;
+  }
 }
 
 @utility text-balance-safe {
@@ -212,39 +292,3 @@
   background-image: linear-gradient(100deg, #3550e6, #6342ee);
 }
 
-/*
- * The landing page lesson demo works with no JavaScript: the radio buttons drive the preview and the
- * feedback through :has(), so the page ships no script for it. These rules stay outside @layer on purpose:
- * unlayered CSS outranks Tailwind utilities, which would otherwise win over component rules.
- */
-.lesson-demo .demo-row {
-  align-items: flex-start;
-}
-.lesson-demo .demo-feedback {
-  display: none;
-}
-.lesson-demo:has(input[value='flex-start']:checked) .demo-row {
-  align-items: flex-start;
-}
-.lesson-demo:has(input[value='center']:checked) .demo-row {
-  align-items: center;
-}
-.lesson-demo:has(input[value='flex-end']:checked) .demo-row {
-  align-items: flex-end;
-}
-.lesson-demo:has(input:checked) .demo-prompt {
-  display: none;
-}
-.lesson-demo:has(input[value='flex-start']:checked) .demo-feedback[data-for='flex-start'],
-.lesson-demo:has(input[value='center']:checked) .demo-feedback[data-for='center'],
-.lesson-demo:has(input[value='flex-end']:checked) .demo-feedback[data-for='flex-end'] {
-  display: flex;
-}
-.lesson-demo .demo-option:has(input:checked) {
-  border-color: var(--pc-fe-text);
-  background: color-mix(in srgb, #3d5af5 14%, transparent);
-}
-.lesson-demo .demo-option:has(input:focus-visible) {
-  outline: 2px solid var(--pc-focus);
-  outline-offset: 3px;
-}

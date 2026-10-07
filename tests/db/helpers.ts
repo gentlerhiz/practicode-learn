@@ -70,10 +70,3 @@ export async function deleteTestUsers() {
   const db = admin()
   for (const id of createdUsers.splice(0)) await db.auth.admin.deleteUser(id)
 }
-
-/** The 6-digit sign-in code Supabase would email, generated without sending anything (Task 10's e2e test). */
-export async function generateOtp(email: string) {
-  const { data, error } = await admin().auth.admin.generateLink({ type: 'magiclink', email })
-  if (error) throw error
-  return data.properties.email_otp
-}

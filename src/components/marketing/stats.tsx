@@ -16,7 +16,7 @@ const backgrounds = {
 } as const
 
 const linkClass =
-  'inline-flex h-[42px] items-center rounded-full border border-white/30 px-5 text-sm font-medium text-white hover:bg-white/10'
+  'press inline-flex h-[42px] items-center rounded-full border border-white/30 px-5 text-sm font-medium text-white hover:border-white/60 hover:bg-white/10'
 
 /** "Small numbers. Big difference.": three figures that are true today, each with where it comes from. */
 export function Stats() {

@@ -1,59 +1,49 @@
 import type { Metadata, Route } from 'next'
-import Link from 'next/link'
-import { EmailForm } from '@/components/auth/email-form'
-import { GoogleButton, OrDivider } from '@/components/auth/google-button'
-import { Card, Heading } from '@/components/ui'
+import { AuthFrame, HeaderPrompt, OrDivider } from '@/components/auth/auth-frame'
+import { GoogleButton } from '@/components/auth/google-button'
+import { PlanCard } from '@/components/auth/plan-card'
+import { SignupForm } from '@/components/auth/signup-form'
 import { safeRedirect } from '@/lib/auth/redirect'
 import { pageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Create Your Account',
-  description: 'Create a free PractiCode Learn account. We email you a code, so there’s no password.',
+  title: 'Create Your Free Account',
+  description: 'Create a free PractiCode Learn account and save your progress on every device.',
   path: '/signup',
   noindex: true,
 })
 
-const linkClass = 'font-semibold text-ink underline underline-offset-2'
-
+/** PrismSignup: the form on the left, the learner's plan on the right. */
 export default async function SignupPage({ searchParams }: PageProps<'/signup'>) {
   const { next: rawNext } = await searchParams
   const next = typeof rawNext === 'string' ? safeRedirect(rawNext) : undefined
   const loginHref = (next ? `/login?next=${encodeURIComponent(next)}` : '/login') as Route
 
   return (
-    <div className="flex flex-col gap-6">
-      <Card padding="lg" className="flex flex-col gap-6">
-        <div className="flex flex-col gap-3">
-          <Heading level={1} size="lg">
-            Create your free account
-          </Heading>
-          <p className="text-base leading-[26px] text-ink-muted">
-            It takes about a minute. We’ll email you a code, so there’s no password to remember.
-          </p>
-        </div>
-        <div className="flex flex-col gap-3">
+    <AuthFrame glow="right" aside={<HeaderPrompt text="Already have an account?" href={loginHref} label="Log in" />}>
+      <main
+        id="main"
+        className="relative mx-auto box-border grid max-w-[1200px] grid-cols-1 items-start gap-8 px-4 pt-8 pb-12 ph:px-6 ph:pt-14 ph:pb-20 tab:grid-cols-[minmax(0,1fr)_minmax(0,480px)] tab:gap-20"
+      >
+        <section aria-labelledby="signup-title" className="flex max-w-[520px] flex-col gap-6">
+          <div className="flex flex-col gap-3">
+            <p className="text-sm font-medium text-fe-text">Last step · save your plan</p>
+            <h1
+              id="signup-title"
+              className="font-display text-[30px] leading-9 font-extrabold tracking-[-0.035em] text-ink ph:text-[46px] ph:leading-[50px]"
+            >
+              Create your free account
+            </h1>
+            <p className="text-[17px] leading-7 text-ink-muted">
+              It takes about a minute. Your plan is saved, and your first lesson is ready when you are.
+            </p>
+          </div>
           <GoogleButton next={next} />
-          <p className="text-center text-[13px] text-ink-subtle">
-            Continuing with Google means you agree to our{' '}
-            <Link href={'/legal/terms' as Route} className={linkClass}>
-              Terms
-            </Link>{' '}
-            and{' '}
-            <Link href={'/legal/privacy' as Route} className={linkClass}>
-              Privacy Policy
-            </Link>
-            .
-          </p>
-        </div>
-        <OrDivider />
-        <EmailForm mode="signup" next={next} />
-      </Card>
-      <p className="text-center text-sm text-ink-muted">
-        Already have an account?{' '}
-        <Link href={loginHref} className={linkClass}>
-          Log in
-        </Link>
-      </p>
-    </div>
+          <OrDivider label="or sign up with" />
+          <SignupForm next={next} />
+        </section>
+        <PlanCard />
+      </main>
+    </AuthFrame>
   )
 }

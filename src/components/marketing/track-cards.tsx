@@ -174,7 +174,7 @@ export function TrackCards() {
         </div>
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line-subtle pt-8">
           <p className="text-sm text-ink-subtle">{tracks.standardsLabel}</p>
-          <ul className="flex flex-wrap gap-x-8 gap-y-2 font-display text-lg font-bold text-ink-muted">
+          <ul className="flex flex-wrap gap-x-8 gap-y-2 font-display text-lg font-bold text-ink-subtle">
             {tracks.standards.map((s) => (
               <li key={s}>{s}</li>
             ))}

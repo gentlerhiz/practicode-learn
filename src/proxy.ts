@@ -2,7 +2,10 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { buildCsp, themeScriptHash } from '@/lib/security/csp'
 import { updateSession } from '@/lib/supabase/proxy'
 
-const SIGNED_IN_ONLY = /^\/(home|settings|admin)(\/|$)/
+const SIGNED_IN_ONLY = /^\/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin)(\/|$)/
+
+/** True for pages only a signed-in learner can open (src/lib/security/headers.ts, SIGNED_IN_PATHS). */
+export const isSignedInOnly = (pathname: string) => SIGNED_IN_ONLY.test(pathname)
 
 /**
  * Runs for dynamic routes only (see config.matcher). Gives each response a fresh CSP nonce, which
@@ -24,7 +27,7 @@ export async function proxy(request: NextRequest) {
   })
 
   const { pathname, search } = request.nextUrl
-  if (!userId && SIGNED_IN_ONLY.test(pathname)) {
+  if (!userId && isSignedInOnly(pathname)) {
     const login = new URL('/login', request.url)
     login.searchParams.set('next', `${pathname}${search}`)
     return NextResponse.redirect(login)
@@ -37,12 +40,12 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     {
-      source: '/(home|settings|admin|login|signup|verify|auth)/:path*',
+      source: '/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth)/:path*',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
       ],
     },
-    '/(home|settings|admin|login|signup|verify)',
+    '/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth)',
   ],
 }

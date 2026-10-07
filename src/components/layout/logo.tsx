@@ -43,10 +43,13 @@ export function Logo({
   href = '/',
   className,
   prefetch,
+  compact = false,
 }: {
   href?: Route
   className?: string
   prefetch?: boolean
+  /** Focused pages (sign-in, lessons) use the smaller icon and drop the wordmark on phones. */
+  compact?: boolean
 }) {
   return (
     <Link
@@ -55,8 +58,8 @@ export function Logo({
       aria-label="PractiCode Learn home"
       className={cn('flex items-center gap-3', className)}
     >
-      <LogoIcon />
-      <Wordmark />
+      <LogoIcon className={compact ? 'h-6 w-7' : undefined} />
+      <Wordmark className={compact ? 'hidden ph:inline' : undefined} />
     </Link>
   )
 }

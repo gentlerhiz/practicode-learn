@@ -1,11 +1,27 @@
-/** Routes that render per request (signed-in and sign-in pages). They get a nonce CSP from the proxy. */
-export const DYNAMIC_PATHS = [
+/** Signed-in pages. The proxy sends signed-out visitors to log in first. */
+export const SIGNED_IN_PATHS = [
   '/home',
+  '/my-tracks',
+  '/review',
+  '/projects',
+  '/certificates',
+  '/community',
+  '/checks',
+  '/checkout',
   '/settings',
   '/admin',
+] as const
+
+/** Routes that render per request (signed-in and sign-in pages). They get a nonce CSP from the proxy. */
+export const DYNAMIC_PATHS = [
+  ...SIGNED_IN_PATHS,
   '/login',
   '/signup',
   '/verify',
+  '/check-email',
+  '/reset-password',
+  '/new-password',
+  '/onboarding',
   '/auth',
 ] as const
 

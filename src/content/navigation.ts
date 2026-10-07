@@ -12,7 +12,7 @@ export type FooterGroup = { heading: string; links: (NavItem | ExternalNavItem)[
  * Lessons open in Milestone 2 (the lesson player). Until then the primary action points to the
  * syllabus, so no button leads to a page that doesn't exist yet.
  */
-export const LESSONS_OPEN = false
+export const LESSONS_OPEN = true
 
 export const FIRST_LESSON = '/learn/front-end-web-development/what-happens-when-you-open-a-website'
 // Paths into dynamic routes (/tracks/[track], /legal/[doc]) are cast: typed routes check the route,
@@ -26,18 +26,24 @@ export const primaryCta: NavItem = LESSONS_OPEN
 /** Pages linked from the navigation that don't exist yet. Tests skip them. Empty since Task 8. */
 export const PENDING: string[] = []
 
+// The canvas header, on every public page.
 export const guest: NavItem[] = [
-  { href: TRACK_PAGE, label: 'Tracks' },
-  { href: '/#how-it-works', label: 'How It Works' },
-  { href: '/about', label: 'About' },
+  { href: '/#tracks' as Route, label: 'Tracks' },
+  { href: '/#how' as Route, label: 'How It Works' },
+  { href: '/#tutor' as Route, label: 'AI Tutor' },
+  { href: '/pricing' as Route, label: 'Pricing' },
+  { href: '/mentors' as Route, label: 'Mentors' },
 ]
 
+// The canvas footer. Tracks without lessons yet link to their card on the landing page, as designed.
 export const footer: FooterGroup[] = [
   {
-    heading: 'Learn',
+    heading: 'Tracks',
     links: [
       { href: TRACK_PAGE, label: 'Front-End Web Development' },
-      { href: '/#how-it-works', label: 'How It Works' },
+      { href: '/#tracks' as Route, label: 'Data Analysis' },
+      { href: '/#tracks' as Route, label: 'UI/UX Product Design' },
+      { href: '/#tracks' as Route, label: 'AI & Machine Learning' },
     ],
   },
   {
@@ -45,6 +51,9 @@ export const footer: FooterGroup[] = [
     links: [
       { href: '/about', label: 'About' },
       { href: 'https://practicode.tech', label: 'PractiCode Academy', external: true },
+      { href: '/mentors' as Route, label: 'Mentor cohorts' },
+      { href: '/scholarship' as Route, label: 'Scholarships' },
+      { href: '/community' as Route, label: 'Community' },
       { href: 'mailto:practicodeacademy@gmail.com', label: 'Contact', external: true },
     ],
   },

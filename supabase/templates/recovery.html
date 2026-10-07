@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en-GB">
+  <body style="margin: 0; padding: 0; background: #f4f2ec; font-family: Poppins, Arial, sans-serif; color: #111111">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #f4f2ec; padding: 32px 16px">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 480px; background: #ffffff; border-radius: 24px">
+            <tr>
+              <td style="padding: 32px">
+                <p style="margin: 0 0 24px; font-size: 18px">Practi<strong>Code</strong> Learn</p>
+                <h1 style="margin: 0 0 12px; font-size: 24px; line-height: 32px">Choose a new password</h1>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 26px">Someone asked to reset the password for your PractiCode Learn account. Tap the button to choose a new one.</p>
+                <p style="margin: 0 0 32px">
+                  <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery&amp;next=/new-password" style="display: inline-block; background: #fed606; color: #000000; text-decoration: none; font-weight: 600; padding: 14px 28px; border-radius: 999px">Choose a New Password</a>
+                </p>
+                <p style="margin: 0; font-size: 14px; line-height: 22px; color: #555555">The link works for 30 minutes. If you didn’t ask for this, you can ignore this email. Your password stays the same.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
