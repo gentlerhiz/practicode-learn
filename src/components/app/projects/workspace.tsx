@@ -229,7 +229,7 @@ export function Workspace({ data }: { data: WorkspaceData }) {
                 onChange={(code) => setFiles((list) => list.map((f, i) => (i === file ? { ...f, code } : f)))}
               />
             ) : (
-              <pre tabIndex={0} aria-label={current.name} className="overflow-x-auto py-4 font-mono text-[12.5px] leading-[26px] text-ink ph:text-sm">
+              <pre tabIndex={0} aria-label={current.name} className="code-colours overflow-x-auto py-4 font-mono text-[12.5px] leading-[26px] text-ink ph:text-sm">
                 {html.split('\n').map((line, i) => {
                   const flagged = current.name.endsWith('.css') && selected?.lines?.includes(i + 1)
                   return (

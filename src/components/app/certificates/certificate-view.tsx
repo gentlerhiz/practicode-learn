@@ -113,7 +113,7 @@ export function CertificateView({ data }: { data: CertificateData }) {
                 }}
                 className={buttonClasses({ variant: 'secondary' }, 'h-12 bg-transparent px-5 font-medium')}
               >
-                <Glyph name={copied ? 'check' : 'download'} size={16} />
+                <Glyph name={copied ? 'check' : 'copy'} size={16} />
                 {copied ? 'Link copied' : 'Copy Link'}
               </button>
               <button type="button" onClick={() => window.print()} className={buttonClasses({ variant: 'secondary' }, 'h-12 bg-transparent px-5 font-medium')}>

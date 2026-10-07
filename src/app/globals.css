@@ -294,3 +294,24 @@
   background-image: linear-gradient(100deg, #3550e6, #6342ee);
 }
 
+
+/* Code colours from the canvas (module check, project workspace): selectors in ink, properties blue, values green. */
+@utility code-colours {
+  & .c-sel {
+    color: var(--pc-text);
+  }
+  & .c-prop,
+  & .c-tag {
+    color: var(--pc-fe-text);
+  }
+  & .c-val,
+  & .c-str {
+    color: var(--pc-da-text);
+  }
+  & .c-attr {
+    color: var(--pc-ai-text);
+  }
+  & .c-com {
+    color: var(--pc-text-subtle);
+  }
+}

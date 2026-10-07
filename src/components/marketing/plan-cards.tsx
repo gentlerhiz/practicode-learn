@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Check } from 'lucide-react'
 import { useState } from 'react'
 import { buttonClasses } from '@/components/ui/button'
-import { CURRENCIES, PLAN_FEATURES, planPrices, type Currency } from '@/content/pricing'
+import { CURRENCIES, PLAN_FEATURES, PRICING_PAGE_FEATURES, planPrices, type Currency } from '@/content/pricing'
 import { cn } from '@/lib/cn'
 
 function Toggle({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) {
@@ -42,7 +42,8 @@ const body = 'flex flex-1 flex-col gap-5 px-5 pt-6 pb-5 ph:px-8 ph:pb-8'
 const price = 'font-display text-5xl leading-[52px] font-extrabold tracking-[-0.03em] text-ink'
 
 /** The canvas's three plans with the currency and billing switches (landing #pricing and /pricing). */
-export function PlanCards() {
+export function PlanCards({ variant = 'landing' }: { variant?: 'landing' | 'pricing' }) {
+  const features = variant === 'pricing' ? PRICING_PAGE_FEATURES : PLAN_FEATURES
   const [code, setCode] = useState<Currency>('NGN')
   const [yearly, setYearly] = useState(false)
   const p = planPrices(code, yearly)
@@ -74,14 +75,17 @@ export function PlanCards() {
             <p className="mt-1 text-sm text-fe-text">For trying things out</p>
           </div>
           <div className={body}>
-            <p className="flex items-baseline gap-2">
-              <span className={price}>{p.free}</span>
-              <span className="text-sm text-ink-muted">forever</span>
-            </p>
+            <div>
+              <p className="flex items-baseline gap-2">
+                <span className={price}>{p.free}</span>
+                <span className="text-sm text-ink-muted">forever</span>
+              </p>
+              {variant === 'pricing' && <p className="mt-1 text-[13px] text-ink-muted">No card, no time limit.</p>}
+            </div>
             <Link href={'/onboarding' as Route} className={buttonClasses({ variant: 'secondary' }, 'h-12 w-full bg-transparent font-medium')}>
               Start Free
             </Link>
-            <Features items={PLAN_FEATURES.free} tone="text-fe-text" />
+            <Features items={features.free} tone="text-fe-text" />
           </div>
         </article>
 
@@ -105,7 +109,7 @@ export function PlanCards() {
               <Link href={'/checkout' as Route} className={buttonClasses({}, 'h-12 w-full')}>
                 Start Free Trial
               </Link>
-              <Features items={PLAN_FEATURES.pro} tone="text-ai-text" />
+              <Features items={features.pro} tone="text-ai-text" />
             </div>
           </article>
         </div>
@@ -126,7 +130,7 @@ export function PlanCards() {
             <Link href={'/mentors' as Route} className={buttonClasses({ variant: 'secondary' }, 'h-12 w-full bg-transparent font-medium')}>
               Ask About Cohorts
             </Link>
-            <Features items={PLAN_FEATURES.mentor} tone="text-ux-text" />
+            <Features items={features.mentor} tone="text-ux-text" />
           </div>
         </article>
       </div>
