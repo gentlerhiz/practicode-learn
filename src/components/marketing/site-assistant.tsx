@@ -13,12 +13,12 @@ const ANSWERS = [
   {
     key: 'track',
     q: 'Which track should I start with?',
-    a: "If you've never coded, Front-End Web Development is a friendly first step: you see your work in the browser from lesson one. If you already live in spreadsheets, Data Analysis builds on that. Still unsure? Module 1 of every track is free, so try two and keep the one you enjoy.",
+    a: "If you've never coded, Front-End Web Development is a friendly first step: you see your work in the browser from lesson one. If you already live in spreadsheets, Data Analysis builds on that. Front-End Web Development opens first, and its Module 1 is free, so you can try it before deciding.",
   },
   {
     key: 'price',
     q: 'How much does Pro cost?',
-    a: `Pro is ${ngn.sym}${ngn.monthly.toLocaleString('en-US')} a month, or ${ngn.sym}${ngn.yearly.toLocaleString('en-US')} a year, which saves you about ${save}%. It starts with a 7-day free trial and you can cancel in one click. If money is tight, you can apply for a scholarship too.`,
+    a: `Pro is ${ngn.sym}${ngn.monthly.toLocaleString('en-US')} a month, or ${ngn.sym}${ngn.yearly.toLocaleString('en-US')} a year, which saves you about ${save}%. It launches with the full track, and you’ll be able to cancel in one click. If money is tight, you can apply for a scholarship too.`,
   },
   {
     key: 'phone',

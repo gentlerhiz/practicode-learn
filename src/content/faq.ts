@@ -5,7 +5,7 @@
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Is it really free?',
-    a: "Yep. Module 1 of every track is free for good, and you don't need a card. If you want the rest, Pro starts with a 7-day free trial.",
+    a: "Yep. Module 1 is free for good, and you don't need a card. Front-End Web Development is open now. The rest of each track comes with Pro, which launches with the full track.",
   },
   {
     q: 'Why no videos?',

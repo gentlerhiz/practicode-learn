@@ -266,6 +266,7 @@
 [data-theme='dark'] {
   --pc-card-fe: linear-gradient(155deg, #3d5af5 0%, #1c2785 38%, #0e0c1a 78%);
   --pc-card-da: linear-gradient(155deg, #0a7d5c 0%, #0a4e3d 38%, #0e0c1a 78%);
+  --pc-card-work: linear-gradient(150deg, #0a7d5c 0%, #0a4e3d 45%, #0b0a14 100%);
   --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #6b1540 38%, #0e0c1a 78%);
   --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #33208a 38%, #0e0c1a 78%);
   --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1c2785 40%, #0b0a14 80%);
@@ -276,6 +277,7 @@
 [data-theme='light'] {
   --pc-card-fe: linear-gradient(155deg, #3d5af5 0%, #1f33a8 100%);
   --pc-card-da: linear-gradient(155deg, #0a7d5c 0%, #05503b 100%);
+  --pc-card-work: linear-gradient(150deg, #0a7d5c 0%, #05503b 100%);
   --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #8f1745 100%);
   --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #3a20b0 100%);
   --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1f33a8 100%);

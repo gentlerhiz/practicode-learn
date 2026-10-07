@@ -13,13 +13,13 @@ async function expectNoViolations(page: Page, where: string) {
   expect(results.violations, where).toEqual([])
 }
 
-test('home greets the learner and shows Module 1, with Module 2 on its way', async ({ page }, testInfo) => {
+test('home greets a new learner and offers their first lesson', async ({ page }, testInfo) => {
   test.skip(!testEnvReady, 'needs the dev Supabase project')
   const { email } = await newLearner(`home-${testInfo.project.name}`)
   await logIn(page, email, '/home')
   await expect(page.getByRole('heading', { level: 1, name: /Welcome/ })).toBeVisible()
-  await expect(page.getByRole('heading', { name: /Module 1/ })).toBeVisible()
-  await expect(page.getByText('Module 2 is on its way')).toBeVisible()
+  await expect(page.getByText('Front-End · Module 1 · Lesson 1')).toBeVisible()
+  await expect(page.getByText('Module 1 is free for good.')).toBeVisible()
   await expectNoViolations(page, 'home')
   await page.goto('/settings')
   await expectNoViolations(page, 'settings')
@@ -36,20 +36,21 @@ test('a learner can rename themselves, download their data and delete their acco
     .insert({ learner_id: id, lesson_id: 'zz-01-01', lesson_version: 1, status: 'started', steps_done: 2 })
   await logIn(page, email, '/settings')
 
+  await page.getByRole('button', { name: 'Edit' }).first().click()
   const name = page.getByRole('textbox', { name: 'Name' })
   await name.fill('Ada Lantern')
-  await page.getByRole('button', { name: 'Save Name' }).click()
+  await page.getByRole('button', { name: 'Save', exact: true }).click()
   await expect(page.getByText('Saved.')).toBeVisible()
 
   const download = page.waitForEvent('download')
-  await page.getByRole('link', { name: 'Download My Data' }).click()
+  await page.getByRole('link', { name: 'Download', exact: true }).click()
   const file = await (await download).path()
   const exported = JSON.parse(readFileSync(file, 'utf8'))
   expect(exported.profile.display_name).toBe('Ada Lantern')
   expect(exported.lesson_progress).toHaveLength(1)
   expect((await download).suggestedFilename()).toMatch(/^practicode-learn-data-\d{4}-\d{2}-\d{2}\.json$/)
 
-  await page.getByRole('textbox', { name: 'Type delete to confirm' }).fill('delete')
+  await page.getByRole('button', { name: 'Delete Account' }).click()
   await page.getByRole('button', { name: 'Delete My Account' }).click()
   await expect(page).toHaveURL(/\/\?account=deleted$/, { timeout: 15_000 })
   await expect(page.getByText('Your account and data have been deleted.')).toBeVisible()

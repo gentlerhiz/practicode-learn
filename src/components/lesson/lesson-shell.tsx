@@ -4,9 +4,10 @@ import type { LessonPack } from '@/lib/lessons/schema'
 import { recordProgress, startProgressSync } from '@/lib/progress/sync'
 import { createActiveTimer } from '@/lib/progress/tracker'
 import type { ProgressEvent } from '@/lib/progress/types'
+import type { Route } from 'next'
 import { GuestNote } from './guest-save-prompt'
 import { LessonComplete, type NextLesson } from './lesson-complete'
-import { LessonPlayer, type LessonEvent } from './player/player'
+import { LessonPlayer, type LessonChrome, type LessonEvent } from './player/player'
 
 type Timer = ReturnType<typeof createActiveTimer>
 
@@ -18,13 +19,20 @@ type Timer = ReturnType<typeof createActiveTimer>
 export function LessonShell({
   pack,
   lessonPath,
-  shareUrl,
+  trackLabel,
+  lessonMeta,
+  trackHref,
   eyebrow,
   nextLesson,
 }: {
   pack: LessonPack
   lessonPath: string
-  shareUrl: string
+  /** The track's short name, shown first in the header meta, e.g. "Front-End". */
+  trackLabel: string
+  /** The learner's meta, e.g. "Module 1 · Lesson 1 of 7". */
+  lessonMeta: string
+  /** Where the exit control sends a guest (the track page). Learners go to their dashboard. */
+  trackHref: Route
   eyebrow: string
   nextLesson?: NextLesson
 }) {
@@ -96,32 +104,38 @@ export function LessonShell({
     setMinutes(Math.max(1, Math.round(seconds.current / 60)))
   }
 
+  const chrome: LessonChrome = {
+    isGuest,
+    title: pack.title,
+    meta: isGuest ? `${trackLabel} · Free lesson · No account needed` : `${trackLabel} · ${lessonMeta}`,
+    exitHref: isGuest ? trackHref : ('/home' as Route),
+    signupHref: `/signup?next=${encodeURIComponent(lessonPath)}` as Route,
+  }
+
   return (
-    <div className="flex flex-col gap-5">
-      {isGuest && <GuestNote lessonPath={lessonPath} />}
-      <LessonPlayer
-        pack={pack}
-        hideTitle
-        onEvent={onEvent}
-        onFinish={() => {}}
-        complete={({ restart }) => (
-          <LessonComplete
-            eyebrow={eyebrow}
-            lessonNumber={pack.lesson}
-            minutes={minutes}
-            points={points}
-            nextLesson={nextLesson}
-            share={{ url: shareUrl, title: pack.title }}
-            isGuest={isGuest}
-            lessonPath={lessonPath}
-            onRestart={() => {
-              started.current = false
-              seconds.current = 0
-              restart()
-            }}
-          />
-        )}
-      />
-    </div>
+    <LessonPlayer
+      pack={pack}
+      chrome={chrome}
+      guestNote={isGuest ? <GuestNote lessonPath={lessonPath} /> : null}
+      onEvent={onEvent}
+      onFinish={() => {}}
+      complete={({ restart }) => (
+        <LessonComplete
+          eyebrow={eyebrow}
+          lessonNumber={pack.lesson}
+          lead={pack.description}
+          minutes={minutes}
+          points={points}
+          nextLesson={nextLesson}
+          isGuest={isGuest}
+          lessonPath={lessonPath}
+          onRestart={() => {
+            started.current = false
+            seconds.current = 0
+            restart()
+          }}
+        />
+      )}
+    />
   )
 }

@@ -17,9 +17,6 @@ export default async function PlayerFixturePage({ searchParams }: PageProps<'/fi
   const pack = await loadPack(meta)
   const { step } = await searchParams
   const startAt = Number(typeof step === 'string' ? step : 0) || 0
-  return (
-    <main id="main" className="px-4 py-10">
-      <PlayerFixture pack={pack} startAt={startAt} />
-    </main>
-  )
+  // The player renders its own <main id="main">, so the fixture adds no wrapper of its own.
+  return <PlayerFixture pack={pack} startAt={startAt} />
 }

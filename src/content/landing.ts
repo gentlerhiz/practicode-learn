@@ -125,7 +125,7 @@ export const landing = {
         label: 'The price',
         figure: '₦0',
         caption: 'to start any track',
-        body: 'Module 1 of every track is free for good. No card, and no trial clock ticking in the corner.',
+        body: 'Module 1 is free for good. No card, and no trial clock ticking in the corner.',
         link: { label: 'See the Plans', href: '#pricing' },
       },
     ],
@@ -193,7 +193,7 @@ export const landing = {
       accent: 'and help is there the moment you need it.',
     },
     columns: ['What you get', 'The usual video course', 'PractiCode Learn'] as const,
-    proFrom: 'Pro from ₦6,500 a month',
+    proFrom: 'Pro launches with the full track',
     rows: [
       ['How you learn', 'Mostly watching', 'Mostly doing'],
       ['Help when you’re stuck', 'Comments under a video', 'An AI tutor in lessons and projects'],

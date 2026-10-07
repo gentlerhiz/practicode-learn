@@ -1,6 +1,6 @@
 import type { LessonStep } from '@/lib/lessons/schema'
-import { Prose } from '../parts/prose'
+import { StepGrid, StepHeading } from '../parts/step-layout'
 
 export function ExplainStep({ step }: { step: Extract<LessonStep, { type: 'explain' }> }) {
-  return <Prose html={step.body ?? ''} />
+  return <StepGrid top={<StepHeading stage={step.stage} body={step.body} />} />
 }

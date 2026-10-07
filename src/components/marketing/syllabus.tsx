@@ -1,11 +1,10 @@
-import { ChevronRight, Icon, Lock, Smartphone } from '@/components/ui/icon'
+import { Icon, Lock, Smartphone } from '@/components/ui/icon'
 import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
 import { Pill } from '@/components/ui/pill'
 import { Section } from '@/components/ui/section'
 import type { TrackContent, TrackModule } from '@/content/tracks'
-import { Clock } from 'lucide-react'
-import { Laptop } from 'lucide-react'
+import { Clock, Laptop } from 'lucide-react'
 
 function ModuleRow({ module }: { module: TrackModule }) {
   const minutes = module.lessons.length * 10
@@ -29,48 +28,64 @@ function ModuleRow({ module }: { module: TrackModule }) {
           <span className="text-[13px] text-ink-subtle">{meta}</span>
         </span>
         {module.free ? (
-          <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-on-primary">
-            Free
-          </span>
+          <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-on-primary">Free</span>
         ) : (
           <span className="flex items-center gap-1 text-[13px] text-ink-muted">
             <Icon as={Lock} size={14} />
             Pro
           </span>
         )}
-        <Icon
-          as={ChevronRight}
-          size={16}
-          className="shrink-0 text-ink-subtle transition-transform group-open:rotate-90"
-        />
       </summary>
-      <div className="flex flex-col gap-3 px-4 pb-5 ph:px-5 ph:pl-[72px]">
+      <div className="flex flex-col gap-3 px-4 pb-5 ph:px-5">
         <p className="text-[15px] text-ink-muted">{module.summary}</p>
-        <ol className="flex flex-col gap-2">
-          {module.lessons.map((lesson, i) => (
+        <ol className="flex flex-col">
+          {module.lessons.map((lesson) => (
             <li
               key={lesson.title}
-              className="flex items-center gap-3 rounded-xl border border-line-subtle bg-row px-3 py-2.5 text-sm text-ink"
+              className="flex items-center justify-between gap-3 border-b border-divider py-3 pl-6 text-[15px] text-ink last:border-b-0"
             >
-              <span className="w-8 shrink-0 text-xs text-ink-subtle">
-                {module.number}.{i + 1}
-              </span>
-              {lesson.title}
+              <span>{lesson.title}</span>
+              {lesson.minutes && <span className="shrink-0 text-[13px] text-ink-subtle">{lesson.minutes} min</span>}
             </li>
           ))}
         </ol>
+        <div className="flex flex-wrap gap-2 pt-1">
+          {['Module project', 'Module check'].map((chip) => (
+            <span
+              key={chip}
+              className="inline-flex h-10 items-center rounded-full border border-line-control px-4 text-[13px] font-medium text-ink"
+            >
+              {chip}
+            </span>
+          ))}
+        </div>
         <p className="text-[13px] text-fe-text">Project: {module.project}</p>
       </div>
     </details>
   )
 }
 
-function Panel({ title, children }: { title: string; children: React.ReactNode }) {
+/** "Label: text" lines from the track's alignment list, with SFIA's skills split into chips. */
+function Standard({ line }: { line: string }) {
+  const cut = line.indexOf(': ')
+  const label = cut > 0 ? line.slice(0, cut) : 'Accessibility'
+  const text = cut > 0 ? line.slice(cut + 2) : line
+  const sfia = label.startsWith('SFIA')
   return (
-    <section aria-label={title} className="flex flex-col gap-4 rounded-3xl border border-line p-6 surface">
-      <h3 className="font-display text-xl font-bold text-ink">{title}</h3>
-      {children}
-    </section>
+    <div className="flex flex-col gap-1.5">
+      <p className="text-[13px] text-ink-subtle">{sfia ? `${label} skills` : label}</p>
+      {sfia ? (
+        <ul className="flex flex-wrap gap-2">
+          {text.split(', ').map((skill) => (
+            <li key={skill} className="rounded-lg bg-[rgba(77,107,255,0.16)] px-3 py-1 text-[13px] text-fe-text">
+              {skill}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-[15px] text-ink">{text}</p>
+      )}
+    </div>
   )
 }
 
@@ -86,39 +101,33 @@ export function Syllabus({ track }: { track: TrackContent }) {
             </Heading>
             <p className="text-sm text-ink-subtle">Tap a module to see its lessons</p>
           </div>
-          <p className="text-[15px] leading-6 text-ink-muted">
-            Module 1 is free. Modules 2 to 15 come with Pro, which launches with the full track. Each lesson
-            takes 10 to 15 minutes.
-          </p>
           <div className="flex flex-col gap-3">
             {track.modules.map((m) => (
               <ModuleRow key={m.number} module={m} />
             ))}
-            <div className="rounded-[22px] border border-dashed border-line-control p-4 ph:px-5">
-              <p className="text-base font-semibold text-ink">{track.capstone.title}</p>
-              <p className="text-[15px] text-ink-muted">{track.capstone.summary}</p>
-              <p className="mt-2 text-[13px] text-fe-text">Project: {track.capstone.project}</p>
-            </div>
           </div>
         </div>
 
         <aside className="flex flex-col gap-4 tab:sticky tab:top-6">
-          <Panel title="Mapped to standards employers know">
-            <ul className="flex flex-col gap-3 text-[15px] text-ink">
-              {track.alignment.map((a) => (
-                <li key={a}>{a}</li>
-              ))}
-            </ul>
-          </Panel>
-          <Panel title="What you’ll need">
+          <section
+            aria-labelledby="standards-title"
+            className="flex flex-col gap-4 rounded-3xl border border-[rgba(77,107,255,0.4)] bg-[linear-gradient(160deg,rgba(77,107,255,0.14),var(--pc-sheet)_70%)] p-6"
+          >
+            <h3 id="standards-title" className="font-display text-xl font-bold text-ink">
+              Mapped to standards employers know
+            </h3>
+            {track.alignment.map((a) => (
+              <Standard key={a} line={a} />
+            ))}
+          </section>
+          <section aria-labelledby="needs-title" className="flex flex-col gap-4 rounded-3xl border border-line p-6 surface">
+            <h3 id="needs-title" className="font-display text-xl font-bold text-ink">
+              What you’ll need
+            </h3>
             <ul className="flex flex-col gap-3 text-sm leading-[22px] text-ink-soft">
               {track.deviceNotes.map((note, i) => (
                 <li key={note} className="flex gap-3">
-                  <Icon
-                    as={i === 0 ? Smartphone : Laptop}
-                    size={18}
-                    className="mt-0.5 shrink-0 text-fe-text"
-                  />
+                  <Icon as={i === 0 ? Smartphone : Laptop} size={18} className="mt-0.5 shrink-0 text-fe-text" />
                   {note}
                 </li>
               ))}
@@ -127,35 +136,45 @@ export function Syllabus({ track }: { track: TrackContent }) {
                 {track.pace}.
               </li>
             </ul>
-          </Panel>
+          </section>
           <section
-            aria-label="Certificate"
-            className="flex items-center gap-4 rounded-3xl border border-[#6e4cf5]/60 bg-sunken p-6"
+            aria-labelledby="cert-title"
+            className="rounded-3xl bg-[linear-gradient(160deg,#4D6BFF_0%,#7B5CFF_45%,#F0407F_100%)] p-[1.5px]"
           >
-            <svg aria-hidden="true" viewBox="0 0 80 90" className="h-14 w-12 shrink-0">
-              <path
-                d="M40 4 74 24v42L40 86 6 66V24z"
-                fill="none"
-                stroke="#6E4CF5"
-                strokeWidth="6"
-                strokeLinejoin="round"
-              />
-              <path
-                d="m26 46 10 10 19-21"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="7"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-ink"
-              />
-            </svg>
-            <div className="flex flex-col gap-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <p className="font-display text-lg font-bold text-ink">A verified certificate</p>
-                <Pill tone="soon">Coming soon</Pill>
+            <div className="flex items-center gap-4 rounded-[22.5px] bg-sheet p-5">
+              <svg aria-hidden="true" viewBox="0 0 100 100" className="size-12 shrink-0">
+                <defs>
+                  <linearGradient id="trackBadge" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stopColor="#4D6BFF" />
+                    <stop offset="0.5" stopColor="#7B5CFF" />
+                    <stop offset="1" stopColor="#F0407F" />
+                  </linearGradient>
+                </defs>
+                <polygon
+                  points="50,4 90,27 90,73 50,96 10,73 10,27"
+                  className="fill-control"
+                  stroke="url(#trackBadge)"
+                  strokeWidth="5"
+                />
+                <path
+                  d="m34 51 11 11 22-24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-ink"
+                />
+              </svg>
+              <div className="flex flex-col gap-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 id="cert-title" className="font-display text-lg font-bold text-ink">
+                    Finish and get a verified certificate
+                  </h3>
+                  <Pill tone="soon">Coming soon</Pill>
+                </div>
+                <p className="text-[13px] leading-5 text-ink-muted">{track.credential}. It arrives with the full track.</p>
               </div>
-              <p className="text-sm text-ink-muted">{track.credential}. It arrives with the full track.</p>
             </div>
           </section>
         </aside>

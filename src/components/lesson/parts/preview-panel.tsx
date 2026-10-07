@@ -1,14 +1,12 @@
 import { Prose } from './prose'
 
-/** A labelled browser panel around a PreviewFrame. */
-export function PreviewPanel({ label, children }: { label: string; children: React.ReactNode }) {
+/** The canvas's preview area under the code: a caption, then the running page in a sunken box. */
+export function PreviewPanel({ label, children, note }: { label: string; children: React.ReactNode; note?: string }) {
   return (
-    <div className="flex min-w-0 flex-col overflow-hidden rounded-2xl border border-line">
-      <div className="flex items-center justify-between gap-3 border-b border-line bg-row px-3 py-2 text-[12px] text-ink-muted">
-        <span>{label}</span>
-        <span aria-hidden="true">Browser</span>
-      </div>
-      {children}
+    <div className="flex min-w-0 flex-col gap-3 px-4 pb-5 ph:px-6 ph:pb-6">
+      <p className="text-xs text-ink-subtle">{label}</p>
+      <div className="min-h-[160px] overflow-hidden rounded-[20px] border border-divider bg-white">{children}</div>
+      {note && <p className="text-[13px] text-ink-subtle">{note}</p>}
     </div>
   )
 }

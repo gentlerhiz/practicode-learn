@@ -10,27 +10,18 @@ import { ExplainStep } from '../steps/explain'
 import { ExploreStep } from '../steps/explore'
 import { OrderStep } from '../steps/order'
 import { RecapStep } from '../steps/recap'
-import { ProgressBar } from './progress-bar'
-import { StepNav } from './step-nav'
+import { stageName } from '../parts/step-layout'
+import { LessonBar, type LessonChrome } from './lesson-bar'
+import { LessonFooter } from './lesson-footer'
 import { fixedShuffle, useLessonPlayer, type LessonPlayerApi } from './use-lesson-player'
+
+export type { LessonChrome }
 
 export type LessonEvent = {
   verb: 'lesson_started' | 'lesson_completed'
   stepsDone: number
   attempts: Record<string, number>
 }
-
-const STAGE: Record<string, string> = {
-  hook: 'Hook',
-  predict: 'Predict',
-  run: 'Run',
-  investigate: 'Investigate',
-  modify: 'Modify',
-  make: 'Make',
-  apply: 'Apply',
-  recap: 'Recap',
-}
-const TRACK: Record<string, string> = { 'front-end-web-development': 'Front-End', samples: 'Samples' }
 
 function Step({ api }: { api: LessonPlayerApi }) {
   const { step, index } = api
@@ -50,6 +41,7 @@ function Step({ api }: { api: LessonPlayerApi }) {
           step={step}
           initialOrder={api.state.order ?? fixedShuffle(step.items.length)}
           initiallySolved={api.state.solved}
+          hintsShown={api.state.hints}
           onSolved={() => {}}
           onCheck={api.checkOrder}
         />
@@ -61,10 +53,17 @@ function Step({ api }: { api: LessonPlayerApi }) {
   }
 }
 
+// Steps without a drawing or code card are one centred column (see StepGrid); the guest note follows it.
+const singleColumn = (step: LessonPack['steps'][number]) =>
+  step.type === 'explain' || step.type === 'recap' || step.type === 'order' || ((step.type === 'predict' || step.type === 'question') && !step.files)
+
+const hintsIn = (step: LessonPack['steps'][number]) => ('hints' in step ? step.hints.length : 0)
+
 /**
- * Plays a lesson pack one step at a time. Continue unlocks when a step is done (see isStepDone); Enter
- * continues too, unless the learner is typing or using a control. Reports when the lesson starts and
- * finishes, with the steps done and the attempts per step, for the progress record.
+ * Plays a lesson pack inside the canvas frame (PrismTryLesson / PrismLesson): a header with the step
+ * pips and Hint, the step itself in the two-column layout, and a sticky footer. Continue unlocks when a
+ * step is done (see isStepDone); Enter continues too, unless the learner is typing or using a control.
+ * Reports when the lesson starts and finishes, with the steps done and the attempts per step.
  */
 export function LessonPlayer({
   pack,
@@ -72,7 +71,8 @@ export function LessonPlayer({
   onFinish,
   startAt,
   next,
-  hideTitle = false,
+  chrome,
+  guestNote,
   complete,
 }: {
   pack: LessonPack
@@ -80,9 +80,11 @@ export function LessonPlayer({
   onFinish: () => void
   startAt?: number
   next?: { href: Route; title: string }
-  /** The page already shows the lesson's title as its h1 (with id "lesson-title"). */
-  hideTitle?: boolean
-  /** A finish screen to show instead of the default one. */
+  /** The lesson header's details (guest or learner). Omitted in unit tests, which skip the header. */
+  chrome?: LessonChrome
+  /** A note shown under the step for guests (their progress is on this device). */
+  guestNote?: React.ReactNode
+  /** A finish screen to show instead of the default one. It owns its own full-page frame. */
   complete?: (actions: { restart: () => void }) => React.ReactNode
 }) {
   const api = useLessonPlayer(pack, { startAt })
@@ -118,7 +120,7 @@ export function LessonPlayer({
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const target = e.target as Element | null
-      if (e.key !== 'Enter' || target?.closest?.('input, textarea, select, button, a, [data-lab]')) return
+      if (e.key !== 'Enter' || target?.closest?.('input, textarea, select, button, a, [data-lab], summary')) return
       if (!latest.current.api.canContinue || latest.current.api.finished) return
       e.preventDefault()
       latest.current.api.next()
@@ -127,81 +129,78 @@ export function LessonPlayer({
     return () => document.removeEventListener('keydown', onKey)
   }, [])
 
-  const crumbs = (
-    <p className="text-sm text-ink-muted">
-      <span className="font-semibold text-fe-text">{TRACK[pack.track] ?? pack.track}</span> · Module{' '}
-      {pack.module} · Lesson {pack.lesson} · {pack.minutes} min
-    </p>
-  )
-
-  if (api.finished && complete) {
-    return (
-      <article ref={article} tabIndex={-1} className="mx-auto max-w-3xl outline-none">
-        {complete({ restart: api.restart })}
-      </article>
-    )
-  }
-
-  if (api.finished) {
-    return (
-      <section aria-labelledby="lesson-title" className="mx-auto flex max-w-3xl flex-col gap-5">
-        {crumbs}
-        <article ref={article} tabIndex={-1} className="flex flex-col gap-4 outline-none">
-          <h1 id="lesson-title" className="font-display text-3xl font-bold text-ink">
-            Lesson complete
-          </h1>
-          <p className="text-base leading-[26px] text-ink-soft">
-            You finished <strong className="font-semibold text-ink">{pack.title}</strong>.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            {next && <LinkButton href={next.href}>Next: {next.title}</LinkButton>}
-            <Button variant="secondary" onClick={api.restart}>
-              Start This Lesson Again
-            </Button>
-          </div>
-        </article>
-      </section>
-    )
-  }
+  if (api.finished && complete) return <>{complete({ restart: api.restart })}</>
 
   return (
-    <section aria-labelledby="lesson-title" className="mx-auto flex max-w-3xl flex-col gap-5">
-      <div className="flex flex-col gap-3">
-        {!hideTitle && (
-          <>
-            {crumbs}
-            <h1
-              id="lesson-title"
-              className="font-display text-[28px] leading-9 font-bold tracking-[-0.02em] text-ink ph:text-[34px] ph:leading-10"
-            >
-              {pack.title}
-            </h1>
-          </>
-        )}
-        <ProgressBar index={api.index} total={api.total} />
-        <p className="text-sm text-ink-muted">
-          <span className="font-semibold text-ink">
-            Step {api.index + 1} of {api.total}
-          </span>{' '}
-          · {STAGE[api.step.stage]}
-        </p>
-      </div>
-      <article
-        ref={article}
-        key={api.index}
-        tabIndex={-1}
-        aria-label={`Step ${api.index + 1}, ${STAGE[api.step.stage]}`}
-        className="outline-none"
-      >
-        <Step api={api} />
-      </article>
-      <StepNav
-        canBack={api.index > 0}
-        canContinue={api.canContinue}
-        last={api.index === api.total - 1}
-        onBack={api.back}
-        onNext={api.next}
+    <div className="relative flex min-h-dvh flex-col">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px]"
+        style={{
+          background:
+            'radial-gradient(closest-side at 35% 20%, rgba(77,107,255,0.18), rgba(0,0,0,0) 72%), radial-gradient(closest-side at 70% 10%, rgba(47,230,176,0.10), rgba(0,0,0,0) 72%)',
+        }}
       />
-    </section>
+      {chrome && !api.finished && (
+        <LessonBar
+          chrome={chrome}
+          index={api.index}
+          total={api.total}
+          stage={api.step.stage}
+          hintsShown={api.state.hints}
+          hintsTotal={hintsIn(api.step)}
+          onHint={api.reveal}
+        />
+      )}
+
+      <main id="main" className="relative flex-1">
+        <div className="mx-auto w-full max-w-[1280px] px-4 pt-6 pb-10 ph:px-6 ph:pt-8 ph:pb-12">
+          {api.finished ? (
+            <section aria-labelledby="done-title" className="mx-auto flex max-w-2xl flex-col gap-5">
+              <article ref={article} tabIndex={-1} className="flex flex-col gap-4 outline-none">
+                <h1 id="done-title" className="font-display text-3xl font-bold text-ink">
+                  Lesson complete
+                </h1>
+                <p className="text-base leading-[26px] text-ink-soft">
+                  You finished <strong className="font-semibold text-ink">{pack.title}</strong>.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {next && <LinkButton href={next.href}>Next: {next.title}</LinkButton>}
+                  <Button variant="secondary" onClick={api.restart}>
+                    Start This Lesson Again
+                  </Button>
+                </div>
+              </article>
+            </section>
+          ) : (
+            <>
+              <h1 className="sr-only">{pack.title}</h1>
+              <article
+                ref={article}
+                key={api.index}
+                tabIndex={-1}
+                aria-label={`Step ${api.index + 1}, ${stageName(api.step.stage)}`}
+                className="outline-none"
+              >
+                <Step api={api} />
+              </article>
+              {guestNote && (
+                <div className={singleColumn(api.step) ? 'mx-auto mt-8 w-full max-w-[720px]' : 'mt-8'}>{guestNote}</div>
+              )}
+            </>
+          )}
+        </div>
+      </main>
+
+      {!api.finished && (
+        <LessonFooter
+          canBack={api.index > 0}
+          canContinue={api.canContinue}
+          last={api.index === api.total - 1}
+          onBack={api.back}
+          onNext={api.next}
+        />
+      )}
+    </div>
   )
 }

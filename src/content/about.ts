@@ -58,6 +58,8 @@ export const about = {
       'Every lesson has a size budget of 150 KB, so it loads on a weak connection.',
       'Module 1 is free, with no card needed.',
     ],
+    currencies: ['₦ Naira', 'GH₵ Cedi', 'KSh Shilling', '£ Pound', '$ Dollar'],
+    methods: ['Card', 'Bank transfer', 'USSD', 'Mobile money'],
   },
   commitments: {
     eyebrow: 'Our commitments',
@@ -101,7 +103,7 @@ export const about = {
     learn: {
       title: 'Learn with us',
       body: 'Front-End Web Development opens first, and Module 1 will be free for good. Prefer a teacher and a class? Join a PractiCode Academy cohort.',
-      academy: { label: 'PractiCode Academy Cohorts', href: 'https://practicode.tech' },
+      cohorts: { label: 'See Mentor Cohorts', href: '/mentors' },
     },
     partner: {
       title: 'Work with us',

@@ -1,15 +1,5 @@
 import Image from 'next/image'
-import {
-  ArrowRight,
-  Check,
-  Code,
-  Globe,
-  Icon,
-  Mail,
-  Smartphone,
-  Sparkles,
-  WifiOff,
-} from '@/components/ui/icon'
+import { ArrowRight, Check, Icon, Mail, Sparkles } from '@/components/ui/icon'
 import { buttonClasses } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
@@ -23,7 +13,20 @@ import { BetaNotice } from '@/components/marketing/beta-notice'
 import { breadcrumbLd } from '@/lib/seo/jsonld'
 import { metaFor } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/site'
-import { BookOpenCheck, Briefcase, GraduationCap, Laptop, Ruler, ShieldCheck } from 'lucide-react'
+import {
+  Accessibility,
+  Award,
+  Briefcase,
+  Download,
+  FolderCheck,
+  GraduationCap,
+  Laptop,
+  Lock,
+  MessageSquare,
+  Pointer,
+  Smile,
+} from 'lucide-react'
+import { cn } from '@/lib/cn'
 import founder from '@/assets/images/founder.webp'
 
 export const metadata = metaFor('/about')
@@ -36,8 +39,15 @@ function Eyebrow({ children, id }: { children: React.ReactNode; id?: string }) {
   )
 }
 
-const teachIcons = [Code, Ruler, BookOpenCheck, Sparkles]
-const accessIcons = [Smartphone, WifiOff, Globe, Check]
+const teachIcons = [Pointer, Award, FolderCheck, Sparkles]
+// The canvas gives each teaching card its own track colour.
+const teachTones = [
+  'bg-[rgba(77,107,255,0.16)] text-fe-text',
+  'bg-[rgba(47,230,176,0.14)] text-da-text',
+  'bg-[rgba(240,64,127,0.14)] text-ux-text',
+  'bg-[rgba(123,92,255,0.16)] text-ai-text',
+]
+const commitIcons = [Lock, Smile, Accessibility, MessageSquare]
 const factIcons = [Briefcase, Laptop, GraduationCap]
 
 function LinkedInMark() {
@@ -69,11 +79,11 @@ export default function AboutPage() {
               'radial-gradient(closest-side at 35% 45%, rgba(77,107,255,0.28), rgba(77,107,255,0) 70%), radial-gradient(closest-side at 65% 50%, rgba(123,92,255,0.24), rgba(123,92,255,0) 70%)',
           }}
         />
-        <Container className="relative grid gap-10 tab:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] tab:items-end">
+        <Container className="relative grid gap-10 tab:grid-cols-[minmax(0,1fr)_minmax(0,480px)] tab:items-center tab:gap-16">
           <div className="flex flex-col gap-6">
             <BetaNotice className="self-start" />
             <Eyebrow>{hero.eyebrow}</Eyebrow>
-            <Heading level={1} size="xl" id="about-title">
+            <Heading level={1} size="xl" id="about-title" className="[text-wrap:wrap] tab:text-[64px] tab:leading-[68px]">
               {hero.title}
             </Heading>
             <p className="max-w-[640px] text-[17px] leading-7 text-ink-muted ph:text-lg ph:leading-[30px]">
@@ -89,12 +99,15 @@ export default function AboutPage() {
               </a>
             </div>
           </div>
-          <div className="flex flex-col gap-3 rounded-3xl border border-line p-6 surface ph:p-8">
-            <p className="text-sm font-semibold text-fe-text">{hero.mission.label}</p>
-            <p className="font-display text-2xl leading-8 font-bold tracking-[-0.02em] text-ink">
+          <div className="flex flex-col gap-6 rounded-[32px] bg-[linear-gradient(150deg,#3D5AF5_0%,#6E4CF5_55%)] p-6 text-white ph:p-10">
+            <p className="self-start rounded-full bg-[rgba(7,6,13,0.28)] px-3 py-1 text-[13px] font-semibold">
+              {hero.mission.label}
+            </p>
+            <p className="font-display text-[26px] leading-8 font-extrabold tracking-[-0.025em] ph:text-[32px] ph:leading-10">
               {hero.mission.text}
             </p>
-            <p className="text-[15px] leading-6 text-ink-muted">{hero.mission.note}</p>
+            <span aria-hidden="true" className="block h-px w-full bg-white/25" />
+            <p className="text-[15px] leading-6">{hero.mission.note}</p>
           </div>
         </Container>
       </Section>
@@ -112,9 +125,12 @@ export default function AboutPage() {
               </p>
             ))}
           </div>
-          <figure className="flex flex-col justify-center gap-6 self-center rounded-[32px] border border-line p-8 surface ph:p-10">
-            <blockquote className="font-display text-2xl leading-[34px] font-bold tracking-[-0.02em] text-ink ph:text-[28px] ph:leading-[38px]">
-              <p>“{story.quote}”</p>
+          <figure className="flex flex-col justify-center gap-6 self-center rounded-[32px] border border-line p-6 surface ph:p-10">
+            <svg viewBox="0 0 48 36" className="h-9 w-12 fill-current text-ai-text" aria-hidden="true">
+              <path d="M0 36V20C0 8.6 6 2 18 0l2 5c-6.6 1.8-9.8 5.6-10 11h9v20zm27 0V20C27 8.6 33 2 45 0l2 5c-6.6 1.8-9.8 5.6-10 11h9v20z" />
+            </svg>
+            <blockquote className="font-display text-[22px] leading-8 font-bold tracking-[-0.02em] text-ink ph:text-[26px] ph:leading-9">
+              <p>{story.quote}</p>
             </blockquote>
             <figcaption className="text-[15px] font-medium text-ink-muted">{story.quoteBy}</figcaption>
           </figure>
@@ -125,18 +141,18 @@ export default function AboutPage() {
         <Container className="flex flex-col gap-8 ph:gap-12">
           <div className="flex flex-col gap-3">
             <Eyebrow>{teach.eyebrow}</Eyebrow>
-            <Heading level={2} size="lg" id="teach-title" className="max-w-[760px]">
+            <Heading level={2} size="lg" id="teach-title" className="[text-wrap:wrap]">
               {teach.title}
             </Heading>
           </div>
           <ul className="grid gap-4 ph:gap-6 tab:grid-cols-2 wide:grid-cols-4">
             {teach.items.map((item, i) => (
-              <li key={item.title} className="flex flex-col gap-3 rounded-3xl border border-line p-6 surface">
-                <span className="flex size-10 items-center justify-center rounded-xl bg-fe/15 text-fe-text">
-                  <Icon as={teachIcons[i]!} size={20} />
+              <li key={item.title} className="flex flex-col gap-4 rounded-3xl border border-line p-6 surface">
+                <span className={cn('flex size-12 items-center justify-center rounded-2xl', teachTones[i])}>
+                  <Icon as={teachIcons[i]!} size={22} />
                 </span>
                 <div className="flex flex-wrap items-center gap-2">
-                  <h3 className="font-display text-xl font-bold text-ink">{item.title}</h3>
+                  <h3 className="font-display text-[21px] leading-7 font-bold text-ink">{item.title}</h3>
                   {'soon' in item && <Pill tone="soon">Coming soon</Pill>}
                 </div>
                 <p className="text-[15px] leading-6 text-ink-muted">{item.body}</p>
@@ -154,42 +170,46 @@ export default function AboutPage() {
               {access.title}
             </Heading>
             <ul className="flex flex-col gap-4">
-              {access.items.map((item, i) => (
+              {access.items.map((item) => (
                 <li key={item} className="flex gap-3 text-[16px] leading-[26px] text-ink-soft">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-fe/15 text-fe-text">
-                    <Icon as={accessIcons[i]!} size={16} />
-                  </span>
-                  <span className="pt-0.5">{item}</span>
+                  <Icon as={Check} size={18} className="mt-1 shrink-0 text-da-text" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div
-            aria-hidden="true"
-            className="flex flex-col gap-4 rounded-[32px] border border-line p-6 surface ph:p-8"
-          >
-            <div className="flex items-center gap-3 rounded-2xl border border-line bg-sunken p-4">
-              <span className="flex size-10 items-center justify-center rounded-xl bg-success-fill text-on-success">
-                <Icon as={Check} size={20} strokeWidth={3} />
+          <div className="flex flex-col gap-6 rounded-[32px] border border-line p-6 surface ph:p-8">
+            <div className="flex flex-col gap-3">
+              <p className="text-sm font-semibold text-ink-muted">Pay in your currency</p>
+              <ul className="flex flex-wrap gap-2">
+                {access.currencies.map((c) => (
+                  <li key={c} className="inline-flex h-10 items-center rounded-full border border-line-control px-4 text-sm font-medium text-ink">
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-wrap items-center gap-2">
+                <p className="text-sm font-semibold text-ink-muted">Pay your way</p>
+                <Pill tone="soon">When Pro opens</Pill>
+              </div>
+              <ul className="flex flex-wrap gap-2">
+                {access.methods.map((m) => (
+                  <li key={m} className="inline-flex h-10 items-center rounded-full border border-line-control px-4 text-sm font-medium text-ink">
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center gap-4 rounded-[20px] border border-line bg-sunken p-5">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-[rgba(47,230,176,0.16)] text-da-text">
+                <Icon as={Download} size={20} />
               </span>
               <div>
-                <p className="text-[15px] font-semibold text-ink">Built to work offline</p>
-                <p className="text-[13px] text-ink-muted">
-                  Lessons you open will keep working on the bus, at work, or when the network drops
-                </p>
+                <p className="text-[15px] font-semibold text-ink">Lessons you open, saved for offline</p>
+                <p className="mt-0.5 text-[13px] text-ink-muted">Keeps working on the bus, at work, or when the network drops</p>
               </div>
-            </div>
-            <div className="grid grid-cols-3 gap-3 text-center text-[13px]">
-              {[
-                ['150 KB', 'per lesson, at most'],
-                ['0', 'videos to stream'],
-                ['Free', 'Module 1'],
-              ].map(([big, small]) => (
-                <div key={small} className="rounded-2xl border border-line bg-sunken p-3">
-                  <p className="font-display text-xl font-extrabold text-ink">{big}</p>
-                  <p className="text-ink-muted">{small}</p>
-                </div>
-              ))}
             </div>
           </div>
         </Container>
@@ -204,12 +224,15 @@ export default function AboutPage() {
             </Heading>
           </div>
           <ul className="grid gap-4 ph:gap-6 tab:grid-cols-2">
-            {commitments.items.map((item) => (
-              <li key={item.title} className="flex gap-4 rounded-3xl border border-line bg-row p-6">
-                <Icon as={ShieldCheck} size={22} className="mt-0.5 shrink-0 text-success" />
-                <p className="text-[15px] leading-6 text-ink-muted">
-                  <strong className="font-semibold text-ink">{item.title}</strong> {item.body}
-                </p>
+            {commitments.items.map((item, i) => (
+              <li key={item.title} className="flex items-start gap-5 rounded-3xl border border-line p-6 surface">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-control text-ink-soft">
+                  <Icon as={commitIcons[i]!} size={20} />
+                </span>
+                <div className="flex flex-col gap-2">
+                  <h3 className="font-display text-[21px] leading-7 font-bold text-ink">{item.title}</h3>
+                  <p className="text-[15px] leading-6 text-ink-muted">{item.body}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -279,37 +302,37 @@ export default function AboutPage() {
             Learn or work with us
           </h2>
           <div className="grid gap-4 ph:gap-6 tab:grid-cols-2">
-            <div className="flex flex-col gap-4 rounded-[32px] p-6 text-white [background:var(--pc-card-fe)] ph:p-10">
-              <h3 className="font-display text-[28px] leading-9 font-extrabold tracking-[-0.025em]">
+            <div className="flex flex-col gap-5 rounded-[32px] border border-line p-6 surface ph:p-10">
+              <h3 className="font-display text-[28px] leading-9 font-extrabold tracking-[-0.03em] text-ink ph:text-4xl ph:leading-[42px]">
                 {work.learn.title}
               </h3>
-              <p className="text-base leading-[26px] text-[#e3e7ff]">{work.learn.body}</p>
+              <p className="text-base leading-[26px] text-ink-muted">{work.learn.body}</p>
               <div className="mt-auto flex flex-wrap gap-3 pt-2">
-                <LinkButton href={primaryCta.href} className="bg-white text-[#2d45d8] hover:opacity-90">
+                <LinkButton href={primaryCta.href} className="h-12">
                   {primaryCta.label}
                 </LinkButton>
-                <a
-                  href={work.learn.academy.href}
-                  className="inline-flex h-[42px] items-center rounded-full border border-white/40 px-5 text-[15px] font-medium text-white hover:bg-white/10"
-                >
-                  {work.learn.academy.label}
-                </a>
+                <LinkButton href={work.learn.cohorts.href} variant="secondary" className="h-12 font-medium">
+                  {work.learn.cohorts.label}
+                </LinkButton>
               </div>
             </div>
-            <div className="flex flex-col gap-4 rounded-[32px] border border-line p-6 surface ph:p-10">
-              <h3 className="font-display text-[28px] leading-9 font-extrabold tracking-[-0.025em] text-ink">
+            <div className="flex flex-col gap-5 rounded-[32px] border border-line p-6 text-white [background:var(--pc-card-work)] ph:p-10">
+              <h3 className="font-display text-[28px] leading-9 font-extrabold tracking-[-0.03em] ph:text-4xl ph:leading-[42px]">
                 {work.partner.title}
               </h3>
-              <p className="text-base leading-[26px] text-ink-muted">{work.partner.body}</p>
+              <p className="text-base leading-[26px] text-white/85">{work.partner.body}</p>
               <div className="mt-auto pt-2">
-                <a href={work.partner.email.href} className={buttonClasses({ variant: 'secondary' })}>
+                <a
+                  href={work.partner.email.href}
+                  className={buttonClasses({}, 'h-12 bg-white text-[#006B47] max-ph:w-full')}
+                >
                   <Icon as={Mail} size={16} />
                   {work.partner.email.label}
                 </a>
               </div>
+              <p className="text-[13px] text-white/75">{work.address}</p>
             </div>
           </div>
-          <p className="text-center text-[13px] text-ink-subtle">{work.address}</p>
         </Container>
       </Section>
 

@@ -3,6 +3,7 @@ import type { LessonStep } from '@/lib/lessons/schema'
 import { cn } from '@/lib/cn'
 import type { LessonPlayerApi } from '../player/use-lesson-player'
 import { Prose } from '../parts/prose'
+import { StepGrid, StepHeading } from '../parts/step-layout'
 
 /** Two to four key points, and cards to check yourself. */
 export function RecapStep({
@@ -14,8 +15,11 @@ export function RecapStep({
 }) {
   const flipped = api.state.flipped ?? []
   return (
-    <div className="flex flex-col gap-5">
-      <h2 className="font-display text-xl font-bold text-ink">What you can do now</h2>
+    <StepGrid
+      top={
+        <>
+          <StepHeading stage={step.stage} />
+          <h3 className="font-display text-xl font-bold text-ink">What you can do now</h3>
       <ol className="flex flex-col gap-2.5">
         {step.points.map((point, i) => (
           <li
@@ -52,6 +56,8 @@ export function RecapStep({
           )
         })}
       </div>
-    </div>
+        </>
+      }
+    />
   )
 }

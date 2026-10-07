@@ -3,11 +3,9 @@ import { BookOpen, Clock, Icon, Mail } from '@/components/ui/icon'
 import { buttonClasses } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { LinkButton } from '@/components/ui/link-button'
-import { ShareButtons } from '@/components/share/share-buttons'
 import type { TrackContent } from '@/content/tracks'
 import { FIRST_LESSON, LESSONS_OPEN } from '@/content/navigation'
 import { landing } from '@/content/landing'
-import { absoluteUrl } from '@/lib/site'
 import { FolderOpen, Gift } from 'lucide-react'
 import type { Route } from 'next'
 import { BetaNotice } from './beta-notice'
@@ -68,7 +66,6 @@ export function TrackHero({ track }: { track: TrackContent }) {
     { icon: Gift, text: 'Module 1 is free' },
   ]
   const [first, ...rest] = track.title.split(' ')
-  const url = absoluteUrl(`/tracks/${track.slug}`)
 
   return (
     <section aria-labelledby="track-title" className="relative overflow-hidden pt-8 pb-12 ph:pt-12 ph:pb-20">
@@ -141,14 +138,6 @@ export function TrackHero({ track }: { track: TrackContent }) {
           <p className="text-[13px] text-ink-subtle">
             Aligned to the MDN Curriculum and SFIA 9{LESSONS_OPEN ? ' · Lessons save for offline' : ''}
           </p>
-          <div className="flex flex-col gap-2">
-            <p className="text-[13px] font-medium text-ink-muted">Share this track</p>
-            <ShareButtons
-              url={url}
-              title={`${track.title} · PractiCode Learn`}
-              text={`${track.title} on PractiCode Learn: ${track.tagline.toLowerCase()}. Module 1 is free.`}
-            />
-          </div>
         </div>
         <PortfolioPreview />
       </Container>

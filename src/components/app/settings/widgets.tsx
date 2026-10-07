@@ -215,8 +215,8 @@ export function WeeklySwitch({ on }: { on: boolean }) {
 export function OfflineList() {
   const [items, setItems] = useState<{ url: string; title: string; bytes: number }[] | null>(null)
   useEffect(() => {
-    if (!('caches' in window)) return setItems([])
     const load = async () => {
+      if (!('caches' in window)) return setItems([])
       const names = (await caches.keys()).filter((n) => n.startsWith('pc-pages'))
       const found: { url: string; title: string; bytes: number }[] = []
       for (const name of names) {

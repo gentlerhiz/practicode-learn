@@ -10,7 +10,8 @@ test('a guest can play a whole lesson and is offered to save progress', async ({
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
   await playWholeLesson(page)
   await expect(page.getByRole('heading', { name: /done/ })).toBeVisible()
-  await expect(page.getByRole('link', { name: 'Save My Progress' })).toHaveAttribute(
+  await expect(page.getByRole('button', { name: 'Continue with Google' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Sign Up with Email or Phone' })).toHaveAttribute(
     'href',
     /\/signup\?next=%2Flearn%2Fsamples%2Fevery-step/,
   )
@@ -29,9 +30,11 @@ test('lesson pages are readable by search engines before any JavaScript runs', a
   const page = await context.newPage()
   await page.goto(LESSON)
   await expect(page.getByRole('heading', { level: 1, name: 'Every step, once' })).toBeVisible()
-  await expect(page.getByRole('region', { name: 'What’s in this lesson' })).toBeVisible()
-  await expect(page.getByRole('region', { name: 'What’s in this lesson' })).toContainText(
-    'A page arrives as a request and a response',
+  // The first step and the lesson header are rendered on the server; what it teaches is in its JSON-LD.
+  await expect(page.getByText('Ada sells paper lanterns')).toBeVisible()
+  await expect(page.getByText('Step 1 of 15')).toBeVisible()
+  expect(await page.locator('script[type="application/ld+json"]').allTextContents()).toEqual(
+    expect.arrayContaining([expect.stringContaining('A page arrives as a request and a response')]),
   )
   await context.close()
 })

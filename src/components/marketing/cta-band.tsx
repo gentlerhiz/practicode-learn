@@ -27,6 +27,37 @@ export function CtaBand({ context = 'landing' }: { context?: 'landing' | 'track'
   const primary =
     context === 'track' ? { href: FIRST_LESSON as Route, label: 'Start Module 1 Free' } : primaryCta
 
+  // The track page's band (PrismTrack) is one line, "It's free." in green, and one button.
+  if (context === 'track' && LESSONS_OPEN) {
+    return (
+      <Section labelledBy="cta-title" className="pb-16 ph:pb-28">
+        <Container>
+          <div className="relative overflow-hidden rounded-[36px] border border-line bg-row px-6 py-14 text-center ph:px-8 ph:py-20">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 [opacity:var(--pc-glow-opacity)]"
+              style={{
+                background:
+                  'radial-gradient(closest-side at 15% 25%, rgba(77,107,255,0.42), rgba(77,107,255,0) 70%), radial-gradient(closest-side at 85% 75%, rgba(123,92,255,0.40), rgba(123,92,255,0) 70%)',
+              }}
+            />
+            <div className="relative flex flex-col items-center gap-5">
+              <h2
+                id="cta-title"
+                className="font-display text-[30px] leading-9 font-extrabold tracking-[-0.035em] text-ink ph:text-[40px] ph:leading-[44px]"
+              >
+                Module 1 takes about an hour. <span className="text-da-text">It’s free.</span>
+              </h2>
+              <LinkButton href={primary.href} className="h-[54px] px-8 text-base">
+                {primary.label}
+              </LinkButton>
+            </div>
+          </div>
+        </Container>
+      </Section>
+    )
+  }
+
   return (
     <Section labelledBy="cta-title" className="pb-16 ph:pb-28">
       <Container>
