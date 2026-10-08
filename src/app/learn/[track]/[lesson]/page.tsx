@@ -6,7 +6,7 @@ import { JsonLd } from '@/components/seo/json-ld'
 import { LogoIcon } from '@/components/layout/logo'
 import { Card, LinkButton } from '@/components/ui'
 import { getTrackContent } from '@/content/tracks'
-import { getLesson, listPublishedLessons } from '@/lib/lessons/catalogue'
+import { getLesson, lessonsToPrebuild, listPublishedLessons } from '@/lib/lessons/catalogue'
 import { loadPack } from '@/lib/lessons/packs'
 import type { LessonMeta } from '@/lib/lessons/types'
 import { breadcrumbLd, learningResourceLd } from '@/lib/seo/jsonld'
@@ -16,9 +16,9 @@ const TRACK_SHORT: Record<string, string> = { 'front-end-web-development': 'Fron
 const pathOf = (l: Pick<LessonMeta, 'track' | 'slug'>) => `/learn/${l.track}/${l.slug}`
 const plain = (html: string) => html.replace(/<[^>]+>/g, '').trim()
 
-// Every free lesson is built ahead of time; others render on request (and answer 404 if unknown).
+// Free lessons in real tracks are built ahead of time; others render on request (and answer 404 if unknown).
 export async function generateStaticParams() {
-  return (await listPublishedLessons()).filter((l) => l.free).map((l) => ({ track: l.track, lesson: l.slug }))
+  return lessonsToPrebuild(await listPublishedLessons()).map((l) => ({ track: l.track, lesson: l.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps<'/learn/[track]/[lesson]'>): Promise<Metadata> {

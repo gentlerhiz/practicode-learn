@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { getLesson, listPublishedLessons } from '@/lib/lessons/catalogue'
+import { getLesson, lessonsToPrebuild, listPublishedLessons } from '@/lib/lessons/catalogue'
 import { brandCard, ogFonts } from '@/lib/og/brand-card'
 
 export const alt = 'A lesson on PractiCode Learn'
@@ -9,7 +9,7 @@ export const contentType = 'image/png'
 const TRACK_SHORT: Record<string, string> = { 'front-end-web-development': 'Front-End', samples: 'Samples' }
 
 export async function generateStaticParams() {
-  return (await listPublishedLessons()).filter((l) => l.free).map((l) => ({ track: l.track, lesson: l.slug }))
+  return lessonsToPrebuild(await listPublishedLessons()).map((l) => ({ track: l.track, lesson: l.slug }))
 }
 
 /** The share card for one lesson: where it sits in the track, its title, and that it's free. */

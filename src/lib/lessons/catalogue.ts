@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { createClient } from '@supabase/supabase-js'
 import { cache } from 'react'
+import { getTrackContent } from '@/content/tracks'
 import { publicEnv } from '@/lib/env'
 import type { Database } from '@/types/database'
 import type { CatalogueEntry, LessonMeta } from './types'
@@ -55,8 +56,15 @@ async function fromSupabase(): Promise<LessonMeta[]> {
   }))
 }
 
-const loadCatalogue = cache(() =>
-  publicEnv.NEXT_PUBLIC_CONTENT_SOURCE === 'supabase' ? fromSupabase() : fromSamples(),
+/** A track the site has a page for, or the bundled samples. */
+const knownTrack = (l: LessonMeta) => l.track === 'samples' || Boolean(getTrackContent(l.track))
+
+// Rows in any other track (such as the one the database tests leave on dev) are never shown: not built,
+// not in the sitemap, and their address answers 404. So a lesson without a real pack can't stop a deploy.
+const loadCatalogue = cache(async () =>
+  (publicEnv.NEXT_PUBLIC_CONTENT_SOURCE === 'supabase' ? await fromSupabase() : await fromSamples()).filter(
+    knownTrack,
+  ),
 )
 
 /** Published lessons in course order, optionally for one track. */
@@ -65,6 +73,11 @@ export async function listPublishedLessons(track?: string): Promise<LessonMeta[]
   return lessons
     .filter((l) => !track || l.track === track)
     .sort((a, b) => a.module - b.module || a.lesson - b.lesson)
+}
+
+/** The lessons built ahead of time: free ones in a known track. */
+export function lessonsToPrebuild(lessons: LessonMeta[]): LessonMeta[] {
+  return lessons.filter((l) => l.free && knownTrack(l))
 }
 
 export async function getLesson(track: string, slug: string): Promise<LessonMeta | null> {
