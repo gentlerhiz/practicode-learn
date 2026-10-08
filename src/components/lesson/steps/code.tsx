@@ -80,8 +80,8 @@ export function CodeStep({ step, api }: { step: CodeStepData; api: LessonPlayerA
           </div>
           <TestsList tests={step.tests} results={results} />
           <div className="flex flex-wrap items-center gap-3">
-            <Button size="sm" onClick={() => start(true)} disabled={checking}>
-              <Glyph name="play" size={14} />
+            <Button size="sm" onClick={() => start(true)} pending={checking}>
+              {!checking && <Glyph name="play" size={14} />}
               {checking ? 'Checking…' : 'Run Tests'}
             </Button>
           </div>

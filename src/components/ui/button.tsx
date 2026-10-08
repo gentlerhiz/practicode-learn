@@ -1,4 +1,5 @@
 import { cn } from '@/lib/cn'
+import { Spinner } from './spinner'
 
 const variants = {
   // Flat by rule: primary buttons never carry a shadow or glow.
@@ -23,18 +24,33 @@ export type ButtonStyle = { variant?: keyof typeof variants; size?: keyof typeof
 
 export const buttonClasses = ({ variant = 'primary', size = 'md' }: ButtonStyle, extra?: string) =>
   cn(
-    'press inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-45',
+    'press inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full font-semibold whitespace-nowrap disabled:cursor-not-allowed disabled:opacity-45 disabled:aria-busy:cursor-progress disabled:aria-busy:opacity-90',
     variants[variant],
     sizes[size],
     extra,
   )
 
+/** A button. With `pending`, it shows a spinner, says it is busy, and can't be pressed again until done. */
 export function Button({
   variant,
   size,
   className,
   type = 'button',
+  pending = false,
+  disabled,
+  children,
   ...props
-}: ButtonStyle & React.ComponentProps<'button'>) {
-  return <button type={type} className={buttonClasses({ variant, size }, className)} {...props} />
+}: ButtonStyle & React.ComponentProps<'button'> & { pending?: boolean }) {
+  return (
+    <button
+      type={type}
+      className={buttonClasses({ variant, size }, className)}
+      disabled={disabled || pending}
+      aria-busy={pending || undefined}
+      {...props}
+    >
+      {pending && <Spinner size={size === 'sm' ? 14 : 16} />}
+      {children}
+    </button>
+  )
 }

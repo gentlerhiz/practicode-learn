@@ -85,7 +85,7 @@ export function SignupForm({ next }: { next?: string }) {
         )}
         <Checkbox name="weekly">Send me a short progress email on Sundays. You can turn it off any time.</Checkbox>
         <FormMessage error={method === 'email' ? state.error : phoneState.error} />
-        <Button type="submit" size="form" disabled={pending} className="h-[54px] w-full gap-3">
+        <Button type="submit" size="form" pending={pending} className="h-[54px] w-full gap-3">
           {pending ? 'Creating Your Account…' : method === 'email' ? 'Create My Account' : 'Send My Code'}
           {!pending && <ArrowRight aria-hidden="true" size={18} strokeWidth={1.85} />}
         </Button>

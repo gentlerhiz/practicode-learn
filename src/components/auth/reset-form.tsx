@@ -1,5 +1,6 @@
 'use client'
 
+import { Spinner } from '@/components/ui/spinner'
 import type { Route } from 'next'
 import Link from 'next/link'
 import { Mail } from 'lucide-react'
@@ -39,8 +40,9 @@ export function ResetForm() {
         <form action={action} className="text-center text-sm leading-[22px] text-ink-muted">
           <input type="hidden" name="email" value={email} />
           Nothing yet? Check Spam, or{' '}
-          <button type="submit" disabled={pending} className={`press cursor-pointer ${inlineLink}`}>
-            send it again
+          <button type="submit" disabled={pending} aria-busy={pending || undefined} className={`press cursor-pointer ${inlineLink}`}>
+            {pending && <Spinner size={13} className="mr-1 inline-block align-[-2px]" />}
+            {pending ? 'sending it again' : 'send it again'}
           </button>
           .
         </form>
@@ -67,7 +69,7 @@ export function ResetForm() {
           />
         </Field>
         <FormMessage error={state.error} />
-        <Button type="submit" size="form" disabled={pending} className="w-full">
+        <Button type="submit" size="form" pending={pending} className="w-full">
           {pending ? 'Sending…' : 'Send Reset Link'}
         </Button>
       </form>

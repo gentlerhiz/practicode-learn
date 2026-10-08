@@ -1,5 +1,6 @@
 'use client'
 
+import { Spinner } from '@/components/ui/spinner'
 import { useActionState } from 'react'
 import { resendConfirmation, type AuthFormState } from '@/lib/auth/actions'
 import { cn } from '@/lib/cn'
@@ -14,10 +15,11 @@ export function ResendConfirmation({ email }: { email: string }) {
         type="submit"
         disabled={pending}
         className={cn(
-          'press cursor-pointer text-sm underline underline-offset-2',
+          'press inline-flex cursor-pointer items-center gap-1.5 text-sm underline underline-offset-2',
           state.sent ? 'text-success' : state.error ? 'text-error' : 'text-ink-soft hover:text-ink',
         )}
       >
+        {pending && <Spinner size={13} />}
         {state.sent ? state.notice : state.error ? state.error : pending ? 'Sending…' : 'Send the email again'}
       </button>
     </form>

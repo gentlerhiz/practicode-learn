@@ -88,7 +88,7 @@ export function CheckView({ data }: { data: CheckData }) {
               <pre tabIndex={0} aria-label="Code" className="code-colours overflow-x-auto rounded-[18px] border border-divider bg-sunken py-4 font-mono text-[13px] leading-[26px] text-ink ph:text-[15px] ph:leading-7">
                 {code.split('\n').map((line, n) => (
                   <div key={n} className="flex px-6 whitespace-pre">
-                    <span className="w-[30px] shrink-0 text-code-gutter select-none">{n + 1}</span>
+                    <span aria-hidden="true" className="w-[30px] shrink-0 text-code-gutter select-none">{n + 1}</span>
                     <span dangerouslySetInnerHTML={{ __html: line || ' ' }} />
                   </div>
                 ))}

@@ -71,7 +71,7 @@ export function Workspace({ data }: { data: WorkspaceData }) {
             <Glyph name="chevronRight" size={18} className="rotate-180" />
           </Link>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[15px] font-semibold text-ink">{data.title}</p>
+            <h1 className="truncate text-[15px] font-semibold text-ink">{data.title}</h1>
             <p className="text-[13px] text-ink-subtle">
               <span className="text-fe-text">{data.track}</span> · Module {data.module} project
               {data.saved && <span className="hidden ph:inline"> · {data.saved}</span>}
@@ -234,7 +234,7 @@ export function Workspace({ data }: { data: WorkspaceData }) {
                   const flagged = current.name.endsWith('.css') && selected?.lines?.includes(i + 1)
                   return (
                     <div key={i} className={cn('flex px-4 whitespace-pre', flagged && 'bg-[rgba(255,154,162,0.12)] shadow-[inset_3px_0_0_#ff9aa2]')}>
-                      <span className="w-8 shrink-0 text-code-gutter select-none">{i + 1}</span>
+                      <span aria-hidden="true" className="w-8 shrink-0 text-code-gutter select-none">{i + 1}</span>
                       <span dangerouslySetInnerHTML={{ __html: line || ' ' }} />
                     </div>
                   )

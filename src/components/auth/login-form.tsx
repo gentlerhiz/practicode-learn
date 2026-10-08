@@ -1,5 +1,6 @@
 'use client'
 
+import { Spinner } from '@/components/ui/spinner'
 import type { Route } from 'next'
 import Link from 'next/link'
 import { useActionState, useState } from 'react'
@@ -68,14 +69,15 @@ export function LoginForm({ next, initialMethod = 'email' }: { next?: string; in
                 type="submit"
                 formAction={resendAction}
                 disabled={resending}
-                className="press cursor-pointer self-start text-sm text-ink-soft underline underline-offset-2 hover:text-ink"
+                className="press inline-flex cursor-pointer items-center gap-1.5 self-start text-sm text-ink-soft underline underline-offset-2 hover:text-ink"
               >
-                Send the confirmation email again
+                {resending && <Spinner size={13} />}
+                {resending ? 'Sending…' : 'Send the confirmation email again'}
               </button>
               <FormMessage error={resent.error} notice={resent.notice} />
             </div>
           )}
-          <Button type="submit" size="form" disabled={emailPending} className="w-full">
+          <Button type="submit" size="form" pending={emailPending} className="w-full">
             {emailPending ? 'Logging In…' : 'Log In'}
           </Button>
         </form>
@@ -90,7 +92,7 @@ export function LoginForm({ next, initialMethod = 'email' }: { next?: string; in
             Keep me logged in on this device
           </Checkbox>
           <FormMessage error={phoneState.error} />
-          <Button type="submit" size="form" disabled={phonePending} className="w-full">
+          <Button type="submit" size="form" pending={phonePending} className="w-full">
             {phonePending ? 'Sending…' : 'Send My Code'}
           </Button>
         </form>

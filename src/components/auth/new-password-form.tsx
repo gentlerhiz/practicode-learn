@@ -81,7 +81,7 @@ export function NewPasswordForm({ email, name }: { email?: string; name?: string
           ))}
         </ul>
         <FormMessage error={state.error} />
-        <Button type="submit" size="form" disabled={pending} className="w-full">
+        <Button type="submit" size="form" pending={pending} className="w-full">
           {pending ? 'Saving…' : 'Save New Password'}
         </Button>
       </form>

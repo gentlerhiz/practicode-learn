@@ -1,5 +1,6 @@
 'use client'
 
+import { Spinner } from '@/components/ui/spinner'
 import { useActionState, useEffect, useState } from 'react'
 import { Button } from '@/components/ui'
 import { sendPhoneCode, verifyPhoneCode, type AuthFormState } from '@/lib/auth/actions'
@@ -68,7 +69,7 @@ export function CodeForm({ phone, next }: { phone: string; next?: string }) {
           {error}
         </p>
       )}
-      <Button type="submit" size="form" disabled={pending} className="w-full">
+      <Button type="submit" size="form" pending={pending} className="w-full">
         {pending ? 'Checking…' : 'Verify and Continue'}
       </Button>
     </form>
@@ -91,9 +92,10 @@ export function ResendCode({ phone }: { phone: string }) {
       <button
         type="submit"
         disabled={waiting || pending}
-        className="press h-10 cursor-pointer rounded-full px-4 text-sm text-ink-muted enabled:hover:bg-hover enabled:hover:text-ink disabled:cursor-default"
+        className="press inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-4 text-sm text-ink-muted enabled:hover:bg-hover enabled:hover:text-ink disabled:cursor-default"
       >
-        {waiting ? `Didn’t get it? Resend in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Didn’t get it? Send a new code'}
+        {pending && <Spinner size={14} />}
+        {pending ? 'Sending a new code…' : waiting ? `Didn’t get it? Resend in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Didn’t get it? Send a new code'}
       </button>
       <FormMessage error={state.error} />
     </form>

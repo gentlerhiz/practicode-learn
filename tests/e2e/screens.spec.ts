@@ -26,7 +26,10 @@ for (const screen of SCREENS) {
     for (const scheme of ['dark', 'light'] as const) {
       await page.emulateMedia({ colorScheme: scheme })
       await page.goto(`/fixtures/screens/${screen}`)
-      await expect(page.locator('#main')).toBeVisible()
+      // The loading skeleton has no heading by design; it says it is busy instead.
+      const ready =
+        screen === 'loading' ? page.locator('[aria-busy="true"]') : page.getByRole('heading', { level: 1 }).first()
+      await expect(ready).toBeVisible()
       const results = await new AxeBuilder({ page })
         .exclude('iframe')
         .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])

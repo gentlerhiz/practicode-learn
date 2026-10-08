@@ -6,7 +6,7 @@ import { Glyph } from '@/components/ui/glyph'
 import type { Currency } from '@/content/pricing'
 import type { PlanTimeId } from '@/lib/onboarding/plan'
 import { cn } from '@/lib/cn'
-import { Pills, Row, SettingsCard, Soon, Switch, Titled, Value, smallButton } from './parts'
+import { LogOutButton, Pills, Row, SettingsCard, Soon, Switch, Titled, Value, smallButton } from './parts'
 import { SettingsNav } from './settings-nav'
 import { CountryRow, DeleteRow, EmailRow, GoalPills, NameRow, OfflineList, WeeklySwitch } from './widgets'
 
@@ -55,12 +55,7 @@ export function SettingsView({ data }: { data: SettingsData }) {
             <CountryRow country={data.country} currency={data.currency} />
             <Row>
               <Titled title="Log out" note="Sign out of PractiCode Learn on this device." />
-              <form method="post" action="/auth/signout">
-                <button type="submit" className={smallButton}>
-                  <Glyph name="logout" size={15} />
-                  Log Out
-                </button>
-              </form>
+              <LogOutButton />
             </Row>
           </SettingsCard>
 

@@ -24,7 +24,7 @@
   --pc-success: #4be3a8;
   --pc-error: #ff9aa2;
   --pc-badge-text: #ff8a3d;
-  --pc-code-gutter: #5e5a75;
+  --pc-code-gutter: #8b88a0; /* the canvas has #5e5a75, which fails WCAG AA contrast */
   /* Track text and icon colours ("tint" on dark) */
   --pc-fe-text: #8ea2ff;
   --pc-da-text: #4be3a8;
@@ -74,7 +74,7 @@
   --pc-success: #08704f;
   --pc-error: #b42834;
   --pc-badge-text: #b23a0a;
-  --pc-code-gutter: #8a86a0;
+  --pc-code-gutter: #5d5972; /* the canvas has #8a86a0, which fails WCAG AA contrast */
   --pc-fe-text: #3550e6;
   --pc-da-text: #08704f;
   --pc-ux-text: #b81f57;

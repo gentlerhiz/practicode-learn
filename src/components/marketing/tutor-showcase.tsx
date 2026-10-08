@@ -23,7 +23,7 @@ function Line({ n, children, flagged }: { n: number; children: React.ReactNode; 
     <div
       className={flagged ? 'flex bg-[rgba(255,138,61,0.12)] px-4 whitespace-pre shadow-[inset_3px_0_0_#ff8a3d]' : 'flex px-4 whitespace-pre'}
     >
-      <span className={flagged ? 'w-6 shrink-0 text-[#ff8a3d]' : 'w-6 shrink-0 text-code-gutter'}>{n}</span>
+      <span aria-hidden="true" className={flagged ? 'w-6 shrink-0 text-[#ff8a3d]' : 'w-6 shrink-0 text-code-gutter'}>{n}</span>
       <span>{children}</span>
     </div>
   )
@@ -100,7 +100,7 @@ export function TutorShowcase() {
                 </Line>
                 <Line n={4}>
                   {fn('print')}
-                  {p('(')}score{p(')')} <span className="text-code-gutter"># 1.0</span>
+                  {p('(')}score{p(')')} <span className="text-ink-subtle"># 1.0</span>
                 </Line>
               </div>
               <div aria-live="polite" className="flex flex-col gap-3">

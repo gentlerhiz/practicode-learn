@@ -7,6 +7,7 @@ import { inputClasses } from '@/components/ui/field'
 import { CURRENCIES, type Currency } from '@/content/pricing'
 import { PLAN_TIMES, type PlanTimeId } from '@/lib/onboarding/plan'
 import { cn } from '@/lib/cn'
+import { Spinner } from '@/components/ui/spinner'
 import { Pills, Row, Switch, Value, smallButton, smallPrimary } from './parts'
 
 function Saved({ text = 'Saved.' }: { text?: string }) {
@@ -48,7 +49,8 @@ export function NameRow({ name }: { name: string | null }) {
             </p>
           )}
           <div className="flex gap-2">
-            <button type="submit" disabled={pending} className={smallPrimary}>
+            <button type="submit" disabled={pending} aria-busy={pending || undefined} className={smallPrimary}>
+              {pending && <Spinner size={14} />}
               {pending ? 'Saving…' : 'Save'}
             </button>
             <button type="button" onClick={() => setEditing(false)} className={smallButton}>
@@ -107,7 +109,8 @@ export function EmailRow({ email }: { email: string | null }) {
             </p>
           )}
           <div className="flex gap-2">
-            <button type="submit" disabled={pending} className={smallPrimary}>
+            <button type="submit" disabled={pending} aria-busy={pending || undefined} className={smallPrimary}>
+              {pending && <Spinner size={14} />}
               {pending ? 'Sending…' : 'Save'}
             </button>
             <button type="button" onClick={() => setEditing(false)} className={smallButton}>
@@ -317,6 +320,7 @@ export function DeleteRow() {
               Keep My Account
             </button>
             <button type="submit" disabled={pending} className={cn(smallButton, 'border-error/50 text-error hover:border-error hover:bg-error/10')}>
+              {pending && <Spinner size={14} />}
               {pending ? 'Deleting…' : 'Delete My Account'}
             </button>
           </form>

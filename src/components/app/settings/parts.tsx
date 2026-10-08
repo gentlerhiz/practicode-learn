@@ -2,13 +2,28 @@
 
 import { Glyph, type GlyphName } from '@/components/ui/glyph'
 import { TutorSpark } from '@/components/learn/tutor-spark'
+import { useState } from 'react'
+import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/lib/cn'
 
 /** PrismSettings' small pill buttons: Edit, Change, Update, View. */
 export const smallButton =
   'press inline-flex h-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full border border-line-control px-4 text-[13px] text-ink hover:border-line-strong hover:bg-hover disabled:cursor-not-allowed disabled:opacity-50'
 export const smallPrimary =
-  'press inline-flex h-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary px-4 text-[13px] font-semibold text-on-primary hover:opacity-90 disabled:opacity-50'
+  'press inline-flex h-9 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary px-4 text-[13px] font-semibold text-on-primary hover:opacity-90 disabled:opacity-50'
+
+/** Log Out posts to the sign-out route, a full page load, so it shows its own spinner meanwhile. */
+export function LogOutButton() {
+  const [pending, setPending] = useState(false)
+  return (
+    <form method="post" action="/auth/signout" onSubmit={() => setPending(true)}>
+      <button type="submit" disabled={pending} aria-busy={pending || undefined} className={smallButton}>
+        {pending ? <Spinner size={14} /> : <Glyph name="logout" size={15} />}
+        {pending ? 'Logging Out…' : 'Log Out'}
+      </button>
+    </form>
+  )
+}
 
 /** A feature that has its controls but not its backend yet. */
 export function Soon() {

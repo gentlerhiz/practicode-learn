@@ -20,3 +20,17 @@ it('the form size matches the canvas field height', () => {
   render(<Button size="form">Log In</Button>)
   expect(screen.getByRole('button').className).toMatch(/h-\[52px\]/)
 })
+it('a pending button shows a spinner, is busy and cannot be pressed again', () => {
+  render(<Button pending>Saving…</Button>)
+  const button = screen.getByRole('button', { name: 'Saving…' })
+  expect(button).toBeDisabled()
+  expect(button).toHaveAttribute('aria-busy', 'true')
+  expect(button.querySelector('[data-spinner]')).not.toBeNull()
+})
+it('a button that is not pending has no spinner', () => {
+  render(<Button>Save</Button>)
+  const button = screen.getByRole('button', { name: 'Save' })
+  expect(button).toBeEnabled()
+  expect(button).not.toHaveAttribute('aria-busy')
+  expect(button.querySelector('[data-spinner]')).toBeNull()
+})

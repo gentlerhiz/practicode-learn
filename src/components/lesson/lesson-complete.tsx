@@ -1,7 +1,7 @@
 'use client'
 import type { Route } from 'next'
 import Link from 'next/link'
-import { buttonClasses, Button, LinkButton } from '@/components/ui'
+import { Button, LinkButton, SubmitButton } from '@/components/ui'
 import { Glyph } from '@/components/ui/glyph'
 import { LogoIcon } from '@/components/layout/logo'
 import { signInWithGoogle } from '@/lib/auth/actions'
@@ -151,9 +151,9 @@ export function LessonComplete({
               <div className="flex flex-col gap-3">
                 <form action={signInWithGoogle}>
                   <input type="hidden" name="next" value={lessonPath} />
-                  <button type="submit" className={buttonClasses({ variant: 'primary', size: 'form' }, 'w-full font-semibold')}>
+                  <SubmitButton size="form" pendingLabel="Opening Google…" className="w-full font-semibold">
                     Continue with Google
-                  </button>
+                  </SubmitButton>
                 </form>
                 <LinkButton href={signupHref} variant="secondary" size="form" className="w-full font-medium">
                   Sign Up with Email or Phone
