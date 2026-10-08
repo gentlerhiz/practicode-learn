@@ -36,7 +36,7 @@ const button = (href, label) => `
 const p = (html, extra = '') =>
   `<p style="margin: 0 0 16px; font-family: ${SANS}; font-size: 16px; line-height: 26px; color: ${C.soft}${extra}">${html}</p>`
 
-function layout({ title, preheader, chip, heading, body, href, action, after = '' }) {
+function layout({ title, preheader, chip, heading, body, href, action, after = '', linkIntro = 'Button not working? Copy this link into your browser:' }) {
   return `<!doctype html>
 <html lang="en-GB" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -78,12 +78,12 @@ function layout({ title, preheader, chip, heading, body, href, action, after = '
                   </table>
                   <h1 style="margin: 0 0 16px; font-family: ${DISPLAY}; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.02em; color: ${C.ink}">${heading}</h1>
                   ${body}
-                  ${button(href, action)}
+                  ${action ? button(href, action) : ''}
                   ${after}
                   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                     <tr><td height="1" bgcolor="${C.divider}" style="height: 1px; line-height: 1px; font-size: 0; background: ${C.divider}">&nbsp;</td></tr>
                   </table>
-                  <p style="margin: 20px 0 6px; font-family: ${SANS}; font-size: 13px; line-height: 20px; color: ${C.muted}">Button not working? Copy this link into your browser:</p>
+                  <p style="margin: 20px 0 6px; font-family: ${SANS}; font-size: 13px; line-height: 20px; color: ${C.muted}">${linkIntro}</p>
                   <p style="margin: 0; font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 12px; line-height: 18px; word-break: break-all"><a href="${esc(href)}" target="_blank" style="color: ${C.link}; text-decoration: underline">${esc(href)}</a></p>
                 </td>
               </tr>
@@ -110,6 +110,17 @@ function layout({ title, preheader, chip, heading, body, href, action, after = '
 const note = (html) =>
   `<p style="margin: 0 0 24px; font-family: ${SANS}; font-size: 14px; line-height: 22px; color: ${C.muted}">${html}</p>`
 
+/** The 6-digit code, big and spaced out, so it is easy to read and type. */
+const codeBox = `
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px">
+  <tr>
+    <td align="center" bgcolor="#141130" style="background: #141130; border: 1px solid ${C.line}; border-radius: 18px; padding: 22px 16px">
+      <p style="margin: 0 0 6px; font-family: ${SANS}; font-size: 12px; line-height: 18px; color: ${C.muted}">Your code</p>
+      <p style="margin: 0; font-family: Menlo, Consolas, 'Courier New', monospace; font-size: 36px; line-height: 44px; font-weight: 700; letter-spacing: 10px; color: ${C.ink}">{{ .Token }}</p>
+    </td>
+  </tr>
+</table>`
+
 /** The first lesson, as a small card: what the new learner gets once they confirm. */
 const firstLesson = `
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 24px">
@@ -125,13 +136,13 @@ const firstLesson = `
 const templates = {
   confirmation: layout({
     title: 'Confirm your email',
-    preheader: 'One tap and your first lesson is ready.',
+    preheader: 'Your PractiCode Learn code is {{ .Token }}. It works for 30 minutes.',
     chip: 'Welcome',
     heading: 'Confirm your email',
-    body: p('Thanks for joining PractiCode Learn. Tap the button to confirm it’s really you, and your first lesson is ready when you are.'),
+    body: p('Thanks for joining PractiCode Learn. Enter this code on the sign-up screen to confirm it’s really you.') + codeBox,
     href: '{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=signup',
-    action: 'Confirm My Email',
-    after: firstLesson + note('The link works for 30 minutes. If you didn’t sign up, ignore this email and no account is made.'),
+    after: note('The code works for 30 minutes. Never share it: we will never ask you for it. If you didn’t sign up, ignore this email and no account is made.') + firstLesson,
+    linkIntro: 'Prefer a link? Open this one to confirm instead:',
   }),
   recovery: layout({
     title: 'Reset your password',

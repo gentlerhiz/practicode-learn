@@ -3,7 +3,11 @@ import { DEFAULT_PLAN, parsePlan, planSummary } from './plan'
 
 describe('parsePlan', () => {
   it('reads a saved plan', () => {
-    expect(parsePlan('{"track":"ux","time":"t30","level":"l2"}')).toEqual({ track: 'ux', time: 't30', level: 'l2' })
+    expect(parsePlan('{"goal":"build","track":"ux","time":"t30","level":"l2"}')).toEqual({ goal: 'build', track: 'ux', time: 't30', level: 'l2' })
+  })
+
+  it('keeps a plan saved before goals existed, with the default goal', () => {
+    expect(parsePlan('{"track":"ux","time":"t30","level":"l2"}')).toEqual({ goal: DEFAULT_PLAN.goal, track: 'ux', time: 't30', level: 'l2' })
   })
 
   it('falls back to the default for anything it does not recognise', () => {
@@ -21,7 +25,7 @@ describe('planSummary', () => {
   })
 
   it('is honest that a track opens later', () => {
-    expect(planSummary({ track: 'da', time: 't10', level: 'l1' })).toBe(
+    expect(planSummary({ ...DEFAULT_PLAN, track: 'da', time: 't10', level: 'l1' })).toBe(
       'Data Analysis, about 70 minutes a week. Its lessons open soon. Front-End Web Development is ready to start today.',
     )
   })

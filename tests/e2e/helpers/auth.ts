@@ -31,6 +31,13 @@ export async function logIn(page: Page, email: string, next: string, password = 
 }
 
 /** The link Supabase would email for a sign-up or a reset, made without sending anything. */
+/** The 6-digit code a sign-up confirmation email carries, made the way Supabase makes it for the email. */
+export async function emailCode(email: string, password?: string) {
+  const { data, error } = await admin().auth.admin.generateLink({ type: 'signup', email, password: password ?? TEST_PASSWORD })
+  if (error) throw error
+  return data.properties.email_otp
+}
+
 export async function emailLink(type: 'signup' | 'recovery', email: string, password?: string) {
   const { data, error } =
     type === 'signup'

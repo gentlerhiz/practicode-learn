@@ -65,6 +65,7 @@ export function LoginForm({ next, initialMethod = 'email' }: { next?: string; in
           <FormMessage error={state.error} />
           {state.unconfirmed && (
             <div className="flex flex-col gap-2">
+              <input type="hidden" name="then" value="verify" />
               <button
                 type="submit"
                 formAction={resendAction}
@@ -72,7 +73,7 @@ export function LoginForm({ next, initialMethod = 'email' }: { next?: string; in
                 className="press inline-flex cursor-pointer items-center gap-1.5 self-start text-sm text-ink-soft underline underline-offset-2 hover:text-ink"
               >
                 {resending && <Spinner size={13} />}
-                {resending ? 'Sending…' : 'Send the confirmation email again'}
+                {resending ? 'Sending…' : 'Send me a new code to confirm it'}
               </button>
               <FormMessage error={resent.error} notice={resent.notice} />
             </div>

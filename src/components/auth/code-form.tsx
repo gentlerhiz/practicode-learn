@@ -3,7 +3,7 @@
 import { Spinner } from '@/components/ui/spinner'
 import { useActionState, useEffect, useState } from 'react'
 import { Button } from '@/components/ui'
-import { sendPhoneCode, verifyPhoneCode, type AuthFormState } from '@/lib/auth/actions'
+import { resendConfirmation, sendPhoneCode, verifyEmailCode, verifyPhoneCode, type AuthFormState } from '@/lib/auth/actions'
 import { cn } from '@/lib/cn'
 import { FormMessage } from './form-parts'
 
@@ -11,18 +11,19 @@ const LENGTH = 6
 const WAIT = 60
 
 /**
- * PrismCode's six boxes. One real input sits over them (so typing, pasting and the phone's
- * one-time-code suggestion all work); the boxes only show what it holds.
+ * PrismCode's six boxes, for a code sent by email (sign-up) or text (phone sign-in). One real input sits
+ * over them (so typing, pasting and the phone's one-time-code suggestion all work); the boxes only show
+ * what it holds.
  */
-export function CodeForm({ phone, next }: { phone: string; next?: string }) {
-  const [state, action, pending] = useActionState(verifyPhoneCode, {} as AuthFormState)
+export function CodeForm({ phone, email, next }: { phone?: string; email?: string; next?: string }) {
+  const [state, action, pending] = useActionState(email ? verifyEmailCode : verifyPhoneCode, {} as AuthFormState)
   const [code, setCode] = useState('')
   const [focused, setFocused] = useState(false)
   const error = state.fieldErrors?.code ?? state.error
 
   return (
     <form action={action} className="flex flex-col gap-6">
-      <input type="hidden" name="phone" value={phone} />
+      {email ? <input type="hidden" name="email" value={email} /> : <input type="hidden" name="phone" value={phone} />}
       {next && <input type="hidden" name="next" value={next} />}
       <div className="relative">
         <div aria-hidden="true" className="flex justify-between gap-2">
@@ -98,6 +99,37 @@ export function ResendCode({ phone }: { phone: string }) {
         {pending ? 'Sending a new code…' : waiting ? `Didn’t get it? Resend in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : 'Didn’t get it? Send a new code'}
       </button>
       <FormMessage error={state.error} />
+    </form>
+  )
+}
+
+/** "Didn't get it? Send a new code in 0:42" for the sign-up email, then a button that sends a new one. */
+export function ResendEmailCode({ email }: { email: string }) {
+  const [left, setLeft] = useState(WAIT)
+  const [state, action, pending] = useActionState(resendConfirmation, {} as AuthFormState)
+  useEffect(() => {
+    if (left <= 0) return
+    const timer = setTimeout(() => setLeft((s) => s - 1), 1000)
+    return () => clearTimeout(timer)
+  }, [left])
+  const waiting = left > 0
+  return (
+    <form action={action} className="flex flex-col items-center gap-2" onSubmit={() => setLeft(WAIT)}>
+      <input type="hidden" name="email" value={email} />
+      <button
+        type="submit"
+        disabled={waiting || pending}
+        aria-busy={pending || undefined}
+        className="press inline-flex h-10 cursor-pointer items-center gap-2 rounded-full px-4 text-sm text-ink-muted enabled:hover:bg-hover enabled:hover:text-ink disabled:cursor-default"
+      >
+        {pending && <Spinner size={14} />}
+        {pending
+          ? 'Sending a new code…'
+          : waiting
+            ? `Didn’t get it? Send a new code in ${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}`
+            : 'Didn’t get it? Send a new code'}
+      </button>
+      <FormMessage error={state.error} notice={state.notice} />
     </form>
   )
 }

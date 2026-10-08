@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
 import { deleteAfterRun, deleteTestUsers, testEnvReady, admin } from '../db/helpers'
-import { TEST_PASSWORD, emailLink, logIn, newLearner } from './helpers/auth'
+import { TEST_PASSWORD, emailCode, emailLink, logIn, newLearner } from './helpers/auth'
 import { waitForHydration } from './hydration'
 
 test.afterAll(deleteTestUsers)
@@ -10,7 +10,9 @@ const pages = [
   '/login',
   '/signup',
   '/onboarding',
-  '/check-email?email=learner%40gmail.com',
+  '/onboarding?step=2',
+  '/onboarding?step=3',
+  '/verify?email=learner%40gmail.com',
   '/verify?phone=%2B2348035550142',
   '/reset-password',
   '/new-password',
@@ -65,13 +67,16 @@ test('phone sign-in says it is coming soon instead of failing quietly', async ({
 })
 
 test('onboarding saves the plan that sign-up shows', async ({ page }) => {
-  await page.goto('/onboarding')
+  await page.goto('/onboarding?step=2')
   const ux = page.getByRole('button', { name: /UI\/UX Product Design/ })
   await waitForHydration(ux)
   await ux.click()
   await page.getByRole('button', { name: '30 min a day' }).click()
   await expect(page.getByText(/UI\/UX Product Design, about 3 hours a week\. Its lessons open soon/)).toBeVisible()
   await page.getByRole('button', { name: 'Continue' }).click()
+  await expect(page).toHaveURL(/\/onboarding\?step=3$/)
+  await expect(page.getByRole('heading', { level: 1, name: 'Your plan is ready' })).toBeVisible()
+  await page.getByRole('button', { name: 'Create My Free Account' }).click()
   await expect(page).toHaveURL(/\/signup$/)
   const plan = page.getByRole('complementary', { name: 'Your plan' })
   await expect(plan.getByText('UI/UX Product Design')).toBeVisible()
@@ -96,7 +101,7 @@ test('log in with a password and land where you were going', async ({ page }, te
   await logIn(page, email, '/settings')
 })
 
-test('sign up, then confirm from the email link', async ({ page }, testInfo) => {
+test('sign up, then confirm with the 6-digit code from the email', async ({ page }, testInfo) => {
   test.skip(!testEnvReady, 'needs the dev Supabase project')
   // Resend's test inbox accepts any +label and never bounces, so real sends don't hurt our sender reputation.
   const email = `delivered+e2e-${testInfo.project.name}-${Date.now()}@resend.dev`
@@ -108,15 +113,17 @@ test('sign up, then confirm from the email link', async ({ page }, testInfo) => 
   const create = page.getByRole('button', { name: 'Create My Account' })
   await waitForHydration(create)
   await create.click()
-  await expect(page).toHaveURL(/\/check-email\?email=/, { timeout: 15_000 })
-  await expect(page.getByRole('heading', { name: 'Check your email' })).toBeVisible()
+  await expect(page).toHaveURL(/\/verify\?email=/, { timeout: 15_000 })
+  await expect(page.getByRole('heading', { name: 'Enter the code we sent' })).toBeVisible()
 
   const { data } = await admin().auth.admin.listUsers({ perPage: 200 })
   const user = data.users.find((u) => u.email === email)
-  expect(user?.user_metadata.plan).toEqual({ track: 'fe', time: 't20', level: 'l0' })
+  expect(user?.user_metadata.plan).toEqual({ goal: 'career', track: 'fe', time: 't20', level: 'l0' })
   if (user) deleteAfterRun(user.id)
 
-  await page.goto(await emailLink('signup', email))
+  const code = await emailCode(email)
+  await page.getByLabel('6-digit code').fill(code)
+  await page.getByRole('button', { name: 'Verify and Continue' }).click()
   await expect(page).toHaveURL(/\/home$/, { timeout: 15_000 })
 })
 

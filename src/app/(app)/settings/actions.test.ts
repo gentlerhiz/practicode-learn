@@ -50,7 +50,7 @@ describe('settings actions', () => {
     expect(await savePreference('weekly_email', true)).toMatchObject({ saved: true })
     expect(updateUser).toHaveBeenCalledWith({ data: { weekly_email: true } })
     expect(await savePreference('time', 't30')).toMatchObject({ saved: true })
-    expect(updateUser).toHaveBeenLastCalledWith({ data: { plan: { track: 'fe', time: 't30', level: 'l0' } } })
+    expect(updateUser).toHaveBeenLastCalledWith({ data: { plan: { goal: 'career', track: 'fe', time: 't30', level: 'l0' } } })
   })
 
   it('refuses preferences it does not know', async () => {

@@ -1,8 +1,17 @@
 /**
- * The learner's plan from onboarding: a track, a daily time and a starting point. It's kept in the
+ * The learner's plan from onboarding: a goal, a track, a daily time and a starting point. It's kept in the
  * browser until sign-up, then saved with the account (Supabase user metadata).
  */
 export const PLAN_STORAGE_KEY = 'pc-plan-v1'
+
+/** Step 1 of onboarding. It shapes the plan's wording; it never promises a job. */
+export const PLAN_GOALS = [
+  { id: 'career', label: 'Start a career in tech', line: 'Learn the skills from the ground up, at your own pace.' },
+  { id: 'job', label: 'Do better in my current job', line: 'Add practical digital skills to the work you already do.' },
+  { id: 'build', label: 'Build my own website or business', line: 'Make something real that you can show people.' },
+  { id: 'school', label: 'Keep up with school or university', line: 'Practise alongside your classes, with feedback as you go.' },
+  { id: 'curious', label: 'Just curious', line: 'See how the web, data and design really work.' },
+] as const
 
 export const PLAN_TRACKS = [
   {
@@ -52,12 +61,13 @@ export const PLAN_LEVELS = [
   { id: 'l2', label: 'Quite a bit', start: 'Has done quite a bit', note: 'Take a quick check and skip ahead.' },
 ] as const
 
+export type PlanGoalId = (typeof PLAN_GOALS)[number]['id']
 export type PlanTrackId = (typeof PLAN_TRACKS)[number]['id']
 export type PlanTimeId = (typeof PLAN_TIMES)[number]['id']
 export type PlanLevelId = (typeof PLAN_LEVELS)[number]['id']
-export type LearningPlan = { track: PlanTrackId; time: PlanTimeId; level: PlanLevelId }
+export type LearningPlan = { goal: PlanGoalId; track: PlanTrackId; time: PlanTimeId; level: PlanLevelId }
 
-export const DEFAULT_PLAN: LearningPlan = { track: 'fe', time: 't20', level: 'l0' }
+export const DEFAULT_PLAN: LearningPlan = { goal: 'career', track: 'fe', time: 't20', level: 'l0' }
 
 const has = <T extends { id: string }>(list: readonly T[], id: unknown): id is T['id'] =>
   list.some((item) => item.id === id)
@@ -73,12 +83,15 @@ export function parsePlan(value: unknown): LearningPlan {
     }
   }
   if (!raw || typeof raw !== 'object') return DEFAULT_PLAN
-  const { track, time, level } = raw as Record<string, unknown>
+  const { goal, track, time, level } = raw as Record<string, unknown>
+  // Plans saved before goals existed keep their choices and get the default goal.
+  const g = has(PLAN_GOALS, goal) ? goal : DEFAULT_PLAN.goal
   return has(PLAN_TRACKS, track) && has(PLAN_TIMES, time) && has(PLAN_LEVELS, level)
-    ? { track, time, level }
+    ? { goal: g, track, time, level }
     : DEFAULT_PLAN
 }
 
+export const planGoal = (plan: LearningPlan) => PLAN_GOALS.find((g) => g.id === plan.goal) ?? PLAN_GOALS[0]
 export const planTrack = (plan: LearningPlan) => PLAN_TRACKS.find((t) => t.id === plan.track) ?? PLAN_TRACKS[0]
 export const planTime = (plan: LearningPlan) => PLAN_TIMES.find((t) => t.id === plan.time) ?? PLAN_TIMES[1]
 export const planLevel = (plan: LearningPlan) => PLAN_LEVELS.find((t) => t.id === plan.level) ?? PLAN_LEVELS[0]

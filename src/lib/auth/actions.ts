@@ -105,7 +105,32 @@ export async function signUp(_prev: AuthFormState, formData: FormData): Promise<
     await recordCountry(data.user.id)
     redirect(safeRedirect(next))
   }
-  redirect(`/check-email?email=${encodeURIComponent(parsed.data.email)}` as Route)
+  // No session until the 6-digit code from the email is entered on the next screen.
+  redirect(codeScreen(parsed.data.email, next))
+}
+
+/** The Enter-code screen for an email address, keeping where to go afterwards. */
+const codeScreen = (address: string, next?: string) =>
+  `/verify?email=${encodeURIComponent(address)}${next ? `&next=${encodeURIComponent(next)}` : ''}` as Route
+
+/** Checks the 6-digit code from the sign-up email. A right code confirms the address and signs them in. */
+export async function verifyEmailCode(_prev: AuthFormState, formData: FormData): Promise<AuthFormState> {
+  const parsed = EmailCode.safeParse({
+    email: text(formData, 'email').toLowerCase(),
+    code: text(formData, 'code').replace(/\s/g, ''),
+    next: text(formData, 'next') || undefined,
+  })
+  if (!parsed.success) {
+    const code = parsed.error.issues.find((issue) => issue.path[0] === 'code')
+    return code ? { fieldErrors: { code: code.message } } : { error: 'This page has lost your email. Go back and sign up again.' }
+  }
+  const supabase = await createClient()
+  const { data, error } = await supabase.auth.verifyOtp({ email: parsed.data.email, token: parsed.data.code, type: 'email' })
+  if (error || !data.user) {
+    return { fieldErrors: { code: error?.status === 429 ? TOO_MANY : 'That code didn’t work. Check it, or send a new one.' } }
+  }
+  await recordCountry(data.user.id)
+  redirect(safeRedirect(parsed.data.next))
 }
 
 const LogIn = z.object({
@@ -142,7 +167,7 @@ export async function logIn(_prev: AuthFormState, formData: FormData): Promise<A
   if (error || !data.user) {
     if (error?.status === 429) return { error: TOO_MANY, values }
     if (error?.code === 'email_not_confirmed') {
-      return { unconfirmed: parsed.data.email, error: 'Confirm your email first. Open the link we sent you.', values }
+      return { unconfirmed: parsed.data.email, error: 'Confirm your email first, with the 6-digit code we emailed you.', values }
     }
     return { error: 'That email and password don’t match. Check them, or reset your password.', values }
   }
@@ -170,6 +195,12 @@ export async function sendPhoneCode(_prev: AuthFormState, formData: FormData): P
   redirect(`/verify?phone=${encodeURIComponent(full)}` as Route)
 }
 
+const EmailCode = z.object({
+  email,
+  code: z.string().regex(/^\d{6}$/, { error: 'Enter the 6-digit code' }),
+  next: z.string().max(2048).optional(),
+})
+
 const PhoneCode = z.object({
   phone: z.string().regex(/^\+\d{8,15}$/),
   code: z.string().regex(/^\d{6}$/, { error: 'Enter the 6-digit code' }),
@@ -195,7 +226,7 @@ export async function verifyPhoneCode(_prev: AuthFormState, formData: FormData):
   redirect(safeRedirect(parsed.data.next))
 }
 
-/** Sends the confirmation email again (check-email page, and log-in for an unconfirmed account). */
+/** Sends the confirmation email (with a new code) again: the Enter-code screen, and log-in for an unconfirmed account. */
 export async function resendConfirmation(_prev: AuthFormState, formData: FormData): Promise<AuthFormState> {
   const parsed = email.safeParse(text(formData, 'email').toLowerCase())
   if (!parsed.success) return { error: 'Go back and enter your email again.' }
@@ -206,7 +237,9 @@ export async function resendConfirmation(_prev: AuthFormState, formData: FormDat
     options: { emailRedirectTo: `${await origin()}/auth/confirm` },
   })
   if (error) return { error: error.status === 429 ? TOO_MANY : 'We couldn’t send it. Try again in a minute.' }
-  return { sent: true, notice: 'Sent again. It can take a minute.' }
+  // From log-in, an unconfirmed learner goes straight to the Enter-code screen.
+  if (text(formData, 'then') === 'verify') redirect(codeScreen(parsed.data, text(formData, 'next') || undefined))
+  return { sent: true, notice: 'We sent a new code. It can take a minute.' }
 }
 
 /** Emails a reset link. The answer is the same whether or not the email has an account. */
