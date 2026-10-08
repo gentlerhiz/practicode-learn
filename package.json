@@ -20,7 +20,8 @@
     "format": "prettier --write .",
     "auth:push": "node scripts/auth-push.mjs",
     "content:samples": "node tools/content-build/build.ts --in content/samples --out content/samples/packs --catalogue content/samples/catalogue.json",
-    "content:check": "node tools/content-build/check-code.ts --packs content/samples/packs"
+    "content:check": "node tools/content-build/check-code.ts --packs content/samples/packs",
+    "prod": "node scripts/prod.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

@@ -23,6 +23,39 @@ Set them in Vercel under Project Settings → Environment Variables, per environ
 
 A deployment without Supabase settings still serves the public site: everyone is signed out, and lesson progress stays on the device. Where each secret lives is in [accounts and keys](accounts-and-keys.md).
 
+## Going live
+
+Until production has its Supabase settings, the live site runs without them: signing up or logging in fails ("Something went wrong on our side", a 500 from the server action) and lesson links answer 404, because lessons come from the bundled sample instead of Supabase. Do these in order. `npm run prod` (`scripts/prod.mjs`) does the database, sign-in and lesson steps from your computer.
+
+1. **Make `.env.prod`** in the project folder. It is git-ignored, and Next.js never loads it, so local builds and tests can't reach production:
+
+   ```
+   PROD_PROJECT_REF=kafoztmgrqstkwzdlyin
+   # Supabase (production) → Connect → Session pooler, with your database password filled in
+   PROD_DB_URL=postgresql://postgres.kafoztmgrqstkwzdlyin:<password>@<host>:5432/postgres
+   # Supabase (production) → Project Settings → API Keys → secret key
+   PROD_SUPABASE_SECRET_KEY=
+   ```
+
+2. **Database:** `npm run prod -- migrate` lists the migrations production still needs. Then `npm run prod -- migrate --apply` applies them.
+3. **Sign-in settings and emails:** `npm run prod -- auth` pushes `supabase/config.toml` and the email templates, with `https://learn.practicode.tech` as the only address sign-in may return to. It uses your own `supabase login`, shows each change and asks before writing.
+4. **Google sign-in:** in the production Supabase dashboard, Authentication → Sign In / Providers → Google, turn it on with the same client ID and secret as dev. In Google Cloud, add `https://kafoztmgrqstkwzdlyin.supabase.co/auth/v1/callback` to the OAuth client's authorised redirect URIs.
+5. **Lessons:** run `npm run build` in `practicode-learn-content`, then `npm run prod -- lessons` here.
+6. **Vercel** → Project Settings → Environment Variables, for **Production**:
+
+   | Name | Value |
+   |---|---|
+   | `NEXT_PUBLIC_SUPABASE_URL` | `https://kafoztmgrqstkwzdlyin.supabase.co` |
+   | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | production publishable key |
+   | `SUPABASE_SECRET_KEY` | production secret key |
+   | `NEXT_PUBLIC_CONTENT_SOURCE` | `supabase` |
+   | `REVALIDATE_SECRET` | a new random value: `node -e "console.log(crypto.randomBytes(32).toString('hex'))"` |
+   | `CRON_SECRET` | another new random value, made the same way |
+
+   Then go to Deployments, open the latest production deployment and choose **Redeploy**. `NEXT_PUBLIC_*` values are built into the pages, so they take effect only after a new build. Do this after step 5, because the build reads the lesson list.
+7. **Check:** `npm run prod -- check` confirms the tables, the published lessons, that the live site is connected, and that Module 1 Lesson 1 loads.
+8. **Automatic publishing (optional):** push `practicode-learn-content` to a private GitHub repository. Give it the Actions secrets `SUPABASE_URL` (production), `SUPABASE_SECRET_KEY` (production) and `REVALIDATE_SECRET` (the same value as in Vercel). From then on, every push to its `main` publishes changed lessons and refreshes their pages.
+
 ## The domain
 
 `learn.practicode.tech` is a CNAME to Vercel, at the DNS provider for `practicode.tech`. The `vercel.app` address redirects to it. Plain HTTP redirects to HTTPS, and HSTS is on.
