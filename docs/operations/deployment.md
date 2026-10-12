@@ -56,6 +56,18 @@ Until production has its Supabase settings, the live site runs without them: sig
 7. **Check:** `npm run prod -- check` confirms the tables, the published lessons, that the live site is connected, and that Module 1 Lesson 1 loads.
 8. **Automatic publishing (optional):** push `practicode-learn-content` to a private GitHub repository. Give it the Actions secrets `SUPABASE_URL` (production), `SUPABASE_SECRET_KEY` (production) and `REVALIDATE_SECRET` (the same value as in Vercel). From then on, every push to its `main` publishes changed lessons and refreshes their pages.
 
+## Giving someone Pro
+
+Until Paystack subscriptions open, Pro is given by hand. It's stored in the `memberships` table, which only the secret key can write to, and `public.is_pro()` decides who has it. Pro lesson pages stay static: a Pro member's browser gets the lesson from `/api/lessons/<id>`, which downloads it from the private `lessons-pro` bucket with the learner's own session.
+
+```
+npm run pro -- grant someone@example.com --prod    # Pro with no end date
+npm run pro -- revoke someone@example.com --prod   # back to Free (hand-given Pro only)
+npm run pro -- list --prod
+```
+
+Leave out `--prod` to do the same on dev. The account must exist and its email address must be confirmed. Production needs the `memberships` migration first (`npm run prod -- migrate --apply`).
+
 ## The domain
 
 `learn.practicode.tech` is a CNAME to Vercel, at the DNS provider for `practicode.tech`. The `vercel.app` address redirects to it. Plain HTTP redirects to HTTPS, and HSTS is on.

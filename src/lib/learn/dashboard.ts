@@ -14,10 +14,21 @@ export type LearnerTrackData = {
     summary: string
     free: boolean
     project?: string
-    lessons: { id: string; number: number; title: string; minutes?: number; description?: string; href: Route | null; status: LessonState }[]
+    lessons: {
+      id: string
+      number: number
+      title: string
+      minutes?: number
+      description?: string
+      href: Route | null
+      status: LessonState
+      /** Published but part of Pro, which this learner doesn't have: never suggested as next. */
+      locked?: boolean
+    }[]
   }[]
   progress: { lesson_id: string; status: string; updated_at: string; active_seconds: number; steps_done: number }[]
   events: string[]
+  isPro?: boolean
 }
 
 const WEEK_GOAL = 5
@@ -40,8 +51,9 @@ function nextUp(data: LearnerTrackData) {
     .filter((p) => p.status === 'started')
     .map((p) => all.find((x) => x.lesson.id === p.lesson_id && x.lesson.href))
     .find(Boolean)
-  const started = recent ?? all.find((x) => x.lesson.href && x.lesson.status === 'started')
-  return { item: started ?? all.find((x) => x.lesson.href && x.lesson.status !== 'completed'), inProgress: Boolean(started) }
+  const open = (x: (typeof all)[number]) => Boolean(x.lesson.href && !x.lesson.locked)
+  const started = recent ?? all.find((x) => open(x) && x.lesson.status === 'started')
+  return { item: started ?? all.find((x) => open(x) && x.lesson.status !== 'completed'), inProgress: Boolean(started) }
 }
 
 function weekNote(count: number) {
@@ -138,7 +150,9 @@ export function buildNewDashboard(data: LearnerTrackData, name: string | null, p
   return {
     firstName: firstNameOf(name),
     plan: track.open ? `${track.name}, ${minutes}.` : `${track.name} opens soon, so you’re starting with Front-End Web Development, ${minutes}.`,
-    banner: { text: 'Module 1 is free for good.', accent: 'Pro, with every module, launches with the full track.', link: { label: 'What’s in Pro?', href: '/pricing' as Route } },
+    banner: data.isPro
+      ? { text: 'You have Pro.', accent: 'Every module opens to you as it’s published.', link: { label: 'See My Tracks', href: '/my-tracks' as Route } }
+      : { text: 'Module 1 is free for good.', accent: 'Pro, with every module, launches with the full track.', link: { label: 'What’s in Pro?', href: '/pricing' as Route } },
     first: {
       eyebrow: `Front-End · Module 1 · Lesson ${first.number}`,
       title: first.title,

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 vi.mock('@/lib/auth/require-user', () => ({
-  requireUser: async () => ({ id: 'u1', email: 'a@b.c', name: 'A', isAdmin: false, joinedAt: null, plan: null, country: null, prefs: { weeklyEmail: false, currency: null } }),
+  requireUser: async () => ({ id: 'u1', email: 'a@b.c', name: 'A', isAdmin: false, isPro: false, joinedAt: null, plan: null, country: null, prefs: { weeklyEmail: false, currency: null } }),
 }))
 const deleteUser = vi.fn(async () => ({ error: null }))
 vi.mock('@/lib/supabase/admin', () => ({ createAdminClient: () => ({ auth: { admin: { deleteUser } } }) }))

@@ -9,7 +9,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
   const track = await loadLearnerTrack()
   return (
     <AppShell
-      user={{ name: user.name, email: user.email, isAdmin: user.isAdmin, status: joinedLabel(user.joinedAt, new Date()) }}
+      user={{ name: user.name, email: user.email, isAdmin: user.isAdmin, status: joinedLabel(user.joinedAt, new Date(), user.isPro ? 'Pro' : 'Free') }}
       search={searchEntries(track)}
     >
       {children}

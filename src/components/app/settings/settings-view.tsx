@@ -17,6 +17,7 @@ export type SettingsData = {
   currency: Currency
   time: PlanTimeId
   weeklyEmail: boolean
+  isPro?: boolean
 }
 
 const MODES = [
@@ -145,10 +146,14 @@ export function SettingsView({ data }: { data: SettingsData }) {
             <Row>
               <div className="min-w-0">
                 <p className="text-[15px] font-semibold text-ink">
-                  Free
+                  {data.isPro ? 'Pro' : 'Free'}
                   <span className="ml-2 rounded-full bg-success-fill px-2 py-0.5 text-[11px] font-bold text-on-success">Your plan</span>
                 </p>
-                <p className="mt-1 text-[13px] text-ink-muted">Module 1 of every track, for good. Pro launches with the full track.</p>
+                <p className="mt-1 text-[13px] text-ink-muted">
+                  {data.isPro
+                    ? 'Every module, as each one is published.'
+                    : 'Module 1 of every track, for good. Pro launches with the full track.'}
+                </p>
               </div>
               <Link href={'/pricing' as Route} className={smallButton}>
                 See Plans

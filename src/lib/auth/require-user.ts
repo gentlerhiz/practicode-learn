@@ -8,6 +8,8 @@ export type CurrentUser = {
   email: string | null
   name: string | null
   isAdmin: boolean
+  /** Has Pro right now, as the database decides it (public.is_pro). */
+  isPro: boolean
   /** When the profile was created (the email was confirmed), as an ISO date. */
   joinedAt: string | null
   /** The plan chosen in onboarding, as saved in the account's metadata. */
@@ -25,16 +27,16 @@ export const requireUser = cache(async (): Promise<CurrentUser> => {
   const claims = data?.claims
   if (!claims?.sub) redirect('/login')
   const meta = claims.user_metadata as { plan?: unknown; weekly_email?: unknown; currency?: unknown } | undefined
-  const { data: profile } = await supabase
-    .from('profiles')
-    .select('display_name, role, created_at, country_code')
-    .eq('id', claims.sub)
-    .maybeSingle()
+  const [{ data: profile }, { data: isPro }] = await Promise.all([
+    supabase.from('profiles').select('display_name, role, created_at, country_code').eq('id', claims.sub).maybeSingle(),
+    supabase.rpc('is_pro'),
+  ])
   return {
     id: claims.sub,
     email: typeof claims.email === 'string' ? claims.email : null,
     name: profile?.display_name ?? null,
     isAdmin: profile?.role === 'admin',
+    isPro: isPro === true,
     joinedAt: profile?.created_at ?? null,
     plan: meta?.plan ?? null,
     country: profile?.country_code ?? null,

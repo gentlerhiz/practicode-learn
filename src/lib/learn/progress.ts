@@ -15,6 +15,8 @@ export type LessonView = {
   description?: string
   href: Route | null
   status: LessonStatus
+  /** Published but part of Pro, which this learner doesn't have. */
+  locked?: boolean
 }
 
 export type ModuleView = {
@@ -32,6 +34,7 @@ export type LearnerTrack = {
   modules: ModuleView[]
   progress: { lesson_id: string; status: string; updated_at: string; active_seconds: number; steps_done: number }[]
   events: string[]
+  isPro: boolean
 }
 
 export const OPEN_TRACK = 'front-end-web-development'
@@ -45,7 +48,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
 export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise<LearnerTrack> => {
   const track = getTrackContent(slug)!
   const supabase = await createClient()
-  const [published, progressResult, eventsResult] = await Promise.all([
+  const [published, progressResult, eventsResult, proResult] = await Promise.all([
     listPublishedLessons(slug),
     supabase
       .from('lesson_progress')
@@ -55,7 +58,9 @@ export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise
       .from('learning_events')
       .select('occurred_at')
       .gte('occurred_at', new Date(Date.now() - 8 * 86_400_000).toISOString()),
+    supabase.rpc('is_pro'),
   ])
+  const isPro = proResult.data === true
   const progress = progressResult.data ?? []
   const statusOf = new Map(progress.map((p) => [p.lesson_id, p.status as LessonStatus]))
   const prefix = PREFIX[slug] ?? slug
@@ -76,10 +81,18 @@ export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise
         description: meta?.description,
         href: meta ? (`/learn/${meta.track}/${meta.slug}` as Route) : null,
         status: statusOf.get(id) ?? 'not_started',
+        locked: Boolean(meta && !meta.free && !isPro),
       }
     }),
   }))
-  return { trackTitle: track.title, track, modules, progress, events: (eventsResult.data ?? []).map((e) => e.occurred_at) }
+  return {
+    trackTitle: track.title,
+    track,
+    modules,
+    progress,
+    events: (eventsResult.data ?? []).map((e) => e.occurred_at),
+    isPro,
+  }
 })
 
 /** Where to carry on: the lesson in progress most recently, else the first open lesson not yet done. */
@@ -89,7 +102,10 @@ export function nextLesson(data: LearnerTrack) {
     .filter((p) => p.status === 'started')
     .map((p) => all.find((x) => x.lesson.id === p.lesson_id && x.lesson.href))
     .find(Boolean)
-  return { item: recent ?? all.find((x) => x.lesson.href && x.lesson.status !== 'completed'), inProgress: Boolean(recent) }
+  return {
+    item: recent ?? all.find((x) => x.lesson.href && !x.lesson.locked && x.lesson.status !== 'completed'),
+    inProgress: Boolean(recent),
+  }
 }
 
 /** Every module and lesson, for the search box in the top bar. */

@@ -17,6 +17,9 @@ export type CatalogueEntry = {
   hash: string
 }
 
+/** The private storage bucket for Pro lesson packs. */
+export const PRO_BUCKET = 'lessons-pro'
+
 /** What the app knows about a published lesson before downloading its pack. */
 export type LessonMeta = {
   id: string

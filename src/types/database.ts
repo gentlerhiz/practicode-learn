@@ -196,6 +196,53 @@ export type Database = {
           },
         ]
       }
+      memberships: {
+        Row: {
+          billing: string | null
+          created_at: string
+          current_period_end: string | null
+          learner_id: string
+          plan: string
+          provider_customer: string | null
+          provider_subscription: string | null
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          billing?: string | null
+          created_at?: string
+          current_period_end?: string | null
+          learner_id: string
+          plan?: string
+          provider_customer?: string | null
+          provider_subscription?: string | null
+          source: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          billing?: string | null
+          created_at?: string
+          current_period_end?: string | null
+          learner_id?: string
+          plan?: string
+          provider_customer?: string | null
+          provider_subscription?: string | null
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memberships_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           country_code: string | null
@@ -259,6 +306,7 @@ export type Database = {
       }
       impact_summary: { Args: never; Returns: Json }
       is_admin: { Args: never; Returns: boolean }
+      is_pro: { Args: never; Returns: boolean }
       record_progress: {
         Args: {
           p_active_seconds: number

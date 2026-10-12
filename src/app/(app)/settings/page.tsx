@@ -31,6 +31,7 @@ export default async function SettingsPage() {
           currency,
           time: parsePlan(user.plan).time,
           weeklyEmail: user.prefs.weeklyEmail,
+          isPro: user.isPro,
         }}
       />
     </AppPage>

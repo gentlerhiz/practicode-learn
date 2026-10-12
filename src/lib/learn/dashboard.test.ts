@@ -58,4 +58,14 @@ describe('buildDashboard', () => {
     expect(view.path.mastered).toBe(0)
     expect(view.review.due).toBe(0)
   })
+
+  it('suggests a published Pro lesson next only to Pro members', () => {
+    const data = track([['completed'], ['not_started']], 1)
+    const pro = data.modules[1]!.lessons[0]!
+    pro.href = '/learn/front-end-web-development/pro' as never
+    pro.locked = true
+    expect(buildDashboard(data, null, NOW).resume).toBeNull()
+    pro.locked = false
+    expect(buildDashboard(data, null, NOW).resume?.title).toBe('Lesson 2.1')
+  })
 })

@@ -6,7 +6,7 @@ import { cache } from 'react'
 import { getTrackContent } from '@/content/tracks'
 import { publicEnv } from '@/lib/env'
 import type { Database } from '@/types/database'
-import type { CatalogueEntry, LessonMeta } from './types'
+import { PRO_BUCKET, type CatalogueEntry, type LessonMeta } from './types'
 
 const SAMPLE_CATALOGUE = path.join(process.cwd(), 'content', 'samples', 'catalogue.json')
 
@@ -51,8 +51,11 @@ async function fromSupabase(): Promise<LessonMeta[]> {
     minutes: r.minutes,
     free: r.free,
     version: r.version,
-    // Free packs are public. Pro packs need a signed URL after a plan check, which arrives with plans.
-    packUrl: r.free ? supabase.storage.from('lessons-free').getPublicUrl(r.pack_path).data.publicUrl : '',
+    // Free packs are public. Pro packs are a path in the private bucket, which only a Pro member's session
+    // can download (see loadPack).
+    packUrl: r.free
+      ? supabase.storage.from('lessons-free').getPublicUrl(r.pack_path).data.publicUrl
+      : `${PRO_BUCKET}/${r.pack_path}`,
   }))
 }
 

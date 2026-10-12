@@ -16,6 +16,8 @@ export type LessonChrome = {
   /** Where the exit control goes: the track page for guests, the dashboard for learners. */
   exitHref: Route
   signupHref: Route
+  /** Pro lessons arrive from the server after a plan check, so the saved page can't play them offline. */
+  onlineOnly?: boolean
 }
 
 /** The step pips, exactly as the canvas draws them: done, current, and still to come. */
@@ -93,7 +95,7 @@ export function LessonBar({
         <Pips index={index} total={total} stage={stage} />
 
         <div className="ml-auto flex items-center gap-2">
-          {!isGuest && (
+          {!isGuest && !chrome.onlineOnly && (
             <p className="pcl-hide-sm hidden items-center gap-1.5 px-1.5 text-xs text-ink-soft tab:flex">
               <span className="block size-[7px] rounded-full bg-da" />
               Saved offline

@@ -24,8 +24,11 @@ export function LessonShell({
   trackHref,
   eyebrow,
   nextLesson,
+  onlineOnly,
 }: {
   pack: LessonPack
+  /** A Pro lesson: never claim it's saved for offline use. */
+  onlineOnly?: boolean
   lessonPath: string
   /** The track's short name, shown first in the header meta, e.g. "Front-End". */
   trackLabel: string
@@ -110,6 +113,7 @@ export function LessonShell({
     meta: isGuest ? `${trackLabel} · Free lesson · No account needed` : `${trackLabel} · ${lessonMeta}`,
     exitHref: isGuest ? trackHref : ('/home' as Route),
     signupHref: `/signup?next=${encodeURIComponent(lessonPath)}` as Route,
+    onlineOnly,
   }
 
   return (

@@ -100,6 +100,7 @@ export default async function MyTracksPage() {
         {track.modules.map((m) => {
           const share = moduleShare(m.lessons.map((l) => l.status))
           const open = m.lessons.some((l) => l.href)
+          const unlocked = m.free || track.isPro
           return (
             <details
               key={m.number}
@@ -111,7 +112,7 @@ export default async function MyTracksPage() {
                 <span
                   className={cn(
                     'flex size-9 shrink-0 items-center justify-center rounded-[10px] text-sm font-bold',
-                    share === 100 ? 'bg-success-fill text-on-success' : m.free ? 'bg-fe text-white' : 'bg-fe/15 text-fe-text',
+                    share === 100 ? 'bg-success-fill text-on-success' : unlocked ? 'bg-fe text-white' : 'bg-fe/15 text-fe-text',
                   )}
                 >
                   {share === 100 ? <Glyph name="check" size={16} strokeWidth={2.6} /> : m.number}
@@ -125,6 +126,8 @@ export default async function MyTracksPage() {
                 </span>
                 {m.free ? (
                   <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-on-primary">Free</span>
+                ) : track.isPro ? (
+                  <span className="rounded-full bg-fe px-2.5 py-0.5 text-xs font-bold text-white">Pro</span>
                 ) : (
                   <span className="flex items-center gap-1 text-[13px] text-ink-muted">
                     <Glyph name="lock" size={14} />
@@ -146,7 +149,9 @@ export default async function MyTracksPage() {
                         <span className="min-w-0 flex-1">{l.title}</span>
                         {look.label && <span className={cn('rounded-full px-2 py-0.5 text-[11px] font-semibold', look.className)}>{look.label}</span>}
                         {l.minutes && <span className="text-xs text-ink-subtle">{l.minutes} min</span>}
-                        {l.href ? (
+                        {l.locked ? (
+                          <Glyph name="lock" size={14} className="text-ink-subtle" />
+                        ) : l.href ? (
                           <Glyph name="chevronRight" size={14} className="text-ink-subtle" />
                         ) : (
                           <span className="text-xs text-ink-subtle">Soon</span>

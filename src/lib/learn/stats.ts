@@ -41,11 +41,11 @@ export function moduleShare(statuses: string[]): number {
 }
 
 /** The line under the learner's name in the sidebar. Everyone is on Free until plans launch. */
-export function joinedLabel(joinedAt: string | null, now: Date): string {
-  if (!joinedAt) return 'Free plan'
+export function joinedLabel(joinedAt: string | null, now: Date, plan: 'Free' | 'Pro' = 'Free'): string {
+  if (!joinedAt) return `${plan} plan`
   const joined = new Date(joinedAt)
   if (weekStart(joined).getTime() === weekStart(now).getTime() && joined.getUTCDate() === now.getUTCDate()) {
-    return 'Free · joined today'
+    return `${plan} · joined today`
   }
-  return `Free · joined ${joined.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' })}`
+  return `${plan} · joined ${joined.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', timeZone: 'UTC' })}`
 }
