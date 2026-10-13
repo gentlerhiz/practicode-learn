@@ -71,7 +71,10 @@ export function LinkPreview({ value = '' }: LabProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <pre className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink">
+      <pre
+        tabIndex={0}
+        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
+      >
         {head.code}
       </pre>
       <div className="grid gap-3 tab:grid-cols-2">
@@ -92,7 +95,7 @@ export function LinkPreview({ value = '' }: LabProps) {
                 </div>
               </div>
             )}
-            <p className="px-1 text-[12px] text-[#027eb5] underline">https://{URL_TEXT}</p>
+            <p className="px-1 text-[12px] text-[#075985] underline">https://{URL_TEXT}</p>
           </div>
         </section>
         <section aria-label="In Google's results" className="rounded-xl bg-white p-3 text-[#202124]">

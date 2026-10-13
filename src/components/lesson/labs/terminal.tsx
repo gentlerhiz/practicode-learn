@@ -101,7 +101,8 @@ export function Terminal({ value = 'pwd' }: LabProps) {
       <div
         role="log"
         aria-label="Terminal"
-        className="overflow-x-auto rounded-xl border border-line bg-[#0d0b16] p-3 font-mono text-[13px] leading-6 text-[#e8e6f0]"
+        tabIndex={0}
+        className="overflow-x-auto rounded-xl border border-line bg-[#0d0b16] p-3 font-mono text-[13px] leading-6 text-[#e8e6f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
       >
         {s.lines.map((l, i) => (
           <div key={i}>

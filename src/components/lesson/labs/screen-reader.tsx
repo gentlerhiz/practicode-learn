@@ -64,7 +64,10 @@ export function ScreenReader({ value = '' }: LabProps) {
   const r = READINGS.find(([re]) => re.test(value))?.[1] ?? READINGS[0]![1]
   return (
     <div className="flex flex-col gap-3">
-      <pre className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink">
+      <pre
+        tabIndex={0}
+        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
+      >
         {r.code}
       </pre>
       <section

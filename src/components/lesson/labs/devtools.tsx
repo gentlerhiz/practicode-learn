@@ -25,7 +25,7 @@ const SAYS: Record<Panel, string> = {
 /** A tiny version of Mama Nkechi's menu page, as the lab's "page". */
 function Page({ narrow, highlight }: { narrow?: boolean; highlight?: boolean }) {
   return (
-    <div className={cn('bg-white p-3 text-[#15122a]', narrow ? 'w-[150px]' : 'w-full')}>
+    <div className={cn('bg-white p-3 text-[#15122a]', highlight && 'pt-8', narrow ? 'w-[150px]' : 'w-full')}>
       <div className="relative">
         <p className={cn('font-bold', narrow ? 'text-[13px]' : 'text-[16px]')}>Mama Nkechi’s Kitchen</p>
         {highlight && (
