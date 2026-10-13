@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { LogoIcon } from '@/components/layout/logo'
 import { LinkButton } from '@/components/ui'
 import { Glyph } from '@/components/ui/glyph'
-import { TutorSpark } from '@/components/learn/tutor-spark'
 import { cn } from '@/lib/cn'
 import { stageName } from '../parts/step-layout'
+import { AskAi, type TutorView } from './ask-ai'
 
 export type LessonChrome = {
   isGuest: boolean
@@ -44,7 +44,7 @@ function Pips({ index, total, stage }: { index: number; total: number; stage: st
 
 /**
  * The lesson header (PrismTryLesson / PrismLesson). A guest gets the logo, Ask AI (locked, to sign-up)
- * and Save Progress; a learner gets a way out, a Saved-offline note, Ask AI and a Hint. The Hint button
+ * and Save Progress; a learner gets a way out, a Saved-offline note, the AI tutor and a Hint. The Hint button
  * reveals the step's hints inline; it is hidden on steps that carry none.
  */
 export function LessonBar({
@@ -55,8 +55,11 @@ export function LessonBar({
   hintsShown,
   hintsTotal,
   onHint,
+  tutor,
 }: {
   chrome: LessonChrome
+  /** Where the learner is, for the AI tutor. */
+  tutor: TutorView
   index: number
   total: number
   stage: string
@@ -113,7 +116,7 @@ export function LessonBar({
               Ask AI
             </LinkButton>
           ) : (
-            <AskAiButton />
+            <AskAi view={tutor} />
           )}
 
           {hintsTotal > 0 && (
@@ -137,24 +140,5 @@ export function LessonBar({
         </div>
       </div>
     </header>
-  )
-}
-
-/** Ask AI for learners: a small popover that says the tutor is on its way. No tokens are spent yet. */
-function AskAiButton() {
-  return (
-    <details className="relative [&_summary::-webkit-details-marker]:hidden">
-      <summary className="press flex h-[42px] cursor-pointer list-none items-center gap-2 rounded-full border border-line-control py-0 pr-4 pl-1.5 text-sm font-medium text-ink hover:border-line-strong">
-        <TutorSpark size={30} />
-        Ask AI
-      </summary>
-      <div
-        role="status"
-        className="surface absolute right-0 z-30 mt-2 w-72 rounded-2xl border border-line p-4 text-sm leading-6 text-ink-soft shadow-xl"
-      >
-        <p className="mb-1 font-display font-bold text-ink">AI tutor</p>
-        The tutor that knows this lesson and your code is coming soon. It will answer right here.
-      </div>
-    </details>
   )
 }

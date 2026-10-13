@@ -173,7 +173,7 @@ export type PaidData = { firstName: string; intro: string; receipt: [string, str
 
 const UNLOCKED: { icon: GlyphName; title: string; body: string }[] = [
   { icon: 'book', title: 'Every module in every track', body: 'Front-End, Data, Design and AI. Switch whenever you like.' },
-  { icon: 'target', title: 'AI tutor, 50 questions a day', body: 'Ten times the help when you get stuck.' },
+  { icon: 'target', title: 'AI tutor, 20 questions a day', body: 'Four times the help when you get stuck.' },
   { icon: 'shield', title: 'Verified certificates', body: 'Earn one for each track you finish.' },
   { icon: 'download', title: 'Download any module', body: 'Learn on the bus, offline.' },
 ]

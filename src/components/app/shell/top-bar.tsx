@@ -222,10 +222,10 @@ export function TopBar({ variant = 'compact' }: { variant?: 'full' | 'compact' }
               <div className="flex gap-3 p-3">
                 <TutorSpark size={36} />
                 <div className="flex flex-col gap-1">
-                  <p className="text-sm font-semibold text-ink">Your AI tutor is coming soon</p>
+                  <p className="text-sm font-semibold text-ink">Your AI tutor is in your lessons</p>
                   <p className="text-[13px] leading-5 text-ink-muted">
-                    It will sit beside every lesson, give hints first and link each answer to the lesson it’s
-                    based on. Until then, every step has three hints built in.
+                    Open a lesson and tap Ask AI. It knows the step you’re on and your code, and gives a hint
+                    before the answer.
                   </p>
                 </div>
               </div>

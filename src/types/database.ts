@@ -321,6 +321,16 @@ export type Database = {
         }
         Returns: undefined
       }
+      tutor_claim: {
+        Args: { p_lesson: string; p_question: string; p_step: number }
+        Returns: Json
+      }
+      tutor_daily_cap: { Args: never; Returns: number }
+      tutor_quota: { Args: never; Returns: Json }
+      tutor_settle: {
+        Args: { p_answer: string | null; p_id: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never

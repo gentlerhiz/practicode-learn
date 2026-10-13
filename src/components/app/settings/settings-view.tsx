@@ -120,8 +120,10 @@ export function SettingsView({ data }: { data: SettingsData }) {
               <div className="flex min-w-0 items-center gap-3">
                 <TutorSpark size={28} />
                 <div>
-                  <p className="text-[15px] font-medium text-ink">5 questions a day on Free</p>
-                  <p className="mt-0.5 text-[13px] text-ink-muted">The tutor arrives soon. Pro will give you 50 a day.</p>
+                  <p className="text-[15px] font-medium text-ink">{data.isPro ? '20 questions a day on Pro' : '5 questions a day on Free'}</p>
+                  <p className="mt-0.5 text-[13px] text-ink-muted">
+                    {data.isPro ? 'Ask AI in any lesson. They reset at midnight.' : 'Ask AI in any lesson. Pro gives you 20 a day.'}
+                  </p>
                 </div>
               </div>
               <Link href={'/pricing' as Route} className="text-[13px] font-medium whitespace-nowrap text-fe-text underline underline-offset-2 hover:no-underline">

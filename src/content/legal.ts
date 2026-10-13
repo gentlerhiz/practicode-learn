@@ -18,7 +18,7 @@ const CONTACT = 'practicodeacademy@gmail.com'
 export const legalDocs: Record<LegalSlug, LegalDoc> = {
   privacy: {
     title: 'Privacy notice',
-    updated: '4 October 2026',
+    updated: '13 October 2026',
     summary: [
       'We collect only what we need to teach you and run your account.',
       'We never sell your data or use it for advertising.',
@@ -57,6 +57,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
           'Vercel hosts the website and provides our cookieless analytics.',
           'Resend sends sign-in codes and account emails.',
           'Google provides sign-in, only if you choose “Continue with Google”.',
+          'Groq runs the AI model behind the AI tutor, only when you ask it a question.',
           'Each provider works under a data processing agreement. Where data leaves Nigeria, we rely on the transfer safeguards the Nigeria Data Protection Act 2023 and the GDPR require, such as standard contractual clauses.',
         ],
       },
@@ -71,7 +72,9 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
       {
         heading: 'The AI tutor',
         body: [
-          'The AI tutor isn’t available yet. Before it launches, we will update this notice to name the AI provider, explain what is sent to it, and confirm that your questions are never used to train AI models.',
+          'When you ask the AI tutor a question, we send it, the lesson step you’re on and your code for that step to Groq, Inc. (United States), which runs the AI model. We don’t send your name or email address.',
+          'Groq doesn’t use your questions to train AI models. We keep your questions and the answers for 30 days, to check the tutor is safe and helpful, and then delete them. They also count towards your daily limit.',
+          'AI answers can be wrong. Check them against the lesson.',
         ],
       },
       {

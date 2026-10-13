@@ -13,7 +13,7 @@ type Cell = string | boolean
 const ROWS: [string, Cell, Cell, Cell][] = [
   ['Lessons', 'Module 1 of every track', 'Every module', 'Every module'],
   ['Daily review', true, true, true],
-  ['AI tutor', '5 questions a day', '50 questions a day', '50 questions a day'],
+  ['AI tutor', '5 questions a day', '20 questions a day', '20 questions a day'],
   ['Projects with automatic checks', 'Module 1 project', 'All projects', 'All projects'],
   ['Verified certificates', false, true, true],
   ['Save modules for offline', 'Module 1', 'All modules', 'All modules'],

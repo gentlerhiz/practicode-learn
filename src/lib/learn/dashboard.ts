@@ -174,8 +174,10 @@ export function buildNewDashboard(data: LearnerTrackData, name: string | null, p
       today: Math.floor((now.getTime() - weekStart(now).getTime()) / 86_400_000),
     },
     tutor: {
-      title: 'Your AI tutor is on its way',
-      body: 'Stuck on an exercise? Every step has three hints today. The tutor arrives soon, with 5 questions a day on Free.',
+      title: 'Stuck? Ask your AI tutor',
+      body: data.isPro
+        ? 'Tap Ask AI in any lesson. It knows the step and your code, and gives a hint first. 20 questions a day on Pro.'
+        : 'Tap Ask AI in any lesson. It knows the step and your code, and gives a hint first. 5 questions a day on Free.',
       link: { label: 'See how it helps', href: '/#tutor' as Route },
     },
     others: PLAN_TRACKS.filter((t) => t.id !== 'fe').map((t) => ({

@@ -98,7 +98,7 @@ export function Workspace({ data }: { data: WorkspaceData }) {
         </div>
         {tutorNote && (
           <p role="status" className="border-t border-line-subtle px-6 py-3 text-[13px] text-ink-muted">
-            The AI tutor arrives soon. Until then, open a check that needs a fix and use its explanation.
+            The AI tutor works in lessons for now. Here, open a check that needs a fix and use its explanation.
           </p>
         )}
       </header>

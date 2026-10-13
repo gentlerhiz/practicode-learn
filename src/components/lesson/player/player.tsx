@@ -150,6 +150,7 @@ export function LessonPlayer({
           hintsShown={api.state.hints}
           hintsTotal={hintsIn(api.step)}
           onHint={api.reveal}
+          tutor={{ lessonId: pack.id, step: api.index, selected: api.state.selected, files: api.state.files }}
         />
       )}
 

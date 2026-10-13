@@ -5,6 +5,7 @@ const ServerEnv = z.object({
   SUPABASE_SECRET_KEY: z.string().min(20),
   REVALIDATE_SECRET: z.string().min(32),
   CRON_SECRET: z.string().min(32),
+  GROQ_API_KEY: z.string().min(20),
 })
 type ServerEnv = z.infer<typeof ServerEnv>
 
@@ -29,6 +30,9 @@ export function serverEnv(): ServerEnv {
     },
     get CRON_SECRET() {
       return read('CRON_SECRET')
+    },
+    get GROQ_API_KEY() {
+      return read('GROQ_API_KEY')
     },
   }
 }
