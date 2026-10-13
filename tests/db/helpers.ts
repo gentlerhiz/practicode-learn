@@ -6,7 +6,8 @@ import type { Database } from '@/types/database'
 // .env.local, which is git-ignored; they never appear in code.
 if (existsSync('.env.local')) process.loadEnvFile('.env.local')
 
-const url = process.env.SUPABASE_TEST_URL ?? ''
+// Without its own setting, tests use the project the app uses (the dev project, from .env.local).
+const url = process.env.SUPABASE_TEST_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const publishableKey = process.env.SUPABASE_TEST_PUBLISHABLE_KEY ?? ''
 const secretKey = process.env.SUPABASE_TEST_SECRET_KEY ?? ''
 
