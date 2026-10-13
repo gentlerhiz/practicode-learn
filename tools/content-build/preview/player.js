@@ -504,6 +504,8 @@
         if (step.lab === 'page-load') {
           s.loaded = s.value
           pageLoad.run(el.querySelector('.lab'), s.value)
+        } else if (step.lab) {
+          noLab(el.querySelector('.lab'), step.lab, s.value)
         } else {
           var files = el.querySelector('.work .files')
           var tmp = document.createElement('div')
@@ -527,7 +529,8 @@
         s.loaded = s.value
         pageLoad.run(box, s.value)
       })
-    } else el.querySelector('iframe').srcdoc = buildDocument(step.files, { value: s.value })
+    } else if (step.lab) noLab(el.querySelector('.lab'), step.lab, s.value)
+    else el.querySelector('iframe').srcdoc = buildDocument(step.files, { value: s.value })
   }
 
   render.diagram = function (step, s, el) {
@@ -567,7 +570,8 @@
       (s.at < n - 1 ? '' : ' disabled') +
       '>Next</button></div>'
     var lab = el.querySelector('.lab')
-    LABS[step.lab](lab, s.at)
+    if (LABS[step.lab]) LABS[step.lab](lab, s.at)
+    else noLab(lab, step.lab, 'state ' + (s.at + 1))
     // Keep keyboard focus where it was: on the diagram for arrow keys, on the button that was pressed otherwise.
     var go = function (d, from) {
       var t = s.at + d
@@ -900,6 +904,10 @@
 
   // ---------- labs ----------
   var LABS = {}
+  // Labs drawn only by the app: the preview names the lab and the value, so the step can still be reviewed.
+  var noLab = function (box, name, value) {
+    box.textContent = 'The ' + name + ' lab plays in the app (here: ' + (value || 'first value') + ').'
+  }
   var NS = 'http://www.w3.org/2000/svg'
 
   LABS['request-journey'] = function (box, at) {

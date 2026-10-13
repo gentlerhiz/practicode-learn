@@ -5,6 +5,13 @@ export const LAB_NAMES = [
   'flex-axes',
   'url-anatomy',
   'http-exchange',
+  'file-paths',
+  'screen-reader',
+  'link-preview',
+  'editor-tour',
+  'terminal',
+  'git-flow',
+  'devtools',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]
