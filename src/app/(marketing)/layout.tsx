@@ -9,7 +9,10 @@ export default function MarketingLayout({ children }: LayoutProps<'/'>) {
       <SkipLink />
       <HomeBanner />
       <SiteHeader />
-      <main id="main">{children}</main>
+      {/* The hero and demo glows are wider than a phone; clip them sideways so the page never is. */}
+      <main id="main" className="overflow-x-clip">
+        {children}
+      </main>
       <SiteFooter />
     </>
   )

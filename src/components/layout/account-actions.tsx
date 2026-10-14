@@ -27,7 +27,10 @@ export function AccountActions() {
   if (signedIn) {
     return (
       <Link href={'/home' as Route} className={buttonClasses({}, 'px-3.5 text-sm ph:px-5 ph:text-[15px]')}>
-        My Dashboard
+        {/* "Dashboard" alone on small phones, so the header row fits. */}
+        <span>
+          <span className="max-[399px]:hidden">My </span>Dashboard
+        </span>
       </Link>
     )
   }
