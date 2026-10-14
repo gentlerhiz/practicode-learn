@@ -73,6 +73,81 @@ const CONSOLE = `
 })();
 `
 
+// The runner's sandbox only allows inline scripts, so JavaScript files that import and export each other
+// can't load one another. Instead they're linked here into one script: each file runs in its own scope, in
+// dependency order, and a wrong path or a missing export stops everything with the browser's own error.
+// Named imports and exports only. Exported names are also put on window, so tests can call them.
+const NAME = String.raw`[A-Za-z_$][\w$]*`
+const IMPORT_LINE = /^[ \t]*import\s*\{([^}]*)\}\s*from\s*(['"])([^'"]*)\2[ \t]*;?[ \t]*$/gm
+const EXPORT_LIST = /^[ \t]*export\s*\{([^}]*)\}[ \t]*;?[ \t]*$/gm
+const EXPORT_DECL = new RegExp(
+  String.raw`^([ \t]*)export\s+((?:async\s+)?function\*?\s*(${NAME})|(?:const|let|var|class)\s+(${NAME}))`,
+  'gm',
+)
+const isModule = (code: string) => /^[ \t]*(import\s*\{|export\s)/m.test(code)
+const names = (list: string) =>
+  list
+    .split(',')
+    .map((n) => n.trim())
+    .filter(Boolean)
+
+type ModuleFile = { name: string; code: string }
+
+function linkModules(files: ModuleFile[]): string {
+  const exports = new Map<string, string[]>()
+  for (const f of files) {
+    const found: string[] = []
+    for (const m of f.code.matchAll(EXPORT_DECL)) found.push((m[3] ?? m[4])!)
+    for (const m of f.code.matchAll(EXPORT_LIST)) found.push(...names(m[1]!))
+    exports.set(f.name, found)
+  }
+  const fail = (type: string, message: string) => `throw new ${type}(${JSON.stringify(message)});`
+  const imports = new Map<string, { names: string[]; spec: string; file: string }[]>()
+  for (const f of files) {
+    const list = []
+    for (const m of f.code.matchAll(IMPORT_LINE)) {
+      const spec = m[3]!
+      if (!/^(\.\.?\/|\/)/.test(spec)) {
+        return fail(
+          'TypeError',
+          `Failed to resolve module specifier "${spec}". Relative references must start with either "/", "./", or "../".`,
+        )
+      }
+      const file = spec.replace(/^(\.\.?\/)+|^\//, '')
+      if (!exports.has(file)) return fail('TypeError', `Failed to fetch module '${spec}': there's no file called ${file}.`)
+      for (const n of names(m[1]!)) {
+        if (!exports.get(file)!.includes(n)) {
+          return fail('SyntaxError', `The requested module '${spec}' does not provide an export named '${n}'`)
+        }
+      }
+      list.push({ names: names(m[1]!), spec, file })
+    }
+    imports.set(f.name, list)
+  }
+  // Each file after the files it imports from.
+  const order: ModuleFile[] = []
+  const visit = (f: ModuleFile, seen: Set<string>) => {
+    if (order.includes(f) || seen.has(f.name)) return
+    seen.add(f.name)
+    for (const i of imports.get(f.name)!) visit(files.find((x) => x.name === i.file)!, seen)
+    order.push(f)
+  }
+  for (const f of files) visit(f, new Set())
+  const blocks = order.map((f) => {
+    const take = imports
+      .get(f.name)!
+      .map((i) => `const { ${i.names.join(', ')} } = __pclModules[${JSON.stringify(i.file)}];`)
+      .join(' ')
+    const body = f.code
+      .replace(IMPORT_LINE, '')
+      .replace(EXPORT_LIST, '')
+      .replace(EXPORT_DECL, (_m, indent: string, decl: string) => indent + decl)
+    const give = exports.get(f.name)!.join(', ')
+    return `{ ${take}\n${body}\n__pclModules[${JSON.stringify(f.name)}] = { ${give} }; }`
+  })
+  return `'use strict';\nvar __pclModules = {};\n${blocks.join('\n')}\nfor (var __pclFile in __pclModules) Object.assign(window, __pclModules[__pclFile]);`
+}
+
 // Inline scripts can't contain a literal closing script tag, or the HTML parser ends the element early.
 const noScriptEnd = (s: string) => s.replace(/<\/script/gi, '<\\/script')
 
@@ -88,7 +163,12 @@ export function buildDocument(
       .join('\n')
   const html = of('html')
   const css = of('css')
-  const js = of('js', 'javascript')
+  const scripts = files
+    .filter((f) => f.lang === 'js' || f.lang === 'javascript')
+    .map((f) => ({ name: f.name, code: sub(f.code) }))
+  const js = scripts.some((f) => isModule(f.code))
+    ? linkModules(scripts)
+    : scripts.map((f) => f.code).join('\n')
   let tests = ''
   if (opts.tests) {
     // Tests are compiled into the page as functions, not eval'd, so a strict content security policy

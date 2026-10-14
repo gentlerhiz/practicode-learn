@@ -34,3 +34,22 @@ it('passes the printed lines to tests as logs', () => {
   const doc = buildDocument(files, { tests: [{ name: 't', code: 'assert(logs.length === 0)' }] })
   expect(doc).toContain('function ($, $$, css, box, textBox, near, assert, logs)')
 })
+it('links files that import and export each other, each in its own scope, imported files first', () => {
+  const doc = buildDocument([
+    { name: 'main.js', lang: 'js', code: "import { add } from './budget.js'\nconst total = add(2, 3)" },
+    { name: 'budget.js', lang: 'js', code: 'const total = 0\nexport function add(a, b) {\n  return a + b\n}' },
+  ])
+  expect(doc).not.toMatch(/^\s*(import|export)\b/m)
+  expect(doc.indexOf('function add')).toBeLessThan(doc.indexOf('add(2, 3)'))
+  expect(doc).toContain('const { add } = __pclModules["budget.js"];')
+})
+it('stops with the browser’s error when an import is wrong', () => {
+  const run = (spec: string, name = 'add') =>
+    buildDocument([
+      { name: 'main.js', lang: 'js', code: `import { ${name} } from '${spec}'` },
+      { name: 'budget.js', lang: 'js', code: 'export function add() {}' },
+    ])
+  expect(run('./budget.js', 'total')).toContain("does not provide an export named 'total'")
+  expect(run('budget.js')).toContain('Relative references must start with')
+  expect(run('./budjet.js')).toContain("Failed to fetch module './budjet.js'")
+})
