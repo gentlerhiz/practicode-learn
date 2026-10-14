@@ -1,7 +1,8 @@
 // Runs every code step in a real browser (Playwright's Chromium, headless) at phone and laptop widths:
 //   - the model solution must pass every test
 //   - the starter code must fail at least one test, or the task is already done
-// It also renders every runnable example and every Explore value, and fails on any page error. It uses
+// It also renders every runnable example and every Explore value, and fails on any page error (except
+// from a live question's wrong options, which may throw on purpose). It uses
 // the same document builder as the lesson player, so a test that passes here passes for learners.
 // Usage: node tools/content-build/check-code.ts --packs <dir>   (solutions are read from <dir>/../solutions)
 import fs from 'node:fs'
@@ -76,12 +77,16 @@ for (const f of fs
     if (step.type !== 'predict' && step.type !== 'question' && step.type !== 'explore') continue
     if (!step.files) continue
     let tries: (string | null)[] = []
+    // A wrong option may throw on purpose: the learner sees the error in the preview's console.
+    let mayThrow: (string | null)[] = []
     if (step.type === 'explore') tries = step.lab ? [null] : step.values
-    else if (step.live) tries = step.options.map((o) => o.value ?? null)
-    else if (step.run) tries = [null]
+    else if (step.live) {
+      tries = step.options.map((o) => o.value ?? null)
+      mayThrow = step.options.filter((o) => !o.correct).map((o) => o.value ?? null)
+    } else if (step.run) tries = [null]
     for (const value of tries) {
       await run(buildDocument(step.files, { value }), 360)
-      if (pageErrors.length) {
+      if (pageErrors.length && !mayThrow.includes(value)) {
         problems.push(`${where}${value ? ` value ${value}` : ''}: page error: ${pageErrors.join(' ')}`)
       }
       checked++

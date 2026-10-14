@@ -4,7 +4,8 @@
 // the content tools, so it uses only erasable syntax.
 import type { LessonFile, LessonTest } from '../lessons/schema.ts'
 
-// The test API inside every <Test> block: $, $$, css, box, textBox, near and assert.
+// The test API inside every <Test> block: $, $$, css, box, textBox, near, assert and logs (the lines the
+// learner's code printed with console.log, as text).
 const HARNESS = `
 (function () {
   var q = function (s) { return typeof s === 'string' ? document.querySelector(s) : s; };
@@ -18,12 +19,57 @@ const HARNESS = `
   var assert = function (c, m) { if (!c) throw new Error(m || 'Check failed.'); };
   window.__pclRun = function (tests) {
     var results = tests.map(function (t) {
-      try { t.run($, $$, css, box, textBox, near, assert); return { name: t.name, pass: true }; }
+      try { t.run($, $$, css, box, textBox, near, assert, (window.__pclLogs || []).slice()); return { name: t.name, pass: true }; }
       catch (e) { return { name: t.name, pass: false, message: e && e.message ? e.message : String(e) }; }
     });
     window.__pclResults = results;
     try { parent.postMessage({ type: 'pcl-tests', results: results }, '*'); } catch (e) {}
   };
+})();
+`
+
+// Pages with JavaScript get a console under the preview, because learners can't open DevTools inside
+// the lesson. It shows what console.log prints, and any error, the way the browser's console would. It
+// appears with the first line, so pages that print nothing look the same as before.
+const CONSOLE = `
+(function () {
+  var logs = window.__pclLogs = [];
+  var panel = null;
+  var fmt = function (v, d) {
+    if (typeof v === 'string') return d ? "'" + v + "'" : v;
+    if (typeof v === 'function') return 'ƒ ' + (v.name || 'anonymous') + '()';
+    if (v === null || typeof v !== 'object') return String(v);
+    if (v instanceof Error) return v.name + ': ' + v.message;
+    if (typeof Element !== 'undefined' && v instanceof Element) return '<' + v.tagName.toLowerCase() + '>';
+    if (d > 2) return Array.isArray(v) ? '[…]' : '{…}';
+    if (Array.isArray(v)) return '[' + v.map(function (x) { return fmt(x, d + 1); }).join(', ') + ']';
+    return '{' + Object.keys(v).map(function (k) { return k + ': ' + fmt(v[k], d + 1); }).join(', ') + '}';
+  };
+  var show = function (text, error) {
+    if (!panel) {
+      panel = document.createElement('pcl-console');
+      panel.setAttribute('role', 'log');
+      panel.setAttribute('aria-label', 'Console');
+      panel.style.cssText = 'display:block;margin:16px 0 0;padding:8px 12px;background:#15122A;color:#F4F1FF;font:13px/1.5 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;text-align:left';
+      (document.body || document.documentElement).appendChild(panel);
+    }
+    var line = document.createElement('pcl-line');
+    line.style.cssText = 'display:block;padding:2px 0;border-top:1px solid rgba(244,241,255,0.12)' + (error ? ';color:#FCA5A5' : '');
+    line.textContent = text;
+    panel.appendChild(line);
+  };
+  ['log', 'info', 'warn', 'error'].forEach(function (k) {
+    var original = console[k];
+    console[k] = function () {
+      var text = Array.prototype.map.call(arguments, function (a) { return fmt(a, 0); }).join(' ');
+      logs.push(text);
+      show(text, k === 'error');
+      try { original.apply(console, arguments); } catch (e) {}
+    };
+  });
+  window.addEventListener('error', function (e) {
+    show((e.error && e.error.name ? e.error.name + ': ' + e.error.message : e.message), true);
+  });
 })();
 `
 
@@ -50,7 +96,7 @@ export function buildDocument(
     const list = opts.tests
       .map(
         (t) =>
-          `{ name: ${JSON.stringify(t.name)}, run: function ($, $$, css, box, textBox, near, assert) {\n${t.code}\n} }`,
+          `{ name: ${JSON.stringify(t.name)}, run: function ($, $$, css, box, textBox, near, assert, logs) {\n${t.code}\n} }`,
       )
       .join(',\n')
     tests = `<script>${HARNESS}
@@ -61,7 +107,7 @@ window.addEventListener('load', function () {
 });
 </script>`
   }
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style></head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
 }
 
 /** The starter files with some replaced, for example by a model solution. */
