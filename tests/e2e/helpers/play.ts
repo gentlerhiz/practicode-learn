@@ -51,7 +51,11 @@ export async function playWholeLesson(
       const items = page.locator('article ol > li')
       const expected = (step.items ?? []).map(text)
       for (let position = 0; position < expected.length; position++) {
-        let at = (await items.allInnerTexts()).findIndex((t) => t.includes(expected[position]!))
+        // An exact line first, so ".price" doesn't match ".menu .price".
+        const texts = await items.allInnerTexts()
+        const want = expected[position]!
+        let at = texts.findIndex((t, i) => i >= position && t.split('\n').some((line) => line.trim() === want))
+        if (at < 0) at = texts.findIndex((t, i) => i >= position && t.includes(want))
         while (at > position) {
           await items.nth(at).getByRole('button', { name: 'Move up' }).click()
           at--

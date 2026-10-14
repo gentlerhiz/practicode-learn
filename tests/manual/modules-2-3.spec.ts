@@ -15,7 +15,9 @@ const catalogue = JSON.parse(readFileSync(`${CONTENT}/catalogue.json`, 'utf8')) 
   slug: string
   module: number
 }[]
-const LESSONS = catalogue.filter((l) => l.module === 2 || l.module === 3)
+// MODULES=4 plays another module instead.
+const MODULES = (process.env.MODULES ?? '2,3').split(',').map(Number)
+const LESSONS = catalogue.filter((l) => MODULES.includes(l.module))
 
 test.afterAll(deleteTestUsers)
 
