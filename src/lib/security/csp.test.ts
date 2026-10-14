@@ -29,7 +29,7 @@ describe('buildCsp', () => {
       "frame-ancestors 'none'",
       "object-src 'none'",
       "base-uri 'self'",
-      "form-action 'self' https://abc.supabase.co https://accounts.google.com",
+      "form-action 'self' https://abc.supabase.co https://accounts.google.com https://checkout.paystack.com",
     ])
       expect(csp).toContain(d)
   })

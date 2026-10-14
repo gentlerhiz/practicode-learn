@@ -30,11 +30,30 @@ function MethodIcon({ path }: { path: string }) {
   )
 }
 
+const ERRORS: Record<string, string> = {
+  start: 'Paystack didn’t answer just now. Nothing was charged. Try again in a minute.',
+  choice: 'Choose a plan and a way to pay, then try again.',
+  email: 'Your account needs an email address before you can pay. Add one in Settings.',
+}
+
 /**
- * PrismCheckout. `live` is false until payments are real: then nothing can be paid, the card fields are
- * never shown, and the page says so. The canvas version (with card fields) appears only in the preview.
+ * PrismCheckout. With `action`, payments are real: the form posts there and Paystack's own page takes the
+ * card, transfer or USSD payment, so card numbers never reach us. Without it, `live` shows the canvas
+ * version (card fields included) for the preview, and `live={false}` says payments aren't open.
  */
-export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: string; daysLeft: number } }) {
+export function CheckoutView({
+  live,
+  trial,
+  action,
+  error,
+  isPro,
+}: {
+  live: boolean
+  trial?: { ends: string; daysLeft: number }
+  action?: string
+  error?: string
+  isPro?: boolean
+}) {
   const [period, setPeriod] = useState<'yearly' | 'monthly'>('yearly')
   const [method, setMethod] = useState<'card' | 'bank' | 'ussd'>('card')
   const [code, setCode] = useState('')
@@ -43,9 +62,17 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
   const every = period === 'yearly' ? 'each year' : 'each month'
   const sumName = `Pro, ${period === 'yearly' ? 'yearly' : 'monthly'}`
 
+  const real = Boolean(action)
+  const once = period === 'yearly' ? 'one year' : 'one month'
   const submitLabel = !live
     ? 'Payments Open Soon'
-    : method === 'card'
+    : real
+      ? method === 'card'
+        ? `Pay ${chosen.price} by Card`
+        : method === 'bank'
+          ? `Pay ${chosen.price} by Bank Transfer`
+          : `Pay ${chosen.price} with USSD`
+      : method === 'card'
       ? 'Save Card and Keep Pro'
       : method === 'bank'
         ? 'Get Account Details'
@@ -84,8 +111,23 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
             <p className="max-w-[560px] text-[17px] leading-7 text-ink-muted">
               {trial
                 ? `Your free trial ends on ${trial.ends}. Choose a plan now and nothing changes: every module, verified certificates and 20 AI tutor questions a day. You won’t pay anything today.`
-                : 'Pro launches with the full track. This is exactly how checkout will work, but payments aren’t open yet, so nothing can be charged and we won’t ask for card details.'}
+                : real
+                  ? 'Every module, verified certificates and 20 AI tutor questions a day. You pay on Paystack’s secure page, by card, bank transfer or USSD.'
+                  : 'Pro launches with the full track. This is exactly how checkout will work, but payments aren’t open yet, so nothing can be charged and we won’t ask for card details.'}
             </p>
+            {isPro && (
+              <p role="status" className="max-w-[560px] rounded-2xl border border-line bg-row px-4 py-3 text-sm leading-[22px] text-ink">
+                You already have Pro. Paying again adds another {once} to it.{' '}
+                <Link href={'/settings#set-plan' as Route} className="text-fe-text underline underline-offset-2 hover:no-underline">
+                  See your plan
+                </Link>
+              </p>
+            )}
+            {error && ERRORS[error] && (
+              <p role="alert" className="max-w-[560px] rounded-2xl border border-line bg-row px-4 py-3 text-sm leading-[22px] text-error">
+                {ERRORS[error]}
+              </p>
+            )}
           </div>
 
           <section aria-labelledby="period-title" className="flex flex-col gap-4">
@@ -158,7 +200,20 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
             </div>
             <div className="surface flex flex-col gap-4 rounded-[22px] border border-line p-6">
               {method === 'card' &&
-                (live ? (
+                (real ? (
+                  <div className="flex items-start gap-4">
+                    <span className="flex size-11 shrink-0 items-center justify-center rounded-[14px] bg-[rgba(123,92,255,0.16)] text-ai-text">
+                      <Glyph name="lock" size={20} />
+                    </span>
+                    <div className="flex flex-col gap-1.5">
+                      <p className="text-base font-semibold text-ink">Pay by card on Paystack</p>
+                      <p className="text-sm leading-[22px] text-ink-muted">
+                        Visa, Mastercard or Verve. Your card goes straight to Paystack: we never see or store your card number. Pro
+                        renews by itself {every}, and you can cancel any time in Settings.
+                      </p>
+                    </div>
+                  </div>
+                ) : live ? (
                   <>
                     <Field id="cc" label="Card number">
                       <Input id="cc" inputMode="numeric" autoComplete="cc-number" defaultValue="5399 8312 0047 2216" />
@@ -198,14 +253,20 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
                       <p className="text-base font-semibold text-ink">Pay by bank transfer</p>
                       <p className="text-sm leading-[22px] text-ink-muted">
                         On the next screen you’ll get an account number just for this payment. Transfers usually confirm within a few
-                        minutes, and we’ll email you when it lands.
+                        minutes, and Pro switches on by itself when it lands.
                       </p>
                     </div>
                   </div>
                   <p className="text-[13px] leading-5 text-ink-subtle">Bank transfer can’t renew by itself, so we’ll send you a reminder before each payment is due.</p>
                 </>
               )}
-              {method === 'ussd' && (
+              {method === 'ussd' && real && (
+                <p className="text-sm leading-[22px] text-ink-muted">
+                  Paystack gives you a short code to dial for your bank. It works on any phone, even without data. Like bank transfer,
+                  USSD can’t renew by itself.
+                </p>
+              )}
+              {method === 'ussd' && !real && (
                 <>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="bank" className="text-sm font-medium text-ink">
@@ -227,7 +288,15 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
           </section>
 
           <div className="flex flex-col gap-4">
-            {live ? (
+            {real ? (
+              <form action={action} method="post">
+                <input type="hidden" name="billing" value={period} />
+                <input type="hidden" name="method" value={method} />
+                <button type="submit" className={buttonClasses({}, 'h-14 w-full text-base')}>
+                  {submitLabel}
+                </button>
+              </form>
+            ) : live ? (
               <Link href={submitHref} className={buttonClasses({}, 'h-14 w-full text-base')}>
                 {submitLabel}
               </Link>
@@ -237,7 +306,11 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
               </button>
             )}
             <p className="text-center text-[13px] leading-[21px] text-ink-subtle">
-              {live
+              {real
+                ? method === 'card'
+                  ? `${chosen.price} today, then ${chosen.price} ${every} until you cancel.`
+                  : `${chosen.price} today for ${once} of Pro. It doesn’t renew by itself.`
+                : live
                 ? `You won’t pay anything today. Then ${chosen.price} ${every} until you cancel.`
                 : 'Until Pro launches, every lesson that’s open is free, with no card and no trial clock.'}
             </p>
@@ -268,7 +341,7 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
                   <input aria-label="Code" value={code} onChange={(e) => setCode(e.target.value)} placeholder="Enter code" className={inputClasses} />
                   <button
                     type="button"
-                    onClick={() => setCodeNote(code.trim() ? 'Codes can be used once payments open.' : 'Enter a code first.')}
+                    onClick={() => setCodeNote(!code.trim() ? 'Enter a code first.' : real ? 'Codes aren’t available yet.' : 'Codes can be used once payments open.')}
                     className={buttonClasses({ variant: 'secondary' }, 'h-[52px] bg-transparent px-5 font-medium')}
                   >
                     Apply
@@ -283,9 +356,17 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
               <div className="flex flex-col gap-1.5 border-t border-divider pt-4">
                 <div className="flex items-baseline justify-between gap-3">
                   <span className="text-base font-semibold text-ink">Due today</span>
-                  <span className="font-display text-4xl leading-10 font-extrabold text-ink">₦0</span>
+                  <span className="font-display text-4xl leading-10 font-extrabold text-ink">{real ? chosen.price : '₦0'}</span>
                 </div>
-                <p className="text-[13px] text-ink-muted">{live ? `Then ${chosen.price} ${every}.` : 'Nothing can be charged until payments open.'}</p>
+                <p className="text-[13px] text-ink-muted">
+                  {real
+                    ? method === 'card'
+                      ? `Then ${chosen.price} ${every}.`
+                      : `For ${once}. No automatic renewal.`
+                    : live
+                      ? `Then ${chosen.price} ${every}.`
+                      : 'Nothing can be charged until payments open.'}
+                </p>
               </div>
               <ul className="flex flex-col gap-3 text-sm text-ink-soft">
                 {PRO.map((p) => (
@@ -300,7 +381,7 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
           <div className="flex flex-col gap-3 px-2 text-[13px] leading-5 text-ink-muted">
             <p className="flex gap-3">
               <Glyph name="bell" size={18} className="shrink-0" />
-              <span>We’ll remind you two days before your trial ends, so nothing comes as a surprise.</span>
+              <span>{real ? 'Paystack emails you a receipt each time you pay.' : 'We’ll remind you two days before your trial ends, so nothing comes as a surprise.'}</span>
             </p>
             <p className="flex gap-3">
               <Glyph name="lock" size={18} className="shrink-0" />
@@ -308,7 +389,7 @@ export function CheckoutView({ live, trial }: { live: boolean; trial?: { ends: s
             </p>
             <p className="flex gap-3">
               <Glyph name="check" size={18} className="shrink-0" />
-              <span>Cancel in one click from Settings. No phone calls, no forms.</span>
+              <span>{real ? 'Cancel any time from Settings. No phone calls, no forms.' : 'Cancel in one click from Settings. No phone calls, no forms.'}</span>
             </p>
           </div>
           <p className="px-2 text-[13px] text-ink-muted">

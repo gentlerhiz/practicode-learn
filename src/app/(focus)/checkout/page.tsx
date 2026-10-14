@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { CheckoutView } from '@/components/app/checkout/checkout-view'
+import { requireUser } from '@/lib/auth/require-user'
 import { pageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = pageMetadata({
@@ -9,7 +10,17 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-/** PrismCheckout. Payments aren't open, so this shows how it will work and takes nothing. */
-export default function CheckoutPage() {
-  return <CheckoutView live={false} />
+/** PrismCheckout. Pays through Paystack once its secret key is set; until then it explains and takes nothing. */
+export default async function CheckoutPage({ searchParams }: PageProps<'/checkout'>) {
+  const user = await requireUser()
+  const { error } = await searchParams
+  if (!process.env.PAYSTACK_SECRET_KEY) return <CheckoutView live={false} />
+  return (
+    <CheckoutView
+      live
+      action="/api/billing/checkout"
+      error={typeof error === 'string' ? error : undefined}
+      isPro={user.isPro}
+    />
+  )
 }

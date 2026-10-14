@@ -321,6 +321,19 @@ export type Database = {
         }
         Returns: undefined
       }
+      record_payment: {
+        Args: {
+          p_amount: number
+          p_billing: string
+          p_channel: string | null
+          p_currency: string
+          p_customer: string | null
+          p_learner: string
+          p_paid_at: string
+          p_reference: string
+        }
+        Returns: string | null
+      }
       tutor_claim: {
         Args: { p_lesson: string; p_question: string; p_step: number }
         Returns: Json

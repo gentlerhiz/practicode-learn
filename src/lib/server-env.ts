@@ -6,6 +6,7 @@ const ServerEnv = z.object({
   REVALIDATE_SECRET: z.string().min(32),
   CRON_SECRET: z.string().min(32),
   GROQ_API_KEY: z.string().min(20),
+  PAYSTACK_SECRET_KEY: z.string().regex(/^sk_(test|live)_/),
 })
 type ServerEnv = z.infer<typeof ServerEnv>
 
@@ -33,6 +34,9 @@ export function serverEnv(): ServerEnv {
     },
     get GROQ_API_KEY() {
       return read('GROQ_API_KEY')
+    },
+    get PAYSTACK_SECRET_KEY() {
+      return read('PAYSTACK_SECRET_KEY')
     },
   }
 }

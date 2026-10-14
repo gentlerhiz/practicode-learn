@@ -71,7 +71,7 @@ export const about = {
       },
       {
         title: 'No pressure tactics.',
-        body: 'No fake countdowns or guilt trips. When Pro launches, you’ll cancel in one click, with no phone calls.',
+        body: 'No fake countdowns or guilt trips. Cancel Pro any time from Settings, with no phone calls.',
       },
       {
         title: 'Accessible by design.',

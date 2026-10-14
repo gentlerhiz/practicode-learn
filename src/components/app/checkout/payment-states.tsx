@@ -9,7 +9,7 @@ import { Glyph, type GlyphName } from '@/components/ui/glyph'
 import { cn } from '@/lib/cn'
 
 /** The slim payment header with its glow (PrismBankTransfer, PrismPaid, PrismPayFailed). */
-function PayFrame({ glow, aside, children, width = 'max-w-[600px]' }: { glow: string; aside: React.ReactNode; children: React.ReactNode; width?: string }) {
+export function PayFrame({ glow, aside, children, width = 'max-w-[600px]' }: { glow: string; aside: React.ReactNode; children: React.ReactNode; width?: string }) {
   return (
     <div className="relative min-h-dvh overflow-hidden">
       <div
@@ -169,7 +169,7 @@ export function BankTransferView({ data }: { data: TransferData }) {
   )
 }
 
-export type PaidData = { firstName: string; intro: string; receipt: [string, string][]; continueHref: Route }
+export type PaidData = { firstName: string; intro: string; receipt: [string, string][]; continueHref: Route; homeHref?: Route }
 
 const UNLOCKED: { icon: GlyphName; title: string; body: string }[] = [
   { icon: 'book', title: 'Every module in every track', body: 'Front-End, Data, Design and AI. Switch whenever you like.' },
@@ -185,7 +185,7 @@ export function PaidView({ data }: { data: PaidData }) {
       glow="rgba(47,230,176,0.22)"
       width="max-w-[880px]"
       aside={
-        <Link href={'/fixtures/screens/dashboard' as Route} className="text-sm text-ink-muted underline underline-offset-2 hover:text-ink">
+        <Link href={data.homeHref ?? ('/fixtures/screens/dashboard' as Route)} className="text-sm text-ink-muted underline underline-offset-2 hover:text-ink">
           Back to Home
         </Link>
       }
@@ -249,16 +249,28 @@ const OTHER: { icon: GlyphName; title: string; body: string; action: string }[] 
 ]
 
 /** PrismPayFailed: what went wrong, what usually fixes it, and other ways to pay. */
-export function PayFailedView({ trialEnds, reference }: { trialEnds: string; reference: string }) {
+export function PayFailedView({
+  trialEnds,
+  reference,
+  retryHref = '/fixtures/screens/checkout' as Route,
+  otherHref = '/fixtures/screens/bank-transfer' as Route,
+  title = 'Your bank declined the card',
+}: {
+  trialEnds?: string
+  reference: string
+  retryHref?: Route
+  otherHref?: Route
+  title?: string
+}) {
   return (
     <PayFrame glow="rgba(255,154,162,0.18)" aside={secure}>
       <div className="flex flex-col gap-3">
         <span className="flex size-12 items-center justify-center rounded-2xl bg-[rgba(255,154,162,0.14)] text-error">
           <Glyph name="x" size={22} strokeWidth={2.2} />
         </span>
-        <h1 className="font-display text-[30px] leading-9 font-extrabold tracking-[-0.035em] text-ink ph:text-[34px] ph:leading-10">Your bank declined the card</h1>
+        <h1 className="font-display text-[30px] leading-9 font-extrabold tracking-[-0.035em] text-ink ph:text-[34px] ph:leading-10">{title}</h1>
         <p className="text-[15px] leading-6 text-ink-muted">
-          Nothing was charged, and your Pro trial carries on until {trialEnds}. This often happens when a card isn’t set up for online payments.
+          {trialEnds ? `Nothing was charged, and your Pro trial carries on until ${trialEnds}.` : 'Nothing was charged.'} This often happens when a card isn’t set up for online payments.
         </p>
       </div>
       <div className="surface flex flex-col gap-3 rounded-[22px] border border-line p-5">
@@ -274,7 +286,7 @@ export function PayFailedView({ trialEnds, reference }: { trialEnds: string; ref
         {OTHER.map((o) => (
           <Link
             key={o.title}
-            href={(o.icon === 'card' ? '/fixtures/screens/checkout' : '/fixtures/screens/bank-transfer') as Route}
+            href={o.icon === 'card' ? retryHref : otherHref}
             className="flex items-center gap-4 rounded-[18px] border border-line bg-row p-4 transition-colors hover:border-line-strong hover:bg-hover"
           >
             <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-control text-ink-soft">

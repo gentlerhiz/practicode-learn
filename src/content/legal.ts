@@ -58,6 +58,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
           'Resend sends sign-in codes and account emails.',
           'Google provides sign-in, only if you choose “Continue with Google”.',
           'Groq runs the AI model behind the AI tutor, only when you ask it a question.',
+          'Paystack takes payments for Pro. It receives your email address and payment details; we receive whether you paid, but never your full card number.',
           'Each provider works under a data processing agreement. Where data leaves Nigeria, we rely on the transfer safeguards the Nigeria Data Protection Act 2023 and the GDPR require, such as standard contractual clauses.',
         ],
       },
@@ -95,11 +96,11 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
 
   terms: {
     title: 'Terms of use',
-    updated: '4 October 2026',
+    updated: '14 October 2026',
     summary: [
       'Be kind, and do your own work on assessments.',
       'Lessons and the PractiCode name belong to us. Your projects and code belong to you.',
-      'PractiCode Learn is free during the beta. There is nothing to pay.',
+      'Module 1 of every track is free. Pro, which opens every module, is a paid plan you can cancel any time.',
       'Certificates, when they arrive, show the skills you demonstrated. They are not a degree.',
     ],
     sections: [
@@ -127,7 +128,15 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
         heading: 'The beta',
         body: [
           'PractiCode Learn is in beta. Things will change, and we may occasionally reset a lesson or move features around. We will never take away progress you have made without telling you first.',
-          'There is nothing to pay during the beta. When Pro launches, we will show the price in your currency before you pay, and these terms will be updated with how paying and cancelling work.',
+        ],
+      },
+      {
+        heading: 'Paying for Pro',
+        body: [
+          'Pro costs ₦6,500 a month or ₦59,000 a year. We show the price before you pay. Payments are taken by Paystack; we never see your full card number.',
+          'If you pay by card, Pro renews by itself at the end of each month or year, and Paystack charges the same card, until you cancel. Cancel any time from Settings: you keep Pro until the end of the period you have paid for.',
+          'If you pay by bank transfer or USSD, you get Pro for the month or year you paid for. It doesn’t renew by itself.',
+          'If a payment goes wrong, email us with its reference and we will sort it out.',
         ],
       },
       {
@@ -148,7 +157,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
 
   accessibility: {
     title: 'Accessibility statement',
-    updated: '4 October 2026',
+    updated: '14 October 2026',
     summary: [
       'Every part of PractiCode Learn should work for everyone, including people who use a screen reader, a keyboard, zoom or reduced motion.',
       'We aim to meet WCAG 2.2 at level AA, in light and dark mode, on small screens first.',

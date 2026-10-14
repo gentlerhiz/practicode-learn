@@ -42,8 +42,9 @@ export function buildCsp({ mode, nonce, dev, supabaseUrl, themeScriptHash }: Csp
     "manifest-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
-    // Sign-in forms redirect to Supabase, then Google; Chrome applies form-action to those redirects.
-    `form-action 'self'${supabase} https://accounts.google.com`,
+    // Sign-in forms redirect to Supabase, then Google, and checkout to Paystack; Chrome applies form-action
+    // to those redirects.
+    `form-action 'self'${supabase} https://accounts.google.com https://checkout.paystack.com`,
     "frame-ancestors 'none'",
   ].join('; ')
 }

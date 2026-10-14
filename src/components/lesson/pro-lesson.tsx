@@ -113,10 +113,10 @@ export function ProLesson({
           {state.kind === 'locked' && (
             <>
               <p className="text-base leading-[26px] text-ink-soft">
-                This lesson is part of Pro, which opens to everyone soon. Module 1 stays free in the meantime.
+                This lesson is part of Pro. Pro opens every module, from ₦6,500 a month. Module 1 stays free for good.
               </p>
-              <LinkButton href={'/pricing' as Route} prefetch={false} variant="secondary">
-                See Plans
+              <LinkButton href={'/checkout' as Route} prefetch={false}>
+                Go Pro
               </LinkButton>
             </>
           )}

@@ -56,9 +56,19 @@ Until production has its Supabase settings, the live site runs without them: sig
 7. **Check:** `npm run prod -- check` confirms the tables, the published lessons, that the live site is connected, and that Module 1 Lesson 1 loads.
 8. **Automatic publishing (optional):** push `practicode-learn-content` to a private GitHub repository. Give it the Actions secrets `SUPABASE_URL` (production), `SUPABASE_SECRET_KEY` (production) and `REVALIDATE_SECRET` (the same value as in Vercel). From then on, every push to its `main` publishes changed lessons and refreshes their pages.
 
+## Payments (Paystack)
+
+Learners pay on Paystack's own checkout page, so card numbers never reach us. A card payment starts a subscription that renews itself; bank transfer and USSD buy one month or year and don't renew. The two plans ("PractiCode Learn Pro (monthly)" and "(yearly)") are created in Paystack the first time someone checks out.
+
+1. **Vercel** → Environment Variables, for Production: `PAYSTACK_SECRET_KEY` (`sk_test_…` while testing, `sk_live_…` to take real money). `NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY` isn't used yet. Redeploy. Without the secret key, checkout says payments aren't open.
+2. **Paystack dashboard** → Settings → API Keys & Webhooks: set the webhook URL (test or live, matching the key) to `https://learn.practicode.tech/api/webhooks/paystack`. The webhook renews Pro each month, records cancellations and failed renewals, and confirms bank transfers that land after the learner has left the page.
+3. **Test** with Paystack's test card `4084 0840 8408 4081`, any future expiry, CVV `408`. `tests/manual/paystack.spec.ts` checks the same flow from a computer.
+
+Every successful charge is kept in `payments`, keyed by Paystack's reference, and `public.record_payment` extends Pro once per reference, so the callback and the webhook can't extend it twice.
+
 ## Giving someone Pro
 
-Until Paystack subscriptions open, Pro is given by hand. It's stored in the `memberships` table, which only the secret key can write to, and `public.is_pro()` decides who has it. Pro lesson pages stay static: a Pro member's browser gets the lesson from `/api/lessons/<id>`, which downloads it from the private `lessons-pro` bucket with the learner's own session.
+Pro can also be given by hand, with no payment. It's stored in the `memberships` table, which only the secret key can write to, and `public.is_pro()` decides who has it. Pro lesson pages stay static: a Pro member's browser gets the lesson from `/api/lessons/<id>`, which downloads it from the private `lessons-pro` bucket with the learner's own session.
 
 ```
 npm run pro -- grant someone@example.com --prod    # Pro with no end date

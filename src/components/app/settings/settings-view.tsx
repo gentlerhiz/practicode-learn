@@ -18,6 +18,20 @@ export type SettingsData = {
   time: PlanTimeId
   weeklyEmail: boolean
   isPro?: boolean
+  /** The learner's Pro membership, if they have or had one. */
+  membership?: { source: string; billing: string | null; status: string; until: string | null; subscribed: boolean } | null
+}
+
+/** One line on what the plan is and when it next changes. */
+function planNote(data: SettingsData): string {
+  const m = data.membership
+  if (!data.isPro || !m) return 'Module 1 of every track, for good.'
+  if (m.source === 'granted') return m.until ? `Every module, given by PractiCode, until ${m.until}.` : 'Every module, given by PractiCode.'
+  const every = m.billing === 'yearly' ? 'yearly' : 'monthly'
+  if (!m.subscribed) return `Every module, paid ${every} by bank transfer or USSD, until ${m.until}. Pay again to keep it.`
+  if (m.status === 'non_renewing' || m.status === 'cancelled') return `Every module until ${m.until}. It won’t renew.`
+  if (m.status === 'attention') return `Your last payment didn’t go through. Pro stays on until ${m.until}; update your card to keep it.`
+  return `Every module, billed ${every}. Renews on ${m.until}.`
 }
 
 const MODES = [
@@ -144,34 +158,45 @@ export function SettingsView({ data }: { data: SettingsData }) {
             <OfflineList />
           </SettingsCard>
 
-          <SettingsCard id="set-plan" icon="card" title="Plan and billing" intro="No surprises. We remind you before anything is charged.">
+          <SettingsCard id="set-plan" icon="card" title="Plan and billing" intro="Payments go through Paystack. Cancel any time.">
             <Row>
               <div className="min-w-0">
                 <p className="text-[15px] font-semibold text-ink">
                   {data.isPro ? 'Pro' : 'Free'}
                   <span className="ml-2 rounded-full bg-success-fill px-2 py-0.5 text-[11px] font-bold text-on-success">Your plan</span>
                 </p>
-                <p className="mt-1 text-[13px] text-ink-muted">
-                  {data.isPro
-                    ? 'Every module, as each one is published.'
-                    : 'Module 1 of every track, for good. Pro launches with the full track.'}
-                </p>
+                <p className="mt-1 text-[13px] text-ink-muted">{planNote(data)}</p>
               </div>
-              <Link href={'/pricing' as Route} className={smallButton}>
-                See Plans
-              </Link>
+              {data.membership?.subscribed ? (
+                <a href="/api/billing/manage" className={smallButton}>
+                  Manage or Cancel
+                </a>
+              ) : (
+                <Link href={'/checkout' as Route} className={smallButton}>
+                  {data.isPro ? 'Pay Again' : 'Go Pro'}
+                </Link>
+              )}
             </Row>
             <Row>
-              <Value label="Payment method" value="None" />
-              <button type="button" disabled className={smallButton}>
-                Update
-              </button>
+              <Value
+                label="Payment method"
+                value={data.membership?.subscribed ? 'Card, through Paystack' : data.membership?.source === 'paystack' ? 'Bank transfer or USSD' : 'None'}
+              />
+              {data.membership?.subscribed ? (
+                <a href="/api/billing/manage" className={smallButton}>
+                  Update
+                </a>
+              ) : (
+                <button type="button" disabled className={smallButton}>
+                  Update
+                </button>
+              )}
             </Row>
             <Row>
-              <Value label="Receipts" value={data.email ? `None yet. They’ll go to ${data.email}` : 'None yet'} />
-              <button type="button" disabled className={smallButton}>
-                View
-              </button>
+              <Value
+                label="Receipts"
+                value={data.membership?.source === 'paystack' ? `Paystack emails each one to ${data.email ?? 'you'}` : data.email ? `None yet. They’ll go to ${data.email}` : 'None yet'}
+              />
             </Row>
           </SettingsCard>
 
