@@ -8,7 +8,6 @@ import { FounderQuote } from '@/components/marketing/founder-quote'
 import { Hero } from '@/components/marketing/hero'
 import { HowItWorks } from '@/components/marketing/how-it-works'
 import { ClosingBand, MentorBand, PricingSection } from '@/components/marketing/landing-bands'
-import { SiteAssistant } from '@/components/marketing/site-assistant'
 import { Stats } from '@/components/marketing/stats'
 import { ToolsStrip } from '@/components/marketing/tools-strip'
 import { TrackCards } from '@/components/marketing/track-cards'
@@ -39,7 +38,7 @@ export default function Home() {
       <PricingSection />
       <Faq />
       <ClosingBand />
-      <SiteAssistant />
+      {/* The site assistant (components/marketing/site-assistant) is off for now: Back to top uses its spot. */}
       <JsonLd data={faqLd(faq)} />
     </>
   )

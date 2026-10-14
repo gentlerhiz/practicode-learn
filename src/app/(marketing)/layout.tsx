@@ -1,6 +1,7 @@
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { HomeBanner } from '@/components/marketing/home-banner'
+import { ScrollToTop } from '@/components/marketing/scroll-to-top'
 import { SkipLink } from '@/components/ui/skip-link'
 
 export default function MarketingLayout({ children }: LayoutProps<'/'>) {
@@ -14,6 +15,7 @@ export default function MarketingLayout({ children }: LayoutProps<'/'>) {
         {children}
       </main>
       <SiteFooter />
+      <ScrollToTop />
     </>
   )
 }
