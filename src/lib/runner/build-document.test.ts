@@ -37,7 +37,11 @@ it('passes the printed lines to tests as logs', () => {
 it('links files that import and export each other, each in its own scope, imported files first', () => {
   const doc = buildDocument([
     { name: 'main.js', lang: 'js', code: "import { add } from './budget.js'\nconst total = add(2, 3)" },
-    { name: 'budget.js', lang: 'js', code: 'const total = 0\nexport function add(a, b) {\n  return a + b\n}' },
+    {
+      name: 'budget.js',
+      lang: 'js',
+      code: 'const total = 0\nexport function add(a, b) {\n  return a + b\n}',
+    },
   ])
   expect(doc).not.toMatch(/^\s*(import|export)\b/m)
   expect(doc.indexOf('function add')).toBeLessThan(doc.indexOf('add(2, 3)'))

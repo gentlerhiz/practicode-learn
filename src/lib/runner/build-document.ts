@@ -114,7 +114,8 @@ function linkModules(files: ModuleFile[]): string {
         )
       }
       const file = spec.replace(/^(\.\.?\/)+|^\//, '')
-      if (!exports.has(file)) return fail('TypeError', `Failed to fetch module '${spec}': there's no file called ${file}.`)
+      if (!exports.has(file))
+        return fail('TypeError', `Failed to fetch module '${spec}': there's no file called ${file}.`)
       for (const n of names(m[1]!)) {
         if (!exports.get(file)!.includes(n)) {
           return fail('SyntaxError', `The requested module '${spec}' does not provide an export named '${n}'`)
@@ -129,7 +130,11 @@ function linkModules(files: ModuleFile[]): string {
   const visit = (f: ModuleFile, seen: Set<string>) => {
     if (order.includes(f) || seen.has(f.name)) return
     seen.add(f.name)
-    for (const i of imports.get(f.name)!) visit(files.find((x) => x.name === i.file)!, seen)
+    for (const i of imports.get(f.name)!)
+      visit(
+        files.find((x) => x.name === i.file)!,
+        seen,
+      )
     order.push(f)
   }
   for (const f of files) visit(f, new Set())

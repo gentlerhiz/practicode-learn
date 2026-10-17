@@ -59,7 +59,10 @@ export function PreviewFrame({
       if (!message) return
       if (message.type === 'ready') {
         const { files, value, tests } = latest.current
-        target.postMessage({ type: 'run', html: buildDocument(files, { value, tests, storage: saved.current }) }, '*')
+        target.postMessage(
+          { type: 'run', html: buildDocument(files, { value, tests, storage: saved.current }) },
+          '*',
+        )
         clearTimeout(timer.current)
         if (latest.current.tests?.length) {
           timer.current = setTimeout(

@@ -104,11 +104,17 @@ export function DomTree({ state, value }: LabProps) {
       ? `The click starts at the Abuja button and travels up through its parents. On the way it passes the ${listenerLabel}, so the ${listenerLabel}’s listener runs.`
       : `The click travels up from the Abuja button through its parents. The ${listenerLabel} isn’t one of them, so its listener never hears the click.`
     : tour.say
-  const code = bubbling ? `${listenerLabel === 'p#score' ? 'score' : listenerLabel}.addEventListener('click', …)` : tour.code
+  const code = bubbling
+    ? `${listenerLabel === 'p#score' ? 'score' : listenerLabel}.addEventListener('click', …)`
+    : tour.code
 
   return (
     <figure className="m-0">
-      <div role="img" aria-label={say} className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_190px]">
+      <div
+        role="img"
+        aria-label={say}
+        className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_190px]"
+      >
         <ol aria-hidden="true" className="m-0 list-none p-0 font-mono text-[12px] leading-[22px]">
           {nodes.map((n) => {
             const isHot = hot.includes(n.id)
@@ -127,10 +133,21 @@ export function DomTree({ state, value }: LabProps) {
                 >
                   {label}
                 </span>
-                {bubbling && n.id === 'button1' && <span className="text-[11px] text-fe-text">click starts here</span>}
-                {bubbling && isHot && n.id !== 'button1' && <span className="text-[11px] text-ink-subtle">↑</span>}
-                {isListener && (
-                  <span className={cn('text-[11px] font-semibold', hears ? 'text-fe-text' : 'text-ink-muted')}>
+                {bubbling && isHot && n.id !== 'button1' && (
+                  <span className="text-[11px] text-ink-subtle">↑</span>
+                )}
+                {bubbling && n.id === 'button1' && (
+                  <span className="text-[11px] whitespace-nowrap text-fe-text">
+                    {isListener ? '← click starts here; listener runs' : '← click starts here'}
+                  </span>
+                )}
+                {isListener && n.id !== 'button1' && (
+                  <span
+                    className={cn(
+                      'text-[11px] font-semibold whitespace-nowrap',
+                      hears ? 'text-fe-text' : 'text-ink-muted',
+                    )}
+                  >
                     {hears ? '← listener runs' : '← listener never hears it'}
                   </span>
                 )}
