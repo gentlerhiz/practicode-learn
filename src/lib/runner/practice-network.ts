@@ -85,6 +85,9 @@ export const NETWORK = `
     var url;
     try { url = new URL(typeof input === 'string' ? input : String(input && input.url ? input.url : input)); }
     catch (e) { return Promise.reject(new TypeError("Failed to execute 'fetch': the address isn't a full URL. Start it with https://")); }
+    if ((method === 'GET' || method === 'HEAD') && init.body != null) {
+      return Promise.reject(new TypeError("Failed to execute 'fetch' on 'Window': Request with GET/HEAD method cannot have body."));
+    }
     var host = url.hostname;
     window.__pclPending++;
     return new Promise(function (resolve, reject) {
