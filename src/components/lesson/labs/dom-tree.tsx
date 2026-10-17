@@ -115,7 +115,10 @@ export function DomTree({ state, value }: LabProps) {
         aria-label={say}
         className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_190px]"
       >
-        <ol aria-hidden="true" className="m-0 list-none p-0 font-mono text-[12px] leading-[22px]">
+        <ol
+          aria-hidden="true"
+          className="m-0 min-w-0 list-none overflow-x-auto p-0 font-mono text-[12px] leading-[22px]"
+        >
           {nodes.map((n) => {
             const isHot = hot.includes(n.id)
             const isListener = n.id === listener
@@ -138,7 +141,7 @@ export function DomTree({ state, value }: LabProps) {
                 )}
                 {bubbling && n.id === 'button1' && (
                   <span className="text-[11px] whitespace-nowrap text-fe-text">
-                    {isListener ? '← click starts here; listener runs' : '← click starts here'}
+                    {isListener ? '← clicked; listener runs' : '← clicked'}
                   </span>
                 )}
                 {isListener && n.id !== 'button1' && (
