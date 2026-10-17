@@ -28,15 +28,24 @@ const page = await browser.newPage()
 const pageErrors: string[] = []
 page.on('pageerror', (e) => pageErrors.push(e.message))
 
-async function run(doc: string, width: number): Promise<TestResult[] | null> {
+type RunnerWindow = { __pclResults?: TestResult[]; __pclPending?: number }
+
+async function run(doc: string, width: number, tested = true): Promise<TestResult[] | null> {
   await page.setViewportSize({ width, height: 800 })
   await page.goto('about:blank') // setContent reuses the window, so start fresh or old results leak through
   pageErrors.length = 0
   await page.setContent(doc, { waitUntil: 'load' })
+  if (!tested) {
+    // An example: give its practice requests time to finish, so a failure shows up as a page error.
+    await page.waitForTimeout(300)
+    await page
+      .waitForFunction(() => !(window as unknown as RunnerWindow).__pclPending, null, { timeout: 3000 })
+      .catch(() => null)
+    await page.waitForTimeout(100)
+    return null
+  }
   return page
-    .waitForFunction(() => (window as unknown as { __pclResults?: TestResult[] }).__pclResults, null, {
-      timeout: 5000,
-    })
+    .waitForFunction(() => (window as unknown as RunnerWindow).__pclResults, null, { timeout: 12000 })
     .then((h) => h.jsonValue() as Promise<TestResult[]>)
     .catch(() => null)
 }
@@ -85,7 +94,7 @@ for (const f of fs
       mayThrow = step.options.filter((o) => !o.correct).map((o) => o.value ?? null)
     } else if (step.run) tries = [null]
     for (const value of tries) {
-      await run(buildDocument(step.files, { value }), 360)
+      await run(buildDocument(step.files, { value }), 360, false)
       if (pageErrors.length && !mayThrow.includes(value)) {
         problems.push(`${where}${value ? ` value ${value}` : ''}: page error: ${pageErrors.join(' ')}`)
       }

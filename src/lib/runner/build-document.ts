@@ -3,9 +3,12 @@
 // browser, so a test that passes in the checks passes for learners too. Node runs this file directly in
 // the content tools, so it uses only erasable syntax.
 import type { LessonFile, LessonTest } from '../lessons/schema.ts'
+import { EMAIL, NETWORK } from './practice-network.ts'
 
-// The test API inside every <Test> block: $, $$, css, box, textBox, near, assert and logs (the lines the
-// learner's code printed with console.log, as text).
+// The test API inside every <Test> block: $, $$, css, box, textBox, near, assert, logs (the lines the
+// learner's code has printed with console.log, as text), wait(ms) and file(name) (the text of any of the
+// step's files, such as package.json). Tests are async functions, so they can await wait() or a promise,
+// and they start once the page's practice requests have settled.
 const HARNESS = `
 (function () {
   var q = function (s) { return typeof s === 'string' ? document.querySelector(s) : s; };
@@ -17,11 +20,19 @@ const HARNESS = `
   var textBox = function (s) { var r = document.createRange(); r.selectNodeContents($(s)); return rect(r.getBoundingClientRect()); };
   var near = function (a, b, tol) { return Math.abs(a - b) <= (tol == null ? 1 : tol); };
   var assert = function (c, m) { if (!c) throw new Error(m || 'Check failed.'); };
-  window.__pclRun = function (tests) {
-    var results = tests.map(function (t) {
-      try { t.run($, $$, css, box, textBox, near, assert, (window.__pclLogs || []).slice()); return { name: t.name, pass: true }; }
-      catch (e) { return { name: t.name, pass: false, message: e && e.message ? e.message : String(e) }; }
-    });
+  var wait = function (ms) { return new Promise(function (r) { setTimeout(r, ms); }); };
+  var file = function (name) {
+    var all = window.__pclFiles || {};
+    if (!Object.prototype.hasOwnProperty.call(all, name)) throw new Error("There's no file called " + name + '.');
+    return all[name];
+  };
+  window.__pclRun = async function (tests) {
+    var results = [];
+    for (var i = 0; i < tests.length; i++) {
+      var t = tests[i];
+      try { await t.run($, $$, css, box, textBox, near, assert, window.__pclLogs || [], wait, file); results.push({ name: t.name, pass: true }); }
+      catch (e) { results.push({ name: t.name, pass: false, message: e && e.message ? e.message : String(e) }); }
+    }
     window.__pclResults = results;
     try { parent.postMessage({ type: 'pcl-tests', results: results }, '*'); } catch (e) {}
   };
@@ -45,7 +56,7 @@ const CONSOLE = `
     if (Array.isArray(v)) return '[' + v.map(function (x) { return fmt(x, d + 1); }).join(', ') + ']';
     return '{' + Object.keys(v).map(function (k) { return k + ': ' + fmt(v[k], d + 1); }).join(', ') + '}';
   };
-  var show = function (text, error) {
+  var show = window.__pclShow = function (text, kind) {
     if (!panel) {
       panel = document.createElement('pcl-console');
       panel.setAttribute('role', 'log');
@@ -54,7 +65,7 @@ const CONSOLE = `
       (document.body || document.documentElement).appendChild(panel);
     }
     var line = document.createElement('pcl-line');
-    line.style.cssText = 'display:block;padding:2px 0;border-top:1px solid rgba(244,241,255,0.12)' + (error ? ';color:#FCA5A5' : '');
+    line.style.cssText = 'display:block;padding:2px 0;border-top:1px solid rgba(244,241,255,0.12)' + (kind === 'error' ? ';color:#FCA5A5' : kind === 'net' ? ';color:#9FB0FF' : '');
     line.textContent = text;
     panel.appendChild(line);
   };
@@ -63,12 +74,12 @@ const CONSOLE = `
     console[k] = function () {
       var text = Array.prototype.map.call(arguments, function (a) { return fmt(a, 0); }).join(' ');
       logs.push(text);
-      show(text, k === 'error');
+      show(text, k === 'error' ? 'error' : '');
       try { original.apply(console, arguments); } catch (e) {}
     };
   });
   window.addEventListener('error', function (e) {
-    show((e.error && e.error.name ? e.error.name + ': ' + e.error.message : e.message), true);
+    show(e.error && e.error.name ? e.error.name + ': ' + e.error.message : e.message, 'error');
   });
 })();
 `
@@ -201,18 +212,28 @@ export function buildDocument(
     const list = opts.tests
       .map(
         (t) =>
-          `{ name: ${JSON.stringify(t.name)}, run: function ($, $$, css, box, textBox, near, assert, logs) {\n${t.code}\n} }`,
+          `{ name: ${JSON.stringify(t.name)}, run: async function ($, $$, css, box, textBox, near, assert, logs, wait, file) {\n${t.code}\n} }`,
       )
       .join(',\n')
+    const all = Object.fromEntries(files.map((f) => [f.name, sub(f.code)]))
     tests = `<script>${HARNESS}
+window.__pclFiles = ${JSON.stringify(all).replace(/</g, '\\u003c')};
 window.addEventListener('load', function () {
-  // A timer, not requestAnimationFrame: browsers pause animation frames in sandboxed frames that are scrolled off screen.
-  var go = function () { setTimeout(function () { window.__pclRun([${noScriptEnd(list)}]); }, 30); };
+  // Timers, not requestAnimationFrame: browsers pause animation frames in sandboxed frames that are scrolled
+  // off screen. The tests start once no practice request has been in flight for two checks in a row.
+  var start = Date.now();
+  var quiet = 0;
+  var settle = function () {
+    quiet = window.__pclPending ? 0 : quiet + 1;
+    if (quiet >= 2 || Date.now() - start > 3000) window.__pclRun([${noScriptEnd(list)}]);
+    else setTimeout(settle, 50);
+  };
+  var go = function () { setTimeout(settle, 30); };
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
 });
 </script>`
   }
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}${storageScript(opts.storage ?? {})}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}${storageScript(opts.storage ?? {})}${NETWORK}${EMAIL}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
 }
 
 /** The starter files with some replaced, for example by a model solution. */

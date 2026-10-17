@@ -2,11 +2,26 @@
 import { cn } from '@/lib/cn'
 import type { LabProps } from './shared'
 
-type Line = { cwd: string; cmd: string; out?: string }
-type Scenario = { lines: Line[]; tree: string[]; cwd: string; added?: string; removed?: string; says: string }
+type Line = { cwd: string; cmd: string; out?: string; bad?: boolean }
+type Scenario = {
+  lines: Line[]
+  tree: string[]
+  cwd: string
+  added?: string
+  removed?: string
+  says: string
+  /** The project folder, when it isn't Mama Nkechi's website (Module 12 uses the dashboard). */
+  root?: string
+}
 
 const HOME = '~/mama-nkechi'
 const START = ['index.html', 'menu/', 'menu/drinks.html']
+
+// Module 12: the currency dashboard, a Git repository, on its way to npm and Vite.
+const DASH = '~/dashboard'
+const ROOT = 'dashboard'
+const FILES = ['index.html', 'script.js', 'styles.css']
+const NPM = ['node_modules/', 'index.html', 'package-lock.json', 'package.json', 'script.js', 'styles.css']
 
 /** Each command, as a short session in Mama Nkechi's website folder, with the folder afterwards. */
 const SCENARIOS: Record<string, Scenario> = {
@@ -80,6 +95,146 @@ const SCENARIOS: Record<string, Scenario> = {
     removed: 'about.html',
     says: 'rm (remove) deletes about.html for good. There is no recycle bin in the terminal, so check before you press Enter.',
   },
+  'git branch': {
+    lines: [{ cwd: DASH, cmd: 'git branch', out: '  add-rates\n* main' }],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'git branch lists the branches. The star marks the one you are on: main. It changes nothing.',
+  },
+  'git switch -c add-rates': {
+    lines: [
+      { cwd: DASH, cmd: 'git switch -c add-rates', out: "Switched to a new branch 'add-rates'" },
+      { cwd: DASH, cmd: 'git branch', out: '* add-rates\n  main' },
+    ],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'git switch -c makes a new branch called add-rates and moves you onto it. The files don’t change: the branch starts as a copy of main.',
+  },
+  'git switch main': {
+    lines: [{ cwd: DASH, cmd: 'git switch main', out: "Switched to branch 'main'" }],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'git switch moves you to another branch, and your files change to match it. Commit your work first, or Git may refuse to switch.',
+  },
+  'git merge add-rates': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'git merge add-rates',
+        out: 'Updating 3f2a1c9..8d41b07\nFast-forward\n script.js | 12 ++++++++++++\n 1 file changed, 12 insertions(+)',
+      },
+    ],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'git merge brings the commits from add-rates into the branch you are on, main. Nobody else changed main, so Git just moved main forward: a fast-forward.',
+  },
+  'git merge fix-header': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'git merge fix-header',
+        out: 'Auto-merging index.html\nCONFLICT (content): Merge conflict in index.html\nAutomatic merge failed; fix conflicts and then commit the result.',
+        bad: true,
+      },
+    ],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'Both branches changed the same line of index.html, so Git can’t choose. It marks the conflict in the file and waits for you to fix it, add it and commit.',
+  },
+  'git push -u origin add-rates': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'git push -u origin add-rates',
+        out: "To github.com:ada/dashboard.git\n * [new branch]      add-rates -> add-rates\nremote: Create a pull request for 'add-rates' on GitHub by visiting:\nremote:   https://github.com/ada/dashboard/pull/new/add-rates",
+      },
+    ],
+    tree: FILES,
+    cwd: '',
+    root: ROOT,
+    says: 'Pushing a branch sends it to GitHub without touching main. GitHub even prints the link for opening a pull request.',
+  },
+  'npm init -y': {
+    lines: [{ cwd: DASH, cmd: 'npm init -y', out: 'Wrote to /home/ada/dashboard/package.json' }],
+    tree: ['index.html', 'package.json', 'script.js', 'styles.css'],
+    cwd: '',
+    root: ROOT,
+    added: 'package.json',
+    says: 'npm init -y creates package.json, the file that names your project and lists its packages and scripts. -y accepts every default answer.',
+  },
+  'npm install': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'npm install',
+        out: 'added 12 packages, and audited 13 packages in 3s\nfound 0 vulnerabilities',
+      },
+    ],
+    tree: NPM,
+    cwd: '',
+    root: ROOT,
+    added: 'node_modules/',
+    says: 'npm install downloads every package listed in package.json into node_modules, and records the exact versions in package-lock.json. Never commit node_modules.',
+  },
+  'npm run dev': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'npm run dev',
+        out: '> dashboard@1.0.0 dev\n> vite\n\n  VITE ready in 312 ms\n\n  ➜  Local:   http://localhost:5173/',
+      },
+    ],
+    tree: NPM,
+    cwd: '',
+    root: ROOT,
+    says: 'npm run dev runs the dev script from package.json: here, Vite’s development server. Open the Local address, and the page updates by itself every time you save.',
+  },
+  'npm run build': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'npm run build',
+        out: '> dashboard@1.0.0 build\n> vite build\n\n✓ 4 modules transformed.\ndist/index.html                 0.46 kB\ndist/assets/index-Bx3f9a2c.js   1.21 kB\n✓ built in 410ms',
+      },
+    ],
+    tree: ['dist/', ...NPM],
+    cwd: '',
+    root: ROOT,
+    added: 'dist/',
+    says: 'npm run build makes the finished site in dist: small, fast files ready to upload. dist is rebuilt every time, so leave it out of Git too.',
+  },
+  'npx prettier --write .': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'npx prettier --write .',
+        out: 'index.html 31ms (unchanged)\nscript.js 18ms\nstyles.css 9ms (unchanged)',
+      },
+    ],
+    tree: NPM,
+    cwd: '',
+    root: ROOT,
+    says: 'Prettier rewrote script.js in the project’s agreed style: spacing, quotes and line breaks. It changes how code looks, never what it does.',
+  },
+  'npx eslint .': {
+    lines: [
+      {
+        cwd: DASH,
+        cmd: 'npx eslint .',
+        out: "/home/ada/dashboard/script.js\n  4:7  error  'total' is assigned a value but never used  no-unused-vars\n\n✖ 1 problem (1 error, 0 warnings)",
+        bad: true,
+      },
+    ],
+    tree: NPM,
+    cwd: '',
+    root: ROOT,
+    says: 'ESLint reads your code for likely mistakes. Here, line 4 makes a variable that is never used: often a sign of a typo or a half-finished change.',
+  },
   'cd mneu': {
     lines: [{ cwd: HOME, cmd: 'cd mneu', out: 'bash: cd: mneu: No such file or directory' }],
     tree: START,
@@ -111,17 +266,20 @@ export function Terminal({ value = 'pwd' }: LabProps) {
               <span className="text-[#9fb0ff]">{l.cwd}</span>$ {l.cmd}
             </p>
             {l.out && (
-              <p className={cn('whitespace-pre', /No such/.test(l.out) && 'text-[#ff8f8f]')}>{l.out}</p>
+              <p className={cn('whitespace-pre', (l.bad || /No such/.test(l.out)) && 'text-[#ff8f8f]')}>
+                {l.out}
+              </p>
             )}
           </div>
         ))}
       </div>
       <ul
-        aria-label="The mama-nkechi folder afterwards"
+        aria-label={`The ${s.root ?? 'mama-nkechi'} folder afterwards`}
         className="rounded-xl border border-line bg-row p-3 font-mono text-[13px] leading-7"
       >
         <li className={cn('px-1', s.cwd === '' && 'font-semibold text-fe-text')}>
-          mama-nkechi/{s.cwd === '' && <span className="ml-2 font-sans text-[11px]">you are here</span>}
+          {s.root ?? 'mama-nkechi'}/
+          {s.cwd === '' && <span className="ml-2 font-sans text-[11px]">you are here</span>}
         </li>
         {tree.map((item) => {
           const depth = item.replace(/\/$/, '').split('/').length

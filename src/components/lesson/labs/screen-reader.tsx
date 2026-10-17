@@ -5,6 +5,54 @@ type Reading = { code: string; says: string[]; landmarks?: string[]; note: strin
 
 const READINGS: [RegExp, Reading][] = [
   [
+    /icon/i,
+    {
+      code: '<button>\n  <svg viewBox="0 0 24 24">…</svg>\n</button>',
+      says: ['“Button”'],
+      note: 'A button with only an icon has no name, so a screen reader can only say “button”. Nobody can tell what it does.',
+    },
+  ],
+  [
+    /no label/i,
+    {
+      code: '<input type="email" placeholder="Email">',
+      says: ['“Edit text”'],
+      note: 'Without a label, the field has no reliable name. Some screen readers read the placeholder, many don’t, and it vanishes as soon as you type.',
+    },
+  ],
+  [
+    /aria-label/i,
+    {
+      code: '<button aria-label="Close menu">\n  <svg aria-hidden="true" viewBox="0 0 24 24">…</svg>\n</button>',
+      says: ['“Close menu, button”'],
+      note: 'aria-label gives the icon button a name, and aria-hidden stops the picture itself being read. Now it says what it does.',
+    },
+  ],
+  [
+    /label/i,
+    {
+      code: '<label for="email">Email</label>\n<input id="email" type="email" required>',
+      says: ['“Email, edit text, required”'],
+      note: 'A label linked with for and id names the field, and screen readers say it every time the field gets focus. Tapping the label focuses the field too.',
+    },
+  ],
+  [
+    /click here/i,
+    {
+      code: '<a href="/menu">Click here</a> for the menu.\n<a href="/hours">Click here</a> for opening hours.\n<a href="/order">Click here</a> to order.',
+      says: ['Links list:', '“Click here”', '“Click here”', '“Click here”'],
+      note: 'Screen reader users often pull up a list of links. Three “click here” links say nothing about where they go.',
+    },
+  ],
+  [
+    /link text|clear link/i,
+    {
+      code: 'See <a href="/menu">today’s menu</a>,\nour <a href="/hours">opening hours</a>,\nor <a href="/order">order on WhatsApp</a>.',
+      says: ['Links list:', '“Today’s menu”', '“Opening hours”', '“Order on WhatsApp”'],
+      note: 'Link text that says where it goes makes sense on its own, in a links list, and for everyone skimming the page.',
+    },
+  ],
+  [
     /no alt/i,
     {
       code: '<img src="images/IMG_2041.jpg">',
@@ -58,7 +106,8 @@ const READINGS: [RegExp, Reading][] = [
 
 /**
  * Explore lab: what a screen reader announces. Values cover alt text (no alt, the file name, empty,
- * describes the photo) and page landmarks (only divs, landmarks).
+ * describes the photo), page landmarks (only divs, landmarks), buttons (icon only, aria-label), form
+ * fields (no label, label) and links (click here, link text).
  */
 export function ScreenReader({ value = '' }: LabProps) {
   const r = READINGS.find(([re]) => re.test(value))?.[1] ?? READINGS[0]![1]

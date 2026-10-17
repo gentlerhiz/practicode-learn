@@ -10,7 +10,8 @@ export type RunnerMessage =
 /** What the lesson player shows when the learner's code never reports back. */
 export const TIMEOUT_MESSAGE =
   'Your code didn’t finish. Check for a loop that never ends, or an error in the console.'
-export const RUN_TIMEOUT_MS = 4000
+// Long enough for tests that wait for slow practice requests (Module 11).
+export const RUN_TIMEOUT_MS = 10000
 
 const TestResultSchema = z.object({
   name: z.string().check(z.maxLength(500)),

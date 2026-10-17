@@ -20,7 +20,7 @@ const noSubscription = () => () => {}
 /**
  * Runs learner code in /runner.html: a sandboxed frame with an opaque origin, so the code can't reach
  * the learner's session, storage or this page. Each run loads a fresh document. With tests, results come
- * back by postMessage, and code that never reports within 4 seconds gets one friendly failed result.
+ * back by postMessage, and code that never reports within 10 seconds gets one friendly failed result.
  */
 export function PreviewFrame({
   files,

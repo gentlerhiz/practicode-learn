@@ -13,6 +13,7 @@ export const LAB_NAMES = [
   'git-flow',
   'devtools',
   'dom-tree',
+  'branch-graph',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]

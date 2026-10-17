@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
+import { BranchGraph } from './branch-graph'
 import { DevTools } from './devtools'
 import { DomTree } from './dom-tree'
 import { EditorTour } from './editor-tour'
@@ -30,4 +31,5 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'git-flow': GitFlow,
   devtools: DevTools,
   'dom-tree': DomTree,
+  'branch-graph': BranchGraph,
 }

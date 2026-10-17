@@ -30,9 +30,10 @@ it('adds the console before the learner code only when there is JavaScript', () 
   expect(withJs.indexOf('__pclLogs')).toBeLessThan(withJs.indexOf('console.log(1)'))
   expect(buildDocument(files)).not.toContain('__pclLogs')
 })
-it('passes the printed lines to tests as logs', () => {
+it('gives tests the printed lines, a wait and the step’s files, and lets them be async', () => {
   const doc = buildDocument(files, { tests: [{ name: 't', code: 'assert(logs.length === 0)' }] })
-  expect(doc).toContain('function ($, $$, css, box, textBox, near, assert, logs)')
+  expect(doc).toContain('async function ($, $$, css, box, textBox, near, assert, logs, wait, file)')
+  expect(doc).toContain('window.__pclFiles = {"index.html":"\\u003cp>Hi\\u003c/p>"')
 })
 it('links files that import and export each other, each in its own scope, imported files first', () => {
   const doc = buildDocument([
