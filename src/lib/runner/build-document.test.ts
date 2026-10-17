@@ -53,3 +53,10 @@ it('stops with the browser’s error when an import is wrong', () => {
   expect(run('budget.js')).toContain('Relative references must start with')
   expect(run('./budjet.js')).toContain("Failed to fetch module './budjet.js'")
 })
+it('starts localStorage with what the page saved last time, safely inside the script', () => {
+  const doc = buildDocument([{ name: 'script.js', lang: 'js', code: 'localStorage.getItem("score")' }], {
+    storage: { score: '3', note: '</script><b>' },
+  })
+  expect(doc).toContain('"score":"3"')
+  expect(doc).not.toContain('</script><b>')
+})

@@ -44,10 +44,12 @@ export function PreviewFrame({
   const [run, setRun] = useState(0)
   const doc = useMemo(() => buildDocument(files, { value, tests }), [files, value, tests])
   // The message listener reads the latest values without re-subscribing.
-  const latest = useRef({ doc, tests, onResults })
+  const latest = useRef({ files, value, tests, onResults })
   useEffect(() => {
-    latest.current = { doc, tests, onResults }
+    latest.current = { files, value, tests, onResults }
   })
+  // What the page saved in localStorage, handed back on every run, for as long as this preview is open.
+  const saved = useRef<Record<string, string>>({})
 
   useEffect(() => {
     const onMessage = (event: MessageEvent) => {
@@ -56,7 +58,8 @@ export function PreviewFrame({
       const message = parseRunnerMessage(event.data)
       if (!message) return
       if (message.type === 'ready') {
-        target.postMessage({ type: 'run', html: latest.current.doc }, '*')
+        const { files, value, tests } = latest.current
+        target.postMessage({ type: 'run', html: buildDocument(files, { value, tests, storage: saved.current }) }, '*')
         clearTimeout(timer.current)
         if (latest.current.tests?.length) {
           timer.current = setTimeout(
@@ -64,6 +67,8 @@ export function PreviewFrame({
             RUN_TIMEOUT_MS,
           )
         }
+      } else if (message.type === 'pcl-storage') {
+        saved.current = message.data
       } else {
         clearTimeout(timer.current)
         latest.current.onResults?.(message.results)

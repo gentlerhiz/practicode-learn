@@ -148,12 +148,32 @@ function linkModules(files: ModuleFile[]): string {
   return `'use strict';\nvar __pclModules = {};\n${blocks.join('\n')}\nfor (var __pclFile in __pclModules) Object.assign(window, __pclModules[__pclFile]);`
 }
 
+// The runner's sandbox has no storage of its own, so localStorage is a stand-in that keeps the same
+// methods. It starts with what the page saved on its last run, and tells the player each time it changes,
+// so saved data survives a re-run the way it survives a reload.
+const storageScript = (saved: Record<string, string>) => `
+(function () {
+  var data = ${JSON.stringify(saved).replace(/</g, '\\u003c')};
+  var has = function (k) { return Object.prototype.hasOwnProperty.call(data, k); };
+  var sync = function () { try { parent.postMessage({ type: 'pcl-storage', data: data }, '*'); } catch (e) {} };
+  var storage = {
+    getItem: function (k) { k = String(k); return has(k) ? data[k] : null; },
+    setItem: function (k, v) { data[String(k)] = String(v); sync(); },
+    removeItem: function (k) { delete data[String(k)]; sync(); },
+    clear: function () { data = {}; sync(); },
+    key: function (i) { var keys = Object.keys(data); return i < keys.length ? keys[i] : null; },
+  };
+  Object.defineProperty(storage, 'length', { get: function () { return Object.keys(data).length; } });
+  try { Object.defineProperty(window, 'localStorage', { value: storage, configurable: true }); } catch (e) {}
+})();
+`
+
 // Inline scripts can't contain a literal closing script tag, or the HTML parser ends the element early.
 const noScriptEnd = (s: string) => s.replace(/<\/script/gi, '<\\/script')
 
 export function buildDocument(
   files: LessonFile[],
-  opts: { value?: string | null; tests?: LessonTest[] } = {},
+  opts: { value?: string | null; tests?: LessonTest[]; storage?: Record<string, string> } = {},
 ): string {
   const sub = (s: string) => (opts.value != null ? s.split('{{value}}').join(opts.value) : s)
   const of = (...langs: string[]) =>
@@ -187,7 +207,7 @@ window.addEventListener('load', function () {
 });
 </script>`
   }
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}${storageScript(opts.storage ?? {})}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
 }
 
 /** The starter files with some replaced, for example by a model solution. */

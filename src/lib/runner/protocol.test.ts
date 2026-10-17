@@ -29,4 +29,15 @@ describe('messages from the runner (learner code can send anything)', () => {
       parseRunnerMessage({ type: 'pcl-tests', results: [{ name: 'x'.repeat(501), pass: true }] }),
     ).toBeNull()
   })
+
+  it('accepts what the page saved in localStorage, within limits', () => {
+    expect(parseRunnerMessage({ type: 'pcl-storage', data: { score: '3' } })).toEqual({
+      type: 'pcl-storage',
+      data: { score: '3' },
+    })
+    expect(parseRunnerMessage({ type: 'pcl-storage', data: { score: 3 } })).toBeNull()
+    expect(parseRunnerMessage({ type: 'pcl-storage', data: { big: 'x'.repeat(20001) } })).toBeNull()
+    const many = Object.fromEntries(Array.from({ length: 51 }, (_, i) => [`k${i}`, 'v']))
+    expect(parseRunnerMessage({ type: 'pcl-storage', data: many })).toBeNull()
+  })
 })

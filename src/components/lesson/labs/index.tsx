@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
 import { DevTools } from './devtools'
+import { DomTree } from './dom-tree'
 import { EditorTour } from './editor-tour'
 import { FilePaths } from './file-paths'
 import { FlexAxes } from './flex-axes'
@@ -28,4 +29,5 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   terminal: Terminal,
   'git-flow': GitFlow,
   devtools: DevTools,
+  'dom-tree': DomTree,
 }
