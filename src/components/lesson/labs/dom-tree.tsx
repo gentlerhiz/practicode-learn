@@ -113,7 +113,7 @@ export function DomTree({ state, value }: LabProps) {
       <div
         role="img"
         aria-label={say}
-        className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_190px]"
+        className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_170px]"
       >
         <ol
           aria-hidden="true"
@@ -124,7 +124,7 @@ export function DomTree({ state, value }: LabProps) {
             const isListener = n.id === listener
             const label = n.id === 'p-text' && !bubbling && tour.changed ? '“Score: 1”' : n.label
             return (
-              <li key={n.id} className="flex items-center gap-1.5" style={{ paddingLeft: n.depth * 14 }}>
+              <li key={n.id} className="flex items-center gap-1.5" style={{ paddingLeft: n.depth * 12 }}>
                 {n.depth > 0 && <span className="text-ink-subtle">└</span>}
                 <span
                   className={cn(
