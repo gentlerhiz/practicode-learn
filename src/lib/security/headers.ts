@@ -23,6 +23,8 @@ export const DYNAMIC_PATHS = [
   '/new-password',
   '/onboarding',
   '/auth',
+  // Public, but read from the records on every visit.
+  '/certificate',
 ] as const
 
 export const securityHeaders = [

@@ -1,5 +1,6 @@
 'use client'
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from 'react'
+import { createPortal } from 'react-dom'
 import { TutorSpark } from '@/components/learn/tutor-spark'
 import { Button, Spinner } from '@/components/ui'
 import type { LessonFile } from '@/lib/lessons/schema'
@@ -9,6 +10,14 @@ export type TutorView = { lessonId: string; step: number; selected?: string; fil
 
 type Turn = { role: 'user' | 'assistant'; content: string }
 type Quota = { used: number; cap: number }
+
+// Below the ph breakpoint (600px) the panel is a sheet at the bottom of the screen.
+const PHONE = '(max-width: 37.49rem)'
+const onWidth = (change: () => void) => {
+  const media = matchMedia(PHONE)
+  media.addEventListener('change', change)
+  return () => media.removeEventListener('change', change)
+}
 
 const field =
   'w-full resize-none rounded-xl border border-line-control bg-control px-3 py-2 text-sm leading-6 text-ink placeholder:text-ink-subtle focus:border-line-strong focus:outline-none'
@@ -30,11 +39,19 @@ export function AskAi({ view }: { view: TutorView }) {
   const [notice, setNotice] = useState<string | null>(null)
   const panelId = useId()
   const input = useRef<HTMLTextAreaElement>(null)
+  const panel = useRef<HTMLElement>(null)
   const end = useRef<HTMLDivElement>(null)
+  const phone = useSyncExternalStore(
+    onWidth,
+    () => matchMedia(PHONE).matches,
+    () => false,
+  )
 
   useEffect(() => {
     if (!open) return
-    input.current?.focus()
+    // On a phone, focusing the question box would open the keyboard over the conversation straight away.
+    if (matchMedia(PHONE).matches) panel.current?.focus()
+    else input.current?.focus()
     fetch('/api/tutor')
       .then((r) => (r.ok ? r.json() : null))
       .then((q: Quota | null) => q && setQuota(q))
@@ -63,12 +80,15 @@ export function AskAi({ view }: { view: TutorView }) {
         body: JSON.stringify({ ...view, question: q, history: turns.slice(-6) }),
       })
       const body = (await r.json().catch(() => ({}))) as Partial<Quota> & { answer?: string; error?: string }
-      if (typeof body.used === 'number' && typeof body.cap === 'number') setQuota({ used: body.used, cap: body.cap })
+      if (typeof body.used === 'number' && typeof body.cap === 'number')
+        setQuota({ used: body.used, cap: body.cap })
       if (r.ok && body.answer) {
         setTurns((t) => [...t, { role: 'user', content: q }, { role: 'assistant', content: body.answer! }])
         setQuestion('')
       } else if (r.status === 429) {
-        setNotice(`You’ve used today’s ${body.cap} questions. They come back at midnight. The Hint button still works.`)
+        setNotice(
+          `You’ve used today’s ${body.cap} questions. They come back at midnight. The Hint button still works.`,
+        )
       } else if (r.status === 503) {
         setNotice('The tutor is busy right now. Try again in a minute. That question wasn’t counted.')
       } else if (r.status === 401) {
@@ -77,11 +97,107 @@ export function AskAi({ view }: { view: TutorView }) {
         setNotice('Something went wrong. Try again.')
       }
     } catch {
-      setNotice(navigator.onLine ? 'Something went wrong. Try again.' : 'The tutor needs a connection. You’re offline.')
+      setNotice(
+        navigator.onLine
+          ? 'Something went wrong. Try again.'
+          : 'The tutor needs a connection. You’re offline.',
+      )
     } finally {
       setBusy(false)
     }
   }
+
+  const sheet = open && (
+    <section
+      ref={panel}
+      id={panelId}
+      aria-label="AI tutor"
+      tabIndex={-1}
+      className={
+        phone
+          ? 'fixed inset-x-2 bottom-2 z-50 flex max-h-[85dvh] flex-col rounded-2xl border border-line shadow-xl surface focus:outline-none'
+          : 'absolute top-full right-0 z-40 mt-2 flex max-h-[70dvh] w-[380px] flex-col rounded-2xl border border-line shadow-xl surface focus:outline-none'
+      }
+    >
+      <header className="flex items-center gap-3 border-b border-line px-4 py-3">
+        <TutorSpark size={28} />
+        <div className="min-w-0 flex-1">
+          <p className="font-display font-bold text-ink">AI tutor</p>
+          <p className="text-xs text-ink-muted" aria-live="polite">
+            {left === null ? 'Asks about this step' : `${left} of ${quota!.cap} questions left today`}
+          </p>
+        </div>
+        <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>
+          Close
+        </Button>
+      </header>
+
+      <div
+        className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain px-4 py-3 text-sm leading-6"
+        aria-live="polite"
+      >
+        {turns.length === 0 && !busy && (
+          <p className="text-ink-muted">
+            Stuck on this step? Ask about it. The tutor gives a hint first; ask again once you’ve had a go and
+            it explains fully.
+          </p>
+        )}
+        {turns.map((t, i) =>
+          t.role === 'user' ? (
+            <p
+              key={i}
+              className="ml-8 rounded-2xl rounded-tr-md bg-row px-3 py-2 break-words whitespace-pre-wrap text-ink"
+            >
+              {t.content}
+            </p>
+          ) : (
+            <div key={i} className="mr-4 rounded-2xl rounded-tl-md border border-line bg-control px-3 py-2">
+              <p className="break-words whitespace-pre-wrap text-ink-soft">{t.content}</p>
+            </div>
+          ),
+        )}
+        {busy && (
+          <p className="flex items-center gap-2 text-ink-muted">
+            <Spinner /> Thinking…
+          </p>
+        )}
+        {notice && (
+          <p role="alert" className="rounded-xl border border-line bg-row px-3 py-2 text-ink">
+            {notice}
+          </p>
+        )}
+        <div ref={end} />
+      </div>
+
+      <form onSubmit={send} className="border-t border-line px-4 py-3">
+        <label htmlFor={`${panelId}-q`} className="sr-only">
+          Your question about this step
+        </label>
+        <textarea
+          id={`${panelId}-q`}
+          ref={input}
+          rows={2}
+          maxLength={500}
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              e.currentTarget.form?.requestSubmit()
+            }
+          }}
+          placeholder="Why doesn’t my link work?"
+          className={field}
+        />
+        <div className="mt-2 flex items-center gap-3">
+          <p className="flex-1 text-xs text-ink-muted">AI can make mistakes. Check it against the lesson.</p>
+          <Button type="submit" size="sm" pending={busy} disabled={!question.trim() || left === 0}>
+            Ask
+          </Button>
+        </div>
+      </form>
+    </section>
+  )
 
   return (
     <div className="relative">
@@ -90,90 +206,24 @@ export function AskAi({ view }: { view: TutorView }) {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="press flex h-[42px] cursor-pointer items-center gap-2 rounded-full border border-line-control py-0 pr-4 pl-1.5 text-sm font-medium text-ink hover:border-line-strong"
+        className="flex h-[42px] press cursor-pointer items-center gap-2 rounded-full border border-line-control py-0 pr-4 pl-1.5 text-sm font-medium text-ink hover:border-line-strong"
       >
         <TutorSpark size={30} />
         Ask AI
       </button>
-      {open && (
-        <section
-          id={panelId}
-          aria-label="AI tutor"
-          className="surface fixed inset-x-3 bottom-3 z-40 flex max-h-[70dvh] flex-col rounded-2xl border border-line shadow-xl ph:absolute ph:inset-x-auto ph:right-0 ph:bottom-auto ph:mt-2 ph:w-[380px]"
-        >
-          <header className="flex items-center gap-3 border-b border-line px-4 py-3">
-            <TutorSpark size={28} />
-            <div className="min-w-0 flex-1">
-              <p className="font-display font-bold text-ink">AI tutor</p>
-              <p className="text-xs text-ink-muted" aria-live="polite">
-                {left === null ? 'Asks about this step' : `${left} of ${quota!.cap} questions left today`}
-              </p>
-            </div>
-            <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>
-              Close
-            </Button>
-          </header>
-
-          <div className="flex-1 space-y-3 overflow-y-auto px-4 py-3 text-sm leading-6" aria-live="polite">
-            {turns.length === 0 && !busy && (
-              <p className="text-ink-muted">
-                Stuck on this step? Ask about it. The tutor gives a hint first; ask again once you’ve had a go and
-                it explains fully.
-              </p>
-            )}
-            {turns.map((t, i) =>
-              t.role === 'user' ? (
-                <p key={i} className="ml-8 rounded-2xl rounded-tr-md bg-row px-3 py-2 whitespace-pre-wrap text-ink">
-                  {t.content}
-                </p>
-              ) : (
-                <div key={i} className="mr-4 rounded-2xl rounded-tl-md border border-line bg-control px-3 py-2">
-                  <p className="whitespace-pre-wrap text-ink-soft">{t.content}</p>
-                </div>
-              ),
-            )}
-            {busy && (
-              <p className="flex items-center gap-2 text-ink-muted">
-                <Spinner /> Thinking…
-              </p>
-            )}
-            {notice && (
-              <p role="alert" className="rounded-xl border border-line bg-row px-3 py-2 text-ink">
-                {notice}
-              </p>
-            )}
-            <div ref={end} />
-          </div>
-
-          <form onSubmit={send} className="border-t border-line px-4 py-3">
-            <label htmlFor={`${panelId}-q`} className="sr-only">
-              Your question about this step
-            </label>
-            <textarea
-              id={`${panelId}-q`}
-              ref={input}
-              rows={2}
-              maxLength={500}
-              value={question}
-              onChange={(e) => setQuestion(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault()
-                  e.currentTarget.form?.requestSubmit()
-                }
-              }}
-              placeholder="Why doesn’t my link work?"
-              className={field}
-            />
-            <div className="mt-2 flex items-center gap-3">
-              <p className="flex-1 text-xs text-ink-muted">AI can make mistakes. Check it against the lesson.</p>
-              <Button type="submit" size="sm" pending={busy} disabled={!question.trim() || left === 0}>
-                Ask
-              </Button>
-            </div>
-          </form>
-        </section>
-      )}
+      {phone && sheet
+        ? createPortal(
+            <>
+              <div
+                aria-hidden="true"
+                className="fixed inset-0 z-50 bg-black/40"
+                onClick={() => setOpen(false)}
+              />
+              {sheet}
+            </>,
+            document.body,
+          )
+        : sheet}
     </div>
   )
 }

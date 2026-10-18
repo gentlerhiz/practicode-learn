@@ -21,6 +21,9 @@ const START = ['index.html', 'menu/', 'menu/drinks.html']
 const DASH = '~/dashboard'
 const ROOT = 'dashboard'
 const FILES = ['index.html', 'script.js', 'styles.css']
+// Module 15: the bill splitter from Module 8, with its first automated tests.
+const BILL = '~/bill-splitter'
+const SPLITTER = ['package.json', 'split.js', 'split.test.js']
 const NPM = ['node_modules/', 'index.html', 'package-lock.json', 'package.json', 'script.js', 'styles.css']
 
 /** Each command, as a short session in Mama Nkechi's website folder, with the folder afterwards. */
@@ -234,6 +237,33 @@ const SCENARIOS: Record<string, Scenario> = {
     cwd: '',
     root: ROOT,
     says: 'ESLint reads your code for likely mistakes. Here, line 4 makes a variable that is never used: often a sign of a typo or a half-finished change.',
+  },
+  'node --test': {
+    lines: [
+      {
+        cwd: BILL,
+        cmd: 'node --test',
+        out: '✔ splits a bill evenly (0.6ms)\n✔ rounds each share up to the next naira (0.1ms)\n✔ refuses zero people (0.2ms)\nℹ tests 3\nℹ pass 3\nℹ fail 0',
+      },
+    ],
+    tree: SPLITTER,
+    cwd: '',
+    root: 'bill-splitter',
+    says: 'node --test finds files ending in .test.js and runs every test in them. Three ticks: the function does what the tests describe.',
+  },
+  'node --test (a bug)': {
+    lines: [
+      {
+        cwd: BILL,
+        cmd: 'node --test',
+        out: '✔ splits a bill evenly (0.6ms)\n✖ rounds each share up to the next naira (0.9ms)\n  AssertionError: Expected values to be strictly equal:\n  3333.3333333333335 !== 3334\n✔ refuses zero people (0.2ms)\nℹ tests 3\nℹ pass 2\nℹ fail 1',
+        bad: true,
+      },
+    ],
+    tree: SPLITTER,
+    cwd: '',
+    root: 'bill-splitter',
+    says: 'Someone removed the rounding. One test fails, names itself, and shows what it expected and what it got, before any customer sees a wrong share.',
   },
   'cd mneu': {
     lines: [{ cwd: HOME, cmd: 'cd mneu', out: 'bash: cd: mneu: No such file or directory' }],

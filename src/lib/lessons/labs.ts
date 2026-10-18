@@ -14,6 +14,9 @@ export const LAB_NAMES = [
   'devtools',
   'dom-tree',
   'branch-graph',
+  'design-file',
+  'lighthouse',
+  'deploy-pipeline',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]

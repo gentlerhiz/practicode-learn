@@ -17,7 +17,7 @@ export default function CertificatePreview() {
         shortTrack: 'Front-End',
         issued: '28 September 2026',
         id: 'PCL-FE-7Q4M-2K9D',
-        exam: '87%, plus 15 projects and a capstone',
+        completed: 'All 15 modules, 119 lessons',
         url: 'https://learn.practicode.tech/certificate/PCL-FE-7Q4M-2K9D',
         skills: [
           { name: 'How the web works', map: 'MDN: Web standards' },
@@ -34,9 +34,24 @@ export default function CertificatePreview() {
           { name: 'Testing and deployment', map: 'MDN: Testing, Performance · SFIA TEST 2' },
         ],
         projects: [
-          { label: 'Capstone', title: 'A booking site for a local tailor', note: '5 pages, contact form, Lighthouse 94', href: project },
-          { label: 'Module 11', title: 'A weather dashboard with a contact form', note: 'Handles slow and failed requests gracefully', href: project },
-          { label: 'Module 13', title: 'An accessibility audit and fix', note: '27 issues found, all fixed, WCAG 2.2 AA', href: project },
+          {
+            label: 'Capstone',
+            title: 'A booking site for a local tailor',
+            note: '5 pages, contact form, Lighthouse 94',
+            href: project,
+          },
+          {
+            label: 'Module 11',
+            title: 'A weather dashboard with a contact form',
+            note: 'Handles slow and failed requests gracefully',
+            href: project,
+          },
+          {
+            label: 'Module 13',
+            title: 'An accessibility audit and fix',
+            note: '27 issues found, all fixed, WCAG 2.2 AA',
+            href: project,
+          },
         ],
       }}
     />

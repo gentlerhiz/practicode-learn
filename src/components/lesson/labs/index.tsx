@@ -1,6 +1,8 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
 import { BranchGraph } from './branch-graph'
+import { DeployPipeline } from './deploy-pipeline'
+import { DesignFile } from './design-file'
 import { DevTools } from './devtools'
 import { DomTree } from './dom-tree'
 import { EditorTour } from './editor-tour'
@@ -8,6 +10,7 @@ import { FilePaths } from './file-paths'
 import { FlexAxes } from './flex-axes'
 import { GitFlow } from './git-flow'
 import { HttpExchange } from './http-exchange'
+import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
 import { PageLoad } from './page-load'
 import { RequestJourney } from './request-journey'
@@ -32,4 +35,7 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   devtools: DevTools,
   'dom-tree': DomTree,
   'branch-graph': BranchGraph,
+  'design-file': DesignFile,
+  lighthouse: Lighthouse,
+  'deploy-pipeline': DeployPipeline,
 }
