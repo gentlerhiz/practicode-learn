@@ -16,6 +16,7 @@ const eslintConfig = defineConfig([
     'playwright-report/**',
     'test-results/**',
     'content/samples/packs/**',
+    'public/vendor/**',
     'design/**',
     'tools/content-build/preview/**',
     '.superpowers/**',

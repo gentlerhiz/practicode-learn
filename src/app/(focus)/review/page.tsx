@@ -1,6 +1,6 @@
 import type { Metadata, Route } from 'next'
 import { ReviewView } from '@/components/app/review/review-view'
-import { loadLearnerTrack } from '@/lib/learn/progress'
+import { loadSession } from '@/lib/review/load'
 import { pageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = pageMetadata({
@@ -10,18 +10,28 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-/** PrismReview. Review cards come with spaced review (FSRS), which hasn't launched: this says so. */
-export default async function ReviewPage() {
-  const track = await loadLearnerTrack()
-  const finished = track.modules.some((m) => m.lessons.some((l) => l.status === 'completed'))
+/** PrismReview: today's cards from the lessons the learner has finished, scheduled by FSRS. */
+export default async function ReviewPage({ searchParams }: PageProps<'/review'>) {
+  const { course } = await searchParams
+  const pick = typeof course === 'string' && /^[a-z0-9-]+$/.test(course) ? course : null
+  const { cards, summary } = await loadSession(pick ?? undefined)
   return (
     <ReviewView
-      cards={[]}
+      key={pick ?? 'all'}
+      cards={cards}
+      summary={summary}
+      course={pick}
       exitHref={'/home' as Route}
       empty={
-        finished
-          ? { title: 'Daily review opens soon', body: 'Cards from the lessons you’ve finished will be waiting here, about 4 minutes a day, just before you’d forget them.' }
-          : { title: 'Nothing to review yet', body: 'Your first cards show up after Lesson 1. Reviewing takes about 4 minutes a day and stops you forgetting.' }
+        summary.total > 0
+          ? {
+              title: 'Nothing due today',
+              body: 'You’re up to date. Cards come back just before you’d forget them, so check in tomorrow.',
+            }
+          : {
+              title: 'Nothing to review yet',
+              body: 'Your first cards show up when you finish a lesson. Reviewing takes a few minutes a day and stops you forgetting.',
+            }
       }
     />
   )

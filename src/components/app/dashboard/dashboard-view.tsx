@@ -173,12 +173,14 @@ export function DashboardView({ data }: { data: DashboardData }) {
                   <span className="text-da-text">{review.card.accent}</span>
                   {review.card.after}
                 </p>
-                <p className="mt-3 text-xs text-ink-subtle">Tap to flip</p>
+                <p className="mt-3 text-xs text-ink-subtle">Answer it in your head, then check</p>
               </div>
             </div>
           ) : (
             <p className="text-sm leading-[22px] text-ink-muted">
-              Cards come from the lessons you finish. Daily review opens soon, and it takes about 4 minutes a day.
+              {review.days
+                ? `You’re up to date. You’ve reviewed on ${review.days} of the last 7 days.`
+                : 'Cards come from the lessons you finish, and come back just before you’d forget them. A few minutes a day.'}
             </p>
           )}
           <Link

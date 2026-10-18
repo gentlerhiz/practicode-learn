@@ -47,3 +47,6 @@ test-results/
 
 # Claude Code MCP servers (point at the founder's own Supabase project)
 .mcp.json
+
+# Copied from node_modules by scripts/vendor.mjs
+/public/vendor/

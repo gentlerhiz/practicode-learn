@@ -5,6 +5,8 @@ const files = new Map<string, string>()
 let bucket = false
 let lessons: { id: string; module: number }[] = []
 let completed: string[] = []
+let projects: { id: string }[] = []
+let passed: string[] = []
 
 const query = (rows: () => unknown[]) => {
   const chain = {
@@ -19,7 +21,13 @@ const query = (rows: () => unknown[]) => {
 vi.mock('@/lib/supabase/admin', () => ({
   createAdminClient: () => ({
     from: (table: string) =>
-      table === 'lessons' ? query(() => lessons) : query(() => completed.map((lesson_id) => ({ lesson_id }))),
+      table === 'lessons'
+        ? query(() => lessons)
+        : table === 'projects'
+          ? query(() => projects)
+          : table === 'project_work'
+            ? query(() => passed.map((project_id) => ({ project_id })))
+            : query(() => completed.map((lesson_id) => ({ lesson_id }))),
     storage: {
       createBucket: async () => {
         bucket = true
@@ -60,6 +68,8 @@ beforeEach(() => {
     { id: 'fe-02-01', module: 2 },
   ]
   completed = []
+  projects = []
+  passed = []
 })
 
 describe('certificate codes', () => {
@@ -86,6 +96,7 @@ describe('certificateFor', () => {
       certificate: null,
       completed: 2,
       total: 3,
+      projects: { passed: 0, total: 0 },
       needsName: false,
     })
     expect(files.size).toBe(0)
@@ -97,6 +108,7 @@ describe('certificateFor', () => {
       certificate: null,
       completed: 3,
       total: 3,
+      projects: { passed: 0, total: 0 },
       needsName: true,
     })
   })
@@ -116,6 +128,18 @@ describe('certificateFor', () => {
     expect(again.certificate?.name).toBe('Chiamaka Obi')
     expect(await findCertificate(first.certificate!.code)).toEqual(first.certificate)
     expect(files.size).toBe(2)
+  })
+
+  it('waits for every published project to pass', async () => {
+    completed = ['fe-01-01', 'fe-01-02', 'fe-02-01']
+    projects = [{ id: 'fe-p01' }, { id: 'fe-p02' }]
+    passed = ['fe-p01']
+    expect(await certificateFor(LEARNER, TRACK)).toMatchObject({
+      certificate: null,
+      projects: { passed: 1, total: 2 },
+    })
+    passed = ['fe-p01', 'fe-p02']
+    expect((await certificateFor(LEARNER, TRACK)).certificate).toMatchObject({ projects: 2, lessons: 3 })
   })
 
   it('finds nothing for an unknown or malformed code', async () => {

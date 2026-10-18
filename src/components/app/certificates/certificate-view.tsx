@@ -17,6 +17,8 @@ export type CertificateData = {
   /** Where the PDF downloads from. */
   pdfHref: string
   lessons: number
+  /** Projects passed for it; certificates from before projects opened have none. */
+  projects: number
   modules: { number: number; title: string; map: string }[]
   /** When the certificate was withdrawn, if it was. */
   revoked: string | null
@@ -181,7 +183,8 @@ export function CertificateView({ data }: { data: CertificateData }) {
                 What {first} completed
               </h2>
               <p className="text-sm text-ink-muted">
-                Every lesson and exercise in {data.modules.length} modules: {data.lessons} lessons in all.
+                Every lesson and exercise in {data.modules.length} modules: {data.lessons} lessons in all
+                {data.projects > 0 ? `, and ${data.projects} projects, each passing every check` : ''}.
               </p>
             </div>
             <p className="text-[13px] text-ink-subtle">Mapped to the MDN Curriculum</p>

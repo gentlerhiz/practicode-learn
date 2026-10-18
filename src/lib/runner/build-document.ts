@@ -189,7 +189,13 @@ const noScriptEnd = (s: string) => s.replace(/<\/script/gi, '<\\/script')
 
 export function buildDocument(
   files: LessonFile[],
-  opts: { value?: string | null; tests?: LessonTest[]; storage?: Record<string, string> } = {},
+  opts: {
+    value?: string | null
+    tests?: LessonTest[]
+    storage?: Record<string, string>
+    /** A script the tests need, such as axe for a project's accessibility check. It runs before them. */
+    helpers?: string
+  } = {},
 ): string {
   const sub = (s: string) => (opts.value != null ? s.split('{{value}}').join(opts.value) : s)
   const of = (...langs: string[]) =>
@@ -216,7 +222,7 @@ export function buildDocument(
       )
       .join(',\n')
     const all = Object.fromEntries(files.map((f) => [f.name, sub(f.code)]))
-    tests = `<script>${HARNESS}
+    tests = `${opts.helpers ? `<script>${noScriptEnd(opts.helpers)}</script>` : ''}<script>${HARNESS}
 window.__pclFiles = ${JSON.stringify(all).replace(/</g, '\\u003c')};
 window.addEventListener('load', function () {
   // Timers, not requestAnimationFrame: browsers pause animation frames in sandboxed frames that are scrolled

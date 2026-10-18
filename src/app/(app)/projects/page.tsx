@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { ProjectsView, type ProjectItem } from '@/components/app/projects/projects-view'
 import { AppPage } from '@/components/app/shell/app-shell'
-import { loadLearnerTrack } from '@/lib/learn/progress'
+import { certificateDate } from '@/lib/certificates/certificates'
+import { enrolledTracks } from '@/lib/learn/courses'
+import { listProjects } from '@/lib/projects/load'
 import { pageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = pageMetadata({
@@ -11,18 +13,41 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-/** PrismProjects. Each module's project, from the syllabus; project checks open with the full track. */
+const tone = (track: string): ProjectItem['track'] => (track === 'data-analysis' ? 'da' : 'fe')
+
+/**
+ * PrismProjects: every module project in the learner's courses. A project opens when its module's
+ * lessons are done; one that's started or open is in progress, and a passed one is finished.
+ */
 export default async function ProjectsPage() {
-  const track = await loadLearnerTrack()
-  const items: ProjectItem[] = track.modules
-    .filter((m) => m.project)
-    .map((m) => ({
-      track: 'fe',
-      module: m.number,
-      status: 'next',
-      title: m.project!,
-      when: m.number === 1 ? 'Opens with Module 1’s project checks' : `Unlocks when you finish Module ${m.number - 1}`,
-    }))
+  const tracks = await enrolledTracks()
+  const projects = await listProjects(tracks.map((t) => t.slug))
+  const items: ProjectItem[] = projects.map((p) => {
+    const base = { track: tone(p.track), module: p.module, title: p.title, href: p.href ?? undefined }
+    if (p.status === 'passed')
+      return {
+        ...base,
+        status: 'done',
+        when: p.passedAt ? `Passed on ${certificateDate(p.passedAt)}` : 'Passed',
+      }
+    if (p.status === 'open' || p.status === 'draft')
+      return {
+        ...base,
+        status: 'active',
+        blurb: p.description ?? undefined,
+        passed: p.checks.passed,
+        total: p.checks.total,
+        when: p.status === 'draft' ? 'In progress' : 'Ready to start',
+        cta: p.status === 'draft' ? 'Continue Project' : 'Start Project',
+      }
+    if (p.status === 'locked')
+      return {
+        ...base,
+        status: 'next',
+        when: `Opens when you finish Module ${p.module}’s lessons (${p.lessons.done} of ${p.lessons.total})`,
+      }
+    return { ...base, status: 'next', when: 'Brief coming soon' }
+  })
   return (
     <AppPage>
       <ProjectsView items={items} />

@@ -19,7 +19,13 @@ export type DashboardData = {
     visual: { label: string; value: string }
   } | null
   week: { days: DayMark[]; count: number; goal: number; note: string }
-  review: { due: number; minutes: number; card: { before: string; accent: string; after: string } | null }
+  review: {
+    due: number
+    minutes: number
+    card: { before: string; accent: string; after: string } | null
+    /** Days with a review, in the last 7. */
+    days?: number
+  }
   minutes: { day: string; fe: number; da: number }[]
   project: {
     title: string

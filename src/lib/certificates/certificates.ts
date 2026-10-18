@@ -10,8 +10,9 @@ import { layoutCertificate, type CertificateInput } from './document'
  * private storage bucket that only the server reads and writes, with the secret key:
  *   records/<code>.json                  the certificate, as issued (the name can't change afterwards)
  *   learners/<learner id>/<track>.json   which code a learner holds for a track
- * Module checks, projects and the final exam don't exist yet, so a certificate claims only what the
- * learner did: every lesson, in every module.
+ * Module checks and the final exam don't exist yet, so a certificate claims only what the learner did:
+ * every lesson, and every project published when it was issued. Certificates issued before projects
+ * opened (18 October 2026) stay valid; they show no projects.
  */
 const BUCKET = 'certificates'
 
@@ -28,6 +29,8 @@ export const certificateSchema = z.object({
   issuedAt: z.iso.datetime(),
   lessons: z.int().positive(),
   modules: z.int().positive(),
+  /** Projects passed for it. Certificates issued before projects opened have none. */
+  projects: z.int().min(0).default(0),
   revokedAt: z.iso.datetime().nullable(),
 })
 export type Certificate = z.infer<typeof certificateSchema>
@@ -85,11 +88,19 @@ export async function learnerCertificate(learnerId: string, track: string): Prom
 }
 
 export type CertificateState =
-  { certificate: Certificate } | { certificate: null; completed: number; total: number; needsName: boolean }
+  | { certificate: Certificate }
+  | {
+      certificate: null
+      completed: number
+      total: number
+      projects: { passed: number; total: number }
+      needsName: boolean
+    }
 
 /**
- * The learner's certificate for a track. Issues it the first time every published lesson is complete
- * and the learner has a name to print on it. Safe to call on every visit: it issues at most once.
+ * The learner's certificate for a track. Issues it the first time every published lesson is complete,
+ * every published project has passed, and the learner has a name to print on it. Safe to call on every
+ * visit: it issues at most once.
  */
 export async function certificateFor(
   learner: { id: string; name: string | null },
@@ -113,9 +124,25 @@ export async function certificateFor(
   if (progressError) throw progressError
   const completed = new Set((done ?? []).map((d) => d.lesson_id)).size
   const total = ids.length
+  const { data: projectRows, error: projectError } = await db
+    .from('projects')
+    .select('id')
+    .eq('track_slug', track)
+  if (projectError) throw projectError
+  const projectIds = (projectRows ?? []).map((p) => p.id)
+  const { data: passedRows, error: workError } = projectIds.length
+    ? await db
+        .from('project_work')
+        .select('project_id')
+        .eq('learner_id', learner.id)
+        .eq('status', 'passed')
+        .in('project_id', projectIds)
+    : { data: [], error: null }
+  if (workError) throw workError
+  const projects = { passed: (passedRows ?? []).length, total: projectIds.length }
   const name = learner.name?.trim() ?? ''
-  if (total === 0 || completed < total || !name)
-    return { certificate: null, completed, total, needsName: !name }
+  if (total === 0 || completed < total || projects.passed < projects.total || !name)
+    return { certificate: null, completed, total, projects, needsName: !name }
 
   const certificate: Certificate = {
     code: newCode(track),
@@ -125,6 +152,7 @@ export async function certificateFor(
     issuedAt: new Date().toISOString(),
     lessons: total,
     modules: new Set((lessons ?? []).map((l) => l.module)).size,
+    projects: projects.total,
     revokedAt: null,
   }
   await create(recordPath(certificate.code), certificate)
@@ -163,7 +191,7 @@ export function documentFor(c: Certificate, site: string): CertificateInput {
     name: c.name,
     course: title,
     badge: BADGE[c.track] ?? [title, ''],
-    detail: `All ${c.modules} modules · ${c.lessons} lessons · Aligned to the MDN Curriculum`,
+    detail: `All ${c.modules} modules · ${c.lessons} lessons${c.projects ? ` · ${c.projects} projects` : ''} · Aligned to the MDN Curriculum`,
     issued: certificateDate(c.issuedAt),
     code: c.code,
     url: certificateUrl(c.code, site),

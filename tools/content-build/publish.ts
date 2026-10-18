@@ -1,14 +1,19 @@
 // Publishes built lesson packs to Supabase: uploads the packs whose content changed, upserts the catalogue
 // rows, then asks the app to refresh the pages that show them.
-// Usage: node tools/content-build/publish.ts --packs <dir> --catalogue <file> [--dry-run]
+// It also writes each published lesson's review cards (from its recap), and, with --projects, the projects.
+// Usage: node tools/content-build/publish.ts --packs <dir> --catalogue <file>
+//          [--projects <dir> --projects-catalogue <file>] [--all-cards] [--dry-run]
+//   --all-cards rewrites every lesson's review cards, not only the changed lessons' (for a first sync).
 // Environment: SUPABASE_URL and SUPABASE_SECRET_KEY (CI secrets; locally .env.local, which points at dev),
 // and optionally REVALIDATE_URL with REVALIDATE_SECRET.
+import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
 import { createClient } from '@supabase/supabase-js'
-import { parsePack } from '../../src/lib/lessons/schema.ts'
+import { parsePack, type LessonPack } from '../../src/lib/lessons/schema.ts'
+import { parseProjectPack, type ProjectEntry } from '../../src/lib/projects/schema.ts'
 import type { CatalogueEntry } from '../../src/lib/lessons/types.ts'
 
 // Track rows are created on first publish only; afterwards they're managed in the database.
@@ -41,10 +46,32 @@ export function pagesToRefresh(changed: CatalogueEntry[]): string[] {
 }
 
 export const packPath = (e: Pick<CatalogueEntry, 'id' | 'version'>) => `${e.id}/v${e.version}.json`
+export const projectPackPath = (e: Pick<ProjectEntry, 'id' | 'version'>) =>
+  `projects/${e.id}/v${e.version}.json`
+
+/** A lesson's review cards, from its recap. A card keeps its id while its front stays the same. */
+export function lessonCards(pack: Pick<LessonPack, 'id' | 'steps'>) {
+  return pack.steps
+    .flatMap((s) => (s.type === 'recap' ? s.cards : []))
+    .map((c, position) => ({
+      id: `${pack.id}:${crypto.createHash('sha256').update(c.front).digest('hex').slice(0, 8)}`,
+      lesson_id: pack.id,
+      position,
+      front: c.front,
+      back: c.back,
+    }))
+}
 
 async function main() {
   const { values } = parseArgs({
-    options: { packs: { type: 'string' }, catalogue: { type: 'string' }, 'dry-run': { type: 'boolean' } },
+    options: {
+      packs: { type: 'string' },
+      catalogue: { type: 'string' },
+      projects: { type: 'string' },
+      'projects-catalogue': { type: 'string' },
+      'all-cards': { type: 'boolean' },
+      'dry-run': { type: 'boolean' },
+    },
   })
   if (!values.packs || !values.catalogue) {
     console.error('Usage: node tools/content-build/publish.ts --packs <dir> --catalogue <file> [--dry-run]')
@@ -72,11 +99,13 @@ async function main() {
   console.log(
     `${upload.length} to publish, ${unchanged.length} unchanged (${unchanged.join(', ') || 'none'}).`,
   )
-  if (values['dry-run'] || !upload.length) return
+  if (values['dry-run']) return
 
   // 2. Upload each changed pack to a versioned path, which never changes once written.
+  const packs = new Map<string, LessonPack>()
   for (const entry of upload) {
     const pack = parsePack(JSON.parse(fs.readFileSync(path.join(values.packs, `${entry.id}.json`), 'utf8')))
+    packs.set(entry.id, pack)
     const bucket = entry.free ? 'lessons-free' : 'lessons-pro'
     const { error } = await db.storage.from(bucket).upload(packPath(entry), JSON.stringify(pack), {
       upsert: true,
@@ -92,29 +121,98 @@ async function main() {
     slug,
     ...(TRACKS[slug] ?? { title: slug, status: 'coming_soon' as const, position: 99 }),
   }))
-  const tracks = await db.from('tracks').upsert(trackRows, { onConflict: 'slug', ignoreDuplicates: true })
-  if (tracks.error) throw new Error(`Could not save the tracks: ${tracks.error.message}`)
-  const lessons = await db.from('lessons').upsert(
-    upload.map((e) => ({
-      id: e.id,
-      track_slug: e.track,
-      module: e.module,
-      lesson: e.lesson,
-      slug: e.slug,
-      title: e.title,
-      description: e.description,
-      minutes: e.minutes,
-      free: e.free,
-      version: e.version,
-      steps: e.steps,
-      bytes: e.bytes,
-      hash: e.hash,
-      pack_path: packPath(e),
-      published_at: new Date().toISOString(),
-    })),
-  )
+  if (trackRows.length) {
+    const tracks = await db.from('tracks').upsert(trackRows, { onConflict: 'slug', ignoreDuplicates: true })
+    if (tracks.error) throw new Error(`Could not save the tracks: ${tracks.error.message}`)
+  }
+  const lessons = !upload.length
+    ? { error: null }
+    : await db.from('lessons').upsert(
+        upload.map((e) => ({
+          id: e.id,
+          track_slug: e.track,
+          module: e.module,
+          lesson: e.lesson,
+          slug: e.slug,
+          title: e.title,
+          description: e.description,
+          minutes: e.minutes,
+          free: e.free,
+          version: e.version,
+          steps: e.steps,
+          bytes: e.bytes,
+          hash: e.hash,
+          pack_path: packPath(e),
+          published_at: new Date().toISOString(),
+        })),
+      )
   if (lessons.error) throw new Error(`Could not save the lessons: ${lessons.error.message}`)
-  console.log(`✓ catalogue updated (${upload.map((e) => e.id).join(', ')})`)
+  if (upload.length) console.log(`✓ catalogue updated (${upload.map((e) => e.id).join(', ')})`)
+
+  // 3b. Each lesson's review cards: the changed lessons', or every lesson's with --all-cards.
+  const cardLessons = values['all-cards'] ? local : upload
+  for (const entry of cardLessons) {
+    const pack =
+      packs.get(entry.id) ??
+      parsePack(JSON.parse(fs.readFileSync(path.join(values.packs, `${entry.id}.json`), 'utf8')))
+    const cards = lessonCards(pack)
+    const stale = await db
+      .from('lesson_cards')
+      .delete()
+      .eq('lesson_id', entry.id)
+      .not('id', 'in', `(${cards.map((c) => `"${c.id}"`).join(',')})`)
+    if (stale.error) throw new Error(`Could not tidy the cards of ${entry.id}: ${stale.error.message}`)
+    const saved = await db.from('lesson_cards').upsert(cards)
+    if (saved.error) throw new Error(`Could not save the cards of ${entry.id}: ${saved.error.message}`)
+  }
+  if (cardLessons.length) console.log(`✓ review cards saved for ${cardLessons.length} lessons`)
+
+  // 3c. Projects, when given: upload the changed packs, then their catalogue rows.
+  if (values.projects && values['projects-catalogue']) {
+    const localProjects: ProjectEntry[] = JSON.parse(fs.readFileSync(values['projects-catalogue'], 'utf8'))
+    const { data: remoteProjects, error } = await db.from('projects').select('id, version, hash')
+    if (error) throw new Error(`Could not read the published projects: ${error.message}`)
+    const current = new Map(remoteProjects.map((p) => [p.id, p]))
+    const changed = localProjects.filter(
+      (p) => current.get(p.id)?.hash !== p.hash || current.get(p.id)?.version !== p.version,
+    )
+    for (const entry of changed) {
+      const pack = parseProjectPack(
+        JSON.parse(fs.readFileSync(path.join(values.projects, `${entry.id}.json`), 'utf8')),
+      )
+      const bucket = entry.free ? 'lessons-free' : 'lessons-pro'
+      const up = await db.storage.from(bucket).upload(projectPackPath(entry), JSON.stringify(pack), {
+        upsert: true,
+        cacheControl: '31536000',
+        contentType: 'application/json',
+      })
+      if (up.error) throw new Error(`Could not upload ${entry.id}: ${up.error.message}`)
+      console.log(`✓ uploaded ${bucket}/${projectPackPath(entry)}`)
+    }
+    if (changed.length) {
+      const rows = await db.from('projects').upsert(
+        changed.map((e) => ({
+          id: e.id,
+          track_slug: e.track,
+          module: e.module,
+          slug: e.slug,
+          title: e.title,
+          description: e.description,
+          free: e.free,
+          version: e.version,
+          checks: e.checks,
+          needs_site: e.needsSite,
+          bytes: e.bytes,
+          hash: e.hash,
+          pack_path: projectPackPath(e),
+          published_at: new Date().toISOString(),
+        })),
+      )
+      if (rows.error) throw new Error(`Could not save the projects: ${rows.error.message}`)
+    }
+    console.log(`✓ projects: ${changed.length} published, ${localProjects.length - changed.length} unchanged`)
+  }
+  if (!upload.length) return
 
   // 4. Ask the app to rebuild the pages that show these lessons.
   const paths = pagesToRefresh(upload)

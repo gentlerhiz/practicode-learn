@@ -17,6 +17,8 @@ export type ProjectItem = {
   when: string
   next?: string
   href?: Route
+  /** The button on an active project: Start Project, or Continue Project once it's saved. */
+  cta?: string
 }
 
 const T = {
@@ -119,7 +121,7 @@ export function ProjectsView({ items }: { items: ProjectItem[] }) {
                       className="press mt-auto inline-flex h-11 items-center gap-2 self-start rounded-full bg-white px-5 text-sm font-semibold hover:bg-white/90"
                       style={{ color: c.btn }}
                     >
-                      Continue Project
+                      {p.cta ?? 'Continue Project'}
                       <Glyph name="arrowRight" size={16} />
                     </Link>
                   )}

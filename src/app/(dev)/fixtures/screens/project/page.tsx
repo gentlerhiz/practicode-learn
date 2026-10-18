@@ -42,53 +42,64 @@ img { display: block; width: calc(100% - 32px); height: 120px; margin: 0 16px; b
   padding: 14px 22px;
 }`
 
-/** PrismProject with the canvas's sample: Mama Nkechi's navigation bar, three checks passed, two to fix. */
+const check = (name: string) => ({ name, code: 'assert(true)' })
+
+/** PrismProject with the canvas's sample: Mama Nkechi's navigation bar, with two checks to fix. Saving fails here. */
 export default function ProjectPreview() {
   requirePreviews()
   return (
     <Workspace
       data={{
+        projectId: 'fe-p06',
+        version: 1,
         title: 'Navigation bar and menu cards',
         track: 'Front-End',
         module: 6,
-        saved: 'Saved 2 min ago',
+        client: 'Mama Nkechi’s Kitchen',
         brief:
-          'Mama Nkechi runs a small restaurant in Enugu. Most of her customers find her on their phones, so the page has to look right on a small screen first.',
-        askedBy: 'What she asked for',
-        asks: [
+          '<p>Mama Nkechi runs a small restaurant in Enugu. Most of her customers find her on their phones, so the page has to look right on a small screen first.</p>',
+        must: [
           'Her logo and links in one bar, and her dishes as cards with an order button',
           'Easy to read in bright sunlight',
           'Loads quickly on a slow connection',
         ],
-        checks: [
-          { id: 'land', name: 'Uses header, nav, main and footer', pass: true },
-          { id: 'flex', name: 'Navigation laid out with Flexbox', pass: true },
-          { id: 'alt', name: 'Every image has alt text', pass: true },
-          {
-            id: 'fit',
-            name: 'Fits a 320px screen without sideways scrolling',
-            pass: false,
-            detail: 'The .menu has a fixed width of 360px, so on the smallest phones the page scrolls sideways.',
-            where: 'styles.css, line 10',
-            lines: [10],
-            why: 'Phones can be as narrow as 320px, but your menu insists on 360px. What could you use instead of width so the menu is never wider than the screen? Have a look at max-width, or let the links wrap onto two lines.',
-          },
-          {
-            id: 'contrast',
-            name: 'Text contrast meets WCAG AA',
-            pass: false,
-            detail: 'White text on #FF8A3D has a contrast ratio of 2.3 : 1. Normal-size text needs at least 4.5 : 1, which matters in bright sunlight.',
-            where: 'styles.css, lines 18 to 19',
-            lines: [18, 19],
-            why: 'Light text on a light orange is hard to read outdoors. You can keep the orange and switch the text to a very dark brown, or keep white text and pick a much deeper orange. Try a contrast checker on both.',
-          },
+        nice: [],
+        checks: [check('Uses header, nav, main and footer'), check('Navigation laid out with Flexbox')],
+        checkNames: [
+          'Uses header, nav, main and footer',
+          'Navigation laid out with Flexbox',
+          'No serious accessibility problems (axe)',
+          'Fits a phone (320px wide)',
+          'Fits a tablet (768px wide)',
+          'Fits a laptop (1280px wide)',
         ],
-        checksNote: 'Pass all five checks to submit. Your instructor sees the same checks when they review your work.',
+        results: [
+          { name: 'Uses header, nav, main and footer', pass: true },
+          { name: 'Navigation laid out with Flexbox', pass: true },
+          {
+            name: 'No serious accessibility problems (axe)',
+            pass: false,
+            message: 'Elements must meet minimum color contrast ratio thresholds: .btn.',
+          },
+          {
+            name: 'Fits a phone (320px wide)',
+            pass: false,
+            message:
+              'At 320px wide, the page is 360px wide, so it scrolls sideways. The first thing too wide is <nav class="menu">.',
+          },
+          { name: 'Fits a tablet (768px wide)', pass: true },
+          { name: 'Fits a laptop (1280px wide)', pass: true },
+        ],
+        review: ['I checked it on a real phone.'],
+        needsSite: false,
+        siteUrl: null,
+        status: 'draft',
+        savedAt: null,
         files: [
           { name: 'index.html', lang: 'html', code: HTML },
           { name: 'styles.css', lang: 'css', code: CSS },
         ],
-        editable: false,
+        locked: null,
         backHref: '/fixtures/screens/projects' as Route,
       }}
     />

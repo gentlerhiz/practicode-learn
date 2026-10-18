@@ -21,6 +21,7 @@ export default function CertificatePreview() {
         url,
         pdfHref: '#',
         lessons: 119,
+        projects: 3,
         modules: frontEnd.modules.map((m) => ({ number: m.number, title: m.title, map: m.mdn })),
         revoked: null,
         shapes: layoutCertificate({

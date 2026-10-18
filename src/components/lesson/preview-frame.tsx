@@ -26,6 +26,7 @@ export function PreviewFrame({
   files,
   value,
   tests,
+  helpers,
   onResults,
   label,
   className,
@@ -34,6 +35,8 @@ export function PreviewFrame({
   files: LessonFile[]
   value?: string | null
   tests?: LessonTest[]
+  /** A script the tests need, such as axe for a project's accessibility check. */
+  helpers?: string
   onResults?: (results: TestResult[]) => void
   label: string
   className?: string
@@ -42,11 +45,11 @@ export function PreviewFrame({
   const frame = useRef<HTMLIFrameElement>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const [run, setRun] = useState(0)
-  const doc = useMemo(() => buildDocument(files, { value, tests }), [files, value, tests])
+  const doc = useMemo(() => buildDocument(files, { value, tests, helpers }), [files, value, tests, helpers])
   // The message listener reads the latest values without re-subscribing.
-  const latest = useRef({ files, value, tests, onResults })
+  const latest = useRef({ files, value, tests, helpers, onResults })
   useEffect(() => {
-    latest.current = { files, value, tests, onResults }
+    latest.current = { files, value, tests, helpers, onResults }
   })
   // What the page saved in localStorage, handed back on every run, for as long as this preview is open.
   const saved = useRef<Record<string, string>>({})
@@ -58,9 +61,9 @@ export function PreviewFrame({
       const message = parseRunnerMessage(event.data)
       if (!message) return
       if (message.type === 'ready') {
-        const { files, value, tests } = latest.current
+        const { files, value, tests, helpers } = latest.current
         target.postMessage(
-          { type: 'run', html: buildDocument(files, { value, tests, storage: saved.current }) },
+          { type: 'run', html: buildDocument(files, { value, tests, helpers, storage: saved.current }) },
           '*',
         )
         clearTimeout(timer.current)

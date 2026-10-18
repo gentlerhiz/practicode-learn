@@ -47,6 +47,7 @@ export default async function CertificatePage({ params }: PageProps<'/certificat
         url: certificateUrl(certificate.code, site.url),
         pdfHref: `/certificate/${certificate.code}/pdf`,
         lessons: certificate.lessons,
+        projects: certificate.projects,
         modules: track.modules
           .slice(0, certificate.modules)
           .map((m) => ({ number: m.number, title: m.title, map: m.mdn })),

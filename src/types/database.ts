@@ -14,6 +14,286 @@ export type Database = {
   }
   public: {
     Tables: {
+      enrollments: {
+        Row: {
+          enrolled_at: string
+          learner_id: string
+          track_slug: string
+        }
+        Insert: {
+          enrolled_at?: string
+          learner_id: string
+          track_slug: string
+        }
+        Update: {
+          enrolled_at?: string
+          learner_id?: string
+          track_slug?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "enrollments_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "enrollments_track_slug_fkey"
+            columns: ["track_slug"]
+            isOneToOne: false
+            referencedRelation: "tracks"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      lesson_cards: {
+        Row: {
+          back: string
+          front: string
+          id: string
+          lesson_id: string
+          position: number
+        }
+        Insert: {
+          back: string
+          front: string
+          id: string
+          lesson_id: string
+          position: number
+        }
+        Update: {
+          back?: string
+          front?: string
+          id?: string
+          lesson_id?: string
+          position?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_cards_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      project_work: {
+        Row: {
+          files: Json
+          learner_id: string
+          passed_at: string | null
+          project_id: string
+          project_version: number
+          results: Json | null
+          review: Json | null
+          site_url: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          files?: Json
+          learner_id: string
+          passed_at?: string | null
+          project_id: string
+          project_version: number
+          results?: Json | null
+          review?: Json | null
+          site_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          files?: Json
+          learner_id?: string
+          passed_at?: string | null
+          project_id?: string
+          project_version?: number
+          results?: Json | null
+          review?: Json | null
+          site_url?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "project_work_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "project_work_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          bytes: number
+          checks: number
+          description: string
+          free: boolean
+          hash: string
+          id: string
+          module: number
+          needs_site: boolean
+          pack_path: string
+          published_at: string
+          slug: string
+          title: string
+          track_slug: string
+          version: number
+        }
+        Insert: {
+          bytes: number
+          checks: number
+          description: string
+          free?: boolean
+          hash: string
+          id: string
+          module: number
+          needs_site?: boolean
+          pack_path: string
+          published_at?: string
+          slug: string
+          title: string
+          track_slug: string
+          version: number
+        }
+        Update: {
+          bytes?: number
+          checks?: number
+          description?: string
+          free?: boolean
+          hash?: string
+          id?: string
+          module?: number
+          needs_site?: boolean
+          pack_path?: string
+          published_at?: string
+          slug?: string
+          title?: string
+          track_slug?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_track_slug_fkey"
+            columns: ["track_slug"]
+            isOneToOne: false
+            referencedRelation: "tracks"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      review_cards: {
+        Row: {
+          card_id: string
+          created_at: string
+          difficulty: number
+          due: string
+          elapsed_days: number
+          lapses: number
+          last_review: string | null
+          learner_id: string
+          learning_steps: number
+          reps: number
+          scheduled_days: number
+          stability: number
+          state: number
+        }
+        Insert: {
+          card_id: string
+          created_at?: string
+          difficulty?: number
+          due?: string
+          elapsed_days?: number
+          lapses?: number
+          last_review?: string | null
+          learner_id: string
+          learning_steps?: number
+          reps?: number
+          scheduled_days?: number
+          stability?: number
+          state?: number
+        }
+        Update: {
+          card_id?: string
+          created_at?: string
+          difficulty?: number
+          due?: string
+          elapsed_days?: number
+          lapses?: number
+          last_review?: string | null
+          learner_id?: string
+          learning_steps?: number
+          reps?: number
+          scheduled_days?: number
+          stability?: number
+          state?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "review_cards_card_id_fkey"
+            columns: ["card_id"]
+            isOneToOne: false
+            referencedRelation: "lesson_cards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "review_cards_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      review_log: {
+        Row: {
+          card_id: string
+          id: number
+          learner_id: string
+          rating: number
+          reviewed_at: string
+        }
+        Insert: {
+          card_id: string
+          id?: number
+          learner_id: string
+          rating: number
+          reviewed_at?: string
+        }
+        Update: {
+          card_id?: string
+          id?: number
+          learner_id?: string
+          rating?: number
+          reviewed_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "review_log_card_id_fkey"
+            columns: ["card_id"]
+            isOneToOne: false
+            referencedRelation: "lesson_cards"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "review_log_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       impact_snapshots: {
         Row: {
           created_at: string
@@ -307,6 +587,10 @@ export type Database = {
       impact_summary: { Args: never; Returns: Json }
       is_admin: { Args: never; Returns: boolean }
       is_pro: { Args: never; Returns: boolean }
+      pass_project: {
+        Args: { p_project: string; p_results: Json; p_review: Json }
+        Returns: undefined
+      }
       record_progress: {
         Args: {
           p_active_seconds: number

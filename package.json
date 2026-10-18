@@ -8,8 +8,10 @@
     "node": ">=22.12"
   },
   "scripts": {
+    "predev": "node scripts/vendor.mjs",
     "dev": "next dev",
     "dev:lessons": "node scripts/dev-lessons.mjs",
+    "prebuild": "node scripts/vendor.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
@@ -40,6 +42,7 @@
     "react-dom": "19.2.8",
     "server-only": "^0.0.1",
     "tailwind-merge": "^3.7.0",
+    "ts-fsrs": "^5.4.2",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -56,6 +59,7 @@
     "@types/react-dom": "^19",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@vitejs/plugin-react": "^6.1.1",
+    "axe-core": "^4.13.0",
     "eslint": "^9",
     "eslint-config-next": "16.3.8",
     "hast-util-to-html": "^9.0.5",

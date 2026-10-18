@@ -1,19 +1,65 @@
 import type { Metadata, Route } from 'next'
-import { ReviewView, type ReviewCard } from '@/components/app/review/review-view'
+import { ReviewView } from '@/components/app/review/review-view'
 import { requirePreviews } from '@/lib/fixtures/gate'
+import type { SessionCard } from '@/lib/review/load'
 
 export const metadata: Metadata = { title: 'Review preview', robots: { index: false, follow: false } }
 
-const CARDS: ReviewCard[] = [
-  { track: 'fe', topic: 'Front-End · Module 6', q: 'What does gap do inside a flex container?', a: 'It adds space between the items, but not around the outside edges.', code: '.nav { display: flex; gap: 12px; }', why: 'You learned this 3 days ago and got it right once. Right about now is when it starts to fade.' },
-  { track: 'fe', topic: 'Front-End · Module 6', q: 'Which property controls alignment along the main axis?', a: 'justify-content. Its partner, align-items, handles the cross axis.', code: 'justify-content: space-between;', why: 'You picked the wrong answer for this in yesterday’s lesson, so it’s back sooner than usual.' },
-  { track: 'da', topic: 'Data Analysis · Module 1', q: 'What makes a question answerable with data?', a: 'It is specific, measurable and tied to a decision. “Which branch sold most in June?” works. “How are we doing?” doesn’t.', code: 'Vague → specific → measurable → decision', why: 'From the free Data module you finished last week. A quick check that it stuck.' },
-  { track: 'fe', topic: 'Front-End · Module 4', q: 'What is the difference between margin and padding?', a: 'Padding is space inside the border. Margin is space outside it.', code: '.card { padding: 16px; margin: 24px; }', why: 'Last seen 9 days ago. You have got it right three times, so the gaps keep growing.' },
-  { track: 'fe', topic: 'Front-End · Module 4', q: 'Which wins: a class selector or an ID selector?', a: 'The ID selector. It has higher specificity, so its rules override the class.', code: '#hero beats .hero', why: 'Specificity trips most people up. You marked it Hard last week.' },
+const card = (id: string, lesson: string, front: string, back: string): SessionCard => ({
+  id,
+  track: 'front-end-web-development',
+  trackTitle: 'Front-End Web Development',
+  lesson,
+  lessonHref: '/fixtures/screens/lesson' as Route,
+  front,
+  back,
+  next: ['in 1 min', 'in 6 min', 'in 2 days', 'in 6 days'],
+})
+
+const CARDS: SessionCard[] = [
+  card(
+    'fe-06-05:00000001',
+    'Lesson 6.5: Wrapping and gap',
+    'What does <code>gap</code> do inside a flex container?',
+    'It adds space between the items, but not around the outside edges.',
+  ),
+  card(
+    'fe-06-03:00000002',
+    'Lesson 6.3: justify-content',
+    'Which property aligns items along the main axis?',
+    '<code>justify-content</code>. Its partner, <code>align-items</code>, handles the cross axis.',
+  ),
+  card(
+    'fe-04-07:00000003',
+    'Lesson 4.7: The box model',
+    'What’s the difference between margin and padding?',
+    'Padding is space inside the border. Margin is space outside it.',
+  ),
+  card(
+    'fe-04-03:00000004',
+    'Lesson 4.3: The cascade and specificity',
+    'Which wins: a class selector or an ID selector?',
+    'The ID selector. It has higher specificity.',
+  ),
 ]
 
-/** PrismReview with the canvas's five sample cards. */
+/** PrismReview with sample cards. Ratings don't save here: there's no learner. */
 export default function ReviewPreview() {
   requirePreviews()
-  return <ReviewView cards={CARDS} exitHref={'/fixtures/screens/dashboard' as Route} />
+  return (
+    <ReviewView
+      cards={CARDS}
+      summary={{
+        due: CARDS.length,
+        total: 40,
+        daysThisWeek: 3,
+        next: CARDS[0]!.front,
+        courses: [
+          { slug: 'front-end-web-development', title: 'Front-End Web Development', due: CARDS.length },
+        ],
+      }}
+      course={null}
+      exitHref={'/fixtures/screens/dashboard' as Route}
+    />
+  )
 }

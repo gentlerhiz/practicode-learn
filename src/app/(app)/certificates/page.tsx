@@ -24,7 +24,25 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-type Progress = { slug: string; title: string; completed: number; total: number; needsName: boolean }
+type Progress = {
+  slug: string
+  title: string
+  completed: number
+  total: number
+  projects: { passed: number; total: number }
+  needsName: boolean
+}
+
+/** What's left before the certificate: lessons, then projects. */
+function remaining(p: Progress): string {
+  const lessons = p.total - p.completed
+  const projects = p.projects.total - p.projects.passed
+  const parts = [
+    lessons > 0 ? `${lessons} more ${lessons === 1 ? 'lesson' : 'lessons'}` : null,
+    projects > 0 ? `${projects} more ${projects === 1 ? 'project' : 'projects'}` : null,
+  ].filter(Boolean)
+  return `Complete ${parts.join(' and ')}, and your certificate appears here straight away.`
+}
 
 const h2 = 'font-display text-[22px] font-extrabold tracking-[-0.02em] text-ink ph:text-[24px]'
 
@@ -84,7 +102,8 @@ export default async function CertificatesPage() {
                   </p>
                   <h3 className="mt-1 font-display text-xl font-extrabold text-ink">{title}</h3>
                   <p className="text-[13px] text-ink-subtle">
-                    {c.modules} modules · {c.lessons} lessons · <span className="font-mono">{c.code}</span>
+                    {c.modules} modules · {c.lessons} lessons{c.projects ? ` · ${c.projects} projects` : ''} ·{' '}
+                    <span className="font-mono">{c.code}</span>
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-2.5">
@@ -126,6 +145,7 @@ export default async function CertificatesPage() {
                     <h3 className="font-display text-lg font-extrabold text-ink">{p.title}</h3>
                     <p className="text-[13px] text-ink-muted">
                       {p.completed} of {p.total} lessons
+                      {p.projects.total > 0 && ` · ${p.projects.passed} of ${p.projects.total} projects`}
                     </p>
                   </div>
                   <div
@@ -142,7 +162,7 @@ export default async function CertificatesPage() {
                     />
                   </div>
                   <p className="text-[13px] text-ink-subtle">
-                    {p.completed === p.total && p.needsName ? (
+                    {p.completed === p.total && p.projects.passed === p.projects.total && p.needsName ? (
                       <>
                         Every lesson is done. Your name goes on the certificate:{' '}
                         <Link
@@ -154,7 +174,7 @@ export default async function CertificatesPage() {
                         , then come back here.
                       </>
                     ) : (
-                      `Complete the other ${p.total - p.completed} lessons, and your certificate appears here straight away.`
+                      remaining(p)
                     )}
                   </p>
                 </div>
