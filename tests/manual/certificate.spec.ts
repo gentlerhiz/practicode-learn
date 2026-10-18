@@ -50,9 +50,28 @@ test('completing every lesson earns a certificate anyone can check', async ({ pa
   await expect(page.getByText(`${rest.length} of ${lessons!.length} lessons`)).toBeVisible()
   await expect(page.getByRole('heading', { name: 'In progress' })).toBeVisible()
 
-  // The last one: the certificate is issued.
+  // The last lesson: the certificate still waits for the projects.
   const second = await db.from('lesson_progress').insert(rows(last!))
   if (second.error) throw second.error
+  const { data: projects, error: noProjects } = await db
+    .from('projects')
+    .select('id, version')
+    .eq('track_slug', 'front-end-web-development')
+  if (noProjects) throw noProjects
+  await page.reload()
+  await expect(page.getByText(`0 of ${projects!.length} projects`)).toBeVisible()
+
+  // Every project passed: the certificate is issued.
+  const passed = await db.from('project_work').insert(
+    projects!.map((p) => ({
+      learner_id: learner.id,
+      project_id: p.id,
+      project_version: p.version,
+      status: 'passed',
+      passed_at: new Date().toISOString(),
+    })),
+  )
+  if (passed.error) throw passed.error
   await page.reload()
   await expect(page.getByText(/^Earned on /)).toBeVisible()
   const code = (await page.locator('.font-mono').first().innerText()).trim()
@@ -74,7 +93,9 @@ test('completing every lesson earns a certificate anyone can check', async ({ pa
   await expect(page.getByRole('heading', { level: 1, name: /^Chiamaka Obi/ })).toBeVisible()
   await expect(page.getByText('Verified: this certificate is real and active')).toBeVisible()
   await expect(
-    page.getByText(`Every lesson and exercise in ${modules} modules: ${lessons!.length} lessons in all.`),
+    page.getByText(
+      `Every lesson and exercise in ${modules} modules: ${lessons!.length} lessons in all, and ${projects!.length} projects, each passing every check.`,
+    ),
   ).toBeVisible()
 
   // The PDF: one A4 landscape page, downloaded as a file.

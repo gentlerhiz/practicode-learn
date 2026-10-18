@@ -81,7 +81,8 @@ export function previews(state: CardState | null, now = new Date()): [string, st
 
 /**
  * Today's session: cards that are due, the most overdue first, then cards not seen yet, in lesson
- * order, up to DAILY_CAP in all.
+ * order, up to DAILY_CAP different cards a day (UTC dates). Cards already reviewed today count toward
+ * the cap, so a second session the same day brings back only their short re-checks, not new cards.
  */
 export function pickSession<T extends { id: string; order: number }>(
   cards: T[],
@@ -89,11 +90,15 @@ export function pickSession<T extends { id: string; order: number }>(
   now = new Date(),
   cap = DAILY_CAP,
 ): T[] {
+  const today = now.toISOString().slice(0, 10)
   const due = cards
     .filter((c) => states.has(c.id) && new Date(states.get(c.id)!.due) <= now)
     .sort((a, b) => states.get(a.id)!.due.localeCompare(states.get(b.id)!.due))
+    .slice(0, cap)
+  const seen = new Set(due.map((c) => c.id))
+  for (const c of cards) if (states.get(c.id)?.last_review?.slice(0, 10) === today) seen.add(c.id)
   const fresh = cards.filter((c) => !states.has(c.id)).sort((a, b) => a.order - b.order)
-  return [...due, ...fresh].slice(0, cap)
+  return [...due, ...fresh.slice(0, Math.max(0, cap - seen.size))]
 }
 
 /** How many different days, in the last 7, had at least one review (UTC dates). */

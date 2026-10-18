@@ -58,6 +58,25 @@ describe('review scheduling', () => {
     expect(pickSession(many, new Map(), now)).toHaveLength(DAILY_CAP)
   })
 
+  it('keeps to the daily cap across sessions: cards seen today come back, but no more new ones', () => {
+    const many = Array.from({ length: 50 }, (_, i) => ({ id: `c${i}`, order: i }))
+    const morning = new Date('2026-10-19T08:00:00Z')
+    const states = new Map(
+      pickSession(many, new Map(), morning).map((c) => [c.id, rate(null, 3, morning)] as const),
+    )
+    // Rated Good, the new cards come back for a second look minutes later, and nothing else joins them.
+    const later = pickSession(many, states, now)
+    expect(later).toHaveLength(DAILY_CAP)
+    expect(later.every((c) => states.has(c.id))).toBe(true)
+    // Tomorrow, new cards open again.
+    const tomorrow = new Date('2026-10-20T08:00:00Z')
+    const known = new Map([...states].map(([id, s]) => [id, { ...s, due: '2026-10-25T00:00:00.000Z' }]))
+    expect(pickSession(many, known, tomorrow)).toHaveLength(DAILY_CAP)
+    // Part-way through a day, the new cards fill only what's left.
+    const some = new Map([...known].slice(0, 5))
+    expect(pickSession(many, some, now)).toHaveLength(DAILY_CAP - 5)
+  })
+
   it('counts the days with a review in the last week', () => {
     expect(
       daysReviewed(

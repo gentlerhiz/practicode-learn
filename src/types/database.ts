@@ -47,6 +47,72 @@ export type Database = {
           },
         ]
       }
+      impact_snapshots: {
+        Row: {
+          created_at: string
+          metrics: Json
+          month: string
+        }
+        Insert: {
+          created_at?: string
+          metrics: Json
+          month: string
+        }
+        Update: {
+          created_at?: string
+          metrics?: Json
+          month?: string
+        }
+        Relationships: []
+      }
+      learning_events: {
+        Row: {
+          id: string
+          learner_id: string
+          lesson_id: string
+          lesson_version: number
+          occurred_at: string
+          offline: boolean
+          received_at: string
+          verb: string
+        }
+        Insert: {
+          id: string
+          learner_id: string
+          lesson_id: string
+          lesson_version: number
+          occurred_at: string
+          offline?: boolean
+          received_at?: string
+          verb: string
+        }
+        Update: {
+          id?: string
+          learner_id?: string
+          lesson_id?: string
+          lesson_version?: number
+          occurred_at?: string
+          offline?: boolean
+          received_at?: string
+          verb?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "learning_events_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "learning_events_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       lesson_cards: {
         Row: {
           back: string
@@ -78,6 +144,234 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      lesson_progress: {
+        Row: {
+          active_seconds: number
+          attempts: Json
+          completed_at: string | null
+          learner_id: string
+          lesson_id: string
+          lesson_version: number
+          started_at: string
+          status: string
+          steps_done: number
+          updated_at: string
+        }
+        Insert: {
+          active_seconds?: number
+          attempts?: Json
+          completed_at?: string | null
+          learner_id: string
+          lesson_id: string
+          lesson_version: number
+          started_at?: string
+          status: string
+          steps_done?: number
+          updated_at?: string
+        }
+        Update: {
+          active_seconds?: number
+          attempts?: Json
+          completed_at?: string | null
+          learner_id?: string
+          lesson_id?: string
+          lesson_version?: number
+          started_at?: string
+          status?: string
+          steps_done?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_progress_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lesson_progress_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lessons: {
+        Row: {
+          bytes: number
+          description: string
+          free: boolean
+          hash: string
+          id: string
+          lesson: number
+          minutes: number
+          module: number
+          pack_path: string
+          published_at: string
+          slug: string
+          steps: number
+          title: string
+          track_slug: string
+          version: number
+        }
+        Insert: {
+          bytes: number
+          description: string
+          free?: boolean
+          hash: string
+          id: string
+          lesson: number
+          minutes: number
+          module: number
+          pack_path: string
+          published_at?: string
+          slug: string
+          steps: number
+          title: string
+          track_slug: string
+          version: number
+        }
+        Update: {
+          bytes?: number
+          description?: string
+          free?: boolean
+          hash?: string
+          id?: string
+          lesson?: number
+          minutes?: number
+          module?: number
+          pack_path?: string
+          published_at?: string
+          slug?: string
+          steps?: number
+          title?: string
+          track_slug?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_track_slug_fkey"
+            columns: ["track_slug"]
+            isOneToOne: false
+            referencedRelation: "tracks"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      memberships: {
+        Row: {
+          billing: string | null
+          created_at: string
+          current_period_end: string | null
+          learner_id: string
+          plan: string
+          provider_customer: string | null
+          provider_subscription: string | null
+          source: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          billing?: string | null
+          created_at?: string
+          current_period_end?: string | null
+          learner_id: string
+          plan?: string
+          provider_customer?: string | null
+          provider_subscription?: string | null
+          source: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          billing?: string | null
+          created_at?: string
+          current_period_end?: string | null
+          learner_id?: string
+          plan?: string
+          provider_customer?: string | null
+          provider_subscription?: string | null
+          source?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "memberships_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payments: {
+        Row: {
+          amount: number
+          billing: string
+          channel: string | null
+          created_at: string
+          currency: string
+          learner_id: string
+          paid_at: string
+          reference: string
+        }
+        Insert: {
+          amount: number
+          billing: string
+          channel?: string | null
+          created_at?: string
+          currency: string
+          learner_id: string
+          paid_at: string
+          reference: string
+        }
+        Update: {
+          amount?: number
+          billing?: string
+          channel?: string | null
+          created_at?: string
+          currency?: string
+          learner_id?: string
+          paid_at?: string
+          reference?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          country_code: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          role: string
+        }
+        Insert: {
+          country_code?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          role?: string
+        }
+        Update: {
+          country_code?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          role?: string
+        }
+        Relationships: []
       }
       project_work: {
         Row: {
@@ -265,14 +559,14 @@ export type Database = {
         }
         Insert: {
           card_id: string
-          id?: number
+          id?: never
           learner_id: string
           rating: number
           reviewed_at?: string
         }
         Update: {
           card_id?: string
-          id?: number
+          id?: never
           learner_id?: string
           rating?: number
           reviewed_at?: string
@@ -293,259 +587,6 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
-      }
-      impact_snapshots: {
-        Row: {
-          created_at: string
-          metrics: Json
-          month: string
-        }
-        Insert: {
-          created_at?: string
-          metrics: Json
-          month: string
-        }
-        Update: {
-          created_at?: string
-          metrics?: Json
-          month?: string
-        }
-        Relationships: []
-      }
-      learning_events: {
-        Row: {
-          id: string
-          learner_id: string
-          lesson_id: string
-          lesson_version: number
-          occurred_at: string
-          offline: boolean
-          received_at: string
-          verb: string
-        }
-        Insert: {
-          id: string
-          learner_id: string
-          lesson_id: string
-          lesson_version: number
-          occurred_at: string
-          offline?: boolean
-          received_at?: string
-          verb: string
-        }
-        Update: {
-          id?: string
-          learner_id?: string
-          lesson_id?: string
-          lesson_version?: number
-          occurred_at?: string
-          offline?: boolean
-          received_at?: string
-          verb?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "learning_events_learner_id_fkey"
-            columns: ["learner_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "learning_events_lesson_id_fkey"
-            columns: ["lesson_id"]
-            isOneToOne: false
-            referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      lesson_progress: {
-        Row: {
-          active_seconds: number
-          attempts: Json
-          completed_at: string | null
-          learner_id: string
-          lesson_id: string
-          lesson_version: number
-          started_at: string
-          status: string
-          steps_done: number
-          updated_at: string
-        }
-        Insert: {
-          active_seconds?: number
-          attempts?: Json
-          completed_at?: string | null
-          learner_id: string
-          lesson_id: string
-          lesson_version: number
-          started_at?: string
-          status: string
-          steps_done?: number
-          updated_at?: string
-        }
-        Update: {
-          active_seconds?: number
-          attempts?: Json
-          completed_at?: string | null
-          learner_id?: string
-          lesson_id?: string
-          lesson_version?: number
-          started_at?: string
-          status?: string
-          steps_done?: number
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "lesson_progress_learner_id_fkey"
-            columns: ["learner_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "lesson_progress_lesson_id_fkey"
-            columns: ["lesson_id"]
-            isOneToOne: false
-            referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      lessons: {
-        Row: {
-          bytes: number
-          description: string
-          free: boolean
-          hash: string
-          id: string
-          lesson: number
-          minutes: number
-          module: number
-          pack_path: string
-          published_at: string
-          slug: string
-          steps: number
-          title: string
-          track_slug: string
-          version: number
-        }
-        Insert: {
-          bytes: number
-          description: string
-          free?: boolean
-          hash: string
-          id: string
-          lesson: number
-          minutes: number
-          module: number
-          pack_path: string
-          published_at?: string
-          slug: string
-          steps: number
-          title: string
-          track_slug: string
-          version: number
-        }
-        Update: {
-          bytes?: number
-          description?: string
-          free?: boolean
-          hash?: string
-          id?: string
-          lesson?: number
-          minutes?: number
-          module?: number
-          pack_path?: string
-          published_at?: string
-          slug?: string
-          steps?: number
-          title?: string
-          track_slug?: string
-          version?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "lessons_track_slug_fkey"
-            columns: ["track_slug"]
-            isOneToOne: false
-            referencedRelation: "tracks"
-            referencedColumns: ["slug"]
-          },
-        ]
-      }
-      memberships: {
-        Row: {
-          billing: string | null
-          created_at: string
-          current_period_end: string | null
-          learner_id: string
-          plan: string
-          provider_customer: string | null
-          provider_subscription: string | null
-          source: string
-          status: string
-          updated_at: string
-        }
-        Insert: {
-          billing?: string | null
-          created_at?: string
-          current_period_end?: string | null
-          learner_id: string
-          plan?: string
-          provider_customer?: string | null
-          provider_subscription?: string | null
-          source: string
-          status?: string
-          updated_at?: string
-        }
-        Update: {
-          billing?: string | null
-          created_at?: string
-          current_period_end?: string | null
-          learner_id?: string
-          plan?: string
-          provider_customer?: string | null
-          provider_subscription?: string | null
-          source?: string
-          status?: string
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "memberships_learner_id_fkey"
-            columns: ["learner_id"]
-            isOneToOne: true
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      profiles: {
-        Row: {
-          country_code: string | null
-          created_at: string
-          display_name: string | null
-          id: string
-          role: string
-        }
-        Insert: {
-          country_code?: string | null
-          created_at?: string
-          display_name?: string | null
-          id: string
-          role?: string
-        }
-        Update: {
-          country_code?: string | null
-          created_at?: string
-          display_name?: string | null
-          id?: string
-          role?: string
-        }
-        Relationships: []
       }
       tracks: {
         Row: {
@@ -571,6 +612,44 @@ export type Database = {
         }
         Relationships: []
       }
+      tutor_questions: {
+        Row: {
+          answer: string | null
+          created_at: string
+          id: string
+          learner_id: string
+          lesson_id: string
+          question: string
+          step: number
+        }
+        Insert: {
+          answer?: string | null
+          created_at?: string
+          id?: string
+          learner_id: string
+          lesson_id: string
+          question: string
+          step: number
+        }
+        Update: {
+          answer?: string | null
+          created_at?: string
+          id?: string
+          learner_id?: string
+          lesson_id?: string
+          question?: string
+          step?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tutor_questions_learner_id_fkey"
+            columns: ["learner_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -591,6 +670,19 @@ export type Database = {
         Args: { p_project: string; p_results: Json; p_review: Json }
         Returns: undefined
       }
+      record_payment: {
+        Args: {
+          p_amount: number
+          p_billing: string
+          p_channel: string | null
+          p_currency: string
+          p_customer: string | null
+          p_learner: string
+          p_paid_at: string
+          p_reference: string
+        }
+        Returns: string | null
+      }
       record_progress: {
         Args: {
           p_active_seconds: number
@@ -604,19 +696,6 @@ export type Database = {
           p_verb: string
         }
         Returns: undefined
-      }
-      record_payment: {
-        Args: {
-          p_amount: number
-          p_billing: string
-          p_channel: string | null
-          p_currency: string
-          p_customer: string | null
-          p_learner: string
-          p_paid_at: string
-          p_reference: string
-        }
-        Returns: string | null
       }
       tutor_claim: {
         Args: { p_lesson: string; p_question: string; p_step: number }
