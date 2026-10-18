@@ -3,6 +3,7 @@ import { randomInt } from 'node:crypto'
 import { z } from 'zod'
 import { getTrackContent } from '@/content/tracks'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { layoutCertificate, type CertificateInput } from './document'
 
 /**
  * Certificates. A learner earns one by completing every published lesson in a track. Records live in a
@@ -150,10 +151,24 @@ export const certificateDate = (iso: string) =>
 /** The page anyone can open to check a certificate. */
 export const certificateUrl = (code: string, site: string) => `${site.replace(/\/$/, '')}/certificate/${code}`
 
-/** What the certificate page shows for each module it covers (modules are published in order). */
-export function certificateSkills(track: string, modules: number) {
-  return (getTrackContent(track)?.modules ?? []).slice(0, modules).map((m) => ({
-    name: m.title,
-    map: `MDN Curriculum, ${m.mdn}`,
-  }))
+// The two lines on each track's badge.
+const BADGE: Record<string, [string, string]> = {
+  'front-end-web-development': ['Front-End', 'Web Development'],
 }
+
+/** What the certificate document shows for this certificate. */
+export function documentFor(c: Certificate, site: string): CertificateInput {
+  const title = getTrackContent(c.track)?.title ?? c.track
+  return {
+    name: c.name,
+    course: title,
+    badge: BADGE[c.track] ?? [title, ''],
+    detail: `All ${c.modules} modules · ${c.lessons} lessons · Aligned to the MDN Curriculum`,
+    issued: certificateDate(c.issuedAt),
+    code: c.code,
+    url: certificateUrl(c.code, site),
+  }
+}
+
+/** The certificate, laid out for drawing on a page. */
+export const certificateShapes = (c: Certificate, site: string) => layoutCertificate(documentFor(c, site))

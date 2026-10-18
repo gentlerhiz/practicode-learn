@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ['image/avif', 'image/webp'] },
   experimental: { sri: { algorithm: 'sha256' } },
+  // Certificates are drawn per request (the page and the PDF) with the brand fonts, read from disk.
+  outputFileTracingIncludes: {
+    '/certificate/**': ['src/assets/fonts/**'],
+    '/certificates': ['src/assets/fonts/**'],
+  },
 
   async headers() {
     const staticCsp = buildCsp({

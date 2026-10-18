@@ -25,14 +25,18 @@ export default function ScholarshipPage() {
             <h1 className="font-display text-[30px] leading-9 font-extrabold tracking-[-0.035em] text-ink ph:text-[46px] ph:leading-[50px]">
               Money shouldn’t decide who gets to learn
             </h1>
-            <p className="text-[17px] leading-7 text-ink-muted">If paying for Pro is hard right now, apply here. If you qualify, Pro is free for 12 months.</p>
+            <p className="text-[17px] leading-7 text-ink-muted">
+              If paying for Pro is hard right now, apply here. If you qualify, Pro is free for 12 months.
+            </p>
           </div>
           <div className="flex flex-col gap-4">
             <h2 className="font-display text-xl font-bold text-ink">How it works</h2>
             <ol className="flex flex-col gap-4">
               {STEPS.map(([title, body], i) => (
                 <li key={title} className="flex items-start gap-4">
-                  <span className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-primary font-bold text-on-primary">{i + 1}</span>
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-[10px] bg-primary font-bold text-on-primary">
+                    {i + 1}
+                  </span>
                   <span>
                     <span className="block text-[15px] font-semibold text-ink">{title}</span>
                     <span className="mt-1 block text-sm leading-[22px] text-ink-muted">{body}</span>
@@ -42,12 +46,12 @@ export default function ScholarshipPage() {
             </ol>
           </div>
           <p className="text-sm leading-[22px] text-ink-subtle">
-            Scholarships are paid for by sponsors and by learners on Pro, so there are a limited number each month. If we can’t offer one
-            now, we’ll keep your application for next month. Pro launches with the full track; applications sent before then are read
-            first.
+            Scholarships are paid for by sponsors and by learners on Pro, so there are a limited number each
+            month. If we can’t offer one now, we’ll keep your application for next month. Pro launches with
+            the full track; applications sent before then are read first.
           </p>
         </section>
-        <div className="surface flex flex-col gap-6 rounded-[28px] border border-line p-6 ph:p-8">
+        <div className="flex flex-col gap-6 rounded-[28px] border border-line p-6 surface ph:p-8">
           <ScholarshipForm />
         </div>
       </main>

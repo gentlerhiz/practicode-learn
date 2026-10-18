@@ -1,58 +1,37 @@
-import type { Metadata, Route } from 'next'
+import type { Metadata } from 'next'
 import { CertificateView } from '@/components/app/certificates/certificate-view'
+import { frontEnd } from '@/content/tracks/front-end-web-development'
+import { layoutCertificate } from '@/lib/certificates/document'
 import { requirePreviews } from '@/lib/fixtures/gate'
 
 export const metadata: Metadata = { title: 'Certificate preview', robots: { index: false, follow: false } }
 
-const project = '/fixtures/screens/project' as Route
+const url = 'https://learn.practicode.tech/certificate/PCL-FE-7Q4M-2K9D'
 
-/** PrismCertificate with the canvas's sample graduate. */
+/** The certificate page with the canvas's sample graduate. */
 export default function CertificatePreview() {
   requirePreviews()
   return (
     <CertificateView
       data={{
         name: 'Amina Bello',
-        track: 'Front-End Web Development',
-        shortTrack: 'Front-End',
+        course: frontEnd.title,
         issued: '28 September 2026',
-        id: 'PCL-FE-7Q4M-2K9D',
-        completed: 'All 15 modules, 119 lessons',
-        url: 'https://learn.practicode.tech/certificate/PCL-FE-7Q4M-2K9D',
-        skills: [
-          { name: 'How the web works', map: 'MDN: Web standards' },
-          { name: 'Semantic HTML', map: 'MDN: Semantic HTML · SFIA PROG 2' },
-          { name: 'Git and GitHub', map: 'MDN: Version control' },
-          { name: 'CSS fundamentals', map: 'MDN: CSS fundamentals' },
-          { name: 'Typography and web fonts', map: 'MDN: CSS text styling' },
-          { name: 'Responsive layout', map: 'MDN: CSS layout · WCAG 1.4.10' },
-          { name: 'JavaScript fundamentals', map: 'MDN: JavaScript · SFIA PROG 2' },
-          { name: 'DOM and Web APIs', map: 'MDN: Web APIs' },
-          { name: 'Working with APIs', map: 'MDN: Web APIs · SFIA PROG 3' },
-          { name: 'Accessibility', map: 'MDN: Accessibility · SFIA ACIN 2' },
-          { name: 'Design for developers', map: 'MDN: Design for developers · SFIA HCEV 2' },
-          { name: 'Testing and deployment', map: 'MDN: Testing, Performance · SFIA TEST 2' },
-        ],
-        projects: [
-          {
-            label: 'Capstone',
-            title: 'A booking site for a local tailor',
-            note: '5 pages, contact form, Lighthouse 94',
-            href: project,
-          },
-          {
-            label: 'Module 11',
-            title: 'A weather dashboard with a contact form',
-            note: 'Handles slow and failed requests gracefully',
-            href: project,
-          },
-          {
-            label: 'Module 13',
-            title: 'An accessibility audit and fix',
-            note: '27 issues found, all fixed, WCAG 2.2 AA',
-            href: project,
-          },
-        ],
+        code: 'PCL-FE-7Q4M-2K9D',
+        url,
+        pdfHref: '#',
+        lessons: 119,
+        modules: frontEnd.modules.map((m) => ({ number: m.number, title: m.title, map: m.mdn })),
+        revoked: null,
+        shapes: layoutCertificate({
+          name: 'Amina Bello',
+          course: frontEnd.title,
+          badge: ['Front-End', 'Web Development'],
+          detail: 'All 15 modules · 119 lessons · Aligned to the MDN Curriculum',
+          issued: '28 September 2026',
+          code: 'PCL-FE-7Q4M-2K9D',
+          url,
+        }),
       }}
     />
   )

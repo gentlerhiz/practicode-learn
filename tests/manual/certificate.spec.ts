@@ -1,5 +1,6 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
+import { PDFDocument } from 'pdf-lib'
 import { admin, deleteTestUsers } from '../db/helpers'
 import { logIn, newLearner } from '../e2e/helpers/auth'
 
@@ -46,8 +47,8 @@ test('completing every lesson earns a certificate anyone can check', async ({ pa
   if (first.error) throw first.error
   await logIn(page, learner.email, '/home')
   await page.goto('/certificates')
-  await expect(page.getByText(`You’ve completed ${rest.length} of ${lessons!.length} lessons.`)).toBeVisible()
-  await expect(page.getByText('No certificates yet')).toBeVisible()
+  await expect(page.getByText(`${rest.length} of ${lessons!.length} lessons`)).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'In progress' })).toBeVisible()
 
   // The last one: the certificate is issued.
   const second = await db.from('lesson_progress').insert(rows(last!))
@@ -65,14 +66,29 @@ test('completing every lesson earns a certificate anyone can check', async ({ pa
 
   // Opening it again keeps the same certificate.
   await page.reload()
-  await expect(page.getByText(code)).toBeVisible()
+  await expect(page.locator('span.font-mono', { hasText: code })).toBeVisible()
 
   // The public page, signed out, at laptop and phone widths.
   await page.context().clearCookies()
   await page.goto(`/certificate/${code}`)
-  await expect(page.getByRole('heading', { level: 1, name: 'Chiamaka Obi' })).toBeVisible()
-  await expect(page.getByText('Verified credential')).toBeVisible()
-  await expect(page.getByText(`All ${modules} modules, ${lessons!.length} lessons`)).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /^Chiamaka Obi/ })).toBeVisible()
+  await expect(page.getByText('Verified: this certificate is real and active')).toBeVisible()
+  await expect(
+    page.getByText(`Every lesson and exercise in ${modules} modules: ${lessons!.length} lessons in all.`),
+  ).toBeVisible()
+
+  // The PDF: one A4 landscape page, downloaded as a file.
+  const pdf = await page.request.get(`/certificate/${code}/pdf`)
+  expect(pdf.status()).toBe(200)
+  expect(pdf.headers()['content-type']).toBe('application/pdf')
+  expect(pdf.headers()['content-disposition']).toContain(
+    `attachment; filename="PractiCode-Learn-Certificate-${code}.pdf"`,
+  )
+  const doc = await PDFDocument.load(await pdf.body())
+  expect(doc.getPageCount()).toBe(1)
+  expect(doc.getPage(0).getSize()).toEqual({ width: 842, height: 595 })
+  expect(doc.getTitle()).toContain('Chiamaka Obi')
+  expect((await page.request.get('/certificate/PCL-FE-0000-0000/pdf')).status()).toBe(404)
   const open = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
     .analyze()
@@ -84,7 +100,7 @@ test('completing every lesson earns a certificate anyone can check', async ({ pa
 
   // Codes are case-insensitive in the address, and unknown ones are a 404.
   await page.goto(`/certificate/${code.toLowerCase()}`)
-  await expect(page.getByRole('heading', { level: 1, name: 'Chiamaka Obi' })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /^Chiamaka Obi/ })).toBeVisible()
   const missing = await page.goto('/certificate/PCL-FE-0000-0000')
   expect(missing?.status()).toBe(404)
 })

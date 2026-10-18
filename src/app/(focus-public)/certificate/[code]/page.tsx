@@ -4,7 +4,7 @@ import { CertificateView } from '@/components/app/certificates/certificate-view'
 import { getTrackContent } from '@/content/tracks'
 import {
   certificateDate,
-  certificateSkills,
+  certificateShapes,
   certificateUrl,
   findCertificate,
   isCertificateCode,
@@ -22,14 +22,17 @@ export async function generateMetadata({ params }: PageProps<'/certificate/[code
   const track = certificate && getTrackContent(certificate.track)
   return pageMetadata({
     title: certificate && track ? `${certificate.name}: ${track.title}` : 'Certificate not found',
-    description: 'A PractiCode Learn certificate, checked against PractiCode Learn’s own records.',
+    description:
+      certificate && track
+        ? `${certificate.name} completed every lesson in ${track.title} on PractiCode Learn. Check the certificate here.`
+        : 'A PractiCode Learn certificate, checked against PractiCode Learn’s own records.',
     path: certificate ? `/certificate/${certificate.code}` : '/certificate',
     // A learner's name is theirs to share, not ours to put in search results.
     noindex: true,
   })
 }
 
-/** PrismCertificate: the public page anyone can open to check a certificate. */
+/** The public page anyone can open to check a certificate. */
 export default async function CertificatePage({ params }: PageProps<'/certificate/[code]'>) {
   const certificate = await load(params)
   const track = certificate && getTrackContent(certificate.track)
@@ -38,15 +41,17 @@ export default async function CertificatePage({ params }: PageProps<'/certificat
     <CertificateView
       data={{
         name: certificate.name,
-        track: track.title,
-        shortTrack: 'Front-End',
+        course: track.title,
         issued: certificateDate(certificate.issuedAt),
-        id: certificate.code,
-        completed: `All ${certificate.modules} modules, ${certificate.lessons} lessons`,
-        skills: certificateSkills(certificate.track, certificate.modules),
-        projects: [],
+        code: certificate.code,
         url: certificateUrl(certificate.code, site.url),
+        pdfHref: `/certificate/${certificate.code}/pdf`,
+        lessons: certificate.lessons,
+        modules: track.modules
+          .slice(0, certificate.modules)
+          .map((m) => ({ number: m.number, title: m.title, map: m.mdn })),
         revoked: certificate.revokedAt ? certificateDate(certificate.revokedAt) : null,
+        shapes: certificateShapes(certificate, site.url),
       }}
     />
   )
