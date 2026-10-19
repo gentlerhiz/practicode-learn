@@ -6,6 +6,7 @@ import { LESSONS_OPEN } from '@/content/navigation'
 import { cn } from '@/lib/cn'
 import Link from 'next/link'
 import type { Route } from 'next'
+import { Illustration } from './course-illustration'
 import { SectionHeading } from './section-heading'
 
 const tones: Record<TrackTone, { card: string; summary: string; meta: string; button: string }> = {
@@ -45,110 +46,6 @@ const tones: Record<TrackTone, { card: string; summary: string; meta: string; bu
     meta: 'text-[#a5e9f7]',
     button: 'text-[#0b6577]',
   },
-}
-
-/** Each subject's illustration, drawn from the canvas (decorative). */
-export function Illustration({ tone, className }: { tone: TrackTone; className?: string }) {
-  const cls = cn(
-    'pointer-events-none absolute -right-3 -bottom-3 h-[133px] w-[160px] ph:-right-6 ph:-bottom-4 ph:h-[216px] ph:w-[260px]',
-    className,
-  )
-  if (tone === 'it')
-    return (
-      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-        <rect x="20" y="24" width="170" height="112" rx="14" fill="rgba(255,255,255,0.1)" stroke="rgba(255,193,92,0.6)" strokeWidth="1.5" />
-        <rect x="34" y="40" width="64" height="44" rx="8" fill="rgba(255,255,255,0.22)" />
-        <path d="M34 98h52M34 112h86" stroke="rgba(255,255,255,0.45)" strokeWidth="8" strokeLinecap="round" />
-        <path d="M112 48h18l6 6h40v34h-64z" fill="#FFC15C" />
-        <path d="M82 136h46l8 22H74z" fill="rgba(255,255,255,0.18)" />
-        <rect x="150" y="96" width="70" height="92" rx="14" fill="rgba(255,255,255,0.16)" stroke="#FFFFFF" strokeWidth="2" />
-        <text x="162" y="134" fontSize="18" fill="#FFFFFF" fontFamily="var(--font-mono)">&gt;_</text>
-        <circle cx="185" cy="172" r="5" fill="#FFFFFF" />
-      </svg>
-    )
-  if (tone === 'cy')
-    return (
-      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-        <path d="M120 16 196 44v52c0 46-32 78-76 92-44-14-76-46-76-92V44z" fill="rgba(255,255,255,0.1)" stroke="rgba(95,216,242,0.6)" strokeWidth="2" />
-        <path d="M120 40 174 60v38c0 32-22 56-54 66-32-10-54-34-54-66V60z" fill="rgba(255,255,255,0.16)" />
-        <rect x="94" y="92" width="52" height="42" rx="9" fill="#FFFFFF" />
-        <path d="M104 92V80a16 16 0 0 1 32 0v12" fill="none" stroke="#FFFFFF" strokeWidth="7" />
-        <circle cx="120" cy="110" r="6" fill="#0E7490" />
-        <path d="M120 114v9" stroke="#0E7490" strokeWidth="5" strokeLinecap="round" />
-        <circle cx="206" cy="150" r="10" fill="#5FD8F2" />
-      </svg>
-    )
-  if (tone === 'fe')
-    return (
-      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-        <rect
-          x="10"
-          y="20"
-          width="220"
-          height="170"
-          rx="20"
-          fill="rgba(255,255,255,0.08)"
-          stroke="rgba(142,162,255,0.5)"
-          strokeWidth="1.5"
-        />
-        <circle cx="34" cy="42" r="5" fill="#F0407F" />
-        <circle cx="50" cy="42" r="5" fill="#FF8A3D" />
-        <circle cx="66" cy="42" r="5" fill="#2FE6B0" />
-        <rect x="30" y="66" width="120" height="10" rx="5" fill="#8EA2FF" />
-        <rect x="30" y="88" width="170" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
-        <rect x="30" y="110" width="90" height="10" rx="5" fill="rgba(255,255,255,0.35)" />
-        <rect x="30" y="138" width="80" height="30" rx="10" fill="#FFFFFF" />
-      </svg>
-    )
-  if (tone === 'da')
-    return (
-      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-        <rect x="20" y="110" width="34" height="80" rx="8" fill="rgba(255,255,255,0.18)" />
-        <rect x="66" y="80" width="34" height="110" rx="8" fill="rgba(255,255,255,0.28)" />
-        <rect x="112" y="96" width="34" height="94" rx="8" fill="rgba(255,255,255,0.18)" />
-        <rect x="158" y="44" width="34" height="146" rx="8" fill="#2FE6B0" />
-        <path
-          d="M20 80 C60 70 80 40 120 56 S 180 20 220 16"
-          fill="none"
-          stroke="#FFFFFF"
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-        <circle cx="220" cy="16" r="8" fill="#FFFFFF" />
-      </svg>
-    )
-  if (tone === 'ux')
-    return (
-      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-        <rect x="40" y="30" width="120" height="150" rx="18" fill="rgba(255,255,255,0.1)" />
-        <rect x="90" y="56" width="120" height="130" rx="18" fill="rgba(255,255,255,0.2)" />
-        <rect x="108" y="76" width="84" height="40" rx="10" fill="#FFFFFF" />
-        <rect x="108" y="126" width="60" height="8" rx="4" fill="#FFFFFF" />
-        <rect x="108" y="142" width="44" height="8" rx="4" fill="rgba(255,255,255,0.6)" />
-        <path
-          d="M176 132 l0 34 l9 -8 l7 15 l7 -3 l-7 -15 l12 0 z"
-          fill="#07060D"
-          stroke="#FFFFFF"
-          strokeWidth="2.5"
-          strokeLinejoin="round"
-        />
-      </svg>
-    )
-  return (
-    <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
-      <g stroke="rgba(255,255,255,0.35)" strokeWidth="2">
-        <path d="M40 40 120 70M40 40 120 130M40 100 120 70M40 100 120 130M40 160 120 70M40 160 120 130M120 70 200 100M120 130 200 100" />
-      </g>
-      <g fill="rgba(255,255,255,0.85)">
-        <circle cx="40" cy="40" r="12" />
-        <circle cx="40" cy="100" r="12" />
-        <circle cx="40" cy="160" r="12" />
-        <circle cx="120" cy="70" r="14" />
-        <circle cx="120" cy="130" r="14" />
-      </g>
-      <circle cx="200" cy="100" r="18" fill="#2FE6B0" />
-    </svg>
-  )
 }
 
 function Card({ track }: { track: TrackCard }) {

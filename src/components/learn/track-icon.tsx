@@ -38,6 +38,59 @@ export function TrackIcon({ track, size = 22, className }: { track: TrackTone; s
   )
 }
 
+// Courses that share a subject colour with another course get their own glyph: a snake for Python, a
+// database being searched for SQL, braces for JavaScript in Depth and a terminal for Cybersecurity and Linux.
+const coursePaths: Record<string, string[]> = {
+  py: ['M18 5h-6.5a3.5 3.5 0 0 0 0 7h1a3.5 3.5 0 0 1 0 7H5', 'm18 5 2.5-1.5M18 5l2.5 1.5', 'M14.5 5h.01'],
+  sq: [
+    'M3 5a9 3 0 1 0 18 0a9 3 0 1 0-18 0',
+    'M21 11.7V5',
+    'M3 12a9 3 0 0 0 8.7 3',
+    'M3 5v14a9 3 0 0 0 9.3 3',
+    'M15 18a3 3 0 1 0 6 0a3 3 0 1 0-6 0',
+    'm22 22-1.9-1.9',
+  ],
+  js: [
+    'M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1',
+    'M16 21h1a2 2 0 0 0 2-2v-5a2 2 0 0 1 2-2 2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1',
+  ],
+  cl: ['M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z', 'm7 9 3 3-3 3', 'M12 15h5'],
+}
+
+/** A course's own glyph: its subject's, unless the course has one of its own. */
+export function CourseIcon({
+  code,
+  tone,
+  size = 22,
+  className,
+}: {
+  code: string
+  tone: TrackTone
+  size?: number
+  className?: string
+}) {
+  const own = coursePaths[code]
+  if (!own) return <TrackIcon track={tone} size={size} className={className} />
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={size}
+      height={size}
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.85}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {own.map((d) => (
+        <path key={d} d={d} />
+      ))}
+    </svg>
+  )
+}
+
 /** Solid track tiles (same in both modes) and their pale tints. */
 export const trackFill: Record<TrackTone, string> = {
   fe: 'bg-fe text-white',

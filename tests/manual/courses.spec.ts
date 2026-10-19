@@ -54,8 +54,8 @@ for (const lesson of NEW) {
 
 test('the Courses page lists the catalogue, and its filters work', async ({ page }) => {
   await page.goto('/courses')
-  await expect(page.getByRole('heading', { level: 1, name: 'Find your next course' })).toBeVisible()
-  const cards = page.locator('section[aria-labelledby="finder-title"] li:not([hidden]) h3')
+  await expect(page.getByRole('heading', { level: 1, name: 'Courses', exact: true })).toBeVisible()
+  const cards = page.locator('section[aria-labelledby="courses-title"] li:not([hidden]) h3')
   await expect(cards.filter({ hasText: 'IT Fundamentals: Computers and Digital Skills' })).toBeVisible()
   await expect(cards.filter({ hasText: 'SQL and Databases' })).toBeVisible()
   expect(await axe(page)).toEqual([])

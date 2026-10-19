@@ -1,7 +1,7 @@
 import type { Metadata, Route } from 'next'
 import Link from 'next/link'
 import { AppPage } from '@/components/app/shell/app-shell'
-import { TrackIcon } from '@/components/learn/track-icon'
+import { CourseIcon, TrackIcon } from '@/components/learn/track-icon'
 import { Glyph } from '@/components/ui/glyph'
 import { catalogue, findCourse, levelLine, toneOf } from '@/content/catalogue'
 import { isComplete } from '@/content/tracks'
@@ -250,7 +250,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
                 style={{ background: `linear-gradient(160deg, rgba(${toneClass[t].rgb},0.15), var(--pc-sheet) 70%)` }}
               >
                 <span className={cn('flex size-11 items-center justify-center rounded-[14px] text-white', toneClass[t].fill)}>
-                  <TrackIcon track={t} size={22} />
+                  <CourseIcon code={c.code} tone={t} size={22} />
                 </span>
                 <span className="font-display text-lg leading-6 font-bold text-ink">{c.title}</span>
                 <span className="text-sm leading-[22px] text-ink-muted">{c.line}</span>
