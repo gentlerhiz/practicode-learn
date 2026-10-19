@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { catalogue } from '@/content/catalogue'
 import { getLesson, lessonsToPrebuild, listPublishedLessons } from '@/lib/lessons/catalogue'
 import { brandCard, ogFonts } from '@/lib/og/brand-card'
 
@@ -6,7 +7,10 @@ export const alt = 'A lesson on PractiCode Learn'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-const TRACK_SHORT: Record<string, string> = { 'front-end-web-development': 'Front-End', samples: 'Samples' }
+const TRACK_SHORT: Record<string, string> = {
+  ...Object.fromEntries(catalogue.map((c) => [c.slug, c.short])),
+  samples: 'Samples',
+}
 
 export async function generateStaticParams() {
   return lessonsToPrebuild(await listPublishedLessons()).map((l) => ({ track: l.track, lesson: l.slug }))

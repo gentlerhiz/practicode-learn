@@ -25,7 +25,7 @@ export type SettingsData = {
 /** One line on what the plan is and when it next changes. */
 function planNote(data: SettingsData): string {
   const m = data.membership
-  if (!data.isPro || !m) return 'Module 1 of every track, for good.'
+  if (!data.isPro || !m) return 'Module 1 of every course, for good.'
   if (m.source === 'granted') return m.until ? `Every module, given by PractiCode, until ${m.until}.` : 'Every module, given by PractiCode.'
   const every = m.billing === 'yearly' ? 'yearly' : 'monthly'
   if (!m.subscribed) return `Every module, paid ${every} by bank transfer or USSD, until ${m.until}. Pay again to keep it.`

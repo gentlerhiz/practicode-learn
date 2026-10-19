@@ -22,7 +22,7 @@ export default function CertificatePreview() {
         pdfHref: '#',
         lessons: 119,
         projects: 3,
-        modules: frontEnd.modules.map((m) => ({ number: m.number, title: m.title, map: m.mdn })),
+        modules: frontEnd.modules.map((m) => ({ number: m.number, title: m.title, map: m.standard })),
         revoked: null,
         shapes: layoutCertificate({
           name: 'Amina Bello',

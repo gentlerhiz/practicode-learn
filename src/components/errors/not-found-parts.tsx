@@ -10,7 +10,7 @@ import { cn } from '@/lib/cn'
 
 export type SearchEntry = { href: Route; title: string; meta: string }
 
-/** The 404 search (PrismError): filters the tracks and published lessons on the page itself. */
+/** The 404 search (PrismError): filters the courses and published lessons on the page itself. */
 export function NotFoundSearch({ entries }: { entries: SearchEntry[] }) {
   const [query, setQuery] = useState('')
   const id = useId()
@@ -20,7 +20,7 @@ export function NotFoundSearch({ entries }: { entries: SearchEntry[] }) {
     <div className="flex w-full max-w-[520px] flex-col gap-2 text-left">
       <form role="search" className="relative" onSubmit={(e) => e.preventDefault()}>
         <label htmlFor={id} className="sr-only">
-          Search lessons and tracks
+          Search lessons and courses
         </label>
         <Glyph name="search" size={18} className="pointer-events-none absolute top-[17px] left-5 text-ink-subtle" />
         <input
@@ -28,7 +28,7 @@ export function NotFoundSearch({ entries }: { entries: SearchEntry[] }) {
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search lessons and tracks"
+          placeholder="Search lessons and courses"
           autoComplete="off"
           className={cn(inputClasses, 'rounded-full pl-14')}
         />
@@ -45,7 +45,7 @@ export function NotFoundSearch({ entries }: { entries: SearchEntry[] }) {
               </li>
             ))
           ) : (
-            <li className="px-5 py-3 text-[15px] text-ink-muted">Nothing matches “{query.trim()}”. Try a track below.</li>
+            <li className="px-5 py-3 text-[15px] text-ink-muted">Nothing matches “{query.trim()}”. Try a course below.</li>
           )}
         </ul>
       )}

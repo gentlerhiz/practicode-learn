@@ -12,17 +12,16 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
 import { createClient } from '@supabase/supabase-js'
+import { catalogue } from '../../src/content/catalogue.ts'
 import { parsePack, type LessonPack } from '../../src/lib/lessons/schema.ts'
 import { parseProjectPack, type ProjectEntry } from '../../src/lib/projects/schema.ts'
 import type { CatalogueEntry } from '../../src/lib/lessons/types.ts'
 
-// Track rows are created on first publish only; afterwards they're managed in the database.
-const TRACKS: Record<string, { title: string; status: 'live' | 'coming_soon'; position: number }> = {
-  'front-end-web-development': { title: 'Front-End Web Development', status: 'live', position: 1 },
-  'data-analysis': { title: 'Data Analysis', status: 'coming_soon', position: 2 },
-  'ui-ux-product-design': { title: 'UI/UX Product Design', status: 'coming_soon', position: 3 },
-  'ai-and-machine-learning': { title: 'AI & Machine Learning', status: 'coming_soon', position: 4 },
-}
+// Course rows come from the catalogue, and are created on first publish only; afterwards they're managed
+// in the database.
+const TRACKS: Record<string, { title: string; status: 'live' | 'coming_soon'; position: number }> = Object.fromEntries(
+  catalogue.map((c, i) => [c.slug, { title: c.title, status: c.status, position: i + 1 }]),
+)
 
 /** Which lessons to upload: new ones, and ones whose content or version changed. */
 export function planPublish(local: CatalogueEntry[], remote: CatalogueEntry[]) {
@@ -37,11 +36,11 @@ export function planPublish(local: CatalogueEntry[], remote: CatalogueEntry[]) {
   return { upload, unchanged }
 }
 
-/** The pages that show changed lessons: each lesson, its track page and the sitemap, once each. */
+/** The pages that show changed lessons: each lesson, its course page and the sitemap, once each. */
 export function pagesToRefresh(changed: CatalogueEntry[]): string[] {
   if (!changed.length) return []
   const lessons = changed.map((e) => `/learn/${e.track}/${e.slug}`)
-  const tracks = [...new Set(changed.map((e) => `/tracks/${e.track}`))]
+  const tracks = [...new Set(changed.map((e) => `/courses/${e.track}`))]
   return [...lessons, ...tracks, '/sitemap.xml']
 }
 

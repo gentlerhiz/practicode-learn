@@ -6,6 +6,7 @@ const NOW = new Date('2026-10-07T14:00:00Z')
 
 function track(statuses: string[][], published = 2): LearnerTrackData {
   return {
+    slug: 'front-end-web-development',
     trackTitle: 'Front-End Web Development',
     modules: statuses.map((lessons, m) => ({
       number: m + 1,

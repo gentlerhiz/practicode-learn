@@ -6,6 +6,7 @@ import { useState, useTransition } from 'react'
 import { rateCard } from '@/app/(focus)/review/actions'
 import { buttonClasses } from '@/components/ui/button'
 import { Glyph } from '@/components/ui/glyph'
+import { findCourse, toneOf } from '@/content/catalogue'
 import { cn } from '@/lib/cn'
 import type { ReviewSummary, SessionCard } from '@/lib/review/load'
 
@@ -30,8 +31,31 @@ const LOOK = {
     glow: 'rgba(47,230,176,0.22)',
     pip: '#2FE6B0',
   },
+  it: {
+    chip: 'bg-it text-white',
+    text: 'text-it-text',
+    border: 'rgba(255,170,60,0.55)',
+    wash: 'rgba(255,170,60,0.18)',
+    tint1: 'rgba(255,170,60,0.22)',
+    tint2: 'rgba(255,170,60,0.10)',
+    glow: 'rgba(255,170,60,0.26)',
+    pip: '#FFAA3C',
+  },
+  cy: {
+    chip: 'bg-cy text-white',
+    text: 'text-cy-text',
+    border: 'rgba(34,190,230,0.55)',
+    wash: 'rgba(34,190,230,0.18)',
+    tint1: 'rgba(34,190,230,0.22)',
+    tint2: 'rgba(34,190,230,0.10)',
+    glow: 'rgba(34,190,230,0.26)',
+    pip: '#22BEE6',
+  },
 } as const
-const look = (track?: string) => LOOK[track === 'data-analysis' ? 'da' : 'fe']
+const look = (track?: string) => {
+  const tone = track ? toneOf(findCourse(track) ?? { subject: 'software' }) : 'fe'
+  return tone === 'da' || tone === 'it' || tone === 'cy' ? LOOK[tone] : LOOK.fe
+}
 
 const RATINGS = [
   {

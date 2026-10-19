@@ -13,6 +13,8 @@ const backgrounds = {
   da: '[background:var(--pc-stat-da)]',
   ux: '[background:var(--pc-stat-ux)]',
   ai: '[background:var(--pc-card-ai)]',
+  it: '[background:var(--pc-card-it)]',
+  cy: '[background:var(--pc-card-cy)]',
 } as const
 
 const linkClass =

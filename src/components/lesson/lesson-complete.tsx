@@ -139,7 +139,7 @@ export function LessonComplete({
                 <p className="text-[15px] leading-6 text-ink-muted">Keep this lesson and pick up on any device.</p>
               </div>
               <ul className="flex flex-col gap-3 text-[15px] leading-6 text-ink-soft">
-                {['Module 1 of every track, free for good', 'A 4-minute daily review so it sticks', 'AI tutor, 5 questions a day'].map(
+                {['Module 1 of every course, free for good', 'A 4-minute daily review so it sticks', 'AI tutor, 5 questions a day'].map(
                   (line) => (
                     <li key={line} className="flex gap-3">
                       <Glyph name="check" size={18} className="mt-0.5 shrink-0 text-[#B9A2FF]" />

@@ -6,7 +6,7 @@ export type AppNavItem = { href: Route; label: string; icon: GlyphName; badge?: 
 /** The canvas sidebar, top to bottom. Settings sits apart, under the plan card. */
 export const MAIN_NAV: AppNavItem[] = [
   { href: '/home' as Route, label: 'Home', icon: 'home' },
-  { href: '/my-tracks' as Route, label: 'My Tracks', icon: 'book' },
+  { href: '/my-courses' as Route, label: 'My Courses', icon: 'book' },
   { href: '/review' as Route, label: 'Review', icon: 'review' },
   { href: '/projects' as Route, label: 'Projects', icon: 'folder' },
   { href: '/certificates' as Route, label: 'Certificates', icon: 'shield' },
@@ -19,7 +19,7 @@ export const IMPACT_NAV: AppNavItem = { href: '/admin/impact' as Route, label: '
 /** The phone tab bar: Home, Learn, Review, Projects, Me. */
 export const TAB_NAV: AppNavItem[] = [
   { href: '/home' as Route, label: 'Home', icon: 'home' },
-  { href: '/my-tracks' as Route, label: 'Learn', icon: 'book' },
+  { href: '/my-courses' as Route, label: 'Learn', icon: 'book' },
   { href: '/review' as Route, label: 'Review', icon: 'review' },
   { href: '/projects' as Route, label: 'Projects', icon: 'folder' },
   { href: '/settings' as Route, label: 'Me', icon: 'user' },

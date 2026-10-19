@@ -100,7 +100,7 @@ export const legalDocs: Record<LegalSlug, LegalDoc> = {
     summary: [
       'Be kind, and do your own work on assessments.',
       'Lessons and the PractiCode name belong to us. Your projects and code belong to you.',
-      'Module 1 of every track is free. Pro, which opens every module, is a paid plan you can cancel any time.',
+      'Module 1 of every course is free. Pro, which opens every module, is a paid plan you can cancel any time.',
       'Certificates, when they arrive, show the skills you demonstrated. They are not a degree.',
     ],
     sections: [

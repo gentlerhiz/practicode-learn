@@ -12,18 +12,18 @@ const save = planPrices('NGN', true).save
 const ANSWERS = [
   {
     key: 'track',
-    q: 'Which track should I start with?',
-    a: "If you've never coded, Front-End Web Development is a friendly first step: you see your work in the browser from lesson one. If you already live in spreadsheets, Data Analysis builds on that. Front-End Web Development opens first, and its Module 1 is free, so you can try it before deciding.",
+    q: 'Which course should I start with?',
+    a: "If you're new to tech, start with IT Fundamentals: it explains computers, files, networks and the cloud from zero. If you want to build websites, Front-End Web Development has you making real pages from lesson one. And Introduction to Cybersecurity is for everyone who wants to stay safe online. Module 1 of each is free, so you can try them before deciding.",
   },
   {
     key: 'price',
     q: 'How much does Pro cost?',
-    a: `Pro is ${ngn.sym}${ngn.monthly.toLocaleString('en-US')} a month, or ${ngn.sym}${ngn.yearly.toLocaleString('en-US')} a year, which saves you about ${save}%. It launches with the full track, and you’ll be able to cancel in one click. If money is tight, you can apply for a scholarship too.`,
+    a: `Pro is ${ngn.sym}${ngn.monthly.toLocaleString('en-US')} a month, or ${ngn.sym}${ngn.yearly.toLocaleString('en-US')} a year, which saves you about ${save}%. It launches with the full course, and you’ll be able to cancel in one click. If money is tight, you can apply for a scholarship too.`,
   },
   {
     key: 'phone',
     q: 'Can I learn on my phone?',
-    a: "Mostly, yes. Lessons, reviews and the AI tutor work in your phone's browser, and you can save a module's lessons to keep going offline. Some modules need a computer, like Power BI work (Windows PC) or Figma design work, and each track tells you upfront what you'll need.",
+    a: "Mostly, yes. Lessons, reviews and the AI tutor work in your phone's browser, and you can save a module's lessons to keep going offline. Some modules are easier on a computer, like Figma design work, and each course tells you upfront what you'll need.",
   },
   {
     key: 'cert',
@@ -32,7 +32,7 @@ const ANSWERS = [
   },
 ]
 
-const HAND_OFF = `Good question. I can help with tracks, prices, payments and how lessons work. For anything else, email ${site.email} and a person will reply.`
+const HAND_OFF = `Good question. I can help with courses, prices, payments and how lessons work. For anything else, email ${site.email} and a person will reply.`
 
 type Message = { from: 'learner' | 'bot'; text: string }
 
@@ -110,7 +110,7 @@ export function SiteAssistant() {
             </span>
             <div className="min-w-0 flex-1">
               <p className="text-base font-semibold">Ask PractiCode</p>
-              <p className="text-xs text-[#e9e4ff]">Quick answers about tracks, plans and lessons</p>
+              <p className="text-xs text-[#e9e4ff]">Quick answers about courses, plans and lessons</p>
             </div>
             <button
               type="button"
@@ -125,7 +125,7 @@ export function SiteAssistant() {
             <div className="flex max-w-[92%] items-start gap-3">
               <Spark />
               <p className={botBubble}>
-                Hi! I can help you pick a track, explain the plans, or tell you how lessons work. What would you like to know?
+                Hi! I can help you pick a course, explain the plans, or tell you how lessons work. What would you like to know?
               </p>
             </div>
             {messages.map((m, i) =>

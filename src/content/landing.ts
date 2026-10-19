@@ -3,8 +3,9 @@
  * Case for buttons, sentence case for headings, never count tracks, never offer career support, and no
  * claim the product can't back today (unshipped features say "Coming soon").
  */
+import { catalogue, levelLine, toneOf, type TrackTone } from './catalogue'
 
-export type TrackTone = 'fe' | 'da' | 'ux' | 'ai'
+export type { TrackTone } from './catalogue'
 
 export type TrackCard = {
   slug: string
@@ -28,9 +29,9 @@ export const landing = {
       { word: 'AI', tone: 'ai' },
     ] as { word: string; tone: TrackTone }[],
     intro:
-      'Learn the skills employers are hiring for, one hands-on lesson at a time. Every track is built around industry standards employers already use, and you build real projects from your very first week.',
+      'Learn the skills employers are hiring for, one hands-on lesson at a time. Every course is built around industry standards employers already use, and you build real projects from your very first week.',
     primary: 'Start Learning Free',
-    secondary: { label: 'Explore the Tracks', href: '#tracks' },
+    secondary: { label: 'Explore Courses', href: '/courses' },
   },
 
   // The scrolling strip under the hero, coloured by track.
@@ -38,9 +39,11 @@ export const landing = {
     { name: 'HTML', tone: 'fe' },
     { name: 'CSS', tone: 'fe' },
     { name: 'JavaScript', tone: 'fe' },
-    { name: 'Excel', tone: 'da' },
-    { name: 'Power BI', tone: 'da' },
-    { name: 'DAX', tone: 'da' },
+    { name: 'The command line', tone: 'it' },
+    { name: 'Cloud storage', tone: 'it' },
+    { name: 'Passkeys', tone: 'cy' },
+    { name: 'Two-factor sign-in', tone: 'cy' },
+    { name: 'SQL', tone: 'da' },
     { name: 'Figma', tone: 'ux' },
     { name: 'FigJam', tone: 'ux' },
     { name: 'Python', tone: 'ai' },
@@ -50,50 +53,24 @@ export const landing = {
   ] as { name: string; tone: TrackTone | 'git' }[],
 
   tracks: {
-    eyebrow: 'Available tracks',
-    title: 'Pick a track. Switch anytime.',
-    intro: 'Each one starts free, so trying them costs you nothing. More tracks are on the way.',
+    eyebrow: 'Courses',
+    title: 'Pick a course. Switch anytime.',
+    intro: 'Module 1 of every course is free, so trying one costs you nothing. More courses are on the way.',
+    browse: 'Browse All Courses',
     standardsLabel: 'Our syllabi line up with standards employers already trust',
-    standards: ['MDN Curriculum', 'SFIA 9', 'Microsoft PL-300', 'ISO 9241-210', 'ACM CS2023'],
-    cards: [
-      {
-        slug: 'front-end-web-development',
-        tone: 'fe',
-        title: 'Front-End Web Development',
-        level: 'Beginner · 15 modules',
-        summary: 'Build websites that look right on every screen, then put them online for real.',
-        alignment: 'Aligned to the MDN Curriculum',
-        status: 'live',
-      },
-      {
-        slug: 'data-analysis',
-        tone: 'da',
-        title: 'Data Analysis',
-        level: 'Beginner · 11 modules',
-        summary:
-          'Tidy messy spreadsheets, find what the numbers are saying, and build dashboards people actually read.',
-        alignment: 'Aligned to Microsoft PL-300',
-        status: 'coming_soon',
-      },
-      {
-        slug: 'ui-ux-product-design',
-        tone: 'ux',
-        title: 'UI/UX Product Design',
-        level: 'Beginner · 11 modules',
-        summary: 'Talk to real users, sketch ideas, and turn them into designs people can click through.',
-        alignment: 'Aligned to ISO 9241-210',
-        status: 'coming_soon',
-      },
-      {
-        slug: 'ai-machine-learning',
-        tone: 'ai',
-        title: 'AI & Machine Learning',
-        level: 'Intermediate · 12 modules',
-        summary: "Train models in Python, check whether they're any good, and learn where AI goes wrong.",
-        alignment: 'Aligned to ACM CS2023',
-        status: 'coming_soon',
-      },
-    ] satisfies TrackCard[],
+    standards: ['MDN Curriculum', 'CompTIA Tech+', 'NIST CSF 2.0', 'SFIA 9', 'ISO 9241-210', 'ACM CS2023'],
+    // The featured courses, in catalogue order.
+    cards: catalogue
+      .filter((c) => c.featured)
+      .map((c) => ({
+        slug: c.slug,
+        tone: toneOf(c),
+        title: c.title,
+        level: levelLine(c),
+        summary: c.summary,
+        alignment: c.alignment,
+        status: c.status,
+      })) satisfies TrackCard[],
   },
 
   stats: {
@@ -118,13 +95,13 @@ export const landing = {
         figure: '80%',
         caption: 'to pass every module',
         body: "Each module ends with a check and a project briefed like a real job. You move on once you've got it, so your certificate means something.",
-        link: { label: 'See What You’ll Build', href: '/tracks/front-end-web-development#syllabus' },
+        link: { label: 'See What You’ll Build', href: '/courses/front-end-web-development#syllabus' },
       },
       {
         tone: 'ux' as TrackTone,
         label: 'The price',
         figure: '₦0',
-        caption: 'to start any track',
+        caption: 'to start any course',
         body: 'Module 1 is free for good. No card, and no trial clock ticking in the corner.',
         link: { label: 'See the Plans', href: '#pricing' },
       },
@@ -193,7 +170,7 @@ export const landing = {
       accent: 'and help is there the moment you need it.',
     },
     columns: ['What you get', 'The usual video course', 'PractiCode Learn'] as const,
-    proFrom: 'Pro launches with the full track',
+    proFrom: 'Pro launches with the full course',
     rows: [
       ['How you learn', 'Mostly watching', 'Mostly doing'],
       ['Help when you’re stuck', 'Comments under a video', 'An AI tutor in lessons and projects'],

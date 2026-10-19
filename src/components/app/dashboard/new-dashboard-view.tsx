@@ -14,6 +14,8 @@ const other = {
   da: { tile: 'bg-da text-white', bg: 'rgba(47,230,176,0.14)', link: 'text-da-text' },
   ux: { tile: 'bg-ux text-white', bg: 'rgba(240,64,127,0.14)', link: 'text-ux-text' },
   ai: { tile: 'bg-ai text-white', bg: 'rgba(123,92,255,0.16)', link: 'text-ai-text' },
+  it: { tile: 'bg-it text-white', bg: 'rgba(255,170,60,0.16)', link: 'text-it-text' },
+  cy: { tile: 'bg-cy text-white', bg: 'rgba(34,190,230,0.16)', link: 'text-cy-text' },
 } as const
 
 /** PrismDashboardNew: the first thing a new learner sees. */
@@ -142,7 +144,7 @@ export function NewDashboardView({ data }: { data: NewDashboardData }) {
 
       <section aria-labelledby="other-title" className="flex flex-col gap-4">
         <h2 id="other-title" className="font-display text-2xl font-extrabold tracking-[-0.02em] text-ink">
-          Curious about another track?
+          Curious about another course?
         </h2>
         <div className="grid grid-cols-1 gap-6 tab:grid-cols-3">
           {data.others.map((t) => (
@@ -150,14 +152,14 @@ export function NewDashboardView({ data }: { data: NewDashboardData }) {
               key={t.id}
               href={t.href}
               className="press flex flex-col gap-3 rounded-3xl border border-line p-6 hover:border-line-strong"
-              style={{ background: `linear-gradient(160deg, ${other[t.id].bg}, var(--pc-sheet) 70%)` }}
+              style={{ background: `linear-gradient(160deg, ${other[t.tone].bg}, var(--pc-sheet) 70%)` }}
             >
-              <span className={cn('flex size-11 items-center justify-center rounded-[14px]', other[t.id].tile)}>
-                <TrackIcon track={t.id} size={22} />
+              <span className={cn('flex size-11 items-center justify-center rounded-[14px]', other[t.tone].tile)}>
+                <TrackIcon track={t.tone} size={22} />
               </span>
               <span className="font-display text-lg leading-6 font-bold text-ink">{t.name}</span>
               <span className="text-sm leading-[22px] text-ink-muted">{t.line}</span>
-              <span className={cn('mt-auto text-sm font-medium', other[t.id].link)}>{t.action} →</span>
+              <span className={cn('mt-auto text-sm font-medium', other[t.tone].link)}>{t.action} →</span>
             </Link>
           ))}
         </div>

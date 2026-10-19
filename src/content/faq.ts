@@ -5,7 +5,7 @@
 export const faq: { q: string; a: string }[] = [
   {
     q: 'Is it really free?',
-    a: "Yep. Module 1 is free for good, and you don't need a card. Front-End Web Development is open now. The rest of each track comes with Pro, which launches with the full track.",
+    a: "Yep. Module 1 is free for good, and you don't need a card. IT Fundamentals, Front-End Web Development and Introduction to Cybersecurity are open now. The rest of each course comes with Pro.",
   },
   {
     q: 'Why no videos?',
@@ -13,7 +13,7 @@ export const faq: { q: string; a: string }[] = [
   },
   {
     q: 'Can I really learn on my phone?',
-    a: "Most of it, yes. Lessons, reviews and the AI tutor work in your phone's browser. Some modules need a computer: Power BI work needs a Windows PC, and Figma design work needs a laptop. Each track page lists what you'll need.",
+    a: "Most of it, yes. Lessons, reviews and the AI tutor work in your phone's browser. Some modules are easier on a computer, such as Figma design work. Each course page lists what you'll need.",
   },
   {
     q: 'Will employers care about the certificate?',

@@ -1,10 +1,15 @@
 import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
 import { Section } from '@/components/ui/section'
+import type { TrackTone } from '@/content/catalogue'
 import type { TrackModule } from '@/content/tracks'
+import { cn } from '@/lib/cn'
+import { toneClass } from '@/lib/tone'
 
-/** Small decorative previews for a few of the projects. */
-function Preview({ variant }: { variant: number }) {
+/** Small decorative previews for a few of the projects, in the course's colour. */
+function Preview({ variant, tone }: { variant: number; tone: TrackTone }) {
+  const look = toneClass[tone]
+  const box = { borderColor: `rgba(${look.rgb},0.5)`, background: `rgba(${look.rgb},0.2)` }
   if (variant === 0)
     return (
       <div
@@ -12,7 +17,7 @@ function Preview({ variant }: { variant: number }) {
         className="flex h-[150px] flex-col gap-3 rounded-2xl border border-line bg-sunken p-4"
       >
         <span className="h-3 w-3/5 rounded-full bg-ink" />
-        <span className="h-14 rounded-xl bg-fe" />
+        <span className={cn('h-14 rounded-xl', look.fill)} />
         <span className="h-2 w-4/5 rounded-full bg-ink-subtle/50" />
         <span className="h-2 w-1/2 rounded-full bg-ink-subtle/50" />
       </div>
@@ -23,9 +28,30 @@ function Preview({ variant }: { variant: number }) {
         aria-hidden="true"
         className="grid h-[150px] grid-cols-[3fr_1fr_0.6fr] gap-3 rounded-2xl border border-line bg-sunken p-4"
       >
-        <span className="rounded-xl border border-[#4d6bff]/50 bg-fe/20" />
-        <span className="rounded-xl border border-[#4d6bff]/50 bg-fe/20" />
-        <span className="rounded-xl border border-[#4d6bff]/50 bg-fe/20" />
+        <span className="rounded-xl border" style={box} />
+        <span className="rounded-xl border" style={box} />
+        <span className="rounded-xl border" style={box} />
+      </div>
+    )
+  if (tone !== 'fe')
+    return (
+      <div
+        aria-hidden="true"
+        className="flex h-[150px] flex-col justify-center gap-3 rounded-2xl border border-line bg-sunken p-4"
+      >
+        {[true, true, false].map((done, i) => (
+          <span key={i} className="flex items-center gap-3">
+            <span
+              className={cn(
+                'flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white',
+                done ? look.fill : 'border border-line-control',
+              )}
+            >
+              {done ? '✓' : ''}
+            </span>
+            <span className={cn('h-2 rounded-full bg-ink-subtle/50', i === 2 ? 'w-1/2' : 'w-4/5')} />
+          </span>
+        ))}
       </div>
     )
   return (
@@ -51,7 +77,7 @@ function Preview({ variant }: { variant: number }) {
 }
 
 /** "Some of what you'll build" (anchor #projects): three module projects with small previews. */
-export function ProjectsGrid({ modules }: { modules: TrackModule[] }) {
+export function ProjectsGrid({ modules, tone }: { modules: TrackModule[]; tone: TrackTone }) {
   return (
     <Section id="projects" labelledBy="projects-title">
       <Container className="flex flex-col gap-8 ph:gap-12">
@@ -61,9 +87,12 @@ export function ProjectsGrid({ modules }: { modules: TrackModule[] }) {
         <ul className="grid gap-4 ph:gap-6 tab:grid-cols-3">
           {modules.map((m, i) => (
             <li key={m.number} className="flex flex-col gap-4 rounded-3xl border border-line p-4 surface">
-              <Preview variant={i} />
+              <Preview variant={i} tone={tone} />
               <div className="flex flex-col gap-1 px-1 pb-2">
-                <p className="text-[13px] text-fe-text">Module {m.number}</p>
+                <p className={cn('text-[13px]', toneClass[tone].text)}>
+                  Module {m.number}
+                  {m.soon ? ' · Coming soon' : ''}
+                </p>
                 <p className="text-lg font-semibold text-ink">{m.project}</p>
               </div>
             </li>

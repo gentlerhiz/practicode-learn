@@ -15,9 +15,9 @@ export type FooterGroup = { heading: string; links: (NavItem | ExternalNavItem)[
 export const LESSONS_OPEN = true
 
 export const FIRST_LESSON = '/learn/front-end-web-development/what-happens-when-you-open-a-website'
-// Paths into dynamic routes (/tracks/[track], /legal/[doc]) are cast: typed routes check the route,
+// Paths into dynamic routes (/courses/[course], /legal/[doc]) are cast: typed routes check the route,
 // not each slug (Next.js docs, typedRoutes). Static pages such as /about need no cast.
-export const TRACK_PAGE = '/tracks/front-end-web-development' as Route
+export const TRACK_PAGE = '/courses/front-end-web-development' as Route
 
 export const primaryCta: NavItem = LESSONS_OPEN
   ? { href: FIRST_LESSON as Route, label: 'Start Free' }
@@ -28,22 +28,22 @@ export const PENDING: string[] = []
 
 // The canvas header, on every public page.
 export const guest: NavItem[] = [
-  { href: '/#tracks' as Route, label: 'Tracks' },
+  { href: '/courses' as Route, label: 'Courses' },
   { href: '/#how' as Route, label: 'How It Works' },
   { href: '/#tutor' as Route, label: 'AI Tutor' },
   { href: '/pricing' as Route, label: 'Pricing' },
   { href: '/mentors' as Route, label: 'Mentors' },
 ]
 
-// The canvas footer. Tracks without lessons yet link to their card on the landing page, as designed.
+// The canvas footer: the open courses, then the full catalogue.
 export const footer: FooterGroup[] = [
   {
-    heading: 'Tracks',
+    heading: 'Courses',
     links: [
+      { href: '/courses/it-fundamentals' as Route, label: 'IT Fundamentals' },
       { href: TRACK_PAGE, label: 'Front-End Web Development' },
-      { href: '/#tracks' as Route, label: 'Data Analysis' },
-      { href: '/#tracks' as Route, label: 'UI/UX Product Design' },
-      { href: '/#tracks' as Route, label: 'AI & Machine Learning' },
+      { href: '/courses/introduction-to-cybersecurity' as Route, label: 'Introduction to Cybersecurity' },
+      { href: '/courses' as Route, label: 'All courses' },
     ],
   },
   {
@@ -70,7 +70,7 @@ export const footer: FooterGroup[] = [
 export const app: NavItem[] = [
   // Signed-in pages arrive in Milestone 2 (Task 17); typed routes can't see them until then.
   { href: '/home' as Route, label: 'Home' },
-  { href: TRACK_PAGE, label: 'My Track' },
+  { href: '/my-courses' as Route, label: 'My Courses' },
   { href: '/settings' as Route, label: 'Settings' },
 ]
 

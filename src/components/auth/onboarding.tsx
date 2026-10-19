@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Briefcase, Check, GraduationCap, Rocket, Sparkles, TrendingUp, type LucideIcon } from 'lucide-react'
 import { TrackIcon } from '@/components/learn/track-icon'
+import type { TrackTone } from '@/content/catalogue'
 import { buttonClasses } from '@/components/ui'
 import { cn } from '@/lib/cn'
 import {
@@ -19,16 +20,17 @@ import {
   planTrack,
   type LearningPlan,
   type PlanGoalId,
-  type PlanTrackId,
 } from '@/lib/onboarding/plan'
 import { savePlan, useSavedPlan } from '@/lib/onboarding/use-saved-plan'
 
-/** Track colours on onboarding, straight from the canvas. Fills stay the same in both modes. */
-const look: Record<PlanTrackId, { fill: string; fillFg: string; tint: string; text: string; glow: string; grad: string }> = {
+/** Subject colours on onboarding, straight from the canvas. Fills stay the same in both modes. */
+const look: Record<TrackTone, { fill: string; fillFg: string; tint: string; text: string; glow: string; grad: string }> = {
   fe: { fill: '#3D5AF5', fillFg: '#FFFFFF', tint: 'rgba(77,107,255,0.16)', text: 'var(--pc-fe-text)', glow: 'rgba(77,107,255,0.36)', grad: 'linear-gradient(120deg, #4D6BFF, #7B5CFF)' },
   da: { fill: '#2FE6B0', fillFg: '#04241A', tint: 'rgba(47,230,176,0.14)', text: 'var(--pc-da-text)', glow: 'rgba(47,230,176,0.26)', grad: 'linear-gradient(120deg, #2FE6B0, #4D6BFF)' },
   ux: { fill: '#D9306F', fillFg: '#FFFFFF', tint: 'rgba(240,64,127,0.14)', text: 'var(--pc-ux-text)', glow: 'rgba(240,64,127,0.30)', grad: 'linear-gradient(120deg, #F0407F, #7B5CFF)' },
   ai: { fill: '#6E4CF5', fillFg: '#FFFFFF', tint: 'rgba(123,92,255,0.16)', text: 'var(--pc-ai-text)', glow: 'rgba(123,92,255,0.34)', grad: 'linear-gradient(120deg, #7B5CFF, #F0407F)' },
+  it: { fill: '#A85A00', fillFg: '#FFFFFF', tint: 'rgba(255,170,60,0.16)', text: 'var(--pc-it-text)', glow: 'rgba(255,170,60,0.30)', grad: 'linear-gradient(120deg, #FFC15C, #7B5CFF)' },
+  cy: { fill: '#0E7490', fillFg: '#FFFFFF', tint: 'rgba(34,190,230,0.16)', text: 'var(--pc-cy-text)', glow: 'rgba(34,190,230,0.30)', grad: 'linear-gradient(120deg, #5FD8F2, #4D6BFF)' },
 }
 
 const goalIcons: Record<PlanGoalId, LucideIcon> = {
@@ -42,7 +44,7 @@ const goalIcons: Record<PlanGoalId, LucideIcon> = {
 export type OnboardingStep = 1 | 2 | 3
 const stepHref = (step: OnboardingStep) => `/onboarding?step=${step}` as Route
 
-function Pill({ on, color, children, onClick }: { on: boolean; color: (typeof look)[PlanTrackId]; children: React.ReactNode; onClick: () => void }) {
+function Pill({ on, color, children, onClick }: { on: boolean; color: (typeof look)[TrackTone]; children: React.ReactNode; onClick: () => void }) {
   return (
     <button
       type="button"
@@ -70,7 +72,7 @@ function ChoiceCard({
   onClick,
 }: {
   on: boolean
-  color: (typeof look)[PlanTrackId]
+  color: (typeof look)[TrackTone]
   icon: React.ReactNode
   title: string
   line: string
@@ -173,24 +175,24 @@ function GoalStep({ plan, update, next }: { plan: LearningPlan; update: (c: Part
   )
 }
 
-/** Step 2 (PrismOnboarding): a track, a daily time and a starting point. */
+/** Step 2 (PrismOnboarding): a course, a daily time and a starting point. Only open courses are offered. */
 function TrackStep({ plan, update, next }: { plan: LearningPlan; update: (c: Partial<LearningPlan>) => void; next: () => void }) {
-  const color = look[plan.track]
+  const color = look[planTrack(plan).tone]
   return (
     <>
-      <Heading title="What do you want to learn first?" intro="No pressure. You can switch any time, and every track starts free." />
+      <Heading title="What do you want to learn first?" intro="No pressure. You can switch any time, and every course starts free." />
 
       <section aria-labelledby="q-track">
         <h2 id="q-track" className="sr-only">
-          Choose a track
+          Choose a course
         </h2>
         <div role="group" aria-labelledby="q-track" className="grid grid-cols-1 gap-4 min-[700px]:grid-cols-2">
-          {PLAN_TRACKS.map((track) => (
+          {PLAN_TRACKS.filter((t) => t.open).map((track) => (
             <ChoiceCard
               key={track.id}
               on={track.id === plan.track}
-              color={look[track.id]}
-              icon={<TrackIcon track={track.id} size={24} />}
+              color={look[track.tone]}
+              icon={<TrackIcon track={track.tone} size={24} />}
               title={track.name}
               line={track.line}
               meta={track.open ? track.meta : `${track.meta} · Opens soon`}
@@ -233,7 +235,7 @@ function TrackStep({ plan, update, next }: { plan: LearningPlan; update: (c: Par
 }
 
 function PlanLine({ plan }: { plan: LearningPlan }) {
-  const color = look[plan.track]
+  const color = look[planTrack(plan).tone]
   return (
     <div aria-live="polite" className="rounded-[22px] p-[1.5px]" style={{ background: color.grad }}>
       <div className="flex items-start gap-4 rounded-[21px] bg-sunken px-5 py-4">
@@ -252,12 +254,13 @@ function PlanLine({ plan }: { plan: LearningPlan }) {
 }
 
 /** Step 3: the plan in full, the module they'll start with, and the free account that keeps it. */
-function ReadyStep({ plan, firstModule, next }: { plan: LearningPlan; firstModule: FirstModule; next: () => void }) {
+function ReadyStep({ plan, firstModules, next }: { plan: LearningPlan; firstModules: Record<string, FirstModule>; next: () => void }) {
   const track = planTrack(plan)
-  const color = look[track.open ? plan.track : 'fe']
+  const color = look[track.open ? track.tone : 'fe']
+  const firstModule = firstModules[track.open ? track.id : 'fe'] ?? firstModules.fe!
   const rows: { label: string; value: string; change: Route }[] = [
     { label: 'Your goal', value: planGoal(plan).label, change: stepHref(1) },
-    { label: 'Track', value: track.open ? track.name : `${track.name} (opens soon)`, change: stepHref(2) },
+    { label: 'Course', value: track.open ? track.name : `${track.name} (opens soon)`, change: stepHref(2) },
     { label: 'Time', value: `${planTime(plan).label}, ${planTime(plan).week}`, change: stepHref(2) },
     { label: 'Starting point', value: planLevel(plan).start, change: stepHref(2) },
   ]
@@ -330,11 +333,11 @@ function ReadyStep({ plan, firstModule, next }: { plan: LearningPlan; firstModul
 
 export type FirstModule = { title: string; lessons: string[]; project: string }
 
-/** Onboarding in three steps: a goal, then a track and pace (PrismOnboarding), then the plan and sign-up. */
-export function Onboarding({ step, firstModule }: { step: OnboardingStep; firstModule: FirstModule }) {
+/** Onboarding in three steps: a goal, then a course and pace (PrismOnboarding), then the plan and sign-up. */
+export function Onboarding({ step, firstModules }: { step: OnboardingStep; firstModules: Record<string, FirstModule> }) {
   const router = useRouter()
   const plan = useSavedPlan()
-  const color = look[plan.track]
+  const color = look[planTrack(plan).tone]
   const update = (change: Partial<LearningPlan>) => savePlan({ ...plan, ...change })
   const go = (to: OnboardingStep) => {
     savePlan(plan)
@@ -386,7 +389,7 @@ export function Onboarding({ step, firstModule }: { step: OnboardingStep; firstM
         {step === 3 && (
           <ReadyStep
             plan={plan}
-            firstModule={firstModule}
+            firstModules={firstModules}
             next={() => {
               savePlan(plan)
               router.push('/signup' as Route)

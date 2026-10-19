@@ -12,15 +12,17 @@
 | **2. Discipline** | "Does this cover what experts in the field agree on?" | One recognised curriculum per track, listed below |
 | **3. Course quality** | "Is the course itself well designed?" | **Quality Matters Higher Education Rubric (7th ed.)** for course design, **WCAG 2.2 AA** for accessibility and **CAST UDL 3.0** for inclusive design |
 
-## Discipline frameworks per track
+## Discipline frameworks per course
 
-| Track | Primary framework | Secondary references | SFIA 9 skills (target level) |
+| Course | Primary framework | Secondary references | SFIA 9 skills (target level) |
 |---|---|---|---|
+| IT Fundamentals: Computers and Digital Skills | **CompTIA Tech+ (FC0-U71)** objectives: all six domains | DigComp 2.2, the EU's digital competence framework | USUP (1), ITOP (1) |
+| Introduction to Cybersecurity | **NIST Cybersecurity Framework 2.0**: govern, identify, protect, detect, respond, recover | CISA Secure Our World; UK NCSC Cyber Aware; NIST SP 800-50r1; NICE Framework (NIST SP 800-181r1) for roles | SCTY (1) |
 | Front-End Web Development | **MDN Curriculum** (Mozilla): 9 core and 9 extension modules | WCAG 2.2; W3C standards | PROG (2–3), HCEV (2), ACIN (2), TEST (2), RELM (2) |
-| Data Analysis | **Microsoft PL-300** skills measured: prepare, model, visualise and analyse, manage and secure | Data literacy; data protection law (NDPA 2023, GDPR) | BINT (2–3), VISL (2–3), DATM (2) |
+| Data Analysis (being rewritten) | **CompTIA Data+** objectives, replacing PL-300: the course moves to SQL, Python with pandas and open charting tools, which run in the browser | Data literacy; data protection law (GDPR and local equivalents) | BINT (2–3), VISL (2–3), DATM (2) |
 | UI/UX Product Design | **ISO 9241-210:2019** human-centred design activities | UK Design Council Double Diamond; WCAG 2.2; benchmarked against the scope of the Google UX Design Certificate | URCH (2–3), HCEV (2–3), USEV (2), ACIN (2) |
 | AI & Machine Learning | **ACM/IEEE-CS/AAAI CS2023**, Artificial Intelligence knowledge area | UNESCO Recommendation on the Ethics of AI (2021); benchmarked against AWS AIF-C01 and Microsoft AI-901 | DATS (2–3), MLNG (2–3) |
-| Cybersecurity (planned) | **NICE Framework** (NIST SP 800-181r1) | CompTIA Security+ SY0-701 objectives | SCTY (2–3), THIN (2), PENT (2) |
+| Cybersecurity and the Linux Command Line (planned) | **NICE Framework** (NIST SP 800-181r1) | CompTIA Security+ SY0-701 objectives | SCTY (2–3), THIN (2), PENT (2) |
 
 ### SFIA levels explained
 SFIA describes seven levels of responsibility: 1 *Follow*, 2 *Assist*, 3 *Apply*, 4 *Enable*, 5 *Ensure, advise*, 6 *Initiate, influence* and 7 *Set strategy, inspire, mobilise*. Our tracks target **level 2 (Assist) to level 3 (Apply)**, the level of a junior professional. Saying this openly is more credible than claiming senior-level outcomes.

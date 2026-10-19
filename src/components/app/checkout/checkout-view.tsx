@@ -20,7 +20,7 @@ const METHODS = [
   { id: 'ussd', label: 'USSD', path: 'M4 9h16M4 15h16M10 3 8 21M16 3l-2 18' },
 ] as const
 
-const PRO = ['Every module in every track', 'AI tutor, 20 questions a day', 'Projects with automatic checks', 'Verified certificates', 'Download any module for offline']
+const PRO = ['Every module in every course', 'AI tutor, 20 questions a day', 'Projects with automatic checks', 'Verified certificates', 'Download any module for offline']
 
 function MethodIcon({ path }: { path: string }) {
   return (
@@ -113,7 +113,7 @@ export function CheckoutView({
                 ? `Your free trial ends on ${trial.ends}. Choose a plan now and nothing changes: every module, verified certificates and 20 AI tutor questions a day. You won’t pay anything today.`
                 : real
                   ? 'Every module, verified certificates and 20 AI tutor questions a day. You pay on Paystack’s secure page, by card, bank transfer or USSD.'
-                  : 'Pro launches with the full track. This is exactly how checkout will work, but payments aren’t open yet, so nothing can be charged and we won’t ask for card details.'}
+                  : 'Pro launches with the full course. This is exactly how checkout will work, but payments aren’t open yet, so nothing can be charged and we won’t ask for card details.'}
             </p>
             {isPro && (
               <p role="status" className="max-w-[560px] rounded-2xl border border-line bg-row px-4 py-3 text-sm leading-[22px] text-ink">

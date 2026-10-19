@@ -1,6 +1,7 @@
 import 'server-only'
 import type { Route } from 'next'
 import { cache } from 'react'
+import { findCourse } from '@/content/catalogue'
 import { getTrackContent, type TrackContent } from '@/content/tracks'
 import { listPublishedLessons } from '@/lib/lessons/catalogue'
 import { createClient } from '@/lib/supabase/server'
@@ -30,6 +31,7 @@ export type ModuleView = {
 
 export type LearnerTrack = {
   trackTitle: string
+  slug: string
   track: TrackContent
   modules: ModuleView[]
   progress: { lesson_id: string; status: string; updated_at: string; active_seconds: number; steps_done: number }[]
@@ -37,12 +39,12 @@ export type LearnerTrack = {
   isPro: boolean
 }
 
+/** The course a learner who hasn't chosen one sees first. */
 export const OPEN_TRACK = 'front-end-web-development'
-const PREFIX: Record<string, string> = { 'front-end-web-development': 'fe' }
 const pad = (n: number) => String(n).padStart(2, '0')
 
 /**
- * The open track as this learner sees it: every module and lesson from the syllabus, with a link for
+ * A course as this learner sees it: every module and lesson from the syllabus, with a link for
  * each published lesson (matched by id, as the content build names them) and the learner's status.
  */
 export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise<LearnerTrack> => {
@@ -63,7 +65,7 @@ export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise
   const isPro = proResult.data === true
   const progress = progressResult.data ?? []
   const statusOf = new Map(progress.map((p) => [p.lesson_id, p.status as LessonStatus]))
-  const prefix = PREFIX[slug] ?? slug
+  const prefix = findCourse(slug)?.code ?? slug
   const modules: ModuleView[] = track.modules.map((m) => ({
     number: m.number,
     title: m.title,
@@ -87,6 +89,7 @@ export const loadLearnerTrack = cache(async (slug: string = OPEN_TRACK): Promise
   }))
   return {
     trackTitle: track.title,
+    slug: track.slug,
     track,
     modules,
     progress,
@@ -111,11 +114,15 @@ export function nextLesson(data: LearnerTrack) {
 /** Every module and lesson, for the search box in the top bar. */
 export function searchEntries(data: LearnerTrack) {
   return data.modules.flatMap((m) => [
-    { label: m.title, meta: `${data.track.title} · Module ${m.number}`, href: `/my-tracks#module-${m.number}` as Route },
+    {
+      label: m.title,
+      meta: `${data.track.title} · Module ${m.number}`,
+      href: `/my-courses?course=${data.track.slug}#module-${m.number}` as Route,
+    },
     ...m.lessons.map((l) => ({
       label: l.title,
       meta: `Module ${m.number} · Lesson ${l.number}${l.href ? '' : ' · opens soon'}`,
-      href: l.href ?? (`/my-tracks#module-${m.number}` as Route),
+      href: l.href ?? (`/my-courses?course=${data.track.slug}#module-${m.number}` as Route),
     })),
   ])
 }

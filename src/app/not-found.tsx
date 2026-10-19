@@ -6,26 +6,29 @@ import { TrackIcon, trackTint } from '@/components/learn/track-icon'
 import { SiteFooter } from '@/components/layout/site-footer'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SkipLink } from '@/components/ui/skip-link'
-import { TRACK_PAGE } from '@/content/navigation'
+import { catalogue, toneOf, type TrackTone } from '@/content/catalogue'
 import { listPublishedLessons } from '@/lib/lessons/catalogue'
 import { cn } from '@/lib/cn'
 
 // Next.js adds <meta name="robots" content="noindex"> to 404 responses itself.
 export const metadata: Metadata = { title: 'Page not found' }
 
-// Tracks without lessons yet link to their card on the landing page, as the footer does.
-const TRACKS = [
-  { id: 'fe', title: 'Front-End Web Development', href: TRACK_PAGE, open: true },
-  { id: 'da', title: 'Data Analysis', href: '/#tracks' as Route, open: false },
-  { id: 'ux', title: 'UI/UX Product Design', href: '/#tracks' as Route, open: false },
-  { id: 'ai', title: 'AI & Machine Learning', href: '/#tracks' as Route, open: false },
-] as const
+// Open courses link to their pages; courses coming soon link to the catalogue.
+const TRACKS = catalogue.map((c) => ({
+  id: c.code,
+  tone: toneOf(c),
+  title: c.title,
+  href: (c.status === 'live' ? `/courses/${c.slug}` : '/courses') as Route,
+  open: c.status === 'live',
+}))
 
-const chip: Record<(typeof TRACKS)[number]['id'], string> = {
+const chip: Record<TrackTone, string> = {
   fe: 'border-[rgba(77,107,255,0.45)]',
   da: 'border-[rgba(47,230,176,0.45)]',
   ux: 'border-[rgba(240,64,127,0.45)]',
   ai: 'border-[rgba(123,92,255,0.45)] bg-[rgba(123,92,255,0.1)]',
+  it: 'border-[rgba(255,170,60,0.45)]',
+  cy: 'border-[rgba(34,190,230,0.45)]',
 }
 
 /** PrismError: the gradient 404, a search over the real catalogue, the tracks, and a way home. */
@@ -35,7 +38,7 @@ export default async function NotFound() {
   await connection()
   const lessons = (await listPublishedLessons()).filter((l) => l.track !== 'samples')
   const entries: SearchEntry[] = [
-    ...TRACKS.map((t) => ({ href: t.href, title: t.title, meta: t.open ? 'Track · Module 1 free' : 'Track · Coming soon' })),
+    ...TRACKS.map((t) => ({ href: t.href, title: t.title, meta: t.open ? 'Course · Module 1 free' : 'Course · Coming soon' })),
     ...lessons.map((l) => ({
       href: `/learn/${l.track}/${l.slug}` as Route,
       title: l.title,
@@ -68,22 +71,22 @@ export default async function NotFound() {
               We couldn’t find that page
             </h1>
             <p className="text-[17px] leading-7 text-ink-muted">
-              It may have moved, or the link has a typo. Try searching, or jump into a track.
+              It may have moved, or the link has a typo. Try searching, or jump into a course.
             </p>
           </div>
           <NotFoundSearch entries={entries} />
-          <nav aria-label="Tracks" className="flex flex-wrap justify-center gap-3">
-            {TRACKS.map((t) => (
+          <nav aria-label="Courses" className="flex flex-wrap justify-center gap-3">
+            {TRACKS.filter((t) => t.open).map((t) => (
               <Link
                 key={t.id}
                 href={t.href}
                 className={cn(
                   'press inline-flex h-11 items-center gap-2 rounded-full border px-4 text-sm font-medium hover:opacity-90',
-                  trackTint[t.id],
-                  chip[t.id],
+                  trackTint[t.tone],
+                  chip[t.tone],
                 )}
               >
-                <TrackIcon track={t.id} size={16} />
+                <TrackIcon track={t.tone} size={16} />
                 {t.title}
               </Link>
             ))}

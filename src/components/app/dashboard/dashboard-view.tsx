@@ -21,8 +21,8 @@ const dayLook: Record<DayMark, string> = {
   today: 'border-2 border-[#ff8a3d]',
   later: 'border-[1.5px] border-line-control',
 }
-const trackColour = { fe: '#4D6BFF', da: '#2FE6B0', ux: '#F0407F', ai: '#7B5CFF' } as const
-const trackLink = { fe: 'text-fe-text', da: 'text-da-text', ux: 'text-ux-text', ai: 'text-ai-text' } as const
+const trackColour = { fe: '#4D6BFF', da: '#2FE6B0', ux: '#F0407F', ai: '#7B5CFF', it: '#FFAA3C', cy: '#22BEE6' } as const
+const trackLink = { fe: 'text-fe-text', da: 'text-da-text', ux: 'text-ux-text', ai: 'text-ai-text', it: 'text-it-text', cy: 'text-cy-text' } as const
 
 function WeekRing({ count, goal }: { count: number; goal: number }) {
   const length = 2 * Math.PI * 56
@@ -347,24 +347,24 @@ export function DashboardView({ data }: { data: DashboardData }) {
         <section aria-labelledby="tracks-title" className={card}>
           <div>
             <h2 id="tracks-title" className={cardTitle}>
-              Your tracks
+              Your courses
             </h2>
             <p className="mt-1 text-[13px] text-ink-muted">Module 1 of each one is free.</p>
           </div>
           <ul className="flex flex-col gap-4">
             {data.tracks.map((t) => (
               <li key={t.id} className="grid grid-cols-[12px_minmax(0,1fr)_auto] items-center gap-3">
-                <span className="block size-3 rounded" style={{ background: trackColour[t.id] }} />
+                <span className="block size-3 rounded" style={{ background: trackColour[t.tone] }} />
                 <div className="flex min-w-0 flex-col gap-1.5">
                   <div className="flex justify-between gap-2 text-[13px]">
                     <span className="font-medium text-ink">{t.name}</span>
                     <span className="whitespace-nowrap text-ink-subtle">{t.note}</span>
                   </div>
                   <div aria-hidden="true" className="h-1.5 overflow-hidden rounded-[3px] bg-[var(--pc-surface-row)] [box-shadow:inset_0_0_0_100px_var(--pc-hover)]">
-                    <div className="h-1.5 rounded-[3px]" style={{ width: `${t.pct}%`, background: trackColour[t.id] }} />
+                    <div className="h-1.5 rounded-[3px]" style={{ width: `${t.pct}%`, background: trackColour[t.tone] }} />
                   </div>
                 </div>
-                <Link href={t.href} className={cn('text-xs font-semibold whitespace-nowrap underline underline-offset-2 hover:no-underline', trackLink[t.id])}>
+                <Link href={t.href} className={cn('text-xs font-semibold whitespace-nowrap underline underline-offset-2 hover:no-underline', trackLink[t.tone])}>
                   {t.action}
                 </Link>
               </li>

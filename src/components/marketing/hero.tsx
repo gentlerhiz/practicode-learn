@@ -1,7 +1,6 @@
 import type { Route } from 'next'
 import { BrainCircuit, ChartColumn, CodeXml, PenTool } from 'lucide-react'
 import { ArrowRight, Icon } from '@/components/ui/icon'
-import { buttonClasses } from '@/components/ui/button'
 import { LinkButton } from '@/components/ui/link-button'
 import { landing, type TrackTone } from '@/content/landing'
 import { cn } from '@/lib/cn'
@@ -14,6 +13,8 @@ const pill: Record<TrackTone, string> = {
   da: 'bg-success-fill text-on-success rotate-[1.5deg] shadow-[0_0_44px_rgba(47,230,176,0.45)]',
   ux: 'bg-ux text-white -rotate-[1.5deg] shadow-[0_0_44px_rgba(240,64,127,0.5)]',
   ai: 'bg-ai text-white rotate-2 shadow-[0_0_44px_rgba(123,92,255,0.55)]',
+  it: 'bg-it text-white -rotate-1 shadow-[0_0_44px_rgba(255,170,60,0.45)]',
+  cy: 'bg-cy text-white rotate-1 shadow-[0_0_44px_rgba(34,190,230,0.45)]',
 }
 
 /** Decorative cards that float beside the headline on wide screens: one per track's kind of work. */
@@ -140,9 +141,9 @@ export function Hero() {
             {hero.primary}
             <Icon as={ArrowRight} size={18} />
           </LinkButton>
-          <a href={hero.secondary.href} className={buttonClasses({ variant: 'secondary', size: 'lg' }, 'px-6 font-medium')}>
+          <LinkButton href={hero.secondary.href as Route} variant="secondary" size="lg" className="px-6 font-medium">
             {hero.secondary.label}
-          </a>
+          </LinkButton>
         </div>
         <div aria-hidden="true" className="grid w-full max-w-[420px] grid-cols-4 gap-3 wide:hidden">
           {tiles.map(({ icon, className }, i) => (

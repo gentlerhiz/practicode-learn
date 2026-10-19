@@ -98,6 +98,7 @@ describe('certificateFor', () => {
       total: 3,
       projects: { passed: 0, total: 0 },
       needsName: false,
+      unfinished: false,
     })
     expect(files.size).toBe(0)
   })
@@ -110,6 +111,7 @@ describe('certificateFor', () => {
       total: 3,
       projects: { passed: 0, total: 0 },
       needsName: true,
+      unfinished: false,
     })
   })
 
@@ -140,6 +142,26 @@ describe('certificateFor', () => {
     })
     passed = ['fe-p01', 'fe-p02']
     expect((await certificateFor(LEARNER, TRACK)).certificate).toMatchObject({ projects: 2, lessons: 3 })
+  })
+
+  it('never issues while the course still has modules to come', async () => {
+    lessons = [
+      { id: 'it-01-01', module: 1 },
+      { id: 'it-01-02', module: 1 },
+    ]
+    completed = ['it-01-01', 'it-01-02']
+    expect(await certificateFor(LEARNER, 'it-fundamentals')).toMatchObject({
+      certificate: null,
+      completed: 2,
+      total: 2,
+      unfinished: true,
+    })
+    expect(files.size).toBe(0)
+  })
+
+  it('gives each course its own code prefix', () => {
+    expect(newCode('it-fundamentals')).toMatch(/^PCL-IT-/)
+    expect(newCode('introduction-to-cybersecurity')).toMatch(/^PCL-CY-/)
   })
 
   it('finds nothing for an unknown or malformed code', async () => {

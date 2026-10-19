@@ -28,13 +28,40 @@ export const publicPages: PublicPage[] = [
     updated: '2026-10-04',
   },
   {
-    path: '/tracks/front-end-web-development' as Route,
+    path: '/courses',
+    title: 'Courses',
+    description:
+      'Every PractiCode Learn course, from IT fundamentals to web development and cybersecurity: hands-on lessons and labs, built for your phone. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-19',
+  },
+  {
+    path: '/courses/it-fundamentals' as Route,
+    title: 'IT Fundamentals: Computers and Digital Skills course',
+    description:
+      'Learn how computers, files, networks and the cloud work, and use the command line, with hands-on labs from your very first lesson. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-19',
+  },
+  {
+    path: '/courses/front-end-web-development' as Route,
     title: 'Front-End Web Development course',
     description:
       'Learn HTML, CSS, JavaScript and Git by building real websites, with interactive lessons and in-browser labs. Module 1 is free.',
     changeFrequency: 'weekly',
     priority: 0.9,
     updated: '2026-10-04',
+  },
+  {
+    path: '/courses/introduction-to-cybersecurity' as Route,
+    title: 'Introduction to Cybersecurity course',
+    description:
+      'Protect your accounts, devices and data, spot phishing and scams, and see how security work happens, in safe simulated labs. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-19',
   },
   {
     path: '/about',
@@ -49,7 +76,7 @@ export const publicPages: PublicPage[] = [
     path: '/pricing' as Route,
     title: 'Pricing',
     description:
-      'Module 1 of every track is free for good. Pro unlocks every module, priced for your country, and payments open with the full track.',
+      'Module 1 of every course is free for good. Pro unlocks every module, priced for your country, and payments open with the full course.',
     changeFrequency: 'monthly',
     priority: 0.7,
     updated: '2026-10-07',

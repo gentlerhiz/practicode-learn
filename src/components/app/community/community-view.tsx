@@ -48,7 +48,7 @@ export function CommunityView({ threads, open }: { threads: Thread[]; open: bool
       </div>
       <div className="grid grid-cols-1 items-start gap-6 tab:grid-cols-[minmax(0,1fr)_320px]">
         <div className="flex min-w-0 flex-col gap-4">
-          <div role="group" aria-label="Filter by track" className="flex flex-wrap gap-2">
+          <div role="group" aria-label="Filter by course" className="flex flex-wrap gap-2">
             {FILTERS.map(([id, label]) => (
               <button
                 key={id}
@@ -126,7 +126,7 @@ export function CommunityView({ threads, open }: { threads: Thread[]; open: bool
             <p className="text-sm leading-[22px] text-ink-muted">
               The AI tutor answers in seconds and knows your code. Use the community for ideas, feedback and study buddies.
             </p>
-            <Link href={'/my-tracks' as Route} className="text-sm font-medium text-ai-text underline underline-offset-2 hover:no-underline">
+            <Link href={'/my-courses' as Route} className="text-sm font-medium text-ai-text underline underline-offset-2 hover:no-underline">
               {open ? 'Open the tutor →' : 'Every lesson has three hints →'}
             </Link>
           </div>

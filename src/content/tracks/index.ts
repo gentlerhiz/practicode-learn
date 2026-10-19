@@ -1,22 +1,22 @@
-import { landing } from '@/content/landing'
+import { catalogue } from '@/content/catalogue'
 import { frontEnd } from './front-end-web-development'
+import { cybersecurity } from './introduction-to-cybersecurity'
+import { itFundamentals } from './it-fundamentals'
 import type { TrackContent } from './types'
 
 export type { TrackContent, TrackLesson, TrackModule } from './types'
 
-/** Tracks with full content. Coming-soon tracks only have landing cards until their content lands. */
-const full: TrackContent[] = [frontEnd]
+/** Courses with full content. Coming-soon courses only have catalogue cards until their content lands. */
+const full: TrackContent[] = [itFundamentals, frontEnd, cybersecurity]
 
-export type TrackSummary = Pick<TrackContent, 'slug' | 'title' | 'status'>
+export type TrackSummary = { slug: string; title: string; status: 'live' | 'coming_soon' }
 
-/** Every track, live or coming soon, in landing-page order. */
-export const tracks: TrackSummary[] = landing.tracks.cards.map((card) => ({
-  slug: card.slug,
-  title: card.title,
-  status: card.status,
-}))
+/** Every course, live or coming soon, in catalogue order. */
+export const tracks: TrackSummary[] = catalogue.map((c) => ({ slug: c.slug, title: c.title, status: c.status }))
 
-export const liveTracks = (): TrackContent[] => full.filter((t) => t.status === 'live')
+/** Live courses with full content, in catalogue order. */
+export const liveTracks = (): TrackContent[] =>
+  catalogue.flatMap((c) => full.filter((t) => t.slug === c.slug && t.status === 'live'))
 
 export function getTrack(slug: string): TrackSummary | undefined {
   return tracks.find((t) => t.slug === slug)
@@ -25,3 +25,6 @@ export function getTrack(slug: string): TrackSummary | undefined {
 export function getTrackContent(slug: string): TrackContent | undefined {
   return full.find((t) => t.slug === slug)
 }
+
+/** True once every module is published: only then can a learner finish the course. */
+export const isComplete = (track: TrackContent) => track.modules.every((m) => !m.soon)

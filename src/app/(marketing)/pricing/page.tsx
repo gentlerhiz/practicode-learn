@@ -11,13 +11,13 @@ export const metadata: Metadata = metaFor('/pricing' as Route)
 
 type Cell = string | boolean
 const ROWS: [string, Cell, Cell, Cell][] = [
-  ['Lessons', 'Module 1 of every track', 'Every module', 'Every module'],
+  ['Lessons', 'Module 1 of every course', 'Every module', 'Every module'],
   ['Daily review', true, true, true],
   ['AI tutor', '5 questions a day', '20 questions a day', '20 questions a day'],
   ['Projects with automatic checks', 'Module 1 project', 'All projects', 'All projects'],
   ['Verified certificates', false, true, true],
   ['Save modules for offline', 'Module 1', 'All modules', 'All modules'],
-  ['Exam prep (for example PL-300)', false, true, true],
+  ['Exam prep (for example CompTIA Tech+)', false, true, true],
   ['Weekly live classes', false, false, true],
   ['An instructor reviews your projects', false, false, true],
   ['Community', true, true, true],
@@ -56,7 +56,7 @@ function CellView({ value }: { value: Cell }) {
   return <>{value}</>
 }
 
-/** PrismPricing. The planned prices; checkout opens with the full track. */
+/** PrismPricing. The planned prices; checkout opens with the full course. */
 export default function PricingPage() {
   return (
     <>
@@ -75,7 +75,7 @@ export default function PricingPage() {
               Start free. Go Pro when you’re ready.
             </h1>
             <p className="text-[17px] leading-7 text-ink-muted">
-              Module 1 of every track is free for good. Pro unlocks the rest, with a 7-day free trial and no card needed to start it.
+              Module 1 of every course is free for good. Pro unlocks the rest, with a 7-day free trial and no card needed to start it.
             </p>
           </div>
           <PlanCards variant="pricing" />
@@ -154,7 +154,7 @@ export default function PricingPage() {
               </details>
             ))}
           </div>
-          <p className="text-center text-sm text-ink-subtle">Payments open with the full track. Until then, everything that’s open is free.</p>
+          <p className="text-center text-sm text-ink-subtle">Payments open with the full course. Until then, everything that’s open is free.</p>
         </Container>
       </Section>
 

@@ -1,4 +1,5 @@
 import type { Metadata, Route } from 'next'
+import { catalogue } from '@/content/catalogue'
 import { notFound } from 'next/navigation'
 import { LessonShell } from '@/components/lesson/lesson-shell'
 import { ProLesson } from '@/components/lesson/pro-lesson'
@@ -10,7 +11,10 @@ import type { LessonMeta } from '@/lib/lessons/types'
 import { breadcrumbLd, learningResourceLd } from '@/lib/seo/jsonld'
 import { pageMetadata } from '@/lib/seo/metadata'
 
-const TRACK_SHORT: Record<string, string> = { 'front-end-web-development': 'Front-End', samples: 'Samples' }
+const TRACK_SHORT: Record<string, string> = {
+  ...Object.fromEntries(catalogue.map((c) => [c.slug, c.short])),
+  samples: 'Samples',
+}
 const pathOf = (l: Pick<LessonMeta, 'track' | 'slug'>) => `/learn/${l.track}/${l.slug}`
 const plain = (html: string) => html.replace(/<[^>]+>/g, '').trim()
 
@@ -42,7 +46,7 @@ export default async function LessonPage({ params }: PageProps<'/learn/[track]/[
   const siblings = await listPublishedLessons(track)
   const following = siblings[siblings.findIndex((l) => l.id === meta.id) + 1]
   const trackShort = TRACK_SHORT[track] ?? track
-  const trackHref = (trackContent ? `/tracks/${track}` : '/') as Route
+  const trackHref = (trackContent ? `/courses/${track}` : '/') as Route
   // The syllabus knows the whole module, even while only some of its lessons are published.
   const lessonsInModule = Math.max(
     trackContent?.modules.find((m) => m.number === meta.module)?.lessons.length ?? 0,

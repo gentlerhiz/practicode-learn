@@ -21,11 +21,18 @@ const { open, soon, track } = landing.closing
  * The closing call to action. On the landing page it points to the syllabus until lessons open; on the
  * track page (which is the syllabus) it offers Module 1, or an email nudge until Module 1 opens.
  */
-export function CtaBand({ context = 'landing' }: { context?: 'landing' | 'track' }) {
+export function CtaBand({
+  context = 'landing',
+  firstLesson = FIRST_LESSON,
+}: {
+  context?: 'landing' | 'track'
+  /** On a course page: that course's first lesson. */
+  firstLesson?: string
+}) {
   const copy = context === 'track' ? (LESSONS_OPEN ? track.open : track.soon) : LESSONS_OPEN ? open : soon
   const showPrimary = context === 'landing' || LESSONS_OPEN
   const primary =
-    context === 'track' ? { href: FIRST_LESSON as Route, label: 'Start Module 1 Free' } : primaryCta
+    context === 'track' ? { href: firstLesson as Route, label: 'Start Module 1 Free' } : primaryCta
 
   // The track page's band (PrismTrack) is one line, "It's free." in green, and one button.
   if (context === 'track' && LESSONS_OPEN) {

@@ -65,13 +65,13 @@ type CourseLd = WithContext<Course> & {
   syllabusSections: { '@type': 'Syllabus'; name: string; description: string }[]
 }
 
-/** A track as a schema.org Course. Only Module 1 is free, which the offer's category and description say. */
+/** A course as a schema.org Course. Only Module 1 is free, which the offer's category and description say. */
 export const courseLd = (track: TrackContent): CourseLd => ({
   '@context': 'https://schema.org',
   '@type': 'Course',
   name: track.title,
   description: track.summary,
-  url: absoluteUrl(`/tracks/${track.slug}`),
+  url: absoluteUrl(`/courses/${track.slug}`),
   inLanguage: 'en-GB',
   educationalLevel: track.level,
   teaches: track.outcomes,
@@ -115,6 +115,6 @@ export const learningResourceLd = (
   teaches,
   provider: { '@type': 'EducationalOrganization', name: site.name, url: site.url },
   ...(trackTitle
-    ? { isPartOf: { '@type': 'Course', name: trackTitle, url: absoluteUrl(`/tracks/${lesson.track}`) } }
+    ? { isPartOf: { '@type': 'Course', name: trackTitle, url: absoluteUrl(`/courses/${lesson.track}`) } }
     : {}),
 })

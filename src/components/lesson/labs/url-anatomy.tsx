@@ -16,14 +16,14 @@ const PARTS = [
   },
   { text: 'practicode', name: 'Domain', about: 'The name the site’s owner registered.' },
   { text: 'tech', name: 'Top-level domain', about: 'The ending of the name. Others include com, ng and uk.' },
-  { text: '/tracks', name: 'Path', about: 'Which page on the server: here, the tracks page.' },
+  { text: '/courses', name: 'Path', about: 'Which page on the server: here, the courses page.' },
   {
     text: '?ref=whatsapp',
     name: 'Query',
     about: 'Extra details for the page. ref=whatsapp says the visitor came from a WhatsApp link.',
   },
   {
-    text: '#syllabus',
+    text: '#paths',
     name: 'Fragment',
     about: 'A place on the page to jump to. The browser handles it, and it isn’t sent to the server.',
   },
@@ -32,7 +32,7 @@ const PARTS = [
 const AFTER = ['://', '.', '.', '', '', '', '']
 
 /**
- * The parts of https://learn.practicode.tech/tracks?ref=whatsapp#syllabus (Diagram lab: state n
+ * The parts of https://learn.practicode.tech/courses?ref=whatsapp#paths (Diagram lab: state n
  * highlights part n, in the order above). Tapping any part highlights and names it too.
  */
 export function UrlAnatomy({ state = 0 }: LabProps) {
@@ -46,7 +46,7 @@ export function UrlAnatomy({ state = 0 }: LabProps) {
     <figure className="m-0 flex flex-col gap-3">
       <div
         role="group"
-        aria-label="The address https://learn.practicode.tech/tracks?ref=whatsapp#syllabus, split into its parts"
+        aria-label="The address https://learn.practicode.tech/courses?ref=whatsapp#paths, split into its parts"
         className="flex flex-wrap items-center rounded-xl border border-line bg-row p-3 font-mono text-[15px] leading-8"
       >
         {PARTS.map((p, i) => (

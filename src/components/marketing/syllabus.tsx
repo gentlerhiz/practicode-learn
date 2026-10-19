@@ -3,23 +3,26 @@ import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
 import { Pill } from '@/components/ui/pill'
 import { Section } from '@/components/ui/section'
+import type { TrackTone } from '@/content/catalogue'
 import type { TrackContent, TrackModule } from '@/content/tracks'
+import { cn } from '@/lib/cn'
+import { toneClass } from '@/lib/tone'
 import { Clock, Laptop } from 'lucide-react'
 
-function ModuleRow({ module }: { module: TrackModule }) {
+function ModuleRow({ module, tone }: { module: TrackModule; tone: TrackTone }) {
+  const look = toneClass[tone]
   const minutes = module.lessons.length * 10
   const meta = module.free
     ? `${module.lessons.length} lessons · about ${Math.round(minutes / 60)} hour${minutes >= 90 ? 's' : ''}`
-    : `${module.lessons.length} lessons`
+    : `${module.lessons.length} lessons${module.soon ? ' planned' : ''}`
   return (
     <details open={module.free} className="group rounded-[22px] border border-line surface">
       <summary className="flex cursor-pointer list-none items-center gap-4 p-4 ph:px-5 [&::-webkit-details-marker]:hidden">
         <span
-          className={
-            module.free
-              ? 'flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-fe text-sm font-bold text-white'
-              : 'flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-fe/15 text-sm font-bold text-fe-text'
-          }
+          className={cn(
+            'flex size-9 shrink-0 items-center justify-center rounded-[10px] text-sm font-bold',
+            module.free ? cn(look.fill, 'text-white') : cn(look.soft, look.text),
+          )}
         >
           {module.number}
         </span>
@@ -29,6 +32,8 @@ function ModuleRow({ module }: { module: TrackModule }) {
         </span>
         {module.free ? (
           <span className="rounded-full bg-primary px-2.5 py-0.5 text-xs font-bold text-on-primary">Free</span>
+        ) : module.soon ? (
+          <Pill tone="soon">Coming soon</Pill>
         ) : (
           <span className="flex items-center gap-1 text-[13px] text-ink-muted">
             <Icon as={Lock} size={14} />
@@ -59,14 +64,14 @@ function ModuleRow({ module }: { module: TrackModule }) {
             </span>
           ))}
         </div>
-        <p className="text-[13px] text-fe-text">Project: {module.project}</p>
+        <p className={cn('text-[13px]', look.text)}>Project: {module.project}</p>
       </div>
     </details>
   )
 }
 
 /** "Label: text" lines from the track's alignment list, with SFIA's skills split into chips. */
-function Standard({ line }: { line: string }) {
+function Standard({ line, tone }: { line: string; tone: TrackTone }) {
   const cut = line.indexOf(': ')
   const label = cut > 0 ? line.slice(0, cut) : 'Accessibility'
   const text = cut > 0 ? line.slice(cut + 2) : line
@@ -77,7 +82,11 @@ function Standard({ line }: { line: string }) {
       {sfia ? (
         <ul className="flex flex-wrap gap-2">
           {text.split(', ').map((skill) => (
-            <li key={skill} className="rounded-lg bg-[rgba(77,107,255,0.16)] px-3 py-1 text-[13px] text-fe-text">
+            <li
+              key={skill}
+              className={cn('rounded-lg px-3 py-1 text-[13px]', toneClass[tone].text)}
+              style={{ background: `rgba(${toneClass[tone].rgb},0.16)` }}
+            >
               {skill}
             </li>
           ))}
@@ -91,6 +100,7 @@ function Standard({ line }: { line: string }) {
 
 /** The full syllabus as native <details> (no JavaScript), with standards, devices and the certificate alongside. */
 export function Syllabus({ track }: { track: TrackContent }) {
+  const look = toneClass[track.tone]
   return (
     <Section id="syllabus" labelledBy="syllabus-title">
       <Container className="grid items-start gap-8 tab:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] tab:gap-10">
@@ -103,7 +113,7 @@ export function Syllabus({ track }: { track: TrackContent }) {
           </div>
           <div className="flex flex-col gap-3">
             {track.modules.map((m) => (
-              <ModuleRow key={m.number} module={m} />
+              <ModuleRow key={m.number} module={m} tone={track.tone} />
             ))}
           </div>
         </div>
@@ -111,13 +121,17 @@ export function Syllabus({ track }: { track: TrackContent }) {
         <aside className="flex flex-col gap-4 tab:sticky tab:top-6">
           <section
             aria-labelledby="standards-title"
-            className="flex flex-col gap-4 rounded-3xl border border-[rgba(77,107,255,0.4)] bg-[linear-gradient(160deg,rgba(77,107,255,0.14),var(--pc-sheet)_70%)] p-6"
+            className="flex flex-col gap-4 rounded-3xl border p-6"
+            style={{
+              borderColor: `rgba(${look.rgb},0.4)`,
+              background: `linear-gradient(160deg, rgba(${look.rgb},0.14), var(--pc-sheet) 70%)`,
+            }}
           >
             <h3 id="standards-title" className="font-display text-xl font-bold text-ink">
               Mapped to standards employers know
             </h3>
             {track.alignment.map((a) => (
-              <Standard key={a} line={a} />
+              <Standard key={a} line={a} tone={track.tone} />
             ))}
           </section>
           <section aria-labelledby="needs-title" className="flex flex-col gap-4 rounded-3xl border border-line p-6 surface">
@@ -127,12 +141,12 @@ export function Syllabus({ track }: { track: TrackContent }) {
             <ul className="flex flex-col gap-3 text-sm leading-[22px] text-ink-soft">
               {track.deviceNotes.map((note, i) => (
                 <li key={note} className="flex gap-3">
-                  <Icon as={i === 0 ? Smartphone : Laptop} size={18} className="mt-0.5 shrink-0 text-fe-text" />
+                  <Icon as={i === 0 ? Smartphone : Laptop} size={18} className={cn('mt-0.5 shrink-0', look.text)} />
                   {note}
                 </li>
               ))}
               <li className="flex gap-3">
-                <Icon as={Clock} size={18} className="mt-0.5 shrink-0 text-fe-text" />
+                <Icon as={Clock} size={18} className={cn('mt-0.5 shrink-0', look.text)} />
                 {track.pace}.
               </li>
             </ul>
@@ -173,7 +187,7 @@ export function Syllabus({ track }: { track: TrackContent }) {
                   </h3>
                   <Pill tone="soon">Coming soon</Pill>
                 </div>
-                <p className="text-[13px] leading-5 text-ink-muted">{track.credential}. It arrives with the full track.</p>
+                <p className="text-[13px] leading-5 text-ink-muted">{track.credential}. It arrives with the full course.</p>
               </div>
             </div>
           </section>

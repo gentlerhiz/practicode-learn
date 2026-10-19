@@ -10,7 +10,7 @@ import { inputClasses } from '@/components/ui/field'
 import { Glyph } from '@/components/ui/glyph'
 import { cn } from '@/lib/cn'
 
-const TRACKS = ['Front-End', 'Data Analysis', 'UI/UX Design', 'AI & ML']
+const TRACKS = ['IT Fundamentals', 'Front-End', 'Cybersecurity', 'Data Analysis', 'UI/UX Design', 'AI & ML']
 const HOURS = ['Under 2', '2 to 5', 'More than 5']
 
 function Pills({ label, options, value, onChange }: { label: string; options: string[]; value: string; onChange: (v: string) => void }) {
@@ -84,7 +84,7 @@ export function ScholarshipForm() {
           const body = [
             `Name: ${name}`,
             `Email or phone: ${contact}`,
-            `Track: ${track}`,
+            `Course: ${track}`,
             `Hours a week: ${hours}`,
             '',
             `What's making it hard to pay right now?`,
@@ -103,7 +103,7 @@ export function ScholarshipForm() {
         <Field id="sch-contact" label="Email or phone">
           <Input id="sch-contact" autoComplete="email" value={contact} onChange={(e) => setContact(e.target.value)} />
         </Field>
-        <Pills label="Which track do you want to finish?" options={TRACKS} value={track} onChange={setTrack} />
+        <Pills label="Which course do you want to finish?" options={TRACKS} value={track} onChange={setTrack} />
         <Pills label="Hours a week you can learn" options={HOURS} value={hours} onChange={setHours} />
         <Field id="sch-why" label="What’s making it hard to pay right now?" hint="Only the scholarship team reads this.">
           <textarea

@@ -103,9 +103,9 @@ export function ClosingBand() {
                 Start Learning Free
                 <ArrowRight aria-hidden="true" size={18} strokeWidth={1.85} />
               </LinkButton>
-              <a href="#tracks" className={buttonClasses({ variant: 'secondary', size: 'lg' }, 'bg-transparent px-6 font-medium')}>
-                Explore the Tracks
-              </a>
+              <Link href="/courses" className={buttonClasses({ variant: 'secondary', size: 'lg' }, 'bg-transparent px-6 font-medium')}>
+                Explore Courses
+              </Link>
             </div>
           </div>
         </div>

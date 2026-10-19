@@ -1,12 +1,13 @@
 import 'server-only'
 import { randomInt } from 'node:crypto'
 import { z } from 'zod'
-import { getTrackContent } from '@/content/tracks'
+import { findCourse } from '@/content/catalogue'
+import { getTrackContent, isComplete } from '@/content/tracks'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { layoutCertificate, type CertificateInput } from './document'
 
 /**
- * Certificates. A learner earns one by completing every published lesson in a track. Records live in a
+ * Certificates. A learner earns one by completing every lesson in a course, once all of it is published. Records live in a
  * private storage bucket that only the server reads and writes, with the secret key:
  *   records/<code>.json                  the certificate, as issued (the name can't change afterwards)
  *   learners/<learner id>/<track>.json   which code a learner holds for a track
@@ -18,7 +19,6 @@ const BUCKET = 'certificates'
 
 // Crockford's base 32: no I, L, O or U, so a code read aloud or copied by hand can't be mistaken.
 const ALPHABET = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
-const PREFIX: Record<string, string> = { 'front-end-web-development': 'FE' }
 const CODE = /^PCL-[A-Z]{2}-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]{4}$/
 
 export const certificateSchema = z.object({
@@ -39,7 +39,7 @@ export const isCertificateCode = (code: string) => CODE.test(code)
 
 export function newCode(track: string): string {
   const part = () => Array.from({ length: 4 }, () => ALPHABET[randomInt(ALPHABET.length)]).join('')
-  return `PCL-${PREFIX[track] ?? 'XX'}-${part()}-${part()}`
+  return `PCL-${findCourse(track)?.code.toUpperCase() ?? 'XX'}-${part()}-${part()}`
 }
 
 const recordPath = (code: string) => `records/${code}.json`
@@ -95,11 +95,14 @@ export type CertificateState =
       total: number
       projects: { passed: number; total: number }
       needsName: boolean
+      /** The course still has modules to come, so nobody can finish it yet. */
+      unfinished: boolean
     }
 
 /**
- * The learner's certificate for a track. Issues it the first time every published lesson is complete,
- * every published project has passed, and the learner has a name to print on it. Safe to call on every
+ * The learner's certificate for a course. Issues it the first time every published lesson is complete,
+ * every published project has passed, and the learner has a name to print on it, but never while the
+ * course still has modules to come: finishing Module 1 of a new course isn't finishing the course. Safe to call on every
  * visit: it issues at most once.
  */
 export async function certificateFor(
@@ -141,8 +144,10 @@ export async function certificateFor(
   if (workError) throw workError
   const projects = { passed: (passedRows ?? []).length, total: projectIds.length }
   const name = learner.name?.trim() ?? ''
-  if (total === 0 || completed < total || projects.passed < projects.total || !name)
-    return { certificate: null, completed, total, projects, needsName: !name }
+  const content = getTrackContent(track)
+  const unfinished = !content || !isComplete(content)
+  if (unfinished || total === 0 || completed < total || projects.passed < projects.total || !name)
+    return { certificate: null, completed, total, projects, needsName: !name, unfinished }
 
   const certificate: Certificate = {
     code: newCode(track),
@@ -179,19 +184,22 @@ export const certificateDate = (iso: string) =>
 /** The page anyone can open to check a certificate. */
 export const certificateUrl = (code: string, site: string) => `${site.replace(/\/$/, '')}/certificate/${code}`
 
-// The two lines on each track's badge.
+// The two lines on each course's badge; courses not listed show their short name.
 const BADGE: Record<string, [string, string]> = {
   'front-end-web-development': ['Front-End', 'Web Development'],
+  'it-fundamentals': ['IT', 'Fundamentals'],
+  'introduction-to-cybersecurity': ['Cybersecurity', 'Introduction'],
 }
 
 /** What the certificate document shows for this certificate. */
 export function documentFor(c: Certificate, site: string): CertificateInput {
   const title = getTrackContent(c.track)?.title ?? c.track
+  const course = findCourse(c.track)
   return {
     name: c.name,
     course: title,
-    badge: BADGE[c.track] ?? [title, ''],
-    detail: `All ${c.modules} modules · ${c.lessons} lessons${c.projects ? ` · ${c.projects} projects` : ''} · Aligned to the MDN Curriculum`,
+    badge: BADGE[c.track] ?? [course?.short ?? title, ''],
+    detail: `All ${c.modules} modules · ${c.lessons} lessons${c.projects ? ` · ${c.projects} projects` : ''}${course ? ` · ${course.alignment}` : ''}`,
     issued: certificateDate(c.issuedAt),
     code: c.code,
     url: certificateUrl(c.code, site),

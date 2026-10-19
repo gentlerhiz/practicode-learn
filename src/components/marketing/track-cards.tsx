@@ -33,12 +33,51 @@ const tones: Record<TrackTone, { card: string; summary: string; meta: string; bu
     meta: 'text-[#cfc2ff]',
     button: 'text-[#5536d9]',
   },
+  it: {
+    card: '[background:var(--pc-card-it)]',
+    summary: 'text-[#fff0d9]',
+    meta: 'text-[#ffd59a]',
+    button: 'text-[#8a4b00]',
+  },
+  cy: {
+    card: '[background:var(--pc-card-cy)]',
+    summary: 'text-[#dcf7fd]',
+    meta: 'text-[#a5e9f7]',
+    button: 'text-[#0b6577]',
+  },
 }
 
-/** Each track's illustration, drawn from the canvas (decorative). */
-function Illustration({ tone }: { tone: TrackTone }) {
-  const cls =
-    'pointer-events-none absolute -right-3 -bottom-3 h-[133px] w-[160px] ph:-right-6 ph:-bottom-4 ph:h-[216px] ph:w-[260px]'
+/** Each subject's illustration, drawn from the canvas (decorative). */
+export function Illustration({ tone, className }: { tone: TrackTone; className?: string }) {
+  const cls = cn(
+    'pointer-events-none absolute -right-3 -bottom-3 h-[133px] w-[160px] ph:-right-6 ph:-bottom-4 ph:h-[216px] ph:w-[260px]',
+    className,
+  )
+  if (tone === 'it')
+    return (
+      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
+        <rect x="20" y="24" width="170" height="112" rx="14" fill="rgba(255,255,255,0.1)" stroke="rgba(255,193,92,0.6)" strokeWidth="1.5" />
+        <rect x="34" y="40" width="64" height="44" rx="8" fill="rgba(255,255,255,0.22)" />
+        <path d="M34 98h52M34 112h86" stroke="rgba(255,255,255,0.45)" strokeWidth="8" strokeLinecap="round" />
+        <path d="M112 48h18l6 6h40v34h-64z" fill="#FFC15C" />
+        <path d="M82 136h46l8 22H74z" fill="rgba(255,255,255,0.18)" />
+        <rect x="150" y="96" width="70" height="92" rx="14" fill="rgba(255,255,255,0.16)" stroke="#FFFFFF" strokeWidth="2" />
+        <text x="162" y="134" fontSize="18" fill="#FFFFFF" fontFamily="var(--font-mono)">&gt;_</text>
+        <circle cx="185" cy="172" r="5" fill="#FFFFFF" />
+      </svg>
+    )
+  if (tone === 'cy')
+    return (
+      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
+        <path d="M120 16 196 44v52c0 46-32 78-76 92-44-14-76-46-76-92V44z" fill="rgba(255,255,255,0.1)" stroke="rgba(95,216,242,0.6)" strokeWidth="2" />
+        <path d="M120 40 174 60v38c0 32-22 56-54 66-32-10-54-34-54-66V60z" fill="rgba(255,255,255,0.16)" />
+        <rect x="94" y="92" width="52" height="42" rx="9" fill="#FFFFFF" />
+        <path d="M104 92V80a16 16 0 0 1 32 0v12" fill="none" stroke="#FFFFFF" strokeWidth="7" />
+        <circle cx="120" cy="110" r="6" fill="#0E7490" />
+        <path d="M120 114v9" stroke="#0E7490" strokeWidth="5" strokeLinecap="round" />
+        <circle cx="206" cy="150" r="10" fill="#5FD8F2" />
+      </svg>
+    )
   if (tone === 'fe')
     return (
       <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
@@ -139,7 +178,7 @@ function Card({ track }: { track: TrackCard }) {
         <p className={cn('mb-24 text-[13px] ph:mb-0', tone.meta)}>{track.alignment}</p>
         {live && (
           <Link
-            href={`/tracks/${track.slug}` as Route}
+            href={`/courses/${track.slug}` as Route}
             className={cn(
               'mt-auto inline-flex h-[46px] items-center gap-2 self-start rounded-full bg-white px-5 text-[15px] font-semibold',
               tone.button,
@@ -157,7 +196,7 @@ function Card({ track }: { track: TrackCard }) {
 export function TrackCards() {
   const { tracks } = landing
   return (
-    <Section id="tracks" labelledBy="tracks-eyebrow" className="pt-16 ph:pt-28">
+    <Section id="courses" labelledBy="tracks-eyebrow" className="pt-16 ph:pt-28">
       <Container className="flex flex-col gap-8 ph:gap-12">
         <SectionHeading
           id="tracks-title"
@@ -172,6 +211,13 @@ export function TrackCards() {
             <Card key={track.slug} track={track} />
           ))}
         </div>
+        <Link
+          href="/courses"
+          className="press inline-flex h-[50px] items-center gap-2 self-center rounded-full border border-line-control px-6 text-[15px] font-semibold text-ink hover:border-line-strong hover:bg-hover"
+        >
+          {tracks.browse}
+          <Icon as={ArrowRight} size={16} />
+        </Link>
         <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 border-t border-line-subtle pt-8">
           <p className="text-sm text-ink-subtle">{tracks.standardsLabel}</p>
           <ul className="flex flex-wrap gap-x-8 gap-y-2 font-display text-lg font-bold text-ink-subtle">

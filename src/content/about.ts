@@ -53,7 +53,7 @@ export const about = {
     eyebrow: 'Africa first, open to everyone',
     title: 'Designed for real phones, real networks and real budgets.',
     items: [
-      'Lessons are built to run in the browser, even on low-cost Android phones. Some modules need a computer, and each track says which.',
+      'Lessons are built to run in the browser, even on low-cost Android phones. Some modules are easier on a computer, and each course says which.',
       'Lessons you open on Wi-Fi will keep working offline.',
       'Every lesson has a size budget of 150 KB, so it loads on a weak connection.',
       'Module 1 is free, with no card needed.',

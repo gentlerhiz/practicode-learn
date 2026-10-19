@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
     '/certificates': ['src/assets/fonts/**'],
   },
 
+  // Courses were called tracks until October 2026: old links and search results land on the new pages.
+  async redirects() {
+    return [
+      { source: '/tracks', destination: '/courses', permanent: true },
+      { source: '/tracks/:course', destination: '/courses/:course', permanent: true },
+      { source: '/my-tracks', destination: '/my-courses', permanent: true },
+    ]
+  },
+
   async headers() {
     const staticCsp = buildCsp({
       mode: 'static',

@@ -2,6 +2,8 @@
 
 *Syllabus v0.1 (draft for practitioner review) · Licensed under CC BY-SA 4.0*
 
+> **Being rewritten (19 October 2026).** Excel, Power BI and DAX are outside tools the catalogue no longer uses. The next version teaches analysis with SQL (after SQL and Databases), Python with pandas (after Python Programming), statistics and open charting tools, all in the browser, aligned to CompTIA Data+. Treat the modules below as the old outline.
+
 > **Turn raw data into decisions: clean it, model it, visualise it and tell its story.**
 
 | | |

@@ -17,6 +17,20 @@ export const LAB_NAMES = [
   'design-file',
   'lighthouse',
   'deploy-pipeline',
+  // IT Fundamentals
+  'device-check',
+  'computer-parts',
+  'computer-kinds',
+  'computing-timeline',
+  'binary-bits',
+  'data-sizes',
+  // Introduction to Cybersecurity
+  'what-you-protect',
+  'cia-triad',
+  'threat-house',
+  'attackers',
+  'attack-paths',
+  'risk-matrix',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]

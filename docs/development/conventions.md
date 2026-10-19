@@ -52,6 +52,15 @@ tests/e2e/             Playwright tests;  tests/db/  database tests
 - Files and folders: `kebab-case`. Components: `PascalCase`. Functions and variables: `camelCase`.
 - Name things for what they mean to a learner or a reader, not how they're built.
 
+## Adding a course
+
+Courses are listed once, in `src/content/catalogue.ts`; the Courses page, the landing page, onboarding, the dashboard, the 404 page, publishing and the content build all read that list.
+
+1. **Announce it:** add an entry to the catalogue with a unique slug, a two-letter `code` (lesson, project and certificate ids start with it), a subject and `status: 'coming_soon'`. It appears on the Courses page straight away. Colour comes from the subject, not the course.
+2. **Plan it:** write its syllabus in `docs/curriculum/tracks/<slug>.md`, in the same shape as the others (By the end, Modules, Lessons).
+3. **Open Module 1:** add `src/content/tracks/<slug>.ts` with every module from the syllabus, Module 1 `free` and the rest `soon: true`, and list it in `src/content/tracks/index.ts`. `courses.test.ts` checks it against the syllabus. Then set the catalogue entry to `live`, add its page to `src/lib/seo/pages.ts`, write the lessons in the content repo under `tracks/<slug>/`, and publish.
+4. **Finish it:** remove `soon` from each module as its lessons are published. Certificates are issued only once no module is `soon`.
+
 ## Copy rules
 
 - **British English.** Sentence case for headings; Title Case for buttons and labels ("Send Me a Code"). No all-caps except acronyms.

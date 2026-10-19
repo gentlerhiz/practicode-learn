@@ -1,22 +1,22 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from '@playwright/test'
-import { FIRST_LESSON, LESSONS_OPEN, TRACK_PAGE } from '../../src/content/navigation'
+import { LESSONS_OPEN } from '../../src/content/navigation'
 
 test('landing leads with the promise and one primary action', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('skills employers are hiring for')
-  const primary = page
-    .getByRole('main')
-    .getByRole('link', { name: LESSONS_OPEN ? 'Start Free' : 'See the Syllabus' })
-  await expect(primary.first()).toHaveAttribute('href', LESSONS_OPEN ? FIRST_LESSON : TRACK_PAGE)
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('by actually doing it')
+  const hero = page.getByRole('region', { name: /by actually doing it/ })
+  await expect(hero.getByRole('link', { name: 'Start Learning Free' })).toHaveAttribute('href', '/onboarding')
+  await expect(hero.getByRole('link', { name: 'Explore Courses' })).toHaveAttribute('href', '/courses')
 })
 
-test('only Front-End is live; other tracks say Coming soon', async ({ page }) => {
+test('the open courses link to their pages; the rest say Coming soon', async ({ page }) => {
   await page.goto('/')
-  const tracks = page.getByRole('region', { name: 'Available tracks' })
-  await expect(tracks.getByRole('article')).toHaveCount(4)
-  await expect(tracks.getByText('Coming soon')).toHaveCount(3)
-  await expect(tracks.getByRole('link')).toHaveCount(1)
+  const courses = page.getByRole('region', { name: 'Courses', exact: true })
+  await expect(courses.getByRole('article')).toHaveCount(4)
+  await expect(courses.getByText('Coming soon')).toHaveCount(1)
+  await expect(courses.getByRole('article').getByRole('link')).toHaveCount(3)
+  await expect(courses.getByRole('link', { name: 'Browse All Courses' })).toHaveAttribute('href', '/courses')
 })
 
 test('no promises the beta cannot keep', async ({ page }) => {
@@ -31,6 +31,7 @@ test('no promises the beta cannot keep', async ({ page }) => {
     '7-day free trial',
     'every track is free',
     'module 1 of every track',
+    'every module in every track',
   ])
     expect(text, banned).not.toContain(banned)
 })
@@ -79,7 +80,7 @@ test('nothing on the landing page moves forever (WCAG 2.2.2)', async ({ page }) 
 
 test('while lessons are closed, public pages say so and claim nothing that opens later', async ({ page }) => {
   test.skip(LESSONS_OPEN, 'only while lessons are closed')
-  for (const path of ['/', '/tracks/front-end-web-development', '/about']) {
+  for (const path of ['/', '/courses/front-end-web-development', '/about']) {
     await page.goto(path)
     await expect(page.getByRole('main').getByText('Module 1 opens soon').first(), path).toBeVisible()
     const text = (await page.getByRole('main').innerText()).toLowerCase()

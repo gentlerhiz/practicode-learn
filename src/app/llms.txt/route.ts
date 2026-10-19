@@ -10,7 +10,7 @@ export function GET() {
     '',
     `> ${site.description}`,
     '',
-    'PractiCode Learn is an interactive learning platform from PractiCode Academy. Lessons are short, hands-on and video-free: learners predict, run, change and build real code in the browser. Front-End Web Development is the first track; more are coming.',
+    'PractiCode Learn is an interactive learning platform from PractiCode Academy. Lessons are short, hands-on and video-free: learners predict, run, change and build real code in the browser. Courses open now: IT Fundamentals, Front-End Web Development and Introduction to Cybersecurity, with more on the way at /courses.',
     '',
     '## Pages',
     '',

@@ -4,7 +4,7 @@ import type { DashboardData } from '@/components/app/dashboard/types'
 import { NewDashboardView } from '@/components/app/dashboard/new-dashboard-view'
 import { AppPage } from '@/components/app/shell/app-shell'
 import { requireUser } from '@/lib/auth/require-user'
-import { enrolledTracks } from '@/lib/learn/courses'
+import { currentTrackSlug, enrolledTracks } from '@/lib/learn/courses'
 import { buildDashboard, buildNewDashboard, isNewLearner } from '@/lib/learn/dashboard'
 import { loadLearnerTrack } from '@/lib/learn/progress'
 import { listProjects } from '@/lib/projects/load'
@@ -43,7 +43,8 @@ async function currentProject(): Promise<DashboardData['project'] | null> {
 
 /** PrismDashboardNew until the first lesson starts, then PrismDashboard. */
 export default async function HomePage() {
-  const [user, track] = await Promise.all([requireUser(), loadLearnerTrack()])
+  const user = await requireUser()
+  const track = await loadLearnerTrack(await currentTrackSlug(user.plan))
   const now = new Date()
   if (isNewLearner(track)) {
     return (

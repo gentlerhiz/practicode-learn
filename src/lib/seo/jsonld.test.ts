@@ -5,7 +5,7 @@ it('escapes characters that could close the script element', () => {
   expect(serializeJsonLd({ name: '</script><script>alert(1)</script>' })).not.toContain('</script>')
 })
 it('builds absolute breadcrumb URLs', () => {
-  const ld = breadcrumbLd([{ name: 'Tracks', path: '/tracks/front-end-web-development' }])
+  const ld = breadcrumbLd([{ name: 'Courses', path: '/courses/front-end-web-development' }])
   expect(ld.itemListElement[0]).toMatchObject({ position: 1, item: expect.stringMatching(/^https?:\/\//) })
 })
 it('describes the organisation with a logo', () => {
@@ -43,7 +43,7 @@ it('describes a track as a Course with a free online instance and its modules', 
     offers: { '@type': 'Offer', price: 0, category: 'Partially Free' },
   })
   expect(ld.syllabusSections).toHaveLength(15)
-  expect(String(ld.url)).toMatch(/\/tracks\/front-end-web-development$/)
+  expect(String(ld.url)).toMatch(/\/courses\/front-end-web-development$/)
 })
 
 it('describes a lesson as a free, timed learning resource that is part of its track', () => {

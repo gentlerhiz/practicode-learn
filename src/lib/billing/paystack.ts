@@ -98,7 +98,7 @@ async function planCode(billing: Billing): Promise<string> {
       interval: billing === 'yearly' ? 'annually' : 'monthly',
       amount: PRICE_KOBO[billing],
       currency: 'NGN',
-      description: 'Every module in every track, the AI tutor with 20 questions a day, and verified certificates.',
+      description: 'Every module in every course, the AI tutor with 20 questions a day, and verified certificates.',
     },
   })
   planCodes.set(billing, plan.plan_code)

@@ -33,7 +33,7 @@ test('public pages load every resource they ask for, with no script errors', asy
     }
   })
   page.on('pageerror', (e) => problems.push(e.message))
-  for (const path of ['/', '/tracks/front-end-web-development', '/about']) {
+  for (const path of ['/', '/courses/front-end-web-development', '/about']) {
     await page.goto(path)
     await page.waitForLoadState('load')
     await page.waitForTimeout(500)

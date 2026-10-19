@@ -1,4 +1,5 @@
 import type { Route } from 'next'
+import type { TrackTone } from '@/content/catalogue'
 import type { PlanTrackId } from '@/lib/onboarding/plan'
 
 export type DayMark = 'fe' | 'da' | 'missed' | 'today' | 'later'
@@ -42,7 +43,7 @@ export type DashboardData = {
     nodes: { name: string; state: NodeState; pct?: number }[]
     check: { title: string; detail: string; href: Route; action: string }
   }
-  tracks: { id: PlanTrackId; name: string; note: string; pct: number; action: string; href: Route }[]
+  tracks: { id: PlanTrackId; tone: TrackTone; name: string; note: string; pct: number; action: string; href: Route }[]
 }
 
 /** Everything PrismDashboardNew shows. */
@@ -54,5 +55,5 @@ export type NewDashboardData = {
   checklist: { label: string; done: boolean }[]
   week: { count: number; goal: number; today: number }
   tutor: { title: string; body: string; link: { label: string; href: Route } }
-  others: { id: PlanTrackId; name: string; line: string; action: string; href: Route }[]
+  others: { id: PlanTrackId; tone: TrackTone; name: string; line: string; action: string; href: Route }[]
 }

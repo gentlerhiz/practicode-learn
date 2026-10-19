@@ -50,7 +50,7 @@ export default async function CertificatePage({ params }: PageProps<'/certificat
         projects: certificate.projects,
         modules: track.modules
           .slice(0, certificate.modules)
-          .map((m) => ({ number: m.number, title: m.title, map: m.mdn })),
+          .map((m) => ({ number: m.number, title: m.title, map: m.standard })),
         revoked: certificate.revokedAt ? certificateDate(certificate.revokedAt) : null,
         shapes: certificateShapes(certificate, site.url),
       }}

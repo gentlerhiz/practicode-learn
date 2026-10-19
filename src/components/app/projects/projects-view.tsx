@@ -4,10 +4,12 @@ import type { Route } from 'next'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Glyph } from '@/components/ui/glyph'
+import type { TrackTone } from '@/content/catalogue'
 import { cn } from '@/lib/cn'
 
 export type ProjectItem = {
-  track: 'fe' | 'da'
+  /** The course's subject colour. */
+  track: TrackTone
   module: number
   status: 'active' | 'done' | 'next'
   title: string
@@ -24,13 +26,21 @@ export type ProjectItem = {
 const T = {
   fe: { label: 'Front-End · Module ', fill: '#3D5AF5', tint: 'var(--pc-fe-text)', soft: 'rgba(77,107,255,0.16)', line: 'rgba(77,107,255,0.40)', btn: '#2D45D8' },
   da: { label: 'Data · Module ', fill: '#0A7D5C', tint: 'var(--pc-da-text)', soft: 'rgba(47,230,176,0.14)', line: 'rgba(47,230,176,0.36)', btn: '#006B47' },
+  ux: { label: 'Design · Module ', fill: '#D9306F', tint: 'var(--pc-ux-text)', soft: 'rgba(240,64,127,0.14)', line: 'rgba(240,64,127,0.36)', btn: '#B5225B' },
+  ai: { label: 'AI · Module ', fill: '#6E4CF5', tint: 'var(--pc-ai-text)', soft: 'rgba(123,92,255,0.16)', line: 'rgba(123,92,255,0.40)', btn: '#5536D9' },
+  it: { label: 'IT Fundamentals · Module ', fill: '#A85A00', tint: 'var(--pc-it-text)', soft: 'rgba(255,170,60,0.16)', line: 'rgba(255,170,60,0.40)', btn: '#8A4B00' },
+  cy: { label: 'Cybersecurity · Module ', fill: '#0E7490', tint: 'var(--pc-cy-text)', soft: 'rgba(34,190,230,0.16)', line: 'rgba(34,190,230,0.40)', btn: '#0B6577' },
 } as const
 
-const FILTERS = [
-  { id: 'all', label: 'All tracks' },
+const FILTERS: { id: 'all' | TrackTone; label: string }[] = [
+  { id: 'all', label: 'All courses' },
+  { id: 'it', label: 'IT Fundamentals' },
   { id: 'fe', label: 'Front-End' },
-  { id: 'da', label: 'Data Analysis' },
-] as const
+  { id: 'cy', label: 'Cybersecurity' },
+  { id: 'da', label: 'Data' },
+  { id: 'ux', label: 'Design' },
+  { id: 'ai', label: 'AI' },
+]
 
 function Count({ n }: { n: number }) {
   return <span className="font-sans text-[15px] font-medium text-ink-subtle">{n}</span>
@@ -38,9 +48,9 @@ function Count({ n }: { n: number }) {
 
 const heading = 'font-display text-2xl font-extrabold tracking-[-0.02em] text-ink'
 
-/** PrismProjects: in progress, finished and coming up, filtered by track. */
+/** PrismProjects: in progress, finished and coming up, filtered by course. */
 export function ProjectsView({ items }: { items: ProjectItem[] }) {
-  const [pick, setPick] = useState<'all' | 'fe' | 'da'>('all')
+  const [pick, setPick] = useState<'all' | TrackTone>('all')
   const filters = FILTERS.filter((f) => f.id === 'all' || items.some((i) => i.track === f.id))
   const list = items.filter((p) => pick === 'all' || p.track === pick)
   const active = list.filter((p) => p.status === 'active')
@@ -58,7 +68,7 @@ export function ProjectsView({ items }: { items: ProjectItem[] }) {
         </p>
       </div>
       {filters.length > 2 && (
-        <div role="group" aria-label="Filter by track" className="flex flex-wrap gap-2">
+        <div role="group" aria-label="Filter by course" className="flex flex-wrap gap-2">
           {filters.map((f) => (
             <button
               key={f.id}

@@ -31,10 +31,15 @@ type Progress = {
   total: number
   projects: { passed: number; total: number }
   needsName: boolean
+  unfinished: boolean
 }
 
-/** What's left before the certificate: lessons, then projects. */
+/** What's left before the certificate: lessons, then projects, or the rest of the course. */
 function remaining(p: Progress): string {
+  if (p.unfinished)
+    return p.completed === p.total
+      ? 'You’ve done every lesson that’s open. The certificate comes once the rest of the course opens and you finish it.'
+      : 'The certificate comes once the whole course is open and you’ve finished it. More modules are on the way.'
   const lessons = p.total - p.completed
   const projects = p.projects.total - p.projects.passed
   const parts = [
@@ -162,7 +167,7 @@ export default async function CertificatesPage() {
                     />
                   </div>
                   <p className="text-[13px] text-ink-subtle">
-                    {p.completed === p.total && p.projects.passed === p.projects.total && p.needsName ? (
+                    {!p.unfinished && p.completed === p.total && p.projects.passed === p.projects.total && p.needsName ? (
                       <>
                         Every lesson is done. Your name goes on the certificate:{' '}
                         <Link
@@ -178,7 +183,7 @@ export default async function CertificatesPage() {
                     )}
                   </p>
                 </div>
-                <Link href={'/my-tracks' as Route} className={buttonClasses({}, 'h-11 shrink-0 px-5')}>
+                <Link href={`/my-courses?course=${p.slug}` as Route} className={buttonClasses({}, 'h-11 shrink-0 px-5')}>
                   Keep Learning
                 </Link>
               </li>
@@ -197,7 +202,7 @@ export default async function CertificatesPage() {
             Complete every lesson in a course, and its certificate appears here straight away: a page anyone
             can open to check it, and a PDF to download.
           </p>
-          <Link href={'/my-tracks' as Route} className={buttonClasses({}, 'mt-1 h-11 px-5')}>
+          <Link href={'/my-courses' as Route} className={buttonClasses({}, 'mt-1 h-11 px-5')}>
             Start Learning
           </Link>
         </section>

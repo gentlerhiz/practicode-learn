@@ -9,7 +9,7 @@ import { useSavedPlan } from '@/lib/onboarding/use-saved-plan'
 import { TutorSpark } from '@/components/learn/tutor-spark'
 
 const FREE = [
-  'Module 1 of every track',
+  'Module 1 of every course',
   'A 4-minute daily review',
   'AI tutor, 5 questions a day',
   'Progress saved on every device',
@@ -22,7 +22,7 @@ export function PlanCard() {
   const rows = [
     { label: 'Time', value: planTime(plan).label },
     { label: 'Starting point', value: planLevel(plan).start },
-    { label: 'First lesson', value: track.open ? 'How the web works · Lesson 1' : 'Opens soon' },
+    { label: 'First lesson', value: track.open && track.first ? `${track.first} · Lesson 1` : 'Opens soon' },
   ]
   return (
     <aside aria-labelledby="plan-title" className="relative">
@@ -45,12 +45,12 @@ export function PlanCard() {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            <span className={`flex size-[52px] shrink-0 items-center justify-center rounded-2xl ${trackFill[track.id]}`}>
-              <TrackIcon track={track.id} size={24} />
+            <span className={`flex size-[52px] shrink-0 items-center justify-center rounded-2xl ${trackFill[track.tone]}`}>
+              <TrackIcon track={track.tone} size={24} />
             </span>
             <div>
               <p className="font-display text-xl leading-6 font-bold text-ink">{track.name}</p>
-              <p className={`mt-1 text-[13px] ${trackText[track.id]}`}>{track.open ? track.meta : `${track.meta.split(' · ')[0]} · Opens soon`}</p>
+              <p className={`mt-1 text-[13px] ${trackText[track.tone]}`}>{track.open ? track.meta : `${track.meta.split(' · ')[0]} · Opens soon`}</p>
             </div>
           </div>
           <dl className="flex flex-col border-t border-divider">

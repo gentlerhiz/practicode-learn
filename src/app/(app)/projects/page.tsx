@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ProjectsView, type ProjectItem } from '@/components/app/projects/projects-view'
 import { AppPage } from '@/components/app/shell/app-shell'
+import { findCourse, toneOf } from '@/content/catalogue'
 import { certificateDate } from '@/lib/certificates/certificates'
 import { enrolledTracks } from '@/lib/learn/courses'
 import { listProjects } from '@/lib/projects/load'
@@ -13,7 +14,10 @@ export const metadata: Metadata = pageMetadata({
   noindex: true,
 })
 
-const tone = (track: string): ProjectItem['track'] => (track === 'data-analysis' ? 'da' : 'fe')
+const tone = (track: string): ProjectItem['track'] => {
+  const course = findCourse(track)
+  return course ? toneOf(course) : 'fe'
+}
 
 /**
  * PrismProjects: every module project in the learner's courses. A project opens when its module's

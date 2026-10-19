@@ -1,7 +1,7 @@
 /** Signed-in pages. The proxy sends signed-out visitors to log in first. */
 export const SIGNED_IN_PATHS = [
   '/home',
-  '/my-tracks',
+  '/my-courses',
   '/review',
   '/projects',
   '/certificates',

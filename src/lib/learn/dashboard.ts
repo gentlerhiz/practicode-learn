@@ -1,6 +1,7 @@
 import type { Route } from 'next'
 import type { DashboardData, DayMark, NewDashboardData } from '@/components/app/dashboard/types'
-import { PLAN_TRACKS, parsePlan, planTime, planTrack } from '@/lib/onboarding/plan'
+import { catalogue, findCourse, toneOf } from '@/content/catalogue'
+import { parsePlan, planTime, planTrack } from '@/lib/onboarding/plan'
 import { activeDays, minutesByDay, moduleShare, weekStart } from './stats'
 
 export type LessonState = 'not_started' | 'started' | 'completed'
@@ -8,6 +9,8 @@ export type LessonState = 'not_started' | 'started' | 'completed'
 /** The learner's track, as src/lib/learn/progress.ts loads it (kept here so this file stays pure). */
 export type LearnerTrackData = {
   trackTitle: string
+  /** The course's slug, from the catalogue. */
+  slug: string
   modules: {
     number: number
     title: string
@@ -32,12 +35,6 @@ export type LearnerTrackData = {
 }
 
 const WEEK_GOAL = 5
-// The one-line pitches on the new-learner dashboard (PrismDashboardNew).
-const OTHER_LINES: Record<string, string> = {
-  da: 'Tidy messy spreadsheets and build dashboards people read.',
-  ux: 'Talk to users and design screens people can click through.',
-  ai: 'Train models in Python and learn where AI goes wrong.',
-}
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 const firstNameOf = (name: string | null) => name?.trim().split(/\s+/)[0] || null
 const shortName = (title: string) => title.split(':')[0]!.trim()
@@ -64,8 +61,24 @@ function weekNote(count: number) {
   return `${['Two', 'Three', 'Four', 'Five'][left - 2]} more days and you’ve hit your goal. ${tail}`
 }
 
+const shortOf = (slug: string) => findCourse(slug)?.short ?? slug
+
+/**
+ * The other courses worth showing beside this one: the other open courses, then the featured ones
+ * coming soon, up to `count` in all.
+ */
+function otherCourses(slug: string, count: number) {
+  const others = catalogue.filter((c) => c.slug !== slug)
+  return [
+    ...others.filter((c) => c.status === 'live'),
+    ...others.filter((c) => c.status !== 'live' && c.featured),
+  ].slice(0, count)
+}
+
 /** PrismDashboard, from the learner's real progress. Anything without a backend yet says so. */
 export function buildDashboard(data: LearnerTrackData, name: string | null, now: Date): DashboardData {
+  const short = shortOf(data.slug)
+  const course = findCourse(data.slug)
   const { item, inProgress } = nextUp(data)
   const active = activeDays(data.events, now)
   const today = Math.floor((now.getTime() - weekStart(now).getTime()) / 86_400_000)
@@ -94,7 +107,7 @@ export function buildDashboard(data: LearnerTrackData, name: string | null, now:
       : { text: 'You’ve finished every lesson that’s open so far.', accent: 'New lessons are on the way.' },
     resume: item
       ? {
-          eyebrow: `Front-End · Module ${item.module.number} · Lesson ${item.lesson.number}`,
+          eyebrow: `${short} · Module ${item.module.number} · Lesson ${item.lesson.number}`,
           title: item.lesson.title,
           detail: item.lesson.minutes ? `Lesson ${item.lesson.number} · about ${item.lesson.minutes} min` : `Lesson ${item.lesson.number}`,
           modulePct: moduleShare(item.module.lessons.map((l) => l.status)),
@@ -112,10 +125,10 @@ export function buildDashboard(data: LearnerTrackData, name: string | null, now:
       total: 0,
       checks: [],
       href: '/projects' as Route,
-      note: 'Projects with automatic checks open with the full track. You’ll see each check here as your work passes it.',
+      note: 'Projects with automatic checks open with the full course. You’ll see each check here as your work passes it.',
     },
     path: {
-      trackTitle: 'Front-End',
+      trackTitle: short,
       mastered: nodes.filter((n) => n.state === 'mastered').length,
       total: nodes.length,
       nodes,
@@ -126,18 +139,30 @@ export function buildDashboard(data: LearnerTrackData, name: string | null, now:
         action: 'See the Check',
       },
     },
-    tracks: PLAN_TRACKS.map((t) =>
-      t.open
-        ? {
-            id: t.id,
-            name: t.name,
-            note: `${nodes.filter((n) => n.state === 'mastered').length} of ${nodes.length}`,
-            pct: Math.round((nodes.filter((n) => n.state === 'mastered').length / nodes.length) * 100),
-            action: 'Continue',
-            href: (item?.lesson.href ?? '/my-tracks') as Route,
-          }
-        : { id: t.id, name: t.name, note: 'Opens soon', pct: 0, action: 'See Track', href: '/#tracks' as Route },
-    ),
+    tracks: [
+      {
+        id: course?.code ?? data.slug,
+        tone: course ? toneOf(course) : 'fe',
+        name: data.trackTitle,
+        note: `${nodes.filter((n) => n.state === 'mastered').length} of ${nodes.length}`,
+        pct: Math.round((nodes.filter((n) => n.state === 'mastered').length / nodes.length) * 100),
+        action: 'Continue',
+        href: (item?.lesson.href ?? `/my-courses?course=${data.slug}`) as Route,
+      },
+      ...otherCourses(data.slug, 3).map((c) =>
+        c.status === 'live'
+          ? {
+              id: c.code,
+              tone: toneOf(c),
+              name: c.title,
+              note: 'Module 1 free',
+              pct: 0,
+              action: 'See Course',
+              href: `/courses/${c.slug}` as Route,
+            }
+          : { id: c.code, tone: toneOf(c), name: c.title, note: 'Opens soon', pct: 0, action: 'See Courses', href: '/courses' as Route },
+      ),
+    ],
   }
 }
 
@@ -149,16 +174,21 @@ export function buildNewDashboard(data: LearnerTrackData, name: string | null, p
   const minutes = planTime(chosen).label.replace(' min a day', ' minutes a day')
   return {
     firstName: firstNameOf(name),
-    plan: track.open ? `${track.name}, ${minutes}.` : `${track.name} opens soon, so you’re starting with Front-End Web Development, ${minutes}.`,
+    plan:
+      track.open && track.slug === data.slug
+        ? `${track.name}, ${minutes}.`
+        : track.open
+          ? `${data.trackTitle}, ${minutes}.`
+          : `${track.name} opens soon, so you’re starting with ${data.trackTitle}, ${minutes}.`,
     banner: data.isPro
-      ? { text: 'You have Pro.', accent: 'Every module opens to you as it’s published.', link: { label: 'See My Tracks', href: '/my-tracks' as Route } }
-      : { text: 'Module 1 is free for good.', accent: 'Pro, with every module, launches with the full track.', link: { label: 'What’s in Pro?', href: '/pricing' as Route } },
+      ? { text: 'You have Pro.', accent: 'Every module opens to you as it’s published.', link: { label: 'See My Courses', href: '/my-courses' as Route } }
+      : { text: 'Module 1 is free for good.', accent: 'Pro, with every module, launches with the full course.', link: { label: 'What’s in Pro?', href: '/pricing' as Route } },
     first: {
-      eyebrow: `Front-End · Module 1 · Lesson ${first.number}`,
+      eyebrow: `${shortOf(data.slug)} · Module 1 · Lesson ${first.number}`,
       title: first.title,
       summary:
         first.description ??
-        `Find out what really happens when you open a website. It takes about ${first.minutes ?? 10} minutes, and you’ll guess before you’re told.`,
+        `It takes about ${first.minutes ?? 10} minutes, and you’ll guess before you’re told.`,
       href: first.href,
       action: 'Start Your First Lesson',
     },
@@ -180,12 +210,13 @@ export function buildNewDashboard(data: LearnerTrackData, name: string | null, p
         : 'Tap Ask AI in any lesson. It knows the step and your code, and gives a hint first. 5 questions a day on Free.',
       link: { label: 'See how it helps', href: '/#tutor' as Route },
     },
-    others: PLAN_TRACKS.filter((t) => t.id !== 'fe').map((t) => ({
-      id: t.id,
-      name: t.name,
-      line: OTHER_LINES[t.id] ?? t.line,
-      action: 'Opens soon',
-      href: '/#tracks' as Route,
+    others: otherCourses(data.slug, 3).map((c) => ({
+      id: c.code,
+      tone: toneOf(c),
+      name: c.title,
+      line: c.line,
+      action: c.status === 'live' ? 'Start Free' : 'Opens soon',
+      href: (c.status === 'live' ? `/courses/${c.slug}` : '/courses') as Route,
     })),
   }
 }

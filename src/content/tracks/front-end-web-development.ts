@@ -12,6 +12,14 @@ export const frontEnd: TrackContent = {
   tone: 'fe',
   tagline: 'Build websites that work on every screen',
   summary: 'Build responsive, accessible, interactive websites from scratch, and ship them to the web.',
+  heading: { before: 'Front-End', mark: 'Web', after: 'Development' },
+  intro:
+    'Build websites that look right on every screen, then put them online for real. Fifteen modules, from your very first tag to a site with your name on it.',
+  alignmentShort: 'Aligned to the MDN Curriculum and SFIA 9',
+  firstLesson: '/learn/front-end-web-development/what-happens-when-you-open-a-website',
+  // Three projects that show the range: HTML, layout, and live data.
+  showcase: [2, 7, 11],
+  preview: 'portfolio',
   level: 'Beginner',
   audience: 'Complete beginners, including career switchers and students',
   prerequisites: 'Basic computer and phone use. No coding experience needed.',
@@ -67,7 +75,7 @@ export const frontEnd: TrackContent = {
       number: 1,
       title: 'How the web works',
       summary: 'What really happens between tapping a link and seeing a page.',
-      mdn: 'Core: Web standards and semantics',
+      standard: 'Core: Web standards and semantics',
       project: 'An "About me" page, built in the browser',
       free: true,
       lessons: [
@@ -83,7 +91,7 @@ export const frontEnd: TrackContent = {
       number: 2,
       title: 'HTML: structure and meaning',
       summary: 'Structure content so browsers, search engines and screen readers all understand it.',
-      mdn: 'Core: Semantic HTML',
+      standard: 'Core: Semantic HTML',
       project: 'A menu page for a local restaurant',
       free: false,
       lessons: [
@@ -103,7 +111,7 @@ export const frontEnd: TrackContent = {
       number: 3,
       title: 'Your toolkit and your first live site',
       summary: 'VS Code, the terminal, Git and GitHub, then put your first site live.',
-      mdn: 'Getting started: Environment setup, Soft skills · Core: Version control',
+      standard: 'Getting started: Environment setup, Soft skills · Core: Version control',
       project: 'The menu page, live on the web, with a README',
       free: false,
       lessons: [
@@ -122,7 +130,7 @@ export const frontEnd: TrackContent = {
       number: 4,
       title: 'CSS fundamentals',
       summary: 'Selectors, the cascade and the box model, and how to debug them in DevTools.',
-      mdn: 'Core: CSS fundamentals',
+      standard: 'Core: CSS fundamentals',
       project: 'Style the restaurant menu',
       free: false,
       lessons: [
@@ -142,7 +150,7 @@ export const frontEnd: TrackContent = {
       number: 5,
       title: 'Typography, images and icons',
       summary: 'Readable type, fast web fonts, responsive images and SVG icons.',
-      mdn: 'Core: CSS text styling',
+      standard: 'Core: CSS text styling',
       project: 'A magazine-style article page',
       free: false,
       lessons: [
@@ -158,7 +166,7 @@ export const frontEnd: TrackContent = {
       number: 6,
       title: 'Flexbox',
       summary: 'Line things up in a row or a column, then spread them out or centre them.',
-      mdn: 'Core: CSS layout',
+      standard: 'Core: CSS layout',
       project: 'A navigation bar and card section',
       free: false,
       lessons: [
@@ -175,7 +183,7 @@ export const frontEnd: TrackContent = {
       number: 7,
       title: 'Grid and responsive design',
       summary: 'Two-dimensional layouts that adapt from small phones to wide screens.',
-      mdn: 'Core: CSS layout · Extension: Transform and animate CSS',
+      standard: 'Core: CSS layout · Extension: Transform and animate CSS',
       project: 'A responsive landing page for a local business',
       free: false,
       lessons: [
@@ -193,7 +201,7 @@ export const frontEnd: TrackContent = {
       number: 8,
       title: 'JavaScript fundamentals',
       summary: 'Variables, functions, loops, arrays and objects, and how to debug them.',
-      mdn: 'Core: JavaScript fundamentals',
+      standard: 'Core: JavaScript fundamentals',
       project: 'A bill splitter',
       free: false,
       lessons: [
@@ -213,7 +221,7 @@ export const frontEnd: TrackContent = {
       number: 9,
       title: 'Thinking in JavaScript',
       summary: 'Break problems into steps, and use array methods, errors and modules.',
-      mdn: 'Core: JavaScript fundamentals',
+      standard: 'Core: JavaScript fundamentals',
       project: "A budget tracker's logic, with tests",
       free: false,
       lessons: [
@@ -230,7 +238,7 @@ export const frontEnd: TrackContent = {
       number: 10,
       title: 'The DOM and events',
       summary: 'Make pages respond to taps, typing and forms.',
-      mdn: 'Extension: Web APIs',
+      standard: 'Extension: Web APIs',
       project: 'An interactive quiz',
       free: false,
       lessons: [
@@ -249,7 +257,7 @@ export const frontEnd: TrackContent = {
       number: 11,
       title: 'Data and APIs: fetch, JSON and EmailJS',
       summary: 'Pull live data into your pages, handle slow and broken cases, and send a form.',
-      mdn: 'Extensions: Web APIs, Security and privacy',
+      standard: 'Extensions: Web APIs, Security and privacy',
       project: 'A currency or weather dashboard with a working contact form',
       free: false,
       lessons: [
@@ -268,7 +276,7 @@ export const frontEnd: TrackContent = {
       number: 12,
       title: 'Git for teams and modern tooling',
       summary: 'Branches and pull requests, then npm, Vite, Prettier and ESLint.',
-      mdn: 'Core: Version control · Extension: Modern tooling',
+      standard: 'Core: Version control · Extension: Modern tooling',
       project: 'Move the dashboard to Vite through a pull request',
       free: false,
       lessons: [
@@ -287,7 +295,7 @@ export const frontEnd: TrackContent = {
       number: 13,
       title: 'Accessibility',
       summary: 'Audit and fix pages against WCAG 2.2 AA, with a screen reader and a keyboard.',
-      mdn: 'Core: Accessibility',
+      standard: 'Core: Accessibility',
       project: 'An accessibility audit and fix of an earlier project',
       free: false,
       lessons: [
@@ -303,7 +311,7 @@ export const frontEnd: TrackContent = {
       number: 14,
       title: 'Design for developers',
       summary: 'Hierarchy, spacing and colour, and how to build from a Figma file.',
-      mdn: 'Core: Design for developers',
+      standard: 'Core: Design for developers',
       project: 'Build a page from a Figma design',
       free: false,
       lessons: [
@@ -318,7 +326,7 @@ export const frontEnd: TrackContent = {
       number: 15,
       title: 'Ship it: performance, SEO and real clients',
       summary: 'Core Web Vitals, SEO, your own domain, and working with a client.',
-      mdn: 'Extensions: Performance, Testing · Getting started: Soft skills',
+      standard: 'Extensions: Performance, Testing · Getting started: Soft skills',
       project: 'Deploy a site with a Lighthouse score of 90+',
       free: false,
       lessons: [

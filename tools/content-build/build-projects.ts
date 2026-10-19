@@ -18,12 +18,13 @@ import remarkMdx from 'remark-mdx'
 import remarkParse from 'remark-parse'
 import { unified } from 'unified'
 import YAML from 'yaml'
+import { catalogue } from '../../src/content/catalogue.ts'
 import { PackError } from '../../src/lib/lessons/schema.ts'
 import { parseProjectPack, type ProjectEntry, type ProjectFile } from '../../src/lib/projects/schema.ts'
 import { LessonError } from './build.ts'
 
 const PACK_BUDGET = 150 * 1024
-const PREFIX: Record<string, string> = { 'front-end-web-development': 'fe' }
+const PREFIX: Record<string, string> = Object.fromEntries(catalogue.map((c) => [c.slug, c.code]))
 const ALLOWED = ['Brief', 'Must', 'Nice', 'Check', 'Review', 'Solution']
 
 type MdNode = {

@@ -5,6 +5,8 @@ const dot = {
   da: 'bg-[#2fe6b0] shadow-[0_0_10px_#2fe6b0]',
   ux: 'bg-[#f0407f] shadow-[0_0_10px_#f0407f]',
   ai: 'bg-[#7b5cff] shadow-[0_0_10px_#7b5cff]',
+  it: 'bg-[#ffc15c] shadow-[0_0_10px_#ffc15c]',
+  cy: 'bg-[#5fd8f2] shadow-[0_0_10px_#5fd8f2]',
   git: 'bg-[#ff8a3d] shadow-[0_0_10px_#ff8a3d]',
 } as const
 

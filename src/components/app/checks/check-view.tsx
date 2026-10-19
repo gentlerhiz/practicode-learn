@@ -147,7 +147,7 @@ export function CheckView({ data }: { data: CheckData }) {
               The Module {data.module} check isn’t open yet
             </h1>
             <p className="max-w-[560px] text-base leading-[26px] text-ink-muted">{data.closedNote}</p>
-            <Link href={'/my-tracks' as Route} className={buttonClasses({}, 'h-12 self-start px-6')}>
+            <Link href={'/my-courses' as Route} className={buttonClasses({}, 'h-12 self-start px-6')}>
               Back to My Tracks
             </Link>
           </section>

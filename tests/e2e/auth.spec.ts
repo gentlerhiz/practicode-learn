@@ -68,18 +68,18 @@ test('phone sign-in says it is coming soon instead of failing quietly', async ({
 
 test('onboarding saves the plan that sign-up shows', async ({ page }) => {
   await page.goto('/onboarding?step=2')
-  const ux = page.getByRole('button', { name: /UI\/UX Product Design/ })
-  await waitForHydration(ux)
-  await ux.click()
+  const cy = page.getByRole('button', { name: /Introduction to Cybersecurity/ })
+  await waitForHydration(cy)
+  await cy.click()
   await page.getByRole('button', { name: '30 min a day' }).click()
-  await expect(page.getByText(/UI\/UX Product Design, about 3 hours a week\. Its lessons open soon/)).toBeVisible()
+  await expect(page.getByText(/Introduction to Cybersecurity, about 3 hours a week\. That gets Module 1 done in three days/)).toBeVisible()
   await page.getByRole('button', { name: 'Continue' }).click()
   await expect(page).toHaveURL(/\/onboarding\?step=3$/)
   await expect(page.getByRole('heading', { level: 1, name: 'Your plan is ready' })).toBeVisible()
   await page.getByRole('button', { name: 'Create My Free Account' }).click()
   await expect(page).toHaveURL(/\/signup$/)
   const plan = page.getByRole('complementary', { name: 'Your plan' })
-  await expect(plan.getByText('UI/UX Product Design')).toBeVisible()
+  await expect(plan.getByText('Introduction to Cybersecurity')).toBeVisible()
   await expect(plan.getByText('30 min a day')).toBeVisible()
 })
 

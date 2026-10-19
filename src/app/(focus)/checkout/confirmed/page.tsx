@@ -102,7 +102,7 @@ export default async function PaymentResultPage({ searchParams }: PageProps<'/ch
           [renews ? 'Next payment' : 'Pro until', until ?? 'Updating…'],
           ['Reference', tx.reference],
         ],
-        continueHref: '/my-tracks' as Route,
+        continueHref: '/my-courses' as Route,
         homeHref: '/home' as Route,
       }}
     />

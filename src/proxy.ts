@@ -3,7 +3,7 @@ import { buildCsp, themeScriptHash } from '@/lib/security/csp'
 import { updateSession } from '@/lib/supabase/proxy'
 
 const SIGNED_IN_ONLY =
-  /^\/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin)(\/|$)/
+  /^\/(home|my-courses|review|projects|certificates|community|checks|checkout|settings|admin)(\/|$)/
 
 /** True for pages only a signed-in learner can open (src/lib/security/headers.ts, SIGNED_IN_PATHS). */
 export const isSignedInOnly = (pathname: string) => SIGNED_IN_ONLY.test(pathname)
@@ -42,12 +42,12 @@ export const config = {
   matcher: [
     {
       source:
-        '/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth|certificate)/:path*',
+        '/(home|my-courses|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth|certificate)/:path*',
       missing: [
         { type: 'header', key: 'next-router-prefetch' },
         { type: 'header', key: 'purpose', value: 'prefetch' },
       ],
     },
-    '/(home|my-tracks|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth|certificate)',
+    '/(home|my-courses|review|projects|certificates|community|checks|checkout|settings|admin|login|signup|verify|check-email|reset-password|new-password|onboarding|auth|certificate)',
   ],
 }

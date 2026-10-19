@@ -36,7 +36,7 @@ it('refreshes each changed lesson page, its track page and the sitemap, once eac
   expect(pagesToRefresh([e('fe-01-01', 'a'), e('fe-01-02', 'b')])).toEqual([
     '/learn/front-end-web-development/fe-01-01',
     '/learn/front-end-web-development/fe-01-02',
-    '/tracks/front-end-web-development',
+    '/courses/front-end-web-development',
     '/sitemap.xml',
   ])
   expect(pagesToRefresh([])).toEqual([])

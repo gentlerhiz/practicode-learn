@@ -30,11 +30,15 @@
   --pc-da-text: #4be3a8;
   --pc-ux-text: #ff7db0;
   --pc-ai-text: #b9a2ff;
+  --pc-it-text: #ffc15c;
+  --pc-cy-text: #5fd8f2;
   /* Track card gradients end in the page colour on dark */
   --pc-fe-deep: #07060d;
   --pc-da-deep: #07060d;
   --pc-ux-deep: #07060d;
   --pc-ai-deep: #07060d;
+  --pc-it-deep: #07060d;
+  --pc-cy-deep: #07060d;
   --pc-focus: #8ea2ff;
   --pc-glow-opacity: 1;
   /* The logo icon is yellow on dark and black on light (design system, light mode rules). */
@@ -79,11 +83,15 @@
   --pc-da-text: #08704f;
   --pc-ux-text: #b81f57;
   --pc-ai-text: #6342ee;
+  --pc-it-text: #8a4b00;
+  --pc-cy-text: #0b6577;
   /* On light, track gradients deepen into the track's own dark shade */
   --pc-fe-deep: #1f33a8;
   --pc-da-deep: #05503b;
   --pc-ux-deep: #8f1745;
   --pc-ai-deep: #3a20b0;
+  --pc-it-deep: #6b3a00;
+  --pc-cy-deep: #0b4f5e;
   --pc-focus: #3550e6;
   --pc-glow-opacity: 0.5;
   --pc-logo: #000000;
@@ -146,6 +154,13 @@
   --color-ai: #6e4cf5;
   --color-ai-text: var(--pc-ai-text);
   --color-ai-deep: var(--pc-ai-deep);
+  /* Foundations (amber) and Security (cyan): deep enough for white text in both modes */
+  --color-it: #a85a00;
+  --color-it-text: var(--pc-it-text);
+  --color-it-deep: var(--pc-it-deep);
+  --color-cy: #0e7490;
+  --color-cy-text: var(--pc-cy-text);
+  --color-cy-deep: var(--pc-cy-deep);
 
   --font-display: var(--font-bricolage), 'Poppins', system-ui, sans-serif;
   --font-sans: var(--font-poppins), system-ui, sans-serif;
@@ -269,6 +284,8 @@
   --pc-card-work: linear-gradient(150deg, #0a7d5c 0%, #0a4e3d 45%, #0b0a14 100%);
   --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #6b1540 38%, #0e0c1a 78%);
   --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #33208a 38%, #0e0c1a 78%);
+  --pc-card-it: linear-gradient(155deg, #a85a00 0%, #5a3000 38%, #0e0c1a 78%);
+  --pc-card-cy: linear-gradient(155deg, #0e7490 0%, #0a4352 38%, #0e0c1a 78%);
   --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1c2785 40%, #0b0a14 80%);
   --pc-stat-da: linear-gradient(165deg, #0a7d5c 0%, #0b4a3a 40%, #0b0a14 80%);
   --pc-stat-ux: linear-gradient(165deg, #d9306f 0%, #6b1540 40%, #0b0a14 80%);
@@ -280,6 +297,8 @@
   --pc-card-work: linear-gradient(150deg, #0a7d5c 0%, #05503b 100%);
   --pc-card-ux: linear-gradient(155deg, #d9306f 0%, #8f1745 100%);
   --pc-card-ai: linear-gradient(155deg, #6e4cf5 0%, #3a20b0 100%);
+  --pc-card-it: linear-gradient(155deg, #a85a00 0%, #6b3a00 100%);
+  --pc-card-cy: linear-gradient(155deg, #0e7490 0%, #0b4f5e 100%);
   --pc-stat-fe: linear-gradient(165deg, #3d5af5 0%, #1f33a8 100%);
   --pc-stat-da: linear-gradient(165deg, #0a7d5c 0%, #05503b 100%);
   --pc-stat-ux: linear-gradient(165deg, #d9306f 0%, #8f1745 100%);

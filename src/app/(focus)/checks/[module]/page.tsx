@@ -27,7 +27,7 @@ export default async function CheckPage({ params }: PageProps<'/checks/[module]'
         questions: [],
         covers: m.lessons.map((l) => ({ topic: l.title, count: '2 questions' })).slice(0, 6),
         finishHref: null,
-        exitHref: '/my-tracks' as Route,
+        exitHref: '/my-courses' as Route,
         closedNote: `Each module ends with a short check: about 12 questions on what the lessons covered, and you pass with 80%. The Module ${m.number} check opens with the full track. Until then, every lesson already checks your answers as you go.`,
       }}
     />

@@ -19,6 +19,7 @@ import remarkParse from 'remark-parse'
 import { unified } from 'unified'
 import YAML from 'yaml'
 import { LAB_NAMES } from '../../src/lib/lessons/labs.ts'
+import { catalogue } from '../../src/content/catalogue.ts'
 import { PackError, parsePack, STAGES, type LessonFile } from '../../src/lib/lessons/schema.ts'
 import type { CatalogueEntry } from '../../src/lib/lessons/types.ts'
 
@@ -198,6 +199,8 @@ function lessonFile(file: string) {
   const id = String(fm.id ?? '')
   const outcomes = Array.isArray(fm.outcomes) ? fm.outcomes.map(String) : []
   if (!/^[a-z]{2}-\d{2}-\d{2}$/.test(id)) fail(fmNode, `id "${id}" should look like fe-06-04.`)
+  const code = catalogue.find((c) => c.slug === fm.track)?.code
+  if (code && !id.startsWith(`${code}-`)) fail(fmNode, `Lessons in ${fm.track} have ids that start ${code}-, not ${id}.`)
   const [, mm, ll] = /-(\d{2})-(\d{2})$/.exec(id) ?? []
   if (Number(mm) !== fm.module || Number(ll) !== fm.lesson) {
     fail(fmNode, `id ${id} doesn't match module ${fm.module}, lesson ${fm.lesson}.`)

@@ -75,9 +75,9 @@ export const SAMPLE_DASHBOARD: DashboardData = {
     },
   },
   tracks: [
-    { id: 'fe', name: 'Front-End Web Development', note: '5 of 15', pct: 33, action: 'Continue', href: '/fixtures/screens/lesson' as Route },
-    { id: 'da', name: 'Data Analysis', note: '1 of 11', pct: 9, action: 'Continue', href: '/fixtures/screens/projects' as Route },
-    { id: 'ux', name: 'UI/UX Product Design', note: 'Not started', pct: 0, action: 'Try Free', href: '/#tracks' as Route },
-    { id: 'ai', name: 'AI & Machine Learning', note: 'Not started', pct: 0, action: 'Try Free', href: '/#tracks' as Route },
+    { id: 'fe', tone: 'fe', name: 'Front-End Web Development', note: '5 of 15', pct: 33, action: 'Continue', href: '/fixtures/screens/lesson' as Route },
+    { id: 'da', tone: 'da', name: 'Data Analysis', note: '1 of 11', pct: 9, action: 'Continue', href: '/fixtures/screens/projects' as Route },
+    { id: 'ux', tone: 'ux', name: 'UI/UX Product Design', note: 'Not started', pct: 0, action: 'Try Free', href: '/courses' as Route },
+    { id: 'ai', tone: 'ai', name: 'AI & Machine Learning', note: 'Not started', pct: 0, action: 'Try Free', href: '/courses' as Route },
   ],
 }

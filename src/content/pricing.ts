@@ -31,9 +31,9 @@ export function planPrices(code: Currency, yearly: boolean) {
 }
 
 export const PLAN_FEATURES = {
-  free: ['Module 1 of every track', 'Daily review', 'AI tutor, 5 questions a day', 'Community forum'],
+  free: ['Module 1 of every course', 'Daily review', 'AI tutor, 5 questions a day', 'Community forum'],
   pro: [
-    'Every module in every track',
+    'Every module in every course',
     'AI tutor, 20 questions a day',
     'Projects with automatic checks',
     'Verified certificates',
@@ -45,7 +45,7 @@ export const PLAN_FEATURES = {
 
 /** The Pricing page's lists differ a little from the landing page's (PrismPricing). */
 export const PRICING_PAGE_FEATURES = {
-  free: ['Module 1 of every track', 'A 4-minute daily review', 'AI tutor, 5 questions a day', 'Community'],
-  pro: ['Every module in every track', 'AI tutor, 20 questions a day', 'Projects with automatic checks', 'Verified certificates', 'Download any module'],
+  free: ['Module 1 of every course', 'A 4-minute daily review', 'AI tutor, 5 questions a day', 'Community'],
+  pro: ['Every module in every course', 'AI tutor, 20 questions a day', 'Projects with automatic checks', 'Verified certificates', 'Download any module'],
   mentor: ['Everything in Pro', 'Weekly live classes', 'An instructor reviews your projects', 'Run by PractiCode Academy'],
 }

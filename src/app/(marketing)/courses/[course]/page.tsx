@@ -11,39 +11,44 @@ import { breadcrumbLd, courseLd } from '@/lib/seo/jsonld'
 import { publicPages } from '@/lib/seo/pages'
 import { pageMetadata } from '@/lib/seo/metadata'
 
-// Only live tracks get a page; any other slug is a 404 (coming-soon tracks get pages later).
+// Only live courses get a page; any other slug is a 404 (coming-soon courses get pages later).
 export const dynamicParams = false
 
 export function generateStaticParams() {
-  return liveTracks().map((t) => ({ track: t.slug }))
+  return liveTracks().map((t) => ({ course: t.slug }))
 }
 
-export async function generateMetadata({ params }: PageProps<'/tracks/[track]'>): Promise<Metadata> {
-  const { track: slug } = await params
-  const path = `/tracks/${slug}` as Route
+export async function generateMetadata({ params }: PageProps<'/courses/[course]'>): Promise<Metadata> {
+  const { course: slug } = await params
+  const path = `/courses/${slug}` as Route
   const page = publicPages.find((p) => p.path === path)
   if (!page || !getTrackContent(slug)) return {}
   // The share image comes from this route's opengraph-image file (its URL carries a build hash).
   return pageMetadata({ ...page, image: 'route' })
 }
 
-export default async function TrackPage({ params }: PageProps<'/tracks/[track]'>) {
-  const { track: slug } = await params
+export default async function CoursePage({ params }: PageProps<'/courses/[course]'>) {
+  const { course: slug } = await params
   const track = getTrackContent(slug)
   if (!track || track.status !== 'live') notFound()
 
-  // Three projects that show the range: HTML, layout, and live data.
-  const showcase = [2, 7, 11].map((n) => track.modules[n - 1]!)
+  const showcase = track.showcase.map((n) => track.modules[n - 1]!)
 
   return (
     <>
       <TrackHero track={track} />
       <Outcomes outcomes={track.outcomes} />
       <Syllabus track={track} />
-      <ProjectsGrid modules={showcase} />
-      <CtaBand context="track" />
+      <ProjectsGrid modules={showcase} tone={track.tone} />
+      <CtaBand context="track" firstLesson={track.firstLesson} />
       <JsonLd
-        data={[courseLd(track), breadcrumbLd([{ name: track.title, path: `/tracks/${track.slug}` }])]}
+        data={[
+          courseLd(track),
+          breadcrumbLd([
+            { name: 'Courses', path: '/courses' },
+            { name: track.title, path: `/courses/${track.slug}` },
+          ]),
+        ]}
       />
     </>
   )
