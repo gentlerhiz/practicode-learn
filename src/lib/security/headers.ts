@@ -1,3 +1,5 @@
+import { ENGINE_SOURCES } from '../runner/engines'
+
 /** Signed-in pages. The proxy sends signed-out visitors to log in first. */
 export const SIGNED_IN_PATHS = [
   '/home',
@@ -40,12 +42,13 @@ export const securityHeaders = [
   // framing headers would conflict on the runner, which lesson pages frame.
 ]
 
-// The runner is always sandboxed by its own CSP, so even opened directly it has an opaque origin.
+// The runner is always sandboxed by its own CSP, so even opened directly it has an opaque origin. Its only
+// way out is to load the Python and SQL engines, from their two pinned folders on jsDelivr (engines.ts).
 export const runnerHeaders = [
   {
     key: 'Content-Security-Policy',
     value:
-      "sandbox allow-scripts; default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; frame-ancestors 'self'",
+      `sandbox allow-scripts; default-src 'none'; script-src 'unsafe-inline' 'wasm-unsafe-eval' ${ENGINE_SOURCES.join(' ')}; connect-src ${ENGINE_SOURCES.join(' ')}; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; frame-ancestors 'self'`,
   },
   { key: 'X-Robots-Tag', value: 'noindex' },
 ]

@@ -3,12 +3,15 @@
 // browser, so a test that passes in the checks passes for learners too. Node runs this file directly in
 // the content tools, so it uses only erasable syntax.
 import type { LessonFile, LessonTest } from '../lessons/schema.ts'
+import { engineFor, pythonDocument, sqlDocument } from './engines.ts'
 import { EMAIL, NETWORK } from './practice-network.ts'
 
 // The test API inside every <Test> block: $, $$, css, box, textBox, near, assert, logs (the lines the
-// learner's code has printed with console.log, as text), wait(ms) and file(name) (the text of any of the
-// step's files, such as package.json). Tests are async functions, so they can await wait() or a promise,
-// and they start once the page's practice requests have settled.
+// learner's code has printed with console.log, or Python's print, as text), wait(ms) and file(name) (the
+// text of any of the step's files, such as package.json). Python steps add python(expression), and SQL
+// steps add query(sql) and lastResult() (see engines.ts). Tests are async functions, so they can await
+// wait() or a promise, and they start once the page's practice requests have settled and any engine
+// has run the learner's code.
 const HARNESS = `
 (function () {
   var q = function (s) { return typeof s === 'string' ? document.querySelector(s) : s; };
@@ -234,12 +237,18 @@ window.addEventListener('load', function () {
     if (quiet >= 2 || Date.now() - start > 3000) window.__pclRun([${noScriptEnd(list)}]);
     else setTimeout(settle, 50);
   };
-  var go = function () { setTimeout(settle, 30); };
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
+  var go = function () { start = Date.now(); setTimeout(settle, 30); };
+  // Python and SQL steps start an engine first; the tests wait until it has run the learner's code.
+  var ready = window.__pclEngine || (document.fonts && document.fonts.ready);
+  if (ready) ready.then(go); else go();
 });
 </script>`
   }
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${js ? `<script>${CONSOLE}${storageScript(opts.storage ?? {})}${NETWORK}${EMAIL}</script>` : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${tests}</body></html>`
+  const engine = engineFor(files)
+  const subbed = files.map((f) => ({ ...f, code: sub(f.code) }))
+  const run = engine === 'python' ? pythonDocument(subbed) : engine === 'sql' ? sqlDocument(subbed) : null
+  const consoleScript = js || run ? `<script>${CONSOLE}${js ? `${storageScript(opts.storage ?? {})}${NETWORK}${EMAIL}` : ''}</script>` : ''
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${consoleScript}${run ? run.head : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${run ? run.body : ''}${tests}</body></html>`
 }
 
 /** The starter files with some replaced, for example by a model solution. */

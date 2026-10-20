@@ -5,17 +5,20 @@ const SYMBOLS = ['{', '}', ':', ';', '<', '>', '/', '=', '"', '(', ')', '-', '#'
 
 /**
  * A plain textarea editor: 16px text on phones (so iOS doesn't zoom), a bar of symbols that are awkward
- * to type on a phone, and Tab inserts two spaces. Esc, then Tab, leaves the editor, so keyboard users
+ * to type on a phone, and Tab indents (two spaces, or four in Python). Esc, then Tab, leaves the editor, so keyboard users
  * are never trapped (WCAG 2.1.2).
  */
 export function Editor({
   label,
   value,
   onChange,
+  indent = '  ',
 }: {
   label: string
   value: string
   onChange: (code: string) => void
+  /** What Tab inserts: two spaces, or four for Python, as its style guide (PEP 8) asks. */
+  indent?: string
 }) {
   const area = useRef<HTMLTextAreaElement>(null)
   const leaving = useRef(false)
@@ -39,7 +42,7 @@ export function Editor({
     }
     if (e.key === 'Tab' && !e.shiftKey && !e.ctrlKey && !e.metaKey && !e.altKey && !leaving.current) {
       e.preventDefault()
-      insert('  ')
+      insert(indent)
       return
     }
     leaving.current = false
@@ -80,7 +83,7 @@ export function Editor({
         ))}
       </div>
       <p id={helpId} className="px-3 pb-2 text-[12px] text-ink-subtle">
-        Tab adds two spaces. Press Esc, then Tab, to move on.
+        Tab adds {indent.length === 4 ? 'four' : 'two'} spaces. Press Esc, then Tab, to move on.
       </p>
     </div>
   )

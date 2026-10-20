@@ -39,6 +39,17 @@ export const LAB_NAMES = [
   'status-codes',
   'json-shape',
   'api-docs',
+  // Python Programming
+  'python-run',
+  'variable-labels',
+  'operators',
+  'traceback-parts',
+  'string-tools',
+  // SQL and Databases
+  'data-home',
+  'table-anatomy',
+  'where-filter',
+  'query-order',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]

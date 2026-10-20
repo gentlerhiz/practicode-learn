@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest'
 import { buildDocument } from './build-document'
+import { engineFor, PGLITE_URL, PYODIDE_URL } from './engines'
 
 const files = [
   { name: 'index.html', lang: 'html', code: '<p>Hi</p>' },
@@ -64,4 +65,24 @@ it('starts localStorage with what the page saved last time, safely inside the sc
   })
   expect(doc).toContain('"score":"3"')
   expect(doc).not.toContain('</script><b>')
+})
+
+it('runs Python files in Pyodide, from its pinned folder, and holds the tests until it has run', () => {
+  const doc = buildDocument([{ name: 'main.py', lang: 'py', code: 'print("Hi")' }], { tests: [] })
+  expect(doc).toContain(`${PYODIDE_URL}pyodide.js`)
+  expect(doc).toContain('window.__pclEngine')
+  expect(doc).toContain('"main":"main.py"')
+})
+it('runs SQL setup files first, wherever they sit, and escapes learner SQL that closes a script', () => {
+  const doc = buildDocument([
+    { name: 'query.sql', lang: 'sql', code: "SELECT '</script>' AS x;" },
+    { name: 'setup.sql', lang: 'sql', code: 'CREATE TABLE t (x int);', readonly: true },
+  ])
+  expect(doc).toContain(PGLITE_URL)
+  expect(doc.indexOf('CREATE TABLE t')).toBeLessThan(doc.indexOf("SELECT '"))
+  expect(doc).not.toContain("SELECT '</script>'")
+})
+it('loads no engine for HTML, CSS and JavaScript pages', () => {
+  expect(engineFor(files)).toBeNull()
+  expect(buildDocument(files)).not.toContain('cdn.jsdelivr.net')
 })

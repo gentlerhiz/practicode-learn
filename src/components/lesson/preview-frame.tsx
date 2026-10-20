@@ -10,6 +10,7 @@ import {
 } from 'react'
 import type { LessonFile, LessonTest } from '@/lib/lessons/schema'
 import { buildDocument } from '@/lib/runner/build-document'
+import { ENGINE_TIMEOUT_MS, engineFor } from '@/lib/runner/engines'
 import { parseRunnerMessage, RUN_TIMEOUT_MS, TIMEOUT_MESSAGE, type TestResult } from '@/lib/runner/protocol'
 import { cn } from '@/lib/cn'
 
@@ -70,7 +71,7 @@ export function PreviewFrame({
         if (latest.current.tests?.length) {
           timer.current = setTimeout(
             () => latest.current.onResults?.([{ name: 'Your code', pass: false, message: TIMEOUT_MESSAGE }]),
-            RUN_TIMEOUT_MS,
+            engineFor(files) ? ENGINE_TIMEOUT_MS : RUN_TIMEOUT_MS,
           )
         }
       } else if (message.type === 'pcl-storage') {

@@ -64,6 +64,24 @@ export const publicPages: PublicPage[] = [
     updated: '2026-10-20',
   },
   {
+    path: '/courses/python-programming' as Route,
+    title: 'Python Programming course',
+    description:
+      'Learn Python from zero with real Python running in your browser: variables, decisions, loops, functions, files and classes. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-20',
+  },
+  {
+    path: '/courses/sql-and-databases' as Route,
+    title: 'SQL and Databases course',
+    description:
+      'Learn SQL on real PostgreSQL in your browser: query, filter, join and summarise data, then design databases of your own. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-20',
+  },
+  {
     path: '/courses/introduction-to-cybersecurity' as Route,
     title: 'Introduction to Cybersecurity course',
     description:

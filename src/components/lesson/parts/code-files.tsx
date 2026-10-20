@@ -94,7 +94,12 @@ export function CodeFiles({
       {files.map((f, i) => (
         <div key={f.name} role="tabpanel" id={`${id}-p${i}`} aria-labelledby={`${id}-t${i}`} hidden={i !== active}>
           {editable && !f.readonly ? (
-            <Editor label={`Edit ${f.name}`} value={f.code} onChange={(code) => onEdit?.(i, code)} />
+            <Editor
+              label={`Edit ${f.name}`}
+              value={f.code}
+              onChange={(code) => onEdit?.(i, code)}
+              indent={f.lang === 'py' || f.lang === 'python' ? '    ' : '  '}
+            />
           ) : (
             <NumberedCode file={f} value={value} />
           )}

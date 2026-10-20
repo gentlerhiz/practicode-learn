@@ -6,8 +6,10 @@ import { frontEnd } from './front-end-web-development'
 import { getTrack, getTrackContent, liveTracks, tracks } from './index'
 import { cybersecurity } from './introduction-to-cybersecurity'
 import { itFundamentals } from './it-fundamentals'
+import { python } from './python-programming'
+import { sql } from './sql-and-databases'
 
-describe.each([frontEnd, itFundamentals, backEnd, cybersecurity])('$title', (course) => {
+describe.each([frontEnd, itFundamentals, backEnd, cybersecurity, python, sql])('$title', (course) => {
   const md = readFileSync(`docs/curriculum/tracks/${course.slug}.md`, 'utf8')
 
   it('matches the module and lesson list in the published syllabus', () => {

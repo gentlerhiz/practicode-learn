@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test'
 
 // Its own port, so a 'next dev' on 3000 is never mistaken for the test server (and never stopped by it).
-const PORT = 3100
+// PW_PORT moves the test server when 3100 is taken, for example by another project's dev server.
+const PORT = Number(process.env.PW_PORT ?? 3100)
 const URL = `http://localhost:${PORT}`
 
 export default defineConfig({

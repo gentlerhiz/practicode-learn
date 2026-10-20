@@ -11,6 +11,7 @@ import { ClientServer } from './client-server'
 import { ComputerKinds } from './computer-kinds'
 import { ComputerParts } from './computer-parts'
 import { ComputingTimeline } from './computing-timeline'
+import { DataHome } from './data-home'
 import { DataSizes } from './data-sizes'
 import { DeployPipeline } from './deploy-pipeline'
 import { DesignFile } from './design-file'
@@ -26,17 +27,25 @@ import { HttpExchange } from './http-exchange'
 import { JsonShape } from './json-shape'
 import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
+import { Operators } from './operators'
 import { PageLoad } from './page-load'
+import { PythonRun } from './python-run'
+import { QueryOrder } from './query-order'
 import { RequestBuilder } from './request-builder'
 import { RequestJourney } from './request-journey'
 import { RiskMatrix } from './risk-matrix'
 import { ScreenReader } from './screen-reader'
 import { ShopBackend } from './shop-backend'
 import { StatusCodes } from './status-codes'
+import { StringTools } from './string-tools'
+import { TableAnatomy } from './table-anatomy'
 import { Terminal } from './terminal'
 import { ThreatHouse } from './threat-house'
+import { TracebackParts } from './traceback-parts'
 import { UrlAnatomy } from './url-anatomy'
+import { VariableLabels } from './variable-labels'
 import { WhatYouProtect } from './what-you-protect'
+import { WhereFilter } from './where-filter'
 
 /** Every lab a lesson can name. Diagram labs take a `state`; Explore labs take the control's `value`. */
 export const labs: Record<LabName, ComponentType<LabProps>> = {
@@ -76,4 +85,13 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'status-codes': StatusCodes,
   'json-shape': JsonShape,
   'api-docs': ApiDocs,
+  'python-run': PythonRun,
+  'variable-labels': VariableLabels,
+  'operators': Operators,
+  'traceback-parts': TracebackParts,
+  'string-tools': StringTools,
+  'data-home': DataHome,
+  'table-anatomy': TableAnatomy,
+  'where-filter': WhereFilter,
+  'query-order': QueryOrder,
 }

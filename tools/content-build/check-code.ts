@@ -11,6 +11,7 @@ import { parseArgs } from 'node:util'
 import { chromium } from '@playwright/test'
 import { parsePack, type LessonFile } from '../../src/lib/lessons/schema.ts'
 import { buildDocument, mergeFiles } from '../../src/lib/runner/build-document.ts'
+import { ENGINE_TIMEOUT_MS } from '../../src/lib/runner/engines.ts'
 
 type TestResult = { name: string; pass: boolean; message?: string }
 
@@ -31,6 +32,8 @@ page.on('pageerror', (e) => pageErrors.push(e.message))
 type RunnerWindow = { __pclResults?: TestResult[]; __pclPending?: number }
 
 async function run(doc: string, width: number, tested = true): Promise<TestResult[] | null> {
+  // Python and SQL documents download and start an engine first.
+  const engine = doc.includes('__pclEngine')
   await page.setViewportSize({ width, height: 800 })
   await page.goto('about:blank') // setContent reuses the window, so start fresh or old results leak through
   pageErrors.length = 0
@@ -39,13 +42,17 @@ async function run(doc: string, width: number, tested = true): Promise<TestResul
     // An example: give its practice requests time to finish, so a failure shows up as a page error.
     await page.waitForTimeout(300)
     await page
-      .waitForFunction(() => !(window as unknown as RunnerWindow).__pclPending, null, { timeout: 3000 })
+      .waitForFunction(() => !(window as unknown as RunnerWindow).__pclPending, null, {
+        timeout: engine ? ENGINE_TIMEOUT_MS : 3000,
+      })
       .catch(() => null)
     await page.waitForTimeout(100)
     return null
   }
   return page
-    .waitForFunction(() => (window as unknown as RunnerWindow).__pclResults, null, { timeout: 12000 })
+    .waitForFunction(() => (window as unknown as RunnerWindow).__pclResults, null, {
+      timeout: engine ? ENGINE_TIMEOUT_MS : 12000,
+    })
     .then((h) => h.jsonValue() as Promise<TestResult[]>)
     .catch(() => null)
 }

@@ -44,6 +44,8 @@ export const footer: FooterGroup[] = [
       { href: TRACK_PAGE, label: 'Front-End Web Development' },
       { href: '/courses/back-end-web-development' as Route, label: 'Back-End Web Development' },
       { href: '/courses/introduction-to-cybersecurity' as Route, label: 'Introduction to Cybersecurity' },
+      { href: '/courses/python-programming' as Route, label: 'Python Programming' },
+      { href: '/courses/sql-and-databases' as Route, label: 'SQL and Databases' },
       { href: '/courses' as Route, label: 'All courses' },
     ],
   },

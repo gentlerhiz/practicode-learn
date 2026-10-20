@@ -194,11 +194,91 @@ function ServerPreview() {
   )
 }
 
+/** A Python program and what it prints, as in the Python lessons. Decorative. */
+function TerminalPreview() {
+  return (
+    <figure className="hidden flex-col items-center gap-3 tab:flex">
+      <div
+        aria-hidden="true"
+        className="w-full max-w-[540px] rounded-3xl border border-[rgba(142,162,255,0.5)] bg-sunken/80 p-4 font-mono text-[13px]"
+      >
+        <p className="mb-3 font-sans text-xs text-ink-subtle">main.py</p>
+        <pre className="m-0 rounded-2xl border border-line bg-row p-3 leading-6 text-ink">
+          <span className="text-fe-text">items</span>
+          {' = ["Rice", "Beans", "Bread"]\n'}
+          <span className="text-fe-text">for</span>
+          {' item '}
+          <span className="text-fe-text">in</span>
+          {' items:\n    print(f"{item}: ready")'}
+        </pre>
+        <div className="mt-2.5 rounded-2xl bg-[#15122a] p-3 leading-6 text-[#f4f1ff]">
+          Rice: ready
+          <br />
+          Beans: ready
+          <br />
+          Bread: ready
+        </div>
+        <div className="mt-4 flex items-center gap-3 rounded-2xl bg-fe/15 p-3 font-sans">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-fe text-white">✓</span>
+          <span className="text-xs text-ink-soft">Real Python 3.14, running in your browser</span>
+        </div>
+      </div>
+      <figcaption className="text-sm text-ink-subtle">Write Python, run it, and read what it prints</figcaption>
+    </figure>
+  )
+}
+
+/** A query and its results table, as in the SQL lessons. Decorative. */
+function TablePreview() {
+  const rows = [
+    ['The Silent Patient', 'Thriller', '9.99'],
+    ['Atomic Habits', 'Self-help', '12.50'],
+    ['Things Fall Apart', 'Classic', '8.75'],
+  ]
+  return (
+    <figure className="hidden flex-col items-center gap-3 tab:flex">
+      <div
+        aria-hidden="true"
+        className="w-full max-w-[540px] rounded-3xl border border-[rgba(47,230,176,0.5)] bg-sunken/80 p-4"
+      >
+        <p className="mb-3 text-xs text-ink-subtle">query.sql</p>
+        <pre className="m-0 rounded-2xl border border-line bg-row p-3 font-mono text-[13px] leading-6 text-ink">
+          <span className="text-da-text">SELECT</span>
+          {' title, genre, price\n'}
+          <span className="text-da-text">FROM</span>
+          {' books\n'}
+          <span className="text-da-text">WHERE</span>
+          {' price < 15\n'}
+          <span className="text-da-text">ORDER BY</span>
+          {' title;'}
+        </pre>
+        <div className="mt-2.5 overflow-hidden rounded-2xl border border-line">
+          <div className="grid grid-cols-[2fr_1fr_0.7fr] bg-success-fill/15 px-3 py-2 text-xs font-semibold text-ink">
+            <span>title</span>
+            <span>genre</span>
+            <span>price</span>
+          </div>
+          {rows.map((r) => (
+            <div key={r[0]} className="grid grid-cols-[2fr_1fr_0.7fr] border-t border-line px-3 py-2 text-xs text-ink-soft">
+              {r.map((c) => (
+                <span key={c}>{c}</span>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <figcaption className="text-sm text-ink-subtle">Real PostgreSQL in your browser, with a database you can’t break</figcaption>
+    </figure>
+  )
+}
+
 const previews = {
   portfolio: PortfolioPreview,
   devices: DevicesPreview,
   shield: ShieldPreview,
   server: ServerPreview,
+  terminal: TerminalPreview,
+  table: TablePreview,
 }
 
 export function TrackHero({ track }: { track: TrackContent }) {

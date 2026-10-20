@@ -190,6 +190,8 @@ const BADGE: Record<string, [string, string]> = {
   'back-end-web-development': ['Back-End', 'Web Development'],
   'it-fundamentals': ['IT', 'Fundamentals'],
   'introduction-to-cybersecurity': ['Cybersecurity', 'Introduction'],
+  'python-programming': ['Python', 'Programming'],
+  'sql-and-databases': ['SQL and', 'Databases'],
 }
 
 /** What the certificate document shows for this certificate. */

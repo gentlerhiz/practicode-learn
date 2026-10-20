@@ -17,7 +17,7 @@ const catalogue = JSON.parse(readFileSync(`${CONTENT}/catalogue.json`, 'utf8')) 
   track: string
   version: number
 }[]
-const NEW = catalogue.filter((l) => /^(it|cy|be)-/.test(l.id))
+const NEW = catalogue.filter((l) => /^(it|cy|be|py|sq)-/.test(l.id))
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
 
 test.afterAll(deleteTestUsers)
@@ -34,6 +34,8 @@ test('every new Module 1 lesson is published', () => {
   expect(NEW.filter((l) => l.track === 'it-fundamentals')).toHaveLength(6)
   expect(NEW.filter((l) => l.track === 'introduction-to-cybersecurity')).toHaveLength(6)
   expect(NEW.filter((l) => l.track === 'back-end-web-development')).toHaveLength(6)
+  expect(NEW.filter((l) => l.track === 'python-programming')).toHaveLength(6)
+  expect(NEW.filter((l) => l.track === 'sql-and-databases')).toHaveLength(6)
 })
 
 for (const lesson of NEW) {
@@ -91,6 +93,8 @@ for (const course of [
   { slug: 'introduction-to-cybersecurity', first: 'what-cybersecurity-protects', title: /^Introduction to Cybersecurity/ },
   { slug: 'front-end-web-development', first: 'what-happens-when-you-open-a-website', title: /^Front-End Web Development/ },
   { slug: 'back-end-web-development', first: 'what-the-back-end-does', title: /^Back-End Web Development/ },
+  { slug: 'python-programming', first: 'what-a-program-is', title: /^Python Programming/ },
+  { slug: 'sql-and-databases', first: 'what-a-database-is', title: /^SQL and Databases/ },
 ]) {
   test(`the ${course.slug} page shows its syllabus and starts Module 1`, async ({ page }) => {
     await page.goto(`/courses/${course.slug}`)

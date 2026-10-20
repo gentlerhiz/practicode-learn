@@ -69,7 +69,9 @@ export async function playWholeLesson(
         await page.getByRole('textbox', { name: `Edit ${file.name}` }).fill(file.code)
       }
       await page.getByRole('button', { name: 'Run Tests' }).click()
-      await expect(page.getByText('All checks pass.')).toBeVisible({ timeout: 10_000 })
+      // Python and SQL steps start an engine in the page first, which takes a few seconds.
+      const engine = JSON.stringify(step).match(/"lang":"(py|python|sql)"/)
+      await expect(page.getByText('All checks pass.')).toBeVisible({ timeout: engine ? 90_000 : 10_000 })
     }
     await expect(next).toBeEnabled()
     await next.click()
