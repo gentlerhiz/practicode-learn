@@ -1,10 +1,13 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
+import type { LabProps } from './shared'
+import { ApiDocs } from './api-docs'
 import { AttackPaths } from './attack-paths'
 import { Attackers } from './attackers'
 import { BinaryBits } from './binary-bits'
 import { BranchGraph } from './branch-graph'
 import { CiaTriad } from './cia-triad'
+import { ClientServer } from './client-server'
 import { ComputerKinds } from './computer-kinds'
 import { ComputerParts } from './computer-parts'
 import { ComputingTimeline } from './computing-timeline'
@@ -17,15 +20,19 @@ import { DomTree } from './dom-tree'
 import { EditorTour } from './editor-tour'
 import { FilePaths } from './file-paths'
 import { FlexAxes } from './flex-axes'
+import { FrontOrBack } from './front-or-back'
 import { GitFlow } from './git-flow'
 import { HttpExchange } from './http-exchange'
+import { JsonShape } from './json-shape'
 import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
 import { PageLoad } from './page-load'
+import { RequestBuilder } from './request-builder'
 import { RequestJourney } from './request-journey'
 import { RiskMatrix } from './risk-matrix'
 import { ScreenReader } from './screen-reader'
-import type { LabProps } from './shared'
+import { ShopBackend } from './shop-backend'
+import { StatusCodes } from './status-codes'
 import { Terminal } from './terminal'
 import { ThreatHouse } from './threat-house'
 import { UrlAnatomy } from './url-anatomy'
@@ -62,4 +69,11 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   attackers: Attackers,
   'attack-paths': AttackPaths,
   'risk-matrix': RiskMatrix,
+  'shop-backend': ShopBackend,
+  'front-or-back': FrontOrBack,
+  'client-server': ClientServer,
+  'request-builder': RequestBuilder,
+  'status-codes': StatusCodes,
+  'json-shape': JsonShape,
+  'api-docs': ApiDocs,
 }

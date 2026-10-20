@@ -1,7 +1,7 @@
 import type { Metadata, Route } from 'next'
 import Link from 'next/link'
 import { AppPage } from '@/components/app/shell/app-shell'
-import { CourseIcon, TrackIcon } from '@/components/learn/track-icon'
+import { CourseIcon } from '@/components/learn/track-icon'
 import { Glyph } from '@/components/ui/glyph'
 import { catalogue, findCourse, levelLine, toneOf } from '@/content/catalogue'
 import { isComplete } from '@/content/tracks'
@@ -73,7 +73,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
                   : 'border-line-control text-ink-soft hover:border-line-strong hover:bg-hover',
               )}
             >
-              <TrackIcon track={t.tone} size={16} />
+              <CourseIcon code={findCourse(t.slug)?.code ?? ''} tone={t.tone} size={16} />
               {findCourse(t.slug)?.short ?? t.title}
             </Link>
           ))}
@@ -87,7 +87,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
       >
         <div className="flex flex-wrap items-center gap-4">
           <span className="flex size-[52px] items-center justify-center rounded-2xl bg-white/15">
-            <TrackIcon track={tone} size={24} />
+            <CourseIcon code={course.code} tone={tone} size={24} />
           </span>
           <div className="min-w-0 flex-1">
             <p className="text-xs font-medium text-white/80">

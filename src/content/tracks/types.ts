@@ -44,6 +44,6 @@ export type TrackContent = {
   /** Three module numbers whose projects show the course's range on its page. */
   showcase: [number, number, number]
   /** The drawing beside the course page's heading. */
-  preview: 'portfolio' | 'devices' | 'shield'
+  preview: 'portfolio' | 'devices' | 'shield' | 'server'
   modules: TrackModule[]
 }

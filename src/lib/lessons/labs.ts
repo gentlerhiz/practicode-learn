@@ -31,6 +31,14 @@ export const LAB_NAMES = [
   'attackers',
   'attack-paths',
   'risk-matrix',
+  // Back-End Web Development
+  'shop-backend',
+  'front-or-back',
+  'client-server',
+  'request-builder',
+  'status-codes',
+  'json-shape',
+  'api-docs',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]

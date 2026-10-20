@@ -158,7 +158,48 @@ function ShieldPreview() {
   )
 }
 
-const previews = { portfolio: PortfolioPreview, devices: DevicesPreview, shield: ShieldPreview }
+/** A request to a practice API and the server's reply, as in the Back-End labs. Decorative. */
+function ServerPreview() {
+  return (
+    <figure className="hidden flex-col items-center gap-3 tab:flex">
+      <div
+        aria-hidden="true"
+        className="w-full max-w-[540px] rounded-3xl border border-[rgba(142,162,255,0.5)] bg-sunken/80 p-4 font-mono text-[13px]"
+      >
+        <p className="mb-3 font-sans text-xs text-ink-subtle">Practice server</p>
+        <div className="flex flex-col gap-2.5">
+          <div className="flex items-center gap-2.5 rounded-2xl border border-line bg-row p-3">
+            <span className="rounded-md bg-fe px-2 py-0.5 text-xs font-bold text-white">GET</span>
+            <span className="text-ink">/menu/2</span>
+            <span className="ml-auto font-sans text-xs text-ink-subtle">Request</span>
+          </div>
+          <div className="flex flex-col gap-2 rounded-2xl border-[1.5px] border-[rgba(47,230,176,0.6)] bg-[rgba(47,230,176,0.06)] p-3">
+            <div className="flex items-center gap-2.5">
+              <span className="rounded-md bg-success-fill px-2 py-0.5 text-xs font-bold text-on-success">200</span>
+              <span className="text-ink">OK</span>
+              <span className="ml-auto font-sans text-xs text-ink-subtle">Response</span>
+            </div>
+            <pre className="m-0 leading-6 text-ink-soft">
+              {'{\n  "id": 2,\n  "name": "Flat white",\n  "price": 3.2,\n  "inStock": true\n}'}
+            </pre>
+          </div>
+        </div>
+        <div className="mt-4 flex items-center gap-3 rounded-2xl bg-fe/15 p-3 font-sans">
+          <span className="flex size-8 items-center justify-center rounded-lg bg-fe text-white">✓</span>
+          <span className="text-xs text-ink-soft">Routes · Validation · PostgreSQL · Sign-in · Tests</span>
+        </div>
+      </div>
+      <figcaption className="text-sm text-ink-subtle">Write a route, send it a request and see the reply</figcaption>
+    </figure>
+  )
+}
+
+const previews = {
+  portfolio: PortfolioPreview,
+  devices: DevicesPreview,
+  shield: ShieldPreview,
+  server: ServerPreview,
+}
 
 export function TrackHero({ track }: { track: TrackContent }) {
   const tone = toneClass[track.tone]

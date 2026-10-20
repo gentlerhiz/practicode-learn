@@ -55,6 +55,15 @@ export const publicPages: PublicPage[] = [
     updated: '2026-10-04',
   },
   {
+    path: '/courses/back-end-web-development' as Route,
+    title: 'Back-End Web Development course',
+    description:
+      'Build APIs, databases and sign-in with Node.js, Express and PostgreSQL, starting from zero, with a simulated server in your browser. Module 1 is free.',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+    updated: '2026-10-20',
+  },
+  {
     path: '/courses/introduction-to-cybersecurity' as Route,
     title: 'Introduction to Cybersecurity course',
     description:

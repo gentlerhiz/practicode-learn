@@ -10,6 +10,24 @@ export function Illustration({ tone, code, className }: { tone: TrackTone; code?
     'pointer-events-none absolute -right-3 -bottom-3 h-[133px] w-[160px] ph:-right-6 ph:-bottom-4 ph:h-[216px] ph:w-[260px]',
     className,
   )
+  if (code === 'be')
+    return (
+      <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>
+        <rect x="120" y="30" width="104" height="44" rx="12" fill="rgba(255,255,255,0.14)" stroke="rgba(142,162,255,0.6)" strokeWidth="1.5" />
+        <rect x="120" y="84" width="104" height="44" rx="12" fill="rgba(255,255,255,0.14)" stroke="rgba(142,162,255,0.6)" strokeWidth="1.5" />
+        <rect x="120" y="138" width="104" height="44" rx="12" fill="rgba(255,255,255,0.14)" stroke="rgba(142,162,255,0.6)" strokeWidth="1.5" />
+        <circle cx="140" cy="52" r="6" fill="#2FE6B0" />
+        <circle cx="140" cy="106" r="6" fill="#2FE6B0" />
+        <circle cx="140" cy="160" r="6" fill="#FFD66B" />
+        <path d="M156 52h50M156 106h50M156 160h50" stroke="rgba(255,255,255,0.5)" strokeWidth="6" strokeLinecap="round" />
+        <rect x="14" y="60" width="78" height="26" rx="8" fill="#FFFFFF" />
+        <text x="24" y="78" fontSize="13" fontWeight="700" fill="#1c2785" fontFamily="var(--font-mono)">GET /</text>
+        <path d="M92 73h20m-7-7 7 7-7 7" fill="none" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="14" y="112" width="78" height="26" rx="8" fill="#2FE6B0" />
+        <text x="24" y="130" fontSize="13" fontWeight="700" fill="#0a4e3d" fontFamily="var(--font-mono)">200 OK</text>
+        <path d="M112 125H96m7-7-7 7 7 7" fill="none" stroke="#2FE6B0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
   if (code === 'py')
     return (
       <svg viewBox="0 0 240 200" aria-hidden="true" className={cls}>

@@ -38,9 +38,14 @@ export function TrackIcon({ track, size = 22, className }: { track: TrackTone; s
   )
 }
 
-// Courses that share a subject colour with another course get their own glyph: a snake for Python, a
-// database being searched for SQL, braces for JavaScript in Depth and a terminal for Cybersecurity and Linux.
+// Courses that share a subject colour with another course get their own glyph: a server for Back-End, a
+// snake for Python, a database being searched for SQL, braces for JavaScript in Depth and a terminal for Cybersecurity and Linux.
 const coursePaths: Record<string, string[]> = {
+  be: [
+    'M4 2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z',
+    'M4 14h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2z',
+    'M6 6h.01M6 18h.01M10 6h8M10 18h8',
+  ],
   py: ['M18 5h-6.5a3.5 3.5 0 0 0 0 7h1a3.5 3.5 0 0 1 0 7H5', 'm18 5 2.5-1.5M18 5l2.5 1.5', 'M14.5 5h.01'],
   sq: [
     'M3 5a9 3 0 1 0 18 0a9 3 0 1 0-18 0',

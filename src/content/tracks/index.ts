@@ -1,4 +1,5 @@
 import { catalogue } from '@/content/catalogue'
+import { backEnd } from './back-end-web-development'
 import { frontEnd } from './front-end-web-development'
 import { cybersecurity } from './introduction-to-cybersecurity'
 import { itFundamentals } from './it-fundamentals'
@@ -7,7 +8,7 @@ import type { TrackContent } from './types'
 export type { TrackContent, TrackLesson, TrackModule } from './types'
 
 /** Courses with full content. Coming-soon courses only have catalogue cards until their content lands. */
-const full: TrackContent[] = [itFundamentals, frontEnd, cybersecurity]
+const full: TrackContent[] = [itFundamentals, frontEnd, backEnd, cybersecurity]
 
 export type TrackSummary = { slug: string; title: string; status: 'live' | 'coming_soon' }
 

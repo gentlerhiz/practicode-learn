@@ -1,12 +1,13 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { catalogue } from '@/content/catalogue'
+import { backEnd } from './back-end-web-development'
 import { frontEnd } from './front-end-web-development'
 import { getTrack, getTrackContent, liveTracks, tracks } from './index'
 import { cybersecurity } from './introduction-to-cybersecurity'
 import { itFundamentals } from './it-fundamentals'
 
-describe.each([frontEnd, itFundamentals, cybersecurity])('$title', (course) => {
+describe.each([frontEnd, itFundamentals, backEnd, cybersecurity])('$title', (course) => {
   const md = readFileSync(`docs/curriculum/tracks/${course.slug}.md`, 'utf8')
 
   it('matches the module and lesson list in the published syllabus', () => {

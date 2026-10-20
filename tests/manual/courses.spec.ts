@@ -5,8 +5,8 @@ import { admin, deleteTestUsers } from '../db/helpers'
 import { logIn, newLearner } from '../e2e/helpers/auth'
 import { playWholeLesson } from '../e2e/helpers/play'
 
-// The course catalogue, the IT Fundamentals and Introduction to Cybersecurity pages, and every lesson in
-// their Module 1, played end to end with axe on each lab step. Not part of the CI suite: it needs the
+// The course catalogue, the IT Fundamentals, Back-End and Introduction to Cybersecurity pages, and every
+// lesson in their Module 1, played end to end with axe on each lab step. Not part of the CI suite: it needs the
 // private content repo next to this one and a server built against published lessons
 // (NEXT_PUBLIC_CONTENT_SOURCE=supabase).
 // Run: PW_BASE=http://localhost:3300 npx playwright test tests/manual/courses.spec.ts --config tests/manual/playwright.config.ts
@@ -17,7 +17,7 @@ const catalogue = JSON.parse(readFileSync(`${CONTENT}/catalogue.json`, 'utf8')) 
   track: string
   version: number
 }[]
-const NEW = catalogue.filter((l) => /^(it|cy)-/.test(l.id))
+const NEW = catalogue.filter((l) => /^(it|cy|be)-/.test(l.id))
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']
 
 test.afterAll(deleteTestUsers)
@@ -33,6 +33,7 @@ const noSideways = async (page: Page, width: number) =>
 test('every new Module 1 lesson is published', () => {
   expect(NEW.filter((l) => l.track === 'it-fundamentals')).toHaveLength(6)
   expect(NEW.filter((l) => l.track === 'introduction-to-cybersecurity')).toHaveLength(6)
+  expect(NEW.filter((l) => l.track === 'back-end-web-development')).toHaveLength(6)
 })
 
 for (const lesson of NEW) {
@@ -89,11 +90,12 @@ for (const course of [
   { slug: 'it-fundamentals', first: 'what-is-a-computer', title: /^IT Fundamentals/ },
   { slug: 'introduction-to-cybersecurity', first: 'what-cybersecurity-protects', title: /^Introduction to Cybersecurity/ },
   { slug: 'front-end-web-development', first: 'what-happens-when-you-open-a-website', title: /^Front-End Web Development/ },
+  { slug: 'back-end-web-development', first: 'what-the-back-end-does', title: /^Back-End Web Development/ },
 ]) {
   test(`the ${course.slug} page shows its syllabus and starts Module 1`, async ({ page }) => {
     await page.goto(`/courses/${course.slug}`)
     await expect(page.getByRole('heading', { level: 1, name: course.title })).toBeVisible()
-    if (course.slug !== 'front-end-web-development')
+    if (!course.slug.startsWith('front-end'))
       expect(await page.locator('#syllabus').getByText('Coming soon').count()).toBeGreaterThan(5)
     expect(await axe(page)).toEqual([])
     await page.screenshot({ path: `test-results/courses/${course.slug}-1440.png`, fullPage: true })

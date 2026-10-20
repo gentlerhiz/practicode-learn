@@ -187,6 +187,7 @@ export const certificateUrl = (code: string, site: string) => `${site.replace(/\
 // The two lines on each course's badge; courses not listed show their short name.
 const BADGE: Record<string, [string, string]> = {
   'front-end-web-development': ['Front-End', 'Web Development'],
+  'back-end-web-development': ['Back-End', 'Web Development'],
   'it-fundamentals': ['IT', 'Fundamentals'],
   'introduction-to-cybersecurity': ['Cybersecurity', 'Introduction'],
 }

@@ -85,6 +85,22 @@ export const catalogue: CatalogueCourse[] = [
     firstModule: 'How the web works',
   },
   {
+    slug: 'back-end-web-development',
+    code: 'be',
+    title: 'Back-End Web Development',
+    short: 'Back-End',
+    subject: 'software',
+    level: 'Beginner',
+    modules: 15,
+    hours: 140,
+    summary: 'Build the server side of apps with Node.js, Express and PostgreSQL: APIs, databases, sign-in and security.',
+    line: 'Build APIs, databases and sign-in with Node.js.',
+    alignment: 'Aligned to MDN Learn and the OWASP API Security Top 10',
+    prerequisites: [],
+    status: 'live',
+    firstModule: 'How the back end works',
+  },
+  {
     slug: 'introduction-to-cybersecurity',
     code: 'cy',
     title: 'Introduction to Cybersecurity',
@@ -202,8 +218,8 @@ export const catalogue: CatalogueCourse[] = [
 export const PATHS: { title: string; summary: string; steps: string[] }[] = [
   {
     title: 'Build for the web',
-    summary: 'From your first computer skills to sites you can put your name on.',
-    steps: ['it-fundamentals', 'front-end-web-development', 'javascript-in-depth'],
+    summary: 'From your first computer skills to sites and APIs you can put your name on.',
+    steps: ['it-fundamentals', 'front-end-web-development', 'back-end-web-development', 'javascript-in-depth'],
   },
   {
     title: 'Work with data',
