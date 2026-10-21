@@ -55,7 +55,7 @@ export function StatusCodes({ value = '200' }: LabProps) {
             <span className={cn('font-mono text-sm font-bold', f === family ? 'text-ink' : 'text-ink-muted')}>
               {f.first}xx
             </span>
-            <span className="hidden text-[11px] leading-4 text-ink-soft min-[560px]:block">{f.name}</span>
+            <span className="hidden text-[11px] leading-4 text-ink-soft @min-[480px]:block">{f.name}</span>
           </div>
         ))}
       </div>

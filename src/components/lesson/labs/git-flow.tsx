@@ -194,13 +194,13 @@ export function GitFlow({ state, value }: LabProps) {
         tabIndex={0}
         className="overflow-x-auto rounded-xl border border-line bg-[#0d0b16] p-3 font-mono text-[12px] leading-5 text-[#e8e6f0] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
       >
-        <p className="whitespace-pre">
+        <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">
           <span className="text-[#7ee2b8]">ada@laptop</span>:
           <span className="text-[#9fb0ff]">~/mama-nkechi</span>$ {v.command}
         </p>
-        {v.output && <p className="whitespace-pre">{v.output}</p>}
+        {v.output && <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">{v.output}</p>}
       </div>
-      <div className="grid grid-cols-2 gap-2 tab:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2 @min-[600px]:grid-cols-4">
         <Column title="Your folder" empty="">
           <p
             className={cn(

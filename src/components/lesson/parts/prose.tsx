@@ -1,7 +1,7 @@
 import { cn } from '@/lib/cn'
 
 const proseClass =
-  'text-base leading-[26px] text-ink-soft [&_a]:text-fe-text [&_a]:underline [&_code]:rounded-md [&_code]:bg-row [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:text-ink [&_li]:mt-1 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_p+p]:mt-3 [&_pre]:my-3 [&_strong]:font-semibold [&_strong]:text-ink [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5'
+  'text-base leading-[26px] text-ink-soft [&_a]:text-fe-text [&_a]:underline [&_code]:rounded-md [&_code]:bg-row [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[0.9em] [&_code]:text-ink [&_li]:mt-1 [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_p+p]:mt-3 [&_pre]:my-3 [&_pre]:overflow-x-auto [&_pre]:rounded-xl [&_pre]:border [&_pre]:border-line [&_pre]:bg-row [&_pre]:p-3 [&_pre]:font-mono [&_pre]:text-sm [&_pre]:leading-6 [&_pre]:whitespace-pre-wrap [&_pre]:text-ink [&_pre]:[overflow-wrap:anywhere] [&_pre_code]:bg-transparent [&_pre_code]:p-0 [&_pre_code]:text-[1em] [&_strong]:font-semibold [&_strong]:text-ink [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5'
 
 /**
  * Lesson text. The HTML was rendered from Markdown at build time by our own content pipeline and checked

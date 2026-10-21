@@ -62,7 +62,7 @@ export function DeviceCheck({ value = 'Phone' }: LabProps) {
     <figure className="m-0 flex flex-col gap-3" aria-label={`${d.name}: ${d.verdict}`}>
       <div className="flex flex-col gap-2 rounded-2xl border border-line bg-row p-4">
         <p className="font-display text-lg font-bold text-ink">{d.name}</p>
-        <dl className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-2">
+        <dl className="grid grid-cols-1 gap-2 @min-[340px]:grid-cols-2">
           {ROWS.map(([key, label]) => {
             const text = d[key]
             return (

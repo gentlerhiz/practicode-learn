@@ -116,8 +116,8 @@ export function DesignFile({ state, value }: LabProps) {
 
   return (
     <figure className="m-0">
-      <div className="grid grid-cols-1 gap-2 rounded-xl border border-line-subtle bg-row p-2 sm:grid-cols-[120px_minmax(0,1fr)_170px]">
-        <div className="order-2 rounded-lg border border-line bg-sunken p-2 sm:order-1">
+      <div className="grid grid-cols-1 gap-2 rounded-xl border border-line-subtle bg-row p-2 @min-[540px]:grid-cols-[120px_minmax(0,1fr)_170px]">
+        <div className="order-2 rounded-lg border border-line bg-sunken p-2 @min-[540px]:order-1">
           <p className="mb-1 text-[11px] font-semibold text-ink-muted">Layers</p>
           <ul className="flex flex-col gap-0.5 text-[12px]">
             {LAYERS.map((l) => (
@@ -140,7 +140,7 @@ export function DesignFile({ state, value }: LabProps) {
         </div>
 
         <div
-          className="order-1 flex justify-center rounded-lg bg-[#e9e7f0] p-3 sm:order-2"
+          className="order-1 flex justify-center rounded-lg bg-[#e9e7f0] p-3 @min-[540px]:order-2"
           aria-hidden="true"
         >
           <div

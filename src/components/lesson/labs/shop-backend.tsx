@@ -26,7 +26,7 @@ export function ShopBackend({ state = 0 }: LabProps) {
   const names = s.lit.map((id) => PARTS.find((p) => p.id === id)!.name).join(' and ')
   return (
     <figure className="m-0 flex flex-col gap-3">
-      <div role="img" aria-label={`${names}: ${s.message}.`} className="grid grid-cols-2 gap-2 min-[560px]:grid-cols-4">
+      <div role="img" aria-label={`${names}: ${s.message}.`} className="grid grid-cols-2 gap-2 @min-[480px]:grid-cols-4">
         {PARTS.map((p) => {
           const on = s.lit.includes(p.id)
           return (

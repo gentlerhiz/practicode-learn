@@ -31,8 +31,8 @@ export function ClientServer({ state = 0 }: LabProps) {
   ][step]!
   return (
     <figure className="m-0 flex flex-col gap-3">
-      <div role="img" aria-label={label} className="flex flex-col gap-3 min-[560px]:flex-row min-[560px]:items-stretch">
-        <div className="flex flex-col gap-2 min-[560px]:w-[45%]">
+      <div role="img" aria-label={label} className="flex flex-col gap-3 @min-[480px]:flex-row @min-[480px]:items-stretch">
+        <div className="flex flex-col gap-2 @min-[480px]:w-[45%]">
           <div className={chip(at === 'client')}>
             <span className="font-sans text-xs text-ink-subtle">Client</span>
             <br />

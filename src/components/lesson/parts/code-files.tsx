@@ -65,7 +65,7 @@ export function CodeFiles({
   return (
     <div className="flex flex-col">
       <div className="flex h-14 items-center justify-between gap-3 border-b border-divider px-4">
-        <div role="tablist" aria-label="Files" className="flex gap-1 font-mono text-xs" onKeyDown={onKeyDown}>
+        <div role="tablist" aria-label="Files" className="flex min-w-0 gap-1 overflow-x-auto font-mono text-xs whitespace-nowrap" onKeyDown={onKeyDown}>
           {files.map((f, i) => (
             <button
               key={f.name}
@@ -80,7 +80,7 @@ export function CodeFiles({
               tabIndex={i === active ? 0 : -1}
               onClick={() => setActive(i)}
               className={cn(
-                'cursor-pointer rounded-full border px-3 py-1.5',
+                'shrink-0 cursor-pointer rounded-full border px-3 py-1.5',
                 i === active ? 'border-[rgba(77,107,255,0.5)] bg-[rgba(77,107,255,0.18)] text-ink' : 'border-transparent text-ink-subtle hover:text-ink',
               )}
             >
@@ -89,7 +89,7 @@ export function CodeFiles({
             </button>
           ))}
         </div>
-        {status && <div className="text-xs text-ink-muted">{status}</div>}
+        {status && <div className="shrink-0 text-xs text-ink-muted">{status}</div>}
       </div>
       {files.map((f, i) => (
         <div key={f.name} role="tabpanel" id={`${id}-p${i}`} aria-labelledby={`${id}-t${i}`} hidden={i !== active}>
@@ -98,6 +98,7 @@ export function CodeFiles({
               label={`Edit ${f.name}`}
               value={f.code}
               onChange={(code) => onEdit?.(i, code)}
+              lang={f.lang}
               indent={f.lang === 'py' || f.lang === 'python' ? '    ' : '  '}
             />
           ) : (

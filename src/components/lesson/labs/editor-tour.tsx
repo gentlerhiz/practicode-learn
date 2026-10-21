@@ -41,7 +41,7 @@ export function EditorTour({ state = 0 }: LabProps) {
         </div>
         <div
           className={cn(
-            'w-[118px] shrink-0 border-r border-[#2f2c3d] p-2',
+            'w-[96px] shrink-0 border-r @min-[400px]:w-[118px] border-[#2f2c3d] p-2',
             ring(['explorer', 'extensions', 'source'].includes(area)),
           )}
         >
@@ -68,9 +68,9 @@ export function EditorTour({ state = 0 }: LabProps) {
           )}
         </div>
         <div className="flex min-w-0 flex-1 flex-col">
-          <div className={cn('flex border-b border-[#2f2c3d]', ring(area === 'editor'))}>
-            <span className="border-r border-[#2f2c3d] bg-[#1f1d2b] px-2 text-white">index.html ●</span>
-            <span className="px-2 text-[#9b97ad]">styles.css</span>
+          <div className={cn('flex overflow-hidden border-b border-[#2f2c3d] whitespace-nowrap', ring(area === 'editor'))}>
+            <span className="shrink-0 border-r border-[#2f2c3d] bg-[#1f1d2b] px-2 text-white">index.html ●</span>
+            <span className="min-w-0 truncate px-2 text-[#9b97ad]">styles.css</span>
           </div>
           <div className={cn('min-h-[92px] p-2', ring(area === 'editor'))}>
             <p>

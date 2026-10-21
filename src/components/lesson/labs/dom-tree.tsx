@@ -113,7 +113,7 @@ export function DomTree({ state, value }: LabProps) {
       <div
         role="img"
         aria-label={say}
-        className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 tab:grid-cols-[1fr_170px]"
+        className="grid gap-3 rounded-xl border border-line-subtle bg-row p-4 @min-[520px]:grid-cols-[1fr_170px]"
       >
         <ol
           aria-hidden="true"
@@ -124,7 +124,11 @@ export function DomTree({ state, value }: LabProps) {
             const isListener = n.id === listener
             const label = n.id === 'p-text' && !bubbling && tour.changed ? '“Score: 1”' : n.label
             return (
-              <li key={n.id} className="flex items-center gap-1.5" style={{ paddingLeft: n.depth * 12 }}>
+              <li
+                key={n.id}
+                className="flex items-center gap-1.5 pl-[calc(var(--depth)*9px)] @min-[400px]:pl-[calc(var(--depth)*12px)]"
+                style={{ '--depth': n.depth } as React.CSSProperties}
+              >
                 {n.depth > 0 && <span className="text-ink-subtle">└</span>}
                 <span
                   className={cn(
@@ -140,14 +144,14 @@ export function DomTree({ state, value }: LabProps) {
                   <span className="text-[11px] text-ink-subtle">↑</span>
                 )}
                 {bubbling && n.id === 'button1' && (
-                  <span className="text-[11px] whitespace-nowrap text-fe-text">
+                  <span className="min-w-0 text-[11px] leading-[14px] text-fe-text @min-[400px]:whitespace-nowrap">
                     {isListener ? '← clicked; listener runs' : '← clicked'}
                   </span>
                 )}
                 {isListener && n.id !== 'button1' && (
                   <span
                     className={cn(
-                      'text-[11px] font-semibold whitespace-nowrap',
+                      'min-w-0 text-[11px] leading-[14px] font-semibold @min-[400px]:whitespace-nowrap',
                       hears ? 'text-fe-text' : 'text-ink-muted',
                     )}
                   >

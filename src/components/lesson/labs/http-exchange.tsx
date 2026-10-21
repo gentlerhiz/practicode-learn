@@ -66,7 +66,7 @@ export function HttpExchange({ value = '' }: LabProps) {
   const tone = x.code < 300 ? 'text-success' : x.code < 400 ? 'text-fe-text' : 'text-error'
 
   return (
-    <div className="grid gap-3 tab:grid-cols-3">
+    <div className="grid gap-3 @min-[560px]:grid-cols-3">
       <section aria-label="The request" className="rounded-xl border border-line bg-row p-3">
         <h3 className="mb-2 text-[12px] font-semibold text-ink-muted">The request</h3>
         <pre className="font-mono text-[13px] leading-6 whitespace-pre-wrap text-ink">
@@ -95,7 +95,7 @@ export function HttpExchange({ value = '' }: LabProps) {
         </p>
         <p className="p-3 text-[13px]">{x.shows}</p>
       </section>
-      <p aria-live="polite" className="text-[13px] text-ink-muted tab:col-span-3">
+      <p aria-live="polite" className="text-[13px] text-ink-muted @min-[560px]:col-span-3">
         {x.says}
       </p>
     </div>

@@ -88,7 +88,7 @@ export function DiagramStep({ step, api }: { step: DiagramStepData; api: LessonP
             role="group"
             aria-label="Diagram. Use the left and right arrow keys to move between steps."
             onKeyDown={onKeyDown}
-            className="min-w-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
+            className="@container min-w-0 rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
           >
             <Lab state={at} />
           </div>

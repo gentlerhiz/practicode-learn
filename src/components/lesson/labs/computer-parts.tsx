@@ -56,10 +56,10 @@ export function ComputerParts({ state = 0 }: LabProps) {
       <div
         role="img"
         aria-label={`Taking a photo. Now: ${label.name}. ${label.example}.`}
-        className="grid grid-cols-1 gap-2 min-[460px]:grid-cols-[1fr_auto_1.2fr_auto_1fr] min-[460px]:items-center"
+        className="grid grid-cols-1 gap-2 @min-[520px]:grid-cols-[1fr_auto_1.2fr_auto_1fr] @min-[520px]:items-center"
       >
         <Part id="input" active={active} />
-        <span aria-hidden="true" className="hidden text-center text-ink-subtle min-[460px]:block">
+        <span aria-hidden="true" className="hidden text-center text-ink-subtle @min-[520px]:block">
           →
         </span>
         <div className="flex flex-col gap-2">
@@ -69,7 +69,7 @@ export function ComputerParts({ state = 0 }: LabProps) {
             <Part id="storage" active={active} />
           </div>
         </div>
-        <span aria-hidden="true" className="hidden text-center text-ink-subtle min-[460px]:block">
+        <span aria-hidden="true" className="hidden text-center text-ink-subtle @min-[520px]:block">
           →
         </span>
         <Part id="output" active={active} />

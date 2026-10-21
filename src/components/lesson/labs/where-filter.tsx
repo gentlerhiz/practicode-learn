@@ -27,7 +27,7 @@ export function WhereFilter({ value = 'price < 10' }: LabProps) {
           <thead>
             <tr>
               {['title', 'genre', 'price', 'stock', ''].map((c) => (
-                <th key={c || 'kept'} className="border-b border-line px-3 py-2 font-mono font-semibold text-ink-soft">
+                <th key={c || 'kept'} className="border-b border-line px-2 py-2 font-mono @min-[400px]:px-3 font-semibold text-ink-soft">
                   {c || <span className="sr-only">Kept</span>}
                 </th>
               ))}
@@ -38,11 +38,11 @@ export function WhereFilter({ value = 'price < 10' }: LabProps) {
               const keep = f.test(b)
               return (
                 <tr key={b.id} className={cn(keep ? 'bg-[rgba(47,230,176,0.14)] text-ink' : 'text-ink-subtle line-through')}>
-                  <td className="border-b border-line px-3 py-1.5">{b.title}</td>
-                  <td className="border-b border-line px-3 py-1.5">{b.genre}</td>
-                  <td className="border-b border-line px-3 py-1.5">{money(b.price)}</td>
-                  <td className="border-b border-line px-3 py-1.5">{b.stock}</td>
-                  <td className="border-b border-line px-3 py-1.5 text-xs no-underline">{keep ? 'Kept' : 'Left out'}</td>
+                  <td className="border-b border-line px-2 py-1.5 @min-[400px]:px-3">{b.title}</td>
+                  <td className="border-b border-line px-2 py-1.5 @min-[400px]:px-3">{b.genre}</td>
+                  <td className="border-b border-line px-2 py-1.5 @min-[400px]:px-3">{money(b.price)}</td>
+                  <td className="border-b border-line px-2 py-1.5 @min-[400px]:px-3">{b.stock}</td>
+                  <td className="border-b border-line px-2 py-1.5 @min-[400px]:px-3 text-xs no-underline">{keep ? 'Kept' : 'Left out'}</td>
                 </tr>
               )
             })}

@@ -92,7 +92,7 @@ export function Lighthouse({ value }: LabProps) {
   return (
     <figure className="m-0 flex flex-col gap-3">
       <div className="rounded-xl border border-line-subtle bg-row p-3">
-        <ul aria-label="Scores" className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <ul aria-label="Scores" className="grid grid-cols-2 gap-3 @min-[460px]:grid-cols-4">
           {r.scores.map(([name, n]) => {
             const b = band(n)
             return (

@@ -115,7 +115,7 @@ export function ScreenReader({ value = '' }: LabProps) {
     <div className="flex flex-col gap-3">
       <pre
         tabIndex={0}
-        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
+        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 whitespace-pre-wrap text-ink [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
       >
         {r.code}
       </pre>

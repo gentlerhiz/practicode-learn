@@ -1,7 +1,16 @@
 'use client'
 import { useId, useRef, type KeyboardEvent } from 'react'
 
-const SYMBOLS = ['{', '}', ':', ';', '<', '>', '/', '=', '"', '(', ')', '-', '#', '.']
+// The symbols each language needs most that are awkward to reach on a phone keyboard.
+const SYMBOLS: Record<string, string[]> = {
+  py: ['(', ')', ':', '"', "'", '=', '+', '-', '*', '/', '[', ']', '#', '_', '.', ','],
+  sql: ['*', ',', "'", '(', ')', ';', '=', '<', '>', '.', '_', '%'],
+  js: ['{', '}', '(', ')', '[', ']', ';', ':', "'", '"', '=', '>', '/', '.', ','],
+  css: ['{', '}', ':', ';', '#', '.', '-', '(', ')', '%'],
+}
+const DEFAULT_SYMBOLS = ['{', '}', ':', ';', '<', '>', '/', '=', '"', '(', ')', '-', '#', '.']
+const ALIASES: Record<string, string> = { python: 'py', javascript: 'js', ts: 'js', typescript: 'js', mjs: 'js' }
+const symbolsFor = (lang = '') => SYMBOLS[ALIASES[lang] ?? lang] ?? DEFAULT_SYMBOLS
 
 /**
  * A plain textarea editor: 16px text on phones (so iOS doesn't zoom), a bar of symbols that are awkward
@@ -13,12 +22,15 @@ export function Editor({
   value,
   onChange,
   indent = '  ',
+  lang,
 }: {
   label: string
   value: string
   onChange: (code: string) => void
   /** What Tab inserts: two spaces, or four for Python, as its style guide (PEP 8) asks. */
   indent?: string
+  /** The file's language, which picks the symbol keys. */
+  lang?: string
 }) {
   const area = useRef<HTMLTextAreaElement>(null)
   const leaving = useRef(false)
@@ -70,7 +82,7 @@ export function Editor({
         aria-label="Insert a symbol"
         className="flex flex-wrap gap-1 border-t border-line-subtle p-2"
       >
-        {SYMBOLS.map((s) => (
+        {symbolsFor(lang).map((s) => (
           <button
             key={s}
             type="button"

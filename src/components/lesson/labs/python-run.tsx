@@ -19,7 +19,7 @@ export function PythonRun({ state = 0 }: LabProps) {
             ? 'A three-line program, not run yet.'
             : `Python has run line ${at}. The output so far: ${out.join(', ')}.`
         }
-        className="flex flex-col gap-2 min-[560px]:flex-row"
+        className="flex flex-col gap-2 @min-[480px]:flex-row"
       >
         <div className="flex flex-1 flex-col gap-1 rounded-2xl border border-line bg-row p-3">
           <span className="mb-1 text-xs font-semibold text-ink-subtle">main.py</span>

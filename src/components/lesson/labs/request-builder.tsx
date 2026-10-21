@@ -69,7 +69,7 @@ export function RequestBuilder({ value = 'GET /menu' }: LabProps) {
   const x = EXCHANGES[value] ?? EXCHANGES['GET /menu']!
   return (
     <figure className="m-0 flex flex-col gap-3">
-      <div className="flex flex-col gap-2 min-[620px]:flex-row">
+      <div className="flex flex-col gap-2 @min-[540px]:flex-row">
         <Block title="Request" m={x.request} />
         <Block title="Response" m={x.response} />
       </div>

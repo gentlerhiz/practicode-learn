@@ -24,7 +24,7 @@ export function CiaTriad({ state = 0 }: LabProps) {
     return (
       <div
         className={cn(
-          'absolute flex w-[44%] flex-col gap-0.5 rounded-2xl border-[1.5px] p-2.5 text-center motion-safe:transition-colors motion-safe:duration-250 ph:p-3',
+          'absolute flex w-[44%] flex-col gap-0.5 rounded-2xl border-[1.5px] p-2.5 text-center motion-safe:transition-colors motion-safe:duration-250 @min-[440px]:p-3',
           on ? 'border-cy bg-[rgba(34,190,230,0.16)]' : 'border-line bg-row',
           className,
         )}

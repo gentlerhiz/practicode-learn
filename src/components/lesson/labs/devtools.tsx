@@ -46,7 +46,7 @@ function Page({ narrow, highlight }: { narrow?: boolean; highlight?: boolean }) 
 
 function Elements() {
   return (
-    <div className="grid gap-2 font-mono text-[11px] leading-5 tab:grid-cols-2">
+    <div className="grid gap-2 font-mono text-[11px] leading-5 @min-[480px]:grid-cols-2">
       <div className="text-[#d6d3e3]">
         <p>{'<body>'}</p>
         <p className="rounded bg-fe/40 pl-3 text-white">{'<h1>Mama Nkechi’s Kitchen</h1>'}</p>
@@ -54,7 +54,7 @@ function Elements() {
         <p className="pl-3">{'<p>Jollof rice · ₦2,500</p>'}</p>
         <p>{'</body>'}</p>
       </div>
-      <div className="border-t border-[#3a3650] pt-2 text-[#d6d3e3] tab:border-t-0 tab:border-l tab:pt-0 tab:pl-2">
+      <div className="border-t border-[#3a3650] pt-2 text-[#d6d3e3] @min-[480px]:border-t-0 @min-[480px]:border-l @min-[480px]:pt-0 @min-[480px]:pl-2">
         <p className="text-[#9b97ad]">Styles</p>
         <p>
           h1 {'{'} <span className="text-[#7ee2b8]">color</span>: #9a3412; {'}'}{' '}

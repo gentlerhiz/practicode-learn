@@ -89,7 +89,7 @@ export function LessonBar({
 
         <div className="min-w-0 flex-[1_1_200px]">
           <p className="truncate text-[15px] font-semibold text-ink">{chrome.title}</p>
-          <p className="text-[13px] text-ink-subtle [&>b]:font-normal [&>b]:text-fe-text">
+          <p title={chrome.meta} className="truncate text-[13px] text-ink-subtle [&>b]:font-normal [&>b]:text-fe-text">
             <b>{chrome.meta.split(' · ')[0]}</b>
             {chrome.meta.includes(' · ') && ` · ${chrome.meta.split(' · ').slice(1).join(' · ')}`}
           </p>

@@ -35,7 +35,7 @@ export const landing = {
     secondary: { label: 'Explore Courses', href: '/courses' },
   },
 
-  // The scrolling strip under the hero, coloured by track.
+  // The scrolling strip under the hero: each tool's icon, coloured by course (icons in tools-strip.tsx).
   tools: [
     { name: 'HTML', tone: 'fe' },
     { name: 'CSS', tone: 'fe' },

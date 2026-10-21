@@ -36,7 +36,7 @@ export function QueryOrder({ state = 0 }: LabProps) {
             <span className={cn('font-mono text-[13px] font-semibold', i <= at ? 'text-ink' : 'text-ink-muted')}>
               {s.clause}
             </span>
-            <span className="ml-auto hidden text-right text-xs text-ink-soft min-[560px]:block">{i === at ? s.does : ''}</span>
+            <span className="ml-auto hidden text-right text-xs text-ink-soft @min-[480px]:block">{i === at ? s.does : ''}</span>
           </div>
         ))}
       </div>

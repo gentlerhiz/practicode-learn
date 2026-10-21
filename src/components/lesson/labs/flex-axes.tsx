@@ -56,7 +56,7 @@ export function FlexAxes({ state = 0 }: LabProps) {
         role="img"
         aria-label={`${column ? 'A flex column' : 'A flex row'} with align-items: ${align}`}
         className={cn(
-          'relative flex justify-between gap-2.5 rounded-xl border border-line-subtle bg-row pt-7 pr-4 pb-4 pl-9',
+          'relative flex justify-between gap-1.5 rounded-xl border border-line-subtle bg-row pt-7 pr-3 pb-4 pl-8 @min-[400px]:gap-2.5 @min-[400px]:pr-4 @min-[400px]:pl-9',
           column ? 'h-[250px] flex-col' : 'h-[200px]',
         )}
         style={{ alignItems: align }}
@@ -67,8 +67,8 @@ export function FlexAxes({ state = 0 }: LabProps) {
           <span
             key={label}
             className={cn(
-              'flex items-center justify-center rounded-lg bg-fe px-3 py-1.5 text-[13px] font-semibold text-white',
-              i === 0 && 'font-display text-[22px]',
+              'flex items-center justify-center rounded-lg bg-fe px-2 py-1.5 text-[12px] font-semibold whitespace-nowrap text-white @min-[400px]:px-3 @min-[400px]:text-[13px]',
+              i === 0 && 'font-display text-[18px] @min-[400px]:text-[22px]',
             )}
           >
             {label}

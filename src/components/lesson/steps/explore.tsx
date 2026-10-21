@@ -61,7 +61,7 @@ export function ExploreStep({ step, index, api }: { step: ExploreStepData; index
       aside={
         Lab ? (
           <VisualCard label="Interactive diagram" className="p-4 ph:p-6">
-            <div data-lab className="min-w-0">
+            <div data-lab className="@container min-w-0">
               <Lab value={value} />
             </div>
           </VisualCard>

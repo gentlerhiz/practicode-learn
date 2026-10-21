@@ -1,13 +1,49 @@
+import {
+  Braces,
+  Cloud,
+  CodeXml,
+  Database,
+  GitBranch,
+  KeyRound,
+  Palette,
+  PenTool,
+  Route,
+  Server,
+  ShieldCheck,
+  SquareTerminal,
+  Table2,
+  type LucideIcon,
+} from 'lucide-react'
+import { CourseIcon } from '@/components/learn/track-icon'
 import { landing } from '@/content/landing'
 
-const dot = {
-  fe: 'bg-[#4d6bff] shadow-[0_0_10px_#4d6bff]',
-  da: 'bg-[#2fe6b0] shadow-[0_0_10px_#2fe6b0]',
-  ux: 'bg-[#f0407f] shadow-[0_0_10px_#f0407f]',
-  ai: 'bg-[#7b5cff] shadow-[0_0_10px_#7b5cff]',
-  it: 'bg-[#ffc15c] shadow-[0_0_10px_#ffc15c]',
-  cy: 'bg-[#5fd8f2] shadow-[0_0_10px_#5fd8f2]',
-  git: 'bg-[#ff8a3d] shadow-[0_0_10px_#ff8a3d]',
+// Each tool's icon, in its course's colour. Python uses its course's own snake.
+const icons: Record<string, LucideIcon | 'py'> = {
+  HTML: CodeXml,
+  CSS: Palette,
+  JavaScript: Braces,
+  'The command line': SquareTerminal,
+  'Cloud storage': Cloud,
+  Passkeys: KeyRound,
+  'Two-factor sign-in': ShieldCheck,
+  'Node.js': Server,
+  Express: Route,
+  Python: 'py',
+  SQL: Table2,
+  PostgreSQL: Database,
+  Figma: PenTool,
+  Git: GitBranch,
+}
+
+// The course colours that keep their contrast in both themes.
+const colour = {
+  fe: 'text-fe-text',
+  da: 'text-da-text',
+  ux: 'text-ux-text',
+  ai: 'text-ai-text',
+  it: 'text-it-text',
+  cy: 'text-cy-text',
+  git: 'text-[#ff8a3d]',
 } as const
 
 /**
@@ -16,15 +52,22 @@ const dot = {
  */
 export function ToolsStrip() {
   const items = (hidden: boolean) =>
-    landing.tools.map((tool) => (
-      <li key={`${tool.name}-${hidden}`} aria-hidden={hidden || undefined} className="flex items-center gap-3 whitespace-nowrap">
-        <span aria-hidden="true" className={`block size-2.5 rounded-full ${dot[tool.tone]}`} />
-        {tool.name}
-      </li>
-    ))
+    landing.tools.map((tool) => {
+      const Icon = icons[tool.name] ?? CodeXml
+      return (
+        <li key={`${tool.name}-${hidden}`} aria-hidden={hidden || undefined} className="flex items-center gap-2.5 whitespace-nowrap">
+          {Icon === 'py' ? (
+            <CourseIcon code="py" tone="fe" size={20} className={colour[tool.tone]} />
+          ) : (
+            <Icon aria-hidden="true" size={20} strokeWidth={1.85} className={colour[tool.tone]} />
+          )}
+          {tool.name}
+        </li>
+      )
+    })
   return (
-    <section aria-label="Tools you’ll use" className="overflow-hidden border-y border-line-subtle bg-wash py-6">
-      <ul className="marquee flex w-max gap-12 font-display text-xl font-bold tracking-[-0.01em] text-ink-soft">
+    <section aria-label="Tools you’ll use" className="overflow-hidden border-y border-line-subtle bg-wash py-4">
+      <ul className="marquee flex w-max gap-10 font-display text-lg font-bold tracking-[-0.01em] text-ink-soft">
         {items(false)}
         {items(true)}
       </ul>

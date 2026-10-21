@@ -59,7 +59,7 @@ export function ComputingTimeline({ state = 0 }: LabProps) {
               />
               <span
                 className={cn(
-                  'hidden text-[10px] ph:block',
+                  'hidden text-[10px] @min-[480px]:block',
                   i === at ? 'font-bold text-ink' : 'text-ink-subtle',
                 )}
               >

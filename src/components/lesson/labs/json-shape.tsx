@@ -45,8 +45,8 @@ export function JsonShape({ value = 'An object' }: LabProps) {
   const s = SHAPES[value] ?? SHAPES['An object']!
   return (
     <figure className="m-0 flex flex-col gap-3">
-      <div className="flex flex-col gap-2 min-[620px]:flex-row">
-        <pre className="m-0 min-w-0 flex-1 overflow-x-auto rounded-2xl border border-line bg-row p-3 font-mono text-[13px] leading-5 text-ink">
+      <div className="flex flex-col gap-2 @min-[540px]:flex-row">
+        <pre className="m-0 min-w-0 flex-1 overflow-x-auto rounded-2xl border border-line bg-row p-3 font-mono text-[13px] leading-5 whitespace-pre-wrap text-ink [overflow-wrap:anywhere]">
           {s.json}
         </pre>
         <ul className="m-0 flex flex-1 list-none flex-col gap-1.5 p-0">

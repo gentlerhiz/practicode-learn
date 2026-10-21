@@ -73,11 +73,11 @@ export function LinkPreview({ value = '' }: LabProps) {
     <div className="flex flex-col gap-3">
       <pre
         tabIndex={0}
-        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
+        className="overflow-x-auto rounded-xl border border-line bg-row p-3 font-mono text-[12px] leading-5 whitespace-pre-wrap text-ink [overflow-wrap:anywhere] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fe"
       >
         {head.code}
       </pre>
-      <div className="grid gap-3 tab:grid-cols-2">
+      <div className="grid gap-3 @min-[600px]:grid-cols-2">
         <section aria-label="Shared on WhatsApp" className="rounded-xl bg-[#e6ddd4] p-3">
           <h3 className="mb-2 text-[11px] font-semibold text-[#3b4a54]">Shared on WhatsApp</h3>
           <div className="ml-auto max-w-[260px] rounded-lg bg-[#d9fdd3] p-1.5 text-[#111b21] shadow-sm">

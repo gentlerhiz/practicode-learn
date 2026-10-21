@@ -291,12 +291,12 @@ export function Terminal({ value = 'pwd' }: LabProps) {
       >
         {s.lines.map((l, i) => (
           <div key={i}>
-            <p className="whitespace-pre">
+            <p className="whitespace-pre-wrap [overflow-wrap:anywhere]">
               <span className="text-[#7ee2b8]">ada@laptop</span>:
               <span className="text-[#9fb0ff]">{l.cwd}</span>$ {l.cmd}
             </p>
             {l.out && (
-              <p className={cn('whitespace-pre', (l.bad || /No such/.test(l.out)) && 'text-[#ff8f8f]')}>
+              <p className={cn('whitespace-pre-wrap [overflow-wrap:anywhere]', (l.bad || /No such/.test(l.out)) && 'text-[#ff8f8f]')}>
                 {l.out}
               </p>
             )}

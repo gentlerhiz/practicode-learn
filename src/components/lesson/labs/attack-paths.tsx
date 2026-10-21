@@ -21,7 +21,7 @@ export function AttackPaths({ state = 0 }: LabProps) {
       <div
         role="img"
         aria-label={`${p.name}: ${p.line}.`}
-        className="grid grid-cols-2 gap-2 min-[480px]:grid-cols-3"
+        className="grid grid-cols-2 gap-2 @min-[400px]:grid-cols-3"
       >
         {PATHS.map((x, i) => (
           <div
