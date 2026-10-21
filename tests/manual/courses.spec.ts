@@ -64,19 +64,20 @@ test('the Courses page lists the catalogue, and its filters work', async ({ page
   expect(await axe(page)).toEqual([])
   await page.screenshot({ path: 'test-results/courses/courses-1440.png', fullPage: true })
 
+  // Only open courses show, and only subjects that have one.
+  await expect(page.getByText('Coming soon')).toHaveCount(0)
+  await expect(cards.filter({ hasText: 'Data Analysis' })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Design', exact: true })).toHaveCount(0)
   // A subject: only security courses.
   await page.getByRole('button', { name: 'Security', exact: true }).click()
-  await expect(cards.filter({ hasText: 'Introduction to Cybersecurity' })).toBeVisible()
-  await expect(cards.filter({ hasText: 'Front-End Web Development' })).toHaveCount(0)
-  // Open now, on top: the course coming soon goes too.
-  await page.getByRole('checkbox', { name: 'Open now' }).check()
   await expect(cards).toHaveCount(1)
+  await expect(cards.filter({ hasText: 'Introduction to Cybersecurity' })).toBeVisible()
   // A search with no match, then clearing it all.
   await page.getByRole('button', { name: 'All subjects' }).click()
   await page.getByLabel('Search courses').fill('underwater basket weaving')
   await expect(page.getByText('No course matches that yet.')).toBeVisible()
   await page.getByRole('button', { name: 'Clear the filters' }).click()
-  await expect(cards.filter({ hasText: 'Data Analysis' })).toBeVisible()
+  await expect(cards.filter({ hasText: 'Python Programming' })).toBeVisible()
 
   // A live card opens its course page; the paths link the open courses.
   await page.getByRole('link', { name: /Introduction to Cybersecurity/ }).first().click()

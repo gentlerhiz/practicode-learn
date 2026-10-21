@@ -9,6 +9,7 @@ export type { TrackTone } from './catalogue'
 
 export type TrackCard = {
   slug: string
+  code: string
   tone: TrackTone
   title: string
   level: string
@@ -21,12 +22,12 @@ export const landing = {
   banner: { text: 'Try a real lesson right now. No sign-up, no card.', link: 'Start one →' },
 
   hero: {
-    // The canvas headline: one pill per track, in its colour.
+    // The canvas headline: one pill per subject we teach today, in its colour.
     pills: [
       { word: 'code', tone: 'fe' },
       { word: 'data', tone: 'da' },
-      { word: 'design', tone: 'ux' },
-      { word: 'AI', tone: 'ai' },
+      { word: 'IT', tone: 'it' },
+      { word: 'security', tone: 'cy' },
     ] as { word: string; tone: TrackTone }[],
     intro:
       'Learn the skills employers are hiring for, one hands-on lesson at a time. Every course is built around industry standards employers already use, and you build real projects from your very first week.',
@@ -43,27 +44,28 @@ export const landing = {
     { name: 'Cloud storage', tone: 'it' },
     { name: 'Passkeys', tone: 'cy' },
     { name: 'Two-factor sign-in', tone: 'cy' },
+    { name: 'Node.js', tone: 'fe' },
+    { name: 'Express', tone: 'fe' },
+    { name: 'Python', tone: 'fe' },
     { name: 'SQL', tone: 'da' },
+    { name: 'PostgreSQL', tone: 'da' },
     { name: 'Figma', tone: 'ux' },
-    { name: 'FigJam', tone: 'ux' },
-    { name: 'Python', tone: 'ai' },
-    { name: 'pandas', tone: 'ai' },
-    { name: 'scikit-learn', tone: 'ai' },
     { name: 'Git', tone: 'git' },
   ] as { name: string; tone: TrackTone | 'git' }[],
 
   tracks: {
     eyebrow: 'Courses',
     title: 'Pick a course. Switch anytime.',
-    intro: 'Module 1 of every course is free, so trying one costs you nothing. More courses are on the way.',
+    intro: 'Module 1 of every course is free, so trying one costs you nothing.',
     browse: 'Browse All Courses',
     standardsLabel: 'Our syllabi line up with standards employers already trust',
-    standards: ['MDN Curriculum', 'CompTIA Tech+', 'NIST CSF 2.0', 'SFIA 9', 'ISO 9241-210', 'ACM CS2023'],
-    // The featured courses, in catalogue order.
+    standards: ['MDN Curriculum', 'CompTIA Tech+', 'NIST CSF 2.0', 'OWASP', 'Python Institute', 'ISO/IEC 9075', 'SFIA 9'],
+    // The featured courses that are open, in catalogue order. Courses we don't teach yet never show.
     cards: catalogue
-      .filter((c) => c.featured)
+      .filter((c) => c.featured && c.status === 'live')
       .map((c) => ({
         slug: c.slug,
+        code: c.code,
         tone: toneOf(c),
         title: c.title,
         level: levelLine(c),

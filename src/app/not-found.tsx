@@ -13,8 +13,8 @@ import { cn } from '@/lib/cn'
 // Next.js adds <meta name="robots" content="noindex"> to 404 responses itself.
 export const metadata: Metadata = { title: 'Page not found' }
 
-// Open courses link to their pages; courses coming soon link to the catalogue.
-const TRACKS = catalogue.map((c) => ({
+// The open courses, each linking to its page.
+const TRACKS = catalogue.filter((c) => c.status === 'live').map((c) => ({
   id: c.code,
   tone: toneOf(c),
   title: c.title,

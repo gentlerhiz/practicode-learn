@@ -148,6 +148,7 @@ export const catalogue: CatalogueCourse[] = [
     alignment: 'Aligned to the SQL standard (ISO/IEC 9075)',
     prerequisites: [],
     status: 'live',
+    featured: true,
     firstModule: 'Databases and your first query',
   },
   {
@@ -162,7 +163,6 @@ export const catalogue: CatalogueCourse[] = [
     alignment: 'Aligned to CompTIA Data+',
     prerequisites: ['python-programming', 'sql-and-databases'],
     status: 'coming_soon',
-    featured: true,
   },
   {
     slug: 'ui-ux-product-design',
@@ -224,18 +224,18 @@ export const catalogue: CatalogueCourse[] = [
 export const PATHS: { title: string; summary: string; steps: string[] }[] = [
   {
     title: 'Build for the web',
-    summary: 'From your first computer skills to sites and APIs you can put your name on.',
-    steps: ['it-fundamentals', 'front-end-web-development', 'back-end-web-development', 'javascript-in-depth'],
+    summary: 'From your first computer skills to websites and the servers behind them.',
+    steps: ['it-fundamentals', 'front-end-web-development', 'back-end-web-development'],
   },
   {
     title: 'Work with data',
-    summary: 'Programming first, then databases, then analysis.',
-    steps: ['it-fundamentals', 'python-programming', 'sql-and-databases', 'data-analysis'],
+    summary: 'Learn to program, then ask databases real questions.',
+    steps: ['it-fundamentals', 'python-programming', 'sql-and-databases'],
   },
   {
-    title: 'Protect systems',
-    summary: 'Stay safe yourself, then learn to defend others.',
-    steps: ['it-fundamentals', 'introduction-to-cybersecurity', 'python-programming', 'cybersecurity-and-linux'],
+    title: 'Stay safe online',
+    summary: 'Understand your devices, then protect your accounts, money and data.',
+    steps: ['it-fundamentals', 'introduction-to-cybersecurity'],
   },
 ]
 

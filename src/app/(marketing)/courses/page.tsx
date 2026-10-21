@@ -9,7 +9,7 @@ import { Container } from '@/components/ui/container'
 import { Heading } from '@/components/ui/heading'
 import { ArrowRight, Icon } from '@/components/ui/icon'
 import { Section } from '@/components/ui/section'
-import { catalogue, findCourse, PATHS, subjectOf, toneOf } from '@/content/catalogue'
+import { findCourse, liveCourses, PATHS, subjectOf, toneOf } from '@/content/catalogue'
 import { cn } from '@/lib/cn'
 import { breadcrumbLd } from '@/lib/seo/jsonld'
 import { metaFor } from '@/lib/seo/pages'
@@ -17,7 +17,8 @@ import { toneClass } from '@/lib/tone'
 
 export const metadata: Metadata = metaFor('/courses' as Route)
 
-const courses: FinderCourse[] = catalogue.map((c) => ({
+// Only the courses learners can start today: a course we don't teach yet never shows.
+const courses: FinderCourse[] = liveCourses().map((c) => ({
   slug: c.slug,
   code: c.code,
   title: c.title,
@@ -33,7 +34,11 @@ const courses: FinderCourse[] = catalogue.map((c) => ({
   prerequisites: c.prerequisites.map((p) => findCourse(p)!.title),
 }))
 
-/** Every course in the catalogue, with a search and filters, then suggested orders to take them in. */
+/** Every open course, with a search and filters, then suggested orders to take them in. */
+const paths = PATHS.map((p) => ({ ...p, steps: p.steps.filter((s) => findCourse(s)?.status === 'live') })).filter(
+  (p) => p.steps.length > 1,
+)
+
 export default function CoursesPage() {
   return (
     <>
@@ -54,7 +59,7 @@ export default function CoursesPage() {
             </p>
           </div>
           <ul className="grid grid-cols-1 gap-4 ph:gap-5 tab:grid-cols-3">
-            {PATHS.map((path) => {
+            {paths.map((path) => {
               const steps = path.steps.map((slug) => findCourse(slug)!)
               const first = steps[0]!
               return (

@@ -63,16 +63,9 @@ function weekNote(count: number) {
 
 const shortOf = (slug: string) => findCourse(slug)?.short ?? slug
 
-/**
- * The other courses worth showing beside this one: the other open courses, then the featured ones
- * coming soon, up to `count` in all.
- */
+/** The other open courses, up to `count`. Courses we don't teach yet never show. */
 function otherCourses(slug: string, count: number) {
-  const others = catalogue.filter((c) => c.slug !== slug)
-  return [
-    ...others.filter((c) => c.status === 'live'),
-    ...others.filter((c) => c.status !== 'live' && c.featured),
-  ].slice(0, count)
+  return catalogue.filter((c) => c.slug !== slug && c.status === 'live').slice(0, count)
 }
 
 /** PrismDashboard, from the learner's real progress. Anything without a backend yet says so. */

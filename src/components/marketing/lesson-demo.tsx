@@ -57,7 +57,7 @@ export function LessonDemo() {
       <div className="surface relative flex flex-col gap-4 rounded-[28px] border border-line p-5 ph:p-8">
         <div className="flex items-center justify-between gap-3">
           <p className="text-[13px] text-ink-muted">
-            <span className="text-da-text">Data Analysis</span> · Module 5 · Statistics you’ll actually use
+            <span className="text-da-text">Sample question</span> · Statistics you’ll actually use
           </p>
           <p className="shrink-0 rounded-full bg-success-fill px-3 py-1 text-xs font-semibold text-on-success">Predict</p>
         </div>

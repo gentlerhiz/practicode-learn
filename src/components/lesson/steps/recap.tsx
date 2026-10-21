@@ -19,7 +19,7 @@ export function RecapStep({
       top={
         <>
           <StepHeading stage={step.stage} />
-          <h3 className="font-display text-xl font-bold text-ink">What you can do now</h3>
+          <h3 className="font-display text-xl font-bold text-ink">What you’ve learned in this lesson</h3>
       <ol className="flex flex-col gap-2.5">
         {step.points.map((point, i) => (
           <li

@@ -7,7 +7,7 @@ export const about = {
     eyebrow: 'About PractiCode Learn',
     title: 'Job-ready skills, learned by doing.',
     intro:
-      'PractiCode Learn is an interactive learning platform from PractiCode Academy in Nigeria. Learners will build real skills by doing the work, starting with Front-End Web Development, with data analysis, product design and AI to follow.',
+      'PractiCode Learn is an interactive learning platform from PractiCode Academy in Nigeria. Learners will build real skills by doing the work, with courses in IT fundamentals, front-end and back-end web development, Python, SQL and cybersecurity.',
     mission: {
       label: 'Our mission',
       text: 'Make job-ready digital skills practical and affordable for anyone willing to put in the practice.',
@@ -36,7 +36,7 @@ export const about = {
       },
       {
         title: 'Standards employers use',
-        body: 'Each syllabus maps to a recognised framework: the MDN Curriculum, SFIA 9, Microsoft PL-300, ISO 9241-210 and ACM CS2023.',
+        body: 'Each syllabus maps to a recognised framework: the MDN Curriculum, CompTIA Tech+, the NIST Cybersecurity Framework, OWASP, the Python Institute’s exams, the SQL standard and SFIA 9.',
       },
       {
         title: 'Real projects',

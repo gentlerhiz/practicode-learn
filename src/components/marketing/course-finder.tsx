@@ -31,12 +31,19 @@ const chipOn = 'border-transparent bg-primary text-on-primary'
 function CourseCard({ course }: { course: FinderCourse }) {
   const look = toneClass[course.tone]
   const live = course.status === 'live'
-  const meta = [course.level, course.modules && `${course.modules} modules`, course.hours && `${course.hours} hours`]
+  const meta = [
+    course.level,
+    course.modules && `${course.modules} modules`,
+    course.hours && `${course.hours} hours`,
+  ]
     .filter(Boolean)
     .join(' · ')
   const body = (
     <>
-      <div className="relative h-[132px] shrink-0 overflow-hidden" style={{ background: `var(--pc-card-${course.tone})` }}>
+      <div
+        className="relative h-[132px] shrink-0 overflow-hidden"
+        style={{ background: `var(--pc-card-${course.tone})` }}
+      >
         <Illustration
           tone={course.tone}
           code={course.code}
@@ -47,7 +54,9 @@ function CourseCard({ course }: { course: FinderCourse }) {
             <CourseIcon code={course.code} tone={course.tone} size={20} />
           </span>
           {live ? (
-            <span className="rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#15122a]">Module 1 free</span>
+            <span className="rounded-full bg-white px-2.5 py-1 text-xs font-bold text-[#15122a]">
+              Module 1 free
+            </span>
           ) : (
             <span className="rounded-full border border-white/40 bg-black/30 px-2.5 py-1 text-xs font-semibold text-white">
               Coming soon
@@ -57,7 +66,9 @@ function CourseCard({ course }: { course: FinderCourse }) {
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-5">
         <p className={cn('text-xs font-semibold', look.text)}>{course.subjectLabel}</p>
-        <h3 className="font-display text-lg leading-6 font-bold tracking-[-0.01em] text-ink">{course.title}</h3>
+        <h3 className="font-display text-lg leading-6 font-bold tracking-[-0.01em] text-ink">
+          {course.title}
+        </h3>
         <p className="text-[13px] text-ink-soft">{meta}</p>
         <p className="text-[13px] text-ink-subtle">{course.alignment}</p>
         {course.prerequisites.length > 0 && (
@@ -74,7 +85,10 @@ function CourseCard({ course }: { course: FinderCourse }) {
   )
   const frame = 'flex h-full flex-col overflow-hidden rounded-[22px] border border-line surface'
   return live ? (
-    <Link href={`/courses/${course.slug}` as Route} className={cn(frame, 'press transition-colors hover:border-line-strong')}>
+    <Link
+      href={`/courses/${course.slug}` as Route}
+      className={cn(frame, 'press transition-colors hover:border-line-strong')}
+    >
       {body}
     </Link>
   ) : (
@@ -108,6 +122,10 @@ export function CourseFinder({
     (!openOnly || c.status === 'live') &&
     words.every((w) => `${c.title} ${c.summary} ${c.subjectLabel}`.toLowerCase().includes(w))
   const shown = courses.filter(matches)
+  // Only subjects and levels that some course has, and no level or Open now control that would do nothing.
+  const subjects = SUBJECTS.filter((s) => courses.some((c) => c.subject === s.id))
+  const levels = LEVELS.filter((l) => courses.some((c) => c.level === l))
+  const someSoon = courses.some((c) => c.status !== 'live')
   const filtered = Boolean(query || subject || level || openOnly)
   const clear = () => {
     setQuery('')
@@ -149,7 +167,7 @@ export function CourseFinder({
           <div
             role="group"
             aria-label="Subject"
-            className="-mx-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] ph:mx-0 ph:flex-wrap ph:overflow-visible ph:px-0"
+            className="-mx-4 flex [scrollbar-width:none] gap-2 overflow-x-auto px-4 ph:mx-0 ph:flex-wrap ph:overflow-visible ph:px-0"
           >
             <button
               type="button"
@@ -159,7 +177,7 @@ export function CourseFinder({
             >
               All subjects
             </button>
-            {SUBJECTS.map((s) => (
+            {subjects.map((s) => (
               <button
                 key={s.id}
                 type="button"
@@ -173,40 +191,44 @@ export function CourseFinder({
             ))}
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <div className="relative">
-              <select
-                aria-label="Level"
-                value={level ?? ''}
-                onChange={(e) => setLevel((e.target.value || null) as Level | null)}
-                className={cn(chip, chipOff, 'appearance-none bg-control pr-9')}
-              >
-                <option value="">Any level</option>
-                {LEVELS.map((l) => (
-                  <option key={l} value={l}>
-                    {l}
-                  </option>
-                ))}
-              </select>
-              <Glyph
-                name="chevronDown"
-                size={14}
-                className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-ink-subtle"
-              />
-            </div>
-            <label className={cn(chip, openOnly ? chipOn : chipOff)}>
-              <input
-                type="checkbox"
-                checked={openOnly}
-                onChange={(e) => setOpenOnly(e.target.checked)}
-                className="size-4 accent-[var(--pc-primary)]"
-              />
-              Open now
-            </label>
+            {levels.length > 1 && (
+              <div className="relative">
+                <select
+                  aria-label="Level"
+                  value={level ?? ''}
+                  onChange={(e) => setLevel((e.target.value || null) as Level | null)}
+                  className={cn(chip, chipOff, 'appearance-none bg-control pr-9')}
+                >
+                  <option value="">Any level</option>
+                  {levels.map((l) => (
+                    <option key={l} value={l}>
+                      {l}
+                    </option>
+                  ))}
+                </select>
+                <Glyph
+                  name="chevronDown"
+                  size={14}
+                  className="pointer-events-none absolute top-1/2 right-3.5 -translate-y-1/2 text-ink-subtle"
+                />
+              </div>
+            )}
+            {someSoon && (
+              <label className={cn(chip, openOnly ? chipOn : chipOff)}>
+                <input
+                  type="checkbox"
+                  checked={openOnly}
+                  onChange={(e) => setOpenOnly(e.target.checked)}
+                  className="size-4 accent-[var(--pc-primary)]"
+                />
+                Open now
+              </label>
+            )}
           </div>
         </div>
       </div>
 
-      <ul className="grid grid-cols-1 gap-4 min-[520px]:grid-cols-2 tab:grid-cols-3 wide:grid-cols-4 ph:gap-5">
+      <ul className="grid grid-cols-1 gap-4 min-[520px]:grid-cols-2 ph:gap-5 tab:grid-cols-3 wide:grid-cols-4">
         {courses.map((c) => (
           <li key={c.slug} hidden={!shown.includes(c)}>
             <CourseCard course={c} />

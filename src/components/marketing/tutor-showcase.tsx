@@ -33,7 +33,7 @@ function Line({ n, children, flagged }: { n: number; children: React.ReactNode; 
 export function TutorShowcase() {
   const [more, setMore] = useState(false)
   const p = (s: string) => <span className="text-ink-subtle">{s}</span>
-  const fn = (s: string) => <span className="text-ai-text">{s}</span>
+  const fn = (s: string) => <span className="text-fe-text">{s}</span>
   return (
     <Section id="tutor" labelledBy="tutor-title">
       <Container className="grid items-center gap-8 ph:gap-10 tab:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] tab:gap-16">
@@ -75,53 +75,48 @@ export function TutorShowcase() {
             <div className="surface flex flex-col gap-4 rounded-[28px] p-5 ph:p-6">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-[13px] text-ink-muted">
-                  <span className="text-ai-text">AI &amp; Machine Learning</span> · Module 7 · Testing a model
+                  <span className="text-fe-text">Python Programming</span> · Module 1 · Strings and f-strings
                 </p>
-                <p className="hidden text-xs text-ink-subtle ph:block">model.py</p>
+                <p className="hidden text-xs text-ink-subtle ph:block">main.py</p>
               </div>
               <div
                 role="img"
-                aria-label="model.py: line 2 fits the model on X_test and y_test, the same data it is then scored on, and the score printed is 1.0."
+                aria-label="main.py: line 3 joins the text Total: to price times quantity, a number, with a plus sign, and Python stops with a TypeError."
                 className="overflow-hidden rounded-[14px] border border-divider bg-sunken py-3 font-mono text-[11.5px] leading-[22px] text-ink ph:text-[13px] ph:leading-6"
               >
                 <Line n={1}>
-                  model {p('=')} {fn('LogisticRegression')}
-                  {p('()')}
+                  price {p('=')} 2.5
                 </Line>
-                <Line n={2} flagged>
-                  model{p('.')}
-                  {fn('fit')}
-                  {p('(')}X_test{p(',')} y_test{p(')')}
+                <Line n={2}>
+                  quantity {p('=')} 4
                 </Line>
-                <Line n={3}>
-                  score {p('=')} model{p('.')}
-                  {fn('score')}
-                  {p('(')}X_test{p(',')} y_test{p(')')}
+                <Line n={3} flagged>
+                  {fn('print')}
+                  {p('(')}
+                  <span className="text-da-text">&quot;Total: &quot;</span> {p('+')} price {p('*')} quantity{p(')')}
                 </Line>
                 <Line n={4}>
-                  {fn('print')}
-                  {p('(')}score{p(')')} <span className="text-ink-subtle"># 1.0</span>
+                  <span className="text-ink-subtle"># TypeError: can only concatenate str (not &quot;float&quot;) to str</span>
                 </Line>
               </div>
               <div aria-live="polite" className="flex flex-col gap-3">
-                <p className={learner}>Why is my accuracy 100%? It feels too good to be true.</p>
+                <p className={learner}>Why do I get a TypeError? The maths is right.</p>
                 <div className="flex max-w-[92%] items-start gap-3">
                   <TutorSpark size={28} />
                   <p className={tutor}>
-                    Good instinct. 100% is almost always a warning sign. Look at{' '}
-                    <span className={`${mono} text-[#ff8a3d]`}>line 2</span>. Which data is the model learning from, and which
-                    data are you testing it on?
+                    The maths is fine. Read the error’s last line, then look at{' '}
+                    <span className={`${mono} text-[#ff8a3d]`}>line 3</span>. What kind of value is price * quantity, and
+                    what kind is “Total: ”? Can + join those two?
                   </p>
                 </div>
                 {more && (
                   <>
-                    <p className={learner}>Oh. The same data both times?</p>
+                    <p className={learner}>Oh. One is text and one is a number?</p>
                     <div className="flex max-w-[92%] items-start gap-3">
                       <TutorSpark size={28} />
                       <p className={tutor}>
-                        Exactly. It’s like marking an exam the student has already seen. Train on{' '}
-                        <span className={`${mono} text-da-text`}>X_train, y_train</span> instead and run it again. Expect a
-                        lower number. That one you can trust.
+                        Exactly. + can join two strings, but not a string and a number. Put the sum inside an f-string:{' '}
+                        <span className={`${mono} text-da-text`}>{'f"Total: {price * quantity}"'}</span>. Run it again.
                       </p>
                     </div>
                   </>
@@ -136,7 +131,7 @@ export function TutorShowcase() {
                   {more ? 'Show me the fixed code' : 'Give me another hint'}
                 </button>
                 <span className="inline-flex h-9 items-center rounded-full border border-line-control px-4 text-[13px] text-ink-muted">
-                  Explain overfitting
+                  Explain f-strings
                 </span>
               </div>
               <div aria-hidden="true" className="flex items-center gap-3 rounded-full border border-line bg-sunken py-1.5 pr-1.5 pl-4">

@@ -7,9 +7,11 @@ import { Field, Input } from '@/components/ui'
 import { buttonClasses } from '@/components/ui/button'
 import { inputClasses } from '@/components/ui/field'
 import { Glyph } from '@/components/ui/glyph'
+import { liveCourses } from '@/content/catalogue'
 import { cn } from '@/lib/cn'
 
-const COURSES = ['Front-End', 'Data Analysis', 'UI/UX Design', 'AI & ML']
+// The open courses, by their short names.
+const COURSES = liveCourses().map((c) => c.short)
 const FORMATS = ['Online', 'In person, Ibadan']
 // PractiCode Academy's WhatsApp line (brand facts).
 const WHATSAPP = '2349030578667'

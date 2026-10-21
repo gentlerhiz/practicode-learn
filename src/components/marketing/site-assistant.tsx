@@ -13,7 +13,7 @@ const ANSWERS = [
   {
     key: 'track',
     q: 'Which course should I start with?',
-    a: "If you're new to tech, start with IT Fundamentals: it explains computers, files, networks and the cloud from zero. If you want to build websites, Front-End Web Development has you making real pages from lesson one. And Introduction to Cybersecurity is for everyone who wants to stay safe online. Module 1 of each is free, so you can try them before deciding.",
+    a: "If you're new to tech, start with IT Fundamentals: it explains computers, files, networks and the cloud from zero. If you want to build websites, Front-End Web Development has you making real pages from lesson one. Back-End Web Development, Python Programming and SQL and Databases all start from zero too. And Introduction to Cybersecurity is for everyone who wants to stay safe online. Module 1 of each is free, so you can try them before deciding.",
   },
   {
     key: 'price',

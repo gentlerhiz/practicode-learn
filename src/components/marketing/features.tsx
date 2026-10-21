@@ -71,16 +71,16 @@ function Offline() {
 }
 
 function Checks() {
-  const done = ['Cleans and splits the messages', 'Trains on the training set only']
+  const done = ['Header, nav, main and footer', 'One h1, with the restaurant’s name']
   const tick = (
-    <span className="flex size-[18px] shrink-0 items-center justify-center rounded-md bg-ai text-white">
+    <span className="flex size-[18px] shrink-0 items-center justify-center rounded-md bg-fe text-white">
       <Check size={12} strokeWidth={3} />
     </span>
   )
   return (
     <div aria-hidden="true" className={`${stage} flex flex-col justify-center gap-3 px-6 text-[13px] text-ink`}>
       <div className="flex justify-between gap-2 text-xs">
-        <span className="text-ai-text">Spam filter project</span>
+        <span className="text-fe-text">Restaurant menu project</span>
         <span className="text-ink-muted">3 of 4 checks</span>
       </div>
       {done.map((line) => (
@@ -91,13 +91,11 @@ function Checks() {
       ))}
       <div className="flex items-center gap-3">
         {tick}
-        <span>
-          91% on new messages <span className="text-ink-subtle">(target 85%)</span>
-        </span>
+        <span>Opening hours in a table with header cells</span>
       </div>
       <div className="flex items-center gap-3 text-ink-subtle">
         <span className="block size-[18px] shrink-0 rounded-md border-[1.5px] border-line-strong" />
-        Explains one message it got wrong
+        A catering form with a label for every field
       </div>
     </div>
   )
@@ -108,19 +106,19 @@ function SkillMap() {
   const label = 'absolute text-[11px] whitespace-nowrap'
   return (
     <div aria-hidden="true" className={`${stage} relative overflow-hidden`}>
-      <p className="absolute top-3.5 left-4 text-xs text-ux-text">UI/UX Product Design</p>
+      <p className="absolute top-3.5 left-4 text-xs text-fe-text">Front-End Web Development</p>
       <span className="absolute top-1/2 left-1/2 -mt-20 -ml-[88px] block size-[176px] rounded-full border border-line" />
       <span className="absolute top-1/2 left-1/2 -mt-12 -ml-14 block size-28 rounded-full border border-line" />
-      <span className="absolute top-1/2 left-1/2 -mt-[18px] -ml-[26px] flex size-[52px] items-center justify-center rounded-full border border-[#f0407f]/60 bg-[rgba(240,64,127,0.16)] text-ux-text">
+      <span className="absolute top-1/2 left-1/2 -mt-[18px] -ml-[26px] flex size-[52px] items-center justify-center rounded-full border border-[#4d6bff]/60 bg-[rgba(77,107,255,0.16)] text-fe-text">
         <Target size={22} strokeWidth={1.85} />
       </span>
-      <span className={`${dot} top-[52px] left-[calc(50%+40px)] bg-[#f0407f]`} />
-      <span className={`${dot} top-24 left-[calc(50%-76px)] bg-[#f0407f]`} />
-      <span className={`${dot} top-[146px] left-[calc(50%+24px)] bg-[#f0407f]/55`} />
-      <span className={`${dot} top-[170px] left-[calc(50%-40px)] border-[1.5px] border-[#f0407f]`} />
-      <span className={`${label} top-[46px] left-[calc(50%+58px)] text-ux-text`}>User research</span>
-      <span className={`${label} top-[91px] right-[calc(50%+82px)] text-ux-text`}>Prototyping</span>
-      <span className={`${label} top-[143px] left-[calc(50%+42px)] text-ux-text`}>Usability testing</span>
+      <span className={`${dot} top-[52px] left-[calc(50%+40px)] bg-[#4d6bff]`} />
+      <span className={`${dot} top-24 left-[calc(50%-76px)] bg-[#4d6bff]`} />
+      <span className={`${dot} top-[146px] left-[calc(50%+24px)] bg-[#4d6bff]/55`} />
+      <span className={`${dot} top-[170px] left-[calc(50%-40px)] border-[1.5px] border-[#4d6bff]`} />
+      <span className={`${label} top-[46px] left-[calc(50%+58px)] text-fe-text`}>Semantic HTML</span>
+      <span className={`${label} top-[91px] right-[calc(50%+82px)] text-fe-text`}>CSS layout</span>
+      <span className={`${label} top-[143px] left-[calc(50%+42px)] text-fe-text`}>JavaScript</span>
       <span className={`${label} top-[167px] right-[calc(50%+46px)] text-ink-subtle`}>Accessibility</span>
     </div>
   )
@@ -156,8 +154,8 @@ const cards = [
   { Art: Poke, title: 'Lessons you can poke at', body: 'Change a value and the diagram moves. You understand flexbox by pushing it around, not by reading about it.' },
   { Art: Review, title: 'A daily review that sticks', body: 'Four minutes a day. It brings back what you’re about to forget, right before you forget it.' },
   { Art: Offline, title: 'Offline, for real', body: 'Save a module on Wi-Fi and keep going on the bus, at work, or when the network decides to take a break.' },
-  { Art: Checks, title: 'Projects that check themselves', body: 'Build a spam filter and the checks tell you straight away whether it holds up on messages it has never seen.' },
-  { Art: SkillMap, title: 'A skill map you can trust', body: 'Progress is measured against ISO 9241-210 and SFIA, not against how many minutes you sat there.' },
+  { Art: Checks, title: 'Projects that check themselves', body: 'Build a real page and the checks tell you straight away what works and what still needs fixing, from headings to forms.' },
+  { Art: SkillMap, title: 'A skill map you can trust', body: 'Progress is measured against the MDN Curriculum and SFIA, not against how many minutes you sat there.' },
   { Art: Certificate, title: 'Certificates anyone can check', body: 'Add them to LinkedIn. Anyone can click through and see exactly which skills you showed, and how.' },
 ]
 

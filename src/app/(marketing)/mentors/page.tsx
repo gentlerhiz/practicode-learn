@@ -5,16 +5,17 @@ import { Container } from '@/components/ui/container'
 import { Glyph, type GlyphName } from '@/components/ui/glyph'
 import { Section } from '@/components/ui/section'
 import { buttonClasses } from '@/components/ui/button'
+import { liveCourses, toneOf } from '@/content/catalogue'
 import { metaFor } from '@/lib/seo/pages'
+import { toneClass } from '@/lib/tone'
 
 export const metadata: Metadata = metaFor('/mentors' as Route)
 
-const TRACKS = [
-  { name: 'Front-End Web Development', className: 'bg-[rgba(77,107,255,0.16)] text-fe-text' },
-  { name: 'Data Analysis', className: 'bg-[rgba(47,230,176,0.14)] text-da-text' },
-  { name: 'UI/UX Product Design', className: 'bg-[rgba(240,64,127,0.14)] text-ux-text' },
-  { name: 'AI & Machine Learning', className: 'bg-[rgba(123,92,255,0.16)] text-ai-text' },
-]
+// The open courses a cohort can take, in each subject's colour.
+const TRACKS = liveCourses().map((c) => ({
+  name: c.title,
+  className: `${toneClass[toneOf(c)].soft} ${toneClass[toneOf(c)].text}`,
+}))
 
 const ADDS: { icon: GlyphName; title: string; body: string }[] = [
   { icon: 'monitor', title: 'Weekly live classes', body: 'A real instructor teaches, answers questions and works through problems with the class.' },

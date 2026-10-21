@@ -10,12 +10,12 @@ test('landing leads with the promise and one primary action', async ({ page }) =
   await expect(hero.getByRole('link', { name: 'Explore Courses' })).toHaveAttribute('href', '/courses')
 })
 
-test('the open courses link to their pages; the rest say Coming soon', async ({ page }) => {
+test('only open courses are shown, and each links to its page', async ({ page }) => {
   await page.goto('/')
   const courses = page.getByRole('region', { name: 'Courses', exact: true })
   await expect(courses.getByRole('article')).toHaveCount(4)
-  await expect(courses.getByText('Coming soon')).toHaveCount(1)
-  await expect(courses.getByRole('article').getByRole('link')).toHaveCount(3)
+  await expect(courses.getByText('Coming soon')).toHaveCount(0)
+  await expect(courses.getByRole('article').getByRole('link')).toHaveCount(4)
   await expect(courses.getByRole('link', { name: 'Browse All Courses' })).toHaveAttribute('href', '/courses')
 })
 

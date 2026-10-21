@@ -58,7 +58,7 @@ function Card({ track }: { track: TrackCard }) {
         tone.card,
       )}
     >
-      <Illustration tone={track.tone} />
+      <Illustration tone={track.tone} code={track.code} />
       <div className="relative flex flex-1 flex-col gap-4 ph:max-w-[58%]">
         <div className="flex flex-wrap items-center gap-2">
           <p className="rounded-full bg-white/15 px-3 py-1 text-[13px] font-medium">{track.level}</p>

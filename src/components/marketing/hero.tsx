@@ -1,5 +1,5 @@
 import type { Route } from 'next'
-import { BrainCircuit, ChartColumn, CodeXml, PenTool } from 'lucide-react'
+import { ChartColumn, CodeXml, Monitor, ShieldCheck } from 'lucide-react'
 import { ArrowRight, Icon } from '@/components/ui/icon'
 import { LinkButton } from '@/components/ui/link-button'
 import { landing, type TrackTone } from '@/content/landing'
@@ -62,36 +62,29 @@ function Floaters() {
       </div>
       <div className="absolute top-[60px] right-[3%] rotate-[7deg]">
         <div
-          className={cn(card, 'float-slower flex w-[206px] items-center gap-3 border-[#f0407f]/55 shadow-[0_24px_60px_rgba(240,64,127,0.24)]')}
+          className={cn(card, 'float-slower flex w-[206px] flex-col gap-2.5 border-[#22bee6]/55 shadow-[0_24px_60px_rgba(34,190,230,0.24)]')}
         >
-          <div className="flex h-[120px] w-[70px] shrink-0 flex-col gap-1 rounded-[14px] border-2 border-[#ff7db0] px-1.5 py-2">
-            <span className="h-[26px] rounded-[5px] bg-[#ff7db0]/40" />
-            <span className="h-1.5 w-[70%] rounded-[3px] bg-[#ff7db0]" />
-            <span className="h-1.5 w-1/2 rounded-[3px] bg-[#ff7db0]/50" />
-            <span className="mt-auto h-3.5 rounded-[5px] bg-[#f0407f]" />
-          </div>
-          <div className="text-xs leading-[18px]">
-            <p className="font-semibold text-ux-text">Sign-up screen</p>
-            <p className="mt-1 text-ink-muted">Version 3, after testing with five people</p>
-          </div>
+          <p className="text-[13px] font-semibold text-cy-text">Account check-up</p>
+          {['Two-factor sign-in on', 'Passkey saved', 'Phishing link spotted'].map((line) => (
+            <div key={line} className="flex items-center gap-2 text-xs text-ink">
+              <span className="flex size-4 shrink-0 items-center justify-center rounded bg-cy text-[10px] font-bold text-white">✓</span>
+              {line}
+            </div>
+          ))}
         </div>
       </div>
       <div className="absolute top-[384px] right-[6%] -rotate-6">
-        <div className={cn(card, 'float-slow w-[214px] border-[#7b5cff]/55 shadow-[0_24px_60px_rgba(123,92,255,0.26)]')}>
-          <svg viewBox="0 0 170 90" className="h-[86px] w-full">
-            <g stroke="rgba(185,162,255,0.45)" strokeWidth="1.4">
-              <path d="M20 15 85 25M20 15 85 65M20 45 85 25M20 45 85 65M20 75 85 25M20 75 85 65M85 25 150 45M85 65 150 45" />
-            </g>
-            <g fill="#b9a2ff">
-              <circle cx="20" cy="15" r="7" />
-              <circle cx="20" cy="45" r="7" />
-              <circle cx="20" cy="75" r="7" />
-              <circle cx="85" cy="25" r="8" />
-              <circle cx="85" cy="65" r="8" />
-            </g>
-            <circle cx="150" cy="45" r="10" fill="#2fe6b0" />
-          </svg>
-          <p className="mt-2 text-xs font-medium text-ai-text">Model accuracy: 91%</p>
+        <div
+          className={cn(card, 'float-slow w-[214px] border-[#ffaa3c]/55 font-mono text-xs leading-[22px] text-ink shadow-[0_24px_60px_rgba(255,170,60,0.24)]')}
+        >
+          <p className="mb-2 font-sans text-[13px] font-semibold text-it-text">The command line</p>
+          <div>
+            <span className="text-it-text">$</span> cd Documents
+          </div>
+          <div>
+            <span className="text-it-text">$</span> ls
+          </div>
+          <div className="text-ink-muted">notes.txt  photos  cv.pdf</div>
         </div>
       </div>
     </div>
@@ -101,8 +94,8 @@ function Floaters() {
 const tiles = [
   { icon: CodeXml, className: 'border-[#4d6bff]/55 bg-[rgba(77,107,255,0.16)] text-fe-text -rotate-[4deg]' },
   { icon: ChartColumn, className: 'border-[#2fe6b0]/50 bg-[rgba(47,230,176,0.14)] text-da-text rotate-3' },
-  { icon: PenTool, className: 'border-[#f0407f]/55 bg-[rgba(240,64,127,0.14)] text-ux-text -rotate-3' },
-  { icon: BrainCircuit, className: 'border-[#7b5cff]/55 bg-[rgba(123,92,255,0.16)] text-ai-text rotate-[4deg]' },
+  { icon: Monitor, className: 'border-[#ffaa3c]/55 bg-[rgba(255,170,60,0.16)] text-it-text -rotate-3' },
+  { icon: ShieldCheck, className: 'border-[#22bee6]/55 bg-[rgba(34,190,230,0.16)] text-cy-text rotate-[4deg]' },
 ]
 
 /** PrismLanding's hero: one pill per track in the headline, floating work samples on wide screens. */

@@ -8,9 +8,11 @@ import { buttonClasses } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { inputClasses } from '@/components/ui/field'
 import { Glyph } from '@/components/ui/glyph'
+import { liveCourses } from '@/content/catalogue'
 import { cn } from '@/lib/cn'
 
-const TRACKS = ['IT Fundamentals', 'Front-End', 'Cybersecurity', 'Data Analysis', 'UI/UX Design', 'AI & ML']
+// The open courses, by their short names.
+const TRACKS = liveCourses().map((c) => c.short)
 const HOURS = ['Under 2', '2 to 5', 'More than 5']
 
 function Pills({ label, options, value, onChange }: { label: string; options: string[]; value: string; onChange: (v: string) => void }) {

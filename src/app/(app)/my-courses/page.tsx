@@ -48,7 +48,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
   const look = toneClass[tone]
   // The learner's courses, with the one shown now among them.
   const mine = [...new Map([...joined, track.track].map((t) => [t.slug, t])).values()]
-  const others = catalogue.filter((c) => !mine.some((t) => t.slug === c.slug) && (c.status === 'live' || c.featured))
+  const others = catalogue.filter((c) => !mine.some((t) => t.slug === c.slug) && c.status === 'live')
 
   return (
     <AppPage>

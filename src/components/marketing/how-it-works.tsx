@@ -24,7 +24,7 @@ export function HowItWorks() {
             using it, not by being told.
           </p>
           <p className="text-[15px] leading-6 text-ink-muted">
-            Go on, try this one from the Data Analysis course. It’s the kind of call analysts make every week.
+            Go on, try this one. It’s the kind of call analysts make every week.
           </p>
           <LinkButton href={FIRST_LESSON as Route} variant="secondary" className="h-[46px] self-start bg-transparent px-6 font-medium">
             Try a Free Lesson

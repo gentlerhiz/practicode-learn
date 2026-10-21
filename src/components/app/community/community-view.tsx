@@ -9,7 +9,7 @@ import { buttonClasses } from '@/components/ui/button'
 import { Glyph } from '@/components/ui/glyph'
 import { cn } from '@/lib/cn'
 
-type Track = 'fe' | 'da' | 'ux' | 'ai'
+type Track = 'fe' | 'da' | 'ux' | 'ai' | 'it' | 'cy'
 export type Thread = { track: Track; initials: string; title: string; replies: string; when: string; answer?: string; href?: Route }
 
 const T: Record<Track, { label: string; tint: string; soft: string }> = {
@@ -17,13 +17,16 @@ const T: Record<Track, { label: string; tint: string; soft: string }> = {
   da: { label: 'Data Analysis', tint: 'var(--pc-da-text)', soft: 'rgba(47,230,176,0.14)' },
   ux: { label: 'UI/UX Design', tint: 'var(--pc-ux-text)', soft: 'rgba(240,64,127,0.14)' },
   ai: { label: 'AI & ML', tint: 'var(--pc-ai-text)', soft: 'rgba(123,92,255,0.16)' },
+  it: { label: 'IT', tint: 'var(--pc-it-text)', soft: 'rgba(255,170,60,0.16)' },
+  cy: { label: 'Security', tint: 'var(--pc-cy-text)', soft: 'rgba(34,190,230,0.16)' },
 }
 const FILTERS: [Track | 'all', string][] = [
   ['all', 'Everything'],
-  ['fe', 'Front-End'],
+  // The subjects with open courses.
+  ['it', 'IT'],
+  ['fe', 'Software'],
   ['da', 'Data'],
-  ['ux', 'Design'],
-  ['ai', 'AI & ML'],
+  ['cy', 'Security'],
 ]
 const RULES = ['Be kind. Everyone here is learning.', 'Share hints, not full project answers.', 'Keep it on topic and keep personal details private.']
 
