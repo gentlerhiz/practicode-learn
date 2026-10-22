@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
 import type { LabProps } from './shared'
+import { AiOrNot } from './ai-or-not'
 import { ApiDocs } from './api-docs'
 import { AttackPaths } from './attack-paths'
 import { Attackers } from './attackers'
@@ -36,6 +37,7 @@ import { DownloadTime } from './download-time'
 import { DriveTypes } from './drive-types'
 import { EditorTour } from './editor-tour'
 import { EmailDraft } from './email-draft'
+import { FactCheck } from './fact-check'
 import { FileManager } from './file-manager'
 import { FilePaths } from './file-paths'
 import { FileTypes } from './file-types'
@@ -54,6 +56,7 @@ import { Languages } from './languages'
 import { LicenceTypes } from './licence-types'
 import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
+import { MlTrain } from './ml-train'
 import { NetworkFault } from './network-fault'
 import { Operators } from './operators'
 import { OsLayers } from './os-layers'
@@ -64,6 +67,7 @@ import { PathFinder } from './path-finder'
 import { PhoneOs } from './phone-os'
 import { PortShapes } from './port-shapes'
 import { PracticeShell } from './practice-shell'
+import { PromptBuilder } from './prompt-builder'
 import { PythonRun } from './python-run'
 import { QueryOrder } from './query-order'
 import { RamApps } from './ram-apps'
@@ -78,6 +82,7 @@ import { ShopBackend } from './shop-backend'
 import { ShortcutKeys } from './shortcut-keys'
 import { SignupTable } from './signup-table'
 import { SlideMakeover } from './slide-makeover'
+import { SmartHome } from './smart-home'
 import { SpecSheet } from './spec-sheet'
 import { Spreadsheet } from './spreadsheet'
 import { StatusCodes } from './status-codes'
@@ -96,6 +101,7 @@ import { VersionTimeline } from './version-timeline'
 import { WhatYouProtect } from './what-you-protect'
 import { WhereFilter } from './where-filter'
 import { WifiSignal } from './wifi-signal'
+import { XrSpectrum } from './xr-spectrum'
 
 /** Every lab a lesson can name. Diagram labs take a `state`; Explore labs take the control's `value`. */
 export const labs: Record<LabName, ComponentType<LabProps>> = {
@@ -172,6 +178,12 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   flowchart: Flowchart,
   languages: Languages,
   'version-timeline': VersionTimeline,
+  'ai-or-not': AiOrNot,
+  'ml-train': MlTrain,
+  'prompt-builder': PromptBuilder,
+  'fact-check': FactCheck,
+  'smart-home': SmartHome,
+  'xr-spectrum': XrSpectrum,
   'what-you-protect': WhatYouProtect,
   'cia-triad': CiaTriad,
   'threat-house': ThreatHouse,

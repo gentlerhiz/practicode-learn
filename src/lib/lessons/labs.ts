@@ -74,6 +74,12 @@ export const LAB_NAMES = [
   'flowchart',
   'languages',
   'version-timeline',
+  'ai-or-not',
+  'ml-train',
+  'prompt-builder',
+  'fact-check',
+  'smart-home',
+  'xr-spectrum',
   // Introduction to Cybersecurity
   'what-you-protect',
   'cia-triad',
