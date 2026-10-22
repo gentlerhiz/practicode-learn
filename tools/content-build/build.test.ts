@@ -51,6 +51,60 @@ describe('content build', () => {
     expect(solutions).toContain('color: #E8792F')
   })
 
+  it('builds sort, match and type steps, and says what each one is missing', () => {
+    const extra = `<Sort stage="apply" assesses="zz.sample.read" groups="Input,Output">
+
+Sort these.
+
+<Item group="Input" feedback="Keys go in.">Keyboard</Item>
+<Item group="Output" feedback="Sound comes out.">Speaker</Item>
+<Item group="Input" feedback="Your voice goes in.">Microphone</Item>
+<Hint>a</Hint>
+<Hint>b</Hint>
+<Hint>c</Hint>
+
+</Sort>
+
+<Match stage="apply" assesses="zz.sample.read">
+
+Match these.
+
+<Pair term="CPU" match="Follows instructions" feedback="The CPU does the work." />
+<Pair term="RAM" match="Holds work in progress" feedback="RAM is the desk." />
+<Pair term="\`SSD\`" match="Keeps files" feedback="The SSD keeps them." />
+<Hint>a</Hint>
+<Hint>b</Hint>
+<Hint>c</Hint>
+
+</Match>
+
+<Type stage="apply" assesses="zz.sample.read" accept="cd ..|cd.." correct="Up one." wrong="Two dots." mono case>
+
+Type it.
+
+<Miss answer="cd" feedback="Home." />
+<Hint>a</Hint>
+<Hint>b</Hint>
+<Hint>c</Hint>
+
+</Type>
+
+<Recap>`
+    buildLesson(SAMPLE.replace('<Recap>', extra))
+    const pack = parsePack(JSON.parse(fs.readFileSync(path.join(dir, 'out', 'packs', 'zz-01-01.json'), 'utf8')))
+    const [sort, match, type] = pack.steps.slice(-4)
+    expect(sort).toMatchObject({ type: 'sort', groups: ['Input', 'Output'], items: [{ group: 0 }, { group: 1 }, { group: 0 }] })
+    expect(match).toMatchObject({ type: 'match', pairs: [{ term: 'CPU' }, { term: 'RAM' }, { term: '<code>SSD</code>' }] })
+    expect(type).toMatchObject({ type: 'type', accept: ['cd ..', 'cd..'], caseSensitive: true, mono: true, misses: [{ answers: ['cd'] }] })
+
+    expect(problems(SAMPLE.replace('<Recap>', extra.replace('group="Output" feedback="Sound comes out."', 'group="Sideways"')))).toMatch(
+      /names one of its groups[\s\S]*needs feedback/,
+    )
+    expect(problems(SAMPLE.replace('<Recap>', extra.replace('<Miss answer="cd"', '<Miss answer="cd.."')))).toMatch(
+      /is also an accepted answer/,
+    )
+  })
+
   it('names a lab the player does not know', () => {
     expect(problems(SAMPLE.replace('lab="flex-axes"', 'lab="warp-drive"'))).toMatch(
       /Unknown lab "warp-drive"/,

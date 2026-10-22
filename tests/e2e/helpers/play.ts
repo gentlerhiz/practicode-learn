@@ -6,7 +6,10 @@ type Step = {
   type: string
   run?: boolean
   options?: { html: string; correct: boolean }[]
-  items?: string[]
+  items?: (string | { html: string; group: number })[]
+  groups?: string[]
+  pairs?: { term: string; match: string }[]
+  accept?: string[]
 }
 type File = { name: string; code: string }
 
@@ -20,6 +23,8 @@ const text = (html: string) =>
     .replace(/&#(\d+);/g, (_, dec: string) => String.fromCodePoint(Number(dec)))
     .replace(/&amp;/g, '&')
     .trim()
+
+const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 
 /**
  * Plays a built lesson from its first step to the end, the way a learner who knows the answers would:
@@ -49,7 +54,7 @@ export async function playWholeLesson(
     }
     if (step.type === 'order') {
       const items = page.locator('article ol > li')
-      const expected = (step.items ?? []).map(text)
+      const expected = (step.items ?? []).map((x) => text(x as string))
       for (let position = 0; position < expected.length; position++) {
         // An exact line first, so ".price" doesn't match ".menu .price".
         const texts = await items.allInnerTexts()
@@ -62,6 +67,23 @@ export async function playWholeLesson(
         }
       }
       await page.getByRole('button', { name: 'Check the Order' }).click()
+    }
+    if (step.type === 'sort') {
+      for (const item of step.items as { html: string; group: number }[]) {
+        await page.getByRole('group', { name: `${text(item.html)}: which group?` }).getByRole('radio').nth(item.group).check()
+      }
+      await page.getByRole('button', { name: 'Check My Groups' }).click()
+    }
+    if (step.type === 'match') {
+      for (const pair of step.pairs ?? []) {
+        await page.getByRole('button', { name: new RegExp(`^${escape(text(pair.term))},`) }).click()
+        await page.getByRole('button', { name: new RegExp(`^${escape(text(pair.match))}\\.`) }).click()
+      }
+      await page.getByRole('button', { name: 'Check My Pairs' }).click()
+    }
+    if (step.type === 'type') {
+      await page.getByRole('textbox', { name: 'Your answer' }).fill(step.accept![0]!)
+      await page.getByRole('button', { name: 'Check My Answer' }).click()
     }
     if (step.type === 'code') {
       for (const file of solutions[String(i)] ?? []) {

@@ -714,6 +714,184 @@
     wireHints(el, s, rerender)
   }
 
+  // Sort: a group for every item, then a check that marks each one.
+  render.sort = function (step, s, el) {
+    var rerender = function () {
+      render.sort(step, s, el)
+      refreshNav()
+    }
+    if (!s.picks) s.picks = step.items.map(function () {
+      return null
+    })
+    s.done = !!s.solved
+    var right = step.items.filter(function (it, i) {
+      return s.picks[i] === it.group
+    }).length
+    var rows = step.items
+      .map(function (it, i) {
+        var ok = s.picks[i] === it.group
+        var mark = s.checked ? (ok ? ' good' : ' off') : ''
+        return (
+          '<li class="' + mark + '"><span class="t">' + it.html +
+          (s.checked && !ok ? '<br><small>' + it.feedback + '</small>' : '') +
+          (reviewer && !s.solved ? '<br><small><b>Answer:</b> ' + step.groups[it.group] + '</small>' : '') +
+          '</span><span class="mv">' +
+          step.groups
+            .map(function (g, gi) {
+              return (
+                '<button type="button" data-pick="' + i + ':' + gi + '" aria-pressed="' + (s.picks[i] === gi) + '"' +
+                (s.solved ? ' disabled' : '') + '>' + g + '</button>'
+              )
+            })
+            .join('') +
+          '</span></li>'
+        )
+      })
+      .join('')
+    var fb = s.checked
+      ? s.solved
+        ? '<div class="fb ok"><span class="verdict">Correct.</span>Every item is in the right group.</div>'
+        : '<div class="fb bad"><span class="verdict">Not yet.</span>' + right + ' of ' + step.items.length + ' are in the right group.</div>'
+      : ''
+    el.innerHTML =
+      '<div class="prose">' + step.body + '</div><ol class="order-list">' + rows + '</ol><div class="actions">' +
+      (s.solved ? '' : '<button type="button" class="btn" data-act="check"' + (s.picks.indexOf(null) >= 0 ? ' disabled' : '') + '>Check My Groups</button>') +
+      hintButton(step, s) + '</div><div class="fbslot" tabindex="-1" aria-live="polite">' + fb + '</div>' + hintsHTML(step, s)
+    el.querySelectorAll('[data-pick]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var p = b.dataset.pick.split(':').map(Number)
+        s.picks[p[0]] = p[1]
+        s.checked = false
+        rerender()
+      })
+    })
+    var c = el.querySelector('[data-act="check"]')
+    if (c)
+      c.addEventListener('click', function () {
+        s.checked = true
+        s.solved = step.items.every(function (it, i) {
+          return s.picks[i] === it.group
+        })
+        rerender()
+      })
+    wireHints(el, s, rerender)
+  }
+
+  // Match: each term picks its match from a list (the app pairs them by tapping).
+  render.match = function (step, s, el) {
+    var rerender = function () {
+      render.match(step, s, el)
+      refreshNav()
+    }
+    if (!s.picks) s.picks = step.pairs.map(function () {
+      return null
+    })
+    s.done = !!s.solved
+    var n = step.pairs.length
+    var shuffled = step.pairs.map(function (_, i) {
+      return i
+    })
+    shuffled = shuffled.slice(1).concat(shuffled[0]).reverse()
+    var rows = step.pairs
+      .map(function (p, t) {
+        var ok = s.picks[t] === t
+        return (
+          '<li class="' + (s.checked ? (ok ? ' good' : ' off') : '') + '"><span class="t"><b>' + p.term + '</b>' +
+          (s.checked && !ok ? '<br><small>' + p.feedback + '</small>' : '') +
+          (reviewer && !s.solved ? '<br><small><b>Answer:</b> ' + p.match + '</small>' : '') +
+          '</span><select data-term="' + t + '"' + (s.solved ? ' disabled' : '') + ' aria-label="Match for ' + strip(p.term) + '"><option value="">Choose…</option>' +
+          shuffled
+            .map(function (m) {
+              return '<option value="' + m + '"' + (s.picks[t] === m ? ' selected' : '') + '>' + strip(step.pairs[m].match) + '</option>'
+            })
+            .join('') +
+          '</select></li>'
+        )
+      })
+      .join('')
+    var right = step.pairs.filter(function (_, t) {
+      return s.picks[t] === t
+    }).length
+    var fb = s.checked
+      ? s.solved
+        ? '<div class="fb ok"><span class="verdict">Correct.</span>Every pair matches.</div>'
+        : '<div class="fb bad"><span class="verdict">Not yet.</span>' + right + ' of ' + n + ' pairs match.</div>'
+      : ''
+    el.innerHTML =
+      '<div class="prose">' + step.body + '</div><ol class="order-list">' + rows + '</ol><div class="actions">' +
+      (s.solved ? '' : '<button type="button" class="btn" data-act="check"' + (s.picks.indexOf(null) >= 0 ? ' disabled' : '') + '>Check My Pairs</button>') +
+      hintButton(step, s) + '</div><div class="fbslot" tabindex="-1" aria-live="polite">' + fb + '</div>' + hintsHTML(step, s)
+    el.querySelectorAll('[data-term]').forEach(function (sel) {
+      sel.addEventListener('change', function () {
+        s.picks[Number(sel.dataset.term)] = sel.value === '' ? null : Number(sel.value)
+        s.checked = false
+        rerender()
+      })
+    })
+    var c = el.querySelector('[data-act="check"]')
+    if (c)
+      c.addEventListener('click', function () {
+        s.checked = true
+        s.solved = step.pairs.every(function (_, t) {
+          return s.picks[t] === t
+        })
+        rerender()
+      })
+    wireHints(el, s, rerender)
+  }
+
+  // Type: the same matching rules as the app (src/lib/lessons/answers.ts).
+  function normalise(a, cs) {
+    var p = a
+      .replace(/[‘’]/g, "'")
+      .replace(/[“”]/g, '"')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .replace(/\.$/, '')
+      .trim()
+    return cs ? p : p.toLowerCase()
+  }
+  function accepts(a, list, cs) {
+    var g = normalise(a, cs)
+    return g !== '' && list.some(function (x) {
+      return normalise(x, cs) === g
+    })
+  }
+  render.type = function (step, s, el) {
+    var rerender = function () {
+      render.type(step, s, el)
+      refreshNav()
+    }
+    s.done = !!s.solved
+    var miss =
+      s.typed &&
+      (step.misses || []).filter(function (m) {
+        return accepts(s.typed, m.answers, step.caseSensitive)
+      })[0]
+    var fb =
+      s.typed !== undefined
+        ? s.solved
+          ? '<div class="fb ok"><span class="verdict">Correct.</span>' + step.correct + '</div>'
+          : '<div class="fb bad"><span class="verdict">Not quite.</span>' + (miss ? miss.feedback : step.wrong) + ' Try again.</div>'
+        : ''
+    el.innerHTML =
+      '<div class="prose">' + step.body + '</div><form class="actions" id="typed"><input aria-label="Your answer" autocomplete="off" spellcheck="false" placeholder="' +
+      (step.placeholder || 'Type your answer') + '"' + (step.mono ? ' style="font-family:var(--mono,monospace)"' : '') + (s.solved ? ' readonly' : '') + '>' +
+      (s.solved ? '' : '<button type="submit" class="btn">Check My Answer</button>') + hintButton(step, s) +
+      '</form><div class="fbslot" tabindex="-1" aria-live="polite">' + fb + '</div>' +
+      (reviewer ? '<div class="hint"><b>Accepted:</b> ' + step.accept.map(strip).join(' · ') + '</div>' : '') + hintsHTML(step, s)
+    var input = el.querySelector('input')
+    input.value = s.typed || ''
+    el.querySelector('#typed').addEventListener('submit', function (e) {
+      e.preventDefault()
+      if (!input.value.trim() || s.solved) return
+      s.typed = input.value
+      s.solved = accepts(input.value, step.accept, step.caseSensitive)
+      rerender()
+    })
+    wireHints(el, s, rerender)
+  }
+
   render.code = function (step, s, el) {
     var rerender = function () {
       render.code(step, s, el)

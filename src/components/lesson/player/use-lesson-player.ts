@@ -1,6 +1,7 @@
 'use client'
 import { useReducer } from 'react'
 import type { LessonFile, LessonPack, LessonStep } from '@/lib/lessons/schema'
+import { acceptsAnswer } from '@/lib/lessons/answers'
 import type { TestResult } from '@/lib/runner/protocol'
 
 /** What a learner has done on one step. Kept per step, so Back and Continue never lose work. */
@@ -18,6 +19,11 @@ export type StepState = {
   at?: number
   files?: LessonFile[]
   flipped?: number[]
+  /** Sort: the group chosen for each item. Match: the match chosen for each term. */
+  picks?: (number | null)[]
+  picksChecked?: boolean
+  /** Type: the answer last checked. */
+  typed?: string
 }
 
 type State = {
@@ -68,7 +74,8 @@ function reducer(state: State, action: Action): State {
 /**
  * Completion rules (approved in the review preview): Explain, Diagram and Recap are done on view. Predict
  * is done after Check, plus Run It when it has `run`; being wrong is fine. Question and Explore need the
- * correct option. Order needs the correct order. Code needs every test to pass.
+ * correct option. Order, Sort and Match need every item right, and Type an accepted answer. Code needs
+ * every test to pass.
  */
 export function isStepDone(step: LessonStep, s: StepState): boolean {
   switch (step.type) {
@@ -82,6 +89,9 @@ export function isStepDone(step: LessonStep, s: StepState): boolean {
     case 'explore':
       return Boolean(s.checkedId) && Boolean(s.correct)
     case 'order':
+    case 'sort':
+    case 'match':
+    case 'type':
       return Boolean(s.solved)
     case 'code':
       return Boolean(s.results?.length) && (s.results ?? []).every((r) => r.pass)
@@ -171,6 +181,24 @@ export function useLessonPlayer(pack: LessonPack, opts: { startAt?: number } = {
       if (step.type !== 'order') return
       const final = order ?? current.order ?? fixedShuffle(step.items.length)
       patch({ order: final, orderChecked: true, solved: final.every((v, i) => v === i) }, true)
+    },
+    /** Sort and Match: a choice for one item, which clears the last check. */
+    setPicks(picks: (number | null)[]) {
+      if (current.solved) return
+      patch({ picks, picksChecked: false })
+    },
+    checkPicks() {
+      if (current.solved || (step.type !== 'sort' && step.type !== 'match')) return
+      const picks = current.picks ?? []
+      const solved =
+        step.type === 'sort'
+          ? step.items.every((item, i) => picks[i] === item.group)
+          : step.pairs.every((_, i) => picks[i] === i)
+      patch({ picksChecked: true, solved }, true)
+    },
+    checkTyped(answer: string) {
+      if (current.solved || step.type !== 'type' || !answer.trim()) return
+      patch({ typed: answer, solved: acceptsAnswer(answer, step.accept, step.caseSensitive) }, true)
     },
     recordTests(results: TestResult[]) {
       patch({ results }, true)

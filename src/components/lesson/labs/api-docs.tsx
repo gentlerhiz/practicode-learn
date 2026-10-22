@@ -35,13 +35,13 @@ export function ApiDocs({ state = 0 }: LabProps) {
         </div>
         <div className={box(2)}>
           <p className="m-0 mb-1 text-[13px] text-ink">200 OK</p>
-          <pre className="m-0 font-mono text-[12.5px] text-ink-soft">
+          <pre className="m-0 font-mono text-[12.5px] whitespace-pre-wrap text-ink-soft [overflow-wrap:anywhere]">
             {'{ "id": 2, "name": "Flat white", "price": 3.2 }'}
           </pre>
         </div>
         <div className={box(3)}>
           <p className="m-0 text-[13px] text-ink">404 Not Found: no item with that id</p>
-          <pre className="m-0 font-mono text-[12.5px] text-ink-soft">{'{ "error": "No menu item 99" }'}</pre>
+          <pre className="m-0 font-mono text-[12.5px] whitespace-pre-wrap text-ink-soft [overflow-wrap:anywhere]">{'{ "error": "No menu item 99" }'}</pre>
         </div>
       </div>
       <figcaption className="flex items-start gap-3 rounded-xl bg-row px-3 py-2.5 text-sm text-ink">

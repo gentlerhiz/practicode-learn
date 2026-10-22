@@ -59,6 +59,15 @@ export function stepContext(pack: LessonPack, index: number, view: LearnerView =
     case 'order':
       parts.push(`The learner puts these in order. Correct order (for you only):\n${step.items.map((t, i) => `${i + 1}. ${plain(t)}`).join('\n')}`)
       break
+    case 'sort':
+      parts.push(`The learner sorts each item into a group (${step.groups.join(', ')}). Right groups (for you only):\n${step.items.map((x) => `- ${plain(x.html)}: ${step.groups[x.group]}`).join('\n')}`)
+      break
+    case 'match':
+      parts.push(`The learner pairs each term with its match. Right pairs (for you only):\n${step.pairs.map((x) => `- ${plain(x.term)}: ${plain(x.match)}`).join('\n')}`)
+      break
+    case 'type':
+      parts.push(`The learner types an answer. Accepted answers (for you only; never type it for them): ${step.accept.join(' or ')}`)
+      break
     case 'code': {
       parts.push(`Starting code:\n${step.files.map(fileBlock).join('\n')}`)
       parts.push(`Checks the code must pass:\n${step.tests.map((t) => `- ${t.name}: ${t.code.trim()}`).join('\n')}`)

@@ -224,6 +224,16 @@
 @utility float-slower {
   animation: pc-float 9s ease-in-out infinite reverse;
 }
+/* Lab drawings: a new part settles into place when the learner moves on. Once, never looping. */
+@keyframes pc-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+  }
+}
+@utility pop-in {
+  animation: pc-pop 300ms ease-out both;
+}
 @utility marquee {
   animation: pc-marquee 40s linear infinite;
   &:hover {
@@ -260,6 +270,13 @@
   .font-mono,
   .cm-editor {
     font-variant-ligatures: none;
+  }
+
+  /* A long path or command in running text breaks onto the next line instead of pushing the page wide. */
+  code,
+  kbd,
+  samp {
+    overflow-wrap: anywhere;
   }
 
   :focus-visible {

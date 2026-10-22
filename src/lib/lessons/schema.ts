@@ -79,6 +79,45 @@ const Step = z.discriminatedUnion('type', [
     .strict(),
   z
     .object({
+      type: z.literal('sort'),
+      ...common,
+      groups: z.array(z.string().min(1)).min(2).max(4),
+      items: z
+        .array(z.object({ html: z.string().min(1), group: z.number().int().min(0), feedback: z.string().min(1) }).strict())
+        .min(3)
+        .max(8),
+      hints: Hints,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal('match'),
+      ...common,
+      pairs: z
+        .array(z.object({ term: z.string().min(1), match: z.string().min(1), feedback: z.string().min(1) }).strict())
+        .min(3)
+        .max(6),
+      hints: Hints,
+    })
+    .strict(),
+  z
+    .object({
+      type: z.literal('type'),
+      ...common,
+      accept: z.array(z.string().min(1)).min(1),
+      caseSensitive: z.literal(true).optional(),
+      mono: z.literal(true).optional(),
+      placeholder: z.string().min(1).optional(),
+      correct: z.string().min(1),
+      wrong: z.string().min(1),
+      misses: z
+        .array(z.object({ answers: z.array(z.string().min(1)).min(1), feedback: z.string().min(1) }).strict())
+        .optional(),
+      hints: Hints,
+    })
+    .strict(),
+  z
+    .object({
       type: z.literal('code'),
       ...common,
       files: z.array(LessonFile).min(1),

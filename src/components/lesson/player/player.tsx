@@ -8,8 +8,11 @@ import { CodeStep } from '../steps/code'
 import { DiagramStep } from '../steps/diagram'
 import { ExplainStep } from '../steps/explain'
 import { ExploreStep } from '../steps/explore'
+import { MatchStep } from '../steps/match'
 import { OrderStep } from '../steps/order'
 import { RecapStep } from '../steps/recap'
+import { SortStep } from '../steps/sort'
+import { TypeStep } from '../steps/type'
 import { stageName } from '../parts/step-layout'
 import { LessonBar, type LessonChrome } from './lesson-bar'
 import { LessonFooter } from './lesson-footer'
@@ -46,6 +49,12 @@ function Step({ api }: { api: LessonPlayerApi }) {
           onCheck={api.checkOrder}
         />
       )
+    case 'sort':
+      return <SortStep step={step} index={index} api={api} />
+    case 'match':
+      return <MatchStep step={step} index={index} api={api} />
+    case 'type':
+      return <TypeStep step={step} index={index} api={api} />
     case 'code':
       return <CodeStep step={step} api={api} />
     case 'recap':
@@ -55,7 +64,7 @@ function Step({ api }: { api: LessonPlayerApi }) {
 
 // Steps without a drawing or code card are one centred column (see StepGrid); the guest note follows it.
 const singleColumn = (step: LessonPack['steps'][number]) =>
-  step.type === 'explain' || step.type === 'recap' || step.type === 'order' || ((step.type === 'predict' || step.type === 'question') && !step.files)
+  ['explain', 'recap', 'order', 'sort', 'match', 'type'].includes(step.type) || ((step.type === 'predict' || step.type === 'question') && !step.files)
 
 const hintsIn = (step: LessonPack['steps'][number]) => ('hints' in step ? step.hints.length : 0)
 

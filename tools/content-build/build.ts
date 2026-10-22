@@ -20,13 +20,14 @@ import { unified } from 'unified'
 import YAML from 'yaml'
 import { LAB_NAMES } from '../../src/lib/lessons/labs.ts'
 import { catalogue } from '../../src/content/catalogue.ts'
+import { acceptsAnswer } from '../../src/lib/lessons/answers.ts'
 import { PackError, parsePack, STAGES, type LessonFile } from '../../src/lib/lessons/schema.ts'
 import type { CatalogueEntry } from '../../src/lib/lessons/types.ts'
 
 export const SCHEMA = 1
 const PACK_BUDGET = 150 * 1024 // compressed bytes
 const EXPLAIN_WORDS = 80
-const INTERACTIVE = ['predict', 'question', 'explore', 'order', 'code']
+const INTERACTIVE = ['predict', 'question', 'explore', 'order', 'sort', 'match', 'type', 'code']
 const LABS: readonly string[] = LAB_NAMES
 const STAGE_NAMES: readonly string[] = STAGES
 
@@ -341,6 +342,79 @@ function lessonFile(file: string) {
           body: html(prose(node)),
           items,
           wrong: wrong ? inline(wrong) : '',
+          hints: hints(node),
+        })
+        break
+      }
+      case 'Sort': {
+        only(node, ['Item', 'Hint'])
+        const groups = (str(a.groups) ?? '')
+          .split(',')
+          .map((s) => s.trim())
+          .filter(Boolean)
+        if (groups.length < 2 || groups.length > 4) fail(node, '<Sort> needs groups="…" with 2 to 4 groups.')
+        const items = kids(node, 'Item').map((x) => {
+          const ia = attrs(x)
+          const group = groups.indexOf(str(ia.group) ?? '')
+          if (group < 0) fail(x, `Every <Item> in a sort names one of its groups (${groups.join(', ')}).`)
+          const feedback = str(ia.feedback)
+          if (!feedback) fail(x, 'Every <Item> in a sort needs feedback, shown when it’s put in the wrong group.')
+          return { html: html(children(x)), group: Math.max(group, 0), feedback: feedback ? inline(feedback) : '' }
+        })
+        if (items.length < 3 || items.length > 8) fail(node, 'A sort has 3 to 8 items.')
+        if (new Set(items.map((x) => x.group)).size < 2) fail(node, 'A sort uses at least two of its groups.')
+        steps.push({ ...common, body: html(prose(node)), groups, items, hints: hints(node) })
+        break
+      }
+      case 'Match': {
+        only(node, ['Pair', 'Hint'])
+        const pairs = kids(node, 'Pair').map((p) => {
+          const pa = attrs(p)
+          const term = str(pa.term)
+          const match = str(pa.match)
+          const feedback = str(pa.feedback)
+          if (!term || !match) fail(p, 'Every <Pair> needs a term and a match.')
+          if (!feedback) fail(p, 'Every <Pair> needs feedback, shown when it’s matched wrongly.')
+          return { term: inline(term ?? ''), match: inline(match ?? ''), feedback: inline(feedback ?? '') }
+        })
+        if (pairs.length < 3 || pairs.length > 6) fail(node, 'A match has 3 to 6 pairs.')
+        if (new Set(pairs.map((p) => p.match)).size !== pairs.length) fail(node, 'Two pairs in a match have the same match.')
+        steps.push({ ...common, body: html(prose(node)), pairs, hints: hints(node) })
+        break
+      }
+      case 'Type': {
+        only(node, ['Miss', 'Hint'])
+        const caseSensitive = a.case === true
+        const split = (v: string | undefined) =>
+          (v ?? '')
+            .split('|')
+            .map((s) => s.trim())
+            .filter(Boolean)
+        const accept = split(str(a.accept))
+        if (!accept.length) fail(node, '<Type> needs accept="…", the answers it takes, separated by |.')
+        const correct = str(a.correct)
+        const wrong = str(a.wrong)
+        if (!correct || !wrong) fail(node, '<Type> needs correct="…" and wrong="…" feedback.')
+        const misses = kids(node, 'Miss').map((m) => {
+          const ma = attrs(m)
+          const answers = split(str(ma.answer))
+          const feedback = str(ma.feedback)
+          if (!answers.length || !feedback) fail(m, 'Every <Miss> needs answer="…" and feedback="…".')
+          if (answers.some((x) => acceptsAnswer(x, accept, caseSensitive)))
+            fail(m, `<Miss answer="${answers.join('|')}"> is also an accepted answer.`)
+          return { answers, feedback: inline(feedback ?? '') }
+        })
+        const placeholder = str(a.placeholder)
+        steps.push({
+          ...common,
+          body: html(prose(node)),
+          accept,
+          ...(caseSensitive ? { caseSensitive: true } : {}),
+          ...(a.mono === true ? { mono: true } : {}),
+          ...(placeholder ? { placeholder } : {}),
+          correct: inline(correct ?? ''),
+          wrong: inline(wrong ?? ''),
+          ...(misses.length ? { misses } : {}),
           hints: hints(node),
         })
         break

@@ -51,14 +51,37 @@ for (const width of WIDTHS) {
             if (!r.width || !r.height) continue
             const scroller = inScroller(el)
             if (scroller) continue
+            // Shapes inside a drawing are clipped by the drawing itself; its labels are checked below.
+            if (el instanceof SVGElement && !(el instanceof SVGSVGElement)) continue
             if (r.right > box.right + 1.5 || r.left < box.left - 1.5) {
               out.push(`spills ${Math.round(Math.max(r.right - box.right, box.left - r.left))}px: <${el.tagName.toLowerCase()} class="${String(el.className).slice(0, 50)}"> ${(el.textContent || '').trim().slice(0, 40)}`)
             }
           }
+          const describe = (el) =>
+            `<${el.tagName.toLowerCase()} class="${String(el.className?.baseVal ?? el.className).slice(0, 50)}"> ${(el.textContent || '').trim().slice(0, 40)}`
           for (const el of root.querySelectorAll('*')) {
-            const o = getComputedStyle(el).overflowX
+            const style = getComputedStyle(el)
+            const o = style.overflowX
             if ((o === 'auto' || o === 'scroll') && el.scrollWidth > el.clientWidth + 2)
               out.push(`scrolls sideways (${el.scrollWidth} in ${el.clientWidth}): <${el.tagName.toLowerCase()}>`)
+            // A word wider than its box: it pokes out (visible) or is cut off (hidden), unless it's meant to truncate.
+            // Skips screen-reader-only text (clipped to 1px on purpose) and empty decorative shapes.
+            const hasText = (el.textContent || '').trim() !== ''
+            if (el instanceof HTMLElement && el.clientWidth > 2 && hasText && style.display !== 'inline' && el.scrollWidth > el.clientWidth + 1) {
+              if (o === 'visible') out.push(`text overflows its box by ${el.scrollWidth - el.clientWidth}px: ${describe(el)}`)
+              else if ((o === 'hidden' || o === 'clip') && style.textOverflow !== 'ellipsis' && !inScroller(el))
+                out.push(`text is cut off by ${el.scrollWidth - el.clientWidth}px: ${describe(el)}`)
+            }
+          }
+          // Labels in drawings: SVG clips anything past its edge.
+          for (const svg of root.querySelectorAll('svg')) {
+            const s = svg.getBoundingClientRect()
+            for (const t of svg.querySelectorAll('text')) {
+              const r = t.getBoundingClientRect()
+              if (!r.width) continue
+              if (r.left < s.left - 1 || r.right > s.right + 1 || r.top < s.top - 1 || r.bottom > s.bottom + 1)
+                out.push(`SVG label cut off at the drawing's edge: ${describe(t)}`)
+            }
           }
           return [...new Set(out)].slice(0, 4)
         })
