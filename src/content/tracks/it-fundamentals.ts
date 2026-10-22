@@ -3,8 +3,8 @@ import type { TrackContent } from './types'
 const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
- * IT Fundamentals, from its syllabus (docs/curriculum/tracks/it-fundamentals.md). Module 1 is published;
- * the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
+ * IT Fundamentals, from its syllabus (docs/curriculum/tracks/it-fundamentals.md). Every module is published;
+ * Module 1 is free. A test keeps this identical to the syllabus.
  */
 export const itFundamentals: TrackContent = {
   slug: 'it-fundamentals',
@@ -78,7 +78,6 @@ export const itFundamentals: TrackContent = {
       standard: '2.0 Infrastructure',
       project: 'Choose a laptop for a given budget and need, and explain why',
       free: false,
-      soon: true,
       lessons: l(
         'The processor',
         'Memory and storage are not the same',
@@ -96,7 +95,6 @@ export const itFundamentals: TrackContent = {
       standard: '3.0 Applications and software',
       project: 'Set up a practice computer for a new user',
       free: false,
-      soon: true,
       lessons: l(
         'What an operating system does',
         'Windows, macOS and Linux',
@@ -114,7 +112,6 @@ export const itFundamentals: TrackContent = {
       standard: '1.0, 3.0',
       project: 'Tidy a messy practice computer from the command line',
       free: false,
-      soon: true,
       lessons: l(
         'Files and folders',
         'The folder tree and paths',
@@ -134,7 +131,6 @@ export const itFundamentals: TrackContent = {
       standard: '2.0 Infrastructure',
       project: 'Diagnose three "the internet is down" problems in the network lab',
       free: false,
-      soon: true,
       lessons: l(
         'What a network is',
         'Routers, modems and Wi-Fi',
@@ -152,7 +148,6 @@ export const itFundamentals: TrackContent = {
       standard: '2.0 Infrastructure',
       project: 'A backup plan for a small shop',
       free: false,
-      soon: true,
       lessons: l(
         'Local and cloud storage',
         'Sync is not backup',
@@ -169,7 +164,6 @@ export const itFundamentals: TrackContent = {
       standard: '3.0 Applications and software',
       project: 'A one-page budget and the email that sends it',
       free: false,
-      soon: true,
       lessons: l(
         'Writing and formatting documents',
         'Spreadsheets: cells, rows and formulas',
@@ -187,7 +181,6 @@ export const itFundamentals: TrackContent = {
       standard: '5.0 Data and database fundamentals',
       project: 'Turn a paper sign-up sheet into a tidy table',
       free: false,
-      soon: true,
       lessons: l(
         'Data and information',
         'Structured and unstructured data',
@@ -203,7 +196,6 @@ export const itFundamentals: TrackContent = {
       standard: '4.0 Software development concepts',
       project: 'A flowchart and a tiny program for a daily task',
       free: false,
-      soon: true,
       lessons: l(
         'What programmers actually do',
         'Algorithms: steps in order',
@@ -220,7 +212,6 @@ export const itFundamentals: TrackContent = {
       standard: '1.0 IT concepts and terminology',
       project: 'An AI fact-check: three answers, checked against good sources',
       free: false,
-      soon: true,
       lessons: l(
         "What AI is, and isn't",
         'Machine learning in plain words',
@@ -237,7 +228,6 @@ export const itFundamentals: TrackContent = {
       standard: '6.0 Security',
       project: 'A safety check-up of a practice phone',
       free: false,
-      soon: true,
       lessons: l(
         'Passwords and two-factor sign-in',
         'Spotting phishing',
@@ -254,7 +244,6 @@ export const itFundamentals: TrackContent = {
       standard: '1.0 IT concepts and terminology',
       project: 'Solve and write up three support tickets',
       free: false,
-      soon: true,
       lessons: l(
         'A method for any problem',
         'Restart, and why it works',
@@ -271,7 +260,6 @@ export const itFundamentals: TrackContent = {
       standard: '—',
       project: 'A one-page learning plan for your next step',
       free: false,
-      soon: true,
       lessons: l(
         'The map of tech roles',
         'Support and networking',

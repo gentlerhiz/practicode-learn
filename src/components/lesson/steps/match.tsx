@@ -55,6 +55,7 @@ export function MatchStep({ step, index, api }: { step: MatchStepData; index: nu
                     key={t}
                     type="button"
                     aria-pressed={on}
+                    aria-label={`${plain(p.term)}, ${picks[t] === null ? 'not paired yet' : `paired with ${plain(step.pairs[picks[t]!]!.match)}`}`}
                     disabled={solved}
                     onClick={() => setActive(t)}
                     className={cn(
@@ -66,7 +67,6 @@ export function MatchStep({ step, index, api }: { step: MatchStepData; index: nu
                       {t + 1}
                     </span>
                     <Prose html={p.term} inline className="min-w-0" />
-                    <span className="sr-only">{picks[t] === null ? ', not paired yet' : `, paired with ${plain(step.pairs[picks[t]!]!.match)}`}</span>
                   </button>
                 )
               })}

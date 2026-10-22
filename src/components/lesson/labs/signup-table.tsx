@@ -42,12 +42,12 @@ export function SignupTable({ state }: LabProps) {
           </ul>
         ) : (
           <div className="overflow-hidden rounded-xl border border-line">
-            <table className="w-full table-fixed text-[11.5px]">
+            <table className="w-full table-fixed text-[11px] @min-[420px]:text-[12px]">
               <thead>
                 <tr className="bg-sunken">
                   {cols.map((c) => (
-                    <th key={c} scope="col" className={cn('px-1.5 py-1.5 text-left font-mono font-semibold [overflow-wrap:anywhere] text-ink', c === 'id' && 'w-9 text-it-text', c === 'phone' && 'w-[34%]', at === 1 && 'pop-in bg-[rgba(255,170,60,0.16)]')}>
-                      {label[c]}
+                    <th key={c} scope="col" className={cn('px-1 py-1.5 text-left font-mono text-[10px] font-semibold text-ink @min-[420px]:px-1.5 @min-[420px]:text-[11.5px]', c === 'id' && 'w-7 text-it-text @min-[420px]:w-9', c === 'phone' && 'w-[32%]', at === 1 && 'pop-in bg-[rgba(255,170,60,0.16)]')}>
+                      {label[c].replace('_', '_\u200b')}
                     </th>
                   ))}
                 </tr>
@@ -60,9 +60,9 @@ export function SignupTable({ state }: LabProps) {
                         <td
                           key={c}
                           className={cn(
-                            'px-1.5 py-1.5 [overflow-wrap:anywhere] text-ink',
+                            'px-1 py-1.5 text-ink @min-[420px]:px-1.5',
                             c === 'id' && 'font-mono text-it-text',
-                            c === 'phone' && 'font-mono',
+                            c === 'phone' && 'font-mono text-[10px] [overflow-wrap:anywhere] @min-[420px]:text-[11.5px]',
                             at === 5 && (c === 'phone' || c === 'last') && !r[c] && 'bg-[rgba(255,170,60,0.18)] outline-1 outline-it outline-dashed -outline-offset-2',
                           )}
                         >

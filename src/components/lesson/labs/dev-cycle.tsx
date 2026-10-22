@@ -43,7 +43,7 @@ export function DevCycle({ state }: LabProps) {
               <span
                 className={cn(
                   'grid size-10 place-items-center rounded-full border-[1.5px] motion-safe:transition-all motion-safe:duration-300',
-                  i === at ? 'scale-110 border-it bg-it text-white' : i < at ? 'border-it bg-row text-it-text' : 'border-line bg-row text-ink-subtle',
+                  i === at ? 'border-it bg-it text-white outline-2 outline-offset-2 outline-it/50' : i < at ? 'border-it bg-row text-it-text' : 'border-line bg-row text-ink-subtle',
                 )}
               >
                 <Icon size={17} aria-hidden="true" />
