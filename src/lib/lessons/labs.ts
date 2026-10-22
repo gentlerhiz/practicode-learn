@@ -80,6 +80,13 @@ export const LAB_NAMES = [
   'fact-check',
   'smart-home',
   'xr-spectrum',
+  'password-strength',
+  'two-factor',
+  'phishing-spot',
+  'malware-kinds',
+  'footprint',
+  'desk-setup',
+  'accessibility-view',
   // Introduction to Cybersecurity
   'what-you-protect',
   'cia-triad',

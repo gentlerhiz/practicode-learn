@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
 import type { LabProps } from './shared'
+import { AccessibilityView } from './accessibility-view'
 import { AiOrNot } from './ai-or-not'
 import { ApiDocs } from './api-docs'
 import { AttackPaths } from './attack-paths'
@@ -25,6 +26,7 @@ import { DataToInfo } from './data-to-info'
 import { DatabaseJobs } from './database-jobs'
 import { DeployPipeline } from './deploy-pipeline'
 import { DesignFile } from './design-file'
+import { DeskSetup } from './desk-setup'
 import { DesktopOs } from './desktop-os'
 import { DevCycle } from './dev-cycle'
 import { DeviceCheck } from './device-check'
@@ -44,6 +46,7 @@ import { FileTypes } from './file-types'
 import { FlexAxes } from './flex-axes'
 import { Flowchart } from './flowchart'
 import { FolderTidy } from './folder-tidy'
+import { Footprint } from './footprint'
 import { FrontOrBack } from './front-or-back'
 import { GitFlow } from './git-flow'
 import { HomeNetwork } from './home-network'
@@ -56,14 +59,17 @@ import { Languages } from './languages'
 import { LicenceTypes } from './licence-types'
 import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
+import { MalwareKinds } from './malware-kinds'
 import { MlTrain } from './ml-train'
 import { NetworkFault } from './network-fault'
 import { Operators } from './operators'
 import { OsLayers } from './os-layers'
 import { PacketJourney } from './packet-journey'
 import { PageLoad } from './page-load'
+import { PasswordStrength } from './password-strength'
 import { PatchRace } from './patch-race'
 import { PathFinder } from './path-finder'
+import { PhishingSpot } from './phishing-spot'
 import { PhoneOs } from './phone-os'
 import { PortShapes } from './port-shapes'
 import { PracticeShell } from './practice-shell'
@@ -95,6 +101,7 @@ import { TerminalAnatomy } from './terminal-anatomy'
 import { ThreatHouse } from './threat-house'
 import { TimeZones } from './time-zones'
 import { TracebackParts } from './traceback-parts'
+import { TwoFactor } from './two-factor'
 import { UrlAnatomy } from './url-anatomy'
 import { VariableLabels } from './variable-labels'
 import { VersionTimeline } from './version-timeline'
@@ -184,6 +191,13 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'fact-check': FactCheck,
   'smart-home': SmartHome,
   'xr-spectrum': XrSpectrum,
+  'password-strength': PasswordStrength,
+  'two-factor': TwoFactor,
+  'phishing-spot': PhishingSpot,
+  'malware-kinds': MalwareKinds,
+  footprint: Footprint,
+  'desk-setup': DeskSetup,
+  'accessibility-view': AccessibilityView,
   'what-you-protect': WhatYouProtect,
   'cia-triad': CiaTriad,
   'threat-house': ThreatHouse,
