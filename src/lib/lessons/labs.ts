@@ -93,6 +93,9 @@ export const LAB_NAMES = [
   'search-query',
   'support-ticket',
   'ticket-life',
+  'role-map',
+  'day-in-role',
+  'interest-match',
   // Introduction to Cybersecurity
   'what-you-protect',
   'cia-triad',

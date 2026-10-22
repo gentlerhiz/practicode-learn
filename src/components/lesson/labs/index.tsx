@@ -24,6 +24,7 @@ import { DataKinds } from './data-kinds'
 import { DataSizes } from './data-sizes'
 import { DataToInfo } from './data-to-info'
 import { DatabaseJobs } from './database-jobs'
+import { DayInRole } from './day-in-role'
 import { DeployPipeline } from './deploy-pipeline'
 import { DesignFile } from './design-file'
 import { DeskSetup } from './desk-setup'
@@ -54,6 +55,7 @@ import { HomeNetwork } from './home-network'
 import { HttpExchange } from './http-exchange'
 import { InsideLaptop } from './inside-laptop'
 import { InstallSource } from './install-source'
+import { InterestMatch } from './interest-match'
 import { IpAddress } from './ip-address'
 import { JsonShape } from './json-shape'
 import { Languages } from './languages'
@@ -82,6 +84,7 @@ import { RequestBuilder } from './request-builder'
 import { RequestJourney } from './request-journey'
 import { RiskMatrix } from './risk-matrix'
 import { RobotSteps } from './robot-steps'
+import { RoleMap } from './role-map'
 import { ScreenPixels } from './screen-pixels'
 import { ScreenReader } from './screen-reader'
 import { SearchQuery } from './search-query'
@@ -210,6 +213,9 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'search-query': SearchQuery,
   'support-ticket': SupportTicket,
   'ticket-life': TicketLife,
+  'role-map': RoleMap,
+  'day-in-role': DayInRole,
+  'interest-match': InterestMatch,
   'what-you-protect': WhatYouProtect,
   'cia-triad': CiaTriad,
   'threat-house': ThreatHouse,
