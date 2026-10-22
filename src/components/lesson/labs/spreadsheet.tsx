@@ -11,8 +11,8 @@ const ROWS = [1, 2, 3, 4, 5, 6, 7, 8]
 /** A month's budget. The value of the lab goes in B8. */
 const START: Cells = {
   A1: 'Item',
-  B1: 'Per month',
-  C1: 'Per year',
+  B1: 'Monthly',
+  C1: 'Yearly',
   A2: 'Rent',
   B2: '300',
   C2: '=B2*12',

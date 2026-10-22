@@ -90,11 +90,11 @@ export function ShareSettings({ value = 'Restricted' }: LabProps) {
       <table className="w-full table-fixed border-collapse text-[12.5px]">
         <thead>
           <tr className="text-[11px] text-ink-subtle">
-            <th scope="col" className="w-[46%] pb-1 text-left font-normal">
+            <th scope="col" className="w-[40%] pb-1 text-left font-normal">
               Person
             </th>
             {cols.map(([, label]) => (
-              <th key={label} scope="col" className="pb-1 font-normal">
+              <th key={label} scope="col" className="pb-1 text-[10.5px] font-normal">
                 {label}
               </th>
             ))}

@@ -18,10 +18,14 @@ import { ComputingTimeline } from './computing-timeline'
 import { CpuCores } from './cpu-cores'
 import { DataCentre } from './data-centre'
 import { DataHome } from './data-home'
+import { DataKinds } from './data-kinds'
 import { DataSizes } from './data-sizes'
+import { DataToInfo } from './data-to-info'
+import { DatabaseJobs } from './database-jobs'
 import { DeployPipeline } from './deploy-pipeline'
 import { DesignFile } from './design-file'
 import { DesktopOs } from './desktop-os'
+import { DevCycle } from './dev-cycle'
 import { DeviceCheck } from './device-check'
 import { DevicePicker } from './device-picker'
 import { DevTools } from './devtools'
@@ -36,6 +40,7 @@ import { FileManager } from './file-manager'
 import { FilePaths } from './file-paths'
 import { FileTypes } from './file-types'
 import { FlexAxes } from './flex-axes'
+import { Flowchart } from './flowchart'
 import { FolderTidy } from './folder-tidy'
 import { FrontOrBack } from './front-or-back'
 import { GitFlow } from './git-flow'
@@ -45,6 +50,7 @@ import { InsideLaptop } from './inside-laptop'
 import { InstallSource } from './install-source'
 import { IpAddress } from './ip-address'
 import { JsonShape } from './json-shape'
+import { Languages } from './languages'
 import { LicenceTypes } from './licence-types'
 import { Lighthouse } from './lighthouse'
 import { LinkPreview } from './link-preview'
@@ -64,11 +70,13 @@ import { RamApps } from './ram-apps'
 import { RequestBuilder } from './request-builder'
 import { RequestJourney } from './request-journey'
 import { RiskMatrix } from './risk-matrix'
+import { RobotSteps } from './robot-steps'
 import { ScreenPixels } from './screen-pixels'
 import { ScreenReader } from './screen-reader'
 import { ShareSettings } from './share-settings'
 import { ShopBackend } from './shop-backend'
 import { ShortcutKeys } from './shortcut-keys'
+import { SignupTable } from './signup-table'
 import { SlideMakeover } from './slide-makeover'
 import { SpecSheet } from './spec-sheet'
 import { Spreadsheet } from './spreadsheet'
@@ -76,6 +84,7 @@ import { StatusCodes } from './status-codes'
 import { StringTools } from './string-tools'
 import { SyncBackup } from './sync-backup'
 import { TableAnatomy } from './table-anatomy'
+import { TableQuestion } from './table-question'
 import { Terminal } from './terminal'
 import { TerminalAnatomy } from './terminal-anatomy'
 import { ThreatHouse } from './threat-house'
@@ -83,6 +92,7 @@ import { TimeZones } from './time-zones'
 import { TracebackParts } from './traceback-parts'
 import { UrlAnatomy } from './url-anatomy'
 import { VariableLabels } from './variable-labels'
+import { VersionTimeline } from './version-timeline'
 import { WhatYouProtect } from './what-you-protect'
 import { WhereFilter } from './where-filter'
 import { WifiSignal } from './wifi-signal'
@@ -152,6 +162,16 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'time-zones': TimeZones,
   'share-settings': ShareSettings,
   'shortcut-keys': ShortcutKeys,
+  'data-to-info': DataToInfo,
+  'data-kinds': DataKinds,
+  'signup-table': SignupTable,
+  'database-jobs': DatabaseJobs,
+  'table-question': TableQuestion,
+  'dev-cycle': DevCycle,
+  'robot-steps': RobotSteps,
+  flowchart: Flowchart,
+  languages: Languages,
+  'version-timeline': VersionTimeline,
   'what-you-protect': WhatYouProtect,
   'cia-triad': CiaTriad,
   'threat-house': ThreatHouse,
