@@ -87,6 +87,12 @@ export const LAB_NAMES = [
   'footprint',
   'desk-setup',
   'accessibility-view',
+  'trouble-method',
+  'why-restart',
+  'fix-finder',
+  'search-query',
+  'support-ticket',
+  'ticket-life',
   // Introduction to Cybersecurity
   'what-you-protect',
   'cia-triad',

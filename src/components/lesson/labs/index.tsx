@@ -43,6 +43,7 @@ import { FactCheck } from './fact-check'
 import { FileManager } from './file-manager'
 import { FilePaths } from './file-paths'
 import { FileTypes } from './file-types'
+import { FixFinder } from './fix-finder'
 import { FlexAxes } from './flex-axes'
 import { Flowchart } from './flowchart'
 import { FolderTidy } from './folder-tidy'
@@ -83,6 +84,7 @@ import { RiskMatrix } from './risk-matrix'
 import { RobotSteps } from './robot-steps'
 import { ScreenPixels } from './screen-pixels'
 import { ScreenReader } from './screen-reader'
+import { SearchQuery } from './search-query'
 import { ShareSettings } from './share-settings'
 import { ShopBackend } from './shop-backend'
 import { ShortcutKeys } from './shortcut-keys'
@@ -93,20 +95,24 @@ import { SpecSheet } from './spec-sheet'
 import { Spreadsheet } from './spreadsheet'
 import { StatusCodes } from './status-codes'
 import { StringTools } from './string-tools'
+import { SupportTicket } from './support-ticket'
 import { SyncBackup } from './sync-backup'
 import { TableAnatomy } from './table-anatomy'
 import { TableQuestion } from './table-question'
 import { Terminal } from './terminal'
 import { TerminalAnatomy } from './terminal-anatomy'
 import { ThreatHouse } from './threat-house'
+import { TicketLife } from './ticket-life'
 import { TimeZones } from './time-zones'
 import { TracebackParts } from './traceback-parts'
+import { TroubleMethod } from './trouble-method'
 import { TwoFactor } from './two-factor'
 import { UrlAnatomy } from './url-anatomy'
 import { VariableLabels } from './variable-labels'
 import { VersionTimeline } from './version-timeline'
 import { WhatYouProtect } from './what-you-protect'
 import { WhereFilter } from './where-filter'
+import { WhyRestart } from './why-restart'
 import { WifiSignal } from './wifi-signal'
 import { XrSpectrum } from './xr-spectrum'
 
@@ -198,6 +204,12 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   footprint: Footprint,
   'desk-setup': DeskSetup,
   'accessibility-view': AccessibilityView,
+  'trouble-method': TroubleMethod,
+  'why-restart': WhyRestart,
+  'fix-finder': FixFinder,
+  'search-query': SearchQuery,
+  'support-ticket': SupportTicket,
+  'ticket-life': TicketLife,
   'what-you-protect': WhatYouProtect,
   'cia-triad': CiaTriad,
   'threat-house': ThreatHouse,
