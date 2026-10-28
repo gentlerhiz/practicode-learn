@@ -145,12 +145,13 @@ describe('certificateFor', () => {
   })
 
   it('never issues while the course still has modules to come', async () => {
+    // Back-End still has modules marked soon, so finishing every published lesson isn't enough yet.
     lessons = [
-      { id: 'it-01-01', module: 1 },
-      { id: 'it-01-02', module: 1 },
+      { id: 'be-01-01', module: 1 },
+      { id: 'be-01-02', module: 1 },
     ]
-    completed = ['it-01-01', 'it-01-02']
-    expect(await certificateFor(LEARNER, 'it-fundamentals')).toMatchObject({
+    completed = ['be-01-01', 'be-01-02']
+    expect(await certificateFor(LEARNER, 'back-end-web-development')).toMatchObject({
       certificate: null,
       completed: 2,
       total: 2,

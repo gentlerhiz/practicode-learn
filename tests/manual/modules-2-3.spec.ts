@@ -5,19 +5,21 @@ import { admin, deleteTestUsers } from '../db/helpers'
 import { logIn, newLearner } from '../e2e/helpers/auth'
 import { playWholeLesson } from '../e2e/helpers/play'
 
-// Plays every published Front-End Module 2 and 3 lesson end to end as a Pro member, and checks every lab
+// Plays every published lesson in some modules of a course end to end as a Pro member, and checks every lab
 // step with axe. Not part of the CI suite: it needs the private content repo next to this one and a server
 // built against published lessons.
 // Run: PW_BASE=http://localhost:3200 npx playwright test tests/manual/modules-2-3.spec.ts --config tests/manual/playwright.config.ts
+// TRACK=back-end-web-development MODULES=2,3,4 plays another course's modules (Front-End 2 and 3 by default).
 const CONTENT = '../practicode-learn-content/dist'
 const catalogue = JSON.parse(readFileSync(`${CONTENT}/catalogue.json`, 'utf8')) as {
   id: string
   slug: string
+  track: string
   module: number
 }[]
-// MODULES=4 plays another module instead.
+const TRACK = process.env.TRACK ?? 'front-end-web-development'
 const MODULES = (process.env.MODULES ?? '2,3').split(',').map(Number)
-const LESSONS = catalogue.filter((l) => MODULES.includes(l.module))
+const LESSONS = catalogue.filter((l) => l.track === TRACK && MODULES.includes(l.module))
 
 test.afterAll(deleteTestUsers)
 
@@ -28,7 +30,7 @@ for (const lesson of LESSONS) {
     const grant = await admin().from('memberships').insert({ learner_id: learner.id, source: 'granted' })
     if (grant.error) throw grant.error
     await logIn(page, learner.email, '/home')
-    await page.goto(`/learn/front-end-web-development/${lesson.slug}`)
+    await page.goto(`/learn/${lesson.track}/${lesson.slug}`)
 
     // Every step with a lab gets an accessibility check before it's played.
     const pack = JSON.parse(readFileSync(`${CONTENT}/packs/${lesson.id}.json`, 'utf8')) as {

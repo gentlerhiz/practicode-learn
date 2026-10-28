@@ -1,123 +1,139 @@
+import dynamic from 'next/dynamic'
 import type { ComponentType } from 'react'
 import type { LabName } from '@/lib/lessons/labs'
 import type { LabProps } from './shared'
-import { AccessibilityView } from './accessibility-view'
-import { AiOrNot } from './ai-or-not'
-import { ApiDocs } from './api-docs'
-import { AttackPaths } from './attack-paths'
-import { Attackers } from './attackers'
-import { BackupPlan } from './backup-plan'
-import { BinaryBits } from './binary-bits'
-import { BranchGraph } from './branch-graph'
-import { CiaTriad } from './cia-triad'
-import { ClientServer } from './client-server'
-import { CloudCost } from './cloud-cost'
-import { CloudStack } from './cloud-stack'
-import { CloudWhere } from './cloud-where'
-import { ComputerKinds } from './computer-kinds'
-import { ComputerParts } from './computer-parts'
-import { ComputingTimeline } from './computing-timeline'
-import { CpuCores } from './cpu-cores'
-import { DataCentre } from './data-centre'
-import { DataHome } from './data-home'
-import { DataKinds } from './data-kinds'
-import { DataSizes } from './data-sizes'
-import { DataToInfo } from './data-to-info'
-import { DatabaseJobs } from './database-jobs'
-import { DayInRole } from './day-in-role'
-import { DeployPipeline } from './deploy-pipeline'
-import { DesignFile } from './design-file'
-import { DeskSetup } from './desk-setup'
-import { DesktopOs } from './desktop-os'
-import { DevCycle } from './dev-cycle'
-import { DeviceCheck } from './device-check'
-import { DevicePicker } from './device-picker'
-import { DevTools } from './devtools'
-import { DnsLookup } from './dns-lookup'
-import { DocFormat } from './doc-format'
-import { DomTree } from './dom-tree'
-import { DownloadTime } from './download-time'
-import { DriveTypes } from './drive-types'
-import { EditorTour } from './editor-tour'
-import { EmailDraft } from './email-draft'
-import { FactCheck } from './fact-check'
-import { FileManager } from './file-manager'
-import { FilePaths } from './file-paths'
-import { FileTypes } from './file-types'
-import { FixFinder } from './fix-finder'
-import { FlexAxes } from './flex-axes'
-import { Flowchart } from './flowchart'
-import { FolderTidy } from './folder-tidy'
-import { Footprint } from './footprint'
-import { FrontOrBack } from './front-or-back'
-import { GitFlow } from './git-flow'
-import { HomeNetwork } from './home-network'
-import { HttpExchange } from './http-exchange'
-import { InsideLaptop } from './inside-laptop'
-import { InstallSource } from './install-source'
-import { InterestMatch } from './interest-match'
-import { IpAddress } from './ip-address'
-import { JsonShape } from './json-shape'
-import { Languages } from './languages'
-import { LicenceTypes } from './licence-types'
-import { Lighthouse } from './lighthouse'
-import { LinkPreview } from './link-preview'
-import { MalwareKinds } from './malware-kinds'
-import { MlTrain } from './ml-train'
-import { NetworkFault } from './network-fault'
-import { Operators } from './operators'
-import { OsLayers } from './os-layers'
-import { PacketJourney } from './packet-journey'
-import { PageLoad } from './page-load'
-import { PasswordStrength } from './password-strength'
-import { PatchRace } from './patch-race'
-import { PathFinder } from './path-finder'
-import { PhishingSpot } from './phishing-spot'
-import { PhoneOs } from './phone-os'
-import { PortShapes } from './port-shapes'
-import { PracticeShell } from './practice-shell'
-import { PromptBuilder } from './prompt-builder'
-import { PythonRun } from './python-run'
-import { QueryOrder } from './query-order'
-import { RamApps } from './ram-apps'
-import { RequestBuilder } from './request-builder'
-import { RequestJourney } from './request-journey'
-import { RiskMatrix } from './risk-matrix'
-import { RobotSteps } from './robot-steps'
-import { RoleMap } from './role-map'
-import { ScreenPixels } from './screen-pixels'
-import { ScreenReader } from './screen-reader'
-import { SearchQuery } from './search-query'
-import { ShareSettings } from './share-settings'
-import { ShopBackend } from './shop-backend'
-import { ShortcutKeys } from './shortcut-keys'
-import { SignupTable } from './signup-table'
-import { SlideMakeover } from './slide-makeover'
-import { SmartHome } from './smart-home'
-import { SpecSheet } from './spec-sheet'
-import { Spreadsheet } from './spreadsheet'
-import { StatusCodes } from './status-codes'
-import { StringTools } from './string-tools'
-import { SupportTicket } from './support-ticket'
-import { SyncBackup } from './sync-backup'
-import { TableAnatomy } from './table-anatomy'
-import { TableQuestion } from './table-question'
-import { Terminal } from './terminal'
-import { TerminalAnatomy } from './terminal-anatomy'
-import { ThreatHouse } from './threat-house'
-import { TicketLife } from './ticket-life'
-import { TimeZones } from './time-zones'
-import { TracebackParts } from './traceback-parts'
-import { TroubleMethod } from './trouble-method'
-import { TwoFactor } from './two-factor'
-import { UrlAnatomy } from './url-anatomy'
-import { VariableLabels } from './variable-labels'
-import { VersionTimeline } from './version-timeline'
-import { WhatYouProtect } from './what-you-protect'
-import { WhereFilter } from './where-filter'
-import { WhyRestart } from './why-restart'
-import { WifiSignal } from './wifi-signal'
-import { XrSpectrum } from './xr-spectrum'
+
+// Each lab is its own chunk, loaded when a step shows it, so a lesson only downloads the labs it uses.
+const AccessibilityView = dynamic(() => import('./accessibility-view').then((m) => m.AccessibilityView))
+const AiOrNot = dynamic(() => import('./ai-or-not').then((m) => m.AiOrNot))
+const ApiDocs = dynamic(() => import('./api-docs').then((m) => m.ApiDocs))
+const ArrayMethods = dynamic(() => import('./array-methods').then((m) => m.ArrayMethods))
+const AsyncTimeline = dynamic(() => import('./async-timeline').then((m) => m.AsyncTimeline))
+const AttackPaths = dynamic(() => import('./attack-paths').then((m) => m.AttackPaths))
+const Attackers = dynamic(() => import('./attackers').then((m) => m.Attackers))
+const BackupPlan = dynamic(() => import('./backup-plan').then((m) => m.BackupPlan))
+const BinaryBits = dynamic(() => import('./binary-bits').then((m) => m.BinaryBits))
+const BranchGraph = dynamic(() => import('./branch-graph').then((m) => m.BranchGraph))
+const CallTrace = dynamic(() => import('./call-trace').then((m) => m.CallTrace))
+const CiaTriad = dynamic(() => import('./cia-triad').then((m) => m.CiaTriad))
+const ClientServer = dynamic(() => import('./client-server').then((m) => m.ClientServer))
+const CloudCost = dynamic(() => import('./cloud-cost').then((m) => m.CloudCost))
+const CloudStack = dynamic(() => import('./cloud-stack').then((m) => m.CloudStack))
+const CloudWhere = dynamic(() => import('./cloud-where').then((m) => m.CloudWhere))
+const ComputerKinds = dynamic(() => import('./computer-kinds').then((m) => m.ComputerKinds))
+const ComputerParts = dynamic(() => import('./computer-parts').then((m) => m.ComputerParts))
+const ComputingTimeline = dynamic(() => import('./computing-timeline').then((m) => m.ComputingTimeline))
+const CpuCores = dynamic(() => import('./cpu-cores').then((m) => m.CpuCores))
+const DataCentre = dynamic(() => import('./data-centre').then((m) => m.DataCentre))
+const DataHome = dynamic(() => import('./data-home').then((m) => m.DataHome))
+const DataKinds = dynamic(() => import('./data-kinds').then((m) => m.DataKinds))
+const DataSizes = dynamic(() => import('./data-sizes').then((m) => m.DataSizes))
+const DataToInfo = dynamic(() => import('./data-to-info').then((m) => m.DataToInfo))
+const DatabaseJobs = dynamic(() => import('./database-jobs').then((m) => m.DatabaseJobs))
+const DayInRole = dynamic(() => import('./day-in-role').then((m) => m.DayInRole))
+const DeployPipeline = dynamic(() => import('./deploy-pipeline').then((m) => m.DeployPipeline))
+const DesignFile = dynamic(() => import('./design-file').then((m) => m.DesignFile))
+const DeskSetup = dynamic(() => import('./desk-setup').then((m) => m.DeskSetup))
+const DesktopOs = dynamic(() => import('./desktop-os').then((m) => m.DesktopOs))
+const DevCycle = dynamic(() => import('./dev-cycle').then((m) => m.DevCycle))
+const DevTerminal = dynamic(() => import('./dev-terminal').then((m) => m.DevTerminal))
+const DevTools = dynamic(() => import('./devtools').then((m) => m.DevTools))
+const DeviceCheck = dynamic(() => import('./device-check').then((m) => m.DeviceCheck))
+const DevicePicker = dynamic(() => import('./device-picker').then((m) => m.DevicePicker))
+const DnsLookup = dynamic(() => import('./dns-lookup').then((m) => m.DnsLookup))
+const DocFormat = dynamic(() => import('./doc-format').then((m) => m.DocFormat))
+const DomTree = dynamic(() => import('./dom-tree').then((m) => m.DomTree))
+const DownloadTime = dynamic(() => import('./download-time').then((m) => m.DownloadTime))
+const DriveTypes = dynamic(() => import('./drive-types').then((m) => m.DriveTypes))
+const EditorTour = dynamic(() => import('./editor-tour').then((m) => m.EditorTour))
+const EmailDraft = dynamic(() => import('./email-draft').then((m) => m.EmailDraft))
+const FactCheck = dynamic(() => import('./fact-check').then((m) => m.FactCheck))
+const FileManager = dynamic(() => import('./file-manager').then((m) => m.FileManager))
+const FilePaths = dynamic(() => import('./file-paths').then((m) => m.FilePaths))
+const FileTypes = dynamic(() => import('./file-types').then((m) => m.FileTypes))
+const FixFinder = dynamic(() => import('./fix-finder').then((m) => m.FixFinder))
+const FlexAxes = dynamic(() => import('./flex-axes').then((m) => m.FlexAxes))
+const Flowchart = dynamic(() => import('./flowchart').then((m) => m.Flowchart))
+const FolderTidy = dynamic(() => import('./folder-tidy').then((m) => m.FolderTidy))
+const Footprint = dynamic(() => import('./footprint').then((m) => m.Footprint))
+const FrontOrBack = dynamic(() => import('./front-or-back').then((m) => m.FrontOrBack))
+const GitFlow = dynamic(() => import('./git-flow').then((m) => m.GitFlow))
+const HomeNetwork = dynamic(() => import('./home-network').then((m) => m.HomeNetwork))
+const HttpExchange = dynamic(() => import('./http-exchange').then((m) => m.HttpExchange))
+const IfFlow = dynamic(() => import('./if-flow').then((m) => m.IfFlow))
+const InsideLaptop = dynamic(() => import('./inside-laptop').then((m) => m.InsideLaptop))
+const InstallSource = dynamic(() => import('./install-source').then((m) => m.InstallSource))
+const InterestMatch = dynamic(() => import('./interest-match').then((m) => m.InterestMatch))
+const IpAddress = dynamic(() => import('./ip-address').then((m) => m.IpAddress))
+const JsErrorParts = dynamic(() => import('./js-error-parts').then((m) => m.JsErrorParts))
+const JsTypes = dynamic(() => import('./js-types').then((m) => m.JsTypes))
+const JsonConvert = dynamic(() => import('./json-convert').then((m) => m.JsonConvert))
+const JsonShape = dynamic(() => import('./json-shape').then((m) => m.JsonShape))
+const Languages = dynamic(() => import('./languages').then((m) => m.Languages))
+const LicenceTypes = dynamic(() => import('./licence-types').then((m) => m.LicenceTypes))
+const Lighthouse = dynamic(() => import('./lighthouse').then((m) => m.Lighthouse))
+const LinkPreview = dynamic(() => import('./link-preview').then((m) => m.LinkPreview))
+const LoopTrace = dynamic(() => import('./loop-trace').then((m) => m.LoopTrace))
+const MalwareKinds = dynamic(() => import('./malware-kinds').then((m) => m.MalwareKinds))
+const MlTrain = dynamic(() => import('./ml-train').then((m) => m.MlTrain))
+const ModuleGraph = dynamic(() => import('./module-graph').then((m) => m.ModuleGraph))
+const NetworkFault = dynamic(() => import('./network-fault').then((m) => m.NetworkFault))
+const ObjectAccess = dynamic(() => import('./object-access').then((m) => m.ObjectAccess))
+const Operators = dynamic(() => import('./operators').then((m) => m.Operators))
+const OsLayers = dynamic(() => import('./os-layers').then((m) => m.OsLayers))
+const PacketJourney = dynamic(() => import('./packet-journey').then((m) => m.PacketJourney))
+const PageLoad = dynamic(() => import('./page-load').then((m) => m.PageLoad))
+const PasswordStrength = dynamic(() => import('./password-strength').then((m) => m.PasswordStrength))
+const PatchRace = dynamic(() => import('./patch-race').then((m) => m.PatchRace))
+const PathFinder = dynamic(() => import('./path-finder').then((m) => m.PathFinder))
+const PhishingSpot = dynamic(() => import('./phishing-spot').then((m) => m.PhishingSpot))
+const PhoneOs = dynamic(() => import('./phone-os').then((m) => m.PhoneOs))
+const PortShapes = dynamic(() => import('./port-shapes').then((m) => m.PortShapes))
+const PracticeShell = dynamic(() => import('./practice-shell').then((m) => m.PracticeShell))
+const PromptBuilder = dynamic(() => import('./prompt-builder').then((m) => m.PromptBuilder))
+const PullRequest = dynamic(() => import('./pull-request').then((m) => m.PullRequest))
+const PythonRun = dynamic(() => import('./python-run').then((m) => m.PythonRun))
+const QueryOrder = dynamic(() => import('./query-order').then((m) => m.QueryOrder))
+const RamApps = dynamic(() => import('./ram-apps').then((m) => m.RamApps))
+const RequestBuilder = dynamic(() => import('./request-builder').then((m) => m.RequestBuilder))
+const RequestJourney = dynamic(() => import('./request-journey').then((m) => m.RequestJourney))
+const RiskMatrix = dynamic(() => import('./risk-matrix').then((m) => m.RiskMatrix))
+const RobotSteps = dynamic(() => import('./robot-steps').then((m) => m.RobotSteps))
+const RoleMap = dynamic(() => import('./role-map').then((m) => m.RoleMap))
+const ScreenPixels = dynamic(() => import('./screen-pixels').then((m) => m.ScreenPixels))
+const ScreenReader = dynamic(() => import('./screen-reader').then((m) => m.ScreenReader))
+const SearchQuery = dynamic(() => import('./search-query').then((m) => m.SearchQuery))
+const ShareSettings = dynamic(() => import('./share-settings').then((m) => m.ShareSettings))
+const ShopBackend = dynamic(() => import('./shop-backend').then((m) => m.ShopBackend))
+const ShortcutKeys = dynamic(() => import('./shortcut-keys').then((m) => m.ShortcutKeys))
+const SignupTable = dynamic(() => import('./signup-table').then((m) => m.SignupTable))
+const SlideMakeover = dynamic(() => import('./slide-makeover').then((m) => m.SlideMakeover))
+const SmartHome = dynamic(() => import('./smart-home').then((m) => m.SmartHome))
+const SpecSheet = dynamic(() => import('./spec-sheet').then((m) => m.SpecSheet))
+const Spreadsheet = dynamic(() => import('./spreadsheet').then((m) => m.Spreadsheet))
+const StatusCodes = dynamic(() => import('./status-codes').then((m) => m.StatusCodes))
+const StringTools = dynamic(() => import('./string-tools').then((m) => m.StringTools))
+const SupportTicket = dynamic(() => import('./support-ticket').then((m) => m.SupportTicket))
+const SyncBackup = dynamic(() => import('./sync-backup').then((m) => m.SyncBackup))
+const TableAnatomy = dynamic(() => import('./table-anatomy').then((m) => m.TableAnatomy))
+const TableQuestion = dynamic(() => import('./table-question').then((m) => m.TableQuestion))
+const Terminal = dynamic(() => import('./terminal').then((m) => m.Terminal))
+const TerminalAnatomy = dynamic(() => import('./terminal-anatomy').then((m) => m.TerminalAnatomy))
+const ThreatHouse = dynamic(() => import('./threat-house').then((m) => m.ThreatHouse))
+const TicketLife = dynamic(() => import('./ticket-life').then((m) => m.TicketLife))
+const TimeZones = dynamic(() => import('./time-zones').then((m) => m.TimeZones))
+const TracebackParts = dynamic(() => import('./traceback-parts').then((m) => m.TracebackParts))
+const TroubleMethod = dynamic(() => import('./trouble-method').then((m) => m.TroubleMethod))
+const TwoFactor = dynamic(() => import('./two-factor').then((m) => m.TwoFactor))
+const UrlAnatomy = dynamic(() => import('./url-anatomy').then((m) => m.UrlAnatomy))
+const VariableLabels = dynamic(() => import('./variable-labels').then((m) => m.VariableLabels))
+const VersionChaos = dynamic(() => import('./version-chaos').then((m) => m.VersionChaos))
+const VersionTimeline = dynamic(() => import('./version-timeline').then((m) => m.VersionTimeline))
+const WhatYouProtect = dynamic(() => import('./what-you-protect').then((m) => m.WhatYouProtect))
+const WhereFilter = dynamic(() => import('./where-filter').then((m) => m.WhereFilter))
+const WhyRestart = dynamic(() => import('./why-restart').then((m) => m.WhyRestart))
+const WifiSignal = dynamic(() => import('./wifi-signal').then((m) => m.WifiSignal))
+const XrSpectrum = dynamic(() => import('./xr-spectrum').then((m) => m.XrSpectrum))
 
 /** Every lab a lesson can name. Diagram labs take a `state`; Explore labs take the control's `value`. */
 export const labs: Record<LabName, ComponentType<LabProps>> = {
@@ -238,4 +254,17 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'table-anatomy': TableAnatomy,
   'where-filter': WhereFilter,
   'query-order': QueryOrder,
+  'js-types': JsTypes,
+  'if-flow': IfFlow,
+  'call-trace': CallTrace,
+  'loop-trace': LoopTrace,
+  'object-access': ObjectAccess,
+  'js-error-parts': JsErrorParts,
+  'array-methods': ArrayMethods,
+  'module-graph': ModuleGraph,
+  'async-timeline': AsyncTimeline,
+  'json-convert': JsonConvert,
+  'dev-terminal': DevTerminal,
+  'version-chaos': VersionChaos,
+  'pull-request': PullRequest,
 }

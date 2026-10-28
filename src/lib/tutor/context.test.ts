@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { parsePack } from '@/lib/lessons/schema'
-import { stepContext } from './context'
+import { SYSTEM_PROMPT, stepContext } from './context'
 
 const pack = parsePack(JSON.parse(readFileSync('content/samples/packs/zz-01-01.json', 'utf8')))
 const at = (type: string) => pack.steps.findIndex((s) => s.type === type)
@@ -30,6 +30,18 @@ describe('stepContext', () => {
     })
     expect(text).toContain('Checks the code must pass')
     expect(text).not.toContain('NOT MINE')
+  })
+
+  it('outlines the whole lesson, so questions about other steps have an answer', () => {
+    const text = stepContext(pack, 0)
+    expect(text).toContain("The lesson's steps:")
+    for (const [i, s] of pack.steps.entries()) expect(text).toContain(`${i + 1}. ${s.type}:`)
+  })
+
+  it('tells the model how to treat messages that are not about the course', () => {
+    expect(SYSTEM_PROMPT).toMatch(/unrelated to learning this course/)
+    expect(SYSTEM_PROMPT).toMatch(/greeting/)
+    expect(SYSTEM_PROMPT).toMatch(/Frustration/)
   })
 
   it('refuses a step that does not exist', () => {

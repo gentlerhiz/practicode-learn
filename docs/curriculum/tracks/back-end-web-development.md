@@ -78,6 +78,8 @@ Each lesson takes 8–14 minutes and follows the [lesson format](../lesson-forma
 - **Request builder** (Module 1): real requests to a practice café API, with the full request and response.
 - **Status codes** (Module 1): what each code means, and whose problem it is.
 - **JSON shapes** and **API documentation** (Module 1): reading data and the docs that describe it.
+- **JavaScript labs** (Modules 2 and 3): types, branches, function calls and loops traced step by step, error messages taken apart, array methods, modules and an asynchronous timeline.
+- **Practice terminal** (Module 4): files, `node` and real Git commands on a practice laptop, including branches, merge conflicts, `.gitignore` and a practice GitHub.
 - **Simulated server** (Modules 1, 5–7): write routes in the browser, send them requests, and see the replies, before installing anything.
 - **Database in the browser** (Modules 8–9): real PostgreSQL through PGlite.
 - **Broken API** (Module 11): a deliberately insecure API to attack and fix, safely, inside the page.

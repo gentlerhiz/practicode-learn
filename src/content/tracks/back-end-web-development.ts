@@ -4,7 +4,7 @@ const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
  * Back-End Web Development, from its syllabus (docs/curriculum/tracks/back-end-web-development.md).
- * Module 1 is published; the rest are marked soon until their lessons are. A test keeps this identical
+ * Modules 1 to 4 are published; the rest are marked soon until their lessons are. A test keeps this identical
  * to the syllabus.
  */
 export const backEnd: TrackContent = {
@@ -83,7 +83,6 @@ export const backEnd: TrackContent = {
       standard: 'MDN: JavaScript first steps',
       project: "A price calculator for a café's orders",
       free: false,
-      soon: true,
       lessons: l(
         'Values and variables',
         'Numbers, strings and booleans',
@@ -102,7 +101,6 @@ export const backEnd: TrackContent = {
       standard: 'MDN: JavaScript building blocks · JSNAD: Control flow, Error handling',
       project: 'A records processor that reads, cleans and summarises orders',
       free: false,
-      soon: true,
       lessons: l(
         'Array methods: map, filter and find',
         'Destructuring and spread',
@@ -121,7 +119,6 @@ export const backEnd: TrackContent = {
       standard: 'MDN: Version control',
       project: 'A documented repository with a clean history',
       free: false,
-      soon: true,
       lessons: l(
         'The terminal and the file system',
         'Running programs from the terminal',

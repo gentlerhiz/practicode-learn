@@ -2,9 +2,10 @@
 //   - the model solution must pass every test
 //   - the starter code must fail at least one test, or the task is already done
 // It also renders every runnable example and every Explore value, and fails on any page error (except
-// from a live question's wrong options, which may throw on purpose). It uses
+// from a live question's wrong options, or a Run It prediction whose answer is an error, which may throw on
+// purpose). It uses
 // the same document builder as the lesson player, so a test that passes here passes for learners.
-// Usage: node tools/content-build/check-code.ts --packs <dir>   (solutions are read from <dir>/../solutions)
+// Usage: node tools/content-build/check-code.ts --packs <dir> [--only <id prefix>]   (solutions are read from <dir>/../solutions)
 import fs from 'node:fs'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
@@ -16,7 +17,7 @@ import { ENGINE_TIMEOUT_MS } from '../../src/lib/runner/engines.ts'
 type TestResult = { name: string; pass: boolean; message?: string }
 
 const WIDTHS = [360, 960]
-const { values } = parseArgs({ options: { packs: { type: 'string' } } })
+const { values } = parseArgs({ options: { packs: { type: 'string' }, only: { type: 'string' } } })
 if (!values.packs) {
   console.error('Usage: node tools/content-build/check-code.ts --packs <dir>')
   process.exit(2)
@@ -61,7 +62,7 @@ const problems: string[] = []
 let checked = 0
 for (const f of fs
   .readdirSync(packsDir)
-  .filter((n) => n.endsWith('.json'))
+  .filter((n) => n.endsWith('.json') && (!values.only || n.startsWith(values.only)))
   .sort()) {
   const pack = parsePack(JSON.parse(fs.readFileSync(path.join(packsDir, f), 'utf8')))
   const solutions: Record<string, LessonFile[]> = JSON.parse(
@@ -99,7 +100,11 @@ for (const f of fs
     else if (step.live) {
       tries = step.options.map((o) => o.value ?? null)
       mayThrow = step.options.filter((o) => !o.correct).map((o) => o.value ?? null)
-    } else if (step.run) tries = [null]
+    } else if (step.run) {
+      tries = [null]
+      // A prediction whose right answer is an error runs code that throws on purpose.
+      if (step.options.some((o) => o.correct && /error/i.test(o.html))) mayThrow = [null]
+    }
     for (const value of tries) {
       await run(buildDocument(step.files, { value }), 360, false)
       if (pageErrors.length && !mayThrow.includes(value)) {

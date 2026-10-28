@@ -122,6 +122,19 @@ export const LAB_NAMES = [
   'table-anatomy',
   'where-filter',
   'query-order',
+  'js-types',
+  'if-flow',
+  'call-trace',
+  'loop-trace',
+  'object-access',
+  'js-error-parts',
+  'array-methods',
+  'module-graph',
+  'async-timeline',
+  'json-convert',
+  'dev-terminal',
+  'version-chaos',
+  'pull-request',
 ] as const
 
 export type LabName = (typeof LAB_NAMES)[number]
