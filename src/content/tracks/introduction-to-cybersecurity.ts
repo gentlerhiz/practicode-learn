@@ -4,7 +4,7 @@ const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
  * Introduction to Cybersecurity, from its syllabus (docs/curriculum/tracks/introduction-to-cybersecurity.md).
- * Modules 1 and 2 are published; the rest are marked soon until their lessons are. A test keeps this identical
+ * Module 1 is published; the rest are marked soon until their lessons are. A test keeps this identical
  * to the syllabus.
  */
 export const cybersecurity: TrackContent = {
@@ -79,6 +79,7 @@ export const cybersecurity: TrackContent = {
       standard: 'Protect',
       project: 'Secure three practice accounts from scratch',
       free: false,
+      soon: true,
       lessons: l(
         'How passwords get stolen',
         'Passphrases beat complexity',

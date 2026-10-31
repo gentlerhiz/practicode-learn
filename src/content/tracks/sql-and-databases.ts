@@ -3,8 +3,8 @@ import type { TrackContent } from './types'
 const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
- * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). Modules 1 and 2
- * are published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
+ * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). Module 1 is
+ * published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
  */
 export const sql: TrackContent = {
   slug: 'sql-and-databases',
@@ -79,6 +79,7 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: predicates',
       project: 'Find the customers a shop should contact',
       free: false,
+      soon: true,
       lessons: l(
         'AND, OR and NOT',
         'Ranges with BETWEEN and IN',
