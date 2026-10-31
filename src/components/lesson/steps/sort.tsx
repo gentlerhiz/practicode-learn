@@ -1,5 +1,6 @@
 'use client'
 import { Button } from '@/components/ui'
+import { plainText as plain } from '@/lib/lessons/plain-text'
 import type { LessonStep } from '@/lib/lessons/schema'
 import { cn } from '@/lib/cn'
 import type { LessonPlayerApi } from '../player/use-lesson-player'
@@ -17,8 +18,6 @@ const TONES = [
   'border-ux bg-ux text-white',
   'border-ai bg-ai text-white',
 ]
-
-const plain = (html: string) => html.replace(/<[^>]+>/g, '')
 
 /**
  * Sort each item into one of two to four groups. Each item is a native radio group, so arrow keys and

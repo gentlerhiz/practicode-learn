@@ -1,6 +1,7 @@
 import 'server-only'
 import type { Route } from 'next'
 import { getTrackContent } from '@/content/tracks'
+import { plainText } from '@/lib/lessons/plain-text'
 import { createClient } from '@/lib/supabase/server'
 import { daysReviewed, pickSession, previews, type CardState } from './schedule'
 
@@ -110,11 +111,7 @@ function summarise(
   return {
     due: today.length,
     next: today[0]
-      ? today[0].front
-          .replace(/<[^>]+>/g, '')
-          .replace(/&#x27;|&#39;/g, "'")
-          .replace(/&quot;/g, '"')
-          .replace(/&amp;/g, '&')
+      ? plainText(today[0].front)
       : null,
     total: all.length,
     daysThisWeek: daysReviewed(times, now),

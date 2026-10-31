@@ -1,5 +1,6 @@
 import { findCourse } from '@/content/catalogue'
 import { getTrackContent } from '@/content/tracks'
+import { plainText } from '@/lib/lessons/plain-text'
 import type { LessonFile, LessonPack } from '@/lib/lessons/schema'
 
 type Step = LessonPack['steps'][number]
@@ -10,13 +11,7 @@ export type LearnerView = { selected?: string; files?: LessonFile[] }
 const MAX_CONTEXT = 9000
 
 const plain = (html: string) =>
-  html
-    .replace(/<[^>]+>/g, '')
-    .replace(/&quot;/g, '"')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;|&#x27;/g, "'")
-    .replace(/&amp;/g, '&')
+  plainText(html)
     .replace(/\n{3,}/g, '\n\n')
     .trim()
 

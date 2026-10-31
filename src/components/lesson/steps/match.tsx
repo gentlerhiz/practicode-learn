@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Button } from '@/components/ui'
+import { plainText as plain } from '@/lib/lessons/plain-text'
 import type { LessonStep } from '@/lib/lessons/schema'
 import { cn } from '@/lib/cn'
 import { fixedShuffle, type LessonPlayerApi } from '../player/use-lesson-player'
@@ -10,8 +11,6 @@ import { Prose } from '../parts/prose'
 import { StepGrid, StepHeading } from '../parts/step-layout'
 
 type MatchStepData = Extract<LessonStep, { type: 'match' }>
-
-const plain = (html: string) => html.replace(/<[^>]+>/g, '')
 
 /**
  * Pair each term with its match: choose a term, then the match it goes with. Every control is a button,
