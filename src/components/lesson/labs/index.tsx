@@ -10,6 +10,13 @@ const ApiDocs = dynamic(() => import('./api-docs').then((m) => m.ApiDocs))
 const ArrayMethods = dynamic(() => import('./array-methods').then((m) => m.ArrayMethods))
 const AsyncTimeline = dynamic(() => import('./async-timeline').then((m) => m.AsyncTimeline))
 const AttackPaths = dynamic(() => import('./attack-paths').then((m) => m.AttackPaths))
+const PasswordTheft = dynamic(() => import('./password-theft').then((m) => m.PasswordTheft))
+const CrackClock = dynamic(() => import('./crack-clock').then((m) => m.CrackClock))
+const ReuseDomino = dynamic(() => import('./reuse-domino').then((m) => m.ReuseDomino))
+const Vault = dynamic(() => import('./vault').then((m) => m.Vault))
+const MfaLadder = dynamic(() => import('./mfa-ladder').then((m) => m.MfaLadder))
+const PasskeyHandshake = dynamic(() => import('./passkey-handshake').then((m) => m.PasskeyHandshake))
+const RecoveryCheck = dynamic(() => import('./recovery-check').then((m) => m.RecoveryCheck))
 const Attackers = dynamic(() => import('./attackers').then((m) => m.Attackers))
 const BackupPlan = dynamic(() => import('./backup-plan').then((m) => m.BackupPlan))
 const BinaryBits = dynamic(() => import('./binary-bits').then((m) => m.BinaryBits))
@@ -113,6 +120,11 @@ const SpecSheet = dynamic(() => import('./spec-sheet').then((m) => m.SpecSheet))
 const Spreadsheet = dynamic(() => import('./spreadsheet').then((m) => m.Spreadsheet))
 const StatusCodes = dynamic(() => import('./status-codes').then((m) => m.StatusCodes))
 const StringTools = dynamic(() => import('./string-tools').then((m) => m.StringTools))
+const PyCompare = dynamic(() => import('./py-compare').then((m) => m.PyCompare))
+const ElifLadder = dynamic(() => import('./elif-ladder').then((m) => m.ElifLadder))
+const TruthTable = dynamic(() => import('./truth-table').then((m) => m.TruthTable))
+const DecisionTree = dynamic(() => import('./decision-tree').then((m) => m.DecisionTree))
+const InputConvert = dynamic(() => import('./input-convert').then((m) => m.InputConvert))
 const SupportTicket = dynamic(() => import('./support-ticket').then((m) => m.SupportTicket))
 const SyncBackup = dynamic(() => import('./sync-backup').then((m) => m.SyncBackup))
 const TableAnatomy = dynamic(() => import('./table-anatomy').then((m) => m.TableAnatomy))
@@ -131,6 +143,11 @@ const VersionChaos = dynamic(() => import('./version-chaos').then((m) => m.Versi
 const VersionTimeline = dynamic(() => import('./version-timeline').then((m) => m.VersionTimeline))
 const WhatYouProtect = dynamic(() => import('./what-you-protect').then((m) => m.WhatYouProtect))
 const WhereFilter = dynamic(() => import('./where-filter').then((m) => m.WhereFilter))
+const SqlFilter = dynamic(() => import('./sql-filter').then((m) => m.SqlFilter))
+const LikePattern = dynamic(() => import('./like-pattern').then((m) => m.LikePattern))
+const NullLogic = dynamic(() => import('./null-logic').then((m) => m.NullLogic))
+const CalcColumn = dynamic(() => import('./calc-column').then((m) => m.CalcColumn))
+const CaseFlow = dynamic(() => import('./case-flow').then((m) => m.CaseFlow))
 const WhyRestart = dynamic(() => import('./why-restart').then((m) => m.WhyRestart))
 const WifiSignal = dynamic(() => import('./wifi-signal').then((m) => m.WifiSignal))
 const XrSpectrum = dynamic(() => import('./xr-spectrum').then((m) => m.XrSpectrum))
@@ -237,6 +254,13 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'threat-house': ThreatHouse,
   attackers: Attackers,
   'attack-paths': AttackPaths,
+  'password-theft': PasswordTheft,
+  'crack-clock': CrackClock,
+  'reuse-domino': ReuseDomino,
+  'vault': Vault,
+  'mfa-ladder': MfaLadder,
+  'passkey-handshake': PasskeyHandshake,
+  'recovery-check': RecoveryCheck,
   'risk-matrix': RiskMatrix,
   'shop-backend': ShopBackend,
   'front-or-back': FrontOrBack,
@@ -250,9 +274,19 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'operators': Operators,
   'traceback-parts': TracebackParts,
   'string-tools': StringTools,
+  'py-compare': PyCompare,
+  'elif-ladder': ElifLadder,
+  'truth-table': TruthTable,
+  'decision-tree': DecisionTree,
+  'input-convert': InputConvert,
   'data-home': DataHome,
   'table-anatomy': TableAnatomy,
   'where-filter': WhereFilter,
+  'sql-filter': SqlFilter,
+  'like-pattern': LikePattern,
+  'null-logic': NullLogic,
+  'calc-column': CalcColumn,
+  'case-flow': CaseFlow,
   'query-order': QueryOrder,
   'js-types': JsTypes,
   'if-flow': IfFlow,

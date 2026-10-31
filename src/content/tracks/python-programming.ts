@@ -3,8 +3,8 @@ import type { TrackContent } from './types'
 const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
- * Python Programming, from its syllabus (docs/curriculum/tracks/python-programming.md). Module 1 is
- * published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
+ * Python Programming, from its syllabus (docs/curriculum/tracks/python-programming.md). Modules 1 and 2
+ * are published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
  */
 export const python: TrackContent = {
   slug: 'python-programming',
@@ -80,7 +80,6 @@ export const python: TrackContent = {
       standard: 'PCEP 2: Control flow (conditional blocks)',
       project: 'A quiz that marks itself',
       free: false,
-      soon: true,
       lessons: l(
         'True, False and comparisons',
         'if, elif and else',

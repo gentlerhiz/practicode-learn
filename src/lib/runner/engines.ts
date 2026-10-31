@@ -32,18 +32,44 @@ const STATUS = (text: string) =>
 const HOLD = `window.__pclPending = (window.__pclPending || 0) + 1;
 window.__pclEngine = new Promise(function (r) { window.__pclEngineDone = function () { window.__pclPending--; r(); }; });`
 
+// input() reads its answers from input.txt, one line per call, and shows the prompt and the answer in the
+// console the way a terminal shows typing. With no answers left (or no input.txt) it stops with an
+// EOFError that says what to add, rather than waiting for typing that can't happen in a preview.
+const INPUT = `import builtins
+def _pcl_make_input(text):
+    answers = None if text is None else iter(text.splitlines())
+    def input(prompt=''):
+        if answers is None:
+            raise EOFError('this program asks for input. Add an input.txt file with one answer on each line.')
+        try:
+            answer = next(answers)
+        except StopIteration:
+            raise EOFError('input() ran out of answers. Add another line to input.txt.') from None
+        print(f'{prompt}{answer}')
+        return answer
+    return input
+builtins.input = _pcl_make_input(__pcl_inputs)
+del _pcl_make_input, __pcl_inputs, builtins`
+
 /**
  * Python: the first .py file not marked readonly is the program (or main.py, if there is one); every
  * file is written to the engine's file system, so the program can import the others. print() goes to
  * the console under the preview, and an error shows as Python's own traceback, trimmed to the
- * learner's files. Tests get python(expression), which evaluates in the program's variables.
+ * learner's files. input() answers come from input.txt (see INPUT). Tests get python(expression),
+ * which evaluates in the program's variables.
  */
 export function pythonDocument(
   files: { name: string; lang: string; code: string; readonly?: boolean }[],
 ): { head: string; body: string } {
   const py = files.filter((f) => isPython(f.lang))
   const main = py.find((f) => f.name === 'main.py') ?? py.find((f) => !f.readonly) ?? py[0]!
-  const data = JSON.stringify({ files: py.map((f) => ({ name: f.name, code: f.code })), main: main.name }).replace(
+  const inputs = files.find((f) => f.name === 'input.txt')?.code ?? null
+  const data = JSON.stringify({
+    files: py.map((f) => ({ name: f.name, code: f.code })),
+    main: main.name,
+    inputs,
+    setup: INPUT,
+  }).replace(
     /</g,
     '\\u003c',
   )
@@ -57,6 +83,8 @@ export function pythonDocument(
     var lines = String(message).split('\\n');
     var from = lines.findIndex(function (l) { return /^  File "(<exec>|\\/home\\/pyodide\\/)/.test(l); });
     var kept = from < 0 ? lines.filter(Boolean).slice(-1) : ['Traceback (most recent call last):'].concat(lines.slice(from));
+    // The runner's own input() is part of Python as far as the learner knows, so its frame is left out.
+    kept = kept.filter(function (l, i) { return !/^  File "<pcl>"/.test(l) && !(i > 0 && /^  File "<pcl>"/.test(kept[i - 1]) && /^    /.test(l)); });
     return kept.join('\\n').split('<exec>').join(name).split('/home/pyodide/').join('').trim();
   };
   var toJs = function (v) {
@@ -75,8 +103,13 @@ export function pythonDocument(
     status.remove();
     window.python = function (expression) { return toJs(engine.runPython(String(expression), { globals: engine.globals })); };
     job.files.forEach(function (f) { engine.FS.writeFile(f.name, f.code); });
+    // undefined, not null: Pyodide turns undefined into None, and null into a JavaScript object.
+    engine.globals.set('__pcl_inputs', job.inputs === null ? undefined : job.inputs);
     var program = job.files.find(function (f) { return f.name === job.main; });
-    try { await engine.runPythonAsync(program.code, { filename: '<exec>' }); }
+    try {
+      engine.runPython(job.setup, { globals: engine.globals, filename: '<pcl>' });
+      await engine.runPythonAsync(program.code, { filename: '<exec>' });
+    }
     catch (e) { window.__pclShow(trim(e && e.message, job.main), 'error'); window.__pclError = trim(e && e.message, job.main); }
     window.__pclEngineDone();
   })();

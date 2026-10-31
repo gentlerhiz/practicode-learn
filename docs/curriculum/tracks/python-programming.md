@@ -70,6 +70,11 @@ Each lesson takes 8–14 minutes and follows the [lesson format](../lesson-forma
 - **Operators** (Module 1): every arithmetic operator on the same two numbers, with the result and its type.
 - **Reading a traceback** (Module 1): each part of an error message, and what it tells you.
 - **String tools** (Module 1): what len, upper, indexing and f-strings do to one piece of text.
+- **Comparisons** (Module 2): one comparison, each side's type, and True or False, including the traps: '10' == 10 and 0.1 + 0.2.
+- **The elif ladder** (Module 2): a score marked by if, elif and else, each test checked or skipped, and the same ladder in the wrong order.
+- **Truth table** (Module 2): switches for and, or and not, with every combination and the learner's row marked.
+- **Decision tree** (Module 2): a decision inside a decision, walked by three people, then written flat.
+- **input() gives text** (Module 2): an answer arriving as a string, the TypeError, and int().
 - **Python in the browser** (every module): real Python 3.14 through Pyodide, in the code editor, with print output and errors in the console.
 
 ## Assessment

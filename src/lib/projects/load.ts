@@ -4,7 +4,7 @@ import { getTrackContent } from '@/content/tracks'
 import { PackError } from '@/lib/lessons/schema'
 import { PRO_BUCKET } from '@/lib/lessons/types'
 import { createClient } from '@/lib/supabase/server'
-import { allCheckNames, type CheckResult } from './checks'
+import { allCheckNames, isProgram, type CheckResult } from './checks'
 import { parseProjectPack, type ProjectFile, type ProjectPack } from './schema'
 
 export type ProjectStatus = 'locked' | 'open' | 'draft' | 'passed' | 'soon'
@@ -199,6 +199,6 @@ export async function loadProject(track: string, slug: string): Promise<ProjectV
     savedAt: work.data?.updated_at ?? null,
     unlocked: lessonCount.total > 0 && lessonCount.done === lessonCount.total,
     lessons: lessonCount,
-    checkNames: allCheckNames(pack.checks),
+    checkNames: allCheckNames(pack.checks, isProgram(pack.files)),
   }
 }

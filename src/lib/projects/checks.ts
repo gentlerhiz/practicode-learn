@@ -1,5 +1,6 @@
 // Read by the app and directly by the content tools, so: explicit .ts extensions, erasable syntax only.
 import type { LessonTest } from '../lessons/schema.ts'
+import { engineFor } from '../runner/engines.ts'
 
 /**
  * The checks every project gets on top of its brief's own: no serious accessibility problems (axe, the
@@ -44,9 +45,20 @@ assert(
 
 export type CheckResult = { name: string; pass: boolean; message?: string }
 
+/**
+ * A project that's a program (Python or SQL) rather than a page: it has no page to check for accessibility
+ * or screen sizes, so it gets runsCheck instead.
+ */
+export const isProgram = (files: { lang: string }[]) => engineFor(files) !== null
+
+/** The built-in check for a program: it runs to the end without an error. */
+export const runsCheck: LessonTest = {
+  name: 'Runs without errors',
+  code: `assert(!window.__pclError, 'It stopped with an error: ' + window.__pclError + ' Fix that, then run the checks again.');`,
+}
+
 /** Every check a project has, in the order the workspace lists them. */
-export const allCheckNames = (brief: { name: string }[]) => [
+export const allCheckNames = (brief: { name: string }[], program = false) => [
   ...brief.map((c) => c.name),
-  accessibilityCheck.name,
-  ...SCREENS.map((s) => screenCheck(s).name),
+  ...(program ? [runsCheck.name] : [accessibilityCheck.name, ...SCREENS.map((s) => screenCheck(s).name)]),
 ]

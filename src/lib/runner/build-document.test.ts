@@ -36,6 +36,17 @@ it('gives tests the printed lines, a wait and the step’s files, and lets them 
   expect(doc).toContain('async function ($, $$, css, box, textBox, near, assert, logs, wait, file)')
   expect(doc).toContain('window.__pclFiles = {"index.html":"\\u003cp>Hi\\u003c/p>"')
 })
+it('lets a page’s scripts read the step’s data files with pclFile, escaped like everything else', () => {
+  const doc = buildDocument([
+    { name: 'index.html', lang: 'html', code: '<ul></ul>' },
+    { name: 'app.js', lang: 'js', code: 'pclFile("risks.txt")' },
+    { name: 'risks.txt', lang: 'text', code: 'Phone | </script> |' },
+  ])
+  expect(doc).toContain('window.pclFile')
+  // The data is the text file alone: code files aren't data. A page with no JavaScript gets no reader.
+  expect(doc).toContain('})({"risks.txt":"Phone | \\u003c/script> |"});')
+  expect(buildDocument(files)).not.toContain('pclFile')
+})
 it('links files that import and export each other, each in its own scope, imported files first', () => {
   const doc = buildDocument([
     { name: 'main.js', lang: 'js', code: "import { add } from './budget.js'\nconst total = add(2, 3)" },

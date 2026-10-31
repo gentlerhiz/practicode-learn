@@ -3,7 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { PreviewFrame } from '@/components/lesson/preview-frame'
 import type { LessonFile, LessonTest } from '@/lib/lessons/schema'
-import { accessibilityCheck, SCREENS, screenCheck, type CheckResult } from '@/lib/projects/checks'
+import {
+  accessibilityCheck,
+  isProgram,
+  runsCheck,
+  SCREENS,
+  screenCheck,
+  type CheckResult,
+} from '@/lib/projects/checks'
 
 let axeSource: Promise<string> | null = null
 /** axe-core, served from public/vendor (scripts/vendor.mjs), fetched once and only when checks run. */
@@ -16,7 +23,8 @@ const loadAxe = () =>
 /**
  * Runs a project's checks the way the content build checks the model solution: the brief's own checks
  * and the accessibility check at laptop width, then the screen-size check at each width, each in its
- * own sandboxed frame of that size, out of sight. Reports every result at once, in the workspace's order.
+ * own sandboxed frame of that size, out of sight. A program (Python or SQL) has no page to check, so it
+ * runs once, with the brief's checks and runsCheck. Reports every result at once, in the workspace's order.
  */
 export function CheckRunner({
   files,
@@ -36,25 +44,30 @@ export function CheckRunner({
   const reported = useRef(0)
   // The files as they were when this run started, so typing during a run doesn't restart it.
   const snapshot = useMemo(() => files, [run]) // eslint-disable-line react-hooks/exhaustive-deps
+  const program = isProgram(files)
 
   useEffect(() => {
     if (!run) return
     got.current = {}
-    loadAxe().then(setAxe, () => setAxeFailed(true))
-  }, [run])
+    // A program has no page for axe to check, so it doesn't need loading.
+    if (!program) loadAxe().then(setAxe, () => setAxeFailed(true))
+  }, [run, program])
 
   const frames = useMemo(
-    () => [
-      { key: 'brief', width: 1280, height: 800, tests: [...checks, accessibilityCheck], helpers: true },
-      ...SCREENS.map((s) => ({
-        key: `w${s.width}`,
-        width: s.width,
-        height: s.height,
-        tests: [screenCheck(s)],
-        helpers: false,
-      })),
-    ],
-    [checks],
+    () =>
+      program
+        ? [{ key: 'brief', width: 1280, height: 800, tests: [...checks, runsCheck], helpers: false }]
+        : [
+            { key: 'brief', width: 1280, height: 800, tests: [...checks, accessibilityCheck], helpers: true },
+            ...SCREENS.map((s) => ({
+              key: `w${s.width}`,
+              width: s.width,
+              height: s.height,
+              tests: [screenCheck(s)],
+              helpers: false,
+            })),
+          ],
+    [checks, program],
   )
 
   const collect = (key: string, results: CheckResult[]) => {
@@ -86,7 +99,7 @@ export function CheckRunner({
     ])
   }, [axeFailed, run, checks, onDone])
 
-  if (!run || !axe) return null
+  if (!run || (!program && !axe)) return null
   return (
     <div inert className="pointer-events-none fixed top-0 -left-[20000px] opacity-0">
       {frames.map((f) => (
@@ -94,7 +107,7 @@ export function CheckRunner({
           <PreviewFrame
             files={snapshot}
             tests={f.tests}
-            helpers={f.helpers ? axe : undefined}
+            helpers={f.helpers ? (axe ?? undefined) : undefined}
             onResults={(r) => collect(f.key, r)}
             label="Project checks"
             className="h-full w-full rounded-none border-0"

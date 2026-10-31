@@ -250,24 +250,27 @@ export function Workspace({ data }: { data: WorkspaceData }) {
                 </li>
               ))}
             </ul>
-            <div className="flex flex-col gap-1.5">
-              <label htmlFor="site" className="text-sm font-medium text-ink">
-                {data.needsSite ? 'The address where it’s live' : 'The address where it’s live (optional)'}
-              </label>
-              <input
-                id="site"
-                type="url"
-                inputMode="url"
-                autoComplete="url"
-                placeholder="https://your-name.github.io/project/"
-                value={site}
-                onChange={(e) => setSite(e.target.value)}
-                className="h-11 rounded-xl border border-line-control bg-control px-3 text-sm text-ink placeholder:text-ink-subtle focus:border-line-strong focus:outline-none"
-              />
-              <p className="text-xs text-ink-subtle">
-                Publish it with GitHub Pages, as in Module 3, and paste its address.
-              </p>
-            </div>
+            {/* Only Front-End teaches putting a site live (its Module 3), so other courses don't ask. */}
+            {(data.needsSite || data.track === 'front-end-web-development') && (
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="site" className="text-sm font-medium text-ink">
+                  {data.needsSite ? 'The address where it’s live' : 'The address where it’s live (optional)'}
+                </label>
+                <input
+                  id="site"
+                  type="url"
+                  inputMode="url"
+                  autoComplete="url"
+                  placeholder="https://your-name.github.io/project/"
+                  value={site}
+                  onChange={(e) => setSite(e.target.value)}
+                  className="h-11 rounded-xl border border-line-control bg-control px-3 text-sm text-ink placeholder:text-ink-subtle focus:border-line-strong focus:outline-none"
+                />
+                <p className="text-xs text-ink-subtle">
+                  Publish it with GitHub Pages, as in Module 3, and paste its address.
+                </p>
+              </div>
+            )}
             {submitError && (
               <p role="alert" className="text-sm text-error">
                 {submitError}

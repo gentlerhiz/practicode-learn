@@ -187,6 +187,9 @@ const storageScript = (saved: Record<string, string>) => `
 })();
 `
 
+// Files a page runs or styles itself with; any other file (text, CSV, Markdown, JSON) is data.
+const CODE_LANGS = ['html', 'css', 'js', 'javascript', 'py', 'python', 'sql']
+
 // Inline scripts can't contain a literal closing script tag, or the HTML parser ends the element early.
 const noScriptEnd = (s: string) => s.replace(/<\/script/gi, '<\\/script')
 
@@ -247,7 +250,16 @@ window.addEventListener('load', function () {
   const engine = engineFor(files)
   const subbed = files.map((f) => ({ ...f, code: sub(f.code) }))
   const run = engine === 'python' ? pythonDocument(subbed) : engine === 'sql' ? sqlDocument(subbed) : null
-  const consoleScript = js || run ? `<script>${CONSOLE}${js ? `${storageScript(opts.storage ?? {})}${NETWORK}${EMAIL}` : ''}</script>` : ''
+  // A page's own scripts can read the step's other files, such as a learner's list in risks.txt, with
+  // pclFile(name): the text, or null when there's no such file.
+  const data = Object.fromEntries(subbed.filter((f) => !CODE_LANGS.includes(f.lang)).map((f) => [f.name, f.code]))
+  const dataScript = js
+    ? `window.pclFile = (function (all) { return function (name) { return Object.prototype.hasOwnProperty.call(all, name) ? all[name] : null; }; })(${JSON.stringify(data).replace(/</g, '\\u003c')});`
+    : ''
+  const consoleScript =
+    js || run
+      ? `<script>${CONSOLE}${js ? `${storageScript(opts.storage ?? {})}${NETWORK}${EMAIL}${dataScript}` : ''}</script>`
+      : ''
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style>${consoleScript}${run ? run.head : ''}</head><body>${html}${js ? `<script>${noScriptEnd(js)}</script>` : ''}${run ? run.body : ''}${tests}</body></html>`
 }
 

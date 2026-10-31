@@ -65,7 +65,13 @@ Every lab is a simulation, so learners practise on fake accounts and fake messag
 
 - **CIA triad** (Module 1): one incident, seen through confidentiality, integrity and availability.
 - **Risk matrix** (Module 1): rate likelihood and impact and watch a risk move.
-- **Password tester** (Module 2): see how long a password would survive, without it ever leaving the page.
+- **Password theft** (Module 2): the five ways passwords really get stolen, and what stops each.
+- **Crack clock** (Module 2): how long a password lasts after a breach, carelessly or properly stored.
+- **Reuse dominoes** (Module 2): one breach and five accounts, by password habit.
+- **Vault** (Module 2): a password manager generating, filling, and refusing to fill on a fake site.
+- **Second factors** (Module 2): text codes, apps, push and security keys against four real attacks.
+- **Passkey handshake** (Module 2): two keys, a challenge, and why a fake site gets nothing.
+- **Recovery check** (Module 2): ways back into an account, rated.
 - **Inbox** (Modules 3–4): real and phishing messages to inspect, with headers and links to hover.
 - **Practice phone and browser** (Modules 5–6): permissions, updates, padlocks and extensions.
 - **Home network** (Module 6): router settings to harden.

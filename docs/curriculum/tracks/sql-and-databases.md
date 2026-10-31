@@ -64,6 +64,11 @@ Each lesson takes 8–14 minutes and follows the [lesson format](../lesson-forma
 - **Table anatomy** (Module 1): a table, a column, a row and a primary key.
 - **WHERE filter** (Module 1): conditions picking rows out of a table, as you change them.
 - **Query order** (Module 1): the order a database runs FROM, WHERE, SELECT, ORDER BY and LIMIT.
+- **Filters** (Module 2): AND, OR, NOT, brackets and BETWEEN picking rows from twelve books, with how SQL reads the condition.
+- **LIKE patterns** (Module 2): % and _ wildcards, and ILIKE.
+- **NULL logic** (Module 2): true, false and unknown, row by row.
+- **Calculated columns** (Module 2): a column worked out from others, with AS.
+- **CASE** (Module 2): labels from the first true WHEN, and the wrong-order trap.
 - **PostgreSQL in the browser** (every module): a fresh practice database for every step, with results drawn as tables and errors in the console.
 
 ## Assessment

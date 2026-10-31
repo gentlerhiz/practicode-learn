@@ -98,7 +98,8 @@ describe.skipIf(!testEnvReady)('courses, review and projects', () => {
     expect((await pass([...passing.slice(0, 4), { name: 'x', pass: false }])).error?.message).toMatch(
       /every check/,
     )
-    expect((await pass(passing.slice(0, 2))).error?.message).toMatch(/every check/)
+    // At least the brief's checks plus one built-in check (a program's runs-without-errors check).
+    expect((await pass(passing.slice(0, 1))).error?.message).toMatch(/every check/)
     expect((await pass(passing, [true, false])).error?.message).toMatch(/self-review/)
     expect((await pass(passing)).error?.message).toMatch(/lessons first/)
     await complete(ada.id, LESSONS[1]!)

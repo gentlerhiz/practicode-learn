@@ -21,6 +21,8 @@ Every project has three kinds of check, and all of them run in the learner's bro
 | **Accessible** | Built in: no serious or critical problems found by axe-core | At laptop width |
 | **Fits every screen** | Built in: no sideways scrolling | At 320, 768 and 1280 px |
 
+A project whose files are Python or SQL is a **program**, not a page: it has no page for the accessibility and screen-size checks, so it gets one built-in check instead, **Runs without errors**, and its checks run once, at laptop width. Its brief's checks read what it printed (`logs`, `python()`) or the tables it produced (`allResults()`, `lastResult()`). A project for a course without code can still be a page: a readonly page that draws what the learner writes in a text file, read with `pclFile(name)`, as Introduction to Cybersecurity's risk map does.
+
 A learner can submit once every check passes and they've answered the self-review questions. The database (`pass_project`) also requires the module's lessons to be complete, and, for projects that must be live on the web, the address. The checks run in the browser, so this is practice, not an exam: the results are taken as sent. Passed projects count toward the certificate.
 
 ## Authoring format
