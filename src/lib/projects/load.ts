@@ -129,6 +129,24 @@ export type ProjectView = {
   checkNames: string[]
 }
 
+/**
+ * A project's pack, or null when it's part of Pro and this client's learner doesn't have it: Pro project
+ * packs are only handed to Pro members, by the storage policy on the bucket.
+ */
+export async function projectPack(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  meta: Pick<Catalogue, 'free' | 'pack_path'>,
+): Promise<ProjectPack | null> {
+  if (meta.free) {
+    const url = supabase.storage.from('lessons-free').getPublicUrl(meta.pack_path).data.publicUrl
+    const res = await fetch(url, { cache: 'force-cache' })
+    if (!res.ok) throw new PackError(`The project couldn’t be downloaded (HTTP ${res.status}).`)
+    return parseProjectPack(await res.json())
+  }
+  const { data, error } = await supabase.storage.from(PRO_BUCKET).download(meta.pack_path)
+  return error || !data ? null : parseProjectPack(JSON.parse(await data.text()))
+}
+
 /** One project, with the learner's saved work. Null when there's no such project. */
 export async function loadProject(track: string, slug: string): Promise<ProjectView | null> {
   const supabase = await createClient()
@@ -153,18 +171,8 @@ export async function loadProject(track: string, slug: string): Promise<ProjectV
   const ids = (lessons.data ?? []).map((l) => l.id)
   const lessonCount = { done: ids.filter((id) => done.has(id)).length, total: ids.length }
 
-  let json: unknown
-  if (meta.free) {
-    const url = supabase.storage.from('lessons-free').getPublicUrl(meta.pack_path).data.publicUrl
-    const res = await fetch(url, { cache: 'force-cache' })
-    if (!res.ok) throw new PackError(`The project couldn’t be downloaded (HTTP ${res.status}).`)
-    json = await res.json()
-  } else {
-    // Pro project packs are only handed to Pro members, by the storage policy on the bucket.
-    const { data, error } = await supabase.storage.from(PRO_BUCKET).download(meta.pack_path)
-    json = error || !data ? null : JSON.parse(await data.text())
-  }
-  if (json === null) {
+  const pack = await projectPack(supabase, meta)
+  if (!pack) {
     return {
       meta,
       pack: null,
@@ -178,7 +186,6 @@ export async function loadProject(track: string, slug: string): Promise<ProjectV
       checkNames: [],
     }
   }
-  const pack = parseProjectPack(json)
   const saved =
     Array.isArray(work.data?.files) && work.data.files.length ? (work.data.files as ProjectFile[]) : null
   return {

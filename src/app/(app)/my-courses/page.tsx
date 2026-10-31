@@ -224,6 +224,16 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
                   })}
                 </ol>
                 {m.project && <p className={cn('text-[13px]', look.text)}>Project: {m.project}</p>}
+                {open && unlocked && !soon && (
+                  <a
+                    href={`/learn/${track.track.slug}/notes/${m.number}`}
+                    download
+                    className="press inline-flex h-10 items-center gap-2 self-start rounded-full border border-line-control px-4 text-[13px] font-medium text-ink hover:border-line-strong hover:bg-hover"
+                  >
+                    <Glyph name="download" size={16} />
+                    Module Notes (PDF)
+                  </a>
+                )}
               </div>
             </details>
           )

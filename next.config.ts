@@ -8,10 +8,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ['image/avif', 'image/webp'] },
   experimental: { sri: { algorithm: 'sha256' } },
-  // Certificates are drawn per request (the page and the PDF) with the brand fonts, read from disk.
+  // Certificates and module notes are drawn per request with the brand fonts, read from disk.
   outputFileTracingIncludes: {
     '/certificate/**': ['src/assets/fonts/**'],
     '/certificates': ['src/assets/fonts/**'],
+    '/learn/[track]/notes/[module]': ['src/assets/fonts/**'],
   },
 
   // Courses were called tracks until October 2026: old links and search results land on the new pages.

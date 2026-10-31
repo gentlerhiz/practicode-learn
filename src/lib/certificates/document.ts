@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import fontkit from '@pdf-lib/fontkit'
 import QRCode from 'qrcode'
+import { MARK } from '@/lib/brand/mark'
 
 /**
  * The certificate itself: one A4 landscape page (842 × 595 points), laid out once and drawn twice, as the
@@ -105,34 +106,6 @@ const hexagon = (cx: number, cy: number, r: number): [number, number][] =>
     return [cx + r * Math.cos(a), cy + r * Math.sin(a)]
   })
 
-// The PractiCode mark (brand/logo), in its own units: 20.8 wide and 18.12 tall, centred on 0, 0.
-const MARK: [number, number][][] = [
-  [
-    [1.6, 8.66],
-    [5, 8.66],
-    [10, 0],
-    [5, -8.66],
-    [-5, -8.66],
-    [-10, 0],
-    [-5, 8.66],
-    [-1, 8.66],
-    [-3, 5.196],
-    [-6, 0],
-    [-3, -5.196],
-    [3, -5.196],
-    [6, 0],
-    [3, 5.196],
-    [-0.4, 5.196],
-  ],
-  [
-    [-2.8, 0],
-    [-1.4, 2.425],
-    [1.4, 2.425],
-    [2.8, 0],
-    [1.4, -2.425],
-    [-1.4, -2.425],
-  ],
-]
 const mark = (cx: number, cy: number, scale: number, color: string): Shape[] =>
   MARK.map((poly) => ({
     kind: 'polygon',
