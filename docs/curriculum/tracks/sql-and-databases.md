@@ -69,6 +69,19 @@ Each lesson takes 8–14 minutes and follows the [lesson format](../lesson-forma
 - **NULL logic** (Module 2): true, false and unknown, row by row.
 - **Calculated columns** (Module 2): a column worked out from others, with AS.
 - **CASE** (Module 2): labels from the first true WHEN, and the wrong-order trap.
+- **Aggregates** (Module 3): twelve values folding into one answer, with NULLs skipped or counted.
+- **GROUP BY** (Module 3): rows sorted into piles, each folding into one row.
+- **WHERE and HAVING** (Module 3): a grouped query run clause by clause, filtering rows and then groups.
+- **DISTINCT** (Module 3): repeated rows crossed out, one column or several.
+- **Dates** (Module 3): pulling dates apart, writing them your way and doing sums in days.
+- **Rounding** (Module 3): the same values through ROUND, CEIL, FLOOR and TO_CHAR.
+- **One table or many** (Module 4): a flat sheet drifting apart, then split into linked tables.
+- **Keys** (Module 4): following an order's foreign key to its customer.
+- **Join steps** (Module 4): an inner join built row by row.
+- **Join compare** (Module 4): INNER JOIN, LEFT JOIN and the rows with no match.
+- **Join chain** (Module 4): four tables joined one at a time, following one order through.
+- **Self join** (Module 4): one table read twice, as staff and as managers.
+- **Join traps** (Module 4): five joins that run without an error and give the wrong answer.
 - **PostgreSQL in the browser** (every module): a fresh practice database for every step, with results drawn as tables and errors in the console.
 
 ## Assessment

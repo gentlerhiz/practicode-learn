@@ -3,7 +3,7 @@ import type { TrackContent } from './types'
 const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
- * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). Module 1 is
+ * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). Modules 1 to 4 are
  * published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
  */
 export const sql: TrackContent = {
@@ -79,7 +79,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: predicates',
       project: 'Find the customers a shop should contact',
       free: false,
-      soon: true,
       lessons: l(
         'AND, OR and NOT',
         'Ranges with BETWEEN and IN',
@@ -97,7 +96,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: aggregate functions',
       project: 'A sales summary by month and product',
       free: false,
-      soon: true,
       lessons: l(
         'COUNT, SUM, AVG, MIN and MAX',
         'GROUP BY',
@@ -114,7 +112,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: joined tables',
       project: 'One report from orders, customers and products',
       free: false,
-      soon: true,
       lessons: l(
         'Why data lives in many tables',
         'Primary and foreign keys',

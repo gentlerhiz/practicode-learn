@@ -93,7 +93,8 @@ export async function listProjects(tracks: string[]): Promise<ProjectSummary[]> 
       }
       const w = workOf.get(p.id)
       const results = Array.isArray(w?.results) ? (w.results as CheckResult[]) : []
-      const total = p.checks + 4
+      // A program has one built-in check and a page has four, which only a run of the checks can tell.
+      const total = results.length || p.checks + 4
       const unlocked = lessonCount.total > 0 && lessonCount.done === lessonCount.total
       const status: ProjectStatus =
         w?.status === 'passed' ? 'passed' : w ? 'draft' : unlocked ? 'open' : 'locked'

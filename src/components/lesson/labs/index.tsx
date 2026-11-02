@@ -148,6 +148,19 @@ const LikePattern = dynamic(() => import('./like-pattern').then((m) => m.LikePat
 const NullLogic = dynamic(() => import('./null-logic').then((m) => m.NullLogic))
 const CalcColumn = dynamic(() => import('./calc-column').then((m) => m.CalcColumn))
 const CaseFlow = dynamic(() => import('./case-flow').then((m) => m.CaseFlow))
+const AggregateFold = dynamic(() => import('./aggregate-fold').then((m) => m.AggregateFold))
+const GroupPiles = dynamic(() => import('./group-piles').then((m) => m.GroupPiles))
+const GroupPipeline = dynamic(() => import('./group-pipeline').then((m) => m.GroupPipeline))
+const DistinctRows = dynamic(() => import('./distinct-rows').then((m) => m.DistinctRows))
+const DateTools = dynamic(() => import('./date-tools').then((m) => m.DateTools))
+const RoundTools = dynamic(() => import('./round-tools').then((m) => m.RoundTools))
+const FlatToTables = dynamic(() => import('./flat-to-tables').then((m) => m.FlatToTables))
+const KeyLinks = dynamic(() => import('./key-links').then((m) => m.KeyLinks))
+const JoinSteps = dynamic(() => import('./join-steps').then((m) => m.JoinSteps))
+const JoinCompare = dynamic(() => import('./join-compare').then((m) => m.JoinCompare))
+const JoinChain = dynamic(() => import('./join-chain').then((m) => m.JoinChain))
+const SelfJoin = dynamic(() => import('./self-join').then((m) => m.SelfJoin))
+const JoinTraps = dynamic(() => import('./join-traps').then((m) => m.JoinTraps))
 const WhyRestart = dynamic(() => import('./why-restart').then((m) => m.WhyRestart))
 const WifiSignal = dynamic(() => import('./wifi-signal').then((m) => m.WifiSignal))
 const XrSpectrum = dynamic(() => import('./xr-spectrum').then((m) => m.XrSpectrum))
@@ -287,6 +300,19 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'null-logic': NullLogic,
   'calc-column': CalcColumn,
   'case-flow': CaseFlow,
+  'aggregate-fold': AggregateFold,
+  'group-piles': GroupPiles,
+  'group-pipeline': GroupPipeline,
+  'distinct-rows': DistinctRows,
+  'date-tools': DateTools,
+  'round-tools': RoundTools,
+  'flat-to-tables': FlatToTables,
+  'key-links': KeyLinks,
+  'join-steps': JoinSteps,
+  'join-compare': JoinCompare,
+  'join-chain': JoinChain,
+  'self-join': SelfJoin,
+  'join-traps': JoinTraps,
   'query-order': QueryOrder,
   'js-types': JsTypes,
   'if-flow': IfFlow,
