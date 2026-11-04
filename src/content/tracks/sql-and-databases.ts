@@ -3,8 +3,8 @@ import type { TrackContent } from './types'
 const l = (...titles: string[]) => titles.map((title) => ({ title }))
 
 /**
- * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). Modules 1 to 4 are
- * published; the rest are marked soon until their lessons are. A test keeps this identical to the syllabus.
+ * SQL and Databases, from its syllabus (docs/curriculum/tracks/sql-and-databases.md). All ten modules are
+ * published; a module is marked soon until its lessons are. A test keeps this identical to the syllabus.
  */
 export const sql: TrackContent = {
   slug: 'sql-and-databases',
@@ -129,7 +129,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: subqueries, WITH',
       project: 'Top sellers and repeat customers',
       free: false,
-      soon: true,
       lessons: l(
         'Subqueries in WHERE',
         'Subqueries in FROM',
@@ -146,7 +145,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: data change statements',
       project: 'Run a stock update safely in a transaction',
       free: false,
-      soon: true,
       lessons: l(
         'INSERT',
         'UPDATE',
@@ -163,7 +161,6 @@ export const sql: TrackContent = {
       standard: 'CS2023: Data Management (relational design)',
       project: 'Design a database for a library',
       free: false,
-      soon: true,
       lessons: l(
         'From requirements to tables',
         'Data types',
@@ -181,7 +178,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: schema definition',
       project: 'Build the library database, with indexes and a view',
       free: false,
-      soon: true,
       lessons: l(
         'CREATE TABLE',
         'ALTER TABLE',
@@ -198,7 +194,6 @@ export const sql: TrackContent = {
       standard: 'OWASP: SQL injection prevention · GDPR',
       project: 'Speed up slow queries and lock down access',
       free: false,
-      soon: true,
       lessons: l(
         'How queries run: EXPLAIN',
         'Indexes that help',
@@ -215,7 +210,6 @@ export const sql: TrackContent = {
       standard: 'ISO/IEC 9075: window functions',
       project: 'A monthly report with ranking and running totals',
       free: false,
-      soon: true,
       lessons: l(
         'Window functions',
         'Ranking and running totals',

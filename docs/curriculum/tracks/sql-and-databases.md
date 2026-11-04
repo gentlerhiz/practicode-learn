@@ -82,6 +82,38 @@ Each lesson takes 8–14 minutes and follows the [lesson format](../lesson-forma
 - **Join chain** (Module 4): four tables joined one at a time, following one order through.
 - **Self join** (Module 4): one table read twice, as staff and as managers.
 - **Join traps** (Module 4): five joins that run without an error and give the wrong answer.
+- **Subqueries, FROM and WITH** (Module 5): an inner query's answer plugged into an outer one, a result used as a table, and a named step used twice.
+- **EXISTS** (Module 5): each customer asked whether a match exists, and the NULL trap in NOT IN.
+- **Set operators** (Module 5): two lists through UNION, UNION ALL, INTERSECT and EXCEPT.
+- **Windows** (Module 5): GROUP BY beside OVER, PARTITION BY, running totals, ROW_NUMBER and RANK.
+- **INSERT, UPDATE and DELETE** (Module 6): each statement's shapes, with the rows it adds, changes or removes, and the foreign key saying no.
+- **Transactions** (Module 6): two changes with and without BEGIN, sent one statement at a time.
+- **Constraints** (Module 6): each constraint refusing a bad change, and DEFAULT filling one in.
+- **Upserts** (Module 6): ON CONFLICT with DO NOTHING, DO UPDATE and EXCLUDED.
+- **From a brief to tables** (Module 7): a library's brief read for things, facts and events, becoming members, books and loans.
+- **Data types** (Module 7): the same pages, fines and dates as the wrong type and the right one.
+- **Relationships** (Module 7): one-to-many, one-to-one and many-to-many, and a key on the wrong side.
+- **Normal forms** (Module 7): a list in a cell normalised to first, second and third normal form.
+- **Junction tables** (Module 7): book_authors read both ways, counted and guarded, beside the list it replaces.
+- **Naming** (Module 7): capitals, quotes, reserved words and spaces in names, and snake_case.
+- **ERD** (Module 7): the library's tables in crow's foot notation, one relationship at a time.
+- **CREATE and ALTER TABLE** (Module 8): tables as information_schema describes them, and each change on a table with rows.
+- **Indexes** (Module 8): query plans with and without an index, on 20,000 loans and on six.
+- **Views** (Module 8): a view saved, queried, and keeping up with its table.
+- **Migrations and seeds** (Module 8): numbered migrations run and recorded, and seeds run twice, out of order and in bulk.
+- **Query plans** (Module 9): a join's EXPLAIN ANALYZE read from the deepest line out, then with an index.
+- **Indexes that help** (Module 9): functions, expressions, date ranges, common and rare values, and a partial index.
+- **SQL injection** (Module 9): what a login form's input does to SQL glued together, and to a prepared statement.
+- **Roles** (Module 9): roles granted, refused, grouped and revoked, tested with SET ROLE.
+- **Backups** (Module 9): a backup written, a table lost, the restore run and checked.
+- **Personal data** (Module 9): personal data cut down by a view, coded, erased on request and deleted when old.
+- **LAG and LEAD** (Module 10): the row before and after, change since last month, and shares of a total.
+- **Ranking** (Module 10): ROW_NUMBER, RANK and DENSE_RANK, top N per group, running totals with ties, and a moving average.
+- **Pivots** (Module 10): long grouped rows turned into one column per month, gaps filled and totalled.
+- **Cleaning** (Module 10): messy sign-ups trimmed, nulled, safely converted and de-duplicated.
+- **Cohorts and funnels** (Module 10): a cohort grid built from orders, and a funnel from website visits.
+- **Reports** (Module 10): a monthly report built from named steps, with a ROLLUP total.
+- **Dialects** (Module 10): the same jobs in PostgreSQL, MySQL, SQLite and SQL Server.
 - **PostgreSQL in the browser** (every module): a fresh practice database for every step, with results drawn as tables and errors in the console.
 
 ## Assessment

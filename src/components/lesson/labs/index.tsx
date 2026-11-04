@@ -161,6 +161,44 @@ const JoinCompare = dynamic(() => import('./join-compare').then((m) => m.JoinCom
 const JoinChain = dynamic(() => import('./join-chain').then((m) => m.JoinChain))
 const SelfJoin = dynamic(() => import('./self-join').then((m) => m.SelfJoin))
 const JoinTraps = dynamic(() => import('./join-traps').then((m) => m.JoinTraps))
+const SubquerySteps = dynamic(() => import('./sql-stages').then((m) => m.SubquerySteps))
+const FromSubquery = dynamic(() => import('./sql-stages').then((m) => m.FromSubquery))
+const CteSteps = dynamic(() => import('./sql-stages').then((m) => m.CteSteps))
+const ExistsCheck = dynamic(() => import('./sql-stages').then((m) => m.ExistsCheck))
+const SetOps = dynamic(() => import('./sql-stages').then((m) => m.SetOps))
+const WindowView = dynamic(() => import('./sql-stages').then((m) => m.WindowView))
+const InsertShapes = dynamic(() => import('./sql-stages').then((m) => m.InsertShapes))
+const UpdateWhere = dynamic(() => import('./sql-stages').then((m) => m.UpdateWhere))
+const DeleteSafety = dynamic(() => import('./sql-stages').then((m) => m.DeleteSafety))
+const TransactionFlow = dynamic(() => import('./sql-stages').then((m) => m.TransactionFlow))
+const ConstraintGuard = dynamic(() => import('./sql-stages').then((m) => m.ConstraintGuard))
+const UpsertFlow = dynamic(() => import('./sql-stages').then((m) => m.UpsertFlow))
+const BriefToTables = dynamic(() => import('./sql-schema').then((m) => m.BriefToTables))
+const TypeChoice = dynamic(() => import('./sql-schema').then((m) => m.TypeChoice))
+const RelationshipKinds = dynamic(() => import('./sql-schema').then((m) => m.RelationshipKinds))
+const NormalForms = dynamic(() => import('./sql-schema').then((m) => m.NormalForms))
+const JunctionTable = dynamic(() => import('./sql-schema').then((m) => m.JunctionTable))
+const NamingRules = dynamic(() => import('./sql-schema').then((m) => m.NamingRules))
+const ErdView = dynamic(() => import('./sql-schema').then((m) => m.ErdView))
+const CreateTable = dynamic(() => import('./sql-schema').then((m) => m.CreateTable))
+const AlterTable = dynamic(() => import('./sql-schema').then((m) => m.AlterTable))
+const IndexPlan = dynamic(() => import('./sql-schema').then((m) => m.IndexPlan))
+const ViewSteps = dynamic(() => import('./sql-schema').then((m) => m.ViewSteps))
+const MigrationRun = dynamic(() => import('./sql-schema').then((m) => m.MigrationRun))
+const SeedRun = dynamic(() => import('./sql-schema').then((m) => m.SeedRun))
+const PlanReader = dynamic(() => import('./sql-analysis').then((m) => m.PlanReader))
+const IndexHelp = dynamic(() => import('./sql-analysis').then((m) => m.IndexHelp))
+const InjectionDemo = dynamic(() => import('./sql-analysis').then((m) => m.InjectionDemo))
+const RoleCheck = dynamic(() => import('./sql-analysis').then((m) => m.RoleCheck))
+const BackupRestore = dynamic(() => import('./sql-analysis').then((m) => m.BackupRestore))
+const PrivacyView = dynamic(() => import('./sql-analysis').then((m) => m.PrivacyView))
+const LagLead = dynamic(() => import('./sql-analysis').then((m) => m.LagLead))
+const RankKinds = dynamic(() => import('./sql-analysis').then((m) => m.RankKinds))
+const PivotBuild = dynamic(() => import('./sql-analysis').then((m) => m.PivotBuild))
+const CleanSteps = dynamic(() => import('./sql-analysis').then((m) => m.CleanSteps))
+const CohortFunnel = dynamic(() => import('./sql-analysis').then((m) => m.CohortFunnel))
+const ReportBuild = dynamic(() => import('./sql-analysis').then((m) => m.ReportBuild))
+const SqlDialects = dynamic(() => import('./sql-analysis').then((m) => m.SqlDialects))
 const WhyRestart = dynamic(() => import('./why-restart').then((m) => m.WhyRestart))
 const WifiSignal = dynamic(() => import('./wifi-signal').then((m) => m.WifiSignal))
 const XrSpectrum = dynamic(() => import('./xr-spectrum').then((m) => m.XrSpectrum))
@@ -313,6 +351,44 @@ export const labs: Record<LabName, ComponentType<LabProps>> = {
   'join-chain': JoinChain,
   'self-join': SelfJoin,
   'join-traps': JoinTraps,
+  'subquery-steps': SubquerySteps,
+  'from-subquery': FromSubquery,
+  'cte-steps': CteSteps,
+  'exists-check': ExistsCheck,
+  'set-ops': SetOps,
+  'window-view': WindowView,
+  'insert-shapes': InsertShapes,
+  'update-where': UpdateWhere,
+  'delete-safety': DeleteSafety,
+  'transaction-flow': TransactionFlow,
+  'constraint-guard': ConstraintGuard,
+  'upsert-flow': UpsertFlow,
+  'brief-to-tables': BriefToTables,
+  'type-choice': TypeChoice,
+  'relationship-kinds': RelationshipKinds,
+  'normal-forms': NormalForms,
+  'junction-table': JunctionTable,
+  'naming-rules': NamingRules,
+  'erd-view': ErdView,
+  'create-table': CreateTable,
+  'alter-table': AlterTable,
+  'index-plan': IndexPlan,
+  'view-steps': ViewSteps,
+  'migration-run': MigrationRun,
+  'seed-run': SeedRun,
+  'plan-reader': PlanReader,
+  'index-help': IndexHelp,
+  'injection-demo': InjectionDemo,
+  'role-check': RoleCheck,
+  'backup-restore': BackupRestore,
+  'privacy-view': PrivacyView,
+  'lag-lead': LagLead,
+  'rank-kinds': RankKinds,
+  'pivot-build': PivotBuild,
+  'clean-steps': CleanSteps,
+  'cohort-funnel': CohortFunnel,
+  'report-build': ReportBuild,
+  'sql-dialects': SqlDialects,
   'query-order': QueryOrder,
   'js-types': JsTypes,
   'if-flow': IfFlow,
