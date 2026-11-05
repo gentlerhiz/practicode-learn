@@ -20,6 +20,38 @@ const STATUS: Record<string, string> = {
   'invoice.payment_failed': 'attention',
 }
 
+/** Where academy charges go: practicode.tech checks the same signature with the same secret key. */
+const ACADEMY_WEBHOOK = 'https://practicode.tech/api/paystack/webhook'
+
+/** Academy enrolments tag their charges with metadata.source 'academy' (Paystack may send metadata as a JSON string). */
+function isAcademyCharge(data: Record<string, unknown>): boolean {
+  let meta = data.metadata
+  if (typeof meta === 'string') {
+    try {
+      meta = JSON.parse(meta)
+    } catch {
+      return false
+    }
+  }
+  return typeof meta === 'object' && meta !== null && (meta as Record<string, unknown>).source === 'academy'
+}
+
+/** Passes the event on unchanged and answers with the academy's status, so Paystack retries if it failed. */
+async function forwardToAcademy(raw: string, signature: string): Promise<Response> {
+  try {
+    const res = await fetch(ACADEMY_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-paystack-signature': signature },
+      body: raw,
+      signal: AbortSignal.timeout(20_000),
+    })
+    return new Response(res.ok ? 'ok' : 'Academy failed', { status: res.ok ? 200 : 502 })
+  } catch (error) {
+    console.error('Forwarding an academy charge failed', error)
+    return new Response('Try again', { status: 502 })
+  }
+}
+
 /**
  * Paystack's webhook (set in the Paystack dashboard: Settings, API Keys & Webhooks). Every event is
  * checked against our secret key. Charges are verified with Paystack again before they give Pro.
@@ -39,6 +71,9 @@ export async function POST(request: Request) {
   const parsed = Event.safeParse(body)
   if (!parsed.success) return new Response('ok')
   const { event, data } = parsed.data
+
+  // PractiCode Academy shares this Paystack account, and Paystack allows one webhook per account.
+  if (isAcademyCharge(data)) return forwardToAcademy(raw, request.headers.get('x-paystack-signature')!)
 
   try {
     if (event === 'charge.success' && typeof data.reference === 'string') {
