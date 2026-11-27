@@ -20,6 +20,7 @@ export type CertificateData = {
   /** Projects passed for it; certificates from before projects opened have none. */
   projects: number
   modules: { number: number; title: string; map: string }[]
+  skills: string[]
   /** When the certificate was withdrawn, if it was. */
   revoked: string | null
   /** The certificate itself, laid out (src/lib/certificates/document.ts). */
@@ -205,6 +206,23 @@ export function CertificateView({ data }: { data: CertificateData }) {
               </li>
             ))}
           </ol>
+        </section>
+
+        <section aria-labelledby="skills-title" className="flex flex-col gap-5">
+          <h2
+            id="skills-title"
+            className="font-display text-[26px] font-extrabold tracking-[-0.03em] text-ink ph:text-[30px]"
+          >
+            Skills demonstrated
+          </h2>
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-3 tab:grid-cols-2">
+            {data.skills.map((skill) => (
+              <li key={skill} className="flex items-start gap-2.5 text-sm leading-6 text-ink">
+                <Glyph name="check" size={16} />
+                <span>{skill}</span>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section aria-labelledby="about-title" className="grid grid-cols-1 gap-4 tab:grid-cols-2">

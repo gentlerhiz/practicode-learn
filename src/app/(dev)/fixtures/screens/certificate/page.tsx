@@ -23,6 +23,7 @@ export default function CertificatePreview() {
         lessons: 119,
         projects: 3,
         modules: frontEnd.modules.map((m) => ({ number: m.number, title: m.title, map: m.standard })),
+        skills: frontEnd.outcomes,
         revoked: null,
         shapes: layoutCertificate({
           name: 'Amina Bello',
