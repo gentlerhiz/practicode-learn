@@ -85,21 +85,23 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
         className="flex flex-col gap-5 rounded-[30px] border border-line p-6 text-white ph:p-8"
         style={{ background: `var(--pc-card-${tone})` }}
       >
-        <div className="flex flex-wrap items-center gap-4">
-          <span className="flex size-[52px] items-center justify-center rounded-2xl bg-white/15">
-            <CourseIcon code={course.code} tone={tone} size={24} />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs font-medium text-white/80">
-              {levelLine(course)} · {course.alignment}
-            </p>
-            <h2 id="track-title" className="font-display text-[28px] leading-8 font-extrabold tracking-[-0.025em] ph:text-[34px] ph:leading-[38px]">
-              {track.trackTitle}
-            </h2>
+        <div className="flex flex-col gap-4 ph:flex-row ph:flex-wrap ph:items-center">
+          <div className="flex min-w-0 items-start gap-4">
+            <span className="flex size-[52px] shrink-0 items-center justify-center rounded-2xl bg-white/15">
+              <CourseIcon code={course.code} tone={tone} size={24} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-medium text-white/80">
+                {levelLine(course)} · {course.alignment}
+              </p>
+              <h2 id="track-title" className="font-display text-[28px] leading-8 font-extrabold tracking-[-0.025em] ph:text-[34px] ph:leading-[38px]">
+                {track.trackTitle}
+              </h2>
+            </div>
           </div>
           <Link
             href={`/courses/${track.track.slug}` as Route}
-            className="press rounded-full border border-white/30 px-4 py-2 text-sm font-medium hover:border-white/60 hover:bg-white/10"
+            className="press self-start rounded-full border border-white/30 px-4 py-2 text-sm font-medium hover:border-white/60 hover:bg-white/10 ph:ml-auto"
           >
             Course Overview
           </Link>
@@ -147,7 +149,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
               open={m.free}
               className="group surface scroll-mt-6 rounded-[22px] border border-line"
             >
-              <summary className="flex cursor-pointer list-none items-center gap-4 rounded-[22px] p-4 hover:bg-hover ph:px-5 [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none flex-wrap items-center gap-3 rounded-[22px] p-4 hover:bg-hover ph:flex-nowrap ph:gap-4 ph:px-5 [&::-webkit-details-marker]:hidden">
                 <span
                   className={cn(
                     'flex size-9 shrink-0 items-center justify-center rounded-[10px] text-sm font-bold',
@@ -160,7 +162,7 @@ export default async function MyCoursesPage({ searchParams }: PageProps<'/my-cou
                 >
                   {share === 100 ? <Glyph name="check" size={16} strokeWidth={2.6} /> : m.number}
                 </span>
-                <span className="flex min-w-0 flex-1 flex-col">
+                <span className="flex min-w-0 flex-[1_1_10rem] flex-col">
                   <span className="text-base font-semibold text-ink">{m.title}</span>
                   <span className="text-[13px] text-ink-subtle">
                     {m.lessons.length} lessons

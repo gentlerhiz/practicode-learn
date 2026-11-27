@@ -160,8 +160,8 @@ function lessonFile(file: string) {
       }
     })
     if (opts.length < 2) fail(node, `<${node.name}> needs at least 2 options.`)
-    if (!opts.some((o) => o.correct))
-      fail(node, `<${node.name}> has no correct option. Mark one with the correct attribute.`)
+    if (opts.filter((o) => o.correct).length !== 1)
+      fail(node, `<${node.name}> needs exactly one correct option.`)
     if (new Set(opts.map((o) => o.id)).size !== opts.length)
       fail(node, `<${node.name}> has two options with the same id.`)
     return opts

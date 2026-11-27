@@ -105,6 +105,16 @@ Type it.
     )
   })
 
+  it('requires exactly one correct choice', () => {
+    const [entry] = buildLesson(SAMPLE)
+    const pack = parsePack(JSON.parse(fs.readFileSync(path.join(dir, 'out', 'packs', `${entry!.id}.json`), 'utf8')))
+    const predict = pack.steps.find((step) => step.type === 'predict')
+    expect(predict?.type === 'predict' && predict.options.find((option) => option.correct)?.id).toBe('a')
+
+    expect(problems(SAMPLE.replace('id="a" correct', 'id="a"'))).toMatch(/needs exactly one correct option/)
+    expect(problems(SAMPLE.replace('id="b" feedback', 'id="b" correct feedback'))).toMatch(/needs exactly one correct option/)
+  })
+
   it('names a lab the player does not know', () => {
     expect(problems(SAMPLE.replace('lab="flex-axes"', 'lab="warp-drive"'))).toMatch(
       /Unknown lab "warp-drive"/,
